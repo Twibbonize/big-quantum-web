@@ -41,7 +41,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -277,7 +277,7 @@
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
-              <img width="45" src="src/assets/img/icons/metamask.svg" alt="">
+              <img width="45" src="/src/assets/img/icons/metamask.svg" alt="">
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
@@ -316,7 +316,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -554,7 +554,7 @@
                   align-items-center">
                   <img
                     class="thumb"
-                    src="src/assets/img/notifications/1.png"
+                    src="/src/assets/img/notifications/1.png"
                     alt="..."
                     />
                   <div class="details">
@@ -571,7 +571,7 @@
               </div>
               <img
                 class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
+                src="/src/assets/img/avatars/avatar_2.png"
                 alt="avatar"
                 />
               <div class="avatar_popup space-y-20">
@@ -584,7 +584,7 @@
                 <div class="d-flex align-items-center space-x-10">
                   <img
                     class="coin"
-                    src="src/assets/img/logos/coin.svg"
+                    src="/src/assets/img/logos/coin.svg"
                     alt="/"
                     />
                   <div class="info">
@@ -661,14 +661,14 @@
             </div>
             <div class="col-lg-6">
               <img class="img-fluid w-full" id="img_js"
-                src="src/assets/img/bg/in_hero1.png"
+                src="/src/assets/img/bg/in_hero1.png"
                 alt="">
             </div>
           </div>
     
         </div>
-      </div><div class="section__artists mt-100">
-        
+      </div>
+      <div class="section__artists mt-100">  
         <div class="container">
           <div class="space-y-30">
             <div class="section_head">
@@ -683,11 +683,11 @@
                     <div class="avatars space-x-10">
                       <div class="media">
                         <div class="badge">
-                          <img src="src/assets/img/icons/Badge.svg" alt="" />
+                          <img src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_1.png"
+                            src="/src/assets/img/avatars/avatar_1.png"
                             alt="Avatar"
                             class="avatar avatar-md"
                           />
@@ -708,11 +708,11 @@
                     <div class="avatars space-x-10">
                       <div class="media">
                         <div class="badge">
-                          <img src="src/assets/img/icons/Badge.svg" alt="" />
+                          <img src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_2.png"
+                            src="/src/assets/img/avatars/avatar_2.png"
                             alt="Avatar"
                             class="avatar avatar-md"
                           />
@@ -733,11 +733,11 @@
                     <div class="avatars space-x-10">
                       <div class="media">
                         <div class="badge">
-                          <img src="src/assets/img/icons/Badge.svg" alt="" />
+                          <img src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_3.png"
+                            src="/src/assets/img/avatars/avatar_3.png"
                             alt="Avatar"
                             class="avatar avatar-md"
                           />
@@ -758,11 +758,11 @@
                     <div class="avatars space-x-10">
                       <div class="media">
                         <div class="badge">
-                          <img src="src/assets/img/icons/Badge.svg" alt="" />
+                          <img src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_4.png"
+                            src="/src/assets/img/avatars/avatar_4.png"
                             alt="Avatar"
                             class="avatar avatar-md"
                           />
@@ -783,11 +783,11 @@
                     <div class="avatars space-x-10">
                       <div class="media">
                         <div class="badge">
-                          <img src="src/assets/img/icons/Badge.svg" alt="" />
+                          <img src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_5.png"
+                            src="/src/assets/img/avatars/avatar_5.png"
                             alt="Avatar"
                             class="avatar avatar-md"
                           />
@@ -887,12 +887,12 @@
               <div class="avatars space-x-10">
                 <div class="media">
                   <div class="badge">
-                    <img src="src/assets/img/icons/Badge.svg"
+                    <img src="/src/assets/img/icons/Badge.svg"
                       alt="">
                   </div>
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_1.png"
+                      src="/src/assets/img/avatars/avatar_1.png"
                       alt="Avatar"
                       class="avatar avatar-md">
                   </a>
@@ -911,12 +911,12 @@
               <div class="avatars space-x-10">
                 <div class="media">
                   <div class="badge">
-                    <img src="src/assets/img/icons/Badge.svg"
+                    <img src="/src/assets/img/icons/Badge.svg"
                       alt="">
                   </div>
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_2.png"
+                      src="/src/assets/img/avatars/avatar_2.png"
                       alt="Avatar"
                       class="avatar avatar-md">
                   </a>
@@ -1010,7 +1010,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_1.png"
+                        src="/src/assets/img/avatars/avatar_1.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1021,7 +1021,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_2.png"
+                        src="/src/assets/img/avatars/avatar_2.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1033,7 +1033,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_1.png"
+                      src="/src/assets/img/items/item_1.png"
                       alt="item
                       img" />
                   </a>
@@ -1095,7 +1095,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_3.png"
+                        src="/src/assets/img/avatars/avatar_3.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1106,7 +1106,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_4.png"
+                        src="/src/assets/img/avatars/avatar_4.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1118,7 +1118,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_2.png"
+                      src="/src/assets/img/items/item_2.png"
                       alt="item
                       img" />
                   </a>
@@ -1180,7 +1180,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_5.png"
+                        src="/src/assets/img/avatars/avatar_5.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1191,7 +1191,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_6.png"
+                        src="/src/assets/img/avatars/avatar_6.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1203,7 +1203,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_3.png"
+                      src="/src/assets/img/items/item_3.png"
                       alt="item
                       img" />
                   </a>
@@ -1265,7 +1265,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_1.png"
+                        src="/src/assets/img/avatars/avatar_1.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1276,7 +1276,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_7.png"
+                        src="/src/assets/img/avatars/avatar_7.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1288,7 +1288,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_4.png"
+                      src="/src/assets/img/items/item_4.png"
                       alt="item
                       img" />
                   </a>
@@ -1350,7 +1350,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_8.png"
+                        src="/src/assets/img/avatars/avatar_8.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1361,7 +1361,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_9.png"
+                        src="/src/assets/img/avatars/avatar_9.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1373,7 +1373,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_5.png"
+                      src="/src/assets/img/items/item_5.png"
                       alt="item
                       img" />
                   </a>
@@ -1435,7 +1435,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_10.png"
+                        src="/src/assets/img/avatars/avatar_10.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1446,7 +1446,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_11.png"
+                        src="/src/assets/img/avatars/avatar_11.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1458,7 +1458,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_6.png"
+                      src="/src/assets/img/items/item_6.png"
                       alt="item
                       img" />
                   </a>
@@ -1520,7 +1520,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_12.png"
+                        src="/src/assets/img/avatars/avatar_12.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1531,7 +1531,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_5.png"
+                        src="/src/assets/img/avatars/avatar_5.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1543,7 +1543,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_7.png"
+                      src="/src/assets/img/items/item_7.png"
                       alt="item
                       img" />
                   </a>
@@ -1605,7 +1605,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_13.png"
+                        src="/src/assets/img/avatars/avatar_13.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1616,7 +1616,7 @@
                   <div class="avatars space-x-3">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_14.png"
+                        src="/src/assets/img/avatars/avatar_14.png"
                         alt="Avatar"
                         class="avatar avatar-sm" />
                     </a>
@@ -1628,7 +1628,7 @@
                 <div class="card_head">
                   <a href="/item-details">
                     <img
-                      src="src/assets/img/items/item_8.png"
+                      src="/src/assets/img/items/item_8.png"
                       alt="item
                       img" />
                   </a>
@@ -1709,16 +1709,16 @@
                       <div class="images-box space-y-10">
                         <div class="top_imgs">
                           <img
-                            src="src/assets/img/items/item_9.png"
+                            src="/src/assets/img/items/item_9.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_10.png"
+                            src="/src/assets/img/items/item_10.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_11.png"
+                            src="/src/assets/img/items/item_11.png"
                             alt="">
                         </div>
-                        <img src="src/assets/img/items/item_12.png"
+                        <img src="/src/assets/img/items/item_12.png"
                           alt="">
                       </div>
                     </div>
@@ -1735,7 +1735,7 @@
                     <div class="avatars space-x-5">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_2.png"
+                          src="/src/assets/img/avatars/avatar_2.png"
                           alt="Avatar" class="avatar avatar-sm">
                       </a>
                     </div>
@@ -1752,16 +1752,16 @@
                       <div class="images-box space-y-10">
                         <div class="top_imgs">
                           <img
-                            src="src/assets/img/items/item_13.png"
+                            src="/src/assets/img/items/item_13.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_14.png"
+                            src="/src/assets/img/items/item_14.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_15.png"
+                            src="/src/assets/img/items/item_15.png"
                             alt="">
                         </div>
-                        <img src="src/assets/img/items/item_16.png"
+                        <img src="/src/assets/img/items/item_16.png"
                           alt="">
                       </div>
                     </div>
@@ -1778,7 +1778,7 @@
                     <div class="avatars space-x-5">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_3.png"
+                          src="/src/assets/img/avatars/avatar_3.png"
                           alt="Avatar" class="avatar avatar-sm">
                       </a>
                     </div>
@@ -1795,16 +1795,16 @@
                       <div class="images-box space-y-10">
                         <div class="top_imgs">
                           <img
-                            src="src/assets/img/items/item_17.png"
+                            src="/src/assets/img/items/item_17.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_18.png"
+                            src="/src/assets/img/items/item_18.png"
                             alt="">
                           <img
-                            src="src/assets/img/items/item_19.png"
+                            src="/src/assets/img/items/item_19.png"
                             alt="">
                         </div>
-                        <img src="src/assets/img/items/item_20.png"
+                        <img src="/src/assets/img/items/item_20.png"
                           alt="">
                       </div>
                     </div>
@@ -1821,7 +1821,7 @@
                     <div class="avatars space-x-5">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_1.png"
+                          src="/src/assets/img/avatars/avatar_1.png"
                           alt="Avatar" class="avatar avatar-sm">
                       </a>
                     </div>
@@ -1856,7 +1856,7 @@
           </div>
           <div class="col-md-auto">
             <img class="img-fluid img__logo"
-              src="src/assets/img/logos/Logo_illustrstion.png"
+              src="/src/assets/img/logos/Logo_illustrstion.png"
               alt="...">
           </div>
         </div>
@@ -1874,9 +1874,9 @@
             <div class="d-flex flex-column flex-md-row
               justify-content-center
               space-x-20 sm:space-x-0 sm:space-y-20 align-items-center">
-              <img src="src/assets/img/logos/1.svg" alt="">
-              <img src="src/assets/img/logos/2.svg" alt="">
-              <img src="src/assets/img/logos/3.svg" alt="">
+              <img src="/src/assets/img/logos/1.svg" alt="">
+              <img src="/src/assets/img/logos/2.svg" alt="">
+              <img src="/src/assets/img/logos/3.svg" alt="">
             </div>
           </div>
         </div>
@@ -1887,7 +1887,7 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
               </a>
             </div>
             <p class="footer__text">
@@ -1953,12 +1953,12 @@
     <script>
         $(".dark").on('click', function (e) {
     
-      document.getElementById("img_js").src = "src/assets/img/bg/in_hero1_dark.png"
+      document.getElementById("img_js").src = "/src/assets/img/bg/in_hero1_dark.png"
     
     
     });
     $(".light").on('click', function (e) {
-      document.getElementById("img_js").src = "src/assets/img/bg/in_hero1.png"
+      document.getElementById("img_js").src = "/src/assets/img/bg/in_hero1.png"
     });
     </script>
   </div>

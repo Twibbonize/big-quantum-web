@@ -33,7 +33,7 @@
         </div>
       </div>
     </div> -->
-    
+
     <header class="header__1 js-header" id="header">
       <div class="container">
         <div class="wrapper js-header-wrapper">
@@ -42,12 +42,12 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
-    
+
           <!-- ==================  -->
           <div class="header__menu">
             <ul class="d-flex space-x-20">
@@ -61,12 +61,10 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
@@ -89,7 +87,6 @@
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -105,7 +102,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -134,7 +131,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -156,7 +153,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -164,7 +161,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -172,17 +169,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -197,7 +186,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -262,7 +251,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -276,21 +266,21 @@
           <div class="header__btns">
             <a class="btn btn-grad btn-sm" href="/connect-wallet">
               <i class="ri-wallet-3-line"></i>
-              Connect wallet</a>
+              Connect wallet</a
+            >
             <a href="" id="connectbtn">
-              <img width="45" src="src/assets/img/icons/metamask.svg" alt="">
+              <img width="45" src="/src/assets/img/icons/metamask.svg" alt="" />
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
-    
+
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -299,15 +289,14 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-    
+
     <!-- ====== header admin -->
     <header class="header__1 js-header header_wallet" id="header_admin">
       <div class="container">
@@ -317,9 +306,9 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
           <!-- ==================  -->
@@ -335,25 +324,22 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-              <li> <a class="color_black" href="/collections"> Collections</a> </li>
-              <li> <a class="color_black" href="/profile"> Profile</a> </li>
-              <li> <a class="color_black" href="/creators"> Creators</a> </li>
-              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
+              <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+              <li><a class="color_black" href="/collections"> Collections</a></li>
+              <li><a class="color_black" href="/profile"> Profile</a></li>
+              <li><a class="color_black" href="/creators"> Creators</a></li>
+              <li><a class="color_black" href="/kit"> Ui Kit </a></li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -369,7 +355,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -398,7 +384,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -420,7 +406,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -428,7 +414,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -436,17 +422,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -461,7 +439,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -526,7 +504,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -544,20 +523,11 @@
               </div>
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
-                  <h5> Notifications</h5>
+                  <h5>Notifications</h5>
                   <a href="/activity" class="badge color_white">View all</a>
                 </div>
-                <div
-                  class="item
-                  space-x-20
-                  d-flex
-                  justify-content-between
-                  align-items-center">
-                  <img
-                    class="thumb"
-                    src="src/assets/img/notifications/1.png"
-                    alt="..."
-                    />
+                <div class="item space-x-20 d-flex justify-content-between align-items-center">
+                  <img class="thumb" src="/src/assets/img/notifications/1.png" alt="..." />
                   <div class="details">
                     <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
@@ -570,11 +540,7 @@
               <div class="price">
                 <span>2.45 <strong>ETH</strong> </span>
               </div>
-              <img
-                class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
-                alt="avatar"
-                />
+              <img class="avatar" src="/src/assets/img/avatars/avatar_2.png" alt="avatar" />
               <div class="avatar_popup space-y-20">
                 <div class="d-flex align-items-center justify-content-between">
                   <span> 13b9ebda035r178... </span>
@@ -583,11 +549,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center space-x-10">
-                  <img
-                    class="coin"
-                    src="src/assets/img/logos/coin.svg"
-                    alt="/"
-                    />
+                  <img class="coin" src="/src/assets/img/logos/coin.svg" alt="/" />
                   <div class="info">
                     <p class="text-sm font-book text-gray-400">Balance</p>
                     <p class="w-full text-sm font-bold text-green-500">16.58 ETH</p>
@@ -595,15 +557,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="links space-y-10">
-                  <a href="#">
-                    <i class="ri-landscape-line"></i> <span> My items</span>
-                  </a>
+                  <a href="#"> <i class="ri-landscape-line"></i> <span> My items</span> </a>
                   <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
-                  <a href="#">
-                    <i class="ri-logout-circle-line"></i> <span> Logout</span>
-                  </a>
+                  <a href="#"> <i class="ri-logout-circle-line"></i> <span> Logout</span> </a>
                 </div>
               </div>
             </div>
@@ -615,11 +573,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -628,1045 +585,1017 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </header> <div class="hero_marketplace bg_white">
-        <div class="container">
-            <h1 class="text-center">NFT Marketplace</h1>
-        </div>
+    </header>
+    <div class="hero_marketplace bg_white">
+      <div class="container">
+        <h1 class="text-center">NFT Marketplace</h1>
+      </div>
     </div>
     <div class="bg_white border-b py-20">
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <ul class="menu_categories space-x-20">
-                    <li>
-                        <a href="#" class="color_brand">
-                
-                            <span> All </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-gamepad-line"></i> <span> Games </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-brush-line"></i> <span> Art </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-stock-line"></i> <span> Trading Cards </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-music-line"></i> <span> Music </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-global-line"></i> <span> Domain Names </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-emotion-laugh-line"></i> <span> Memes </span>
-                        </a>
-                
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-layout-4-line"></i> <span> Collectibles </span>
-                        </a>
-                
-                    </li>
-                </ul>        </div>
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <ul class="menu_categories space-x-20">
+            <li>
+              <a href="#" class="color_brand">
+                <span> All </span>
+              </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-gamepad-line"></i> <span> Games </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-brush-line"></i> <span> Art </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-stock-line"></i> <span> Trading Cards </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-music-line"></i> <span> Music </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-global-line"></i> <span> Domain Names </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-emotion-laugh-line"></i> <span> Memes </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-layout-4-line"></i> <span> Collectibles </span> </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
     <div class="container">
-        <div class="section mt-100">
-            <div class="section__head">
-                <h2 class="section__title mb-20"> Artworks</h2>
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-auto">
-                        <div class="d-flex space-x-10 align-items-center">
-                            <span class="color_text txt_sm" style="min-width:
-                                max-content">
-                                FILTER BY:
-                            </span>
-                            <ul class="menu_categories space-x-20">
-                                <li class="d-flex space-x-10 switch_item">
-                            
-                                    <input type="checkbox" id="switch1" /><label
-                                        for="switch1">Toggle</label>
-                                    <span> Has list price </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                            
-                                    <input type="checkbox" id="switch2" checked/><label
-                                        for="switch2">Toggle</label>
-                                    <span> Has open offer </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                            
-                                    <input type="checkbox" id="switch3" /><label
-                                        for="switch3">Toggle</label>
-                                    <span> Owned by creator </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                            
-                                    <input type="checkbox" id="switch4" /><label
-                                        for="switch4">Toggle</label>
-                                    <span> Has sold </span>
-                                </li>
-                            </ul>                    </div>
-                    </div>
-                    <div class="col-lg-auto">
-                        <div class="d-flex space-x-10 align-items-center sm:mt-20">
-                            <span class="color_text txt_sm"> SORT BY: </span>
-                            <div class="dropdown">
-                                <button
-                                    class="btn btn-dark btn-sm dropdown-toggle"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Recent Active
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else
-                                        here</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="section mt-100">
+        <div class="section__head">
+          <h2 class="section__title mb-20">Artworks</h2>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-lg-auto">
+              <div class="d-flex space-x-10 align-items-center">
+                <span class="color_text txt_sm" style="min-width: max-content"> FILTER BY: </span>
+                <ul class="menu_categories space-x-20">
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch1" /><label for="switch1">Toggle</label>
+                    <span> Has list price </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch2" checked /><label for="switch2"
+                      >Toggle</label
+                    >
+                    <span> Has open offer </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch3" /><label for="switch3">Toggle</label>
+                    <span> Owned by creator </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch4" /><label for="switch4">Toggle</label>
+                    <span> Has sold </span>
+                  </li>
+                </ul>
+              </div>
             </div>
-    
-            <div class="modal fade popup" id="popup_bid_success" tabindex="-1" role="dialog"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="modal-body space-y-20 p-40">
-                            <h3 class="text-center">Your Bidding
-                                Successfuly Added</h3>
-                            <p class="text-center">your bid <span class="color_text txt
-                                    _bold">(16ETH) </span> has been listing
-                                to our database</p>
-            
-                            <a href="" class="btn btn-dark w-full"> Watch the listings</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade popup" id="popup_bid" tabindex="-1" role="dialog"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="modal-body space-y-20 p-40">
-                            <h3>Place a Bid</h3>
-                            <p>You must bid at least <span class="color_black">15 ETH</span>
-                            </p>
-                            <input type="text" class="form-control"
-                                placeholder="00.00 ETH">
-            
-                            <p>Enter quantity. <span class="color_green">5 available</span>
-                            </p>
-                            <input type="text" class="form-control"
-                                value="1">
-                            <div class="hr"></div>
-                            <div class="d-flex justify-content-between">
-                                <p> You must bid at least:</p>
-                                <p class="text-right color_black txt _bold"> 67,000 ETH </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p> service free:</p>
-                                <p class="text-right color_black txt _bold"> 0,901 ETH </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p> Total bid amount:</p>
-                                <p class="text-right color_black txt _bold"> 56,031 ETH </p>
-                            </div>
-                            <a href="" class="btn btn-primary w-full"
-                                data-toggle="modal"
-                                data-target="#popup_bid_success"
-                                data-dismiss="modal"
-                                aria-label="Close"> Place a bid</a>
-                        </div>
-                    </div>
-                </div>
-            </div><div class="modal fade popup" id="popup_history" tabindex="-1" role="dialog"
-              aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+            <div class="col-lg-auto">
+              <div class="d-flex space-x-10 align-items-center sm:mt-20">
+                <span class="color_text txt_sm"> SORT BY: </span>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-dark btn-sm dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Recent Active
                   </button>
-                  <div class="modal-body space-y-20 p-40">
-                    <h4> History </h4>
-                    <div class="creator_item creator_card space-x-10">
-                      <div class="avatars space-x-10">
-                        <div class="media">
-                          <div class="badge">
-                            <img src="src/assets/img/icons/Badge.svg"
-                              alt="">
-                          </div>
-                          <a href="/profile">
-                            <img
-                              src="src/assets/img/avatars/avatar_1.png"
-                              alt="Avatar"
-                              class="avatar avatar-md">
-                          </a>
-                        </div>
-                        <div>
-                          <p class="color_black">Bid accepted <span
-                              class="color_brand">1
-                              ETH</span> by <a class="color_black txt
-                              _bold"
-                              href="/profile">ayoub</a></p>
-                          <span class="date color_text">28/06/2021, 12:08</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="creator_item creator_card space-x-10">
-                      <div class="avatars space-x-10">
-                        <div class="media">
-                          <div class="badge">
-                            <img src="src/assets/img/icons/Badge.svg"
-                              alt="">
-                          </div>
-                          <a href="/profile">
-                            <img
-                              src="src/assets/img/avatars/avatar_2.png"
-                              alt="Avatar"
-                              class="avatar avatar-md">
-                          </a>
-                        </div>
-                        <div>
-                          <p class="color_black">Bid accepted <span
-                              class="color_brand">3
-                              ETH</span> by <a class="color_black txt
-                              _bold"
-                              href="/profile">monir</a></p>
-                          <span class="date color_text">22/05/2021, 12:08</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><div class="row mb-30_reset">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_1.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mickel_fenn</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_2.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@danil_pannini</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_1.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">1.2k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Colorful Abstract Painting
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 4 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">2.45 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_3.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mazanov_sky</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_4.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mucky_fennouni</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_2.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">13.2k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      The girl with the firefly
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 12 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">2.55 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_5.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@jimmy_dom</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_6.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@kristian_sefroui</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_3.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">1.2k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Dodo hide the seek
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 6 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">2.45 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_1.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@Alvin_nov</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_7.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mucky_holiman</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_4.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">4.1k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Liquid Forest Princess
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 34 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">0.55 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_8.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@stivan_rominok</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_9.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@danil_pan</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_5.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">6.4k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Spider Eyes Modern Art
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 7 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">1.45 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_10.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mazanov_sky</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_11.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mucky_art</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_6.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">13.2k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Synthwave Painting
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 2 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">0.055 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_12.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@jimmy_dom</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_5.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@kristian_fel</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_7.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">1.6k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Contemporary Abstract
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 34 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">0.95 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <div class="card__item four">
-                  <div class="card_body space-y-10">
-                    <!-- =============== -->
-                    <div class="creators space-x-10">
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_13.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@Alvin_nov</p>
-                        </a>
-                      </div>
-                      <div class="avatars space-x-3">
-                        <a href="/profile">
-                          <img
-                            src="src/assets/img/avatars/avatar_14.png"
-                            alt="Avatar" class="avatar avatar-sm">
-                        </a>
-                        <a href="/profile">
-                          <p class="avatars_name txt_xs">@mucky_art</p>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card_head">
-                      <a href="/item-details">
-                        <img src="src/assets/img/items/item_8.png"
-                          alt="">
-                      </a>
-            
-                      <a href="#" class="likes space-x-3">
-                        <i class="ri-heart-3-fill"></i>
-                        <span class="txt_sm">11.5k</span>
-                      </a>
-                    </div>
-                    <!-- =============== -->
-                    <h6 class="card_title">
-                      Valkyrie Abstract Art
-                    </h6>
-                    <div class="card_footer d-block space-y-10">
-                      <div class="card_footer justify-content-between">
-                        <div class="creators">
-                          <p class="txt_sm"> 9 in stock</p>
-                        </div>
-                        <a href="#" class="">
-                          <p class="txt_sm">Price: <span
-                              class="color_green
-                              txt_sm">3.55 ETH</span></p>
-                        </a>
-                      </div>
-                      <div class="hr"></div>
-                      <div class="d-flex align-items-center space-x-10
-                        justify-content-between">
-                        <div class="d-flex align-items-center
-                          space-x-10">
-                          <i class="ri-history-line"></i>
-                          <a class="view_history" href="#" data-toggle="modal"
-                            data-target="#popup_history">
-                            <p class="color_text txt_sm"
-                              style="width:
-                              auto;">View
-                              History</p>
-                          </a>
-                        </div>
-                        <a class="btn btn-sm btn-primary" href="#"
-                          data-toggle="modal" data-target="#popup_bid">Place
-                          Bid</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>    </div>
-        <div class="section mt-100">
-            <div class="section__head">
-                <h2 class="section__title mb-20"> Collections</h2>
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-auto">
-                        <div class="d-flex align-items-center space-x-10">
-                            <span class="color_text txt_sm" style="min-width:
-                                max-content">
-                                FILTER BY:
-                            </span>
-                            <ul class="menu_categories space-x-20">
-                                <li class="d-flex space-x-10 switch_item">
-                                    <input
-                                        type="checkbox"
-                                        id="switch7"
-                                        
-                                        /><label for="switch7">Toggle</label>
-                                    <span> Has list price </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                                    <input
-                                        type="checkbox"
-                                        id="switch8"
-                                        checked
-                                        /><label for="switch8">Toggle</label>
-                                    <span> Has open offer </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                                    <input
-                                        type="checkbox"
-                                        id="switch9"
-                                        
-                                        /><label for="switch9">Toggle</label>
-                                    <span> Owned by creator </span>
-                                </li>
-                                <li class="d-flex space-x-10 switch_item">
-                                    <input
-                                        type="checkbox"
-                                        id="switch10"
-                                        
-                                        /><label for="switch10">Toggle</label>
-                                    <span> Has sold </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-auto">
-                        <div class="d-flex space-x-10 align-items-center sm:mt-20">
-                            <span class="color_text txt_sm"> SORT BY: </span>
-                            <div class="dropdown">
-                                <button
-                                    class="btn btn-dark btn-sm dropdown-toggle"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Recent Active
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else
-                                        here</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-              <div class="row justify-content-center mb-30_reset">
-              <div class="col-lg-4 col-md-6 col-sm-8">
-                <div class="collections space-y-10 mb-30">
-                  <a href="/collections">
-                    <div class="collections_item">
-                      <div class="images-box space-y-10">
-                        <div class="top_imgs">
-                          <img
-                            src="src/assets/img/items/item_9.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_10.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_11.png"
-                            alt="">
-                        </div>
-                        <img src="src/assets/img/items/item_12.png"
-                          alt="">
-                      </div>
-                    </div>
-                  </a>
-                  <div class="collections_footer justify-content-between">
-                    <h5 class="collection_title"><a href="/collections">Creative Art collection</a></h5>
-                    <a href="#" class="likes space-x-3">
-                      <i class="ri-heart-3-fill"></i>
-                      <span class="txt_md">2.1k</span>
-                    </a>
-                  </div>
-                  <div class="creators space-x-10">
-                    <span class="color_text txt_md"> 5 items · Created by</span>
-                    <div class="avatars space-x-5">
-                      <a href="/profile">
-                        <img
-                          src="src/assets/img/avatars/avatar_2.png"
-                          alt="Avatar" class="avatar avatar-sm">
-                      </a>
-                    </div>
-                    <a href="/profile">
-                      <p class="avatars_name txt_sm"> @william_jamy... </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-8">
-                <div class="collections space-y-10 mb-30">
-                  <a href="/collections">
-                    <div class="collections_item">
-                      <div class="images-box space-y-10">
-                        <div class="top_imgs">
-                          <img
-                            src="src/assets/img/items/item_13.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_14.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_15.png"
-                            alt="">
-                        </div>
-                        <img src="src/assets/img/items/item_16.png"
-                          alt="">
-                      </div>
-                    </div>
-                  </a>
-                  <div class="collections_footer justify-content-between">
-                    <h5 class="collection_title"><a href="/collections">Colorful Abstract Painting</a></h5>
-                    <a href="#" class="likes space-x-3">
-                      <i class="ri-heart-3-fill"></i>
-                      <span class="txt_md">3.5k</span>
-                    </a>
-                  </div>
-                  <div class="creators space-x-10">
-                    <span class="color_text txt_md"> 7 items · Created by</span>
-                    <div class="avatars space-x-5">
-                      <a href="/profile">
-                        <img
-                          src="src/assets/img/avatars/avatar_3.png"
-                          alt="Avatar" class="avatar avatar-sm">
-                      </a>
-                    </div>
-                    <a href="/profile">
-                      <p class="avatars_name txt_sm"> @alexis_fenn... </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-8">
-                <div class="collections space-y-10 mb-30">
-                  <a href="/collections">
-                    <div class="collections_item">
-                      <div class="images-box space-y-10">
-                        <div class="top_imgs">
-                          <img
-                            src="src/assets/img/items/item_17.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_18.png"
-                            alt="">
-                          <img
-                            src="src/assets/img/items/item_19.png"
-                            alt="">
-                        </div>
-                        <img src="src/assets/img/items/item_20.png"
-                          alt="">
-                      </div>
-                    </div>
-                  </a>
-                  <div class="collections_footer justify-content-between">
-                    <h5 class="collection_title"><a href="/collections">Modern Art collection</a></h5>
-                    <a href="#" class="likes space-x-3">
-                      <i class="ri-heart-3-fill"></i>
-                      <span class="txt_md">7.2k</span>
-                    </a>
-                  </div>
-                  <div class="creators space-x-10">
-                    <span class="color_text txt_md"> 2 items · Created by</span>
-                    <div class="avatars space-x-5">
-                      <a href="/profile">
-                        <img
-                          src="src/assets/img/avatars/avatar_1.png"
-                          alt="Avatar" class="avatar avatar-sm">
-                      </a>
-                    </div>
-                    <a href="/profile">
-                      <p class="avatars_name txt_sm"> @Joshua_Bren... </p>
-                    </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
+
+        <div
+          class="modal fade popup"
+          id="popup_bid_success"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-body space-y-20 p-40">
+                <h3 class="text-center">Your Bidding Successfuly Added</h3>
+                <p class="text-center">
+                  your bid <span class="color_text txt _bold">(16ETH) </span> has been listing to
+                  our database
+                </p>
+
+                <a href="" class="btn btn-dark w-full"> Watch the listings</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade popup" id="popup_bid" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-body space-y-20 p-40">
+                <h3>Place a Bid</h3>
+                <p>You must bid at least <span class="color_black">15 ETH</span></p>
+                <input type="text" class="form-control" placeholder="00.00 ETH" />
+
+                <p>Enter quantity. <span class="color_green">5 available</span></p>
+                <input type="text" class="form-control" value="1" />
+                <div class="hr"></div>
+                <div class="d-flex justify-content-between">
+                  <p>You must bid at least:</p>
+                  <p class="text-right color_black txt _bold">67,000 ETH</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p>service free:</p>
+                  <p class="text-right color_black txt _bold">0,901 ETH</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p>Total bid amount:</p>
+                  <p class="text-right color_black txt _bold">56,031 ETH</p>
+                </div>
+                <a
+                  href=""
+                  class="btn btn-primary w-full"
+                  data-toggle="modal"
+                  data-target="#popup_bid_success"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  Place a bid</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade popup"
+          id="popup_history"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-body space-y-20 p-40">
+                <h4>History</h4>
+                <div class="creator_item creator_card space-x-10">
+                  <div class="avatars space-x-10">
+                    <div class="media">
+                      <div class="badge">
+                        <img src="/src/assets/img/icons/Badge.svg" alt="" />
+                      </div>
+                      <a href="/profile">
+                        <img
+                          src="/src/assets/img/avatars/avatar_1.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
+                      </a>
+                    </div>
+                    <div>
+                      <p class="color_black">
+                        Bid accepted <span class="color_brand">1 ETH</span> by
+                        <a class="color_black txt _bold" href="/profile">ayoub</a>
+                      </p>
+                      <span class="date color_text">28/06/2021, 12:08</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="creator_item creator_card space-x-10">
+                  <div class="avatars space-x-10">
+                    <div class="media">
+                      <div class="badge">
+                        <img src="/src/assets/img/icons/Badge.svg" alt="" />
+                      </div>
+                      <a href="/profile">
+                        <img
+                          src="/src/assets/img/avatars/avatar_2.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
+                      </a>
+                    </div>
+                    <div>
+                      <p class="color_black">
+                        Bid accepted <span class="color_brand">3 ETH</span> by
+                        <a class="color_black txt _bold" href="/profile">monir</a>
+                      </p>
+                      <span class="date color_text">22/05/2021, 12:08</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-30_reset">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_1.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mickel_fenn</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_2.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@danil_pannini</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_1.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">1.2k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Colorful Abstract Painting</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">4 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">2.45 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_3.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mazanov_sky</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_4.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mucky_fennouni</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_2.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">13.2k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">The girl with the firefly</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">12 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">2.55 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_5.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@jimmy_dom</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_6.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@kristian_sefroui</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_3.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">1.2k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Dodo hide the seek</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">6 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">2.45 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_1.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@Alvin_nov</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_7.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mucky_holiman</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_4.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">4.1k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Liquid Forest Princess</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">34 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">0.55 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_8.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@stivan_rominok</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_9.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@danil_pan</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_5.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">6.4k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Spider Eyes Modern Art</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">7 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">1.45 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_10.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mazanov_sky</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_11.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mucky_art</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_6.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">13.2k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Synthwave Painting</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">2 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">0.055 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_12.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@jimmy_dom</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_5.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@kristian_fel</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_7.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">1.6k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Contemporary Abstract</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">34 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">0.95 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="card__item four">
+              <div class="card_body space-y-10">
+                <!-- =============== -->
+                <div class="creators space-x-10">
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_13.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@Alvin_nov</p>
+                    </a>
+                  </div>
+                  <div class="avatars space-x-3">
+                    <a href="/profile">
+                      <img
+                        src="/src/assets/img/avatars/avatar_14.png"
+                        alt="Avatar"
+                        class="avatar avatar-sm"
+                      />
+                    </a>
+                    <a href="/profile">
+                      <p class="avatars_name txt_xs">@mucky_art</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="card_head">
+                  <a href="/item-details">
+                    <img src="/src/assets/img/items/item_8.png" alt="" />
+                  </a>
+
+                  <a href="#" class="likes space-x-3">
+                    <i class="ri-heart-3-fill"></i>
+                    <span class="txt_sm">11.5k</span>
+                  </a>
+                </div>
+                <!-- =============== -->
+                <h6 class="card_title">Valkyrie Abstract Art</h6>
+                <div class="card_footer d-block space-y-10">
+                  <div class="card_footer justify-content-between">
+                    <div class="creators">
+                      <p class="txt_sm">9 in stock</p>
+                    </div>
+                    <a href="#" class="">
+                      <p class="txt_sm">Price: <span class="color_green txt_sm">3.55 ETH</span></p>
+                    </a>
+                  </div>
+                  <div class="hr"></div>
+                  <div class="d-flex align-items-center space-x-10 justify-content-between">
+                    <div class="d-flex align-items-center space-x-10">
+                      <i class="ri-history-line"></i>
+                      <a
+                        class="view_history"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#popup_history"
+                      >
+                        <p class="color_text txt_sm" style="width: auto">View History</p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#popup_bid"
+                      >Place Bid</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section mt-100">
+        <div class="section__head">
+          <h2 class="section__title mb-20">Collections</h2>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-lg-auto">
+              <div class="d-flex align-items-center space-x-10">
+                <span class="color_text txt_sm" style="min-width: max-content"> FILTER BY: </span>
+                <ul class="menu_categories space-x-20">
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch7" /><label for="switch7">Toggle</label>
+                    <span> Has list price </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch8" checked /><label for="switch8"
+                      >Toggle</label
+                    >
+                    <span> Has open offer </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch9" /><label for="switch9">Toggle</label>
+                    <span> Owned by creator </span>
+                  </li>
+                  <li class="d-flex space-x-10 switch_item">
+                    <input type="checkbox" id="switch10" /><label for="switch10">Toggle</label>
+                    <span> Has sold </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-auto">
+              <div class="d-flex space-x-10 align-items-center sm:mt-20">
+                <span class="color_text txt_sm"> SORT BY: </span>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-dark btn-sm dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Recent Active
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-30_reset">
+          <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="collections space-y-10 mb-30">
+              <a href="/collections">
+                <div class="collections_item">
+                  <div class="images-box space-y-10">
+                    <div class="top_imgs">
+                      <img src="/src/assets/img/items/item_9.png" alt="" />
+                      <img src="/src/assets/img/items/item_10.png" alt="" />
+                      <img src="/src/assets/img/items/item_11.png" alt="" />
+                    </div>
+                    <img src="/src/assets/img/items/item_12.png" alt="" />
+                  </div>
+                </div>
+              </a>
+              <div class="collections_footer justify-content-between">
+                <h5 class="collection_title"><a href="/collections">Creative Art collection</a></h5>
+                <a href="#" class="likes space-x-3">
+                  <i class="ri-heart-3-fill"></i>
+                  <span class="txt_md">2.1k</span>
+                </a>
+              </div>
+              <div class="creators space-x-10">
+                <span class="color_text txt_md"> 5 items · Created by</span>
+                <div class="avatars space-x-5">
+                  <a href="/profile">
+                    <img
+                      src="/src/assets/img/avatars/avatar_2.png"
+                      alt="Avatar"
+                      class="avatar avatar-sm"
+                    />
+                  </a>
+                </div>
+                <a href="/profile">
+                  <p class="avatars_name txt_sm">@william_jamy...</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="collections space-y-10 mb-30">
+              <a href="/collections">
+                <div class="collections_item">
+                  <div class="images-box space-y-10">
+                    <div class="top_imgs">
+                      <img src="/src/assets/img/items/item_13.png" alt="" />
+                      <img src="/src/assets/img/items/item_14.png" alt="" />
+                      <img src="/src/assets/img/items/item_15.png" alt="" />
+                    </div>
+                    <img src="/src/assets/img/items/item_16.png" alt="" />
+                  </div>
+                </div>
+              </a>
+              <div class="collections_footer justify-content-between">
+                <h5 class="collection_title">
+                  <a href="/collections">Colorful Abstract Painting</a>
+                </h5>
+                <a href="#" class="likes space-x-3">
+                  <i class="ri-heart-3-fill"></i>
+                  <span class="txt_md">3.5k</span>
+                </a>
+              </div>
+              <div class="creators space-x-10">
+                <span class="color_text txt_md"> 7 items · Created by</span>
+                <div class="avatars space-x-5">
+                  <a href="/profile">
+                    <img
+                      src="/src/assets/img/avatars/avatar_3.png"
+                      alt="Avatar"
+                      class="avatar avatar-sm"
+                    />
+                  </a>
+                </div>
+                <a href="/profile">
+                  <p class="avatars_name txt_sm">@alexis_fenn...</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="collections space-y-10 mb-30">
+              <a href="/collections">
+                <div class="collections_item">
+                  <div class="images-box space-y-10">
+                    <div class="top_imgs">
+                      <img src="/src/assets/img/items/item_17.png" alt="" />
+                      <img src="/src/assets/img/items/item_18.png" alt="" />
+                      <img src="/src/assets/img/items/item_19.png" alt="" />
+                    </div>
+                    <img src="/src/assets/img/items/item_20.png" alt="" />
+                  </div>
+                </div>
+              </a>
+              <div class="collections_footer justify-content-between">
+                <h5 class="collection_title"><a href="/collections">Modern Art collection</a></h5>
+                <a href="#" class="likes space-x-3">
+                  <i class="ri-heart-3-fill"></i>
+                  <span class="txt_md">7.2k</span>
+                </a>
+              </div>
+              <div class="creators space-x-10">
+                <span class="color_text txt_md"> 2 items · Created by</span>
+                <div class="avatars space-x-5">
+                  <a href="/profile">
+                    <img
+                      src="/src/assets/img/avatars/avatar_1.png"
+                      alt="Avatar"
+                      class="avatar avatar-sm"
+                    />
+                  </a>
+                </div>
+                <a href="/profile">
+                  <p class="avatars_name txt_sm">@Joshua_Bren...</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer class="footer__1">
       <div class="container">
@@ -1674,21 +1603,23 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f" />
               </a>
             </div>
-            <p class="footer__text">
-              raroin is a shared liquidity NFT market smart contract
-            </p>
+            <p class="footer__text">raroin is a shared liquidity NFT market smart contract</p>
             <div>
               <ul class="footer__social space-x-10 mb-40">
-                <li> <a href=""> <i class="ri-facebook-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-facebook-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-messenger-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-messenger-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-whatsapp-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-whatsapp-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-youtube-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-youtube-line"></i> </a>
                 </li>
               </ul>
             </div>
@@ -1696,45 +1627,32 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="/home-1"> Home1 </a>
-              </li>
-              <li> <a href="/home-2"> Home2
-                </a> </li>
-              <li> <a href="/home-3"> Home3 </a> </li>
-              <li> <a href="/marketplace"> Marketplace
-                </a>
-              </li>
+              <li><a href="/home-1"> Home1 </a></li>
+              <li><a href="/home-2"> Home2 </a></li>
+              <li><a href="/home-3"> Home3 </a></li>
+              <li><a href="/marketplace"> Marketplace </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="/profile"> Profile </a>
-              </li>
-              <li> <a href="/creators"> Creators </a>
-              </li>
-              <li> <a href="/collections"> Colletctions </a>
-              </li>
-              <li> <a href="/activity"> Activity
-                </a> </li>
+              <li><a href="/profile"> Profile </a></li>
+              <li><a href="/creators"> Creators </a></li>
+              <li><a href="/collections"> Colletctions </a></li>
+              <li><a href="/activity"> Activity </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="/upload-type"> Upload Types </a>
-              </li>
-              <li> <a href="/upload"> Upload </a> </li>
-              <li> <a href="/connect-wallet"> Connect wallet
-                </a> </li>
-              <li> <a href="/item-details"> Item details </a>
-              </li>
+              <li><a href="/upload-type"> Upload Types </a></li>
+              <li><a href="/upload"> Upload </a></li>
+              <li><a href="/connect-wallet"> Connect wallet </a></li>
+              <li><a href="/item-details"> Item details </a></li>
             </ul>
           </div>
         </div>
-        <p class="copyright text-center">
-          Copyright © 2021. Created with love by creabik.
-        </p>
+        <p class="copyright text-center">Copyright © 2021. Created with love by creabik.</p>
       </div>
     </footer>
   </div>

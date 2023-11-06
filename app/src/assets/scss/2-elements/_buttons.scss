@@ -2,7 +2,7 @@
 ## btn styles
 --------------------------------------------------------------*/
 
-input[type="submit"],
+input[type='submit'],
 .btn,
 a.btn input.btn,
 a.button,
@@ -169,7 +169,7 @@ p a.btn {
 }
 
 button[disabled],
-input[type="submit"][disabled] {
+input[type='submit'][disabled] {
   &.btn-white {
     &:hover {
       background-color: #fff;
@@ -189,7 +189,7 @@ input[type="submit"][disabled] {
 --------------------------------------------------------------*/
 
 .btn-outline,
-input[type="submit"].btn-outline,
+input[type='submit'].btn-outline,
 a.btn-outline {
   background-color: transparent;
   color: currentColor;
@@ -232,7 +232,7 @@ a.btn-outline {
   box-shadow: none;
 
   &:before {
-    content: "";
+    content: '';
     position: relative;
     display: inline-block !important;
     vertical-align: middle;
@@ -402,7 +402,9 @@ a.btn-outline {
       opacity: 0.8;
       background: white !important;
       color: $color_brand !important;
-      box-shadow: 0 9px 6px rgba(0, 0, 0, 0.1), 0 -50px 0 rgba(0, 0, 0, 0) inset;
+      box-shadow:
+        0 9px 6px rgba(0, 0, 0, 0.1),
+        0 -50px 0 rgba(0, 0, 0, 0) inset;
       border: solid 1px rgba(10, 33, 65, 0.05) !important;
     }
   }
@@ -419,7 +421,9 @@ a.btn-outline {
     opacity: 0.8;
     background: white !important;
     color: $color_brand !important;
-    box-shadow: 0 9px 6px rgba(0, 0, 0, 0.1), 0 -50px 0 rgba(0, 0, 0, 0) inset;
+    box-shadow:
+      0 9px 6px rgba(0, 0, 0, 0.1),
+      0 -50px 0 rgba(0, 0, 0, 0) inset;
     border: solid 1px rgba(10, 33, 65, 0.05) !important;
   }
 }
@@ -442,7 +446,9 @@ a.btn-outline {
       opacity: 0.8;
       background: $color-grey;
       color: $color_brand !important;
-      box-shadow: 0 9px 6px rgba(0, 0, 0, 0.1), 0 -50px 0 rgba(0, 0, 0, 0) inset;
+      box-shadow:
+        0 9px 6px rgba(0, 0, 0, 0.1),
+        0 -50px 0 rgba(0, 0, 0, 0) inset;
       border: solid 1px transparent;
     }
   }
@@ -459,7 +465,9 @@ a.btn-outline {
     opacity: 0.8;
     background: $color-grey;
     color: $color_brand !important;
-    box-shadow: 0 9px 6px rgba(0, 0, 0, 0.1), 0 -50px 0 rgba(0, 0, 0, 0) inset;
+    box-shadow:
+      0 9px 6px rgba(0, 0, 0, 0.1),
+      0 -50px 0 rgba(0, 0, 0, 0) inset;
     border: solid 1px transparent !important;
   }
 }
@@ -571,7 +579,7 @@ button.close {
   border-radius: 50px;
   position: relative;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 5px;
     left: 0px;

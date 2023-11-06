@@ -42,7 +42,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -278,7 +278,7 @@
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
-              <img width="45" src="src/assets/img/icons/metamask.svg" alt="">
+              <img width="45" src="/src/assets/img/icons/metamask.svg" alt="">
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
@@ -317,7 +317,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -555,7 +555,7 @@
                   align-items-center">
                   <img
                     class="thumb"
-                    src="src/assets/img/notifications/1.png"
+                    src="/src/assets/img/notifications/1.png"
                     alt="..."
                     />
                   <div class="details">
@@ -572,7 +572,7 @@
               </div>
               <img
                 class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
+                src="/src/assets/img/avatars/avatar_2.png"
                 alt="avatar"
                 />
               <div class="avatar_popup space-y-20">
@@ -585,7 +585,7 @@
                 <div class="d-flex align-items-center space-x-10">
                   <img
                     class="coin"
-                    src="src/assets/img/logos/coin.svg"
+                    src="/src/assets/img/logos/coin.svg"
                     alt="/"
                     />
                   <div class="info">
@@ -754,7 +754,7 @@
                                         <div class="has_number">
                                             1
                                         </div>
-                                        <img src="src/assets/img/bg/collection-img.png" class="collection__img">
+                                        <img src="/src/assets/img/bg/collection-img.png" class="collection__img">
                                     </div>
                                     <div>
                                         <h6 class="title color_black">Creative Art collection</h6>
@@ -775,7 +775,7 @@
                                         <div class="has_number">
                                             1
                                         </div>
-                                        <img src="src/assets/img/bg/collection-img.png" class="collection__img">
+                                        <img src="/src/assets/img/bg/collection-img.png" class="collection__img">
                                     </div>
                                     <div>
                                         <h6 class="title color_black">Creative Art collection</h6>
@@ -796,7 +796,7 @@
                                         <div class="has_number">
                                             1
                                         </div>
-                                        <img src="src/assets/img/bg/collection-img.png" class="collection__img">
+                                        <img src="/src/assets/img/bg/collection-img.png" class="collection__img">
                                     </div>
                                     <div>
                                         <h6 class="title color_black">Creative Art collection</h6>
@@ -817,7 +817,7 @@
                                         <div class="has_number">
                                             1
                                         </div>
-                                        <img src="src/assets/img/bg/collection-img.png" class="collection__img">
+                                        <img src="/src/assets/img/bg/collection-img.png" class="collection__img">
                                     </div>
                                     <div>
                                         <h6 class="title color_black">Creative Art collection</h6>
@@ -838,7 +838,7 @@
                                         <div class="has_number">
                                             1
                                         </div>
-                                        <img src="src/assets/img/bg/collection-img.png" class="collection__img">
+                                        <img src="/src/assets/img/bg/collection-img.png" class="collection__img">
                                     </div>
                                     <div>
                                         <h6 class="title color_black">Creative Art collection</h6>
@@ -863,7 +863,7 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
               </a>
             </div>
             <p class="footer__text">
