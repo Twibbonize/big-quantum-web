@@ -455,7 +455,7 @@
                   type="file"
                   name="profile_photo"
                   placeholder="Photo"
-                  required=""
+                  required
                   capture
                 />
               </div>

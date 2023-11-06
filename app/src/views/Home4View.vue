@@ -1514,7 +1514,7 @@
                 <span> Has list price </span>
               </li>
               <li class="d-flex space-x-10 switch_item">
-                <input type="checkbox" id="switch2" checked="" /><label for="switch2">Toggle</label>
+                <input type="checkbox" id="switch2" checked="false" /><label for="switch2">Toggle</label>
                 <span> Has open offer </span>
               </li>
               <li class="d-flex space-x-10 switch_item">

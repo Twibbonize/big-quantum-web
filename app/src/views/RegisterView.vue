@@ -627,8 +627,8 @@
                             type="file"
                             name="profile_photo"
                             placeholder="Photo"
-                            required=""
-                            capture=""
+                            required
+                            :capture="false"
                           />
                         </div>
                       </div>
@@ -701,25 +701,25 @@
                     <h3 class="mb-20 mt-40">📮 Notifications</h3>
                     <ul class="space-y-10">
                       <li class="d-flex space-x-10 switch_item">
-                        <input type="checkbox" id="switch1" checked="" /><label for="switch1"
+                        <input type="checkbox" id="switch1" checked="false" /><label for="switch1"
                           >Toggle</label
                         >
                         <span class="color_text"> Email Notifications </span>
                       </li>
                       <li class="d-flex space-x-10 switch_item">
-                        <input type="checkbox" id="switch2" checked="" /><label for="switch2"
+                        <input type="checkbox" id="switch2" checked="false" /><label for="switch2"
                           >Toggle</label
                         >
                         <span class="color_text"> New Bids </span>
                       </li>
                       <li class="d-flex space-x-10 switch_item">
-                        <input type="checkbox" id="switch3" checked="" /><label for="switch3"
+                        <input type="checkbox" id="switch3" checked="false" /><label for="switch3"
                           >Toggle</label
                         >
                         <span class="color_text"> Item Purchased </span>
                       </li>
                       <li class="d-flex space-x-10 switch_item">
-                        <input type="checkbox" id="switch4" checked="" /><label for="switch4"
+                        <input type="checkbox" id="switch4" checked="false" /><label for="switch4"
                           >Toggle</label
                         >
                         <span class="color_text"> People Followed </span>
