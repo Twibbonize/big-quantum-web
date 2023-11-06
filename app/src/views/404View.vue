@@ -601,7 +601,7 @@
           <div class="col-lg-6">
             <div class="space-y-30 content">
               <div class="space-y-20 d-flex flex-column justify-content-center align-items-center">
-                <img src="../assets/img/bg/404.png" alt="" />
+                <img src="/src/assets/img/bg/404.png" alt="" />
                 <h2 class="text-center">whooops 🥺! Page not Found</h2>
                 <p class="text-center">
                   Maybe bigfoot has broken this page. Come back to the Homepage

@@ -747,7 +747,7 @@
                         <div class="avatars justify-content-end flex-column">
                           <img
                             class="avatar avatar-chat"
-                            src="../assets/img/avatars/avatar_2.png"
+                            src="/src/assets/img/avatars/avatar_2.png"
                             alt=""
                           />
                         </div>
@@ -758,7 +758,7 @@
                         <div class="avatars justify-content-end flex-column">
                           <img
                             class="avatar avatar-chat"
-                            src="../assets/img/avatars/avatar_1.png"
+                            src="/src/assets/img/avatars/avatar_1.png"
                             alt=""
                           />
                         </div>
@@ -805,7 +805,7 @@
                         <div class="avatars justify-content-end flex-column">
                           <img
                             class="avatar avatar-chat"
-                            src="../assets/img/avatars/avatar_2.png"
+                            src="/src/assets/img/avatars/avatar_2.png"
                             alt=""
                           />
                         </div>
@@ -816,7 +816,7 @@
                         <div class="avatars justify-content-end flex-column">
                           <img
                             class="avatar avatar-chat"
-                            src="../assets/img/avatars/avatar_1.png"
+                            src="/src/assets/img/avatars/avatar_1.png"
                             alt=""
                           />
                         </div>

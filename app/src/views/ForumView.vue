@@ -851,7 +851,7 @@
                           stuff, but I’d give a try to anything different or new (for me) like AR
                           nft ...
                         </p>
-                        <img class="img-fluid" src="../assets/img/bg/forum-post.png" alt="" />
+                        <img class="img-fluid" src="/src/assets/img/bg/forum-post.png" alt="" />
                         <div class="tags">
                           <span>#crypto Artists</span>
                           <span>#NFT Artists</span>

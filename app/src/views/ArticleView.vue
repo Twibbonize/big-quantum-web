@@ -904,7 +904,7 @@
 
                         <article class="item">
                           <a href="#" class="thumb hover-effect">
-                            <img src="../assets/img/bg/small_post/1.jpg" alt="" />
+                            <!-- <img src="/src/assets/img/bg/small_post/1.jpg" alt="" /> -->
                           </a>
                           <div class="info">
                             <h4 class="title">
@@ -917,7 +917,7 @@
 
                         <article class="item">
                           <a href="#" class="thumb hover-effect">
-                            <img src="../assets/img/bg/small_post/2.jpg" alt="" />
+                            <!-- <img src="/src/assets/img/bg/small_post/2.jpg" alt="" /> -->
                           </a>
                           <div class="info">
                             <h4 class="title">
@@ -930,7 +930,7 @@
 
                         <article class="item">
                           <a href="#" class="thumb hover-effect">
-                            <img src="../assets/img/bg/small_post/3.jpg" alt="" />
+                            <!-- <img src="/src/assets/img/bg/small_post/3.jpg" alt="" /> -->
                           </a>
                           <div class="info">
                             <h4 class="title">
@@ -943,7 +943,7 @@
 
                         <article class="item">
                           <a href="#" class="thumb hover-effect">
-                            <img src="../assets/img/bg/small_post/4.jpg" alt="" />
+                            <!-- <img src="/src/assets/img/bg/small_post/4.jpg" alt="" /> -->
                           </a>
                           <div class="info">
                             <h4 class="title">
