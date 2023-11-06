@@ -1,5 +1,5 @@
 <template>
-  div class="overflow-hidden">
+  <div class="overflow-hidden">
     <!-- <div class="bg-dark py-10">
       <div class="container">
         <div
@@ -54,35 +54,35 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a class="color_black" href="Marketplace.html"> Marketplace</a>
+                <a class="color_black" href="/marketplace"> Marketplace</a>
               </li>
               <li>
-                <a class="color_black" href="Collections.html"> Collections</a>
+                <a class="color_black" href="/collections"> Collections</a>
               </li>
               <li>
-                <a class="color_black" href="Profile.html"> Profile</a>
+                <a class="color_black" href="/profile"> Profile</a>
               </li>
               <li>
-                <a class="color_black" href="Creators.html"> Creators</a>
+                <a class="color_black" href="/creators"> Creators</a>
               </li>
               <li>
-                <a class="color_black" href="kit.html"> Ui Kit </a>
+                <a class="color_black" href="/kit"> Ui Kit </a>
               </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
@@ -92,14 +92,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -107,28 +107,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -136,21 +136,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -158,7 +158,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -166,7 +166,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -184,14 +184,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -199,56 +199,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -273,7 +273,7 @@
             </button>
           </div>
           <div class="header__btns">
-            <a class="btn btn-grad btn-sm" href="Connect-wallet.html">
+            <a class="btn btn-grad btn-sm" href="/connect-wallet">
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
@@ -285,10 +285,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -298,7 +298,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -328,26 +328,26 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-              <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-              <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-              <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
-              <li> <a class="color_black" href="kit.html"> Ui Kit </a> </li>
+              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+              <li> <a class="color_black" href="/collections"> Collections</a> </li>
+              <li> <a class="color_black" href="/profile"> Profile</a> </li>
+              <li> <a class="color_black" href="/creators"> Creators</a> </li>
+              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
@@ -356,14 +356,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -371,28 +371,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -400,21 +400,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -422,7 +422,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -430,7 +430,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -448,14 +448,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -463,56 +463,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -544,7 +544,7 @@
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
                   <h5> Notifications</h5>
-                  <a href="Activity.html" class="badge color_white">View all</a>
+                  <a href="/activity" class="badge color_white">View all</a>
                 </div>
                 <div
                   class="item
@@ -558,7 +558,7 @@
                     alt="..."
                     />
                   <div class="details">
-                    <a href="activity.html"> <h6>Money revieved</h6> </a>
+                    <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
                   </div>
                   <span class="circle"></span>
@@ -597,7 +597,7 @@
                   <a href="#">
                     <i class="ri-landscape-line"></i> <span> My items</span>
                   </a>
-                  <a href="edit_profile.html">
+                  <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
                   <a href="#">
@@ -607,17 +607,17 @@
               </div>
             </div>
             <div class="header__btns">
-              <a class="btn btn-primary btn-sm" href="Upload-type.html">Create</a>
+              <a class="btn btn-primary btn-sm" href="/upload-type">Create</a>
             </div>
             <div class="header__burger js-header-burger"></div>
           </div>
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -627,7 +627,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -733,7 +733,7 @@
             <div class="demos mt-100" id="Demos">
                 <div class="row">
                     <div class="col-xl-3 col-md-4 col-sm-6">
-                        <a href="Home1.html" target="_blank" class="demo_item
+                        <a href="/home-1" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
                                 <img src="src/assets/img/screens/1.png"
@@ -758,7 +758,7 @@
                     </div>
     
                     <div class="col-xl-3 col-md-4 col-sm-6">
-                        <a href="Home2.html" target="_blank" class="demo_item
+                        <a href="/home-2" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
                                 <img src="src/assets/img/screens/2.png"
@@ -783,7 +783,7 @@
                     </div>
     
                     <div class="col-xl-3 col-md-4 col-sm-6">
-                        <a href="Home3.html" target="_blank" class="demo_item
+                        <a href="/home-3" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
                                 <img src="src/assets/img/screens/3.png"
@@ -868,7 +868,7 @@
             <div class="demos mt-100">
                 <div class="row">
                     <div class="col-lg-3">
-                        <a href="Marketplace.html" target="_blank" class="demo_item
+                        <a href="/marketplace" target="_blank" class="demo_item
                             is_lg
                             space-y-10">
                             <div class="img_wrap">
@@ -896,7 +896,7 @@
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="edit_profile.html" target="_blank" class="demo_item
+                                <a href="/edit-profile" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -918,7 +918,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Item-details.html" target="_blank" class="demo_item
+                                <a href="/item-details" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -940,7 +940,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="ranking.html" target="_blank" class="demo_item
+                                <a href="/ranking" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -962,7 +962,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Live_Auctions.html" target="_blank" class="demo_item
+                                <a href="/live-auctions" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -984,7 +984,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Activity.html" target="_blank" class="demo_item
+                                <a href="/activity" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1006,7 +1006,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Profile.html" target="_blank" class="demo_item
+                                <a href="/profile" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1032,7 +1032,7 @@
     
     
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="Connect-wallet.html" target="_blank" class="demo_item
+                        <a href="/connect-wallet" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1054,7 +1054,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="Collections.html" target="_blank" class="demo_item
+                        <a href="/collections" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1076,7 +1076,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="Creators.html" target="_blank" class="demo_item
+                        <a href="/creators" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1098,7 +1098,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="Upload-type.html" target="_blank" class="demo_item
+                        <a href="/upload-type" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1127,7 +1127,7 @@
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="post_details.html" target="_blank" class="demo_item
+                                <a href="/post-details" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1150,7 +1150,7 @@
             
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="newsletter.html" target="_blank" class="demo_item
+                                <a href="/newsletter" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1173,7 +1173,7 @@
             
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Contact.html" target="_blank" class="demo_item
+                                <a href="/contact" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1196,7 +1196,7 @@
             
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="questions.html" target="_blank" class="demo_item
+                                <a href="/questions" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1219,7 +1219,7 @@
             
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="Submit_request.html" target="_blank" class="demo_item
+                                <a href="/submit-request" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1242,7 +1242,7 @@
             
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
-                                <a href="request.html" target="_blank" class="demo_item
+                                <a href="/request" target="_blank" class="demo_item
                                     is_sm
                                     space-y-10">
                                     <div class="img_wrap">
@@ -1267,7 +1267,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <a href="forum.html" target="_blank" class="demo_item
+                        <a href="/forum" target="_blank" class="demo_item
                             is_lg
                             space-y-10">
                             <div class="img_wrap">
@@ -1293,7 +1293,7 @@
                     </div>
             
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="blog.html" target="_blank" class="demo_item
+                        <a href="/blog" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1315,7 +1315,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="article.html" target="_blank" class="demo_item
+                        <a href="/article" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1337,7 +1337,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="Privacy.html" target="_blank" class="demo_item
+                        <a href="/privacy" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1359,7 +1359,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="register.html" target="_blank" class="demo_item
+                        <a href="/register" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">
@@ -1381,7 +1381,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        <a href="login.html" target="_blank" class="demo_item
+                        <a href="/login" target="_blank" class="demo_item
                             is_sm
                             space-y-10">
                             <div class="img_wrap">

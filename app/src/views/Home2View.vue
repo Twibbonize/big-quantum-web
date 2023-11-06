@@ -54,35 +54,35 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a class="color_black" href="Marketplace.html"> Marketplace</a>
+                <a class="color_black" href="/marketplace"> Marketplace</a>
               </li>
               <li>
-                <a class="color_black" href="Collections.html"> Collections</a>
+                <a class="color_black" href="/collections"> Collections</a>
               </li>
               <li>
-                <a class="color_black" href="Profile.html"> Profile</a>
+                <a class="color_black" href="/profile"> Profile</a>
               </li>
               <li>
-                <a class="color_black" href="Creators.html"> Creators</a>
+                <a class="color_black" href="/creators"> Creators</a>
               </li>
               <li>
-                <a class="color_black" href="kit.html"> Ui Kit </a>
+                <a class="color_black" href="/kit"> Ui Kit </a>
               </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
@@ -92,14 +92,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -107,28 +107,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -136,21 +136,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -158,7 +158,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -166,7 +166,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -184,14 +184,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -199,56 +199,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -273,7 +273,7 @@
             </button>
           </div>
           <div class="header__btns">
-            <a class="btn btn-grad btn-sm" href="Connect-wallet.html">
+            <a class="btn btn-grad btn-sm" href="/connect-wallet">
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
@@ -285,10 +285,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -298,7 +298,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -328,26 +328,26 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-              <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-              <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-              <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
-              <li> <a class="color_black" href="kit.html"> Ui Kit </a> </li>
+              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+              <li> <a class="color_black" href="/collections"> Collections</a> </li>
+              <li> <a class="color_black" href="/profile"> Profile</a> </li>
+              <li> <a class="color_black" href="/creators"> Creators</a> </li>
+              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
@@ -356,14 +356,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -371,28 +371,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -400,21 +400,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -422,7 +422,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -430,7 +430,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -448,14 +448,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -463,56 +463,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -544,7 +544,7 @@
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
                   <h5> Notifications</h5>
-                  <a href="Activity.html" class="badge color_white">View all</a>
+                  <a href="/activity" class="badge color_white">View all</a>
                 </div>
                 <div
                   class="item
@@ -558,7 +558,7 @@
                     alt="..."
                     />
                   <div class="details">
-                    <a href="activity.html"> <h6>Money revieved</h6> </a>
+                    <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
                   </div>
                   <span class="circle"></span>
@@ -597,7 +597,7 @@
                   <a href="#">
                     <i class="ri-landscape-line"></i> <span> My items</span>
                   </a>
-                  <a href="edit_profile.html">
+                  <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
                   <a href="#">
@@ -607,17 +607,17 @@
               </div>
             </div>
             <div class="header__btns">
-              <a class="btn btn-primary btn-sm" href="Upload-type.html">Create</a>
+              <a class="btn btn-primary btn-sm" href="/upload-type">Create</a>
             </div>
             <div class="header__burger js-header-burger"></div>
           </div>
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -627,7 +627,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -648,7 +648,7 @@
             possible experience.</p>
           <div class="space-x-20 d-flex justify-content-center">
             <a class="btn btn-grad btn-md"
-              href="Marketplace.html">View
+              href="/marketplace">View
               market</a>
           </div>
         </div>
@@ -659,7 +659,7 @@
                 <div class="card_body">
                   <!-- ???? =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_4.png"
                         alt="...">
@@ -815,7 +815,7 @@
                 <div class="card_body">
                   <!-- ???? =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_3.png"
                         alt="...">
@@ -971,7 +971,7 @@
                 <div class="card_body">
                   <!-- ???? =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_7.png"
                         alt="...">
@@ -1137,13 +1137,13 @@
               creators_anim1">
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_1.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@xander_hall...</p>
                     </a>
                     <span class="price color_green">16.58 ETH</span>
@@ -1152,13 +1152,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_2.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@hamza_pitts...</p>
                     </a>
                     <span class="price color_green">14.55 ETH</span>
@@ -1167,13 +1167,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_3.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@nathan_walls...</p>
                     </a>
                     <span class="price color_green">24.13 ETH</span>
@@ -1182,13 +1182,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_4.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@kelton_collier...</p>
                     </a>
                     <span class="price color_green">62.68 ETH</span>
@@ -1197,13 +1197,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_5.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@cade_glover...</p>
                     </a>
                     <span class="price color_green">32.48 ETH</span>
@@ -1212,13 +1212,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_1.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@teagan_poole...</p>
                     </a>
                     <span class="price color_green">50.02 ETH</span>
@@ -1227,13 +1227,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_2.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@austin_rivera...</p>
                     </a>
                     <span class="price color_green">9.99 ETH</span>
@@ -1242,13 +1242,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_3.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@jeremy_shah...</p>
                     </a>
                     <span class="price color_green">52.58 ETH</span>
@@ -1257,13 +1257,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_4.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@joel_reese...</p>
                     </a>
                     <span class="price color_green">14.58 ETH</span>
@@ -1272,13 +1272,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_5.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@anton_wright...</p>
                     </a>
                     <span class="price color_green">12.24 ETH</span>
@@ -1290,13 +1290,13 @@
               <div class="d-flex space-x-10 justify-content-center">
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_6.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@eli_tyler...</p>
                       </a>
                       <span class="price color_green">16.58
@@ -1306,13 +1306,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_7.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@alonzo_knight...</p>
                       </a>
                       <span class="price color_green">12.58
@@ -1322,13 +1322,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_8.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@cannon_stark...</p>
                       </a>
                       <span class="price color_green">15.58
@@ -1338,13 +1338,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_9.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@leonel_carey...</p>
                       </a>
                       <span class="price color_green">4.58
@@ -1354,13 +1354,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_10.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@kolten_hart...</p>
                       </a>
                       <span class="price color_green">3.58
@@ -1370,13 +1370,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_6.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@ethan_cain...</p>
                       </a>
                       <span class="price color_green">57.58
@@ -1386,13 +1386,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_7.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@waylon_ford...</p>
                       </a>
                       <span class="price color_green">13.58
@@ -1402,13 +1402,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_8.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@khloe_bender...</p>
                       </a>
                       <span class="price color_green">9.58
@@ -1418,13 +1418,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_9.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@jenna_loyd...</p>
                       </a>
                       <span class="price color_green">7.58
@@ -1434,13 +1434,13 @@
                 </div>
                 <div class="creator_item creator_card space-x-10">
                   <div class="avatars space-x-10">
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <img
                         src="src/assets/img/avatars/avatar_10.png"
                         alt="Avatar" class="avatar avatar-md">
                     </a>
                     <div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name color_black">@kaleigh_lewis...</p>
                       </a>
                       <span class="price color_green">16.58
@@ -1454,13 +1454,13 @@
               creators_anim3">
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_11.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@jimena_stark...</p>
                     </a>
                     <span class="price color_green">14.58 ETH</span>
@@ -1469,13 +1469,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_12.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@krista_bryan...</p>
                     </a>
                     <span class="price color_green">13.12 ETH</span>
@@ -1484,13 +1484,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_13.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@natalie_solis...</p>
                     </a>
                     <span class="price color_green">6.52 ETH</span>
@@ -1499,13 +1499,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_14.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@makinzi_beck...</p>
                     </a>
                     <span class="price color_green">11.54 ETH</span>
@@ -1514,13 +1514,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_15.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@chance_flynn...</p>
                     </a>
                     <span class="price color_green">34.25 ETH</span>
@@ -1529,13 +1529,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_11.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@danna_estes...</p>
                     </a>
                     <span class="price color_green">23.27 ETH</span>
@@ -1544,13 +1544,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_12.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@ellis_glenn...</p>
                     </a>
                     <span class="price color_green">16.54 ETH</span>
@@ -1559,13 +1559,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_13.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@jaxon_duffy...</p>
                     </a>
                     <span class="price color_green">16.48 ETH</span>
@@ -1574,13 +1574,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_14.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@marvin_dillon...</p>
                     </a>
                     <span class="price color_green">43.42 ETH</span>
@@ -1589,13 +1589,13 @@
               </div>
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
-                  <a href="Profile.html">
+                  <a href="/profile">
                     <img
                       src="src/assets/img/avatars/avatar_15.png"
                       alt="Avatar" class="avatar avatar-md">
                   </a>
                   <div>
-                    <a href="Profile.html">
+                    <a href="/profile">
                       <p class="avatars_name color_black">@darian_barry...</p>
                     </a>
                     <span class="price color_green">6.34 ETH</span>
@@ -1703,7 +1703,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_1.png"
                           alt="Avatar" class="avatar
@@ -1711,7 +1711,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Mark</span>
                           </a>
                           accepted an offer for about
@@ -1725,7 +1725,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_8.png"
                         alt="NFT">
@@ -1741,7 +1741,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_2.png"
                           alt="Avatar" class="avatar
@@ -1749,7 +1749,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Lance</span>
                           </a>
                           accepted an offer for about
@@ -1763,7 +1763,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_7.png"
                         alt="NFT">
@@ -1779,7 +1779,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_3.png"
                           alt="Avatar" class="avatar
@@ -1787,7 +1787,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Kylan</span>
                           </a>
                           accepted an offer for about
@@ -1801,7 +1801,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_6.png"
                         alt="NFT">
@@ -1817,7 +1817,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_4.png"
                           alt="Avatar" class="avatar
@@ -1825,7 +1825,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Brent</span>
                           </a>
                           accepted an offer for about
@@ -1839,7 +1839,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_5.png"
                         alt="NFT">
@@ -1855,7 +1855,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_5.png"
                           alt="Avatar" class="avatar
@@ -1863,7 +1863,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Kenny</span>
                           </a>
                           accepted an offer for about
@@ -1877,7 +1877,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_4.png"
                         alt="NFT">
@@ -1893,7 +1893,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_6.png"
                           alt="Avatar" class="avatar
@@ -1901,7 +1901,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Felipe</span>
                           </a>
                           accepted an offer for about
@@ -1915,7 +1915,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_3.png"
                         alt="NFT">
@@ -1931,7 +1931,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_7.png"
                           alt="Avatar" class="avatar
@@ -1939,7 +1939,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Zaid</span>
                           </a>
                           accepted an offer for about
@@ -1953,7 +1953,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_2.png"
                         alt="NFT">
@@ -1969,7 +1969,7 @@
                   <!-- =============== -->
                   <div class="creators space-x-10">
                     <div class="avatars space-x-10">
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <img
                           src="src/assets/img/avatars/avatar_8.png"
                           alt="Avatar" class="avatar
@@ -1977,7 +1977,7 @@
                       </a>
                       <div>
                         <p class="avatars_desc color_black">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <span class="txt _bold">@Brody</span>
                           </a>
                           accepted an offer for about
@@ -1991,7 +1991,7 @@
                     </div>
                   </div>
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_1.png"
                         alt="NFT">
@@ -2002,7 +2002,7 @@
               </div>
             </div>
             <div class="d-flex justify-content-center">
-              <a href="/Marketplace.html" class="btn btn-sm
+              <a href="//marketplace" class="btn btn-sm
                 btn-white">
                 <i class="ri-restart-line"></i>
                 View all items
@@ -2019,7 +2019,7 @@
               <div class="card_body space-y-10">
                 <!-- =============== -->
                 <div class="card_head">
-                  <a href="Item-details.html">
+                  <a href="/item-details">
                     <img
                       src="src/assets/img/items/item_1.png"
                       alt="">
@@ -2057,7 +2057,7 @@
     
                 <h6 class="card_title">
                   <a class="color_black"
-                    href="/Item-details.html">
+                    href="//item-details">
                     Colorful Abstract Painting
                   </a>
                 </h6>
@@ -2066,20 +2066,20 @@
                   <div class="creators">
                     <div class="avatars space-x-3">
                       <div class="-space-x-20">
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_10.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_11.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
                       </div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name txt_sm
                           color_black"> @darian_barry
                         </p>
@@ -2096,7 +2096,7 @@
               <div class="card_body space-y-10">
                 <!-- =============== -->
                 <div class="card_head">
-                  <a href="Item-details.html">
+                  <a href="/item-details">
                     <img
                       src="src/assets/img/items/item_2.png"
                       alt="">
@@ -2134,7 +2134,7 @@
     
                 <h6 class="card_title">
                   <a class="color_black"
-                    href="/Item-details.html">
+                    href="//item-details">
                     Synthwave Modern Painting
                   </a>
                 </h6>
@@ -2143,20 +2143,20 @@
                   <div class="creators">
                     <div class="avatars space-x-3">
                       <div class="-space-x-20">
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_12.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_13.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
                       </div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name txt_sm
                           color_black"> @makinzi_beck
                         </p>
@@ -2173,7 +2173,7 @@
               <div class="card_body space-y-10">
                 <!-- =============== -->
                 <div class="card_head">
-                  <a href="Item-details.html">
+                  <a href="/item-details">
                     <img
                       src="src/assets/img/items/item_3.png"
                       alt="">
@@ -2211,7 +2211,7 @@
     
                 <h6 class="card_title">
                   <a class="color_black"
-                    href="/Item-details.html">
+                    href="//item-details">
                     The girl with the firefly
                   </a>
                 </h6>
@@ -2220,20 +2220,20 @@
                   <div class="creators">
                     <div class="avatars space-x-3">
                       <div class="-space-x-20">
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_14.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_15.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
                       </div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name txt_sm
                           color_black"> @jaxon_duffy
                         </p>
@@ -2250,7 +2250,7 @@
               <div class="card_body space-y-10">
                 <!-- =============== -->
                 <div class="card_head">
-                  <a href="Item-details.html">
+                  <a href="/item-details">
                     <img
                       src="src/assets/img/items/item_4.png"
                       alt="">
@@ -2288,7 +2288,7 @@
     
                 <h6 class="card_title">
                   <a class="color_black"
-                    href="/Item-details.html">
+                    href="//item-details">
                     Liquid Forest Princess
                   </a>
                 </h6>
@@ -2297,20 +2297,20 @@
                   <div class="creators">
                     <div class="avatars space-x-3">
                       <div class="-space-x-20">
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_1.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <img
                             src="src/assets/img/avatars/avatar_2.png"
                             alt="Avatar" class="avatar
                             avatar-sm">
                         </a>
                       </div>
-                      <a href="Profile.html">
+                      <a href="/profile">
                         <p class="avatars_name txt_sm
                           color_black"> @deon _ellis
                         </p>
@@ -2402,7 +2402,7 @@
                 <div class="card_body space-y-10">
                   <!-- =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_4.png"
                         alt="">
@@ -2424,7 +2424,7 @@
                   <!-- =============== -->
                   <h6 class="card_title">
                     <a class="color_black"
-                      href="item-details.html">
+                      href="/item-details">
                       smoking Abstract Painting
                     </a>
                   </h6>
@@ -2432,20 +2432,20 @@
                     <div class="d-flex justify-content-between">
                       <div class="creators space-x-3">
                         <div class="avatars -space-x-20">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_1.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_2.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
                         </div>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <p class="avatars_name txt_sm">
                             @luka_fenn.. </p>
                         </a>
@@ -2459,7 +2459,7 @@
                     <div class="d-flex align-items-center
                       space-x-10 color_black">
                       <i class="ri-vip-crown-line"></i>
-                      <a href="pages/Item-details.html"
+                      <a href="pages//item-details"
                         class="color_text txt_sm" style="width:
                         auto;">Highest bid</a>
                       <span class="color_green txt_sm">0.022
@@ -2474,7 +2474,7 @@
                 <div class="card_body space-y-10">
                   <!-- =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_7.png"
                         alt="">
@@ -2496,7 +2496,7 @@
                   <!-- =============== -->
                   <h6 class="card_title">
                     <a class="color_black"
-                      href="item-details.html">
+                      href="/item-details">
                       monkey Abstract Painting
                     </a>
                   </h6>
@@ -2504,20 +2504,20 @@
                     <div class="d-flex justify-content-between">
                       <div class="creators space-x-3">
                         <div class="avatars -space-x-20">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_3.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_4.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
                         </div>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <p class="avatars_name txt_sm">
                             @noel_meon.. </p>
                         </a>
@@ -2531,7 +2531,7 @@
                     <div class="d-flex align-items-center
                       space-x-10 color_black">
                       <i class="ri-vip-crown-line"></i>
-                      <a href="pages/Item-details.html"
+                      <a href="pages//item-details"
                         class="color_text txt_sm" style="width:
                         auto;">Highest bid</a>
                       <span class="color_green txt_sm">0.075
@@ -2546,7 +2546,7 @@
                 <div class="card_body space-y-10">
                   <!-- =============== -->
                   <div class="card_head">
-                    <a href="Item-details.html">
+                    <a href="/item-details">
                       <img
                         src="src/assets/img/items/item_6.png"
                         alt="">
@@ -2568,7 +2568,7 @@
                   <!-- =============== -->
                   <h6 class="card_title">
                     <a class="color_black"
-                      href="item-details.html">
+                      href="/item-details">
                       couple Abstract Painting
                     </a>
                   </h6>
@@ -2576,20 +2576,20 @@
                     <div class="d-flex justify-content-between">
                       <div class="creators space-x-3">
                         <div class="avatars -space-x-20">
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_5.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
-                          <a href="Profile.html">
+                          <a href="/profile">
                             <img
                               src="src/assets/img/avatars/avatar_6.png"
                               alt="Avatar" class="avatar
                               avatar-sm">
                           </a>
                         </div>
-                        <a href="Profile.html">
+                        <a href="/profile">
                           <p class="avatars_name txt_sm">
                             @zion_ach.. </p>
                         </a>
@@ -2603,7 +2603,7 @@
                     <div class="d-flex align-items-center
                       space-x-10 color_black">
                       <i class="ri-vip-crown-line"></i>
-                      <a href="pages/Item-details.html"
+                      <a href="pages//item-details"
                         class="color_text txt_sm" style="width:
                         auto;">Highest bid</a>
                       <span class="color_green txt_sm">0.074
@@ -2674,7 +2674,7 @@
                         digital asset API</h3>
                 </div>
                 <div class="col-lg-auto">
-                    <a class="btn btn-grad" href="Connect-wallet.html">Connect
+                    <a class="btn btn-grad" href="/connect-wallet">Connect
                         wallet</a>
                 </div>
             </div>
@@ -2707,12 +2707,12 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="Home1.html"> Home1 </a>
+              <li> <a href="/home-1"> Home1 </a>
               </li>
-              <li> <a href="Home2.html"> Home2
+              <li> <a href="/home-2"> Home2
                 </a> </li>
-              <li> <a href="Home3.html"> Home3 </a> </li>
-              <li> <a href="Marketplace.html"> Marketplace
+              <li> <a href="/home-3"> Home3 </a> </li>
+              <li> <a href="/marketplace"> Marketplace
                 </a>
               </li>
             </ul>
@@ -2720,25 +2720,25 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="Profile.html"> Profile </a>
+              <li> <a href="/profile"> Profile </a>
               </li>
-              <li> <a href="Creators.html"> Creators </a>
+              <li> <a href="/creators"> Creators </a>
               </li>
-              <li> <a href="Collections.html"> Colletctions </a>
+              <li> <a href="/collections"> Colletctions </a>
               </li>
-              <li> <a href="Activity.html"> Activity
+              <li> <a href="/activity"> Activity
                 </a> </li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="Upload-type.html"> Upload Types </a>
+              <li> <a href="/upload-type"> Upload Types </a>
               </li>
-              <li> <a href="Upload.html"> Upload </a> </li>
-              <li> <a href="Connect-wallet.html"> Connect wallet
+              <li> <a href="/upload"> Upload </a> </li>
+              <li> <a href="/connect-wallet"> Connect wallet
                 </a> </li>
-              <li> <a href="Item-details.html"> Item details </a>
+              <li> <a href="/item-details"> Item details </a>
               </li>
             </ul>
           </div>

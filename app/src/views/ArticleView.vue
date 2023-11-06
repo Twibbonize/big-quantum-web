@@ -41,7 +41,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="assets/img/logos/Logo.svg"
+                src="src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -54,35 +54,35 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a class="color_black" href="Marketplace.html"> Marketplace</a>
+                <a class="color_black" href="/marketplace"> Marketplace</a>
               </li>
               <li>
-                <a class="color_black" href="Collections.html"> Collections</a>
+                <a class="color_black" href="/collections"> Collections</a>
               </li>
               <li>
-                <a class="color_black" href="Profile.html"> Profile</a>
+                <a class="color_black" href="/profile"> Profile</a>
               </li>
               <li>
-                <a class="color_black" href="Creators.html"> Creators</a>
+                <a class="color_black" href="/creators"> Creators</a>
               </li>
               <li>
-                <a class="color_black" href="kit.html"> Ui Kit </a>
+                <a class="color_black" href="/kit"> Ui Kit </a>
               </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
@@ -92,14 +92,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -107,28 +107,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -136,21 +136,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -158,7 +158,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -166,7 +166,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -184,14 +184,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -199,56 +199,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -273,11 +273,11 @@
             </button>
           </div>
           <div class="header__btns">
-            <a class="btn btn-grad btn-sm" href="Connect-wallet.html">
+            <a class="btn btn-grad btn-sm" href="/connect-wallet">
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
-              <img width="45" src="assets/img/icons/metamask.svg" alt="">
+              <img width="45" src="src/assets/img/icons/metamask.svg" alt="">
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
@@ -285,10 +285,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -298,7 +298,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -316,7 +316,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="assets/img/logos/Logo.svg"
+                src="src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -328,26 +328,26 @@
                 <a class="color_black" href="#">Homes <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup space-y-20">
                   <li>
-                    <a href="Home1.html">
+                    <a href="/home-1">
                       <i class="ri-home-smile-2-line"></i>
                       Home page 1
                     </a>
                   </li>
                   <li>
-                    <a href="Home2.html">
+                    <a href="/home-2">
                       <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="Home3.html">
+                    <a href="/home-3">
                       <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-              <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-              <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-              <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
-              <li> <a class="color_black" href="kit.html"> Ui Kit </a> </li>
+              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+              <li> <a class="color_black" href="/collections"> Collections</a> </li>
+              <li> <a class="color_black" href="/profile"> Profile</a> </li>
+              <li> <a class="color_black" href="/creators"> Creators</a> </li>
+              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
@@ -356,14 +356,14 @@
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
-                        <a href="Activity.html">
+                        <a href="/activity">
                           <i class="ri-line-chart-line"></i>
                           Activity
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="edit_profile.html">
+                        <a class="is_new" href="/edit-profile">
                           <i class="ri-edit-line"></i>
                           Edit Profile
                         </a>
@@ -371,28 +371,28 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Item-details.html">
+                        <a href="/item-details">
                           <i class="ri-gallery-line"></i>
                           Item details
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Live_Auctions.html">
+                        <a class="is_new" href="/live-auctions">
                           <i class="ri-auction-line"></i>
                           Live Auctions
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Upcoming_projects.html">
+                        <a href="/upcoming-projects.html">
                           <i class="ri-upload-line"></i>
                           Upcoming projects
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="ranking.html">
+                        <a class="is_new" href="/ranking">
                           <i class="ri-funds-line"></i>
                           Ranking
                         </a>
@@ -400,21 +400,21 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="newsletter.html">
+                        <a class="is_new" href="/newsletter">
                           <i class="ri-mail-open-line"></i>
                           Newsletter
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="forum.html">
+                        <a href="/forum">
                           <i class="ri-discuss-line"></i>
                           Forum & community
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="post_details.html">
+                        <a href="/post-details">
                           <i class="ri-chat-check-line"></i>
                           Forum details
                         </a>
@@ -422,7 +422,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="no_results.html">
+                        <a href="/no-results">
                           <i class="ri-file-search-line"></i>
                           No Result
                         </a>
@@ -430,7 +430,7 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Contact.html">
+                        <a class="is_new" href="/contact">
                           <i class="ri-customer-service-2-line"></i>
                           Contact
                         </a>
@@ -448,14 +448,14 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="Upload-type.html">
+                        <a href="/upload-type">
                           <i class="ri-upload-line"></i>
                           Upload Types
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Connect-wallet.html">
+                        <a href="/connect-wallet">
                           <i class="ri-wallet-3-line"></i>
                           Connect wallet
                         </a>
@@ -463,56 +463,56 @@
                   
                       <!-- =============== -->
                       <li>
-                        <a href="questions.html">
+                        <a href="/questions">
                           <i class="ri-question-line"></i>
                           FAQ
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-share-forward-line"></i>
                           Submit request
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="Submit_request.html">
+                        <a class="is_new" href="/submit-request">
                           <i class="ri-message-3-line"></i>
                           Request chat
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="blog.html">
+                        <a class="is_new" href="/blog">
                           <i class="ri-layout-line"></i>
                           Blog
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a class="is_new" href="article.html">
+                        <a class="is_new" href="/article">
                           <i class="ri-newspaper-line"></i>
                           Article
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="register.html">
+                        <a href="/register">
                           <i class="ri-lock-line"></i>
                           Register
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="login.html">
+                        <a href="/login">
                           <i class="ri-shield-user-line"></i>
                           Login
                         </a>
                       </li>
                       <!-- =============== -->
                       <li>
-                        <a href="Privacy.html">
+                        <a href="/privacy">
                           <i class="ri-file-text-line"></i>
                           Privacy Policy
                         </a>
@@ -544,7 +544,7 @@
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
                   <h5> Notifications</h5>
-                  <a href="Activity.html" class="badge color_white">View all</a>
+                  <a href="/activity" class="badge color_white">View all</a>
                 </div>
                 <div
                   class="item
@@ -554,11 +554,11 @@
                   align-items-center">
                   <img
                     class="thumb"
-                    src="assets/img/notifications/1.png"
+                    src="src/assets/img/notifications/1.png"
                     alt="..."
                     />
                   <div class="details">
-                    <a href="activity.html"> <h6>Money revieved</h6> </a>
+                    <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
                   </div>
                   <span class="circle"></span>
@@ -571,7 +571,7 @@
               </div>
               <img
                 class="avatar"
-                src="assets/img/avatars/avatar_2.png"
+                src="src/assets/img/avatars/avatar_2.png"
                 alt="avatar"
                 />
               <div class="avatar_popup space-y-20">
@@ -584,7 +584,7 @@
                 <div class="d-flex align-items-center space-x-10">
                   <img
                     class="coin"
-                    src="assets/img/logos/coin.svg"
+                    src="src/assets/img/logos/coin.svg"
                     alt="/"
                     />
                   <div class="info">
@@ -597,7 +597,7 @@
                   <a href="#">
                     <i class="ri-landscape-line"></i> <span> My items</span>
                   </a>
-                  <a href="edit_profile.html">
+                  <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
                   <a href="#">
@@ -607,17 +607,17 @@
               </div>
             </div>
             <div class="header__btns">
-              <a class="btn btn-primary btn-sm" href="Upload-type.html">Create</a>
+              <a class="btn btn-primary btn-sm" href="/upload-type">Create</a>
             </div>
             <div class="header__burger js-header-burger"></div>
           </div>
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="Marketplace.html"> Marketplace</a> </li>
-                <li> <a class="color_black" href="Collections.html"> Collections</a> </li>
-                <li> <a class="color_black" href="Profile.html"> Profile</a> </li>
-                <li> <a class="color_black" href="Creators.html"> Creators</a> </li>
+                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
+                <li> <a class="color_black" href="/collections"> Collections</a> </li>
+                <li> <a class="color_black" href="/profile"> Profile</a> </li>
+                <li> <a class="color_black" href="/creators"> Creators</a> </li>
           
               </ul>
               <div class="space-y-20">
@@ -627,7 +627,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="Connect-wallet.html">Connect
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
                   wallet</a>
               </div>
             </div>
@@ -643,7 +643,7 @@
                     <div class="article_wrap mt-0">
                         <div class="content">
                             <img class="mb-30 img-fluid w-full img_article" alt=""
-                                src="assets/img/bg/article.jpg">
+                                src="src/assets/img/bg/article.jpg">
                             <h1 class="mb-40"> NFT is coming soon: join the waitlist
                                 today
                                 for early access</h1>
@@ -655,7 +655,7 @@
     
                                     <div class="user">
                                         <img
-                                            src="assets/img/avatars/avatar_11.png"
+                                            src="src/assets/img/avatars/avatar_11.png"
                                             alt="..."
                                             class="avatar avatar-sm rounded-circle
                                             w-full">
@@ -781,7 +781,7 @@
                                             align-items-center mb-3">
                                             <div class="d-flex align-items-center">
                                                 <img
-                                                    src="assets/img/avatars/avatar_1.png"
+                                                    src="src/assets/img/avatars/avatar_1.png"
                                                     alt="Daniel Smith"
                                                     class="avatar avatar-sm">
                                                 <div class="h6 mb-0 ml-2">Daniel
@@ -815,7 +815,7 @@
                                                     <div class="d-flex
                                                         align-items-center">
                                                         <img
-                                                            src="assets/img/avatars/avatar_2.png"
+                                                            src="src/assets/img/avatars/avatar_2.png"
                                                             alt="Daniel Smith"
                                                             class="avatar
                                                             avatar-sm">
@@ -852,7 +852,7 @@
                                                             <div class="d-flex
                                                                 align-items-center">
                                                                 <img
-                                                                    src="assets/img/avatars/avatar_3.png"
+                                                                    src="src/assets/img/avatars/avatar_3.png"
                                                                     alt="Daniel
                                                                     Smith"
                                                                     class="avatar
@@ -897,7 +897,7 @@
                                             align-items-center mb-3">
                                             <div class="d-flex align-items-center">
                                                 <img
-                                                    src="assets/img/avatars/avatar_4.png"
+                                                    src="src/assets/img/avatars/avatar_4.png"
                                                     alt="Daniel Smith"
                                                     class="avatar avatar-sm">
                                                 <div class="h6 mb-0 ml-2">Daniel
@@ -1064,7 +1064,7 @@
                                             <article class="item">
                                                 <a href="#" class="thumb hover-effect">
                                                     <img
-                                                        src="assets/img/small_post/4.jpg"
+                                                        src="src/assets/img/small_post/4.jpg"
                                                         alt="">
                                                 </a>
                                                 <div class="info">
@@ -1076,7 +1076,7 @@
                                             <article class="item">
                                                 <a href="#" class="thumb hover-effect">
                                                     <img
-                                                        src="assets/img/small_post/5.jpg"
+                                                        src="src/assets/img/small_post/5.jpg"
                                                         alt="">
                                                 </a>
                                                 <div class="info">
@@ -1088,7 +1088,7 @@
                                             <article class="item">
                                                 <a href="#" class="thumb hover-effect">
                                                     <img
-                                                        src="assets/img/small_post/6.jpg"
+                                                        src="src/assets/img/small_post/6.jpg"
                                                         alt="">
                                                 </a>
                                                 <div class="info">
@@ -1187,7 +1187,7 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
               </a>
             </div>
             <p class="footer__text">
@@ -1209,12 +1209,12 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="Home1.html"> Home1 </a>
+              <li> <a href="/home-1"> Home1 </a>
               </li>
-              <li> <a href="Home2.html"> Home2
+              <li> <a href="/home-2"> Home2
                 </a> </li>
-              <li> <a href="Home3.html"> Home3 </a> </li>
-              <li> <a href="Marketplace.html"> Marketplace
+              <li> <a href="/home-3"> Home3 </a> </li>
+              <li> <a href="/marketplace"> Marketplace
                 </a>
               </li>
             </ul>
@@ -1222,25 +1222,25 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="Profile.html"> Profile </a>
+              <li> <a href="/profile"> Profile </a>
               </li>
-              <li> <a href="Creators.html"> Creators </a>
+              <li> <a href="/creators"> Creators </a>
               </li>
-              <li> <a href="Collections.html"> Colletctions </a>
+              <li> <a href="/collections"> Colletctions </a>
               </li>
-              <li> <a href="Activity.html"> Activity
+              <li> <a href="/activity"> Activity
                 </a> </li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="Upload-type.html"> Upload Types </a>
+              <li> <a href="/upload-type"> Upload Types </a>
               </li>
-              <li> <a href="Upload.html"> Upload </a> </li>
-              <li> <a href="Connect-wallet.html"> Connect wallet
+              <li> <a href="/upload"> Upload </a> </li>
+              <li> <a href="/connect-wallet"> Connect wallet
                 </a> </li>
-              <li> <a href="Item-details.html"> Item details </a>
+              <li> <a href="/item-details"> Item details </a>
               </li>
             </ul>
           </div>
