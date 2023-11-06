@@ -1,4 +1,4 @@
-FROM node:14 as frontweb-builder
+FROM node:18 as frontweb-builder
 
 ARG AWS_ACCESS_KEY_ID 
 ARG AWS_SECRET_ACCESS_KEY
