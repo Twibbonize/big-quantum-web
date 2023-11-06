@@ -1,0 +1,162 @@
+name: Github action of big-quantum-web based on Docker Image CI
+
+on:
+  push:
+    branches: ["production", "staging"]
+
+jobs:
+  build:
+    runs-on: "twb-globalvpc-shared-runner-01"
+    outputs:
+      btp_docker_image_stg: ${{ steps.btp_docker_image_stg.outputs.BQW_TAGS }}
+      btp_docker_image_prod: ${{ steps.btp_docker_image_prod.outputs.BQW_TAGS }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          mask-password: true
+
+      ########################################
+      #
+      # For staging branch
+      #
+      ########################################
+
+      - name: Build, tag, and push the Docker image for staging
+        id: btp_docker_image_stg
+        env:
+          NPM_TWB: ${{ secrets.NPM_TWB }}
+          ECR_REGISTRY: ${{ secrets.AWS_ECR_REGISTRY }}
+          ECR_REPOSITORY: big-quantum-web
+        run: |
+          BQW_TAGS="staging-$(date +%s)"
+          docker build . --file Dockerfile --no-cache --tag $ECR_REGISTRY/$ECR_REPOSITORY:$BQW_TAGS --build-arg NPM_TWB=$NPM_TWB --build-arg SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}" --build-arg AWS_ACCESS_KEY_ID="${{secrets.AWS_ACCESS_KEY_ID}}" --build-arg AWS_SECRET_ACCESS_KEY="${{secrets.AWS_SECRET_ACCESS_KEY}}" --build-arg BUCKET_NAME_PREFIX="${{secrets.AWS_BUCKET_NAME_STG}}" --build-arg REGION="${{secrets.AWS_DEFAULT_REGION}}" --build-arg ENV_FILENAME=".env-stg"
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$BQW_TAGS
+          echo "BQW_TAGS=$BQW_TAGS" >> $GITHUB_OUTPUT
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      ########################################
+      #
+      # For production branch
+      #
+      ########################################
+
+      - name: Build, tag, and push the Docker image for production
+        id: btp_docker_image_prod
+        env:
+          NPM_TWB: ${{ secrets.NPM_TWB }}
+          ECR_REGISTRY: ${{ secrets.AWS_ECR_REGISTRY }}
+          ECR_REPOSITORY: big-quantum-web
+        run: |
+          BQW_TAGS="main-$(date +%s)"
+          docker build . --file Dockerfile --no-cache --tag $ECR_REGISTRY/$ECR_REPOSITORY:$BQW_TAGS --build-arg NPM_TWB=$NPM_TWB --build-arg SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}" --build-arg AWS_ACCESS_KEY_ID="${{secrets.AWS_ACCESS_KEY_ID}}" --build-arg AWS_SECRET_ACCESS_KEY="${{secrets.AWS_SECRET_ACCESS_KEY}}" --build-arg BUCKET_NAME_PREFIX="${{secrets.AWS_BUCKET_NAME_PROD}}" --build-arg REGION="${{secrets.AWS_DEFAULT_REGION}}" --build-arg ENV_FILENAME=".env-prod"
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$BQW_TAGS
+          echo "BQW_TAGS=$BQW_TAGS" >> $GITHUB_OUTPUT
+        if: ${{ github.ref == 'refs/heads/production' }}
+
+  deploy:
+    runs-on: "ubuntu-latest"
+    needs: build
+    if: github.ref == 'refs/heads/production' || github.ref == 'refs/heads/staging'
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      ########################################
+      #
+      # For staging branch
+      #
+      ########################################
+
+      - name: Rename tags in job yaml k8s manifests
+        run: sed -i 's/:tags/:${{needs.build.outputs.btp_docker_image_stg}}/g' k8s-manifests/1.24/staging/fargate/job.yaml
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      - name: Setup kubectl for staging branch
+        uses: actions-hub/kubectl@v1.24.0
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_STG }}
+        with:
+          args: --insecure-skip-tls-verify apply -f k8s-manifests/1.24/staging/fargate/job.yaml -n twb-stg-twbapps-01
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      - name: Waiting process deployment job
+        run: sleep 131
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      - name: Print out the pod logs to console output
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_STG }}
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"
+          sleep 2
+          chmod u+x ./kubectl
+          sleep 1
+          echo $KUBE_CONFIG | base64 -d > ./kube.conf
+          chmod 600 ./kube.conf
+          sleep 2
+          ./kubectl logs $(./kubectl get pods --kubeconfig ./kube.conf -n twb-stg-twbapps-01 | grep big-quantum-web-job | awk 'NR==1{print $1}') --kubeconfig ./kube.conf -n twb-stg-twbapps-01
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      - name: kubectl delete staging job from staging branch
+        uses: actions-hub/kubectl@v1.24.0
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_STG }}
+        with:
+          args: --insecure-skip-tls-verify delete -f k8s-manifests/1.24/staging/fargate/job.yaml -n twb-stg-twbapps-01
+        if: ${{ github.ref == 'refs/heads/staging' }}
+
+      ########################################
+      #
+      # For production branch
+      #
+      ########################################
+
+      - name: Rename tags in job yaml k8s manifests
+        run: sed -i 's/:tags/:${{needs.build.outputs.btp_docker_image_prod}}/g' k8s-manifests/1.27/production/job.yaml
+        if: ${{ github.ref == 'refs/heads/production' }}
+
+      - name: Setup kubectl for production branch
+        uses: actions-hub/kubectl@v1.24.0
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
+        with:
+          args: --insecure-skip-tls-verify apply -f k8s-manifests/1.27/production/job.yaml -n twb-prod-twbapps-02
+        if: ${{ github.ref == 'refs/heads/production' }}
+
+      - name: Waiting process deployment job
+        run: sleep 130
+        if: ${{ github.ref == 'refs/heads/production' }}
+
+      - name: Print out the pod logs to console output
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"
+          sleep 2
+          chmod u+x ./kubectl
+          sleep 1
+          echo $KUBE_CONFIG | base64 -d > ./kube.conf
+          chmod 600 ./kube.conf
+          sleep 2
+          ./kubectl logs $(./kubectl get pods --kubeconfig ./kube.conf -n twb-prod-twbapps-02 | grep big-quantum-web-job | awk 'NR==1{print $1}') --kubeconfig ./kube.conf -n twb-prod-twbapps-02
+        if: ${{ github.ref == 'refs/heads/production' }}
+
+      - name: kubectl delete production job from production branch
+        uses: actions-hub/kubectl@v1.24.0
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_PROD }}
+        with:
+          args: --insecure-skip-tls-verify delete -f k8s-manifests/1.27/production/job.yaml -n twb-prod-twbapps-02
+        if: ${{ github.ref == 'refs/heads/production' }}
