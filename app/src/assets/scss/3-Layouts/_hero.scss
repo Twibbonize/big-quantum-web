@@ -259,10 +259,10 @@
 .hero_questions,
 .hero_no_results,
 .hero_privacy,
-.hero_/upcoming-projects {
+.hero_upcoming-projects {
     @include hero;
 }
-.hero_/upcoming-projects {
+.hero_upcoming-projects {
     .hero__desc {
         max-width: 30rem;
         margin-left: auto;

@@ -635,7 +635,7 @@
           </div>
         </div>
       </div>
-    </header> <div class="hero_/upcoming-projects bg_white">
+    </header> <div class="hero_upcoming-projects bg_white">
         <div class="container">
             <div class="space-y-20">
                 <h1 class="text-center hero__title">Upcoming NFT Projects</h1>
