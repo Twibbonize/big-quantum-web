@@ -676,7 +676,7 @@
             <div class="col-lg-4">
               <div class="card__item two">
                 <div class="card_body space-y-10">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <img src="/src/assets/img/items/item_5.png" alt="" />
                     <div class="block_timer">
@@ -707,7 +707,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ???? =============== -->
+                  
                   <h6 class="card_title">
                     <a class="color_black" href="//item-details"> Colorful Abstract Painting </a>
                   </h6>
@@ -738,7 +738,7 @@
             <div class="col-lg-4">
               <div class="card__item two">
                 <div class="card_body space-y-10">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <img src="/src/assets/img/items/item_7.png" alt="" />
                     <div class="block_timer">
@@ -769,7 +769,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ???? =============== -->
+                  
                   <h6 class="card_title">
                     <a class="color_black" href="//item-details"> Spider Eyes Modern Art </a>
                   </h6>
@@ -800,7 +800,7 @@
             <div class="col-lg-4">
               <div class="card__item five">
                 <div class="card_body space-y-10 space-x-10 d-flex">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <img src="/src/assets/img/items/item_6.png" alt="" />
                     <div class="details d-flex justify-content-between">
@@ -816,7 +816,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ???? =============== -->
+                  
                   <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                     <h6>
                       <a class="color_black" href="//item-details"> Colorful Abstract Painting </a>
@@ -849,7 +849,7 @@
               </div>
               <div class="card__item five">
                 <div class="card_body space-y-10 space-x-10 d-flex">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <img src="/src/assets/img/items/item_5.png" alt="" />
                     <div class="details d-flex justify-content-between">
@@ -865,7 +865,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ???? =============== -->
+                  
                   <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                     <h6>
                       <a class="color_black" href="//item-details"> Synthwave Modern Painting </a>
@@ -1924,7 +1924,7 @@
           <div class="col-lg-4">
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_1.png" alt="" />
@@ -1943,7 +1943,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Colorful Abstract Painting</h6>
                   <div class="hr"></div>
@@ -1978,7 +1978,7 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_2.png" alt="" />
@@ -1997,7 +1997,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Synthwave Modern Painting</h6>
                   <div class="hr"></div>
@@ -2032,7 +2032,7 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_3.png" alt="" />
@@ -2051,7 +2051,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Synthwave Modern Painting</h6>
                   <div class="hr"></div>
@@ -2088,7 +2088,7 @@
           <div class="col-lg-4">
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_5.png" alt="" />
@@ -2107,7 +2107,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Colorful Abstract Painting</h6>
                   <div class="hr"></div>
@@ -2142,7 +2142,7 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_6.png" alt="" />
@@ -2161,7 +2161,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Synthwave Modern Painting</h6>
                   <div class="hr"></div>
@@ -2196,7 +2196,7 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <a href="/item-details">
                     <img src="/src/assets/img/items/item_7.png" alt="" />
@@ -2215,7 +2215,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6 class="card_title">Synthwave Modern Painting</h6>
                   <div class="hr"></div>
