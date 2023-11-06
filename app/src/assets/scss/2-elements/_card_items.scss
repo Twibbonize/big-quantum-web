@@ -233,7 +233,7 @@
         bottom: 14px;
         left: 14px;
         right: 14px;
-        border-radius: $border_radius/2;
+        border-radius: calc($border_radius/2);
         .icon {
           img {
             width: 2rem;
@@ -459,7 +459,7 @@
           margin-top: -50px;
           margin-left: auto;
           margin-right: auto;
-          border-radius: $border_radius/2;
+          border-radius: calc($border_radius/2);
           .card_title {
             font-size: 19px;
             @include sm {

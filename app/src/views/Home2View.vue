@@ -608,7 +608,7 @@
             <div class="col-lg-4">
               <div class="card__item one is__hero">
                 <div class="card_body">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <a href="/item-details">
                       <img src="/src/assets/img/items/item_4.png" alt="..." />
@@ -736,7 +736,7 @@
             <div class="col-lg-4">
               <div class="card__item one is__hero">
                 <div class="card_body">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <a href="/item-details">
                       <img src="/src/assets/img/items/item_3.png" alt="..." />
@@ -864,7 +864,7 @@
             <div class="col-lg-4">
               <div class="card__item one is__hero">
                 <div class="card_body">
-                  <!-- ???? =============== -->
+                  
                   <div class="card_head">
                     <a href="/item-details">
                       <img src="/src/assets/img/items/item_7.png" alt="..." />

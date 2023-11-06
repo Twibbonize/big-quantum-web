@@ -346,7 +346,7 @@
           <div class="modal-body space-y-20 p-0">
             <div class="card__item three m-0 in__popup">
               <div class="card_body space-y-10">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <img src="/src/assets/img/items/item_4.png" alt="" />
                   <a href="#" class="likes space-x-3">
@@ -360,7 +360,7 @@
                     </a>
                   </div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <h6 class="card_title">Colorful Abstract Painting</h6>
                 <div class="card_footer d-block space-y-10">
                   <div class="d-flex justify-content-between">

@@ -108,7 +108,7 @@ textarea,
 }
 .search {
   background: $color_stroke;
-  border-radius: $border_radius/2;
+  border-radius: calc($border_radius/2);
   position: relative;
   transition: all 0.2s ease-in-out;
   border: solid 1px transparent;

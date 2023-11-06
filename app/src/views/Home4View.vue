@@ -1384,12 +1384,12 @@
           <div class="col-lg-4">
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <img src="/src/assets/img/items/gaming/6.png" alt="" />
                   <div class="details d-flex justify-content-between"></div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6>
                     <a class="color_black" href="//item-details"> Titan Palkia </a>
@@ -1422,12 +1422,12 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <img src="/src/assets/img/items/gaming/5.png" alt="" />
                   <div class="details d-flex justify-content-between"></div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6>
                     <a class="color_black" href="//item-details"> Ash And Pikachu </a>
@@ -1460,12 +1460,12 @@
             </div>
             <div class="card__item five">
               <div class="card_body space-y-10 space-x-10 d-flex">
-                <!-- ???? =============== -->
+                
                 <div class="card_head">
                   <img src="/src/assets/img/items/gaming/8.png" alt="" />
                   <div class="details d-flex justify-content-between"></div>
                 </div>
-                <!-- ???? =============== -->
+                
                 <div class="d-flex flex-column justify-content-center w-100 space-y-10">
                   <h6>
                     <a class="color_black" href="//item-details"> Pikachu Bulbasaur </a>
