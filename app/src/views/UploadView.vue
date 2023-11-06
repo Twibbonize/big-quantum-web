@@ -428,7 +428,7 @@
                 </div>
                 <div class="space-y-10">
                   <span class="nameInput"
-                    >Description <span class="color_text"> (optional) </span></span
+                    >Description<span class="color_text"> (optional) </span></span
                   >
                   <input type="text" class="form-control" placeholder="e. g. `raroin design art`" />
                 </div>

@@ -1429,7 +1429,9 @@
             <span class="color_text txt_sm" style="min-width: max-content"> FILTER BY: </span>
             <ul class="menu_categories space-x-20">
               <li class="d-flex space-x-10 switch_item">
-                <input type="checkbox" id="switch1" checked="false" /><label for="switch1">Toggle</label>
+                <input type="checkbox" id="switch1" checked="false" /><label for="switch1"
+                  >Toggle</label
+                >
                 <span> Has list price </span>
               </li>
               <li class="d-flex space-x-10 switch_item">

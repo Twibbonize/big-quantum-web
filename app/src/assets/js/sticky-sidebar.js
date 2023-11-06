@@ -592,7 +592,6 @@
 
                   if (this._running) return
                   this._running = true
-
                   ;(function (eventType) {
                     requestAnimationFrame(function () {
                       switch (eventType) {
