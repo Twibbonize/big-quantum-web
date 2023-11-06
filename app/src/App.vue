@@ -44,7 +44,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assets/img/logos/Logo.svg"
+                src="/src/assets//img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -280,7 +280,7 @@
               <i class="ri-wallet-3-line"></i>
               Connect wallet</a>
             <a href="" id="connectbtn">
-              <img width="45" src="/src/assetsimg/icons/metamask.svg" alt="">
+              <img width="45" src="/src/assets/img/icons/metamask.svg" alt="">
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
@@ -319,7 +319,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assetsimg/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
                 />
             </a>
@@ -557,7 +557,7 @@
                   align-items-center">
                   <img
                     class="thumb"
-                    src="/src/assetsimg/notifications/1.png"
+                    src="/src/assets/img/notifications/1.png"
                     alt="..."
                     />
                   <div class="details">
@@ -574,7 +574,7 @@
               </div>
               <img
                 class="avatar"
-                src="/src/assetsimg/avatars/avatar_2.png"
+                src="/src/assets/img/avatars/avatar_2.png"
                 alt="avatar"
                 />
               <div class="avatar_popup space-y-20">
@@ -587,7 +587,7 @@
                 <div class="d-flex align-items-center space-x-10">
                   <img
                     class="coin"
-                    src="/src/assetsimg/logos/coin.svg"
+                    src="/src/assets/img/logos/coin.svg"
                     alt="/"
                     />
                   <div class="info">
@@ -638,15 +638,15 @@
         </div>
       </div>
     </header><div class="hero__index">
-        <img class="sh_1" src="/src/assetsimg/icons/sh_1.png" alt="">
-        <img class="sh_2" src="/src/assetsimg/icons/sh_2.png" alt="">
-        <img class="sh_3" src="/src/assetsimg/icons/sh_3.png" alt="">
+        <img class="sh_1" src="/src/assets/img/icons/sh_1.png" alt="">
+        <img class="sh_2" src="/src/assets/img/icons/sh_2.png" alt="">
+        <img class="sh_3" src="/src/assets/img/icons/sh_3.png" alt="">
     
         <div class="container">
             <div class="row align-items-center justify-content-center mb-70 mt-60">
                 <div class="col-lg-auto">
                     <img class="img-fluid d-none d-md-block"
-                        src="/src/assetsimg/logos/raroin.svg" alt="">
+                        src="/src/assets/img/logos/raroin.svg" alt="">
                 </div>
                 <div class="col-lg-6">
                     <div class="hero__left space-y-20">
@@ -739,17 +739,17 @@
                         <a href="Home1.html" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
-                                <img src="/src/assetsimg/screens/1.png"
+                                <img src="/src/assets/img/screens/1.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5> Home 1 </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
     
                                 </div>
@@ -764,17 +764,17 @@
                         <a href="Home2.html" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
-                                <img src="/src/assetsimg/screens/2.png"
+                                <img src="/src/assets/img/screens/2.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5> Home 2 </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
     
                                 </div>
@@ -789,17 +789,17 @@
                         <a href="Home3.html" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
-                                <img src="/src/assetsimg/screens/3.png"
+                                <img src="/src/assets/img/screens/3.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5> Home 3 </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
     
                                 </div>
@@ -814,17 +814,17 @@
                         <a href="#" target="_blank" class="demo_item
                             space-y-10">
                             <div class="img_wrap">
-                                <img src="/src/assetsimg/screens/coming.png"
+                                <img src="/src/assets/img/screens/coming.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5> Home 4 - Gaming  </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
     
                                 </div>
@@ -876,17 +876,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/marketplace.png"
+                                    src="/src/assets/img/screens/marketplace.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Marketplace </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
     
                                 </div>
@@ -904,17 +904,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/profile_edit.png"
+                                            src="/src/assets/img/screens/profile_edit.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Edit Profile </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -926,17 +926,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/item.png"
+                                            src="/src/assets/img/screens/item.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Item details </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -948,17 +948,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/ranking.png"
+                                            src="/src/assets/img/screens/ranking.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Ranking </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -970,17 +970,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/live.png"
+                                            src="/src/assets/img/screens/live.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Live Auction </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -992,17 +992,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/activity.png"
+                                            src="/src/assets/img/screens/activity.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5> Activity </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1014,17 +1014,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/profile.png"
+                                            src="/src/assets/img/screens/profile.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Profile </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1040,17 +1040,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/wallet.png"
+                                    src="/src/assets/img/screens/wallet.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Connect wallet </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1062,17 +1062,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/collections.png"
+                                    src="/src/assets/img/screens/collections.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Collections </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1084,17 +1084,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/creators.png"
+                                    src="/src/assets/img/screens/creators.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Creators </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1106,17 +1106,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/upload_t.png"
+                                    src="/src/assets/img/screens/upload_t.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Upload types </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1135,17 +1135,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/forum_details.png"
+                                            src="/src/assets/img/screens/forum_details.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5> Forum Details </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1158,17 +1158,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/newsletter.png"
+                                            src="/src/assets/img/screens/newsletter.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Newsletter </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1181,17 +1181,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/contact.png"
+                                            src="/src/assets/img/screens/contact.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Contact </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1204,17 +1204,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/faq.png"
+                                            src="/src/assets/img/screens/faq.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>FAQ </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1227,17 +1227,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/request.png"
+                                            src="/src/assets/img/screens/request.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5> Submit request </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1250,17 +1250,17 @@
                                     space-y-10">
                                     <div class="img_wrap">
                                         <img
-                                            src="/src/assetsimg/screens/chat.png"
+                                            src="/src/assets/img/screens/chat.png"
                                             alt="">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h5>Request chat </h5>
                                         <div class="modes d-flex space-x-10">
                                             <img
-                                                src="/src/assetsimg/icons/light.svg"
+                                                src="/src/assets/img/icons/light.svg"
                                                 alt="">
                                             <img
-                                                src="/src/assetsimg/icons/dark.svg"
+                                                src="/src/assets/img/icons/dark.svg"
                                                 alt="">
                                         </div>
                                     </div>
@@ -1274,17 +1274,17 @@
                             is_lg
                             space-y-10">
                             <div class="img_wrap">
-                                <img src="/src/assetsimg/screens/forum.png"
+                                <img src="/src/assets/img/screens/forum.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Forum </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
             
                                 </div>
@@ -1301,17 +1301,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/blog.png"
+                                    src="/src/assets/img/screens/blog.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Blog </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1323,17 +1323,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/article.png"
+                                    src="/src/assets/img/screens/article.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Article </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1345,17 +1345,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/privacy.png"
+                                    src="/src/assets/img/screens/privacy.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Privacy policy </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1367,17 +1367,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/register.png"
+                                    src="/src/assets/img/screens/register.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Register </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1389,17 +1389,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/login.png"
+                                    src="/src/assets/img/screens/login.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>Login </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1411,17 +1411,17 @@
                             space-y-10">
                             <div class="img_wrap">
                                 <img
-                                    src="/src/assetsimg/screens/404.png"
+                                    src="/src/assets/img/screens/404.png"
                                     alt="">
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5>404 </h5>
                                 <div class="modes d-flex space-x-10">
                                     <img
-                                        src="/src/assetsimg/icons/light.svg"
+                                        src="/src/assets/img/icons/light.svg"
                                         alt="">
                                     <img
-                                        src="/src/assetsimg/icons/dark.svg"
+                                        src="/src/assets/img/icons/dark.svg"
                                         alt="">
                                 </div>
                             </div>
@@ -1434,7 +1434,7 @@
         </div>
     </div>
     <div class="relative">
-        <img class="sh_log" src="/src/assetsimg/icons/sh_1.png" alt="">
+        <img class="sh_log" src="/src/assets/img/icons/sh_1.png" alt="">
         <div class="container">
             <div class="row justify-content-center changelog">
                 <div class="col-lg-7">
@@ -1551,7 +1551,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="box_buy_wrapper relative mb-20">
-                        <img class="sh_buy" src="/src/assetsimg/icons/sh_4.png"
+                        <img class="sh_buy" src="/src/assets/img/icons/sh_4.png"
                             alt="...">
                         <div class="box_buy_wrapper2">
                             <div class="box box_buy">
@@ -1633,7 +1633,7 @@
                 <div class="col-lg-auto text-xl-left logo_holder">
                     <a href="index.html">
                         <img class="header__logo" id="logo_js"
-                            src="/src/assetsimg/logos/Logo.svg" alt="logo">
+                            src="/src/assets/img/logos/Logo.svg" alt="logo">
                     </a>
                 </div>
                 <div class="col-lg-auto semibold links bottom0menu">

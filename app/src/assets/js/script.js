@@ -92,16 +92,16 @@ $(".dark").on('click', function (e) {
 	$(".body").addClass("is__dark")
 	$(".light").removeClass("is_active")
 	$(".dark").addClass("is_active")
-	document.getElementById("logo_js").src = "/src/assetsimg/logos/Logo_white.svg";
-	document.getElementById("logo_js_f").src = "/src/assetsimg/logos/Logo_white.svg";
+	document.getElementById("logo_js").src = "/src/assets/img/logos/Logo_white.svg";
+	document.getElementById("logo_js_f").src = "/src/assets/img/logos/Logo_white.svg";
 
 });
 $(".light").on('click', function (e) {
 	$(".body").removeClass("is__dark")
 	$(".light").addClass("is_active")
 	$(".dark").removeClass("is_active")
-	document.getElementById("logo_js").src = "/src/assetsimg/logos/Logo.svg";
-	document.getElementById("logo_js_f").src = "/src/assetsimg/logos/Logo.svg";
+	document.getElementById("logo_js").src = "/src/assets/img/logos/Logo.svg";
+	document.getElementById("logo_js_f").src = "/src/assets/img/logos/Logo.svg";
 });
 
 // menu popup
