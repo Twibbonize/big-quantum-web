@@ -33,7 +33,7 @@
         </div>
       </div>
     </div> -->
-    
+
     <header class="header__1 js-header" id="header">
       <div class="container">
         <div class="wrapper js-header-wrapper">
@@ -42,12 +42,12 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
-    
+
           <!-- ==================  -->
           <div class="header__menu">
             <ul class="d-flex space-x-20">
@@ -61,12 +61,10 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
@@ -89,7 +87,6 @@
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -105,7 +102,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -134,7 +131,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -156,7 +153,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -164,7 +161,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -172,17 +169,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -197,7 +186,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -262,7 +251,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -276,21 +266,21 @@
           <div class="header__btns">
             <a class="btn btn-grad btn-sm" href="/connect-wallet">
               <i class="ri-wallet-3-line"></i>
-              Connect wallet</a>
+              Connect wallet</a
+            >
             <a href="" id="connectbtn">
-              <img width="45" src="src/assets/img/icons/metamask.svg" alt="">
+              <img width="45" src="/src/assets/img/icons/metamask.svg" alt="" />
             </a>
           </div>
           <div class="header__burger js-header-burger"></div>
-    
+
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -299,15 +289,14 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-    
+
     <!-- ====== header admin -->
     <header class="header__1 js-header header_wallet" id="header_admin">
       <div class="container">
@@ -317,9 +306,9 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
           <!-- ==================  -->
@@ -335,25 +324,22 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-              <li> <a class="color_black" href="/collections"> Collections</a> </li>
-              <li> <a class="color_black" href="/profile"> Profile</a> </li>
-              <li> <a class="color_black" href="/creators"> Creators</a> </li>
-              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
+              <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+              <li><a class="color_black" href="/collections"> Collections</a></li>
+              <li><a class="color_black" href="/profile"> Profile</a></li>
+              <li><a class="color_black" href="/creators"> Creators</a></li>
+              <li><a class="color_black" href="/kit"> Ui Kit </a></li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -369,7 +355,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -398,7 +384,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -420,7 +406,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -428,7 +414,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -436,17 +422,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -461,7 +439,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -526,7 +504,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -544,20 +523,11 @@
               </div>
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
-                  <h5> Notifications</h5>
+                  <h5>Notifications</h5>
                   <a href="/activity" class="badge color_white">View all</a>
                 </div>
-                <div
-                  class="item
-                  space-x-20
-                  d-flex
-                  justify-content-between
-                  align-items-center">
-                  <img
-                    class="thumb"
-                    src="src/assets/img/notifications/1.png"
-                    alt="..."
-                    />
+                <div class="item space-x-20 d-flex justify-content-between align-items-center">
+                  <img class="thumb" src="/src/assets/img/notifications/1.png" alt="..." />
                   <div class="details">
                     <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
@@ -570,11 +540,7 @@
               <div class="price">
                 <span>2.45 <strong>ETH</strong> </span>
               </div>
-              <img
-                class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
-                alt="avatar"
-                />
+              <img class="avatar" src="/src/assets/img/avatars/avatar_2.png" alt="avatar" />
               <div class="avatar_popup space-y-20">
                 <div class="d-flex align-items-center justify-content-between">
                   <span> 13b9ebda035r178... </span>
@@ -583,11 +549,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center space-x-10">
-                  <img
-                    class="coin"
-                    src="src/assets/img/logos/coin.svg"
-                    alt="/"
-                    />
+                  <img class="coin" src="/src/assets/img/logos/coin.svg" alt="/" />
                   <div class="info">
                     <p class="text-sm font-book text-gray-400">Balance</p>
                     <p class="w-full text-sm font-bold text-green-500">16.58 ETH</p>
@@ -595,15 +557,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="links space-y-10">
-                  <a href="#">
-                    <i class="ri-landscape-line"></i> <span> My items</span>
-                  </a>
+                  <a href="#"> <i class="ri-landscape-line"></i> <span> My items</span> </a>
                   <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
-                  <a href="#">
-                    <i class="ri-logout-circle-line"></i> <span> Logout</span>
-                  </a>
+                  <a href="#"> <i class="ri-logout-circle-line"></i> <span> Logout</span> </a>
                 </div>
               </div>
             </div>
@@ -615,11 +573,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -628,54 +585,51 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </header><div class="hero__creators">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6">
-                    <div class="space-y-20">
-                        <h1>Popular Creators</h1>
-                        <p class="hero__text">
-                            I make art with the simple goal of giving you something
-                            pleasing to
-                            look at for a few seconds.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-auto">
-                    <a class="btn btn-dark" href="/connect-wallet"> be
-                        one of our creators
-                    </a>
-                </div>
+    </header>
+    <div class="hero__creators">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-6">
+            <div class="space-y-20">
+              <h1>Popular Creators</h1>
+              <p class="hero__text">
+                I make art with the simple goal of giving you something pleasing to look at for a
+                few seconds.
+              </p>
             </div>
-    
+          </div>
+          <div class="col-lg-auto">
+            <a class="btn btn-dark" href="/connect-wallet"> be one of our creators </a>
+          </div>
         </div>
-    </div><div class="container">
+      </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col-lg-3">
           <div class="creator_item creator_card space-y-10 is_big">
             <div class="avatars flex-column space-y-10">
               <div class="media has_border">
                 <a href="/profile">
-                  <img src="src/assets/img/avatars/avatar_1.png"
-                    alt="Avatar" class="avatar avatar-md">
+                  <img
+                    src="/src/assets/img/avatars/avatar_1.png"
+                    alt="Avatar"
+                    class="avatar avatar-md"
+                  />
                 </a>
-                <div class="has_number">
-                  1
-                </div>
+                <div class="has_number">1</div>
               </div>
               <div class="text-center">
                 <a href="/profile">
                   <p class="avatars_name large color_black">@jimena_stark</p>
                 </a>
-                <span class="sales color_text">4 sales on
-                  14.28 ETH</span>
+                <span class="sales color_text">4 sales on 14.28 ETH</span>
               </div>
             </div>
           </div>
@@ -685,19 +639,19 @@
             <div class="avatars flex-column space-y-10">
               <div class="media has_border">
                 <a href="/profile">
-                  <img src="src/assets/img/avatars/avatar_2.png"
-                    alt="Avatar" class="avatar avatar-md">
+                  <img
+                    src="/src/assets/img/avatars/avatar_2.png"
+                    alt="Avatar"
+                    class="avatar avatar-md"
+                  />
                 </a>
-                <div class="has_number">
-                  2
-                </div>
+                <div class="has_number">2</div>
               </div>
               <div class="text-center">
                 <a href="/profile">
                   <p class="avatars_name large color_black">@makinzi_beck</p>
                 </a>
-                <span class="sales color_text">16 sales on
-                  8.04 ETH</span>
+                <span class="sales color_text">16 sales on 8.04 ETH</span>
               </div>
             </div>
           </div>
@@ -707,19 +661,19 @@
             <div class="avatars flex-column space-y-10">
               <div class="media has_border">
                 <a href="/profile">
-                  <img src="src/assets/img/avatars/avatar_3.png"
-                    alt="Avatar" class="avatar avatar-md">
+                  <img
+                    src="/src/assets/img/avatars/avatar_3.png"
+                    alt="Avatar"
+                    class="avatar avatar-md"
+                  />
                 </a>
-                <div class="has_number">
-                  3
-                </div>
+                <div class="has_number">3</div>
               </div>
               <div class="text-center">
                 <a href="/profile">
                   <p class="avatars_name large color_black">@jaxon_duffy</p>
                 </a>
-                <span class="sales color_text">4 sales on
-                  12.53 ETH</span>
+                <span class="sales color_text">4 sales on 12.53 ETH</span>
               </div>
             </div>
           </div>
@@ -729,26 +683,26 @@
             <div class="avatars flex-column space-y-10">
               <div class="media has_border">
                 <a href="/profile">
-                  <img src="src/assets/img/avatars/avatar_4.png"
-                    alt="Avatar" class="avatar avatar-md">
+                  <img
+                    src="/src/assets/img/avatars/avatar_4.png"
+                    alt="Avatar"
+                    class="avatar avatar-md"
+                  />
                 </a>
-                <div class="has_number">
-                  4
-                </div>
+                <div class="has_number">4</div>
               </div>
               <div class="text-center">
                 <a href="/profile">
                   <p class="avatars_name large color_black">@darian_barry</p>
                 </a>
-                <span class="sales color_text">62 sales on
-                  7.26 ETH</span>
+                <span class="sales color_text">62 sales on 7.26 ETH</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="section__creators mt-100">
       <div class="container">
         <div class="space-y-30">
@@ -756,14 +710,15 @@
             <h2 class="section__title text-center">Popular Creators</h2>
           </div>
           <div class="section__body space-y-20">
-            <div class="d-flex space-x-10 justify-content-center
-              creators_anim1">
+            <div class="d-flex space-x-10 justify-content-center creators_anim1">
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_1.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_1.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -777,8 +732,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_2.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_2.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -792,8 +749,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_3.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_3.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -807,8 +766,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_4.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_4.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -822,8 +783,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_5.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_5.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -837,8 +800,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_1.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_1.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -852,8 +817,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_2.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_2.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -867,8 +834,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_3.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_3.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -882,8 +851,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_4.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_4.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -897,8 +868,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_5.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_5.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -915,15 +888,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_6.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_6.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@eli_tyler...</p>
                       </a>
-                      <span class="price color_green">16.58
-                        ETH</span>
+                      <span class="price color_green">16.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -931,15 +905,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_7.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_7.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@alonzo_knight...</p>
                       </a>
-                      <span class="price color_green">12.58
-                        ETH</span>
+                      <span class="price color_green">12.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -947,15 +922,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_8.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_8.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@cannon_stark...</p>
                       </a>
-                      <span class="price color_green">15.58
-                        ETH</span>
+                      <span class="price color_green">15.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -963,15 +939,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_9.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_9.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@leonel_carey...</p>
                       </a>
-                      <span class="price color_green">4.58
-                        ETH</span>
+                      <span class="price color_green">4.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -979,15 +956,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_10.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_10.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@kolten_hart...</p>
                       </a>
-                      <span class="price color_green">3.58
-                        ETH</span>
+                      <span class="price color_green">3.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -995,15 +973,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_6.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_6.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@ethan_cain...</p>
                       </a>
-                      <span class="price color_green">57.58
-                        ETH</span>
+                      <span class="price color_green">57.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -1011,15 +990,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_7.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_7.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@waylon_ford...</p>
                       </a>
-                      <span class="price color_green">13.58
-                        ETH</span>
+                      <span class="price color_green">13.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -1027,15 +1007,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_8.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_8.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@khloe_bender...</p>
                       </a>
-                      <span class="price color_green">9.58
-                        ETH</span>
+                      <span class="price color_green">9.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -1043,15 +1024,16 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_9.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_9.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@jenna_loyd...</p>
                       </a>
-                      <span class="price color_green">7.58
-                        ETH</span>
+                      <span class="price color_green">7.58 ETH</span>
                     </div>
                   </div>
                 </div>
@@ -1059,28 +1041,30 @@
                   <div class="avatars space-x-10">
                     <a href="/profile">
                       <img
-                        src="src/assets/img/avatars/avatar_10.png"
-                        alt="Avatar" class="avatar avatar-md">
+                        src="/src/assets/img/avatars/avatar_10.png"
+                        alt="Avatar"
+                        class="avatar avatar-md"
+                      />
                     </a>
                     <div>
                       <a href="/profile">
                         <p class="avatars_name color_black">@kaleigh_lewis...</p>
                       </a>
-                      <span class="price color_green">16.58
-                        ETH</span>
+                      <span class="price color_green">16.58 ETH</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="d-flex space-x-10 justify-content-center
-              creators_anim3">
+            <div class="d-flex space-x-10 justify-content-center creators_anim3">
               <div class="creator_item creator_card space-x-10">
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_11.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_11.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1094,8 +1078,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_12.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_12.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1109,8 +1095,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_13.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_13.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1124,8 +1112,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_14.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_14.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1139,8 +1129,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_15.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_15.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1154,8 +1146,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_11.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_11.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1169,8 +1163,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_12.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_12.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1184,8 +1180,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_13.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_13.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1199,8 +1197,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_14.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_14.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1214,8 +1214,10 @@
                 <div class="avatars space-x-10">
                   <a href="/profile">
                     <img
-                      src="src/assets/img/avatars/avatar_15.png"
-                      alt="Avatar" class="avatar avatar-md">
+                      src="/src/assets/img/avatars/avatar_15.png"
+                      alt="Avatar"
+                      class="avatar avatar-md"
+                    />
                   </a>
                   <div>
                     <a href="/profile">
@@ -1227,7 +1229,6 @@
               </div>
             </div>
           </div>
-    
         </div>
       </div>
     </div>
@@ -1235,40 +1236,42 @@
       <div class="container">
         <div class="space-y-30">
           <div class="section_head">
-            <div class="row justify-content-between
-              align-items-center">
+            <div class="row justify-content-between align-items-center">
               <div class="col-lg-auto">
                 <h2 class="section__title">Discover all Creators</h2>
               </div>
               <div class="col-lg-4">
                 <div class="search">
-                  <input type="text" placeholder="Search"
-                    class="bg_white" style="background:white
-                    !important">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="bg_white"
+                    style="background: white !important"
+                  />
                   <button class="result">
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
               </div>
-    
+
               <div class="col-lg-auto">
                 <div class="dropdown">
-                  <button class="btn btn-primary btn-sm
-                    dropdown-toggle"
+                  <button
+                    class="btn btn-primary btn-sm dropdown-toggle"
                     type="button"
-                    data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Recent Active
                   </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else
-                      here</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
               </div>
-    
             </div>
           </div>
           <div class="section__body space-y-20">
@@ -1277,23 +1280,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_1.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_1.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_5.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_5.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">191
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">191 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1312,23 +1312,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_2.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_2.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_6.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_6.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">142
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">142 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1347,23 +1344,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_3.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_3.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_7.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_7.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">150
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">150 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1382,23 +1376,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_4.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_4.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_8.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_8.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">87
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">87 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1417,23 +1408,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_5.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_5.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_9.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_9.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">198
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">198 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1452,23 +1440,20 @@
                 <div class="creator_item creator_card space-y-20 mb-20">
                   <div class="avatars flex-column space-y-10">
                     <div class="cover">
-                      <img
-                        src="src/assets/img/items/cover_6.png"
-                        alt="Avatar" class="img-fluid">
+                      <img src="/src/assets/img/items/cover_6.png" alt="Avatar" class="img-fluid" />
                     </div>
                     <div class="media">
                       <a href="/profile">
                         <img
-                          src="src/assets/img/avatars/avatar_10.png"
-                          alt="Avatar" class="avatar
-                          avatar-md">
+                          src="/src/assets/img/avatars/avatar_10.png"
+                          alt="Avatar"
+                          class="avatar avatar-md"
+                        />
                       </a>
                     </div>
                     <div class="details text-center">
                       <div>
-                        <p class="color_black txt_lg">234
-                          <span
-                            class="txt_sm">ETH</span></p>
+                        <p class="color_black txt_lg">234 <span class="txt_sm">ETH</span></p>
                         <p class="color_black txt_sm">Sold</p>
                       </div>
                       <div>
@@ -1484,34 +1469,34 @@
                 </div>
               </div>
             </div>
-    
           </div>
-    
         </div>
       </div>
     </div>
-    
+
     <footer class="footer__1">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f" />
               </a>
             </div>
-            <p class="footer__text">
-              raroin is a shared liquidity NFT market smart contract
-            </p>
+            <p class="footer__text">raroin is a shared liquidity NFT market smart contract</p>
             <div>
               <ul class="footer__social space-x-10 mb-40">
-                <li> <a href=""> <i class="ri-facebook-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-facebook-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-messenger-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-messenger-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-whatsapp-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-whatsapp-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-youtube-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-youtube-line"></i> </a>
                 </li>
               </ul>
             </div>
@@ -1519,45 +1504,32 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="/home-1"> Home1 </a>
-              </li>
-              <li> <a href="/home-2"> Home2
-                </a> </li>
-              <li> <a href="/home-3"> Home3 </a> </li>
-              <li> <a href="/marketplace"> Marketplace
-                </a>
-              </li>
+              <li><a href="/home-1"> Home1 </a></li>
+              <li><a href="/home-2"> Home2 </a></li>
+              <li><a href="/home-3"> Home3 </a></li>
+              <li><a href="/marketplace"> Marketplace </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="/profile"> Profile </a>
-              </li>
-              <li> <a href="/creators"> Creators </a>
-              </li>
-              <li> <a href="/collections"> Colletctions </a>
-              </li>
-              <li> <a href="/activity"> Activity
-                </a> </li>
+              <li><a href="/profile"> Profile </a></li>
+              <li><a href="/creators"> Creators </a></li>
+              <li><a href="/collections"> Colletctions </a></li>
+              <li><a href="/activity"> Activity </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="/upload-type"> Upload Types </a>
-              </li>
-              <li> <a href="/upload"> Upload </a> </li>
-              <li> <a href="/connect-wallet"> Connect wallet
-                </a> </li>
-              <li> <a href="/item-details"> Item details </a>
-              </li>
+              <li><a href="/upload-type"> Upload Types </a></li>
+              <li><a href="/upload"> Upload </a></li>
+              <li><a href="/connect-wallet"> Connect wallet </a></li>
+              <li><a href="/item-details"> Item details </a></li>
             </ul>
           </div>
         </div>
-        <p class="copyright text-center">
-          Copyright © 2021. Created with love by creabik.
-        </p>
+        <p class="copyright text-center">Copyright © 2021. Created with love by creabik.</p>
       </div>
     </footer>
   </div>

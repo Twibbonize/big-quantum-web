@@ -33,7 +33,7 @@
         </div>
       </div>
     </div> -->
-    
+
     <!-- ====== header -->
     <header class="header__1 js-header">
       <div class="container">
@@ -43,9 +43,9 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
           <!-- ==================  -->
@@ -61,25 +61,22 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-              <li> <a class="color_black" href="/collections"> Collections</a> </li>
-              <li> <a class="color_black" href="/profile"> Profile</a> </li>
-              <li> <a class="color_black" href="/creators"> Creators</a> </li>
-              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
+              <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+              <li><a class="color_black" href="/collections"> Collections</a></li>
+              <li><a class="color_black" href="/profile"> Profile</a></li>
+              <li><a class="color_black" href="/creators"> Creators</a></li>
+              <li><a class="color_black" href="/kit"> Ui Kit </a></li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -95,7 +92,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -124,7 +121,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -146,7 +143,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -154,7 +151,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -162,17 +159,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -187,7 +176,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -252,7 +241,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -270,20 +260,11 @@
               </div>
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
-                  <h5> Notifications</h5>
+                  <h5>Notifications</h5>
                   <a href="/activity" class="badge color_white">View all</a>
                 </div>
-                <div
-                  class="item
-                  space-x-20
-                  d-flex
-                  justify-content-between
-                  align-items-center">
-                  <img
-                    class="thumb"
-                    src="src/assets/img/notifications/1.png"
-                    alt="..."
-                    />
+                <div class="item space-x-20 d-flex justify-content-between align-items-center">
+                  <img class="thumb" src="/src/assets/img/notifications/1.png" alt="..." />
                   <div class="details">
                     <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
@@ -296,11 +277,7 @@
               <div class="price">
                 <span>2.45 <strong>ETH</strong> </span>
               </div>
-              <img
-                class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
-                alt="avatar"
-                />
+              <img class="avatar" src="/src/assets/img/avatars/avatar_2.png" alt="avatar" />
               <div class="avatar_popup space-y-20">
                 <div class="d-flex align-items-center justify-content-between">
                   <span> 13b9ebda035r178... </span>
@@ -309,11 +286,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center space-x-10">
-                  <img
-                    class="coin"
-                    src="src/assets/img/logos/coin.svg"
-                    alt="/"
-                    />
+                  <img class="coin" src="/src/assets/img/logos/coin.svg" alt="/" />
                   <div class="info">
                     <p class="text-sm font-book text-gray-400">Balance</p>
                     <p class="w-full text-sm font-bold text-green-500">16.58 ETH</p>
@@ -321,15 +294,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="links space-y-10">
-                  <a href="#">
-                    <i class="ri-landscape-line"></i> <span> My items</span>
-                  </a>
+                  <a href="#"> <i class="ri-landscape-line"></i> <span> My items</span> </a>
                   <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
-                  <a href="#">
-                    <i class="ri-logout-circle-line"></i> <span> Logout</span>
-                  </a>
+                  <a href="#"> <i class="ri-logout-circle-line"></i> <span> Logout</span> </a>
                 </div>
               </div>
             </div>
@@ -341,11 +310,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -354,205 +322,206 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-    <div class="modal fade popup" id="popup_bid_success" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-                    <h3 class="text-center">Your Bidding
-                        Successfuly Added</h3>
-                    <p class="text-center">your bid <span class="color_text txt
-                            _bold">(16ETH) </span> has been listing
-                        to our database</p>
-    
-                    <a href="" class="btn btn-dark w-full"> Watch the listings</a>
-                </div>
-            </div>
+    <div
+      class="modal fade popup"
+      id="popup_bid_success"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3 class="text-center">Your Bidding Successfuly Added</h3>
+            <p class="text-center">
+              your bid <span class="color_text txt _bold">(16ETH) </span> has been listing to our
+              database
+            </p>
+
+            <a href="" class="btn btn-dark w-full"> Watch the listings</a>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="modal fade popup" id="popup_bid" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-                    <h3>Place a Bid</h3>
-                    <p>You must bid at least <span class="color_black">15 ETH</span>
-                    </p>
-                    <input type="text" class="form-control"
-                        placeholder="00.00 ETH">
-    
-                    <p>Enter quantity. <span class="color_green">5 available</span>
-                    </p>
-                    <input type="text" class="form-control"
-                        value="1">
-                    <div class="hr"></div>
-                    <div class="d-flex justify-content-between">
-                        <p> You must bid at least:</p>
-                        <p class="text-right color_black txt _bold"> 67,000 ETH </p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p> service free:</p>
-                        <p class="text-right color_black txt _bold"> 0,901 ETH </p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p> Total bid amount:</p>
-                        <p class="text-right color_black txt _bold"> 56,031 ETH </p>
-                    </div>
-                    <a href="" class="btn btn-primary w-full"
-                        data-toggle="modal"
-                        data-target="#popup_bid_success"
-                        data-dismiss="modal"
-                        aria-label="Close"> Place a bid</a>
-                </div>
+    <div class="modal fade popup" id="popup_bid" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3>Place a Bid</h3>
+            <p>You must bid at least <span class="color_black">15 ETH</span></p>
+            <input type="text" class="form-control" placeholder="00.00 ETH" />
+
+            <p>Enter quantity. <span class="color_green">5 available</span></p>
+            <input type="text" class="form-control" value="1" />
+            <div class="hr"></div>
+            <div class="d-flex justify-content-between">
+              <p>You must bid at least:</p>
+              <p class="text-right color_black txt _bold">67,000 ETH</p>
             </div>
-        </div>
-    </div><div class="modal fade popup" id="popup_bid_success" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-                    <h3 class="text-center">Your Bidding
-                        Successfuly Added</h3>
-                    <p class="text-center">your bid <span class="color_text txt
-                            _bold">(16ETH) </span> has been listing
-                        to our database</p>
-    
-                    <a href="" class="btn btn-dark w-full"> Watch the listings</a>
-                </div>
+            <div class="d-flex justify-content-between">
+              <p>service free:</p>
+              <p class="text-right color_black txt _bold">0,901 ETH</p>
             </div>
+            <div class="d-flex justify-content-between">
+              <p>Total bid amount:</p>
+              <p class="text-right color_black txt _bold">56,031 ETH</p>
+            </div>
+            <a
+              href=""
+              class="btn btn-primary w-full"
+              data-toggle="modal"
+              data-target="#popup_bid_success"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              Place a bid</a
+            >
+          </div>
         </div>
+      </div>
     </div>
-    <div class="modal fade popup" id="popup_buy" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-                    <h3>Checkout
-                    </h3>
-                    <p>You are about to purchase a <span class="color_black">SHADOW
-                            #7</span> from
-                        <span class="color_black">Lona</span>
-                    </p>
-                    <div class="space-y-10">
-                        <p>You pay
-                        </p>
-                        <input type="text" class="form-control"
-                            placeholder="00.00 ETH">
-                    </div>
-                    <div class="space-y-10">
-                        <p>Enter quantity. <span class="color_green">5 available</span>
-                        </p>
-                        <input type="text" class="form-control"
-                            value="1">
-                    </div>
-    
-                    <div class="hr"></div>
-                    <div class="d-flex justify-content-between">
-                        <p> You must bid at least:</p>
-                        <p class="text-right color_black txt _bold"> 67,000 ETH </p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p> service free:</p>
-                        <p class="text-right color_black txt _bold"> 0,901 ETH </p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p> Total bid amount:</p>
-                        <p class="text-right color_black txt _bold"> 56,031 ETH </p>
-                    </div>
-                    <a href="https://pay.sendwyre.com/" class="btn btn-primary
-                        w-full" aria-label="Close">
-                        Add funds</a>
-                </div>
-            </div>
+    <div
+      class="modal fade popup"
+      id="popup_bid_success"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3 class="text-center">Your Bidding Successfuly Added</h3>
+            <p class="text-center">
+              your bid <span class="color_text txt _bold">(16ETH) </span> has been listing to our
+              database
+            </p>
+
+            <a href="" class="btn btn-dark w-full"> Watch the listings</a>
+          </div>
         </div>
-    </div><div class="modal fade popup" id="popup_bid_success" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-                    <h3 class="text-center">Your Bidding
-                        Successfuly Added</h3>
-                    <p class="text-center">your bid <span class="color_text txt
-                            _bold">(16ETH) </span> has been listing
-                        to our database</p>
-    
-                    <a href="" class="btn btn-dark w-full"> Watch the listings</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="modal fade popup" id="popup_report" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body space-y-20 p-40">
-    
-                    <h3>Report this item</h3>
-                    <div class="hr"></div>
-                    <div class="form-group space-y-10">
-                        <span class="variationInput">reason:</span>
-                        <select class="form-select custom-select"
-                            aria-label="Default select example">
-                            <option> Select a reason</option>
-                            <option>Purchase</option>
-                            <option>Support</option>
-                            <option>Technique</option>
-                            <option>Service Request</option>
-                        </select>
-                    </div>
-                    <div class="form-group space-y-10">
-                        <span class="variationInput">Additional comments:</span>
-                        <textarea name="..." cols="30" rows="10"
-                            placeholder="Explain why you are concerned about it."></textarea>
-                    </div>
-                    <a href="" class="btn btn-dark"> Report</a>
-                </div>
+    <div class="modal fade popup" id="popup_buy" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3>Checkout</h3>
+            <p>
+              You are about to purchase a <span class="color_black">SHADOW #7</span> from
+              <span class="color_black">Lona</span>
+            </p>
+            <div class="space-y-10">
+              <p>You pay</p>
+              <input type="text" class="form-control" placeholder="00.00 ETH" />
             </div>
+            <div class="space-y-10">
+              <p>Enter quantity. <span class="color_green">5 available</span></p>
+              <input type="text" class="form-control" value="1" />
+            </div>
+
+            <div class="hr"></div>
+            <div class="d-flex justify-content-between">
+              <p>You must bid at least:</p>
+              <p class="text-right color_black txt _bold">67,000 ETH</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>service free:</p>
+              <p class="text-right color_black txt _bold">0,901 ETH</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Total bid amount:</p>
+              <p class="text-right color_black txt _bold">56,031 ETH</p>
+            </div>
+            <a href="https://pay.sendwyre.com/" class="btn btn-primary w-full" aria-label="Close">
+              Add funds</a
+            >
+          </div>
         </div>
+      </div>
     </div>
-    
-    
+    <div
+      class="modal fade popup"
+      id="popup_bid_success"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3 class="text-center">Your Bidding Successfuly Added</h3>
+            <p class="text-center">
+              your bid <span class="color_text txt _bold">(16ETH) </span> has been listing to our
+              database
+            </p>
+
+            <a href="" class="btn btn-dark w-full"> Watch the listings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade popup" id="popup_report" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body space-y-20 p-40">
+            <h3>Report this item</h3>
+            <div class="hr"></div>
+            <div class="form-group space-y-10">
+              <span class="variationInput">reason:</span>
+              <select class="form-select custom-select" aria-label="Default select example">
+                <option>Select a reason</option>
+                <option>Purchase</option>
+                <option>Support</option>
+                <option>Technique</option>
+                <option>Service Request</option>
+              </select>
+            </div>
+            <div class="form-group space-y-10">
+              <span class="variationInput">Additional comments:</span>
+              <textarea
+                name="..."
+                cols="30"
+                rows="10"
+                placeholder="Explain why you are concerned about it."
+              ></textarea>
+            </div>
+            <a href="" class="btn btn-dark"> Report</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
-      <a href="/" class="btn btn-white btn-sm my-40">
-        Back to home
-      </a>
+      <a href="/" class="btn btn-white btn-sm my-40"> Back to home </a>
       <div class="item_details">
         <div class="row sm:space-y-20">
           <div class="col-lg-6">
-            <img class="item_img" src="src/assets/img/items/item_2.png"
-              alt="">
+            <img class="item_img" src="/src/assets/img/items/item_2.png" alt="" />
           </div>
           <div class="col-lg-6">
             <div class="space-y-20">
@@ -568,45 +537,40 @@
                 <div class="space-x-10 d-flex align-items-center">
                   <div class="share">
                     <div class="icon">
-                      <a href="#"> <i class="ri-share-line"></i>
-                      </a>
+                      <a href="#"> <i class="ri-share-line"></i> </a>
                     </div>
                     <div class="dropdown__popup">
                       <ul class="space-y-10">
-                        <li> <a href=""> <i
-                              class="ri-facebook-line"></i>
-                          </a>
+                        <li>
+                          <a href=""> <i class="ri-facebook-line"></i> </a>
                         </li>
-                        <li> <a href=""> <i
-                              class="ri-messenger-line"></i>
-                          </a>
+                        <li>
+                          <a href=""> <i class="ri-messenger-line"></i> </a>
                         </li>
-                        <li> <a href=""> <i
-                              class="ri-whatsapp-line"></i>
-                          </a>
+                        <li>
+                          <a href=""> <i class="ri-whatsapp-line"></i> </a>
                         </li>
-                        <li> <a href=""> <i
-                              class="ri-youtube-line"></i>
-                          </a>
+                        <li>
+                          <a href=""> <i class="ri-youtube-line"></i> </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="more">
                     <div class="icon">
-                      <a href="#"> <i class="ri-more-fill"></i>
-                      </a>
+                      <a href="#"> <i class="ri-more-fill"></i> </a>
                     </div>
                     <div class="dropdown__popup">
                       <ul class="space-y-10">
                         <li>
-                          <a href="#" class="space-x-10
-                            d-flex"
+                          <a
+                            href="#"
+                            class="space-x-10 d-flex"
                             data-toggle="modal"
-                            data-target="#popup_report">
+                            data-target="#popup_report"
+                          >
                             <i class="ri-flag-line"></i>
-                            <span> Report
-                            </span>
+                            <span> Report </span>
                           </a>
                         </li>
                       </ul>
@@ -615,25 +579,26 @@
                 </div>
               </div>
               <div class="dropdown">
-                <button class="btn btn-white btn-sm
-                  dropdown-toggle" type="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
+                <button
+                  class="btn btn-white btn-sm dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   View proof of authenticity
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="https://ipfs.io/" target="_blank">
                     <span>
-                      <img src="src/assets/img/icons/ipfs.svg" width="20"
-                        alt="">
+                      <img src="/src/assets/img/icons/ipfs.svg" width="20" alt="" />
                       View on IPFS
                     </span>
                     <i class="ri-external-link-line color_brand"></i>
-    
-    
                   </a>
                   <a class="dropdown-item" href="https://etherscan.io/" target="_blank">
                     <span>
-                      <img src="src/assets/img/icons/ether.png" width="20" alt="">
+                      <img src="/src/assets/img/icons/ether.png" width="20" alt="" />
                       View on Etherscan
                     </span>
                     <i class="ri-external-link-line color_brand"></i>
@@ -642,131 +607,103 @@
               </div>
               <div class="box">
                 <div class="space-y-20">
-                  <div class="d-flex justify-content-between
-                    mb-30_reset">
-                    <ul class="nav nav-tabs d-flex space-x-10 mb-30"
-                      role="tablist">
+                  <div class="d-flex justify-content-between mb-30_reset">
+                    <ul class="nav nav-tabs d-flex space-x-10 mb-30" role="tablist">
                       <li class="nav-item">
                         <a
                           class="btn btn-white btn-sm active"
                           data-toggle="tab"
                           href="#tabs-1"
-                          role="tab">
-                          Details</a>
+                          role="tab"
+                        >
+                          Details</a
+                        >
                       </li>
                       <li class="nav-item">
-                        <a
-                          class="btn btn-white btn-sm"
-                          data-toggle="tab"
-                          href="#tabs-2"
-                          role="tab">
-                          Bids</a>
+                        <a class="btn btn-white btn-sm" data-toggle="tab" href="#tabs-2" role="tab">
+                          Bids</a
+                        >
                       </li>
                       <li class="nav-item">
-                        <a
-                          class="btn btn-white btn-sm"
-                          data-toggle="tab"
-                          href="#tabs-3"
-                          role="tab">
-                          History</a>
+                        <a class="btn btn-white btn-sm" data-toggle="tab" href="#tabs-3" role="tab">
+                          History</a
+                        >
                       </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="dropdown d-none d-sm-block">
                       <button
-                        class="btn btn-white btn-sm
-                        dropdown-toggle"
+                        class="btn btn-white btn-sm dropdown-toggle"
                         type="button"
-    
                         data-toggle="dropdown"
                         aria-haspopup="true"
-                        aria-expanded="false">
+                        aria-expanded="false"
+                      >
                         Recent Active
                       </button>
-                      <div
-                        class="dropdown-menu">
+                      <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another
-                          action</a>
-                        <a class="dropdown-item" href="#">Something
-                          else here</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                     </div>
                   </div>
                   <div class="hr"></div>
                   <div class="tab-content">
-                    <div class="tab-pane active" id="tabs-1"
-                      role="tabpanel">
-                      <p>Hey guys! New exploration about NFT
-                        Marketplace Web Design, this time I'm
-                        inspired by one of my favorite NFT
-                        website called Rarible (with crypto
-                        payment)! What do you think?</p>
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                      <p>
+                        Hey guys! New exploration about NFT Marketplace Web Design, this time I'm
+                        inspired by one of my favorite NFT website called Rarible (with crypto
+                        payment)! What do you think?
+                      </p>
                     </div>
-                    <div class="tab-pane" id="tabs-2"
-                      role="tabpanel">
-                      <p>No active bids yet. Be the first to make
-                        a bid!</p>
+                    <div class="tab-pane" id="tabs-2" role="tabpanel">
+                      <p>No active bids yet. Be the first to make a bid!</p>
                     </div>
-                    <div class="tab-pane space-y-20" id="tabs-3"
-                      role="tabpanel">
-                      <div class="creator_item creator_card
-                        space-x-10">
+                    <div class="tab-pane space-y-20" id="tabs-3" role="tabpanel">
+                      <div class="creator_item creator_card space-x-10">
                         <div class="avatars space-x-10">
                           <div class="media">
                             <div class="badge">
-                              <img
-                                src="src/assets/img/icons/Badge.svg"
-                                alt="">
+                              <img src="/src/assets/img/icons/Badge.svg" alt="" />
                             </div>
                             <a href="/profile">
                               <img
-                                src="src/assets/img/avatars/avatar_1.png"
+                                src="/src/assets/img/avatars/avatar_1.png"
                                 alt="Avatar"
-                                class="avatar
-                                avatar-md">
+                                class="avatar avatar-md"
+                              />
                             </a>
                           </div>
                           <div>
-                            <p class="color_black">Bid
-                              accepted <span
-                                class="color_brand">1
-                                ETH</span> by <a
-                                class="color_black txt
-                                _bold"
-                                href="/profile">ayoub</a></p>
-                            <span class="date color_text">28/06/2021,
-                              12:08</span>
+                            <p class="color_black">
+                              Bid accepted <span class="color_brand">1 ETH</span> by
+                              <a class="color_black txt _bold" href="/profile">ayoub</a>
+                            </p>
+                            <span class="date color_text">28/06/2021, 12:08</span>
                           </div>
                         </div>
                       </div>
-                      <div class="creator_item creator_card
-                        space-x-10">
+                      <div class="creator_item creator_card space-x-10">
                         <div class="avatars space-x-10">
                           <div class="media">
                             <div class="badge">
-                              <img
-                                src="src/assets/img/icons/Badge.svg"
-                                alt="">
+                              <img src="/src/assets/img/icons/Badge.svg" alt="" />
                             </div>
                             <a href="/profile">
                               <img
-                                src="src/assets/img/avatars/avatar_2.png"
+                                src="/src/assets/img/avatars/avatar_2.png"
                                 alt="Avatar"
-                                class="avatar
-                                avatar-md">
+                                class="avatar avatar-md"
+                              />
                             </a>
                           </div>
                           <div>
-                            <p class="color_black">Bid
-                              accepted <span
-                                class="color_brand">3
-                                ETH</span> by <a
-                                class="color_black txt
-                                _bold"
-                                href="/profile">monir</a></p>
-                            <span class="date color_text">22/05/2021,
-                              12:08</span>
+                            <p class="color_black">
+                              Bid accepted <span class="color_brand">3 ETH</span> by
+                              <a class="color_black txt _bold" href="/profile">monir</a>
+                            </p>
+                            <span class="date color_text">22/05/2021, 12:08</span>
                           </div>
                         </div>
                       </div>
@@ -779,15 +716,13 @@
                   <div class="col-lg-6">
                     <div class="space-y-5">
                       <p class="color_text">Minimum bid</p>
-                      <h4>2.4000 <span class="txt_sm color_text">
-                          ETH/ $4769.88</span></h4>
+                      <h4>2.4000 <span class="txt_sm color_text"> ETH/ $4769.88</span></h4>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="space-y-5">
                       <p class="color_text">countdown</p>
-                      <div class="d-flex countdown_item
-                        align-items-center">
+                      <div class="d-flex countdown_item align-items-center">
                         <div class="item">
                           <div class="number hours">22<span></span></div>
                         </div>
@@ -800,7 +735,6 @@
                           <div class="number seconds">35<span></span></div>
                         </div>
                       </div>
-    
                     </div>
                   </div>
                 </div>
@@ -813,15 +747,15 @@
                       <div class="media">
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_3.png"
-                            alt="Avatar" class="avatar
-                            avatar-sm">
+                            src="/src/assets/img/avatars/avatar_3.png"
+                            alt="Avatar"
+                            class="avatar avatar-sm"
+                          />
                         </a>
                       </div>
                       <div>
                         <a href="/profile">
-                          <p class="avatars_name color_black">@ayoub_fennouni
-                            / fouzi...</p>
+                          <p class="avatars_name color_black">@ayoub_fennouni / fouzi...</p>
                         </a>
                       </div>
                     </div>
@@ -830,15 +764,14 @@
                     <div class="avatars space-x-5">
                       <div class="media">
                         <div class="badge">
-                          <img class="badge"
-                            src="src/assets/img/icons/Badge.svg"
-                            alt="">
+                          <img class="badge" src="/src/assets/img/icons/Badge.svg" alt="" />
                         </div>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_2.png"
-                            alt="Avatar" class="avatar
-                            avatar-sm">
+                            src="/src/assets/img/avatars/avatar_2.png"
+                            alt="Avatar"
+                            class="avatar avatar-sm"
+                          />
                         </a>
                       </div>
                       <div>
@@ -851,10 +784,17 @@
                 </div>
               </div>
               <div class="d-flex space-x-20">
-                <a href="" class="btn btn-primary btn-lg" data-toggle="modal"
-                  data-target="#popup_buy"> Buy Now</a>
-                <a href="" class="btn btn-grad btn-lg" data-toggle="modal"
-                  data-target="#popup_bid"> Place bid</a>
+                <a
+                  href=""
+                  class="btn btn-primary btn-lg"
+                  data-toggle="modal"
+                  data-target="#popup_buy"
+                >
+                  Buy Now</a
+                >
+                <a href="" class="btn btn-grad btn-lg" data-toggle="modal" data-target="#popup_bid">
+                  Place bid</a
+                >
               </div>
             </div>
           </div>
@@ -867,21 +807,23 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f" />
               </a>
             </div>
-            <p class="footer__text">
-              raroin is a shared liquidity NFT market smart contract
-            </p>
+            <p class="footer__text">raroin is a shared liquidity NFT market smart contract</p>
             <div>
               <ul class="footer__social space-x-10 mb-40">
-                <li> <a href=""> <i class="ri-facebook-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-facebook-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-messenger-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-messenger-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-whatsapp-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-whatsapp-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-youtube-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-youtube-line"></i> </a>
                 </li>
               </ul>
             </div>
@@ -889,45 +831,32 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="/home-1"> Home1 </a>
-              </li>
-              <li> <a href="/home-2"> Home2
-                </a> </li>
-              <li> <a href="/home-3"> Home3 </a> </li>
-              <li> <a href="/marketplace"> Marketplace
-                </a>
-              </li>
+              <li><a href="/home-1"> Home1 </a></li>
+              <li><a href="/home-2"> Home2 </a></li>
+              <li><a href="/home-3"> Home3 </a></li>
+              <li><a href="/marketplace"> Marketplace </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="/profile"> Profile </a>
-              </li>
-              <li> <a href="/creators"> Creators </a>
-              </li>
-              <li> <a href="/collections"> Colletctions </a>
-              </li>
-              <li> <a href="/activity"> Activity
-                </a> </li>
+              <li><a href="/profile"> Profile </a></li>
+              <li><a href="/creators"> Creators </a></li>
+              <li><a href="/collections"> Colletctions </a></li>
+              <li><a href="/activity"> Activity </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="/upload-type"> Upload Types </a>
-              </li>
-              <li> <a href="/upload"> Upload </a> </li>
-              <li> <a href="/connect-wallet"> Connect wallet
-                </a> </li>
-              <li> <a href="/item-details"> Item details </a>
-              </li>
+              <li><a href="/upload-type"> Upload Types </a></li>
+              <li><a href="/upload"> Upload </a></li>
+              <li><a href="/connect-wallet"> Connect wallet </a></li>
+              <li><a href="/item-details"> Item details </a></li>
             </ul>
           </div>
         </div>
-        <p class="copyright text-center">
-          Copyright © 2021. Created with love by creabik.
-        </p>
+        <p class="copyright text-center">Copyright © 2021. Created with love by creabik.</p>
       </div>
     </footer>
   </div>

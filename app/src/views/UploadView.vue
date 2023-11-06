@@ -33,7 +33,7 @@
         </div>
       </div>
     </div> -->
-    
+
     <!-- ====== header -->
     <header class="header__1 js-header">
       <div class="container">
@@ -43,9 +43,9 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
           <!-- ==================  -->
@@ -61,25 +61,22 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-              <li> <a class="color_black" href="/collections"> Collections</a> </li>
-              <li> <a class="color_black" href="/profile"> Profile</a> </li>
-              <li> <a class="color_black" href="/creators"> Creators</a> </li>
-              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
+              <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+              <li><a class="color_black" href="/collections"> Collections</a></li>
+              <li><a class="color_black" href="/profile"> Profile</a></li>
+              <li><a class="color_black" href="/creators"> Creators</a></li>
+              <li><a class="color_black" href="/kit"> Ui Kit </a></li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -95,7 +92,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -124,7 +121,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -146,7 +143,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -154,7 +151,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -162,17 +159,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -187,7 +176,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -252,7 +241,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -270,20 +260,11 @@
               </div>
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
-                  <h5> Notifications</h5>
+                  <h5>Notifications</h5>
                   <a href="/activity" class="badge color_white">View all</a>
                 </div>
-                <div
-                  class="item
-                  space-x-20
-                  d-flex
-                  justify-content-between
-                  align-items-center">
-                  <img
-                    class="thumb"
-                    src="src/assets/img/notifications/1.png"
-                    alt="..."
-                    />
+                <div class="item space-x-20 d-flex justify-content-between align-items-center">
+                  <img class="thumb" src="/src/assets/img/notifications/1.png" alt="..." />
                   <div class="details">
                     <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
@@ -296,11 +277,7 @@
               <div class="price">
                 <span>2.45 <strong>ETH</strong> </span>
               </div>
-              <img
-                class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
-                alt="avatar"
-                />
+              <img class="avatar" src="/src/assets/img/avatars/avatar_2.png" alt="avatar" />
               <div class="avatar_popup space-y-20">
                 <div class="d-flex align-items-center justify-content-between">
                   <span> 13b9ebda035r178... </span>
@@ -309,11 +286,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center space-x-10">
-                  <img
-                    class="coin"
-                    src="src/assets/img/logos/coin.svg"
-                    alt="/"
-                    />
+                  <img class="coin" src="/src/assets/img/logos/coin.svg" alt="/" />
                   <div class="info">
                     <p class="text-sm font-book text-gray-400">Balance</p>
                     <p class="w-full text-sm font-bold text-green-500">16.58 ETH</p>
@@ -321,15 +294,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="links space-y-10">
-                  <a href="#">
-                    <i class="ri-landscape-line"></i> <span> My items</span>
-                  </a>
+                  <a href="#"> <i class="ri-landscape-line"></i> <span> My items</span> </a>
                   <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
-                  <a href="#">
-                    <i class="ri-logout-circle-line"></i> <span> Logout</span>
-                  </a>
+                  <a href="#"> <i class="ri-logout-circle-line"></i> <span> Logout</span> </a>
                 </div>
               </div>
             </div>
@@ -341,11 +310,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -354,8 +322,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
@@ -363,22 +330,17 @@
       </div>
     </header>
     <div class="hero__upload">
-        <div class="container">
-            <div class="space-y-20">
-                <a href="/upload-type" class="btn btn-white btn-sm
-                    switch">
-                    Switch
-                    to Multiple</a>
-                <h2 class="title">Create single collectible</h2>
-    
-            </div>
+      <div class="container">
+        <div class="space-y-20">
+          <a href="/upload-type" class="btn btn-white btn-sm switch"> Switch to Multiple</a>
+          <h2 class="title">Create single collectible</h2>
         </div>
-    </div><div class="modal fade popup" id="popup_preview" tabindex="-1" role="dialog"
-      aria-hidden="true">
+      </div>
+    </div>
+    <div class="modal fade popup" id="popup_preview" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           <div class="modal-body space-y-20 p-0">
@@ -386,8 +348,7 @@
               <div class="card_body space-y-10">
                 <!-- ???? =============== -->
                 <div class="card_head">
-                  <img src="src/assets/img/items/item_4.png"
-                    alt="">
+                  <img src="/src/assets/img/items/item_4.png" alt="" />
                   <a href="#" class="likes space-x-3">
                     <i class="ri-heart-3-fill"></i>
                     <span class="txt_sm">2.1k</span>
@@ -400,29 +361,28 @@
                   </div>
                 </div>
                 <!-- ???? =============== -->
-                <h6 class="card_title">
-                  Colorful Abstract Painting
-                </h6>
+                <h6 class="card_title">Colorful Abstract Painting</h6>
                 <div class="card_footer d-block space-y-10">
                   <div class="d-flex justify-content-between">
                     <div class="creators space-x-10">
                       <div class="avatars -space-x-20">
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_3.png"
-                            alt="Avatar" class="avatar
-                            avatar-sm">
+                            src="/src/assets/img/avatars/avatar_3.png"
+                            alt="Avatar"
+                            class="avatar avatar-sm"
+                          />
                         </a>
                         <a href="/profile">
                           <img
-                            src="src/assets/img/avatars/avatar_2.png"
-                            alt="Avatar" class="avatar
-                            avatar-sm">
+                            src="/src/assets/img/avatars/avatar_2.png"
+                            alt="Avatar"
+                            class="avatar avatar-sm"
+                          />
                         </a>
                       </div>
                       <a href="/profile">
-                        <p class="avatars_name txt_sm">
-                          @makinzi_jamy... </p>
+                        <p class="avatars_name txt_sm">@makinzi_jamy...</p>
                       </a>
                     </div>
                     <a href="#" class="space-x-3">
@@ -430,11 +390,9 @@
                     </a>
                   </div>
                   <div class="hr"></div>
-                  <a href="#" class="d-flex align-items-center
-                    space-x-10">
+                  <a href="#" class="d-flex align-items-center space-x-10">
                     <i class="ri-vip-crown-line"></i>
-                    <p class="color_text txt_sm" style="width:
-                      auto;">Highest bid</p>
+                    <p class="color_text txt_sm" style="width: auto">Highest bid</p>
                     <span class="color_black txt_sm">0.001 ETH</span>
                   </a>
                 </div>
@@ -450,18 +408,14 @@
           <div class="col-lg-6">
             <div class="left__part space-y-40 md:mb-20 upload_file">
               <div class="space-y-20">
-                <img class="icon"
-                  src="src/assets/img/icons/upload.svg"
-                  alt="">
+                <img class="icon" src="/src/assets/img/icons/upload.svg" alt="" />
                 <h5>Drag and drop your file</h5>
-                <p class="color_text">PNG, GIF, WEBP, MP4 or MP3. Max
-                  100mb.</p>
+                <p class="color_text">PNG, GIF, WEBP, MP4 or MP3. Max 100mb.</p>
               </div>
               <div class="space-y-20">
                 <p class="color_text">or choose a file</p>
                 <a href="#" class="btn btn-white"> Browse files </a>
-                <input type="file">
-    
+                <input type="file" />
               </div>
             </div>
           </div>
@@ -470,21 +424,18 @@
               <div class="space-y-20">
                 <div class="space-y-10">
                   <span class="nameInput">Title</span>
-                  <input type="text" class="form-control"
-                    placeholder="e. g. `raroin design art`">
+                  <input type="text" class="form-control" placeholder="e. g. `raroin design art`" />
                 </div>
                 <div class="space-y-10">
-                  <span class="nameInput">Description <span
-                      class="color_text">
-                      (optional) </span></span>
-                  <input type="text" class="form-control"
-                    placeholder="e. g. `raroin design art`">
+                  <span class="nameInput"
+                    >Description<span class="color_text"> (optional) </span></span
+                  >
+                  <input type="text" class="form-control" placeholder="e. g. `raroin design art`" />
                 </div>
                 <div class="space-y-10">
                   <span class="variationInput">Price</span>
-                  <select class="form-select custom-select"
-                    aria-label="Default select example">
-                    <option> 00.00 ETH</option>
+                  <select class="form-select custom-select" aria-label="Default select example">
+                    <option>00.00 ETH</option>
                     <option>01.00 ETH</option>
                     <option>02.00 ETH</option>
                     <option>10.00 ETH</option>
@@ -494,36 +445,29 @@
                 <div class="space-y-10">
                   <span class="variationInput">Choose collection</span>
                   <div class="d-flex flex-column flex-md-row">
-                    <a href="" class="choose_collection mb-10
-                      mb-md-0 mr-0 mr-md-3">
+                    <a href="" class="choose_collection mb-10 mb-md-0 mr-0 mr-md-3">
                       <div class="icon">
-    
                         <i class="ri-add-line"></i>
                       </div>
-                      New collection</a>
+                      New collection</a
+                    >
                     <a href="" class="choose_collection is_brand">
-                      <img
-                        src="src/assets/img/icons/raroin_icon.svg"
-                        alt="">
-                      Raroin Collection </a>
+                      <img src="/src/assets/img/icons/raroin_icon.svg" alt="" />
+                      Raroin Collection
+                    </a>
                   </div>
                 </div>
-    
-    
               </div>
             </div>
             <p class="color_black">
               <span class="color_text text-bold"> Service fee : </span>
               2.5%
-            </p> <p class="color_black">
-              <span class="color_text text-bold"> You will receive :
-              </span>
+            </p>
+            <p class="color_black">
+              <span class="color_text text-bold"> You will receive : </span>
               22.425 ETH $41,637.78
             </p>
-            <p>
-    
-    
-            </p>
+            <p></p>
           </div>
         </div>
       </div>
@@ -533,22 +477,22 @@
         <div class="row content justify-content-between mb-20_reset">
           <div class="col-md-auto col-12 mb-20">
             <div class="space-x-10">
-              <a href="/upload" class="btn btn-white
-                others_btn"> Cancel</a>
-              <a href="#" class="btn btn-dark others_btn"
+              <a href="/upload" class="btn btn-white others_btn"> Cancel</a>
+              <a
+                href="#"
+                class="btn btn-dark others_btn"
                 data-toggle="modal"
-                data-target="#popup_preview"> Preview</a>
-  
+                data-target="#popup_preview"
+              >
+                Preview</a
+              >
             </div>
           </div>
           <div class="col-md-auto col-12 mb-20">
-            <a href="/item-details" class="btn btn-grad
-              btn_create"> Create
-              item</a>
+            <a href="/item-details" class="btn btn-grad btn_create"> Create item</a>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
 </template>

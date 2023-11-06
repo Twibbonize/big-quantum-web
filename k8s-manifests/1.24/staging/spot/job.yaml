@@ -1,0 +1,21 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: twibbonize-frontend-job
+  namespace: twb-stg-twbapps-01
+spec:
+  #  parallelism: 2
+  completions: 1
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: twibbonize-frontend-job
+          image: 675287654630.dkr.ecr.ap-southeast-1.amazonaws.com/twibbonize-frontend-service:tags
+          env:
+            - name: ENVIRONMENT
+              value: "staging"
+            - name: NODE_ENV
+              value: "development"
+      restartPolicy: Never

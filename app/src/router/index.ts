@@ -18,14 +18,16 @@ const router = createRouter({
       path: '/activity',
       name: 'Activity',
 
-      component: () => import('@/views/ActivityView.vue')    },
+      component: () => import('@/views/ActivityView.vue')
+    },
     {
       path: '/article',
       name: 'Article',
 
       component: () => import('@/views/ArticleView.vue')
     },
-    {      path: '/blog',
+    {
+      path: '/blog',
       name: 'Blog',
 
       component: () => import('@/views/BlogView.vue')
@@ -169,7 +171,7 @@ const router = createRouter({
       path: '/upload',
       name: 'Upload',
       component: () => import('@/views/UploadView.vue')
-    },
+    }
   ]
 })
 

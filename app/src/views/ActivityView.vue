@@ -33,7 +33,7 @@
         </div>
       </div>
     </div> -->
-    
+
     <!-- ====== header -->
     <header class="header__1 js-header">
       <div class="container">
@@ -43,9 +43,9 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/Logo.svg"
                 alt="logo"
-                />
+              />
             </a>
           </div>
           <!-- ==================  -->
@@ -61,25 +61,22 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/home-2">
-                      <i class="ri-home-2-line"></i> Home page 2</a>
+                    <a href="/home-2"> <i class="ri-home-2-line"></i> Home page 2</a>
                   </li>
                   <li>
-                    <a href="/home-3">
-                      <i class="ri-home-5-line"></i> Home page 3</a>
+                    <a href="/home-3"> <i class="ri-home-5-line"></i> Home page 3</a>
                   </li>
                 </ul>
               </li>
-              <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-              <li> <a class="color_black" href="/collections"> Collections</a> </li>
-              <li> <a class="color_black" href="/profile"> Profile</a> </li>
-              <li> <a class="color_black" href="/creators"> Creators</a> </li>
-              <li> <a class="color_black" href="/kit"> Ui Kit </a> </li>
+              <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+              <li><a class="color_black" href="/collections"> Collections</a></li>
+              <li><a class="color_black" href="/profile"> Profile</a></li>
+              <li><a class="color_black" href="/creators"> Creators</a></li>
+              <li><a class="color_black" href="/kit"> Ui Kit </a></li>
               <li class="has_popup2">
                 <a class="color_black is_new" href="#">Pages <i class="ri-more-2-fill"></i></a>
                 <ul class="menu__popup2 space-y-20">
                   <div class="row sub_menu_row">
-                  
                     <div class="col-lg-6 space-y-10">
                       <!-- =============== -->
                       <li>
@@ -95,7 +92,7 @@
                           Edit Profile
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/item-details">
@@ -124,7 +121,7 @@
                           Ranking
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/newsletter">
@@ -146,7 +143,7 @@
                           Forum details
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/no-results">
@@ -154,7 +151,7 @@
                           No Result
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a class="is_new" href="/contact">
@@ -162,17 +159,9 @@
                           Contact
                         </a>
                       </li>
-                  
                     </div>
-                  
-                  
-                  
-                  
-                  
-                  
-                  
+
                     <div class="col-lg-6 space-y-10">
-                  
                       <!-- =============== -->
                       <li>
                         <a href="/upload-type">
@@ -187,7 +176,7 @@
                           Connect wallet
                         </a>
                       </li>
-                  
+
                       <!-- =============== -->
                       <li>
                         <a href="/questions">
@@ -252,7 +241,8 @@
                         </a>
                       </li>
                     </div>
-                  </div>						</ul>
+                  </div>
+                </ul>
               </li>
             </ul>
           </div>
@@ -270,20 +260,11 @@
               </div>
               <div class="notifications_popup space-y-20">
                 <div class="d-flex justify-content-between">
-                  <h5> Notifications</h5>
+                  <h5>Notifications</h5>
                   <a href="/activity" class="badge color_white">View all</a>
                 </div>
-                <div
-                  class="item
-                  space-x-20
-                  d-flex
-                  justify-content-between
-                  align-items-center">
-                  <img
-                    class="thumb"
-                    src="src/assets/img/notifications/1.png"
-                    alt="..."
-                    />
+                <div class="item space-x-20 d-flex justify-content-between align-items-center">
+                  <img class="thumb" src="/src/assets/img/notifications/1.png" alt="..." />
                   <div class="details">
                     <a href="/activity"> <h6>Money revieved</h6> </a>
                     <p>0.6 ETH</p>
@@ -296,11 +277,7 @@
               <div class="price">
                 <span>2.45 <strong>ETH</strong> </span>
               </div>
-              <img
-                class="avatar"
-                src="src/assets/img/avatars/avatar_2.png"
-                alt="avatar"
-                />
+              <img class="avatar" src="/src/assets/img/avatars/avatar_2.png" alt="avatar" />
               <div class="avatar_popup space-y-20">
                 <div class="d-flex align-items-center justify-content-between">
                   <span> 13b9ebda035r178... </span>
@@ -309,11 +286,7 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center space-x-10">
-                  <img
-                    class="coin"
-                    src="src/assets/img/logos/coin.svg"
-                    alt="/"
-                    />
+                  <img class="coin" src="/src/assets/img/logos/coin.svg" alt="/" />
                   <div class="info">
                     <p class="text-sm font-book text-gray-400">Balance</p>
                     <p class="w-full text-sm font-bold text-green-500">16.58 ETH</p>
@@ -321,15 +294,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="links space-y-10">
-                  <a href="#">
-                    <i class="ri-landscape-line"></i> <span> My items</span>
-                  </a>
+                  <a href="#"> <i class="ri-landscape-line"></i> <span> My items</span> </a>
                   <a href="/edit-profile">
                     <i class="ri-pencil-line"></i> <span> Edit Profile</span>
                   </a>
-                  <a href="#">
-                    <i class="ri-logout-circle-line"></i> <span> Logout</span>
-                  </a>
+                  <a href="#"> <i class="ri-logout-circle-line"></i> <span> Logout</span> </a>
                 </div>
               </div>
             </div>
@@ -341,11 +310,10 @@
           <div class="header__mobile js-header-mobile">
             <div class="header__mobile__menu space-y-40">
               <ul class="d-flex space-y-20">
-                <li> <a class="color_black" href="/marketplace"> Marketplace</a> </li>
-                <li> <a class="color_black" href="/collections"> Collections</a> </li>
-                <li> <a class="color_black" href="/profile"> Profile</a> </li>
-                <li> <a class="color_black" href="/creators"> Creators</a> </li>
-          
+                <li><a class="color_black" href="/marketplace"> Marketplace</a></li>
+                <li><a class="color_black" href="/collections"> Collections</a></li>
+                <li><a class="color_black" href="/profile"> Profile</a></li>
+                <li><a class="color_black" href="/creators"> Creators</a></li>
               </ul>
               <div class="space-y-20">
                 <div class="header__search in_mobile w-full">
@@ -354,8 +322,7 @@
                     <i class="ri-search-line"></i>
                   </button>
                 </div>
-                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect
-                  wallet</a>
+                <a class="btn btn-grad btn-sm" href="/connect-wallet">Connect wallet</a>
               </div>
             </div>
           </div>
@@ -363,63 +330,59 @@
       </div>
     </header>
     <div class="hero__activity">
-        <div class="container">
-            <h1 class="text-center">Activity Feed</h1>
-        </div>
+      <div class="container">
+        <h1 class="text-center">Activity Feed</h1>
+      </div>
     </div>
     <div class="bg_white border-b py-20">
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <ul class="menu_activity space-x-20">
-                    <li> <a href="#">
-                            <i class="ri-gamepad-line"></i> <span> Games </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-brush-line"></i> <span> Art </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-stock-line"></i> <span> Trading Cards </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-music-line"></i> <span> Music </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-global-line"></i> <span> Domain Names </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-emotion-laugh-line"></i> <span> Memes </span>
-                        </a>
-                    </li>
-                    <li> <a href="#">
-                            <i class="ri-layout-4-line"></i> <span> Collectibles </span>
-                        </a>
-                    </li>
-                </ul>        </div>
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <ul class="menu_activity space-x-20">
+            <li>
+              <a href="#"> <i class="ri-gamepad-line"></i> <span> Games </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-brush-line"></i> <span> Art </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-stock-line"></i> <span> Trading Cards </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-music-line"></i> <span> Music </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-global-line"></i> <span> Domain Names </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-emotion-laugh-line"></i> <span> Memes </span> </a>
+            </li>
+            <li>
+              <a href="#"> <i class="ri-layout-4-line"></i> <span> Collectibles </span> </a>
+            </li>
+          </ul>
         </div>
-    </div><div class="section__activity">
+      </div>
+    </div>
+    <div class="section__activity">
       <div class="container mt-100">
         <div class="row justify-content-center">
           <div class="col-lg-6 col-md-8 col-sm-10">
-            <div class="d-flex justify-content-between align-items-center
-              mb-20">
+            <div class="d-flex justify-content-between align-items-center mb-20">
               <a href="#">Mark all read</a>
               <div class="dropdown">
-                <button class="btn btn-dark btn-sm dropdown-toggle"
+                <button
+                  class="btn btn-dark btn-sm dropdown-toggle"
                   type="button"
-                  data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   Recent Active
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">Action</a>
                   <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else
-                    here</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </div>
             </div>
@@ -431,30 +394,25 @@
                       <div class="avatars space-x-10">
                         <div class="media">
                           <img
-                            src="src/assets/img/items/item_1.png"
-                            alt="Avatar" class="avatar
-                            avatar-md">
+                            src="/src/assets/img/items/item_1.png"
+                            alt="Avatar"
+                            class="avatar avatar-md"
+                          />
                         </div>
                         <div>
-    
-                          <h5 class="color_black">Creative Art
-                            collection</h5>
+                          <h5 class="color_black">Creative Art collection</h5>
                           <div class="d-flex space-x-10">
-                            <span class="price color_text">listed
-                              by
-                            </span>
-                            <a href="/profile"
-                              class="price color_brand">@jimena_stark</a>
+                            <span class="price color_text">listed by </span>
+                            <a href="/profile" class="price color_brand">@jimena_stark</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-auto">
-                    <p class="date color_text"> Last 2 days </p>
+                    <p class="date color_text">Last 2 days</p>
                   </div>
                 </div>
-    
               </div>
               <div class="box">
                 <div class="row justify-content-between align-items-center">
@@ -463,30 +421,25 @@
                       <div class="avatars space-x-10">
                         <div class="media">
                           <img
-                            src="src/assets/img/items/item_2.png"
-                            alt="Avatar" class="avatar
-                            avatar-md">
+                            src="/src/assets/img/items/item_2.png"
+                            alt="Avatar"
+                            class="avatar avatar-md"
+                          />
                         </div>
                         <div>
-    
-                          <h5 class="color_black">Creative Art
-                            collection</h5>
+                          <h5 class="color_black">Creative Art collection</h5>
                           <div class="d-flex space-x-10">
-                            <span class="price color_text">listed
-                              by
-                            </span>
-                            <a href="/profile"
-                              class="price color_brand">@makinzi_beck</a>
+                            <span class="price color_text">listed by </span>
+                            <a href="/profile" class="price color_brand">@makinzi_beck</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-auto">
-                    <p class="date color_text"> Last 2 days </p>
+                    <p class="date color_text">Last 2 days</p>
                   </div>
                 </div>
-    
               </div>
               <div class="box">
                 <div class="row justify-content-between align-items-center">
@@ -495,30 +448,25 @@
                       <div class="avatars space-x-10">
                         <div class="media">
                           <img
-                            src="src/assets/img/items/item_3.png"
-                            alt="Avatar" class="avatar
-                            avatar-md">
+                            src="/src/assets/img/items/item_3.png"
+                            alt="Avatar"
+                            class="avatar avatar-md"
+                          />
                         </div>
                         <div>
-    
-                          <h5 class="color_black">Creative Art
-                            collection</h5>
+                          <h5 class="color_black">Creative Art collection</h5>
                           <div class="d-flex space-x-10">
-                            <span class="price color_text">listed
-                              by
-                            </span>
-                            <a href="/profile"
-                              class="price color_brand">@jaxon_duffy</a>
+                            <span class="price color_text">listed by </span>
+                            <a href="/profile" class="price color_brand">@jaxon_duffy</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-auto">
-                    <p class="date color_text"> Last 2 days </p>
+                    <p class="date color_text">Last 2 days</p>
                   </div>
                 </div>
-    
               </div>
               <div class="box">
                 <div class="row justify-content-between align-items-center">
@@ -527,30 +475,25 @@
                       <div class="avatars space-x-10">
                         <div class="media">
                           <img
-                            src="src/assets/img/items/item_4.png"
-                            alt="Avatar" class="avatar
-                            avatar-md">
+                            src="/src/assets/img/items/item_4.png"
+                            alt="Avatar"
+                            class="avatar avatar-md"
+                          />
                         </div>
                         <div>
-    
-                          <h5 class="color_black">Creative Art
-                            collection</h5>
+                          <h5 class="color_black">Creative Art collection</h5>
                           <div class="d-flex space-x-10">
-                            <span class="price color_text">listed
-                              by
-                            </span>
-                            <a href="/profile"
-                              class="price color_brand">@darian_barry</a>
+                            <span class="price color_text">listed by </span>
+                            <a href="/profile" class="price color_brand">@darian_barry</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-auto">
-                    <p class="date color_text"> Last 2 days </p>
+                    <p class="date color_text">Last 2 days</p>
                   </div>
                 </div>
-    
               </div>
             </div>
           </div>
@@ -563,21 +506,23 @@
           <div class="col-lg-6 space-y-20">
             <div class="footer__logo">
               <a href="/">
-                <img src="src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f">
+                <img src="/src/assets/img/logos/Logo.svg" alt="logo" id="logo_js_f" />
               </a>
             </div>
-            <p class="footer__text">
-              raroin is a shared liquidity NFT market smart contract
-            </p>
+            <p class="footer__text">raroin is a shared liquidity NFT market smart contract</p>
             <div>
               <ul class="footer__social space-x-10 mb-40">
-                <li> <a href=""> <i class="ri-facebook-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-facebook-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-messenger-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-messenger-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-whatsapp-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-whatsapp-line"></i> </a>
                 </li>
-                <li> <a href=""> <i class="ri-youtube-line"></i> </a>
+                <li>
+                  <a href=""> <i class="ri-youtube-line"></i> </a>
                 </li>
               </ul>
             </div>
@@ -585,45 +530,32 @@
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Raroin</h6>
             <ul class="footer__list">
-              <li> <a href="/home-1"> Home1 </a>
-              </li>
-              <li> <a href="/home-2"> Home2
-                </a> </li>
-              <li> <a href="/home-3"> Home3 </a> </li>
-              <li> <a href="/marketplace"> Marketplace
-                </a>
-              </li>
+              <li><a href="/home-1"> Home1 </a></li>
+              <li><a href="/home-2"> Home2 </a></li>
+              <li><a href="/home-3"> Home3 </a></li>
+              <li><a href="/marketplace"> Marketplace </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Assets</h6>
             <ul class="footer__list">
-              <li> <a href="/profile"> Profile </a>
-              </li>
-              <li> <a href="/creators"> Creators </a>
-              </li>
-              <li> <a href="/collections"> Colletctions </a>
-              </li>
-              <li> <a href="/activity"> Activity
-                </a> </li>
+              <li><a href="/profile"> Profile </a></li>
+              <li><a href="/creators"> Creators </a></li>
+              <li><a href="/collections"> Colletctions </a></li>
+              <li><a href="/activity"> Activity </a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6">
             <h6 class="footer__title">Company</h6>
             <ul class="footer__list">
-              <li> <a href="/upload-type"> Upload Types </a>
-              </li>
-              <li> <a href="/upload"> Upload </a> </li>
-              <li> <a href="/connect-wallet"> Connect wallet
-                </a> </li>
-              <li> <a href="/item-details"> Item details </a>
-              </li>
+              <li><a href="/upload-type"> Upload Types </a></li>
+              <li><a href="/upload"> Upload </a></li>
+              <li><a href="/connect-wallet"> Connect wallet </a></li>
+              <li><a href="/item-details"> Item details </a></li>
             </ul>
           </div>
         </div>
-        <p class="copyright text-center">
-          Copyright © 2021. Created with love by creabik.
-        </p>
+        <p class="copyright text-center">Copyright © 2021. Created with love by creabik.</p>
       </div>
     </footer>
   </div>
