@@ -12,11 +12,11 @@
       </div>
     </div>
 
-    <div class="home-views__hero d-flex align-items-center">
+    <div class="home-views__hero d-flex">
       <img class="home-views__hero__pattern-left" src="/src/assets/quantum/pattern/twibbonize-hero-pattern-left.svg" alt="pattern">
       <img class="home-views__hero__pattern-right" src="/src/assets/quantum/pattern/twibbonize-hero-pattern-right.svg" alt="pattern">
-      <div class="home-views__container container d-flex align-items-center w-100">
-        <div class="d-flex flex-column col-4">
+      <div class="home-views__container container d-flex w-100">
+        <div class="home-views__hero__text-container d-flex flex-column col-4">
           <h1 class="home-views__hero__text">
             <span class="home-views__hero__text-highlight">show</span>
             your supports
@@ -25,8 +25,8 @@
             Turn your passion into action; create custom images that show what you stand for and invite friends to join you
           </h4>
         </div>
-        <div class="d-flex col-8">
-
+        <div class="d-flex col-8 home-views__hero__slider-container">
+          <div class="home-views__hero__slider-image"></div>
         </div>
       </div>
     </div>
@@ -798,7 +798,7 @@
 
   .home-views .home-views__hero {
     background: #16DAC1;
-    height: 840px;
+    height: 100vh;
     position: relative;
   }
 
@@ -814,6 +814,47 @@
     right: 0;
     bottom: 0;
     width: 30%;
+  }
+
+  .home-views__hero__text-container {
+    margin-top: 144px;
+  }
+
+  .home-views__hero__slider-container {
+    margin-top: 144px;
+    height: 265px;
+    position: relative;
+  }
+
+  .home-views__hero__slider-image {
+    background: url(../assets/quantum/illustration/campaign-slider.png);
+    width: 1161px;
+    height: 265px;
+    background-size: cover;
+    animation: slide 20s linear infinite;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-1161px); /* The image width */
+    }
+  }
+
+  .home-views__hero__slider-left {
+    position: absolute;
+    left: 0;
+    background: linear-gradient(272.86deg, #16DAC1 20.27%, rgba(22, 218, 193, 0) 52.58%);
+    height: 100%;
+  }
+
+  .home-views__hero__slider-right {
+    position: absolute;
+    right: 0;
+    background: linear-gradient(274.99deg, #16DAC1 11.17%, rgba(228, 250, 248, 0) 73.04%);
+    height: 100%;
   }
 
   .home-views__hero__text {
