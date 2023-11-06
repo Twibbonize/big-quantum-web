@@ -41,7 +41,7 @@ RUN rm -rf node_modules && \
     sh -c /bigquantumweb-frontend/app/run.sh && \
     mv $ENV_FILENAME .env && \
     npm config set //registry.npmjs.org/:_authToken ${NPM_TWB} && \
-    npm install && npm build
+    npm install && npm run build
 
 FROM kebonce40/aws-cli:latest
 
