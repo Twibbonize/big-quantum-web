@@ -14,8 +14,7 @@ RUN mkdir -p /root/.ssh/ && \
     # make sure your domain is accepted
     touch /root/.ssh/known_hosts  && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts && \
-    apt update -y && apt install python-is-python3 python3-pip -y && \
-    pip install awscli && \
+    apt update -y && apt install python-is-python3 python3-pip awscli -y && \
     mkdir -p /root/.aws/ && \
     mkdir -p /bigquantumweb-frontend && \
     echo "[default]" > /root/.aws/credentials && \
