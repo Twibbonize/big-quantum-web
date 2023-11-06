@@ -16,7 +16,7 @@
       }
     }
     .images-box {
-      border-radius: $border_radius/2;
+      border-radius: calc($border_radius/2);
       overflow: hidden;
     }
     img {
