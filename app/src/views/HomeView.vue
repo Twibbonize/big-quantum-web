@@ -26,7 +26,9 @@
           </h4>
         </div>
         <div class="d-flex col-8 home-views__hero__slider-container">
-          <div class="home-views__hero__slider-image"></div>
+          <!-- <div class="home-views__hero__slider-left"></div>
+          <img src="/src/assets/quantum/illustration/campaign-slider.png" class="home-views__hero__slider-image">
+          <div class="home-views__hero__slider-right"></div> -->
         </div>
       </div>
     </div>
@@ -822,16 +824,16 @@
 
   .home-views__hero__slider-container {
     margin-top: 144px;
+    width: 1161px;
     height: 265px;
     position: relative;
   }
 
   .home-views__hero__slider-image {
-    background: url(../assets/quantum/illustration/campaign-slider.png);
     width: 1161px;
     height: 265px;
-    background-size: cover;
     animation: slide 20s linear infinite;
+    z-index: 1;
   }
 
   @keyframes slide {
@@ -845,16 +847,22 @@
 
   .home-views__hero__slider-left {
     position: absolute;
+    top: 0;
     left: 0;
-    background: linear-gradient(272.86deg, #16DAC1 20.27%, rgba(22, 218, 193, 0) 52.58%);
-    height: 100%;
+    background: linear-gradient(272.86deg, rgba(22, 218, 193, 0) 52.58%,  #16DAC1 20.27%);
+    height: 265px;
+    width: 347px;
+    z-index: 2;
   }
 
   .home-views__hero__slider-right {
     position: absolute;
     right: 0;
+    top: 0;
     background: linear-gradient(274.99deg, #16DAC1 11.17%, rgba(228, 250, 248, 0) 73.04%);
-    height: 100%;
+    height: 265px;
+    width: 176px;
+    z-index: 2;
   }
 
   .home-views__hero__text {
