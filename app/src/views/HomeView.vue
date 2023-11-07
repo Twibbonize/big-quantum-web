@@ -15,7 +15,7 @@
     <div class="home-views__hero d-flex">
       <img class="home-views__hero__pattern-left" src="/src/assets/quantum/pattern/twibbonize-hero-pattern-left.svg" alt="pattern">
       <img class="home-views__hero__pattern-right" src="/src/assets/quantum/pattern/twibbonize-hero-pattern-right.svg" alt="pattern">
-      <div class="home-views__container container d-flex w-100">
+      <div class="home-views__container container row d-flex w-100">
         <div class="home-views__hero__text-container d-flex flex-column col-4">
           <h1 class="home-views__hero__text">
             <span class="home-views__hero__text-highlight">show</span>
@@ -26,9 +26,10 @@
           </h4>
         </div>
         <div class="d-flex col-8 home-views__hero__slider-container">
-          <!-- <div class="home-views__hero__slider-left"></div>
-          <img src="/src/assets/quantum/illustration/campaign-slider.png" class="home-views__hero__slider-image">
-          <div class="home-views__hero__slider-right"></div> -->
+          <div class="home-views__hero__slider-left"></div>
+          <div class="home-views__hero__slider-image"></div>
+          <!-- <img src="/src/assets/quantum/illustration/campaign-slider.png" class="home-views__hero__slider-image"> -->
+          <div class="home-views__hero__slider-right"></div>
         </div>
       </div>
     </div>
@@ -824,15 +825,22 @@
 
   .home-views__hero__slider-container {
     margin-top: 144px;
-    width: 1161px;
+    /* width: 1161px; */
     height: 265px;
     position: relative;
+    /* background: url(../assets/quantum/illustration/campaign-slider.png); */
+    /* background-size: 1161px 265px; */
+    /* animation: slide 20s linear infinite; */
+    overflow-x: hidden;
   }
 
   .home-views__hero__slider-image {
-    width: 1161px;
+    background: url(../assets/quantum/illustration/campaign-slider.png);
+    background-size: 1161px 265px;
+    width: 2322px;
     height: 265px;
-    animation: slide 20s linear infinite;
+    position: absolute;
+    /* animation: slide 20s linear infinite; */
     z-index: 1;
   }
 
@@ -841,7 +849,7 @@
       transform: translate(0);
     }
     100% {
-      transform: translate(-1161px); /* The image width */
+      transform: translate(-1161px);
     }
   }
 
@@ -849,7 +857,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(272.86deg, rgba(22, 218, 193, 0) 52.58%,  #16DAC1 20.27%);
+    background: linear-gradient(92.86deg, #16DAC1 20.27%, rgba(22, 218, 193, 0) 52.58%) !important;
     height: 265px;
     width: 347px;
     z-index: 2;
@@ -859,7 +867,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    background: linear-gradient(274.99deg, #16DAC1 11.17%, rgba(228, 250, 248, 0) 73.04%);
+    background: linear-gradient(274.99deg, #16DAC1 11.17%, rgba(228, 250, 248, 0) 73.04%) !important;
     height: 265px;
     width: 176px;
     z-index: 2;
