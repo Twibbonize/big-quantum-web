@@ -840,7 +840,7 @@
     width: 2322px;
     height: 265px;
     position: absolute;
-    /* animation: slide 20s linear infinite; */
+    animation: slide 20s linear infinite;
     z-index: 1;
   }
 
