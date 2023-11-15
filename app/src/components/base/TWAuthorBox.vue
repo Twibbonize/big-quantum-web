@@ -43,7 +43,6 @@
 }
 
 .price.gem.style-1 {
-    font-family: 'Azeret Mono';
     font-size: 14px;
 }
 

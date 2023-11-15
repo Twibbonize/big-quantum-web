@@ -15,7 +15,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Kristin Watson</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Jacob Jones</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Leslie Alexander</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="author-infor ">
                         <h5><a href="author-2.html">Courtney Henry</a></h5>
-                        <h6 class="price gem style-1"><i class="icon-gem"></i>7,080.95</h6>
+                        <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
                     </div>
                 </div>
             </div>
