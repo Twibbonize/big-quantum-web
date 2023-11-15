@@ -3,10 +3,10 @@
     <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
     <div class="tp-rated-bg pt-120"  data-background="assets/img/rate/rated-bg.jpg">
       <div class="tp-rated-shape-1 d-none d-lg-block">
-          <img src="assets/img/rate/rate-shape-1.png" alt="">
+          <!-- <img src="assets/img/rate/rate-shape-1.png" alt=""> -->
       </div>
       <div class="tp-rated-shape-2 d-none d-sm-block">
-          <img src="assets/img/rate/rate-shape-2.png" alt="">
+          <!-- <img src="assets/img/rate/rate-shape-2.png" alt=""> -->
       </div>
       <div class="container z-index-6">
           <div class="row justify-content-center">
@@ -90,7 +90,7 @@
                       </div>
                       <p>"the interface is excellent"</p>
                       <div class="author-rated-logo">
-                        <img src="assets/img/rate/rate-logo-1.png" alt="">
+                        <!-- <img src="assets/img/rate/rate-logo-1.png" alt=""> -->
                       </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
                       </div>
                       <p>"improvements in every release"</p>
                       <div class="author-rated-logo">
-                        <img src="assets/img/rate/rate-logo-2.png" alt="">
+                        <!-- <img src="assets/img/rate/rate-logo-2.png" alt=""> -->
                       </div>
                   </div>
                 </div>
@@ -120,14 +120,14 @@
                       </div>
                       <p>"the interface is excellent"</p>
                       <div class="author-rated-logo">
-                        <img src="assets/img/rate/rate-logo-3.png" alt="">
+                        <!-- <img src="assets/img/rate/rate-logo-3.png" alt=""> -->
                       </div>
                   </div>
                 </div>
             </div>
           </div>
           <div class="author-rated-big-img"  data-parallax='{"y": 100, "smoothness": 30}'>
-            <img src="assets/img/rate/rated-img.png" alt="">
+            <!-- <img src="assets/img/rate/rated-img.png" alt=""> -->
           </div>
       </div>
     </div>
