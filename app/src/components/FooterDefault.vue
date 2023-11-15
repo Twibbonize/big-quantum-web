@@ -1,0 +1,213 @@
+<template>
+  <footer id="footer" class="bg-white">
+    <div class="container">
+        <div class="d-flex row">
+            <div class="col-12">
+                <div class="footer-content d-flex flex-grow">
+                    <div class="widget-logo d-flex flex-grow w-100">
+                        <div class="logo-footer" id="logo-footer">
+                            <a href="index.html">
+                                <img id="logo_footer" src="/src/assets/img/logos/twibbonize-logo-black.svg">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget widget-menu style-1">
+                        <h5 class="title-widget">Marketplace</h5>
+                        <ul>
+                            <li><a href="#">All NFTs</a></li>
+                            <li><a href="#">New</a></li>
+                            <li><a href="#">Art</a></li>
+                            <li><a href="#">Music</a></li>
+                            <li><a href="#">Domain names</a></li>
+                            <li><a href="#">Virtual worlds</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget widget-menu style-2">
+                        <h5 class="title-widget">Resources</h5>
+                        <ul>
+                            <li><a href="#">Help center</a></li>
+                            <li><a href="#">Platform status</a></li>
+                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Discount communiti</a></li>
+                            <li><a href="#">Suggestions</a></li>
+                            <li><a href="#">User Content FAQs</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Doc</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-last">
+                        <div class="widget-menu style-4">
+                            <h5 class="title-widget">Company</h5>
+                            <ul>
+                                <li><a href="#">Help center</a></li>
+                                <li><a href="#">Platform status</a></li>
+                            </ul>
+                        </div>
+                        <h5 class="title-widget mt-30">Join the community</h5>
+                        <div class="widget-social">
+                            <ul class="flex">
+                                <li><a href="#" class="icon-facebook"></a></li>
+                                <li><a href="#" class="icon-twitter"></a></li>
+                                <li><a href="#" class="icon-vt"></a></li>
+                                <li><a href="#" class="icon-tiktok"></a></li>
+                                <li><a href="#" class="icon-youtube"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom d-flex align-items-center">
+            <p>© 2023 OpeN9 - Made By Themesflat</p>
+            <ul class="d-flex">
+                <li>
+                    <a class="ws-nowrap" href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a class="ws-nowrap" href="#">Terms of Service</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+</template>
+
+<style lang="scss">
+.footer-bottom {
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.53);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.53);
+    font-size: 14px;
+    font-family: 'Azeret Mono';
+    line-height: 22px;
+}
+
+.footer-bottom ul li {
+    margin-left: 30px;
+}
+
+.footer-bottom ul li a {
+    color: rgba(255, 255, 255, 0.53);
+    font-family: 'Azeret Mono';
+    font-size: 14px;
+    line-height: 22px;
+    white-space: nowrap;
+}
+
+.footer-bottom ul li a:hover {
+    color: #DDF247;
+}
+
+/* style-1 */
+.footer-bottom.style-1 {
+    margin-top: 0;
+}
+
+.footer-bottom.style-1 .widget-social ul li {
+    margin-left: 0;
+}
+
+.footer-bottom.style-1 .widget-social ul li a {
+    color: #fff;
+}
+
+/* bg-white */
+#footer.bg-white {
+    background-color: #fff;
+}
+
+#footer.bg-white .widget {
+    margin-right: 80px;
+}
+
+#footer.bg-white .icon-vt:before,
+#footer.bg-white .widget-menu ul li a,
+#footer.bg-white .title-widget {
+    color: rgba(22, 22, 22, 1);
+}
+
+#footer.bg-white .widget-social ul li a {
+    color: rgba(22, 22, 22, 1);
+    background-color: rgba(22, 22, 22, 0.05);
+}
+
+#footer.bg-white a.icon-vt:hover:before,
+#footer.bg-white .widget-social ul li a:hover {
+    color: #fff !important;
+}
+
+#footer.bg-white .footer-bottom {
+    border-color: rgba(22, 22, 22, 0.08);
+}
+
+#footer.bg-white .footer-bottom ul li a,
+#footer.bg-white .footer-bottom p {
+    color: #161616;
+    font-size: 12px;
+    line-height: 19px;
+}
+
+#footer {
+    padding: 60px 0 30px;
+    background-color: #111;
+}
+
+#footer .widget {
+    margin-right: 55px;
+}
+
+#footer .title-widget {
+    font-weight: 800; 
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+.widget-menu ul li {
+    margin-bottom: 5px;
+}
+
+.widget-menu ul li:last-child {
+    margin-bottom: 0;
+}
+
+.widget-menu ul li a {
+    color: rgba(255, 255, 255, 0.53);;
+    font-size: 14px;
+    font-family: 'Azeret Mono';
+    line-height: 22px;
+    position: relative;
+}
+
+.widget-menu ul li a:hover {
+    color: #DDF247;
+}
+
+.background-white .widget-menu ul li a:after {
+    background: rgba(22, 22, 22, 1);
+}
+
+.widget-menu ul li a::after {
+    content           : '';
+    width             : 0;
+    height            : 1px;
+    position          : absolute;
+    background        : #DDF247;
+    left              : 50%;
+    bottom            : 0;
+    transform         : translateX(-50%);
+    visibility        : hidden;
+    opacity           : 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition   : all 0.3s ease-in-out;
+    -ms-transition    : all 0.3s ease-in-out;
+    -o-transition     : all 0.3s ease-in-out;
+    transition        : all 0.3s ease-in-out;
+}
+</style>

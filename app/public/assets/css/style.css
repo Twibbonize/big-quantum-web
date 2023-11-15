@@ -202,7 +202,7 @@ img {
 }
 
 .bg_body {
-  background-color: #ecf1f9;
+  background-color: #FFFFFF;
 }
 
 .bg_hard_light {
@@ -2778,6 +2778,23 @@ img {
     --cb-space-x-reverse: 1;
   }
 }
+.pt-30 {
+  padding-top: 30px;
+}
+
+.pb-30 {
+  padding-bottom: 30px;
+}
+
+.py-60 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.pt-120 {
+  padding-top: 120px;
+}
+
 /* ===================
 2/ base
 =======================*/
@@ -2796,7 +2813,7 @@ body {
   font-size: 18px;
   letter-spacing: 0.3px;
   color: #1b1b1b;
-  background: #ecf1f9;
+  background: #FFFFFF;
 }
 @media screen and (max-width: 768px) {
   body {
@@ -3073,6 +3090,10 @@ p {
 
 .fs-14 {
   font-size: 14px;
+}
+
+.ws-nowrap {
+  white-space: nowrap;
 }
 
 /* ===================
@@ -5248,7 +5269,7 @@ label:active:after {
 }
 .card__item .card_head {
   border-radius: 20px;
-  background-color: #ecf1f9;
+  background-color: #FFFFFF;
   height: 22rem;
   overflow: hidden;
   position: relative;
@@ -5348,7 +5369,7 @@ label:active:after {
 .card__item.two .card_head {
   max-height: 300px;
   border-radius: 20px;
-  background-color: #ecf1f9;
+  background-color: #FFFFFF;
   height: 22rem;
   overflow: hidden;
   position: relative;
@@ -5461,7 +5482,7 @@ label:active:after {
 .card__item.five .card_head {
   max-height: 300px;
   border-radius: 20px;
-  background-color: #ecf1f9;
+  background-color: #FFFFFF;
   height: auto;
   width: 80%;
   overflow: hidden;
@@ -6507,7 +6528,7 @@ label:active:after {
 }
 
 .hero_Live_Auctions {
-  background-color: #ecf1f9;
+  background-color: #FFFFFF;
   padding: 100px 0 0;
 }
 @media screen and (max-width: 768px) {
@@ -6564,7 +6585,7 @@ label:active:after {
 }
 
 .hero_privacy {
-  background-color: #ecf1f9 !important;
+  background-color: #FFFFFF !important;
   border-bottom: none !important;
 }
 .hero_privacy .privacy__icon {
@@ -6608,7 +6629,7 @@ label:active:after {
 }
 
 .hero_no_results {
-  background: #ecf1f9;
+  background: #FFFFFF;
   border-bottom: none;
 }
 .hero_no_results .search__box {
