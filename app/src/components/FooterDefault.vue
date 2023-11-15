@@ -43,7 +43,7 @@
                                 <li><a href="#">Platform status</a></li>
                             </ul>
                         </div>
-                        <h5 class="title-widget mt-30">Join the community</h5>
+                        <h5 class="title-widget ws-nowrap mt-30">Join the community</h5>
                         <div class="widget-social">
                             <ul class="flex">
                                 <li><a href="#" class="icon-facebook"></a></li>
@@ -85,7 +85,6 @@
 .footer-bottom p {
     color: rgba(255, 255, 255, 0.53);
     font-size: 14px;
-    font-family: 'Azeret Mono';
     line-height: 22px;
 }
 
@@ -95,7 +94,6 @@
 
 .footer-bottom ul li a {
     color: rgba(255, 255, 255, 0.53);
-    font-family: 'Azeret Mono';
     font-size: 14px;
     line-height: 22px;
     white-space: nowrap;
@@ -180,7 +178,6 @@
 .widget-menu ul li a {
     color: rgba(255, 255, 255, 0.53);;
     font-size: 14px;
-    font-family: 'Azeret Mono';
     line-height: 22px;
     position: relative;
 }

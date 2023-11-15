@@ -327,7 +327,6 @@
 .tf-card-article .card-title p {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   line-height: 22px;
   margin-top: 18px;
 }
@@ -350,13 +349,11 @@
 .author .info span {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.3);
-  font-family: 'Azeret Mono';
   line-height: 19px;
 }
 
 .author .info h6 {
   font-size: 12px;
-  font-family: 'Azeret Mono';
   line-height: 19px;
   font-weight: 400;
 }
@@ -548,7 +545,6 @@
 .text-bid {
   color: rgba(255, 255, 255, 0.3);
   font-size: 12px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 19px;
 }
@@ -893,7 +889,6 @@
 
 .tf-card-collection .author .infor {
   font-size: 12px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 19px;
   color: rgba(255, 255, 255, 0.3);
@@ -1109,7 +1104,6 @@
 .widget-categories ul li .cate-item {
   padding-left: 23px;
   font-size: 14px;
-  font-family: 'Azeret Mono';
   line-height: 22px;
   position: relative;
 }
@@ -1124,7 +1118,6 @@
 
 .widget-categories ul li .number {
   font-size: 14px;
-  font-family: 'Azeret Mono';
   line-height: 22px;
   color: rgba(255, 255, 255, 0.53);
 }
@@ -1209,7 +1202,6 @@
   line-height: 15px;
   padding: 10px 14px;
   font-size: 13px;
-  font-family: 'Azeret Mono';
   border-radius: 10px;
   display: -webkit-box;
   display: -moz-box;
@@ -1303,7 +1295,6 @@
 .tf-blog-detail .inner-content .inner-post p {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   line-height: 22px;
   margin-bottom: 20px;
 }
@@ -1368,7 +1359,6 @@
 .tf-blog-detail .inner-content .bottom .widget-tag .title-widget {
   color: #919191;
   font-size: 13px;
-  font-family: 'Azeret Mono';
   line-height: 15px;
   margin-right: 10px;
 }
@@ -1489,7 +1479,6 @@
   margin-top: 12px;
   margin-bottom: 12px;
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   line-height: 22px;
   font-size: 14px;
 }
@@ -1520,7 +1509,6 @@
 
 .tf-blog-detail .inner-content .widget-reply p {
   font-size: 12px;
-  font-family: 'Azeret Mono';
   font-weight: 500;
   line-height: 17px;
   margin-bottom: 30px;
@@ -1881,7 +1869,6 @@
 }
 
 .price.gem.style-1 {
-  font-family: 'Azeret Mono';
   font-size: 14px;
 }
 
@@ -2230,7 +2217,6 @@
 
 .tf-author-box.style-2.type-1 .price.gem {
   font-weight: 400;
-  font-family: 'Azeret Mono';
   font-size: 14px;
 }
 
@@ -2258,7 +2244,6 @@
 .tf-box-icon .image p {
   color: rgba(255, 255, 255, 0.53);
   font-size: 12px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 19px;
   text-transform: uppercase;
@@ -2275,7 +2260,6 @@
 .tf-box-icon p {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 22px;
 }
@@ -2441,7 +2425,6 @@
 .action__body.style-1 p {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 22px;
   max-width: 540px;
@@ -3358,7 +3341,6 @@
 .counter__body .counter h6 {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 22px;
 }
@@ -3383,7 +3365,6 @@
 
 .counter__body-1 .counter-1 .title {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -3466,7 +3447,6 @@
 .widget-category-checkbox label {
   color: rgba(255, 255, 255, 0.53);
   font-size: 14px;
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 22px;
   padding-left: 30px;
@@ -3837,7 +3817,6 @@ form label i.icon-star.active {
 }
 
 .widget-recently .card-small .info p {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 17.5px;
@@ -3881,7 +3860,6 @@ form label i.icon-star.active {
 }
 
 .widget-creators-item .author span {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 25px;
@@ -3927,7 +3905,6 @@ button.follow:hover {
 }
 
 .widget-coins-item p {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4023,7 +4000,6 @@ button.follow:hover {
 
 .add-new-collection p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4041,7 +4017,6 @@ button.follow:hover {
 /* connect-wallet */
 #wallet.tabcontent .inner-content > p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4093,7 +4068,6 @@ button.follow:hover {
 }
 
 .box-wallet p {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4253,7 +4227,6 @@ button.follow:hover {
 }
 
 .widget-edit.avatar .uploadfile .text {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4276,7 +4249,6 @@ button.follow:hover {
 }
 
 .widget-edit.setting .notification-setting-item p {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
@@ -4402,7 +4374,6 @@ button.follow:hover {
 
 #create .widget-content-inner label p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4410,7 +4381,6 @@ button.follow:hover {
 }
 
 #create .widget-content-inner label .filename {
-  font-family: 'Azeret Mono';
   font-size: 12px;
   font-weight: 400;
   line-height: 19px;
@@ -4492,7 +4462,6 @@ button.follow:hover {
 
 .widget-term-condition .menu-tab .item-title {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4512,7 +4481,6 @@ button.follow:hover {
 
 .widget-term-condition .content-tab .date {
   color: rgba(255, 255, 255, 0.5);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4521,7 +4489,6 @@ button.follow:hover {
 
 .widget-term-condition .content-tab p {
   color: rgba(255, 255, 255, 0.5);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4608,7 +4575,6 @@ button.follow:hover {
 .flat-accordion .flat-toggle .toggle-content p ,
 .flat-accordion2 .flat-toggle2 .toggle-content p {
   color: #919191;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4628,7 +4594,6 @@ button.follow:hover {
 
 .wrap-accordion .content p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -4708,7 +4673,6 @@ button.follow:hover {
   gap: 14px;
   color: #fff;
   font-size: 16px;
-  font-family: 'Azeret Mono';
   font-weight: 500;
   line-height: 11px;
 }
@@ -4937,7 +4901,6 @@ img {
   align-items: center;
   gap: 10px;
   padding: 0;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5031,7 +4994,6 @@ img {
 }
 
 .product-item.time-sales .content .text {
-  font-family: 'Azeret Mono';
   font-size: 12px;
   font-weight: 400;
   line-height: 19px;
@@ -5048,7 +5010,6 @@ img {
 }
 
 .product-item.time-sales .content p span {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5057,7 +5018,6 @@ img {
 
 .product-item.description .content p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5070,7 +5030,6 @@ img {
 }
 
 .product-item.details .content .details-item span {
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5095,7 +5054,6 @@ img {
 
 .product-item.traits .content .trait-item p {
   color: rgba(255, 255, 255, 0.3);
-  font-family: 'Azeret Mono';
   font-size: 12px;
   font-weight: 400;
   line-height: 19px;
@@ -5140,7 +5098,6 @@ img {
 }
 
 .product-item .table-item .column {
-  font-family: 'Azeret Mono';
   font-weight: 400;
   line-height: 22px;
 }
@@ -5191,7 +5148,6 @@ img {
 
 .box-icon-item p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -5230,7 +5186,6 @@ img {
 }
 
 .our-team-item .info {
-  font-family: 'Azeret Mono';
   font-size: 12px;
   font-weight: 400;
   line-height: 19px;
@@ -5272,7 +5227,6 @@ img {
 }
 .widget-income p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5359,7 +5313,6 @@ fieldset.password > i::before {
 
 .forget-password {
   text-align: right;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5373,7 +5326,6 @@ fieldset.password > i::before {
 .widget-login .other {
   text-align: center;
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5431,7 +5383,6 @@ fieldset.password > i::before {
 .widget-login .no-account {
   color: rgba(255, 255, 255, 0.53);
   text-align: center;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5540,7 +5491,6 @@ fieldset.password > i::before {
 .modal-body p {
   color: rgba(255, 255, 255, 0.53);
   text-align: center;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5583,7 +5533,6 @@ fieldset.password > i::before {
 
 .section-single-page .content p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 160%;
@@ -5602,7 +5551,6 @@ fieldset.password > i::before {
 }
 
 .section-single-page .content .status {
-  font-family: 'Azeret Mono';
   font-size: 16px;
   font-weight: 500;
   line-height: 11px;
@@ -5657,7 +5605,6 @@ fieldset.password > i::before {
 
 .section-404-page p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5779,7 +5726,6 @@ fieldset.password > i::before {
 
 .page-title p {
   color: #919191;
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -5872,7 +5818,6 @@ fieldset.password > i::before {
 
 .heading-section-1 p {
   color: rgba(255, 255, 255, 0.53);
-  font-family: 'Azeret Mono';
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -6176,4 +6121,11 @@ fieldset.password > i::before {
 
 .po-sticky.fixed.type1 {
   margin-top: 98px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #1B1B1B;
+  opacity: 0.1;
 }

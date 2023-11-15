@@ -8,7 +8,7 @@
                       <h2 class="tf-title">Trending on Twibbonize</h2>
                       <p>Most Supported Campaigns in the Last 24 Hours</p>
                     </div>
-                    <a href="explore-3.html">Discover more <i class="ri-arrow-right-circle-fill"></i></a>
+                    <a class="d-flex align-items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
             <div class="col-md-12">
@@ -292,9 +292,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="slider-next swiper-button-next"></div>
-                    <div class="slider-prev swiper-button-prev"></div>
+                    <div class="swiper-pagination d-none"></div>
+                    <div class="slider-next swiper-button-next d-none"></div>
+                    <div class="slider-prev swiper-button-prev d-none"></div>
                 </div>
             </div>
         </div>
@@ -381,7 +381,6 @@ export default {
 .text-bid {
     color: rgba(255, 255, 255, 0.3);
     font-size: 12px;
-    font-family: 'Azeret Mono';
     font-weight: 400;
     line-height: 19px;
 }
@@ -546,10 +545,11 @@ export default {
 
 .heading-section a i {
     padding: 4px;
-    margin-left: 3px;
+    margin-top: 4px;
+    margin-left: 6px;
     font-size: 10px;
     border-radius: 20px;
-    border-color:  transparent ;
+    border-color: transparent;
     background: none;
 }
 
@@ -557,17 +557,17 @@ export default {
     position: absolute;
     width: 20px;
     height: 20px;
-    top: 1px;
+    top: 7px;
     right: 0;
     content: '';
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(#1B1B1B, 0.10);
+    background: rgba(#1B1B1B, 0.10);
     -webkit-transition: all 0.3s ease;
-    -moz-transition   : all 0.3s ease;
-    -ms-transition    : all 0.3s ease;
-    -o-transition     : all 0.3s ease;
-    transition        : all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .heading-section a:hover::after {
@@ -631,13 +631,11 @@ export default {
 .author .info span {
     font-size: 12px;
     color: #1B1B1B;
-    font-family: 'Azeret Mono';
     line-height: 19px;
 }
 
 .author .info h6 {
     font-size: 12px;
-    font-family: 'Azeret Mono';
     line-height: 19px;
     font-weight: 400;
 }
@@ -645,7 +643,6 @@ export default {
 .text-bid {
     color: #1B1B1B;
     font-size: 12px;
-    font-family: 'Azeret Mono';
     font-weight: 400;
     line-height: 19px;
 }
