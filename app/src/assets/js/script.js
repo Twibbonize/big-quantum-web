@@ -91,8 +91,8 @@ $('.light').on('click', function (e) {
   $('.body').removeClass('is__dark')
   $('.light').addClass('is_active')
   $('.dark').removeClass('is_active')
-  document.getElementById('logo_js').src = '/src/assets/img/logos/Logo.svg'
-  document.getElementById('logo_js_f').src = '/src/assets/img/logos/Logo.svg'
+  document.getElementById('logo_js').src = '/src/assets/img/logos/twibbonize-logo-black.svg'
+  document.getElementById('logo_js_f').src = '/src/assets/img/logos/twibbonize-logo-black.svg'
 })
 
 // menu popup
