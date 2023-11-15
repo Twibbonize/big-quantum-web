@@ -63,14 +63,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Kathryn Murphy</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,14 +105,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,14 +147,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -156,14 +189,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -187,14 +231,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -218,14 +273,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -249,14 +315,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -280,14 +357,25 @@
                                         <img src="https://placehold.jp/150x150.png" alt="Image">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center info">
-                                        <span>Created by:</span>
                                         <h6><a href="author-2.html">Cody Fisher</a> </h6>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center justify-content-between">
-                                    <span class="text-bid">Current Bid</span>
-                                    <h6 class="price gem"><i class="icon-gem"></i>0,34</h6>
+                                <div class="meta-info d-flex align-items-center">
+                                    <div class="d-flex align-items-center mr-5">
+                                        <i class="ri-group-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Supporters</span>
+                                            <h6 class="fs-10 fw-light">14.7k</h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="ri-time-line fs-5 mr-1"></i>
+                                        <div class="d-flex flex-column">
+                                            <span class="fs-14 fw-bold">Created</span>
+                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
