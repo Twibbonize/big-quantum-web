@@ -3,6 +3,9 @@ import type { endianness } from 'os';
 <template>
   <div class="hero-participant position-relative">
     <div class="hero-participant__bg"></div>
+    <img class="hero-participant__pattern-left" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
+    <img class="hero-participant__pattern-right" src="/src/assets/img/patterns/hero-right-top.png" alt="">
+    <img class="hero-participant__pattern-center" src="/src/assets/img/patterns/hero-texture.png" alt="">
     <!-- <div class="tf-bg-line"></div> -->
     <div class="container">
       <div class="row">
@@ -16,45 +19,57 @@ import type { endianness } from 'os';
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
-                <div class="hero-participant__btn-container flat-button flex mt-4">
-                  <a href="#" class="btn hero-participant__primary-btn">
+                <div class="hero-participant__btn-container flat-button d-flex mt-4 gap-2">
+                  <TWButton class="fs-14" color="secondary" border-radius="circle">
                     <i class="ri-add-line"></i>
-                    Create a Campaign
-                  </a>
-                  <a href="#" class="btn hero-participant__secondary-btn" >
+                    Start a Campaign
+                  </TWButton>
+                  <TWButton class="fs-14" color="transparent" border-radius="circle">
                     Find a Campaign
-                  </a>
+                  </TWButton>
                 </div>
               </div>
             </div>
-            <div class="bg-home7">
+            <div class="bg-home7 user-select-none pe-none">
               <div class="swiper-container autoslider1reverse" :data-swiper="swiperData">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-1.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="">
                   </div>
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-2.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="swiper-container autoslider1reverse" :data-swiper="swiperDataReverse">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-3.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="">
                   </div>
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-4.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="">
                   </div>
                 </div>
               </div>
               <div class="swiper-container autoslider1reverse" :data-swiper="swiperData">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-5.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="">
                   </div>
                   <div class="swiper-slide">
-                    <img src="/src/assets/img/home/example-campaign-6.png" alt="">
+                    <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="">
                   </div>
                 </div>
               </div>
@@ -66,8 +81,13 @@ import type { endianness } from 'os';
 </template>
 
 <script lang="ts">
+import TWButton from '../base/TWButton.vue';
+
 export default {
   name: 'HeroParticipant',
+  components: {
+    TWButton,
+  },
   data() {
     return {
       swiperData: `{
@@ -112,6 +132,26 @@ export default {
       z-index: 0;
     }
 
+    &__pattern-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__pattern-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &__pattern-center {
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      filter: blur(15.4px);
+      mix-blend-mode: darken;
+    }
+
     &__text {
       font-size: 80px;
       color: #1B1B1B;
@@ -138,17 +178,6 @@ export default {
     &__btn-container {
       gap: 10px;
     }
-
-    &__primary-btn {
-      background: #FFEF5F !important;
-      color: #1B1B1B !important;
-      font-weight: 800;;
-    }
-
-    &__secondary-btn {
-      color: #1B1B1B !important;
-      font-weight: 800;;
-    }
   }
 
   /* home-7 */
@@ -172,27 +201,27 @@ export default {
     z-index: 1;
   }
 
-  .hero-participant::after {
-    position: absolute;
-    width: 100%;
-    height: 130px;
-    top: 0;
-    left: 0;
-    content: '';
-    background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 22, 22, 0.00) 100%);
-    z-index: 2;
-  }
+  // .hero-participant::after {
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 130px;
+  //   top: 0;
+  //   left: 0;
+  //   content: '';
+  //   background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 22, 22, 0.00) 100%);
+  //   z-index: 2;
+  // }
 
-  .hero-participant::before {
-    position: absolute;
-    width: 100%;
-    height: 130px;
-    bottom: 0;
-    left: 0;
-    content: '';
-    background: linear-gradient(0deg, #16DAC1 0%, rgba(22, 22, 22, 0.00) 100%);
-    z-index: 2;
-  }
+  // .hero-participant::before {
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 130px;
+  //   bottom: 0;
+  //   left: 0;
+  //   content: '';
+  //   background: linear-gradient(0deg, #16DAC1 0%, rgba(22, 22, 22, 0.00) 100%);
+  //   z-index: 2;
+  // }
 
   .hero-participant .content {
     margin-top: 131px;

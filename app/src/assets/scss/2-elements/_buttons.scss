@@ -347,6 +347,62 @@ a.btn-outline {
     }
   }
 }
+.btn-secondary {
+  color: $color_black;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: $color_brand2 !important;
+  position: relative;
+
+  @include before {
+    height: 0;
+    width: 0;
+    border-radius: 100%;
+    background: $color_black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.3s $transition_function;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    color: $color_black;
+    @include before {
+      height: 15rem;
+      width: 15rem;
+    }
+  }
+}
+.btn-transparent {
+  color: $color_black;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: transparent !important;
+  position: relative;
+
+  @include before {
+    height: 0;
+    width: 0;
+    border-radius: 100%;
+    background: $color_white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.3s $transition_function;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    color: $color_black;
+    @include before {
+      height: 15rem;
+      width: 15rem;
+    }
+  }
+}
 .btn-grad {
   color: $color_white;
   border: none !important ;
