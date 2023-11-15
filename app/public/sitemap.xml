@@ -1,0 +1,49 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <link type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+  <link type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+  <style lang="en" type="text/css" id="dark-mode-custom-style"/>
+  <style lang="en" type="text/css" id="dark-mode-native-style"/>
+  <style lang="en" type="text/css" id="dark-mode-native-sheet"/>
+  <url>
+    <loc>https://twibbonize.com</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/explore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/select-plan</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/case-studies</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/pricing/silver</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/pricing/gold</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+  <url>
+    <loc>https://twibbonize.com/pricing/platinum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-06-23</lastmod>
+  </url>
+</urlset>

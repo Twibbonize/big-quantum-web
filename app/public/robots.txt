@@ -1,0 +1,6 @@
+User-agent: grapeshot
+Disallow:
+
+User-agent: *
+Disallow: users/*
+sitemap: https://twibbonize.com/sitemap.xml
