@@ -41,7 +41,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/twibbonize-logo-black.svg"
                 alt="logo"
               />
             </a>
@@ -305,7 +305,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/twibbonize-logo-black.svg"
                 alt="logo"
               />
             </a>
@@ -2101,7 +2101,7 @@
               <div class="wrapper js-header-wrapper">
                 <div class="header__logo">
                   <a href="/">
-                    <img class="header__logo" src="/src/assets/img/logos/Logo.svg" alt="logo" />
+                    <img class="header__logo" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="logo" />
                   </a>
                 </div>
                 <div class="header__menu">
@@ -2153,7 +2153,7 @@
               <div class="wrapper js-header-wrapper space-x-20">
                 <div class="header__logo">
                   <a href="#">
-                    <img class="header__logo" src="/src/assets/img/logos/Logo.svg" alt="logo" />
+                    <img class="header__logo" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="logo" />
                   </a>
                 </div>
                 <div class="header__menu">
@@ -2272,7 +2272,7 @@
                   <div class="col-lg-6 space-y-20">
                     <div class="footer__logo">
                       <a href="#">
-                        <img src="/src/assets/img/logos/Logo.svg" alt="logo" />
+                        <img src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="logo" />
                       </a>
                     </div>
                     <p class="footer__text">

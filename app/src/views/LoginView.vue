@@ -42,7 +42,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/twibbonize-logo-black.svg"
                 alt="logo"
               />
             </a>
@@ -306,7 +306,7 @@
               <img
                 class="header__logo"
                 id="logo_js"
-                src="/src/assets/img/logos/Logo.svg"
+                src="/src/assets/img/logos/twibbonize-logo-black.svg"
                 alt="logo"
               />
             </a>
