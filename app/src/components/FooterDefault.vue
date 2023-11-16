@@ -9,48 +9,57 @@
                             <a href="index.html">
                                 <img id="logo_footer" src="/src/assets/img/logos/twibbonize-logo-black.svg">
                             </a>
+                            <div class="d-flex gap-2 flex-wrap mt-4">
+                              <img id="appstore" class="logo-footer__download" src="/src/assets/img/logos/download-appstore.png">
+                              <img id="playstore" class="logo-footer__download" src="/src/assets/img/logos/download-playstore.png">
+                            </div>
                         </div>
                     </div>
                     <div class="widget widget-menu style-1">
-                        <h5 class="title-widget">Marketplace</h5>
+                        <h5 class="title-widget">Discover</h5>
                         <ul>
-                            <li><a href="#">All NFTs</a></li>
-                            <li><a href="#">New</a></li>
-                            <li><a href="#">Art</a></li>
-                            <li><a href="#">Music</a></li>
-                            <li><a href="#">Domain names</a></li>
-                            <li><a href="#">Virtual worlds</a></li>
+                            <li><a href="#">Explore</a></li>
+                            <li><a href="#">Leaderboard</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Help Center</a></li>
                         </ul>
                     </div>
                     <div class="widget widget-menu style-2">
                         <h5 class="title-widget">Resources</h5>
                         <ul>
-                            <li><a href="#">Help center</a></li>
-                            <li><a href="#">Platform status</a></li>
-                            <li><a href="#">Partners</a></li>
-                            <li><a href="#">Discount communiti</a></li>
-                            <li><a href="#">Suggestions</a></li>
-                            <li><a href="#">User Content FAQs</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Doc</a></li>
+                            <li><a href="#">For Creators</a></li>
+                            <li><a href="#">What is a Twibbon</a></li>
+                            <li><a href="#">Use Cases</a></li>
+                            <li><a href="#">Editor</a></li>
                         </ul>
                     </div>
                     <div class="widget-last">
                         <div class="widget-menu style-4">
                             <h5 class="title-widget">Company</h5>
                             <ul>
-                                <li><a href="#">Help center</a></li>
-                                <li><a href="#">Platform status</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
                         <h5 class="title-widget ws-nowrap mt-30">Join the community</h5>
                         <div class="widget-social">
-                            <ul class="flex">
-                                <li><a href="#" class="icon-facebook"></a></li>
-                                <li><a href="#" class="icon-twitter"></a></li>
-                                <li><a href="#" class="icon-vt"></a></li>
-                                <li><a href="#" class="icon-tiktok"></a></li>
-                                <li><a href="#" class="icon-youtube"></a></li>
+                            <ul class="d-flex align-items-center gap-2">
+                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                  <i class="ri-facebook-fill"></i>
+                                </li>
+                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                  <i class="ri-twitter-fill"></i>
+                                </li>
+                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                  <i class="ri-discord-fill"></i>
+                                </li>
+                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                  <i class="ri-tiktok-fill"></i>
+                                </li>
+                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                  <i class="ri-youtube-fill"></i>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -128,7 +137,8 @@
 #footer.bg-white .icon-vt:before,
 #footer.bg-white .widget-menu ul li a,
 #footer.bg-white .title-widget {
-    color: rgba(22, 22, 22, 1);
+  color: rgba(22, 22, 22, 1);
+  white-space: nowrap;
 }
 
 #footer.bg-white .widget-social ul li a {
@@ -206,5 +216,25 @@
     -ms-transition    : all 0.3s ease-in-out;
     -o-transition     : all 0.3s ease-in-out;
     transition        : all 0.3s ease-in-out;
+}
+
+.widget-social {
+  &__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    background: rgba(#1B1B1B, .05);
+
+    i {
+      color: #1B1B1B;
+    }
+  }
+}
+
+.logo-footer {
+  &__download {
+    height: 40px !important;
+    width: auto !important;
+  }
 }
 </style>
