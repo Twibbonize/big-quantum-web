@@ -3364,9 +3364,8 @@ input[type=color] {
 }
 
 .tp-section-title-3 {
-  font-family: var(--tp-ff-urban);
   font-weight: 700;
-  font-size: 58px;
+  font-size: 52px;
   line-height: 1.1;
   margin-bottom: 0;
 }
@@ -3397,9 +3396,9 @@ input[type=color] {
   }
 }
 .tp-section-title-3 span {
-  font-family: "DM Serif Display";
-  font-style: italic;
-  font-weight: 400;
+  font-family: 'Marck Script' !important;
+  font-size: 55px;
+  color: #FFEF5F;
 }
 
 .tp-section-title-4 {
@@ -13262,6 +13261,7 @@ input[type=color] {
   border-radius: 60px;
   height: 600px;
   overflow: hidden;
+  padding-top: 43px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .tp-rated-bg {

@@ -170,7 +170,7 @@ img {
 }
 
 .color_white {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .color_black {
@@ -3094,10 +3094,6 @@ p {
 
 .fs-14 {
   font-size: 14px !important;
-}
-
-.fs-18 {
-  font-size: 18px !important;
 }
 
 .ws-nowrap {

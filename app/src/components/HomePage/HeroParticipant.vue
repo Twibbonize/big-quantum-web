@@ -34,7 +34,7 @@ import type { endianness } from 'os';
               </div>
             </div>
             <div class="bg-home7 user-select-none pe-none">
-              <div class="swiper-container autoslider1reverse" :data-swiper="swiperData">
+              <div class="swiper-container autoslider1" :data-swiper="swiperData">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="">
@@ -47,7 +47,7 @@ import type { endianness } from 'os';
                   </div>
                 </div>
               </div>
-              <div class="swiper-container autoslider1reverse" :data-swiper="swiperDataReverse">
+              <div class="swiper-container autoslider1" :data-swiper="swiperDataReverse">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="">
@@ -60,7 +60,7 @@ import type { endianness } from 'os';
                   </div>
                 </div>
               </div>
-              <div class="swiper-container autoslider1reverse" :data-swiper="swiperData">
+              <div class="swiper-container autoslider1" :data-swiper="swiperData">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="">
