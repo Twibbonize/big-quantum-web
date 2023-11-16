@@ -100,7 +100,7 @@
 }
 
 .footer-bottom ul li a:hover {
-    color: #DDF247;
+    color: #16DAC1;
 }
 
 /* style-1 */
@@ -183,7 +183,7 @@
 }
 
 .widget-menu ul li a:hover {
-    color: #DDF247;
+    color: #16DAC1;
 }
 
 .background-white .widget-menu ul li a:after {
@@ -195,7 +195,7 @@
     width             : 0;
     height            : 1px;
     position          : absolute;
-    background        : #DDF247;
+    background        : #16DAC1;
     left              : 50%;
     bottom            : 0;
     transform         : translateX(-50%);

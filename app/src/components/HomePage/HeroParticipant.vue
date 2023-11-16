@@ -244,8 +244,8 @@ export default {
   // }
 
   .hero-participant .content {
-    margin-top: 131px;
-    margin-bottom: 215px;
+    margin-top: 130px;
+    height: 470px;
     text-align: start;
     padding-left: 8px;
   }

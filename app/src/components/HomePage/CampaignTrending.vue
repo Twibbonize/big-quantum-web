@@ -6,7 +6,7 @@
                 <div class="heading-section">
                     <div>
                       <h2 class="tf-title">Trending on Twibbonize</h2>
-                      <p>Most Supported Campaigns in the Last 24 Hours</p>
+                      <p class="tf-description">Most Supported Campaigns in the Last 24 Hours</p>
                     </div>
                     <a class="d-flex align-items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
                 </div>
@@ -43,341 +43,8 @@
                     }
                 }'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Kathryn Murphy</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="swiper-slide">
-                            <div class="tf-card-box style-1">
-                                <div class="card-media">
-                                    <a href="#">
-                                        <img src="https://placehold.jp/350x350.png" alt="">
-                                    </a>
-                                    <span class="wishlist-button icon-heart"></span>
-                                    <div class="featured-countdown">
-                                        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-                                    </div>
-                                    <div class="button-place-bid">
-                                        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
-                                    </div>
-                                </div>
-                                <h5 class="name"><a href="nft-detail-2.html">Dayco serpentine belt</a></h5>
-                                <div class="author d-flex align-items-center">
-                                    <div class="avatar">
-                                        <img src="https://placehold.jp/150x150.png" alt="Image">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center info">
-                                        <h6><a href="author-2.html">Cody Fisher</a> </h6>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="meta-info d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-5">
-                                        <i class="ri-group-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Supporters</span>
-                                            <h6 class="fs-10 fw-light">14.7k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="ri-time-line fs-5 mr-1"></i>
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-14 fw-bold">Created</span>
-                                            <h6 class="fs-10 fw-light">5 Days Ago</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div v-for="i in campaigns" :key="i" class="swiper-slide">
+                            <CampaignCard/>
                         </div>
                     </div>
                     <div class="swiper-pagination d-none"></div>
@@ -391,142 +58,22 @@
 </template>
 
 <script lang="ts">
-export default {
+import CampaignCard from '@/components/elements/CampaignCard.vue';
 
+export default {
+    name: 'CampaignTrending',
+    components: {
+        CampaignCard,
+    },
+    data() {
+        return {
+            campaigns: [1,2,3,4,5,6,7,8],
+        };
+    },
 };
 </script>
 
 <style lang="scss">
-  .tf-card-box { 
-    border-radius: 20px;
-    background: #FFFFFF;
-    padding: 12px 12px 17px 12px;
-    margin-bottom: 40px;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition   : all 0.2s ease;
-    -ms-transition    : all 0.2s ease;
-    -o-transition     : all 0.2s ease;
-    transition        : all 0.2s ease;
-  }
-
-  .tf-card-box:hover {
-    transform: translateY(-10px);
-  }
-
-  .tf-card-box .card-media {
-    position: relative;
-    margin-bottom: 12px;
-    border-radius: 25px;
-    overflow: hidden;
-  }
-
-  .tf-card-box .card-media img {
-    width: 100%;
-    object-fit: cover;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition   : all 0.2s ease;
-    -ms-transition    : all 0.2s ease;
-    -o-transition     : all 0.2s ease;
-    transition        : all 0.2s ease;
-  }
-
-  .tf-card-box:hover .card-media a img {
-    transform: scale(1.1);
-  }
-
-  .tf-card-box.style-1 {
-    padding: 10px 10px 14px 10px;
-}
-
-.tf-card-box.style-1 .card-media {
-    border-radius: 15px;
-}
-
-.tf-card-box.style-1 .card-media img {
-    width: 100% !important;
-    height: auto !important;
-}
-
-.tf-card-box.style-1 .name {
-    margin-bottom: 10px;
-    line-height: 25px;
-    font-weight: 800;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-.tf-card-box.style-1 .divider {
-    margin-top: 16px;
-    margin-bottom: 16px;   
-}
-
-.tf-card-box .meta-info,
-.tf-card-box .author {
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-.text-bid {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 19px;
-}
-
-.tf-card-box.style-1 .card-media .button-place-bid {
-    bottom: 30%;
-}
-
-.tf-card-box.style-1:hover .card-media .button-place-bid {
-    bottom: 50%;
-    transform: translate(-50%,50%);
-}
-
-/* bg-white */
-.tf-card-box.style-1.bg-white {
-    background-color: #FFF;
-    border: 1px solid #F1F1F1;
-    padding-bottom: 12px;
-}
-
-.tf-card-box.style-1.bg-white .card-media {
-    border-radius: 12px;
-}
-
-.tf-card-box.style-1.bg-white .card-media img {
-    height: 244px;
-}
-
-.tf-card-box.style-1.bg-white .price.gem i {
-    font-size: 14px;
-}
-
-.tf-card-box.style-1.bg-white .meta-info h6 i::before,
-.tf-card-box.style-1.bg-white .meta-info h6,
-.tf-card-box.style-1.bg-white .author .info h6 a,
-.tf-card-box.style-1.bg-white .name a,
-.tf-card-box.style-1.bg-white .wishlist-button,
-.tf-card-box.style-1.bg-white .featured-countdown {
-    color: #161616;
-}
-
-.tf-card-box.style-1.bg-white .meta-info .text-bid,
-.tf-card-box.style-1.bg-white .author .info span {
-    color: rgba(22, 22, 22, 0.3);
-}
-
-.tf-card-box.style-1.bg-white .divider {
-    margin: 0;
-    height: 26px;
-    background: none;
-}
-
-.tf-card-box.style-1.bg-white .button-place-bid {
-    position: unset;
-    opacity: 1;
-    transform: none;
-}
-
 .carouselfull-2,
 .carouselfull {
     overflow: unset !important;
@@ -615,6 +162,11 @@ export default {
     font-weight: 800;
     line-height: 44px;
     text-transform: capitalize;
+    z-index: 10;
+}
+
+.heading-section .tf-description {
+    font-size: 22px;
     z-index: 10;
 }
 
@@ -764,7 +316,7 @@ export default {
 .tf-button:hover,
 .tf-button.active {
     color: #161616;
-    background-color: #DDF247;
+    background-color: #16DAC1;
 }
 
 .tf-button:focus {
@@ -776,7 +328,7 @@ export default {
     height: 44px;
     gap: 10px;
     flex-shrink: 0;
-    background-color: #DDF247;
+    background-color: #16DAC1;
 }
 
 .tf-button.style-1:hover,
@@ -786,7 +338,7 @@ export default {
 }
 
 .tf-button.style-1.active:hover {
-    background-color: #DDF247;
+    background-color: #16DAC1;
 }
 
 /* tf-button loadmore */
@@ -810,7 +362,7 @@ export default {
 }
 
 .tf-button-loadmore:hover {
-    background-color: #DDF247;
+    background-color: #16DAC1;
 }
 
 .tf-button-loadmore span {

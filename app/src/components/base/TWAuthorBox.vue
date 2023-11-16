@@ -10,7 +10,7 @@
 
 .tf-author-box .author-avatar .number {
     border-radius: 24px;
-    background: #DDF247;
+    background: #16DAC1;
     width: 24px;
     height: 24px;
     display: flex;
@@ -32,7 +32,7 @@
 
 .tf-author-box:hover .author-avatar .number {
     transform: rotateY(360deg);
-    background: #DDF247;
+    background: #16DAC1;
 }
 
 .tf-author-box .author-infor h5 {
@@ -66,7 +66,7 @@
 }
 
 .tf-author-box.bg-white .author-infor h5 a:hover {
-    color: #DDF247;
+    color: #16DAC1;
 }
 
 .tf-author-box.bg-white .author-infor h6 i::before,

@@ -42,7 +42,7 @@ export default {
     padding-bottom: 18px;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     width: 100%;
 
     &__logo {
