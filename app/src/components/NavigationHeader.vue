@@ -36,7 +36,7 @@ export default {
   .navigation-header {
     // background: #16DAC1;
     background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
-    border-bottom: rgba(#1B1B1B, .08) 1px solid;
+    // border-bottom: rgba(#1B1B1B, .08) 1px solid;
     gap: 10px;
     padding-top: 27px;
     padding-bottom: 18px;
@@ -47,6 +47,7 @@ export default {
 
     &__logo {
       height: 3rem;
+      margin-top: -8px;
     }
 
     &__search {

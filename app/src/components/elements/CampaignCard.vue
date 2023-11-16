@@ -9,7 +9,7 @@
         <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
       </div> -->
       <div class="button-place-bid">
-        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>Place Bid</span></a>
+        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>View</span></a>
       </div>
     </div>
     <h5 class="name fs-18">Campaign with Extra Long Title on 2023</h5>
