@@ -34,11 +34,16 @@ export default {
 
 <style lang="scss">
   .navigation-header {
-    background: #16DAC1;
+    // background: #16DAC1;
+    background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
     border-bottom: rgba(#1B1B1B, .08) 1px solid;
     gap: 10px;
     padding-top: 27px;
     padding-bottom: 18px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
 
     &__logo {
       height: 3rem;

@@ -13257,8 +13257,8 @@ input[type=color] {
   background: #202124;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-left: 60px;
-  margin-right: 60px;
+  /* margin-left: 60px;
+  margin-right: 60px; */
   border-radius: 60px;
   height: 980px;
   overflow: hidden;

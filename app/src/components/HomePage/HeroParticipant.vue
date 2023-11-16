@@ -12,11 +12,14 @@ import type { endianness } from 'os';
           <div class="col-12 pages-title">
             <div class="row">
               <div class="col-4 content">
-                <h1 class="hero-participant__text">
-                  <span class="hero-participant__text-highlight">show</span>
-                  your <br> supports
+                <h1 class="hero-participant__text user-select-none pe-none text-lowercase">
+                  show your  
                 </h1>
-                <h4 class="hero-participant__description mt-3 fw-normal fs-5">
+                <h1 class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
+                  supports
+                </h1>
+                <h1 class="hero-participant__text-highlight-line">_______</h1>
+                <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
                 <div class="hero-participant__btn-container flat-button d-flex mt-4 gap-2">
@@ -153,19 +156,35 @@ export default {
     }
 
     &__text {
-      font-size: 80px;
+      font-size: 80px !important;
       color: #1B1B1B;
       line-height: 1;
     }
 
     &__text-highlight {
-      font-family: 'Marck Script';
       color: #FFEF5F;
-      font-size: 105px;
-      text-decoration: underline;
-      font-weight: 400;
-      line-height: 80px;
-      margin-right: -1rem;
+      font-family: 'Marck Script' !important;
+      font-size: 163.879px !important;
+      font-style: normal;
+      font-weight: 400 !important;
+      line-height: 152.092px; /* 92.807% */
+      letter-spacing: -9.833px;
+      // text-decoration-line: underline;
+      transform: rotate(-2deg);
+      margin-top: -20px;
+
+      &-line {
+        color: #FFEF5F;
+        font-family: 'Marck Script' !important;
+        font-size: 163.879px !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: 152.092px; /* 92.807% */
+        letter-spacing: -9.833px;
+        // text-decoration-line: underline;
+        transform: rotate(-2deg);
+        margin-top: -110px;
+      }
     }
 
     &__description {
@@ -173,6 +192,7 @@ export default {
       font-size: 22px !important;
       line-height: 27px !important;
       font-weight: 500;
+      margin-top: 90px !important;
     }
 
     &__btn-container {
