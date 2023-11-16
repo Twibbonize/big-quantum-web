@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import numeral from 'numeral';
+
 const props = defineProps({
   number: Number,
+  name: String,
+  avatar: String,
+  supports: Number,
 })
 </script>
 
@@ -8,11 +13,11 @@ const props = defineProps({
   <div class="tf-author-box style-2 hv-border mb-4">
     <div class="order">{{ `#${props.number}` }}</div>
     <div class="author-avatar ">
-      <img src="https://placehold.jp/150x150.png" alt="" class="avatar rounded-circle">
+      <img :src="avatar" alt="" class="avatar rounded-circle">
     </div>
     <div class="author-infor ">
-      <h5><a href="author-2.html">Kristin Watson</a></h5>
-      <h6 class="price gem style-1"><i class="ri-group-line"></i>7,080.95</h6>
+      <h5><a href="author-2.html">{{ name }}</a></h5>
+      <h6 class="price gem style-1"><i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}</h6>
     </div>
   </div>
 </template>

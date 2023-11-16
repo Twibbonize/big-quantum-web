@@ -25,14 +25,14 @@
         <i class="ri-group-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Supporters</span>
-          <h6 class="fs-10 fw-light">14.7k</h6>
+          <h6 class="fs-14 fw-light">14.7k</h6>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <i class="ri-time-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Created</span>
-          <h6 class="fs-10 fw-light">5 Days Ago</h6>
+          <h6 class="fs-14 fw-light">5 Days Ago</h6>
         </div>
       </div>
     </div>
