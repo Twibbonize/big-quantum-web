@@ -1,8 +1,26 @@
+<script setup>
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import numeral from 'numeral';
+
+dayjs.extend(relativeTime)
+
+
+const props = defineProps({
+  name: String,
+  creator: String,
+  avatar: String,
+  supports: Number,
+  createdAt: Number,
+  thumbnail: String,
+})
+</script>
+
 <template>
   <div class="tf-card-box style-1">
     <div class="card-media">
       <a href="#">
-        <img src="https://placehold.jp/350x350.png" alt="">
+        <img :src="props.thumbnail" alt="">
       </a>
       <!-- <span class="wishlist-button icon-heart"></span>
       <div class="featured-countdown">
@@ -12,11 +30,11 @@
         <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>View</span></a>
       </div>
     </div>
-    <h5 class="name fs-18">Campaign with Extra Long Title on 2023</h5>
+    <h5 class="name fs-18">{{ props.name }}</h5>
     <div class="author d-flex align-items-center">
-      <img class="avatar" src="https://placehold.jp/150x150.png" alt="Image">
+      <img class="avatar" :src="avatar" alt="Image">
       <div class="d-flex flex-column justify-content-center info">
-        <h6>Cody Fisher</h6>
+        <h6>{{ props.creator }}</h6>
       </div>
     </div>
     <div class="divider"></div>
@@ -25,14 +43,14 @@
         <i class="ri-group-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Supporters</span>
-          <h6 class="fs-10 fw-light">14.7k</h6>
+          <h6 class="fs-14 fw-light">{{ numeral(props.supports).format('0.0a') }}</h6>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <i class="ri-time-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Created</span>
-          <h6 class="fs-10 fw-light">5 Days Ago</h6>
+          <h6 class="fs-14 fw-light">{{ dayjs(props.createdAt).fromNow() }}</h6>
         </div>
       </div>
     </div>

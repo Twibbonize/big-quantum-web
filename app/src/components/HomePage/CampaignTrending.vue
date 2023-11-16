@@ -43,8 +43,15 @@
                     }
                 }'>
                     <div class="swiper-wrapper">
-                        <div v-for="i in campaigns" :key="i" class="swiper-slide">
-                            <CampaignCard/>
+                        <div v-for="{ name, avatar, creator, createdAt, supports, thumbnail }, i in campaigns" :key="i" class="swiper-slide">
+                            <CampaignCard
+                                :name="name"
+                                :creator="creator"
+                                :avatar="getAvatarUrl(avatar)"
+                                :supports="supports"
+                                :createdAt="createdAt"
+                                :thumbnail="getThumbnailUrl(thumbnail)"
+                            />
                         </div>
                     </div>
                     <div class="swiper-pagination d-none"></div>
@@ -57,20 +64,86 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref } from 'vue';
+
 import CampaignCard from '@/components/elements/CampaignCard.vue';
 
-export default {
-    name: 'CampaignTrending',
-    components: {
-        CampaignCard,
+const campaigns = ref([
+    {
+        name: 'UNIVERSE UNPACKED 2022',
+        creator: 'Universe Tech',
+        avatar: 'sample-avatar-1.jpg',
+        supports: '85500',
+        createdAt: '',
+        thumbnail: 'sample-campaign-1.jpg',
     },
-    data() {
-        return {
-            campaigns: [1,2,3,4,5,6,7,8],
-        };
+    {
+        name: 'Liberty Scholarship 2025',
+        creator: 'Liberty Scholarship',
+        avatar: 'sample-avatar-2.jpg',
+        supports: '14700',
+        createdAt: '',
+        thumbnail: 'sample-campaign-2.jpg',
     },
-};
+    {
+        name: 'Bit by Bit - Retro Gaming',
+        creator: 'Bit by Bit',
+        avatar: 'sample-avatar-3.jpg',
+        supports: '15100',
+        createdAt: '',
+        thumbnail: 'sample-campaign-3.jpg',
+    },
+    {
+        name: 'Digital Culture Webinar',
+        creator: 'Digital Culture',
+        avatar: 'sample-avatar-4.jpg',
+        supports: '7700',
+        createdAt: '',
+        thumbnail: 'sample-campaign-4.jpg',
+    },
+    {
+        name: 'UNIVERSE UNPACKED 2022',
+        creator: 'Universe Tech',
+        avatar: 'sample-avatar-1.jpg',
+        supports: '85500',
+        createdAt: '',
+        thumbnail: 'sample-campaign-1.jpg',
+    },
+    {
+        name: 'Liberty Scholarship 2025',
+        creator: 'Liberty Scholarship',
+        avatar: 'sample-avatar-2.jpg',
+        supports: '14700',
+        createdAt: '',
+        thumbnail: 'sample-campaign-2.jpg',
+    },
+    {
+        name: 'Bit by Bit - Retro Gaming',
+        creator: 'Bit by Bit',
+        avatar: 'sample-avatar-3.jpg',
+        supports: '15100',
+        createdAt: '',
+        thumbnail: 'sample-campaign-3.jpg',
+    },
+    {
+        name: 'Digital Culture Webinar',
+        creator: 'Digital Culture',
+        avatar: 'sample-avatar-4.jpg',
+        supports: '7700',
+        createdAt: '',
+        thumbnail: 'sample-campaign-4.jpg',
+    },
+])
+
+function getAvatarUrl(name: String) {
+  const filename = `/assets/img/sample/${name}`; 
+  return new URL(filename, import.meta.url).href;
+}
+function getThumbnailUrl(name: String) {
+  const filename = `/assets/img/sample/${name}`; 
+  return new URL(filename, import.meta.url).href;
+}
 </script>
 
 <style lang="scss">

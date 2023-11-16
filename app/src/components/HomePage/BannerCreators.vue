@@ -19,12 +19,12 @@ const swiperData = ref(`{
 }`,)
 
 const galleries = ref([
-  'art-book-fair-1.jpg', 'art-book-fair-2.jpg', 'art-book-fair-3.jpg', 'art-book-fair-4.jpg',
-  'art-book-fair-5.jpg', 'art-book-fair-6.jpg', 'art-book-fair-7.jpg', 'art-book-fair-8.jpg',
-  'art-book-fair-9.jpg', 'art-book-fair-10.jpg', 'art-book-fair-11.jpg', 'art-book-fair-12.jpg',
-  'art-book-fair-13.jpg', 'art-book-fair-14.jpg', 'art-book-fair-15.jpg', 'art-book-fair-16.jpg',
-  'art-book-fair-17.jpg', 'art-book-fair-18.jpg', 'art-book-fair-19.jpg', 'art-book-fair-20.jpg',
-  'art-book-fair-21.jpg', 'art-book-fair-22.jpg', 'art-book-fair-23.jpg', 'art-book-fair-24.jpg',
+  'art-book-fair-1.png', 'art-book-fair-2.png', 'art-book-fair-3.png', 'art-book-fair-4.png',
+  'art-book-fair-5.png', 'art-book-fair-6.png', 'art-book-fair-7.png', 'art-book-fair-8.png',
+  'art-book-fair-9.png', 'art-book-fair-10.png', 'art-book-fair-11.png', 'art-book-fair-12.png',
+  'art-book-fair-13.png', 'art-book-fair-14.png', 'art-book-fair-15.png', 'art-book-fair-16.png',
+  'art-book-fair-17.png', 'art-book-fair-18.png', 'art-book-fair-19.png', 'art-book-fair-20.png',
+  'art-book-fair-21.png', 'art-book-fair-22.png', 'art-book-fair-23.png', 'art-book-fair-24.png',
 ]);
 
 function getImageUrl(name: String) {
@@ -106,6 +106,8 @@ function getImageUrl(name: String) {
     &__campaign {
       width: 130px;
       height: 130px;
+      border-radius: 3px;
+      box-shadow: 0px 0.49456px 2.47279px 0px rgba(0, 0, 0, 0.10);
     }
   }
 </style>
