@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import numeral from 'numeral';

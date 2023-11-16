@@ -49,7 +49,7 @@
                                 :creator="creator"
                                 :avatar="getAvatarUrl(avatar)"
                                 :supports="supports"
-                                :createdAt="createdAt"
+                                :created-at="createdAt"
                                 :thumbnail="getThumbnailUrl(thumbnail)"
                             />
                         </div>
@@ -74,64 +74,64 @@ const campaigns = ref([
         name: 'UNIVERSE UNPACKED 2022',
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
-        supports: '85500',
-        createdAt: '',
+        supports: 85500,
+        createdAt: 0,
         thumbnail: 'sample-campaign-1.jpg',
     },
     {
         name: 'Liberty Scholarship 2025',
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
-        supports: '14700',
-        createdAt: '',
+        supports: 14700,
+        createdAt: 0,
         thumbnail: 'sample-campaign-2.jpg',
     },
     {
         name: 'Bit by Bit - Retro Gaming',
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
-        supports: '15100',
-        createdAt: '',
+        supports: 15100,
+        createdAt: 0,
         thumbnail: 'sample-campaign-3.jpg',
     },
     {
         name: 'Digital Culture Webinar',
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
-        supports: '7700',
-        createdAt: '',
+        supports: 7700,
+        createdAt: 0,
         thumbnail: 'sample-campaign-4.jpg',
     },
     {
         name: 'UNIVERSE UNPACKED 2022',
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
-        supports: '85500',
-        createdAt: '',
+        supports: 85500,
+        createdAt: 0,
         thumbnail: 'sample-campaign-1.jpg',
     },
     {
         name: 'Liberty Scholarship 2025',
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
-        supports: '14700',
-        createdAt: '',
+        supports: 14700,
+        createdAt: 0,
         thumbnail: 'sample-campaign-2.jpg',
     },
     {
         name: 'Bit by Bit - Retro Gaming',
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
-        supports: '15100',
-        createdAt: '',
+        supports: 15100,
+        createdAt: 0,
         thumbnail: 'sample-campaign-3.jpg',
     },
     {
         name: 'Digital Culture Webinar',
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
-        supports: '7700',
-        createdAt: '',
+        supports: 7700,
+        createdAt: 0,
         thumbnail: 'sample-campaign-4.jpg',
     },
 ])
