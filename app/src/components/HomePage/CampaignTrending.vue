@@ -259,27 +259,6 @@ export default {
     margin-right: 4px;
 }
 
-.author .avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 38px;
-    overflow: hidden;
-    margin-right: 10px;
-    flex-shrink: 0;
-}
-
-.author .info span {
-    font-size: 12px;
-    color: #1B1B1B;
-    line-height: 19px;
-}
-
-.author .info h6 {
-    font-size: 12px;
-    line-height: 19px;
-    font-weight: 400;
-}
-
 .text-bid {
     color: #1B1B1B;
     font-size: 12px;
