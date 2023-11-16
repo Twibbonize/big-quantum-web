@@ -18,8 +18,8 @@
       <div class="home-views__container container row d-flex w-100">
         <div class="home-views__hero__text-container d-flex flex-column col-4">
           <h1 class="home-views__hero__text">
-            <span class="home-views__hero__text-highlight">show</span>
-            your supports
+            show your
+            <span class="home-views__hero__text-highlight">supports</span>
           </h1>
           <h4 class="mt-3 fw-normal fs-5">
             Turn your passion into action; create custom images that show what you stand for and invite friends to join you

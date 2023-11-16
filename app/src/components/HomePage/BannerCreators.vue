@@ -1,5 +1,5 @@
 <template>
-  <div class="tp-rated-area overflow-hidden position-relative">
+  <div class="tp-rated-area overflow-hidden position-relative container">
     <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
     <div class="tp-rated-bg pt-120"  data-background="assets/img/rate/rated-bg.jpg">
       <div class="tp-rated-shape-1 d-none d-lg-block">
