@@ -29,7 +29,6 @@ const galleries = ref([
 
 function getImageUrl(name: String) {
   const filename = `/assets/img/campaigns/${name}`; 
-  console.log(new URL(filename, import.meta.url).href);
   return new URL(filename, import.meta.url).href;
 }
 </script>
