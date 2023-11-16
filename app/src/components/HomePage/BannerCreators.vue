@@ -40,7 +40,7 @@ function getImageUrl(name: String) {
 
     <div class="tp-rated-bg"  data-background="assets/img/rate/rated-bg.jpg">
       <div class="d-lg-flex justify-content-center">
-          <img src="src/assets/img/logos/twibbonize-creators.png" alt="twibbonize-for-creators">
+          <img src="/src/assets/img/logos/twibbonize-creators.png" alt="twibbonize-for-creators">
       </div>
 
       <div class="container z-index-6 mt-3">
@@ -61,7 +61,7 @@ function getImageUrl(name: String) {
             </div>
           </div>
           <div class="author-rated-big-img d-flex justify-content-center"  data-parallax='{"y": 100, "smoothness": 30}'>
-            <img src="src/assets/img/logos/creators-brand.png" alt="twibbonize-for-creators">
+            <img src="/src/assets/img/logos/creators-brand.png" alt="twibbonize-for-creators">
           </div>
       </div>
       <div>
