@@ -57,6 +57,7 @@ a {
 }
 img {
   @include prefixer(user-select, none, webkit moz o ms);
+  @include prefixer(pointer-events, none, webkit moz o ms);
 }
 
 /*-----------------------------

@@ -193,6 +193,7 @@ export default {
       line-height: 27px !important;
       font-weight: 500;
       margin-top: 90px !important;
+      letter-spacing: 0.1px;
     }
 
     &__btn-container {
