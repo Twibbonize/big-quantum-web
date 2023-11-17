@@ -40,14 +40,20 @@ function getImageUrl(name: String) {
 
     <div class="tp-rated-bg"  data-background="assets/img/rate/rated-bg.jpg">
       <div class="d-lg-flex justify-content-center">
-          <img src="/src/assets/img/logos/twibbonize-creators.png" alt="twibbonize-for-creators">
+          <img src="/src/assets/img/logos/twibbonize-creators.svg" alt="twibbonize-for-creators">
       </div>
 
       <div class="container z-index-6 mt-3">
           <div class="row justify-content-center">
             <div class="col-xl-10">
                 <div class="tp-rated-title-box text-center mb-60">
-                  <h5 class="tp-section-title-3 text-white pb-40"><span>gather</span> your<br> supporters with <br>Twibbonize</h5>
+                  <h5 class="tp-section-title-3 text-white pb-40">
+                    <span class="position-relative">
+                      <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
+                      <span>gather</span>
+                      <span class="banner-creators__highlight-line position-absolute">_____</span>
+                    </span>
+                    your<br> supporters with <br>Twibbonize</h5>
                   <div class="d-flex justify-content-center align-items-center mt-3">
                     <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
                       Learn More
@@ -65,7 +71,7 @@ function getImageUrl(name: String) {
           </div>
       </div>
       <div>
-        <div class="swiper-container autoslider1 mt-4" :data-swiper="swiperData">
+        <div class="banner-creators__swiper swiper-container autoslider1 mt-4" :data-swiper="swiperData">
           <div class="swiper-wrapper banner-creators__slider-wrapper">
             <div v-for="(filename, i) in galleries" :key="i" class="swiper-slide banner-creators__campaign-slider">
               <img class="banner-creators__campaign" :src="getImageUrl(filename)" :alt="filename">
@@ -95,6 +101,20 @@ function getImageUrl(name: String) {
       border-radius: 350px;
       background: rgba(22, 218, 193, 0.30);
       filter: blur(77.16836547851562px);
+    }
+    &__spark {
+      width: 35px;
+      height: 42px;
+      left: -26px;
+      top: 2px;
+    }
+    &__highlight-line {
+      left: 0;
+      top: 5px;
+    }
+    &__swiper {
+      touch-action: none !important;
+      pointer-events: none !important;;
     }
     &__slider-wrapper {
       transition-timing-function: linear;

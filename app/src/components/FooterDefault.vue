@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import dayjs from 'dayjs';
+
+const currentYear = dayjs().year();
+
+</script>
+
 <template>
   <footer id="footer" class="bg-white">
     <div class="container">
@@ -71,13 +78,16 @@
             </div>
         </div>
         <div class="footer-bottom d-flex align-items-center">
-            <p>© 2023 OpeN9 - Made By Themesflat</p>
+            <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia.</p>
             <ul class="d-flex">
+                <li>
+                    <a class="ws-nowrap" href="#">Terms & Conditions</a>
+                </li>
                 <li>
                     <a class="ws-nowrap" href="#">Privacy Policy</a>
                 </li>
                 <li>
-                    <a class="ws-nowrap" href="#">Terms of Service</a>
+                    <a class="ws-nowrap" href="#">Cookie Policy</a>
                 </li>
             </ul>
         </div>

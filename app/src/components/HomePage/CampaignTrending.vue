@@ -287,11 +287,6 @@ function getThumbnailUrl(name: String) {
     width: 107%;
 }
 
-.background-white .heading-section a,
-.background-white .heading-section .tf-title {
-    color: #161616;
-}
-
 .background-white .heading-section a::after {
     background-color: rgba(22, 22, 22, 0.10);
 }
