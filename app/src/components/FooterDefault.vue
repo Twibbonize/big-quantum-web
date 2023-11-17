@@ -10,8 +10,12 @@
                                 <img id="logo_footer" src="/src/assets/img/logos/twibbonize-logo-black.svg">
                             </a>
                             <div class="d-flex gap-2 flex-wrap mt-4">
-                              <img id="appstore" class="logo-footer__download" src="/src/assets/img/logos/download-appstore.png">
-                              <img id="playstore" class="logo-footer__download" src="/src/assets/img/logos/download-playstore.png">
+                              <a href="https://apps.apple.com/id/app/twibbonize/id1610446264" target="_blank" rel="noopener noreferrer">
+                                <img id="appstore" class="logo-footer__download" src="/src/assets/img/logos/download-appstore.png">
+                              </a>
+                              <a href="https://play.google.com/store/apps/details?id=com.twibbonize" target="_blank" rel="noopener noreferrer">
+                                <img id="playstore" class="logo-footer__download" src="/src/assets/img/logos/download-playstore.png">
+                              </a>
                             </div>
                         </div>
                     </div>
