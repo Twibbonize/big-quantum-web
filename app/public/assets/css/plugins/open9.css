@@ -1700,7 +1700,7 @@
 }
 
 .background-white .seller .swiper-button-next.active:hover::after {
-  color: rgba(22, 22, 22, 1);
+  color: #16DAC1;
 }
 
 /* tf-soft */
@@ -2556,7 +2556,7 @@
 }
 
 .background-white .swiper-button-prev::after {
-  color: rgba(22, 22, 22, 1);
+  color: #16DAC1;
 }
 
 /* .flat-pages-title-home5 */
