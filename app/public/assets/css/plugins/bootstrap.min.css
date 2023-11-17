@@ -3197,12 +3197,11 @@ fieldset:disabled .btn {
   background-color: transparent;
 }
 .btn-link {
-  font-weight: 400;
+  font-weight: 700;
   color: #0d6efd;
-  text-decoration: underline;
 }
 .btn-link:hover {
-  color: #0a58ca;
+  text-decoration: underline;
 }
 .btn-link.disabled,
 .btn-link:disabled {
