@@ -26,7 +26,7 @@ onUnmounted(() => {
 
 <template>
   <div class="home-page" ref="content">
-    <NavigationHeader :class="{ 'home-page__navbar': scrollPosition > 502 }"/>
+    <NavigationHeader/>
     <HeroParticipant ref="hero"/>
     <CampaignTrending class="py-60"/>
     <TopCreators class="py--60"/>

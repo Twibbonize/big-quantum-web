@@ -3123,6 +3123,10 @@ div.button {
   line-height: 20px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+  -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
   font-weight: normal;
   text-decoration: none;
   vertical-align: middle;
@@ -3282,6 +3286,23 @@ span.button.text-hover,
 div.button.text-hover {
   overflow: hidden;
   position: relative;
+}
+input[type=submit].text-hover .icon,
+input[type=submit].text-hover .text,
+.btn.text-hover .icon,
+.btn.text-hover .text,
+a.btn input.btn.text-hover .icon,
+a.btn input.btn.text-hover .text,
+a.button.text-hover .icon,
+a.button.text-hover .text,
+span.button.text-hover .icon,
+span.button.text-hover .text,
+div.button.text-hover .icon,
+div.button.text-hover .text {
+  -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
 }
 input[type=submit].text-hover .icon,
 .btn.text-hover .icon,
@@ -3881,6 +3902,10 @@ button.close:hover {
   transform: translateY(-50%);
   right: 18px;
   z-index: 10;
+  -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
 }
 
 select {
@@ -4128,6 +4153,10 @@ label {
   position: absolute;
   top: 5px;
   left: 5px;
+  -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -moz-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
 }
 .radio:hover .input:after {
   background: #1b1b1b;

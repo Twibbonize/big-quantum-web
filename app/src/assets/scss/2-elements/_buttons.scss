@@ -13,7 +13,7 @@ div.button {
   min-height: 20px;
   line-height: 20px;
   @include border_radius();
-  @include animate();
+  // @include animate();
   font-weight: normal;
   text-decoration: none;
   vertical-align: middle;
@@ -126,7 +126,7 @@ div.button {
 
     .icon,
     .text {
-      @include animate();
+      // @include animate();
     }
 
     .icon {
@@ -382,29 +382,13 @@ a.btn-outline {
   background: transparent !important;
   position: relative;
 
-  // @include before {
-  //   height: 0;
-  //   width: 0;
-  //   border-radius: 100%;
-  //   background: $color_white;
-  //   left: 50%;
-  //   top: 50%;
-  //   transform: translate(-50%, -50%);
-  //   z-index: -1;
-  //   transition: all 0.3s $transition_function;
-  //   opacity: 0.3;
-  // }
-
   &:hover {
     color: $color_black;
     text-decoration: underline;
-
-    // @include before {
-    //   height: 15rem;
-    //   width: 15rem;
-    // }
   }
 }
+
+
 .btn-grad {
   color: $color_white;
   border: none !important ;

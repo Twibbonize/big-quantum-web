@@ -42,6 +42,7 @@
     outline: none !important;
     border: none !important;
     user-select: none;
+    border-radius: 20px;
 
     &::after {
       display: none;

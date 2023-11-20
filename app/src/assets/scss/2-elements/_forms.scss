@@ -16,7 +16,7 @@
     transform: translateY(-50%);
     right: 18px;
     z-index: 10;
-    @include animate();
+    // @include animate();
   }
 }
 
@@ -218,7 +218,7 @@ label {
       position: absolute;
       top: 5px;
       left: 5px;
-      @include animate();
+      // @include animate();
     }
   }
 

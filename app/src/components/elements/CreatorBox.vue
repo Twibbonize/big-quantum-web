@@ -23,6 +23,12 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+.tf-author-box {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .tf-author-box .author-avatar {
   margin-bottom: 14px;
   position: relative;
