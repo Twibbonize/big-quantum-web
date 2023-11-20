@@ -258,9 +258,8 @@ function getThumbnailUrl(name: String) {
 
 .heading-section a i {
     padding: 4px;
-    margin-top: 4px;
     margin-left: 6px;
-    font-size: 10px;
+    font-size: 14px;
     border-radius: 20px;
     border-color: transparent;
     background: none;
@@ -268,9 +267,9 @@ function getThumbnailUrl(name: String) {
 
 .heading-section a::after {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 7px;
+    width: 24px;
+    height: 24px;
+    top: 1px;
     right: 0;
     content: '';
     border-radius: 20px;
@@ -285,10 +284,6 @@ function getThumbnailUrl(name: String) {
 
 .heading-section a:hover::after {
     width: 107%;
-}
-
-.background-white .heading-section a::after {
-    background-color: rgba(22, 22, 22, 0.10);
 }
 
 .button-place-bid {

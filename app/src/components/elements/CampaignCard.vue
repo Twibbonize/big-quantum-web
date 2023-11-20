@@ -17,24 +17,22 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="tf-card-box style-1">
+  <div class="campaign-card style-1">
     <div class="card-media">
       <a href="#">
         <img :src="props.thumbnail" alt="">
       </a>
-      <!-- <span class="wishlist-button icon-heart"></span>
-      <div class="featured-countdown">
-        <span class="js-countdown" data-timer="7500" data-labels="d,h,m,s"></span>
-      </div> -->
-      <div class="button-place-bid">
-        <a href="#" data-toggle="modal" data-target="#popup_bid" class="tf-button"><span>View</span></a>
+      <div class="button-view">
+        <nuxt-link to="#" data-toggle="modal" data-target="#popup_view" class="tf-button">
+          <span>View</span>
+        </nuxt-link>
       </div>
     </div>
     <h5 class="name fs-18">{{ props.name }}</h5>
     <div class="author d-flex align-items-center">
       <img class="avatar" :src="avatar" alt="Image">
       <div class="d-flex flex-column justify-content-center info">
-        <h6>{{ props.creator }}</h6>
+        <NuxtLink><h6 class="campaign-card__name">{{ props.creator }}</h6></NuxtLink>
       </div>
     </div>
     <div class="divider"></div>
@@ -58,9 +56,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-/* tf-card-box */
-/* -------------------------------------- */
-.tf-card-box { 
+.campaign-card { 
   border-radius: 20px;
   background: #FFFFFF;
   padding: 10px 10px 14px;
@@ -72,20 +68,25 @@ const props = defineProps({
   -ms-transition    : all 0.2s ease;
   -o-transition     : all 0.2s ease;
   transition        : all 0.2s ease;
+
+  &__name:hover {
+    text-decoration: underline;
+  }
 }
 
-.tf-card-box:hover {
+.campaign-card:hover {
   transform: translateY(-10px);
+  cursor: pointer;
 }
 
-.tf-card-box .card-media {
+.campaign-card .card-media {
   position: relative;
   margin-bottom: 12px;
   border-radius: 25px;
   overflow: hidden;
 }
 
-.tf-card-box .card-media img {
+.campaign-card .card-media img {
   width: 100%;
   object-fit: cover;
   -webkit-transition: all 0.2s ease;
@@ -95,19 +96,19 @@ const props = defineProps({
   transition        : all 0.2s ease;
 }
 
-.tf-card-box:hover .card-media a img {
+.campaign-card:hover .card-media a img {
   transform: scale(1.1);
 }
-/* style-1 */
-.tf-card-box.style-1 {
+
+.campaign-card.style-1 {
   padding: 10px 10px 14px 10px;
 }
 
-.tf-card-box.style-1 .card-media {
+.campaign-card.style-1 .card-media {
   border-radius: 15px;
 }
 
-.tf-card-box.style-1 .name {
+.campaign-card.style-1 .name {
   margin-bottom: 10px;
   line-height: 25px;
   font-weight: 800;
@@ -119,13 +120,13 @@ const props = defineProps({
   white-space: nowrap;
 }
 
-.tf-card-box.style-1 .divider {
+.campaign-card.style-1 .divider {
   margin-top: 16px;
   margin-bottom: 16px;   
 }
 
-.tf-card-box .meta-info,
-.tf-card-box .author {
+.campaign-card .meta-info,
+.campaign-card .author {
   padding-left: 2px;
   padding-right: 2px;
 }
@@ -137,62 +138,62 @@ const props = defineProps({
   line-height: 19px;
 }
 
-.tf-card-box.style-1 .card-media .button-place-bid {
+.campaign-card.style-1 .card-media .button-view {
   bottom: 30%;
 }
 
-.tf-card-box.style-1:hover .card-media .button-place-bid {
+.campaign-card.style-1:hover .card-media .button-view {
   bottom: 50%;
   transform: translate(-50%,50%);
 }
 
 /* bg-white */
-.tf-card-box.style-1.bg-white {
+.campaign-card.style-1.bg-white {
   background-color: #FFF;
   border: 1px solid #F1F1F1;
   padding-bottom: 12px;
 }
 
-.tf-card-box.style-1.bg-white .card-media {
+.campaign-card.style-1.bg-white .card-media {
   border-radius: 12px;
 }
 
-.tf-card-box.style-1.bg-white .card-media img {
+.campaign-card.style-1.bg-white .card-media img {
   height: 244px;
 }
 
-.tf-card-box.style-1.bg-white .price.gem i {
+.campaign-card.style-1.bg-white .price.gem i {
   font-size: 14px;
 }
 
-.tf-card-box.style-1.bg-white .meta-info h6 i::before,
-.tf-card-box.style-1.bg-white .meta-info h6,
-.tf-card-box.style-1.bg-white .author .info h6 a,
-.tf-card-box.style-1.bg-white .name a,
-.tf-card-box.style-1.bg-white .wishlist-button,
-.tf-card-box.style-1.bg-white .featured-countdown {
+.campaign-card.style-1.bg-white .meta-info h6 i::before,
+.campaign-card.style-1.bg-white .meta-info h6,
+.campaign-card.style-1.bg-white .author .info h6 a,
+.campaign-card.style-1.bg-white .name a,
+.campaign-card.style-1.bg-white .wishlist-button,
+.campaign-card.style-1.bg-white .featured-countdown {
   color: #161616;
 }
 
-.tf-card-box.style-1.bg-white .meta-info .text-bid,
-.tf-card-box.style-1.bg-white .author .info span {
+.campaign-card.style-1.bg-white .meta-info .text-bid,
+.campaign-card.style-1.bg-white .author .info span {
   color: rgba(22, 22, 22, 0.3);
 }
 
-.tf-card-box.style-1.bg-white .divider {
+.campaign-card.style-1.bg-white .divider {
   margin: 0;
   height: 26px;
   background: none;
 }
 
-.tf-card-box.style-1.bg-white .button-place-bid {
+.campaign-card.style-1.bg-white .button-view {
   position: unset;
   opacity: 1;
   transform: none;
 }
 
-/* button-place-bid */
-.button-place-bid {
+/* button-view */
+.button-view {
   position: absolute;
   bottom: 0px;
   height: 44px;
@@ -207,7 +208,7 @@ const props = defineProps({
   transition: all 0.2s ease;
 }
 
-.tf-card-box:hover .button-place-bid {
+.campaign-card:hover .button-view {
   bottom: 12px;
   opacity: 1;
 }

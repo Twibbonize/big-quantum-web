@@ -56,19 +56,19 @@ const currentYear = dayjs().year();
                         <h5 class="title-widget ws-nowrap mt-30">Join the community</h5>
                         <div class="widget-social">
                             <ul class="d-flex align-items-center gap-2">
-                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
                                   <i class="ri-facebook-fill"></i>
                                 </li>
-                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
                                   <i class="ri-twitter-fill"></i>
                                 </li>
-                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
                                   <i class="ri-discord-fill"></i>
                                 </li>
-                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
                                   <i class="ri-tiktok-fill"></i>
                                 </li>
-                                <li class="widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
                                   <i class="ri-youtube-fill"></i>
                                 </li>
                             </ul>
@@ -78,7 +78,7 @@ const currentYear = dayjs().year();
             </div>
         </div>
         <div class="footer-bottom d-flex align-items-center">
-            <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia.</p>
+            <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
             <ul class="d-flex">
                 <li>
                     <a class="ws-nowrap" href="#">Terms & Conditions</a>
@@ -123,7 +123,7 @@ const currentYear = dayjs().year();
 }
 
 .footer-bottom ul li a:hover {
-    color: #16DAC1;
+    text-decoration: underline !important;
 }
 
 /* style-1 */
@@ -163,6 +163,7 @@ const currentYear = dayjs().year();
 #footer.bg-white a.icon-vt:hover:before,
 #footer.bg-white .widget-social ul li a:hover {
     color: #fff !important;
+    text-decoration: underline;
 }
 
 #footer.bg-white .footer-bottom {
@@ -207,11 +208,7 @@ const currentYear = dayjs().year();
 }
 
 .widget-menu ul li a:hover {
-    color: #16DAC1;
-}
-
-.background-white .widget-menu ul li a:after {
-    background: rgba(22, 22, 22, 1);
+    text-decoration: underline !important;
 }
 
 .widget-menu ul li a::after {
@@ -238,6 +235,11 @@ const currentYear = dayjs().year();
     height: 38px;
     border-radius: 19px;
     background: rgba(#1B1B1B, .05);
+
+    &:hover {
+        background: rgba(#1B1B1B, .2);
+        cursor: pointer;
+    }
 
     i {
       color: #1B1B1B;

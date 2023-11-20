@@ -480,7 +480,7 @@
   transform: translateY(10px);
   opacity: 0;
   visibility: hidden;
-  @include animate();
+  // @include animate();
 }
 
 @mixin fade_up_active() {
@@ -495,7 +495,7 @@
   transform: translateY(-10px);
   opacity: 0;
   visibility: hidden;
-  @include animate();
+  // @include animate();
 }
 
 @mixin fade_down_active() {
@@ -509,7 +509,7 @@
 @mixin flip_up() {
   opacity: 0;
   visibility: hidden;
-  @include animate();
+  // @include animate();
   transform-origin: 50% -50px;
   transform: perspective(300px) rotateX(-15deg);
 }
@@ -524,7 +524,7 @@
 
 @mixin active_image() {
   transform: scale(0.98);
-  @include animate();
+  // @include animate();
 }
 
 @mixin btn_shadow() {
