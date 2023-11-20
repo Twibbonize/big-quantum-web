@@ -34,50 +34,7 @@ import type { endianness } from 'os';
                 </div>
               </div>
             </div>
-            <div class="bg-home7 user-select-none pe-none">
-              <div class="swiper-container autoslider1" :data-swiper="swiperData">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-container autoslider1" :data-swiper="swiperDataReverse">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-container autoslider1" :data-swiper="swiperData">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
+            <HomeSlider/>
           </div>
       </div>
     </div>
@@ -86,43 +43,14 @@ import type { endianness } from 'os';
 
 <script lang="ts">
 import TWButton from '../base/TWButton.vue';
+import HomeSlider from './HomeSlider.vue';
 
 export default {
   name: 'HeroParticipant',
   components: {
     TWButton,
-  },
-  data() {
-    return {
-      swiperData: `{
-          "direction": "vertical",
-          "spaceBetween": 45,
-          "grabCursor": false,
-          "speed": 10000,
-          "centeredSlides": false,
-          "loop": true,
-          "slidesPerView": "auto",
-          "autoplay": {
-            "delay": "0",
-            "disableOnInteraction": false
-          }
-      }`,
-      swiperDataReverse: `{
-        "direction": "vertical",
-        "spaceBetween": 45,
-        "grabCursor": false,
-        "speed": 10000,
-        "centeredSlides": false,
-        "loop": true,
-        "slidesPerView": "auto",
-        "autoplay": {
-          "delay": "0",
-          "disableOnInteraction": false,
-          "reverseDirection": true
-        }
-      }`,
-    };
-  },
+    HomeSlider
+},
 };
 </script>
 
@@ -212,7 +140,7 @@ export default {
     content: "";
     bottom: 0px;
     left: 0;
-    background-image: url(../images/item-background/bg-home7.png);
+    background-image: url(../images/item-background/home-slider.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -224,37 +152,6 @@ export default {
     height: 470px;
     text-align: start;
     padding-left: 8px;
-  }
-
-
-
-  .bg-home7 {
-    width: 825px;
-    height: 622px;
-    transform: rotate(-25deg);
-    display: flex;
-    gap: 30px;
-    position: absolute; 
-    right: 80px;
-    top: 0;
-    z-index: 1;
-  }
-
-  .bg-home7 .swiper-container {
-    overflow: unset;
-  }
-
-  .bg-home7 .swiper-container .swiper-wrapper {
-    transition-timing-function: linear !important;
-  }
-
-  .bg-home7 .swiper-container .swiper-slide {
-    height: auto;
-  }
-
-  .bg-home7  img {
-    width: 255px;
-    height: 384px;
   }
 
   /* slider-scroll-page */
@@ -275,11 +172,6 @@ export default {
 
   .slider-scroll-page .hero-participant::after {
     display: none;
-  }
-
-  .slider-scroll-page .bg-home7 {
-    transform: rotate(0);
-    right: -291px;
   }
 
   .slider-scroll-page .hero-participant .content {
