@@ -1,17 +1,16 @@
-<script setup lang="ts">
+<script setup >
 import { ref, onMounted, onUnmounted } from 'vue';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue'; 
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
-import FooterDefault from '@/components/FooterDefault.vue';
 import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
-import NavigationHeader from '@/components/NavigationHeader.vue';
 import TopCreators from '@/components/HomePage/TopCreators.vue';
+import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
 
 const scrollPosition = ref(0)
  
-const doScroll = (event: any) => {
+const doScroll = (any) => {
   scrollPosition.value = window.scrollY;
 }
  
@@ -26,12 +25,12 @@ onUnmounted(() => {
 
 <template>
   <div class="home-page" ref="content">
-    <NavigationHeader/>
     <HeroParticipant ref="hero"/>
     <CampaignTrending class="py-60"/>
     <TopCreators class="py--60"/>
-    <BannerCreators/>
-    <FooterDefault/>
+    <BannerCreators class="home-page__banner container">
+      <CampaignSwiper/>
+    </BannerCreators>
   </div>
 </template>
 
@@ -39,6 +38,11 @@ onUnmounted(() => {
   .home-page {
     &__navbar {
       background: #16DAC1 !important;
+    }
+    &__banner {
+      .tp-rated-bg {
+        border-radius: 60px;
+      }
     }
   }
 </style>

@@ -64,7 +64,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { ref } from 'vue';
 
 import CampaignCard from '@/components/elements/CampaignCard.vue';
@@ -136,11 +136,11 @@ const campaigns = ref([
     },
 ])
 
-function getAvatarUrl(name: String) {
+function getAvatarUrl(name) {
   const filename = `/assets/img/sample/${name}`; 
   return new URL(filename, import.meta.url).href;
 }
-function getThumbnailUrl(name: String) {
+function getThumbnailUrl(name) {
   const filename = `/assets/img/sample/${name}`; 
   return new URL(filename, import.meta.url).href;
 }

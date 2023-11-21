@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 import { ref } from 'vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import TWToggleSwitch3State from '@/components/base/TWToggleSwitch3State.vue';
@@ -51,7 +51,7 @@ const creators = ref([
   },
 ])
 
-function getImageUrl(name: String) {
+function getImageUrl(name) {
   const filename = `/assets/img/sample/${name}`; 
   return new URL(filename, import.meta.url).href;
 }

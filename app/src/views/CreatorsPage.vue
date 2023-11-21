@@ -1,0 +1,55 @@
+<script setup >
+import BannerCreators from '@/components/HomePage/BannerCreators.vue';
+import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
+
+</script>
+
+<template>
+  <div class="creators-page">
+    <BannerCreators/>
+    <CampaignSwiper class="creators-page__swiper"/>
+    <div style="height: 5000px"></div>
+  </div>
+</template>
+
+<style lang="scss">
+.creators-page {
+  .tp-rated-bg {
+    height: 767px;
+    padding-top: 139px;
+    box-sizing: border-box;
+  }
+
+  .tp-section-title-3 {
+    font-size: 105px;
+    line-height: 100px;
+    
+    span {
+      font-size: 130px;
+    }
+  }
+
+  .banner-creators__spark {
+    top: 24px;
+  }
+
+  .banner-creators__highlight-line {
+    top: 30px;
+  }
+
+  .banner-creators__btn-container, .author-rated-big-img {
+    display: none !important;
+  }
+
+  &__swiper {
+    margin-top: -150px !important;
+  }
+
+  .campaign-swiper__campaign {
+    height: 235px;
+    width: 235px;
+    margin: 0 4px;
+  }
+
+}
+</style>
