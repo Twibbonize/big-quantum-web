@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 import { ref } from 'vue';
 
 import TWButton from '@/components/base/TWButton.vue';
@@ -27,14 +27,14 @@ const galleries = ref([
   'art-book-fair-21.png', 'art-book-fair-22.png', 'art-book-fair-23.png', 'art-book-fair-24.png',
 ]);
 
-function getImageUrl(name: String) {
+function getImageUrl(name) {
   const filename = `/assets/img/campaigns/${name}`; 
   return new URL(filename, import.meta.url).href;
 }
 </script>
 
 <template>
-  <div class="tp-rated-area overflow-hidden position-relative container">
+  <div class="tp-rated-area overflow-hidden position-relative">
     <div class="banner-creators__ellipse"></div>
     <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
 
@@ -54,7 +54,7 @@ function getImageUrl(name: String) {
                       <span class="banner-creators__highlight-line position-absolute">_____</span>
                     </span>
                     your<br> supporters with <br>Twibbonize</h5>
-                  <div class="d-flex justify-content-center align-items-center mt-3">
+                  <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
                     <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
                       Learn More
                     </TWButton>

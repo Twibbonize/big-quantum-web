@@ -41,7 +41,7 @@ import type { endianness } from 'os';
 </div>
 </template>
 
-<script lang="ts">
+<script >
 import TWButton from '../base/TWButton.vue';
 import HomeSlider from './HomeSlider.vue';
 

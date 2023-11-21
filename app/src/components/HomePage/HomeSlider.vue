@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 const swiperData = `{
   "direction": "vertical",
   "spaceBetween": 45,
