@@ -1,17 +1,19 @@
 <script setup >
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
+import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
+
 </script>
 
 <template>
   <div class="creators-page">
     <BannerCreators/>
+    <CampaignSwiper class="creators-page__swiper"/>
     <div style="height: 5000px"></div>
   </div>
 </template>
 
 <style lang="scss">
 .creators-page {
-
   .tp-rated-bg {
     height: 767px;
     padding-top: 139px;
@@ -39,7 +41,11 @@ import BannerCreators from '@/components/HomePage/BannerCreators.vue';
     display: none !important;
   }
 
-  .banner-creators__campaign {
+  &__swiper {
+    margin-top: -150px !important;
+  }
+
+  .campaign-swiper__campaign {
     height: 235px;
     width: 235px;
     margin: 0 4px;

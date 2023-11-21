@@ -5,6 +5,7 @@ import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
 import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
 import TopCreators from '@/components/HomePage/TopCreators.vue';
+import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
 
 const scrollPosition = ref(0)
@@ -27,7 +28,9 @@ onUnmounted(() => {
     <HeroParticipant ref="hero"/>
     <CampaignTrending class="py-60"/>
     <TopCreators class="py--60"/>
-    <BannerCreators class="home-page__banner container"/>
+    <BannerCreators class="home-page__banner container">
+      <CampaignSwiper/>
+    </BannerCreators>
   </div>
 </template>
 
