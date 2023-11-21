@@ -3,7 +3,8 @@
     <div class="container">
       <div class="row d-flex align-items-center justify-content-between">
         <div class="col-3">
-          <img class="navigation-header__logo" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="twibbonize">
+          <img class="navigation-header__logo-black" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="twibbonize">
+          <img class="navigation-header__logo-white" src="/src/assets/img/logos/twibbonize-logo-white.svg" alt="twibbonize">
         </div>
         <div class="navigation-header__search d-flex p-0">
           <input type="text" name="navigation-search" id="navigation-search">
@@ -21,7 +22,7 @@
   </header>
 </template>
 
-<script lang="ts">
+<script >
 import TWButton from './base/TWButton.vue';
 
 export default {
@@ -45,9 +46,14 @@ export default {
     z-index: 20;
     width: 100%;
 
-    &__logo {
-      height: 3rem;
+    &__logo-white {
+      display: none;
+    }
+
+    &__logo-black {
+      height: 2rem;
       margin-top: -8px;
+      display: block;
     }
 
     &__search {
@@ -76,6 +82,20 @@ export default {
     }
 
     &__action {
+    }
+  }
+
+  .navbar--black {
+    .navigation-header {
+      &__logo-black {
+        display: none;
+      }
+
+      &__logo-white {
+        height: 2rem;
+        margin-top: -8px;
+        display: block;
+      }
     }
   }
 </style>
