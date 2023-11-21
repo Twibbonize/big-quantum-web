@@ -41,14 +41,14 @@ const props = defineProps({
         <i class="ri-group-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Supporters</span>
-          <h6 class="fs-14 fw-light">{{ numeral(props.supports).format('0.0a') }}</h6>
+          <h6 class="fs-14 fw-light lh-1">{{ numeral(props.supports).format('0.0a') }}</h6>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <i class="ri-time-line fs-5 mr-1"></i>
         <div class="d-flex flex-column">
           <span class="fs-14 fw-bold">Created</span>
-          <h6 class="fs-14 fw-light">{{ dayjs(props.createdAt).fromNow() }}</h6>
+          <h6 class="fs-14 fw-light lh-1">{{ dayjs(props.createdAt).fromNow() }}</h6>
         </div>
       </div>
     </div>

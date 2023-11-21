@@ -22,12 +22,12 @@ import type { endianness } from 'os';
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
-                <div class="hero-participant__btn-container flat-button d-flex align-items-center mt-4">
+                <div class="hero-participant__btn-container flat-button d-flex align-items-center mt-4 gap-3">
                   <TWButton class="fs-14" color="secondary" border-radius="circle">
                     <i class="ri-add-line"></i>
                     Start a Campaign
                   </TWButton>
-                  <div class="hero-participant__or fs-14 fw-bold ml-4 mr-1">or</div>
+                  <div class="hero-participant__or fs-14 fw-bold">or</div>
                   <TWButton class="fs-14 px-0" color="transparent" border-radius="circle">
                     Find a Campaign
                   </TWButton>
@@ -99,7 +99,7 @@ export default {
       font-style: normal;
       font-weight: 400 !important;
       line-height: 152.092px; /* 92.807% */
-      letter-spacing: -9.833px;
+      letter-spacing: -9.833px !important;
       // text-decoration-line: underline;
       transform: rotate(-2deg);
       margin-top: -20px;
@@ -111,7 +111,7 @@ export default {
         font-style: normal;
         font-weight: 400 !important;
         line-height: 152.092px; /* 92.807% */
-        letter-spacing: -9.833px;
+        letter-spacing: -14px !important;
         transform: rotate(-2deg);
         margin-top: -110px;
       }

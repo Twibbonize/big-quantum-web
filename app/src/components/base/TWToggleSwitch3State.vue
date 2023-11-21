@@ -4,8 +4,8 @@
       <input id="on" name="state-d" type="radio" checked />
       <label for="on" onclick=""><span>7 days</span></label>
   
-      <input id="na" name="state-d" type="radio" checked />
-      <label for="na" class="disabled" onclick=""><span>30 days</span></label>
+      <input id="na" name="state-d" type="radio" />
+      <label for="na" onclick=""><span>30 days</span></label>
   
       <input id="off" name="state-d" type="radio" />
       <label for="off" onclick=""><span>All</span></label>

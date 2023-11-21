@@ -2,10 +2,10 @@
   <header class="navigation-header">
     <div class="container">
       <div class="row d-flex align-items-center justify-content-between">
-        <div class="col-3">
+        <router-link to="/" class="col-3">
           <img class="navigation-header__logo-black" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="twibbonize">
           <img class="navigation-header__logo-white" src="/src/assets/img/logos/twibbonize-logo-white.svg" alt="twibbonize">
-        </div>
+        </router-link>
         <div class="navigation-header__search d-flex p-0">
           <input type="text" name="navigation-search" id="navigation-search">
           <i class="ri-search-line" role="button"></i>
@@ -54,6 +54,10 @@ export default {
       height: 2rem;
       margin-top: -8px;
       display: block;
+      
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__search {
