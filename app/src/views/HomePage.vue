@@ -24,8 +24,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="home-page" ref="content">
-    <HeroParticipant ref="hero"/>
+  <div class="home-page">
+    <HeroParticipant/>
     <CampaignTrending class="py-60"/>
     <TopCreators class="py--60"/>
     <BannerCreators class="home-page__banner container">

@@ -1,3 +1,19 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import TWButton from '../base/TWButton.vue';
+import HomeSlider from './HomeSlider.vue';
+
+import Vara from 'vara';
+
+onMounted(() => {
+  const vara = new Vara('#vara',"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",[{
+    text:"Supports"
+  }],{
+    fontSize:46
+  });
+})
+</script>
+
 <template>
   <div class="hero-participant position-relative">
     <div class="hero-participant__bg"></div>
@@ -14,10 +30,11 @@
                   show your  
                 </h1>
                 <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
-                  <VueWriter :array="['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation']" />
+                  <div id="vara"></div>
+                  <!-- <VueWriter :array="['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation']" /> -->
                 </h1>
                 <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
-                  <VueWriter :array="['________', '__________', '_________', '________', '_____________']" />
+                  <!-- <VueWriter :array="['________', '__________', '_________', '________', '_____________']" /> -->
                 </h1>
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
@@ -40,19 +57,6 @@
     </div>
 </div>
 </template>
-
-<script>
-import TWButton from '../base/TWButton.vue';
-import HomeSlider from './HomeSlider.vue';
-
-export default {
-  name: 'HeroParticipant',
-  components: {
-    TWButton,
-    HomeSlider,
-  },
-};
-</script>
 
 <style lang="scss">
   @keyframes move {
