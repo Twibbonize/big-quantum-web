@@ -1,5 +1,3 @@
-
-import type { endianness } from 'os';
 <template>
   <div class="hero-participant position-relative">
     <div class="hero-participant__bg"></div>
@@ -15,10 +13,12 @@ import type { endianness } from 'os';
                 <h1 class="hero-participant__text user-select-none pe-none text-lowercase">
                   show your  
                 </h1>
-                <h1 class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
-                  supports
+                <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
+                  <VueWriter :array="['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation']" />
                 </h1>
-                <h1 class="hero-participant__text-highlight-line">_______</h1>
+                <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
+                  <VueWriter :array="['________', '__________', '_________', '________', '_____________']" />
+                </h1>
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
@@ -41,7 +41,7 @@ import type { endianness } from 'os';
 </div>
 </template>
 
-<script >
+<script>
 import TWButton from '../base/TWButton.vue';
 import HomeSlider from './HomeSlider.vue';
 
@@ -49,12 +49,22 @@ export default {
   name: 'HeroParticipant',
   components: {
     TWButton,
-    HomeSlider
-},
+    HomeSlider,
+  },
 };
 </script>
 
 <style lang="scss">
+  @keyframes move {
+    from {
+      transform: scale(1) rotate(0deg);
+    }
+    to {
+      transform: scale(2) rotate(45deg);
+    }
+  }
+
+
   .hero-participant {
     overflow: hidden;
 
@@ -84,6 +94,7 @@ export default {
       right: 0;
       filter: blur(15.4px);
       mix-blend-mode: darken;
+      animation: 8s move infinite ease-in-out alternate;
     }
 
     &__text {

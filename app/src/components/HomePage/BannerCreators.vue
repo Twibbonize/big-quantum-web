@@ -17,12 +17,19 @@ import TWButton from '@/components/base/TWButton.vue';
             <div class="col-xl-10">
                 <div class="tp-rated-title-box text-center mb-60">
                   <h5 class="tp-section-title-3 text-white pb-40">
-                    <span class="position-relative">
-                      <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
-                      <span>gather</span>
-                      <span class="banner-creators__highlight-line position-absolute">_____</span>
-                    </span>
-                    your<br> supporters with <br>Twibbonize</h5>
+                    <div class="d-flex justify-content-center">
+                      <div class="d-flex position-relative">
+                        <span>
+                          <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" />
+                        </span>
+                        <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
+                        <span class="banner-creators__highlight-line position-absolute">
+                          <VueWriter :array="['______', '_______', '_____', '_________', '____']" />
+                        </span>
+                        your
+                      </div>
+                    </div>
+                    supporters with <br>Twibbonize</h5>
                   <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
                     <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
                       Learn More
@@ -47,12 +54,37 @@ import TWButton from '@/components/base/TWButton.vue';
 </template>
 
 <style lang="scss">
+  @keyframes glow {
+    from {
+      transform: translateX(-50%) scale(1);
+    }
+    to {
+      transform: translateX(-70%) scale(1.4);
+    }
+    // 0%, 100% {
+    // border-radius: 33% 67% 70% 30%/30% 40% 70% 70%;
+    // }
+    // 20% {
+    //     border-radius: 37% 63% 51% 49%/37% 35% 35% 63%;
+    // }
+    // 40% {
+    //     border-radius: 36% 64% 64% 36%/64% 48% 52% 26%;
+    // }
+    // 60% {
+    //     border-radius: 37% 63% 51% 49%/30% 30% 70% 73%;
+    // }
+    // 80% {
+    //     border-radius: 40% 60% 42% 58%/51% 51% 49% 59%;
+    // }
+  }
+
   .banner-creators {
     &__bg {
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
+      animation: 8s glow infinite ease-in-out alternate;
     }
     &__ellipse {
       position: absolute;
@@ -68,11 +100,12 @@ import TWButton from '@/components/base/TWButton.vue';
     &__spark {
       width: 35px;
       height: 42px;
-      left: -26px;
+      left: -30px;
       top: 2px;
     }
     &__highlight-line {
-      left: 0;
+      font-size: 50px !important;
+      left: -15px;
       top: 5px;
     }
   }
