@@ -5,9 +5,9 @@ import TWButton from '@/components/base/TWButton.vue';
 <template>
   <div class="tp-rated-area overflow-hidden position-relative">
     <div class="banner-creators__ellipse"></div>
-    <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
-
-    <div class="tp-rated-bg"  data-background="assets/img/rate/rated-bg.jpg">
+    
+    <div class="tp-rated-bg position-relative"  data-background="assets/img/rate/rated-bg.jpg">
+      <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
       <div class="d-lg-flex justify-content-center">
           <img src="/src/assets/img/logos/twibbonize-creators.svg" alt="twibbonize-for-creators">
       </div>
@@ -56,10 +56,10 @@ import TWButton from '@/components/base/TWButton.vue';
 <style lang="scss">
   @keyframes glow {
     from {
-      transform: translateX(-50%) scale(1);
+      transform: translateX(-50%) scale(0.9) rotate(0deg);
     }
     to {
-      transform: translateX(-70%) scale(1.4);
+      transform: translateX(-60%) scale(1.1) rotate(10deg);
     }
     // 0%, 100% {
     // border-radius: 33% 67% 70% 30%/30% 40% 70% 70%;
@@ -81,7 +81,7 @@ import TWButton from '@/components/base/TWButton.vue';
   .banner-creators {
     &__bg {
       position: absolute;
-      bottom: 0;
+      bottom: -40%;
       left: 50%;
       transform: translateX(-50%);
       animation: 8s glow infinite ease-in-out alternate;

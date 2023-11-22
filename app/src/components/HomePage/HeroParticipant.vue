@@ -57,10 +57,10 @@ export default {
 <style lang="scss">
   @keyframes move {
     from {
-      transform: scale(1) rotate(0deg);
+      transform: scale(1) translateX(-50%) rotate(0deg);
     }
     to {
-      transform: scale(2) rotate(45deg);
+      transform: scale(1.2) translateX(-50%) rotate(30deg);
     }
   }
 
@@ -90,8 +90,8 @@ export default {
 
     &__pattern-center {
       position: absolute;
-      bottom: -10px;
-      right: 0;
+      bottom: -250%;
+      left: 20%;
       filter: blur(15.4px);
       mix-blend-mode: darken;
       animation: 8s move infinite ease-in-out alternate;
