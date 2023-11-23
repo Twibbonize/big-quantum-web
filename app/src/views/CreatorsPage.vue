@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
+import VerticalCarousel from '@/components/CreatorPage/VerticalCarousel.vue';
 
 const emit = defineEmits(['change-navbar']);
 
@@ -29,7 +30,7 @@ onUnmounted(() => {
     <BannerCreators/>
     <div ref="content"></div>
     <CampaignSwiper class="creators-page__swiper"/>
-    <div style="height: 5000px"></div>
+    <VerticalCarousel/>
   </div>
 </template>
 
