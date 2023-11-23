@@ -30,7 +30,7 @@ const navbarColor = computed(() => {
           </picture>
         </router-link>
         <div class="navigation-header__search d-flex p-0">
-          <input type="text" name="navigation-search" id="navigation-search">
+          <input type="text" name="navigation-search" id="navigation-search" placeholder="Find Campaigns or Creators">
           <i class="ri-search-line" role="button"></i>
         </div>
         <div class="navigation-header__action col-3 d-flex align-items-center justify-content-end">

@@ -35,7 +35,7 @@ const creators = ref([
     supports: 124100,
   },
   {
-    name: 'Ronlad Richard',
+    name: 'Ronald Richard',
     avatar: 'sample-avatar-7.jpg',
     supports: 825000,
   },

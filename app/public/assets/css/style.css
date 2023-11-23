@@ -3475,7 +3475,7 @@ a.btn-outline.disabled:hover {
 - - - - - - - - - 2/ Button variations
 =======================================================*/
 .btn-primary {
-  color: #ffffff;
+  color: #1b1b1b;
   border: none !important;
   transition: all 0.4s ease-in-out !important;
   background: #16DAC1 !important;
