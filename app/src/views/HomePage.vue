@@ -1,5 +1,5 @@
 <script setup >
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue'; 
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
@@ -10,8 +10,6 @@ import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);
-// const scrollPosition = ref(0);
-// const contentPosition = ref(0);
  
 const doScroll = () => {
   const { top } = content.value.getBoundingClientRect();
