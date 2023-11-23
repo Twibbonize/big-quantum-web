@@ -7,7 +7,7 @@
   const route = useRoute();
   
   function getNavbarClass() {
-    if (/(creators)/ig.test(route.name)) return 'navbar--black';
+    if (/(creators)/ig.test(route.name)) return 'navbar--transparent';
     return '';
   }
 </script>
@@ -26,8 +26,7 @@
 <style lang="scss">
   .navbar {
     &--black {
-      background: #1B1B1B !important;
-      // mix-blend-mode: color-dodge;
+      background: transparent !important;
     }
   }
 </style>

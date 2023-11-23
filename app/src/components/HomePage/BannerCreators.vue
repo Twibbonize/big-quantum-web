@@ -18,16 +18,18 @@ import TWButton from '@/components/base/TWButton.vue';
                 <div class="tp-rated-title-box text-center mb-60">
                   <h5 class="tp-section-title-3 text-white pb-40">
                     <div class="d-flex justify-content-center">
-                      <div class="d-flex position-relative">
+                      <div class="d-flex position-relative pr-4">
                         <span>
-                          <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" />
+                          gather
+                          <!-- <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" /> -->
                         </span>
                         <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
                         <span class="banner-creators__highlight-line position-absolute">
-                          <VueWriter :array="['______', '_______', '_____', '_________', '____']" />
+                          _____
+                          <!-- <VueWriter :array="['______', '_______', '_____', '_________', '____']" /> -->
                         </span>
-                        your
                       </div>
+                      your <br>
                     </div>
                     supporters with <br>Twibbonize</h5>
                   <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
@@ -104,8 +106,8 @@ import TWButton from '@/components/base/TWButton.vue';
       top: 2px;
     }
     &__highlight-line {
-      font-size: 50px !important;
-      left: -15px;
+      // font-size: 50px !important;
+      left: 0;
       top: 5px;
     }
   }

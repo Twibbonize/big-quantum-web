@@ -5,12 +5,26 @@ import HomeSlider from './HomeSlider.vue';
 
 import Vara from 'vara';
 
-onMounted(() => {
-  const vara = new Vara('#vara',"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",[{
-    text:"Supports"
-  }],{
-    fontSize:46
+const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
+const iteration = ref(0);
+
+function writeTitle (index) {
+  new Vara('#vara',"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
+  [
+    {
+      text: tagline[index]
+    },
+  ],{
+    fontSize: 130,
+    strokeWidth: 1.5,
+    letterSpacing: -8,
+    color: '#FFEF5F',
+    autoAnimation: true,
   });
+}
+
+onMounted(() => {
+  writeTitle(0);
 })
 </script>
 
@@ -30,11 +44,10 @@ onMounted(() => {
                   show your  
                 </h1>
                 <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
-                  <div id="vara"></div>
-                  <!-- <VueWriter :array="['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation']" /> -->
+                  supports
                 </h1>
                 <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
-                  <!-- <VueWriter :array="['________', '__________', '_________', '________', '_____________']" /> -->
+                  _______
                 </h1>
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you

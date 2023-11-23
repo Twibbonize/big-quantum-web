@@ -34,7 +34,7 @@ import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
   }
 
   .banner-creators__highlight-line {
-    top: 30px;
+    top: 5px;
   }
 
   .banner-creators__btn-container, .author-rated-big-img {

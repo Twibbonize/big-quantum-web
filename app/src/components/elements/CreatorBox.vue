@@ -131,7 +131,7 @@ const props = defineProps({
 }
 
 .tf-author-box.bg-white .author-infor h5 a:hover {
-  color: #16DAC1;
+  text-decoration: underline !important;
 }
 
 .tf-author-box.bg-white .author-infor h6 i::before,
@@ -215,7 +215,7 @@ const props = defineProps({
 }
 
 .background-white .tf-author-box .author-infor h5 a:hover {
-  color: #16DAC1;
+  text-decoration: underline !important;
 }
 
 .background-white .tf-author-box .price.gem i::before,
