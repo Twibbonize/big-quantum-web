@@ -221,7 +221,6 @@ function getThumbnailUrl(name) {
     font-size: 40px;
     font-style: normal;
     line-height: 55px;
-    text-transform: capitalize;
 }
 
 .heading-section {
@@ -235,7 +234,6 @@ function getThumbnailUrl(name) {
     font-size: 32px;
     font-weight: 800;
     line-height: 44px;
-    text-transform: capitalize;
     z-index: 10;
 }
 
@@ -343,7 +341,7 @@ function getThumbnailUrl(name) {
     border: none;
     color: #161616;
     background-color: #DEE8E8;
-    border-radius: 12px;
+    border-radius: 22px;
     font-size: 14px;
     font-weight: 800;
     width: 116px;

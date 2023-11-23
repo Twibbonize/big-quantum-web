@@ -1,22 +1,22 @@
 <script setup >
-  import { useRoute } from 'vue-router'
+  import { ref } from 'vue';
 
   import NavigationHeader from '@/components/NavigationHeader.vue';
   import FooterDefault from '@/components/FooterDefault.vue';
 
-  const route = useRoute();
+  const navbarColor = ref('');
   
-  function getNavbarClass() {
-    if (/(creators)/ig.test(route.name)) return 'navbar--black';
-    return '';
+
+  function changeNavbarColor(value) {
+    navbarColor.value = value;
   }
 </script>
 
 <template>
   <KeepAlive>
-    <NavigationHeader :class="getNavbarClass()"/>
+    <NavigationHeader :color="navbarColor"/>
   </KeepAlive>
-  <RouterView></RouterView>
+  <RouterView @change-navbar="changeNavbarColor"></RouterView>
   <KeepAlive>
     <FooterDefault/>
   </KeepAlive>
@@ -24,10 +24,5 @@
 
 
 <style lang="scss">
-  .navbar {
-    &--black {
-      background: #1B1B1B !important;
-      // mix-blend-mode: color-dodge;
-    }
-  }
+
 </style>

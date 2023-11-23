@@ -32,7 +32,7 @@ const props = defineProps({
     <div class="author d-flex align-items-center">
       <img class="avatar" :src="avatar" alt="Image">
       <div class="d-flex flex-column justify-content-center info">
-        <NuxtLink><h6 class="campaign-card__name">{{ props.creator }}</h6></NuxtLink>
+        <a href="#"><h6 class="campaign-card__name">{{ props.creator }}</h6></a>
       </div>
     </div>
     <div class="divider"></div>
@@ -197,6 +197,7 @@ const props = defineProps({
   position: absolute;
   bottom: 0px;
   height: 44px;
+  border-radius: 22px;
   transform: translateX(-50%);
   left: 50%;
   text-align: center;

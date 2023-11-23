@@ -1,43 +1,55 @@
+<script setup>
+import { computed } from 'vue';
+
+import TWButton from './base/TWButton.vue';
+
+const props = defineProps({
+  color: String
+})
+
+const buttonColor = computed(() => {
+  if (/(gradient|transparent)/ig.test(props.color)) return 'white';
+  return 'primary'
+});
+
+const navbarColor = computed(() => {
+  if (props.color) return `navigation-header--${props.color}`;
+  return '';
+})
+</script>
+
 <template>
-  <header class="navigation-header">
+  <header class="navigation-header" :class="navbarColor">
     <div class="container">
       <div class="row d-flex align-items-center justify-content-between">
         <router-link to="/" class="col-3">
-          <img class="navigation-header__logo-black" src="/src/assets/img/logos/twibbonize-logo-black.svg" alt="twibbonize">
-          <img class="navigation-header__logo-white" src="/src/assets/img/logos/twibbonize-logo-white.svg" alt="twibbonize">
+          <picture class="navigation-header__logo">
+            <source v-if="props.color === 'gradient'" srcset="/src/assets/img/logos/twibbonize-logo-black.svg">
+            <source v-else-if="props.color === 'transparent'" srcset="/src/assets/img/logos/twibbonize-logo-white.svg">
+            <img class="navigation-header__logo" src="/src/assets/img/logos/twibbonize-logo.svg" alt="twibbonize">
+          </picture>
         </router-link>
         <div class="navigation-header__search d-flex p-0">
           <input type="text" name="navigation-search" id="navigation-search">
           <i class="ri-search-line" role="button"></i>
         </div>
         <div class="navigation-header__action col-3 d-flex align-items-center justify-content-end">
-          <TWButton class="fs-12" color="white" border-radius="circle">
+          <TWButton class="fs-12" :color="buttonColor" border-radius="circle">
             <i class="ri-add-line"></i>
             Start a Campaign
           </TWButton>
-          <i class="ri-menu-line color_white fs-2 ml-4" role="button"></i>
+          <div class="navigation-header__menu d-flex align-items-center justify-content-center  ml-4">
+            <i class="ri-menu-line color-black fs-3" role="button"></i>
+          </div>
         </div>
       </div>
     </div>
   </header>
 </template>
 
-<script >
-import TWButton from './base/TWButton.vue';
-
-export default {
-  name: 'NavigationHeader',
-  components: {
-    TWButton,
-  }
-};
-</script>
-
 <style lang="scss">
   .navigation-header {
-    // background: #16DAC1;
-    background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
-    // border-bottom: rgba(#1B1B1B, .08) 1px solid;
+    background: #FFFFFF;
     gap: 10px;
     padding-top: 27px;
     padding-bottom: 18px;
@@ -46,11 +58,7 @@ export default {
     z-index: 20;
     width: 100%;
 
-    &__logo-white {
-      display: none;
-    }
-
-    &__logo-black {
+    &__logo {
       height: 2rem;
       margin-top: -8px;
       display: block;
@@ -87,19 +95,24 @@ export default {
 
     &__action {
     }
-  }
 
-  .navbar--black {
-    .navigation-header {
-      &__logo-black {
-        display: none;
-      }
+    &__menu {
+      width: 52px;
+      height: 52px;
+      border-radius: 26px;
 
-      &__logo-white {
-        height: 2rem;
-        margin-top: -8px;
-        display: block;
+
+      &:hover {
+        cursor: pointer;
       }
     }
+  }
+
+  .navigation-header--gradient.navigation-header {
+    background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
+  }
+
+  .navigation-header--transparent.navigation-header {
+    background: transparent;
   }
 </style>

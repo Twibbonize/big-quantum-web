@@ -5,9 +5,9 @@ import TWButton from '@/components/base/TWButton.vue';
 <template>
   <div class="tp-rated-area overflow-hidden position-relative">
     <div class="banner-creators__ellipse"></div>
-    <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
-
-    <div class="tp-rated-bg"  data-background="assets/img/rate/rated-bg.jpg">
+    
+    <div class="tp-rated-bg position-relative"  data-background="assets/img/rate/rated-bg.jpg">
+      <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
       <div class="d-lg-flex justify-content-center">
           <img src="/src/assets/img/logos/twibbonize-creators.svg" alt="twibbonize-for-creators">
       </div>
@@ -18,16 +18,18 @@ import TWButton from '@/components/base/TWButton.vue';
                 <div class="tp-rated-title-box text-center mb-60">
                   <h5 class="tp-section-title-3 text-white pb-40">
                     <div class="d-flex justify-content-center">
-                      <div class="d-flex position-relative">
+                      <div class="d-flex position-relative pr-4">
                         <span>
-                          <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" />
+                          gather
+                          <!-- <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" /> -->
                         </span>
                         <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
                         <span class="banner-creators__highlight-line position-absolute">
-                          <VueWriter :array="['______', '_______', '_____', '_________', '____']" />
+                          _____
+                          <!-- <VueWriter :array="['______', '_______', '_____', '_________', '____']" /> -->
                         </span>
-                        your
                       </div>
+                      your <br>
                     </div>
                     supporters with <br>Twibbonize</h5>
                   <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
@@ -56,10 +58,10 @@ import TWButton from '@/components/base/TWButton.vue';
 <style lang="scss">
   @keyframes glow {
     from {
-      transform: translateX(-50%) scale(1);
+      transform: translateX(-50%) scale(0.9) rotate(0deg);
     }
     to {
-      transform: translateX(-70%) scale(1.4);
+      transform: translateX(-60%) scale(1.1) rotate(10deg);
     }
     // 0%, 100% {
     // border-radius: 33% 67% 70% 30%/30% 40% 70% 70%;
@@ -81,7 +83,7 @@ import TWButton from '@/components/base/TWButton.vue';
   .banner-creators {
     &__bg {
       position: absolute;
-      bottom: 0;
+      bottom: -40%;
       left: 50%;
       transform: translateX(-50%);
       animation: 8s glow infinite ease-in-out alternate;
@@ -104,8 +106,8 @@ import TWButton from '@/components/base/TWButton.vue';
       top: 2px;
     }
     &__highlight-line {
-      font-size: 50px !important;
-      left: -15px;
+      // font-size: 50px !important;
+      left: 0;
       top: 5px;
     }
   }

@@ -1,12 +1,33 @@
 <script setup >
+import { ref, onMounted, onUnmounted } from 'vue';
+
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
+const emit = defineEmits(['change-navbar']);
+
+const content = ref(null);
+ 
+const doScroll = () => {
+  const { top } = content.value.getBoundingClientRect();
+  if (top < 97) emit('change-navbar', '');
+  else emit('change-navbar', 'transparent');
+}
+ 
+onMounted(() => {
+  emit('change-navbar', 'transparent')
+  window.addEventListener('scroll', doScroll)
+})
+   
+onUnmounted(() => {
+  window.removeEventListener('scroll', doScroll)
+})
 </script>
 
 <template>
   <div class="creators-page">
     <BannerCreators/>
+    <div ref="content"></div>
     <CampaignSwiper class="creators-page__swiper"/>
     <div style="height: 5000px"></div>
   </div>
@@ -34,7 +55,7 @@ import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
   }
 
   .banner-creators__highlight-line {
-    top: 30px;
+    top: 5px;
   }
 
   .banner-creators__btn-container, .author-rated-big-img {

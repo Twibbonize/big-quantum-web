@@ -1,3 +1,12 @@
+<script setup>
+// import { ref, onMounted } from 'vue';
+import TWButton from '../base/TWButton.vue';
+import HomeSlider from './HomeSlider.vue';
+
+
+// const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
+</script>
+
 <template>
   <div class="hero-participant position-relative">
     <div class="hero-participant__bg"></div>
@@ -14,10 +23,10 @@
                   show your  
                 </h1>
                 <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
-                  <VueWriter :array="['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation']" />
+                  supports
                 </h1>
                 <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
-                  <VueWriter :array="['________', '__________', '_________', '________', '_____________']" />
+                  _______
                 </h1>
                 <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
@@ -41,26 +50,13 @@
 </div>
 </template>
 
-<script>
-import TWButton from '../base/TWButton.vue';
-import HomeSlider from './HomeSlider.vue';
-
-export default {
-  name: 'HeroParticipant',
-  components: {
-    TWButton,
-    HomeSlider,
-  },
-};
-</script>
-
 <style lang="scss">
   @keyframes move {
     from {
-      transform: scale(1) rotate(0deg);
+      transform: scale(1) translateX(-50%) rotate(0deg);
     }
     to {
-      transform: scale(2) rotate(45deg);
+      transform: scale(1.2) translateX(-50%) rotate(30deg);
     }
   }
 
@@ -90,8 +86,8 @@ export default {
 
     &__pattern-center {
       position: absolute;
-      bottom: -10px;
-      right: 0;
+      bottom: -250%;
+      left: 20%;
       filter: blur(15.4px);
       mix-blend-mode: darken;
       animation: 8s move infinite ease-in-out alternate;
