@@ -1,5 +1,5 @@
 <script setup >
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue'; 
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
@@ -7,14 +7,20 @@ import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
 import TopCreators from '@/components/HomePage/TopCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
+const emit = defineEmits(['change-navbar']);
 
-const scrollPosition = ref(0)
+const content = ref(null);
+// const scrollPosition = ref(0);
+// const contentPosition = ref(0);
  
-const doScroll = (any) => {
-  scrollPosition.value = window.scrollY;
+const doScroll = () => {
+  const { top } = content.value.getBoundingClientRect();
+  if (top < 97) emit('change-navbar', '');
+  else emit('change-navbar', 'gradient');
 }
  
 onMounted(() => {
+  emit('change-navbar', 'gradient')
   window.addEventListener('scroll', doScroll)
 })
    
@@ -26,6 +32,7 @@ onUnmounted(() => {
 <template>
   <div class="home-page">
     <HeroParticipant/>
+    <div ref="content"></div>
     <CampaignTrending class="py-60"/>
     <TopCreators class="py--60"/>
     <BannerCreators class="home-page__banner container">

@@ -341,7 +341,7 @@ function getThumbnailUrl(name) {
     border: none;
     color: #161616;
     background-color: #DEE8E8;
-    border-radius: 12px;
+    border-radius: 22px;
     font-size: 14px;
     font-weight: 800;
     width: 116px;

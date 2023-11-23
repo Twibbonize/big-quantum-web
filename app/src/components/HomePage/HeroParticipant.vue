@@ -1,31 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+// import { ref, onMounted } from 'vue';
 import TWButton from '../base/TWButton.vue';
 import HomeSlider from './HomeSlider.vue';
 
-import Vara from 'vara';
 
-const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
-const iteration = ref(0);
-
-function writeTitle (index) {
-  new Vara('#vara',"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
-  [
-    {
-      text: tagline[index]
-    },
-  ],{
-    fontSize: 130,
-    strokeWidth: 1.5,
-    letterSpacing: -8,
-    color: '#FFEF5F',
-    autoAnimation: true,
-  });
-}
-
-onMounted(() => {
-  writeTitle(0);
-})
+// const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
 </script>
 
 <template>
