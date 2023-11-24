@@ -6,6 +6,7 @@ import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 import VerticalCarousel from '@/components/CreatorPage/VerticalCarousel.vue';
 import BentoGrid from '@/components/CreatorPage/BentoGrid.vue';
 import TiltScreen from '@/components/CreatorPage/TiltScreen.vue';
+import FrameSelection from '@/components/CreatorPage/FrameSelection.vue';
 
 const emit = defineEmits(['change-navbar']);
 
@@ -35,6 +36,7 @@ onUnmounted(() => {
     <VerticalCarousel/>
     <BentoGrid/>
     <TiltScreen/>
+    <FrameSelection/>
   </div>
 </template>
 
