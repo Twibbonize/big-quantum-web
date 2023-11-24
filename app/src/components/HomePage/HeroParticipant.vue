@@ -23,7 +23,7 @@ import supportsJSON from '../../assets/lottie/supports.json';
                   show your  
                 </h1>
                 <div class="hero-participant__text-animation">
-                  <Vue3Lottie :animationData="supportsJSON" :height="170" :width="500" :loop="true" />
+                  <Vue3Lottie :animationData="supportsJSON" :height="200" :width="600" :loop="true" />
                 </div>
                 <!-- <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
                   supports
