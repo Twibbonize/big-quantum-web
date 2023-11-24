@@ -2,7 +2,7 @@
 // import { ref, onMounted } from 'vue';
 import TWButton from '../base/TWButton.vue';
 import HomeSlider from './HomeSlider.vue';
-
+import supportsJSON from '../../assets/lottie/supports.json';
 
 // const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
 </script>
@@ -22,13 +22,16 @@ import HomeSlider from './HomeSlider.vue';
                 <h1 class="hero-participant__text user-select-none pe-none text-lowercase">
                   show your  
                 </h1>
-                <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
+                <div class="hero-participant__text-animation">
+                  <Vue3Lottie :animationData="supportsJSON" :height="170" :width="500" :loop="false" />
+                </div>
+                <!-- <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
                   supports
-                </h1>
-                <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
+                </h1> -->
+                <!-- <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
                   _______
-                </h1>
-                <h4 class="hero-participant__description mt-3 fw-normal fs-5 user-select-none pe-none">
+                </h1> -->
+                <h4 class="hero-participant__description fw-normal fs-5 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
                 <div class="hero-participant__btn-container flat-button d-flex align-items-center mt-4 gap-3">
@@ -124,12 +127,17 @@ import HomeSlider from './HomeSlider.vue';
       }
     }
 
+    &__text-animation {
+      margin-left: -45px;
+      margin-top: -50px;
+    }
+
     &__description {
       color: #1B1B1B;
       font-size: 22px !important;
       line-height: 27px !important;
       font-weight: 500;
-      margin-top: 90px !important;
+      margin-top: 30px !important;
       letter-spacing: 0.1px;
     }
   }
