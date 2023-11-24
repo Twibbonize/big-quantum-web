@@ -109,7 +109,8 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+  color: #1b1b1b;
+  text-decoration: underline;
 }
 
 .btn,
@@ -2878,12 +2879,7 @@ section:focus {
 
 a {
   transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none !important;
 }
-a:hover {
-  text-decoration: none;
-}
-
 li {
   list-style: none;
 }
@@ -2974,10 +2970,11 @@ h6 {
 }
 
 a {
-  color: #16DAC1;
+  color: #1b1b1b;
 }
 a:hover {
-  color: #16DAC1;
+  color: #1b1b1b;
+  text-decoration: underline;
 }
 
 h1 {
