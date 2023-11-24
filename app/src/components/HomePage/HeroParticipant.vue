@@ -129,7 +129,7 @@ import supportsJSON from '../../assets/lottie/supports.json';
 
     &__text-animation {
       margin-left: -45px;
-      margin-top: -40px;
+      margin-top: -50px;
     }
 
     &__description {
