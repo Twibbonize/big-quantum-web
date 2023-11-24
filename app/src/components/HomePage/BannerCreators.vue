@@ -33,9 +33,11 @@ import TWButton from '@/components/base/TWButton.vue';
                     </div>
                     supporters with <br>Twibbonize</h5>
                   <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
-                    <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
-                      Learn More
-                    </TWButton>
+                    <a href="/creators">
+                      <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
+                        Learn More
+                      </TWButton>
+                    </a>
                     <span class="fs-14 color_white ml-4">or</span>
                     <TWButton class="color_white fs-14 ws-nowrap" color="transparent" border-radius="circle">
                       Try it now, Free!

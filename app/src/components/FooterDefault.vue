@@ -38,7 +38,7 @@ const currentYear = dayjs().year();
                     <div class="widget widget-menu style-2">
                         <h5 class="title-widget">Resources</h5>
                         <ul>
-                            <li><a href="#">For Creators</a></li>
+                            <li><a href="/creators">For Creators</a></li>
                             <li><a href="#">What is a Twibbon</a></li>
                             <li><a href="#">Use Cases</a></li>
                             <li><a href="#">Editor</a></li>

@@ -9,7 +9,7 @@ const values = [
   {
     icon: '/assets/img/icons/unite.svg',
     video: '/assets/videos/unite.mp4',
-    title: 'Unite',
+    title: 'unite',
     subtitle: 'your supporters',
     description: 'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
   },

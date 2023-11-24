@@ -57,6 +57,7 @@ const navbarColor = computed(() => {
     top: 0;
     z-index: 20;
     width: 100%;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
 
     &__logo {
       height: 2rem;
@@ -110,9 +111,11 @@ const navbarColor = computed(() => {
 
   .navigation-header--gradient.navigation-header {
     background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
+    box-shadow: none;
   }
 
   .navigation-header--transparent.navigation-header {
     background: transparent;
+    box-shadow: none;
   }
 </style>

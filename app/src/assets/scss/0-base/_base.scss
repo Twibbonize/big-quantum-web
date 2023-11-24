@@ -85,9 +85,9 @@ section:focus {
 
 a {
   transition: 0.25s $transition_function;
-  text-decoration: none !important;
+  // text-decoration: none !important;
   &:hover {
-    text-decoration: none;
+    // text-decoration: none;
   }
 }
 
