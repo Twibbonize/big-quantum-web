@@ -63,9 +63,12 @@ const navbarColor = computed(() => {
       height: 2rem;
       margin-top: -8px;
       display: block;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: contrast(1);
       
       &:hover {
         cursor: pointer;
+        filter: contrast(0.7);
       }
     }
 
@@ -117,5 +120,20 @@ const navbarColor = computed(() => {
   .navigation-header--transparent.navigation-header {
     background: transparent;
     box-shadow: none;
+  }
+
+  @keyframes tocontrast {
+    0%   {
+      filter: contrast(1);
+      -webkit-filter: contrast(1);
+    }
+    50%  {
+      filter: contrast(0.4);
+      -webkit-filter: contrast(0.4);
+    }
+    100% {
+      filter: contrast(1);
+      -webkit-filter: contrast(1);
+    }
   }
 </style>
