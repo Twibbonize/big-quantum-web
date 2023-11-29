@@ -27,11 +27,6 @@
       max-width: 540px;
       border: 1px solid rgba(27, 27, 27, 0.10);
       border-radius: 20px;
-      background: linear-gradient(313deg, #16dac1, #ffffff, #ffffff, #ffffff);
-      background-size: 600% 600%;
-      -webkit-animation: primaryblob 30s ease infinite;
-      -moz-animation: primaryblob 30s ease infinite;
-      animation: primaryblob 30s ease infinite;
 
       h5, p {
         text-align: center;
@@ -41,6 +36,13 @@
     &__icon {
       height: 80px;
       width: 80px;
+    }
+    &__frame {
+      background: linear-gradient(313deg, #16dac1, #ffffff, #ffffff, #ffffff);
+      background-size: 600% 600%;
+      -webkit-animation: primaryblob 30s ease infinite;
+      -moz-animation: primaryblob 30s ease infinite;
+      animation: primaryblob 30s ease infinite;
     }
   }
 
