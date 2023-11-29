@@ -1,5 +1,6 @@
 <script setup >
 import TWButton from '@/components/base/TWButton.vue';
+import gatherJSON from '../../assets/lottie/gather.json';
 </script>
 
 <template>
@@ -17,19 +18,11 @@ import TWButton from '@/components/base/TWButton.vue';
             <div class="col-xl-10">
                 <div class="tp-rated-title-box text-center mb-60">
                   <h5 class="tp-section-title-3 text-white pb-40">
-                    <div class="d-flex justify-content-center">
-                      <div class="d-flex position-relative pr-4">
-                        <span>
-                          gather
-                          <!-- <VueWriter :array="['gather', 'inspire', 'unite', 'entertain', 'grow']" /> -->
-                        </span>
-                        <img class="banner-creators__spark position-absolute" src="/src/assets/img/items/banner-creators-spark.svg" alt="">
-                        <span class="banner-creators__highlight-line position-absolute">
-                          _____
-                          <!-- <VueWriter :array="['______', '_______', '_____', '_________', '____']" /> -->
-                        </span>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="d-flex position-relative">
+                        <Vue3Lottie :animationData="gatherJSON" :height="100" :width="250" :loop="true" />
                       </div>
-                      your <br>
+                      <div class="pr-4 pb-3">your</div> <br>
                     </div>
                     supporters with <br>Twibbonize</h5>
                   <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
