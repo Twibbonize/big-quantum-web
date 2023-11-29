@@ -33,6 +33,7 @@ import BGSwiper from '@/components/CreatorPage/BackgroundSwiper.vue';
           <FrameSwiper class="frames-selection__slider"/>
         </div>
         <div class="frames-selection__background d-flex flex-column align-items-center">
+          <img class="frames-selection__badge" src="/assets/img/frames/bookmark.png" alt="bookmark">
           <img class="frames-selection__icon" src="/assets/img/frames/bg-icon.png" alt="frame">
           <h5 class="mt-4">Background Twibbon</h5>
           <p class="mt-3 fs-6">A fresh variation of Twibbon that poses as the background of your picture</p>
@@ -94,6 +95,13 @@ import BGSwiper from '@/components/CreatorPage/BackgroundSwiper.vue';
       z-index: 1;
       bottom: -600px;
       width: 1000px;
+    }
+    &__badge {
+      position: absolute;
+      height: 160px;
+      width: 160px;
+      top: -8px;
+      right: -7px;
     }
   }
 </style>
