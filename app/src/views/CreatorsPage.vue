@@ -43,14 +43,14 @@ onUnmounted(() => {
 <style lang="scss">
 .creators-page {
   .tp-rated-bg {
-    height: 767px;
+    height: 650px;
     padding-top: 139px;
     box-sizing: border-box;
   }
 
   .tp-section-title-3 {
-    font-size: 105px;
-    line-height: 100px;
+    font-size: 85px;
+    line-height: 85px;
     
     span {
       font-size: 130px;
@@ -74,9 +74,10 @@ onUnmounted(() => {
   }
 
   .campaign-swiper__campaign {
-    height: 235px;
-    width: 235px;
+    height: 160px;
+    width: 160px;
     margin: 0 4px;
+    border-radius: 8px;
   }
 
 }

@@ -137,7 +137,6 @@ import supportsJSON from '../../assets/lottie/supports.json';
       font-size: 22px !important;
       line-height: 27px !important;
       font-weight: 500;
-      margin-top: 30px !important;
       letter-spacing: 0.1px;
     }
   }
