@@ -20,7 +20,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                   <h5 class="tp-section-title-3 text-white pb-40">
                     <div class="d-flex justify-content-center align-items-center">
                       <div class="d-flex position-relative">
-                        <Vue3Lottie :animationData="gatherJSON" :height="100" :width="250" :loop="true" />
+                        <Vue3Lottie :animationData="gatherJSON" :height="100" :width="250" :loop="false" />
                       </div>
                       <div class="pr-4 pb-3">your</div> <br>
                     </div>
