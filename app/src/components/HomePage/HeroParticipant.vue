@@ -50,7 +50,7 @@ import supportsJSON from '../../assets/lottie/supports.json';
           </div>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <style lang="scss">
