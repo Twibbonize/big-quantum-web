@@ -262,6 +262,7 @@ function getThumbnailUrl(name) {
     border-radius: 20px;
     border-color: transparent;
     background: none;
+    text-decoration: none !important;
 }
 
 .heading-section a::after {
