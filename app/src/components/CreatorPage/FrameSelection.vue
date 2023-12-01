@@ -60,6 +60,8 @@ import BGSwiper from '@/components/CreatorPage/BackgroundSwiper.vue';
 
 <style lang="scss">
   .frames-selection {
+    margin-top: 96px;
+
     &__frame, &__background {
       padding: 40px 0;
       width: 100%;
