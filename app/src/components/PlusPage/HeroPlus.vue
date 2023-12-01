@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="hero-participant position-relative">
+  <div class="hero-participant hero-plus position-relative">
     <div class="hero-participant__bg"></div>
     <img class="hero-participant__pattern-left" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
     <img class="hero-participant__pattern-right" src="/src/assets/img/patterns/hero-right-top.png" alt="">
@@ -49,7 +49,7 @@ onMounted(() => {
     }
 
     &__animated-text {
-      height: 180px;
+      height: 200px;
       margin-top: -50px;
     }
 
