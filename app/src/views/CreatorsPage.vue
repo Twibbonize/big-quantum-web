@@ -6,6 +6,7 @@ import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 import VerticalCarousel from '@/components/CreatorPage/VerticalCarousel.vue';
 import BentoGrid from '@/components/CreatorPage/BentoGrid.vue';
 import TiltScreen from '@/components/CreatorPage/TiltScreen.vue';
+import CreatorStories from '@/components/CreatorPage/CreatorStories.vue';
 import FrameSelection from '@/components/CreatorPage/FrameSelection.vue';
 import PackageSelection from '@/components/CreatorPage/PackageSelection.vue';
 
@@ -37,6 +38,7 @@ onUnmounted(() => {
     <VerticalCarousel/>
     <BentoGrid/>
     <TiltScreen/>
+    <CreatorStories/>
     <FrameSelection/>
     <PackageSelection/>
   </div>
