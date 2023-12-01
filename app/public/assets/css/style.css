@@ -3500,8 +3500,8 @@ a.btn-outline.disabled:hover {
 .btn-primary:hover::before {
   content: "";
   position: absolute;
-  height: 15rem;
-  width: 15rem;
+  height: 20rem;
+  width: 20rem;
 }
 
 .btn-secondary {
@@ -3533,8 +3533,8 @@ a.btn-outline.disabled:hover {
 .btn-secondary:hover::before {
   content: "";
   position: absolute;
-  height: 15rem;
-  width: 15rem;
+  height: 20rem;
+  width: 20rem;
 }
 
 .btn-transparent {
@@ -3547,6 +3547,72 @@ a.btn-outline.disabled:hover {
 .btn-transparent:hover {
   color: #1b1b1b;
   text-decoration: underline;
+}
+
+.btn-semi-transparent {
+  color: #ffffff;
+  border: none !important;
+  transition: all 0.4s ease-in-out !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  position: relative;
+  position: relative;
+}
+.btn-semi-transparent::before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.3;
+}
+.btn-semi-transparent:hover {
+  color: #ffffff;
+  position: relative;
+}
+.btn-semi-transparent:hover::before {
+  content: "";
+  position: absolute;
+  height: 20rem;
+  width: 20rem;
+}
+
+.btn-black {
+  color: #ffffff;
+  border: none !important;
+  transition: all 0.4s ease-in-out !important;
+  background: #1b1b1b !important;
+  position: relative;
+  position: relative;
+}
+.btn-black::before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.3;
+}
+.btn-black:hover {
+  color: #ffffff;
+  position: relative;
+}
+.btn-black:hover::before {
+  content: "";
+  position: absolute;
+  height: 20rem;
+  width: 20rem;
 }
 
 .btn-grad {

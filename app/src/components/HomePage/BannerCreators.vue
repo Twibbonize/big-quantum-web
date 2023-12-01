@@ -58,21 +58,6 @@ import gatherJSON from '../../assets/lottie/gather.json';
     to {
       transform: translateX(-60%) scale(1.1) rotate(10deg);
     }
-    // 0%, 100% {
-    // border-radius: 33% 67% 70% 30%/30% 40% 70% 70%;
-    // }
-    // 20% {
-    //     border-radius: 37% 63% 51% 49%/37% 35% 35% 63%;
-    // }
-    // 40% {
-    //     border-radius: 36% 64% 64% 36%/64% 48% 52% 26%;
-    // }
-    // 60% {
-    //     border-radius: 37% 63% 51% 49%/30% 30% 70% 73%;
-    // }
-    // 80% {
-    //     border-radius: 40% 60% 42% 58%/51% 51% 49% 59%;
-    // }
   }
 
   .banner-creators {
