@@ -12,29 +12,31 @@ import TWButton from '../base/TWButton.vue';
       <p class="package-selection__description mt-4">Try for free, find what you need, and choose the best plan</p>
       <TWToggleSwitch class="mt-5"/>
       <div class="package-selection__package w-100 row mt-5">
-        <div class="package-selection__free col w-100">
-          <h5>Free</h5>
-          <p class="mt-3">For people who are just getting started</p>
-          <div class="package-selection__line"></div>
-          <div class="d-flex align-items-center mb-4 mt-1">
-            <div class="package-selection__icon-container mr-2">
-              <i class="ri-check-line"></i>
+        <div class="package-selection__free col w-100 d-flex flex-column justify-content-between">
+          <div>
+            <h5>Free</h5>
+            <p class="mt-3">For people who are just getting started</p>
+            <div class="package-selection__line"></div>
+            <div class="d-flex align-items-center mb-4 mt-1">
+              <div class="package-selection__icon-container mr-2">
+                <i class="ri-check-line"></i>
+              </div>
+              <p>Create Unlimited Campaign</p>
             </div>
-            <p>Create Unlimited Campaign</p>
-          </div>
-          <div class="d-flex align-items-center mb-4 mt-1">
-            <div class="package-selection__icon-container mr-2">
-              <i class="ri-check-line"></i>
+            <div class="d-flex align-items-center mb-4 mt-1">
+              <div class="package-selection__icon-container mr-2">
+                <i class="ri-check-line"></i>
+              </div>
+              <p>Easy To Share Short URL</p>
             </div>
-            <p>Easy To Share Short URL</p>
-          </div>
-          <div class="d-flex align-items-center mb-4 mt-1">
-            <div class="package-selection__icon-container mr-2">
-              <i class="ri-check-line"></i>
+            <div class="d-flex align-items-center mb-4 mt-1">
+              <div class="package-selection__icon-container mr-2">
+                <i class="ri-check-line"></i>
+              </div>
+              <p>Frame Twibbon</p>
             </div>
-            <p>Frame Twibbon</p>
           </div>
-          <TWButton color="semi-transparent" class="w-100 color_white">
+          <TWButton color="semi-transparent" class="package-selection__btn w-100 color_white">
             Sign Up
           </TWButton>
         </div>
@@ -68,7 +70,7 @@ import TWButton from '../base/TWButton.vue';
             </div>
             <p>Instant Download for All</p>
           </div>
-          <TWButton color="primary" class="w-100 color_white">
+          <TWButton color="primary" class="w-100 color_white mt-4">
             Purchase Now <i class="ri-arrow-right-line mb-2"></i>
           </TWButton>
         </div>
@@ -102,7 +104,7 @@ import TWButton from '../base/TWButton.vue';
             </div>
             <p>Instant Download for All</p>
           </div>
-          <TWButton color="primary" class="w-100 color_white">
+          <TWButton color="black" class="w-100 color_white mt-4">
             Purchase Now <i class="ri-arrow-right-line mb-2"></i>
           </TWButton>
         </div>
@@ -113,7 +115,6 @@ import TWButton from '../base/TWButton.vue';
 
 <style lang="scss">
   .package-selection {
-    min-height: 1000px;
     overflow: hidden;
     border-radius: 20px;
     background: #1B1B1B;
