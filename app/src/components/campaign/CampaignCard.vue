@@ -40,14 +40,14 @@ onMounted(() => {
     </div>
     <div class="line mt-2.5"></div>
     <div class="flex content-between gap-x-4 mt-2.5">
-      <div class="flex items-center">
+      <div class="flex items-center flex-1">
         <i class="ri-group-line text-base mr-1.5"></i>
         <div class="flex flex-col">
           <span class="text-xs font-bold">Supporters</span>
           <h6 class="text-sm">1.5K</h6>
         </div>
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center flex-1">
         <i class="ri-time-line text-base mr-1.5"></i>
         <div class="flex flex-col">
           <span class="text-xs font-bold">Created</span>
