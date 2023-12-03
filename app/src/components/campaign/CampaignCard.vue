@@ -26,10 +26,13 @@ onMounted(() => {
 
 <template>
   <div class="camp-card rounded-3xl pt-2.5 px-3.5 pb-3.5">
-    <div class="img-container aspect-square	flex items-center relative">
+    <div class="img-container rounded-xl aspect-square	flex items-center relative">
       <picture>
         <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="title">
       </picture>
+      <div class="btn-view">
+        View
+      </div>
     </div>
     <div class="mt-3">
       <h6 class="text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap">Campaign Title with Long Words</h6>
@@ -62,9 +65,24 @@ onMounted(() => {
 .camp-card {
   background: #FFF;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, .1);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 
   .img-container {
+    overflow: hidden;
+  }
 
+  .btn-view {
+    position: absolute;
+    bottom: 0px;
+    height: 44px;
+    border-radius: 22px;
+    transform: translateX(-50%);
+    left: 50%;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   .avatar {
@@ -74,6 +92,21 @@ onMounted(() => {
 
   .line {
     border-bottom: 1px solid rgba(#1B1B1B, .1);
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+
+    picture, img {
+      transform: scale(1.1);
+    }
+
+    .btn-view {
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+      opacity: 1;
+    }
   }
 }
 </style>
