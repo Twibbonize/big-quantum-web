@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-import TWButton from './base/TWButton.vue';
+import QButton from '@/components/base/QButton.vue';
 
 const props = defineProps({
   color: String
@@ -9,37 +9,37 @@ const props = defineProps({
 
 const buttonColor = computed(() => {
   if (/(gradient|transparent)/ig.test(props.color)) return 'white';
-  return 'primary'
+  return 'main'
 });
 
 const navbarColor = computed(() => {
-  if (props.color) return `navigation-header--${props.color}`;
+  if (props.color) return props.color;
   return '';
 })
 </script>
 
 <template>
-  <header class="navigation-header" :class="navbarColor">
-    <div class="container">
-      <div class="row d-flex align-items-center justify-content-between">
-        <router-link to="/" class="col-3">
-          <picture class="navigation-header__logo">
-            <source v-if="props.color === 'gradient'" srcset="/src/assets/img/logos/twibbonize-logo-black.svg">
-            <source v-else-if="props.color === 'transparent'" srcset="/src/assets/img/logos/twibbonize-logo-white.svg">
-            <img class="navigation-header__logo" src="/src/assets/img/logos/twibbonize-logo.svg" alt="twibbonize">
+  <header class="navigation-header z-50" :class="navbarColor">
+    <div class="container mx-auto">
+      <div class="flex flex-row items-center justify-between gap-x-4">
+        <router-link to="/" class="w-3/12">
+          <picture class="logo">
+            <source v-if="color === 'gradient'" srcset="/src/assets/img/logos/twibbonize-logo-black.svg">
+            <source v-else-if="color === 'transparent'" srcset="/src/assets/img/logos/twibbonize-logo-white.svg">
+            <img class="logo" src="/src/assets/img/logos/twibbonize-logo.svg" alt="twibbonize">
           </picture>
         </router-link>
-        <div class="navigation-header__search d-flex p-0">
+        <div class="search flex p-0">
           <input type="text" name="navigation-search" id="navigation-search" placeholder="Find Campaigns or Creators">
-          <i class="ri-search-line" role="button"></i>
+          <i class="ri-search-line text-xl font-bold" role="button"></i>
         </div>
-        <div class="navigation-header__action col-3 d-flex align-items-center justify-content-end">
-          <TWButton class="fs-12" :color="buttonColor" border-radius="circle">
+        <div class="action w-3/12 flex items-center justify-end">
+          <QButton class="text-xs	" :color="buttonColor" size="lg" border-radius="circle">
             <i class="ri-add-line"></i>
             Start a Campaign
-          </TWButton>
-          <div class="navigation-header__menu d-flex align-items-center justify-content-center  ml-4">
-            <i class="ri-menu-line color-black fs-3" role="button"></i>
+          </QButton>
+          <div class="menu btn-white flex items-center justify-center  ml-4">
+            <i class="ri-menu-line color-black text-2xl" role="button"></i>
           </div>
         </div>
       </div>
@@ -48,18 +48,19 @@ const navbarColor = computed(() => {
 </template>
 
 <style lang="scss">
+  @import '@/assets/variables.scss';
+
   .navigation-header {
-    background: #FFFFFF;
+    background: $color_white;
     gap: 10px;
     padding-top: 27px;
     padding-bottom: 18px;
     position: fixed;
     top: 0;
-    z-index: 20;
     width: 100%;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
 
-    &__logo {
+    .logo {
       height: 2rem;
       margin-top: -8px;
       display: block;
@@ -72,8 +73,8 @@ const navbarColor = computed(() => {
       }
     }
 
-    &__search {
-      background: #FFFFFF;
+    .search {
+      background: $color_white;
       position: relative;
       height: 52px;
       border-radius: 26px;
@@ -97,14 +98,12 @@ const navbarColor = computed(() => {
       }
     }
 
-    &__action {
-    }
-
-    &__menu {
+    .menu {
       width: 52px;
       height: 52px;
       border-radius: 26px;
-
+      background: $color_white;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
 
       &:hover {
         cursor: pointer;
@@ -112,12 +111,12 @@ const navbarColor = computed(() => {
     }
   }
 
-  .navigation-header--gradient.navigation-header {
+  .navigation-header.gradient {
     background: linear-gradient(180deg, #16DAC1 0%, rgba(22, 218, 193, 0.00) 100%);
     box-shadow: none;
   }
 
-  .navigation-header--transparent.navigation-header {
+  .navigation-header.transparent {
     background: transparent;
     box-shadow: none;
   }

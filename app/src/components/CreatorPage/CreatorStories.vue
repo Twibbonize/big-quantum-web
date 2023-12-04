@@ -31,10 +31,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="creator-stories d-flex flex-column align-items-center">
+  <div class="creator-stories flex flex-col items-center">
     <h4>Stories from our Creators</h4>
     <p>Unique campaigns brought to life with Twibbonize</p>
-    <div class="container">
+    <div class="container mx-auto">
       <swiper-container class="creator-stories__swiper w-100" slides-per-view="3" space-between="32">
         <swiper-slide v-for="{ image, title, description},i in stories" :key="`stories-${i}`" class="creator-stories__card">
           <img
@@ -45,8 +45,8 @@ onMounted(() => {
           <h5>{{ title }}</h5>
           <p>{{ description }}</p>
   
-          <div class="heading-section d-flex align-items-end mt-5">
-            <a class="d-flex align-items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
+          <div class="heading-section flex items-end mt-5">
+            <a class="flex items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
           </div>
         </swiper-slide>
       </swiper-container>

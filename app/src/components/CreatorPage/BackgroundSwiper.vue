@@ -27,7 +27,7 @@ function getImageUrl(name) {
 </script>
 
 <template>
-  <div class="frame-swiper__swiper swiper-container autoslider1 mt-4" :data-swiper="swiperData">
+  <div class="frame-swiper__swiper swiper-container autoslider1 mt-6" :data-swiper="swiperData">
     <div class="swiper-wrapper frame-swiper__slider-wrapper">
       <div v-for="(filename, i) in galleries" :key="i" class="swiper-slide frame-swiper__campaign-slider">
         <img class="frame-swiper__campaign" :src="getImageUrl(filename)" :alt="filename">

@@ -54,30 +54,30 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="d-flex pt-5 row">
-      <div class="d-flex flex-column justify-content-center col">
+  <div class="container mx-auto">
+    <div class="flex pt-5 row">
+      <div class="flex flex-col justify-center col">
         <div
           v-for="{ icon, title, subtitle, description }, i in values" :key="`value-${i}`"
-          class="d-flex p-4"
-          :class="{ 'creators-values__tab-active': i === index, 'align-items-center': i !== index }"
+          class="flex p-4"
+          :class="{ 'creators-values__tab-active': i === index, 'items-center': i !== index }"
         >
           <img class="creators-values__icon mr-3" :src="icon" :alt="title">
-          <div v-if="i === index" class="d-flex flex-column">
-            <div class="d-flex">
+          <div v-if="i === index" class="flex flex-col">
+            <div class="flex">
               <h5 class="creators-values__title-active">
                 <span class="mr-1">{{ title }}</span>{{ subtitle }}
               </h5>
             </div>
-            <p class="color_black mt-3">{{ description }}</p>
+            <p class="color_black mt-4">{{ description }}</p>
           </div>
           <div v-if="i === index" class="creators-values__bar-active">
             <i v-if="i === index" class="creators-values__loader-active ri-shining-fill"></i>
           </div>
-          <h5 v-else class="fw-bold fs-4">{{ title }}</h5>
+          <h5 v-else class="font-bold text-2xl">{{ title }}</h5>
         </div>
       </div>
-      <div class="d-flex col justify-content-end">
+      <div class="flex col justify-end">
         <video class="creators-values__video" muted autoplay :src="values[index].video"></video>
       </div>
     </div>

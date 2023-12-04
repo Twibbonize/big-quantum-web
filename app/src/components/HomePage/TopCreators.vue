@@ -59,15 +59,15 @@ function getImageUrl(name) {
 
 <template>
   <div class="tf-section seller background-white">
-    <div class="container">
+    <div class="container mx-auto">
         <div class="row">
-            <div class="d-flex align-items-center justify-content-between col-md-12 pb-30">
+            <div class="flex items-center justify-between md:w-full pb-8">
                 <div class="heading-section">
                     <h2 class="tf-title ">Top Creators</h2>
                 </div>
-                <div class="heading-section d-flex gap-3 align-items-center">
+                <div class="heading-section flex gap-4 items-center">
                   <TWToggleSwitch3State/>
-                  <a class="d-flex align-items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
+                  <a class="flex items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
             <div v-for="{ name, avatar, supports }, i in creators" :key="i + 1" class="wow fadeInUp col-md-4">

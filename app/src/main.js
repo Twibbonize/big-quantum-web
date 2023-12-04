@@ -1,6 +1,5 @@
-import './assets/main.css'
-
 import 'animate.css';
+import 'remixicon/fonts/remixicon.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

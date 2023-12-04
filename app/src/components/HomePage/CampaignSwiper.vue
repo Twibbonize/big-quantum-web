@@ -32,7 +32,7 @@ function getImageUrl(name) {
 </script>
 
 <template>
-  <div class="campaign-swiper__swiper swiper-container autoslider1 mt-4" :data-swiper="swiperData">
+  <div class="campaign-swiper__swiper swiper-container autoslider1 mt-6" :data-swiper="swiperData">
     <div class="swiper-wrapper campaign-swiper__slider-wrapper">
       <div v-for="(filename, i) in galleries" :key="i" class="swiper-slide campaign-swiper__campaign-slider">
         <img class="campaign-swiper__campaign" :src="getImageUrl(filename)" :alt="filename">
