@@ -8,7 +8,7 @@
                       <h2 class="tf-title">Trending on Twibbonize</h2>
                       <p class="tf-description">Most Supported Campaigns in the Last 24 Hours</p>
                     </div>
-                    <a class="d-flex align-items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
+                    <a class="d-flex items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
             <div class="col-md-12">

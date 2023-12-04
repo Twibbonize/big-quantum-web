@@ -28,27 +28,27 @@ const props = defineProps({
         </nuxt-link>
       </div>
     </div>
-    <h5 class="name fs-18">{{ props.name }}</h5>
-    <div class="author d-flex align-items-center">
+    <h5 class="name text-lg	">{{ props.name }}</h5>
+    <div class="author d-flex items-center">
       <img class="avatar" :src="avatar" alt="Image">
-      <div class="d-flex flex-column justify-content-center info">
+      <div class="d-flex flex-column justify-center info">
         <a href="#"><h6 class="campaign-card__name">{{ props.creator }}</h6></a>
       </div>
     </div>
     <div class="divider"></div>
-    <div class="meta-info d-flex align-items-center">
-      <div class="d-flex align-items-center mr-5">
-        <i class="ri-group-line fs-5 mr-1"></i>
+    <div class="meta-info d-flex items-center">
+      <div class="d-flex items-center mr-5">
+        <i class="ri-group-line text-xl	 mr-1"></i>
         <div class="d-flex flex-column">
-          <span class="fs-14 fw-bold">Supporters</span>
-          <h6 class="fs-14 fw-light lh-1">{{ numeral(props.supports).format('0.0a') }}</h6>
+          <span class="text-sm font-bold">Supporters</span>
+          <h6 class="text-sm fw-light lh-1">{{ numeral(props.supports).format('0.0a') }}</h6>
         </div>
       </div>
-      <div class="d-flex align-items-center">
-        <i class="ri-time-line fs-5 mr-1"></i>
+      <div class="d-flex items-center">
+        <i class="ri-time-line text-xl	 mr-1"></i>
         <div class="d-flex flex-column">
-          <span class="fs-14 fw-bold">Created</span>
-          <h6 class="fs-14 fw-light lh-1">{{ dayjs(props.createdAt).fromNow() }}</h6>
+          <span class="text-sm font-bold">Created</span>
+          <h6 class="text-sm fw-light lh-1">{{ dayjs(props.createdAt).fromNow() }}</h6>
         </div>
       </div>
     </div>

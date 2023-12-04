@@ -1,5 +1,5 @@
 <script setup >
-import TWButton from '@/components/base/TWButton.vue';
+import QButton from '@/components/base/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
 </script>
 
@@ -9,37 +9,37 @@ import gatherJSON from '../../assets/lottie/gather.json';
     
     <div class="tp-rated-bg position-relative"  data-background="assets/img/rate/rated-bg.jpg">
       <img class="banner-creators__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
-      <div class="d-lg-flex justify-content-center">
+      <div class="d-lg-flex justify-center">
           <img src="/src/assets/img/logos/twibbonize-creators.svg" alt="twibbonize-for-creators">
       </div>
 
       <div class="container z-index-6 mt-3">
-          <div class="row justify-content-center">
+          <div class="row justify-center">
             <div class="col-xl-10">
                 <div class="tp-rated-title-box text-center mb-60">
                   <h5 class="tp-section-title-3 text-white pb-40">
-                    <div class="d-flex justify-content-center align-items-center">
+                    <div class="d-flex justify-center items-center">
                       <div class="d-flex position-relative">
                         <Vue3Lottie :animationData="gatherJSON" :height="100" :width="250" :loop="false" />
                       </div>
                       <div class="pr-4 pb-3">your</div> <br>
                     </div>
                     supporters with <br>Twibbonize</h5>
-                  <div class="banner-creators__btn-container d-flex justify-content-center align-items-center mt-3">
+                  <div class="banner-creators__btn-container d-flex justify-center items-center mt-3">
                     <a href="/creators">
-                      <TWButton class="fs-14 ws-nowrap" color="secondary" border-radius="circle">
+                      <QButton class="text-sm ws-nowrap" color="secondary" border-radius="circle">
                         Learn More
-                      </TWButton>
+                      </QButton>
                     </a>
-                    <span class="fs-14 color_white ml-4">or</span>
-                    <TWButton class="color_white fs-14 ws-nowrap" color="transparent" border-radius="circle">
+                    <span class="text-sm color_white ml-4">or</span>
+                    <QButton class="color_white text-sm ws-nowrap" color="transparent" border-radius="circle">
                       Try it now, Free!
-                    </TWButton>
+                    </QButton>
                   </div>
                 </div>
             </div>
           </div>
-          <div class="author-rated-big-img d-flex justify-content-center"  data-parallax='{"y": 100, "smoothness": 30}'>
+          <div class="author-rated-big-img d-flex justify-center"  data-parallax='{"y": 100, "smoothness": 30}'>
             <img src="/src/assets/img/logos/creators-brand.png" alt="twibbonize-for-creators">
           </div>
       </div>

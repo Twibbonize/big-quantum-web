@@ -56,11 +56,11 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="d-flex pt-5 row">
-      <div class="d-flex flex-column justify-content-center col">
+      <div class="d-flex flex-column justify-center col">
         <div
           v-for="{ icon, title, subtitle, description }, i in values" :key="`value-${i}`"
           class="d-flex p-4"
-          :class="{ 'creators-values__tab-active': i === index, 'align-items-center': i !== index }"
+          :class="{ 'creators-values__tab-active': i === index, 'items-center': i !== index }"
         >
           <img class="creators-values__icon mr-3" :src="icon" :alt="title">
           <div v-if="i === index" class="d-flex flex-column">
@@ -74,10 +74,10 @@ onMounted(() => {
           <div v-if="i === index" class="creators-values__bar-active">
             <i v-if="i === index" class="creators-values__loader-active ri-shining-fill"></i>
           </div>
-          <h5 v-else class="fw-bold fs-4">{{ title }}</h5>
+          <h5 v-else class="font-bold text-2xl">{{ title }}</h5>
         </div>
       </div>
-      <div class="d-flex col justify-content-end">
+      <div class="d-flex col justify-end">
         <video class="creators-values__video" muted autoplay :src="values[index].video"></video>
       </div>
     </div>

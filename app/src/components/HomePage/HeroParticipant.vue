@@ -1,6 +1,6 @@
 <script setup>
 // import { ref, onMounted } from 'vue';
-import TWButton from '../base/TWButton.vue';
+import QButton from '../base/QButton.vue';
 import HomeSlider from './HomeSlider.vue';
 import supportsJSON from '../../assets/lottie/supports.json';
 
@@ -31,18 +31,18 @@ import supportsJSON from '../../assets/lottie/supports.json';
                 <!-- <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
                   _______
                 </h1> -->
-                <h4 class="hero-participant__description fw-normal fs-5 user-select-none pe-none">
+                <h4 class="hero-participant__description fw-normal text-xl	 user-select-none pe-none">
                   Turn your passion into action; create custom images that show what you stand for and invite friends to join you
                 </h4>
-                <div class="hero-participant__btn-container flat-button d-flex align-items-center mt-4 gap-3">
-                  <TWButton class="fs-14" color="secondary" border-radius="circle">
+                <div class="hero-participant__btn-container flat-button d-flex items-center mt-4 gap-3">
+                  <QButton class="text-sm" color="yellow" border-radius="circle">
                     <i class="ri-add-line"></i>
                     Start a Campaign
-                  </TWButton>
-                  <div class="hero-participant__or fs-14 fw-bold">or</div>
-                  <TWButton class="fs-14 px-0" color="transparent" border-radius="circle">
+                  </QButton>
+                  <div class="hero-participant__or text-sm font-bold">or</div>
+                  <QButton class="text-sm px-0" color="transparent" border-radius="circle">
                     Find a Campaign
-                  </TWButton>
+                  </QButton>
                 </div>
               </div>
             </div>

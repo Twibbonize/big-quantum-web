@@ -12,7 +12,7 @@ const colorClass = computed(() => {
 })
 
 const sizeClass = computed(() => {
-  return props.size ? `btn-${props.size}` : '';
+  return props.size ? props.size : '';
 })
 
 const borderRadiusClass = computed(() => {
@@ -21,7 +21,7 @@ const borderRadiusClass = computed(() => {
 </script>
 
 <template>
-  <button class="btn fw-bolder" :class="`${colorClass} ${sizeClass} ${borderRadiusClass}`">
+  <button class="btn font-extrabold" :class="`${colorClass} ${sizeClass} ${borderRadiusClass}`">
     <slot></slot>
   </button>
 </template>
@@ -40,7 +40,6 @@ div.button {
   min-height: 20px;
   line-height: 20px;
   @include border_radius();
-  font-weight: normal;
   text-decoration: none;
   vertical-align: middle;
   outline: none;
@@ -53,6 +52,16 @@ div.button {
     .text {
       color: --color-white;
     }
+  }
+
+  &.sm {
+    height: 34px;
+  }
+  &.md {
+    height: 42px;
+  }
+  &.lg {
+    height: 52px;
   }
 
   i {
@@ -188,17 +197,17 @@ div.button {
 }
 
 .btn-main {
-  color: $black;
+  color: $color_black;
   border: none !important ;
   transition: all 0.4s ease-in-out !important;
-  background: $main !important;
+  background: $color_main !important;
   position: relative;
 
   @include before {
     height: 0;
     width: 0;
     border-radius: 100%;
-    background: $black;
+    background: $color_black;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -208,11 +217,154 @@ div.button {
   }
 
   &:hover {
-    color: $white;
+    color: $color_white;
     @include before {
       height: 20rem;
       width: 20rem;
     }
+  }
+}
+
+.btn-black {
+  color: $color_white;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: $color_black !important;
+  position: relative;
+
+  @include before {
+    height: 0;
+    width: 0;
+    border-radius: 100%;
+    background: $color_white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.3s $transition_function;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    @include before {
+      height: 20rem;
+      width: 20rem;
+    }
+  }
+}
+
+.btn-white {
+  background: $color_white;
+  border: solid 1px rgba(10, 33, 65, 0.05);
+  color: $color_black;
+  box-shadow: 0px 2px 4px #7e8eb11f !important;
+  &:focus,
+  &:active {
+    opacity: 0.9;
+    background: $color_white !important;
+    border: solid 1px rgba(10, 33, 65, 0.05);
+    color: $color_black;
+    box-shadow: 0px 2px 4px #7e8eb11f !important;
+  }
+  &.dropdown-toggle {
+    &:focus,
+    &:active {
+      opacity: 0.8;
+      background: white !important;
+      color: $color_main !important;
+      box-shadow:
+        0 9px 6px rgba(0, 0, 0, 0.1),
+        0 -50px 0 rgba(0, 0, 0, 0) inset;
+      border: solid 1px rgba(10, 33, 65, 0.05) !important;
+    }
+  }
+
+  span::after {
+    color: $color_black !important;
+  }
+
+  &.btn-outline {
+    color: $color_white;
+    border: solid 2px $color_white;
+  }
+  &:hover {
+    opacity: 0.8;
+    background: $color_white !important;
+    color: $color_black !important;
+    box-shadow:
+      0 9px 6px rgba(0, 0, 0, 0.1),
+      0 -50px 0 rgba(0, 0, 0, 0) inset;
+    border: solid 1px rgba(10, 33, 65, 0.05) !important;
+  }
+}
+
+.btn-yellow {
+  color: $color_black;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: $color_yellow !important;
+  position: relative;
+
+  @include before {
+    height: 0;
+    width: 0;
+    border-radius: 100%;
+    background: $color_black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.3s $transition_function;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    @include before {
+      height: 20rem;
+      width: 20rem;
+    }
+  }
+}
+
+.btn-light {
+  color: $color_black;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: $color_light !important;
+  position: relative;
+
+  @include before {
+    height: 0;
+    width: 0;
+    border-radius: 100%;
+    background: $color_black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.3s $transition_function;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    color: $color_white;
+    @include before {
+      height: 20rem;
+      width: 20rem;
+    }
+  }
+}
+
+.btn-transparent {
+  color: $color_black;
+  border: none !important ;
+  transition: all 0.4s ease-in-out !important;
+  background: transparent !important;
+  position: relative;
+
+  &:hover {
+    color: $color_black;
+    text-decoration: underline;
   }
 }
 </style>

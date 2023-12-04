@@ -55,20 +55,20 @@ const currentYear = dayjs().year();
                         </div>
                         <h5 class="title-widget ws-nowrap mt-30">Join the community</h5>
                         <div class="widget-social">
-                            <ul class="d-flex align-items-center gap-2">
-                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
+                            <ul class="d-flex items-center gap-2">
+                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
                                   <i class="ri-facebook-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
                                   <i class="ri-twitter-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
                                   <i class="ri-discord-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
                                   <i class="ri-tiktok-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex align-items-center justify-content-center">
+                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
                                   <i class="ri-youtube-fill"></i>
                                 </li>
                             </ul>
@@ -77,7 +77,7 @@ const currentYear = dayjs().year();
                 </div>
             </div>
         </div>
-        <div class="footer-bottom d-flex align-items-center">
+        <div class="footer-bottom d-flex items-center">
             <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
             <ul class="d-flex">
                 <li>

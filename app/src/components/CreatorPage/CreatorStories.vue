@@ -31,7 +31,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="creator-stories d-flex flex-column align-items-center">
+  <div class="creator-stories d-flex flex-column items-center">
     <h4>Stories from our Creators</h4>
     <p>Unique campaigns brought to life with Twibbonize</p>
     <div class="container">
@@ -45,8 +45,8 @@ onMounted(() => {
           <h5>{{ title }}</h5>
           <p>{{ description }}</p>
   
-          <div class="heading-section d-flex align-items-end mt-5">
-            <a class="d-flex align-items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
+          <div class="heading-section d-flex items-end mt-5">
+            <a class="d-flex items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
           </div>
         </swiper-slide>
       </swiper-container>

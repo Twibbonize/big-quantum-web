@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{html,js,vue}"],
   theme: {
+    fontFamily: {
+      'sans': ['Manrope', 'sans-serif'],
+      'serif': ['"Marck Script"', 'serif'],
+    },
     colors: {
       'main': '#16DAC1',
       'black': '#1B1B1B',

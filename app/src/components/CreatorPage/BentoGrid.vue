@@ -1,7 +1,7 @@
 <template>
   <div class="creators-features container">
     <div class="row">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column items-center">
         <h2 class="creators-features__title">Your all-in-one, user-friendly campaign platform</h2>
         <h4 class="creators-features__subtitle mt-4">Tools to tailor and expand your campaign as your support Grows.</h4>
       </div>
@@ -14,7 +14,7 @@
         <p class="creators-features__card-description mt-3">
           Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!
         </p>
-        <a class="fw-bold color_black mt-4" href="#">Learn More</a>
+        <a class="font-bold color_black mt-4" href="#">Learn More</a>
       </div>
     </div>
     <div class="creators-features__row px-3 row mt-4">
