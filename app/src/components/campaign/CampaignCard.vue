@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted } from 'vue';
+import QButton from '@/components/base/QButton.vue';
 
 const props = defineProps({
   thumbnail: String,
@@ -31,7 +32,7 @@ onMounted(() => {
         <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="title">
       </picture>
       <div class="btn-view">
-        View
+        <QButton color="main">View</QButton>
       </div>
     </div>
     <div class="mt-3">
@@ -42,7 +43,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="line mt-2.5"></div>
-    <div class="flex content-between gap-x-4 mt-2.5">
+    <div class="flex content-between gap-2 mt-2.5">
       <div class="flex items-center flex-1">
         <i class="ri-group-line text-base mr-1.5"></i>
         <div class="flex flex-col">

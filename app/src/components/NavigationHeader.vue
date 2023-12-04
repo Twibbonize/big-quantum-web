@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-import TWButton from './base/TWButton.vue';
+import TWButton from './base/QButton.vue';
 
 const props = defineProps({
   color: String
