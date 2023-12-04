@@ -3,7 +3,7 @@ import CampaignCard from '@/components/campaign/CampaignCard.vue';
 </script>
 
 <template>
-  <div class="container grid grid-cols-4	mt-32 pt-32">
+  <div class="container grid grid-cols-4	mt-42 pt-32">
     <CampaignCard/>
   </div>
 </template>

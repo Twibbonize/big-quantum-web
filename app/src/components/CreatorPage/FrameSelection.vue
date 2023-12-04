@@ -7,15 +7,15 @@ import BGSwiper from '@/components/CreatorPage/BackgroundSwiper.vue';
 <template>
   <div class="frames-selection container">
     <div class="row">
-      <div class="d-flex flex-column items-center">
+      <div class="flex flex-col items-center">
         <h2 class="creators-features__title">More than just frames</h2>
         <h4 class="creators-features__subtitle mt-4">Spice up your online campaign game, not only with a frame, but also with creative backgrounds</h4>
       </div>
-      <div class="d-flex gap-4 mt-5 justify-center">
-        <div class="frames-selection__frame d-flex flex-column items-center">
+      <div class="flex gap-4 mt-5 justify-center">
+        <div class="frames-selection__frame flex flex-col items-center">
           <img class="frames-selection__icon" src="/assets/img/frames/frame-icon.png" alt="frame">
           <h5 class="mt-4">Frame Twibbon</h5>
-          <p class="mt-3 text-base	">The OG Twibbon; a frame that's placed on your picture</p>
+          <p class="mt-4 text-base	">The OG Twibbon; a frame that's placed on your picture</p>
           <div class="frames-selection__frame-blob">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" id="blobSvg" filter="blur(18px)" style="opacity: 1;" transform="rotate(-8)">
               <defs>
@@ -32,11 +32,11 @@ import BGSwiper from '@/components/CreatorPage/BackgroundSwiper.vue';
           </div>
           <FrameSwiper class="frames-selection__slider"/>
         </div>
-        <div class="frames-selection__background d-flex flex-column items-center">
+        <div class="frames-selection__background flex flex-col items-center">
           <img class="frames-selection__badge" src="/assets/img/frames/bookmark.png" alt="bookmark">
           <img class="frames-selection__icon" src="/assets/img/frames/bg-icon.png" alt="frame">
           <h5 class="mt-4">Background Twibbon</h5>
-          <p class="mt-3 text-base	">A fresh variation of Twibbon that poses as the background of your picture</p>
+          <p class="mt-4 text-base	">A fresh variation of Twibbon that poses as the background of your picture</p>
           <div class="frames-selection__bg-blob">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" id="blobSvg" filter="blur(18px)" style="opacity: 1;" transform="rotate(-8)">
               <defs>

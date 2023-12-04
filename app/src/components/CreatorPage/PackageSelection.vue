@@ -5,31 +5,31 @@ import QButton from '../base/QButton.vue';
 </script>
 
 <template>
-  <div class="container">
-    <div class="package-selection d-flex flex-column items-center">
+  <div class="container mx-auto">
+    <div class="package-selection flex flex-col items-center">
       <img class="package-selection__bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="">
       <h4 class="package-selection__title color_white">Your supporters await</h4>
-      <p class="package-selection__description mt-4">Try for free, find what you need, and choose the best plan</p>
+      <p class="package-selection__description mt-6">Try for free, find what you need, and choose the best plan</p>
       <TWToggleSwitch class="mt-5"/>
       <div class="package-selection__package w-100 row mt-5">
-        <div class="package-selection__free col w-100 d-flex flex-column justify-between">
+        <div class="package-selection__free col w-100 flex flex-col justify-between">
           <div>
             <h5>Free</h5>
-            <p class="mt-3">For people who are just getting started</p>
+            <p class="mt-4">For people who are just getting started</p>
             <div class="package-selection__line"></div>
-            <div class="d-flex items-center mb-4 mt-1">
+            <div class="flex items-center mb-6 mt-1">
               <div class="package-selection__icon-container mr-2">
                 <i class="ri-check-line"></i>
               </div>
               <p>Create Unlimited Campaign</p>
             </div>
-            <div class="d-flex items-center mb-4 mt-1">
+            <div class="flex items-center mb-6 mt-1">
               <div class="package-selection__icon-container mr-2">
                 <i class="ri-check-line"></i>
               </div>
               <p>Easy To Share Short URL</p>
             </div>
-            <div class="d-flex items-center mb-4 mt-1">
+            <div class="flex items-center mb-6 mt-1">
               <div class="package-selection__icon-container mr-2">
                 <i class="ri-check-line"></i>
               </div>
@@ -43,68 +43,68 @@ import QButton from '../base/QButton.vue';
         <div class="package-selection__individual col w-100">
           <h6>Premium</h6>
           <h5>Individual</h5>
-          <p class="mt-3 mb-4">For people who want more out of Twibbonize</p>
+          <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
           <span>$12</span>
           <div class="package-selection__black-line"></div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>No Watermark for All</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Background Twibbon</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Multiple Frames per Campaign</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Instant Download for All</p>
           </div>
-          <QButton color="primary" class="w-100 color_white mt-4">
+          <QButton color="primary" class="w-100 color_white mt-6">
             Purchase Now <i class="ri-arrow-right-line mb-2"></i>
           </QButton>
         </div>
         <div class="package-selection__business col w-100">
           <h6>Premium</h6>
           <h5>Business</h5>
-          <p class="mt-3 mb-4">For people who want more out of Twibbonize</p>
+          <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
           <span>Start from $48</span>
           <div class="package-selection__black-line"></div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>No Watermark for All</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Background Twibbon</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Multiple Frames per Campaign</p>
           </div>
-          <div class="d-flex items-center mb-4 mt-1">
+          <div class="flex items-center mb-6 mt-1">
             <div class="package-selection__icon-container mr-2">
               <i class="ri-check-line"></i>
             </div>
             <p>Instant Download for All</p>
           </div>
-          <QButton color="black" class="w-100 color_white mt-4">
+          <QButton color="black" class="w-100 color_white mt-6">
             Purchase Now <i class="ri-arrow-right-line mb-2"></i>
           </QButton>
         </div>

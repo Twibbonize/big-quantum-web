@@ -31,7 +31,7 @@ onUnmounted(() => {
   <div class="home-page">
     <HeroParticipant/>
     <div ref="content"></div>
-    <CampaignTrending class="py-60"/>
+    <CampaignTrending class="py-24"/>
     <TopCreators class="py--60"/>
     <BannerCreators class="home-page__banner container">
       <CampaignSwiper/>

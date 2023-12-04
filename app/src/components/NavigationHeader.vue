@@ -19,10 +19,10 @@ const navbarColor = computed(() => {
 </script>
 
 <template>
-  <header class="navigation-header" :class="navbarColor">
+  <header class="navigation-header z-50" :class="navbarColor">
     <div class="container mx-auto">
       <div class="flex flex-row items-center justify-between gap-x-4">
-        <router-link to="/" class="col-3">
+        <router-link to="/" class="w-3/12">
           <picture class="logo">
             <source v-if="color === 'gradient'" srcset="/src/assets/img/logos/twibbonize-logo-black.svg">
             <source v-else-if="color === 'transparent'" srcset="/src/assets/img/logos/twibbonize-logo-white.svg">
@@ -33,12 +33,12 @@ const navbarColor = computed(() => {
           <input type="text" name="navigation-search" id="navigation-search" placeholder="Find Campaigns or Creators">
           <i class="ri-search-line text-xl font-bold" role="button"></i>
         </div>
-        <div class="action col-3 flex items-center justify-end">
+        <div class="action w-3/12 flex items-center justify-end">
           <QButton class="text-xs	" :color="buttonColor" size="lg" border-radius="circle">
             <i class="ri-add-line"></i>
             Start a Campaign
           </QButton>
-          <div class="menu flex items-center justify-center  ml-4">
+          <div class="menu btn-white flex items-center justify-center  ml-4">
             <i class="ri-menu-line color-black text-2xl" role="button"></i>
           </div>
         </div>
@@ -57,7 +57,6 @@ const navbarColor = computed(() => {
     padding-bottom: 18px;
     position: fixed;
     top: 0;
-    z-index: 20;
     width: 100%;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
 

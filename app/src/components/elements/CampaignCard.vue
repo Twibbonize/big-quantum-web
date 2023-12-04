@@ -29,24 +29,24 @@ const props = defineProps({
       </div>
     </div>
     <h5 class="name text-lg	">{{ props.name }}</h5>
-    <div class="author d-flex items-center">
+    <div class="author flex items-center">
       <img class="avatar" :src="avatar" alt="Image">
-      <div class="d-flex flex-column justify-center info">
+      <div class="flex flex-col justify-center info">
         <a href="#"><h6 class="campaign-card__name">{{ props.creator }}</h6></a>
       </div>
     </div>
     <div class="divider"></div>
-    <div class="meta-info d-flex items-center">
-      <div class="d-flex items-center mr-5">
+    <div class="meta-info flex items-center">
+      <div class="flex items-center mr-5">
         <i class="ri-group-line text-xl	 mr-1"></i>
-        <div class="d-flex flex-column">
+        <div class="flex flex-col">
           <span class="text-sm font-bold">Supporters</span>
           <h6 class="text-sm fw-light lh-1">{{ numeral(props.supports).format('0.0a') }}</h6>
         </div>
       </div>
-      <div class="d-flex items-center">
+      <div class="flex items-center">
         <i class="ri-time-line text-xl	 mr-1"></i>
-        <div class="d-flex flex-column">
+        <div class="flex flex-col">
           <span class="text-sm font-bold">Created</span>
           <h6 class="text-sm fw-light lh-1">{{ dayjs(props.createdAt).fromNow() }}</h6>
         </div>

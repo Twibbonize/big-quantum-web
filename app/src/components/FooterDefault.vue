@@ -7,16 +7,16 @@ const currentYear = dayjs().year();
 
 <template>
   <footer id="footer" class="bg-white">
-    <div class="container">
-        <div class="d-flex row">
-            <div class="col-12">
-                <div class="footer-content d-flex flex-grow">
-                    <div class="widget-logo d-flex flex-grow w-100">
+    <div class="container mx-auto">
+        <div class="flex row">
+            <div class="w-full">
+                <div class="footer-content flex flex-grow">
+                    <div class="widget-logo flex flex-grow w-100">
                         <div class="logo-footer" id="logo-footer">
                             <a href="index.html">
                                 <img id="logo_footer" src="/src/assets/img/logos/twibbonize-logo-black.svg">
                             </a>
-                            <div class="d-flex gap-2 flex-wrap mt-4">
+                            <div class="flex gap-2 flex-wrap mt-6">
                               <a class="logo-footer__download" href="https://apps.apple.com/id/app/twibbonize/id1610446264" target="_blank" rel="noopener noreferrer">
                                 <img id="appstore" class="logo-footer__download" src="/src/assets/img/logos/download-appstore.png">
                               </a>
@@ -53,22 +53,22 @@ const currentYear = dayjs().year();
                                 <li><a href="#">Contact Us</a></li>
                             </ul>
                         </div>
-                        <h5 class="title-widget ws-nowrap mt-30">Join the community</h5>
+                        <h5 class="title-widget ws-nowrap mt-6">Join the community</h5>
                         <div class="widget-social">
-                            <ul class="d-flex items-center gap-2">
-                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
+                            <ul class="flex items-center gap-2">
+                                <li class="btn-icon widget-social__icon flex items-center justify-center">
                                   <i class="ri-facebook-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
+                                <li class="btn-icon widget-social__icon flex items-center justify-center">
                                   <i class="ri-twitter-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
+                                <li class="btn-icon widget-social__icon flex items-center justify-center">
                                   <i class="ri-discord-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
+                                <li class="btn-icon widget-social__icon flex items-center justify-center">
                                   <i class="ri-tiktok-fill"></i>
                                 </li>
-                                <li class="btn-icon widget-social__icon d-flex items-center justify-center">
+                                <li class="btn-icon widget-social__icon flex items-center justify-center">
                                   <i class="ri-youtube-fill"></i>
                                 </li>
                             </ul>
@@ -77,9 +77,9 @@ const currentYear = dayjs().year();
                 </div>
             </div>
         </div>
-        <div class="footer-bottom d-flex items-center">
+        <div class="footer-bottom flex items-center">
             <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
-            <ul class="d-flex">
+            <ul class="flex">
                 <li>
                     <a class="ws-nowrap" href="#">Terms & Conditions</a>
                 </li>
