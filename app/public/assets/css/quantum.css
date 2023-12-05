@@ -709,6 +709,10 @@ video {
   aspect-ratio: 1 / 1;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .w-full {
   width: 100%;
 }
@@ -796,6 +800,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
 
 .text-ellipsis {

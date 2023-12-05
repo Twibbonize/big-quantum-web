@@ -2879,8 +2879,8 @@
 
 .home-slider {
   width: 825px;
-  height: 622px;
-  transform: rotate(-25deg);
+  height: 1200px;
+  /* transform: rotate(-25deg); */
   display: flex;
   gap: 30px;
   position: absolute; 
