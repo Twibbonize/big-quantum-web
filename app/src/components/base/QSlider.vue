@@ -10,9 +10,21 @@ const props = defineProps({
   centeredSlides: Boolean,
   loop: Boolean,
   slidesPerView: String,
-  autoplayDelay: Number,
-  autoplayDisableOnInteraction: Boolean,
-  autoplayReverseDirection: Boolean,
+  breakpoints: Object,
+  observer: Boolean,
+  observeParent: Boolean,
+  autoplayDelay: {
+    type: Number,
+    default: null,
+  },
+  autoplayDisableOnInteraction: {
+    type: Boolean,
+    default: null,
+  },
+  autoplayReverseDirection: {
+    type: Boolean,
+    default: null,
+  },
 })
 
 onMounted(() => {
@@ -33,6 +45,9 @@ onMounted(() => {
     :autoplay-delay="autoplayDelay"
     :autoplay-disable-on-interaction="autoplayDisableOnInteraction"
     :autoplay-reverse-direction="autoplayReverseDirection"
+    :breakpoints="JSON.stringify(breakpoints)"
+    :observer-parent="observeParent"
+    :observer="observer"
   >
     <slot></slot>
   </swiper-container>
