@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import numeral from 'numeral';
@@ -22,9 +23,9 @@ const props = defineProps({
                 <img :src="props.thumbnail" alt="" />
             </a>
             <div class="button-view">
-                <nuxt-link to="#" data-toggle="modal" data-target="#popup_view" class="tf-button">
+                <router-link to="#" data-toggle="modal" data-target="#popup_view" class="tf-button">
                     <span>View</span>
-                </nuxt-link>
+                </router-link>
             </div>
         </div>
         <h5 class="name text-lg">{{ props.name }}</h5>
