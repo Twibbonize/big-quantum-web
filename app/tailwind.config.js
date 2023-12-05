@@ -1,26 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,vue}"],
-  theme: {
-    fontFamily: {
-      'sans': ['Manrope', 'sans-serif'],
-      'serif': ['"Marck Script"', 'serif'],
+    content: ['./src/**/*.{html,js,vue}'],
+    theme: {
+        fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            body: ['Manrope', 'sans-serif'],
+            serif: ['Marck Script', 'cursive']
+        },
+        borderRadius: {
+            xl: '0.75rem',
+            '3xl': '1.25rem',
+            full: '9999px'
+        },
+        extend: {
+            fontSize: {
+                xxs: ['10px', '10px']
+            },
+            colors: {
+                main: '#16DAC1',
+                black: '#1B1B1B',
+                content: '8D8D8D',
+                white: '#FFFFFF',
+                yellow: '#FFEF5F',
+                light: '#DEE8E8',
+                stroke: '#d9d9d9',
+                transparent: 'transparent'
+            }
+        }
     },
-    colors: {
-      'main': '#16DAC1',
-      'black': '#1B1B1B',
-      'white': '#FFFFFF',
-      'yellow': '#FFEF5F',
-      'light': '#DEE8E8',
-      'transparent': 'transparent'
-    },
-    borderRadius: {
-      'xl': '0.75rem',
-      '3xl': '1.25rem',
-      'full': '9999px',
-    },
-    extend: {},
-  },
-  plugins: [],
-}
-
+    plugins: []
+};

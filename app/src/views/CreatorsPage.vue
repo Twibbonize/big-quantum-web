@@ -1,4 +1,4 @@
-<script setup >
+<script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
@@ -13,76 +13,76 @@ import PackageSelection from '@/components/CreatorPage/PackageSelection.vue';
 const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);
- 
+
 const doScroll = () => {
-  const { top } = content.value.getBoundingClientRect();
-  if (top < 97) emit('change-navbar', '');
-  else emit('change-navbar', 'transparent');
-}
- 
+    const { top } = content.value.getBoundingClientRect();
+    if (top < 97) emit('change-navbar', '');
+    else emit('change-navbar', 'transparent');
+};
+
 onMounted(() => {
-  emit('change-navbar', 'transparent')
-  window.addEventListener('scroll', doScroll)
-})
-   
+    emit('change-navbar', 'transparent');
+    window.addEventListener('scroll', doScroll);
+});
+
 onUnmounted(() => {
-  window.removeEventListener('scroll', doScroll)
-})
+    window.removeEventListener('scroll', doScroll);
+});
 </script>
 
 <template>
-  <div class="creators-page">
-    <BannerCreators/>
-    <div ref="content"></div>
-    <CampaignSwiper class="creators-page__swiper"/>
-    <VerticalCarousel/>
-    <BentoGrid/>
-    <TiltScreen/>
-    <CreatorStories/>
-    <FrameSelection/>
-    <PackageSelection/>
-  </div>
+    <div class="creators-page">
+        <BannerCreators />
+        <div ref="content"></div>
+        <CampaignSwiper class="creators-page__swiper" />
+        <VerticalCarousel />
+        <BentoGrid />
+        <TiltScreen />
+        <CreatorStories />
+        <FrameSelection />
+        <PackageSelection />
+    </div>
 </template>
 
 <style lang="scss">
 .creators-page {
-  .tp-rated-bg {
-    height: 650px;
-    padding-top: 139px;
-    box-sizing: border-box;
-  }
-
-  .tp-section-title-3 {
-    font-size: 85px;
-    line-height: 85px;
-    
-    span {
-      font-size: 130px;
+    .tp-rated-bg {
+        height: 650px;
+        padding-top: 139px;
+        box-sizing: border-box;
     }
-  }
 
-  .banner-creators__spark {
-    top: 24px;
-  }
+    .tp-section-title-3 {
+        font-size: 85px;
+        line-height: 85px;
 
-  .banner-creators__highlight-line {
-    top: 5px;
-  }
+        span {
+            font-size: 130px;
+        }
+    }
 
-  .banner-creators__btn-container, .author-rated-big-img {
-    display: none !important;
-  }
+    .banner-creators__spark {
+        top: 24px;
+    }
 
-  &__swiper {
-    margin-top: -150px !important;
-  }
+    .banner-creators__highlight-line {
+        top: 5px;
+    }
 
-  .campaign-swiper__campaign {
-    height: 160px;
-    width: 160px;
-    margin: 0 4px;
-    border-radius: 8px;
-  }
+    .banner-creators__btn-container,
+    .author-rated-big-img {
+        display: none !important;
+    }
 
+    &__swiper {
+        margin-top: -150px !important;
+    }
+
+    .campaign-swiper__campaign {
+        height: 160px;
+        width: 160px;
+        margin: 0 4px;
+        border-radius: 8px;
+    }
 }
 </style>

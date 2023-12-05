@@ -1,98 +1,128 @@
-<script setup >
+<script setup>
 import dayjs from 'dayjs';
 
 const currentYear = dayjs().year();
-
 </script>
 
 <template>
-  <footer id="footer" class="bg-white">
-    <div class="container mx-auto">
-        <div class="flex row">
-            <div class="w-full">
-                <div class="footer-content flex flex-grow">
-                    <div class="widget-logo flex flex-grow w-100">
-                        <div class="logo-footer" id="logo-footer">
-                            <a href="index.html">
-                                <img id="logo_footer" src="/src/assets/img/logos/twibbonize-logo-black.svg">
-                            </a>
-                            <div class="flex gap-2 flex-wrap mt-6">
-                              <a class="logo-footer__download" href="https://apps.apple.com/id/app/twibbonize/id1610446264" target="_blank" rel="noopener noreferrer">
-                                <img id="appstore" class="logo-footer__download" src="/src/assets/img/logos/download-appstore.png">
-                              </a>
-                              <a class="logo-footer__download" href="https://play.google.com/store/apps/details?id=com.twibbonize" target="_blank" rel="noopener noreferrer">
-                                <img id="playstore" class="logo-footer__download" src="/src/assets/img/logos/download-playstore.png">
-                              </a>
+    <footer id="footer" class="bg-white">
+        <div class="container mx-auto">
+            <div class="flex row">
+                <div class="w-full">
+                    <div class="footer-content flex flex-grow">
+                        <div class="widget-logo flex flex-grow w-100">
+                            <div class="logo-footer" id="logo-footer">
+                                <a href="index.html">
+                                    <img
+                                        id="logo_footer"
+                                        src="/src/assets/img/logos/twibbonize-logo-black.svg"
+                                    />
+                                </a>
+                                <div class="flex gap-2 flex-wrap mt-6">
+                                    <a
+                                        class="logo-footer__download"
+                                        href="https://apps.apple.com/id/app/twibbonize/id1610446264"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <img
+                                            id="appstore"
+                                            class="logo-footer__download"
+                                            src="/src/assets/img/logos/download-appstore.png"
+                                        />
+                                    </a>
+                                    <a
+                                        class="logo-footer__download"
+                                        href="https://play.google.com/store/apps/details?id=com.twibbonize"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <img
+                                            id="playstore"
+                                            class="logo-footer__download"
+                                            src="/src/assets/img/logos/download-playstore.png"
+                                        />
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="widget widget-menu style-1">
-                        <h5 class="title-widget">Discover</h5>
-                        <ul>
-                            <li><a href="#">Explore</a></li>
-                            <li><a href="#">Leaderboard</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Help Center</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget widget-menu style-2">
-                        <h5 class="title-widget">Resources</h5>
-                        <ul>
-                            <li><a href="/creators">For Creators</a></li>
-                            <li><a href="#">What is a Twibbon</a></li>
-                            <li><a href="#">Use Cases</a></li>
-                            <li><a href="#">Editor</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-last">
-                        <div class="widget-menu style-4">
-                            <h5 class="title-widget">Company</h5>
+                        <div class="widget widget-menu style-1">
+                            <h5 class="title-widget">Discover</h5>
                             <ul>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Explore</a></li>
+                                <li><a href="#">Leaderboard</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Help Center</a></li>
                             </ul>
                         </div>
-                        <h5 class="title-widget ws-nowrap mt-6">Join the community</h5>
-                        <div class="widget-social">
-                            <ul class="flex items-center gap-2">
-                                <li class="btn-icon widget-social__icon flex items-center justify-center">
-                                  <i class="ri-facebook-fill"></i>
-                                </li>
-                                <li class="btn-icon widget-social__icon flex items-center justify-center">
-                                  <i class="ri-twitter-fill"></i>
-                                </li>
-                                <li class="btn-icon widget-social__icon flex items-center justify-center">
-                                  <i class="ri-discord-fill"></i>
-                                </li>
-                                <li class="btn-icon widget-social__icon flex items-center justify-center">
-                                  <i class="ri-tiktok-fill"></i>
-                                </li>
-                                <li class="btn-icon widget-social__icon flex items-center justify-center">
-                                  <i class="ri-youtube-fill"></i>
-                                </li>
+                        <div class="widget widget-menu style-2">
+                            <h5 class="title-widget">Resources</h5>
+                            <ul>
+                                <li><a href="/creators">For Creators</a></li>
+                                <li><a href="#">What is a Twibbon</a></li>
+                                <li><a href="#">Use Cases</a></li>
+                                <li><a href="#">Editor</a></li>
                             </ul>
+                        </div>
+                        <div class="widget-last">
+                            <div class="widget-menu style-4">
+                                <h5 class="title-widget">Company</h5>
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <h5 class="title-widget ws-nowrap mt-6">Join the community</h5>
+                            <div class="widget-social">
+                                <ul class="flex items-center gap-2">
+                                    <li
+                                        class="btn-icon widget-social__icon flex items-center justify-center"
+                                    >
+                                        <i class="ri-facebook-fill"></i>
+                                    </li>
+                                    <li
+                                        class="btn-icon widget-social__icon flex items-center justify-center"
+                                    >
+                                        <i class="ri-twitter-fill"></i>
+                                    </li>
+                                    <li
+                                        class="btn-icon widget-social__icon flex items-center justify-center"
+                                    >
+                                        <i class="ri-discord-fill"></i>
+                                    </li>
+                                    <li
+                                        class="btn-icon widget-social__icon flex items-center justify-center"
+                                    >
+                                        <i class="ri-tiktok-fill"></i>
+                                    </li>
+                                    <li
+                                        class="btn-icon widget-social__icon flex items-center justify-center"
+                                    >
+                                        <i class="ri-youtube-fill"></i>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="footer-bottom flex items-center">
+                <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
+                <ul class="flex">
+                    <li>
+                        <a class="ws-nowrap" href="#">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a class="ws-nowrap" href="#">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a class="ws-nowrap" href="#">Cookie Policy</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-bottom flex items-center">
-            <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
-            <ul class="flex">
-                <li>
-                    <a class="ws-nowrap" href="#">Terms & Conditions</a>
-                </li>
-                <li>
-                    <a class="ws-nowrap" href="#">Privacy Policy</a>
-                </li>
-                <li>
-                    <a class="ws-nowrap" href="#">Cookie Policy</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
 </template>
 
 <style lang="scss">
@@ -151,8 +181,8 @@ const currentYear = dayjs().year();
 #footer.bg-white .icon-vt:before,
 #footer.bg-white .widget-menu ul li a,
 #footer.bg-white .title-widget {
-  color: rgba(22, 22, 22, 1);
-  white-space: nowrap;
+    color: rgba(22, 22, 22, 1);
+    white-space: nowrap;
 }
 
 #footer.bg-white .widget-social ul li a {
@@ -187,7 +217,7 @@ const currentYear = dayjs().year();
 }
 
 #footer .title-widget {
-    font-weight: 800; 
+    font-weight: 800;
     line-height: 25px;
     margin-bottom: 20px;
 }
@@ -201,7 +231,7 @@ const currentYear = dayjs().year();
 }
 
 .widget-menu ul li a {
-    color: rgba(255, 255, 255, 0.53);;
+    color: rgba(255, 255, 255, 0.53);
     font-size: 14px;
     line-height: 22px;
     position: relative;
@@ -212,83 +242,83 @@ const currentYear = dayjs().year();
 }
 
 .widget-menu ul li a::after {
-    content           : '';
-    width             : 0;
-    height            : 1px;
-    position          : absolute;
-    background        : #16DAC1;
-    left              : 50%;
-    bottom            : 0;
-    transform         : translateX(-50%);
-    visibility        : hidden;
-    opacity           : 0;
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    background: #16dac1;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
     -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition   : all 0.3s ease-in-out;
-    -ms-transition    : all 0.3s ease-in-out;
-    -o-transition     : all 0.3s ease-in-out;
-    transition        : all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .widget-social {
-  &__icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 19px;
-    background: rgba(#1B1B1B, .05);
+    &__icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 19px;
+        background: rgba(#1b1b1b, 0.05);
 
-    &:hover {
-        background: rgba(#1B1B1B, .2);
-        cursor: pointer;
-    }
+        &:hover {
+            background: rgba(#1b1b1b, 0.2);
+            cursor: pointer;
+        }
 
-    i {
-      color: #1B1B1B;
+        i {
+            color: #1b1b1b;
+        }
     }
-  }
 }
 
 .logo-footer {
-  &__download {
-    position: relative;
-    height: 40px !important;
-    width: auto !important;
-    overflow: hidden;
-
-    &::before {
-        content: '';
-        position: absolute;
-        height: 0;
-        width: 0;
-        border-radius: 100%;
-        background: #FFFFFF;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        opacity: 0.3;
-    }
-
-    &:hover {
-        cursor: pointer;
-        color: #FFFFFF;
-        box-shadow: 0px 17px 13px 0px #192c4b0F;
+    &__download {
+        position: relative;
+        height: 40px !important;
+        width: auto !important;
+        overflow: hidden;
 
         &::before {
             content: '';
             position: absolute;
-            height: 15rem;
-            width: 15rem;
+            height: 0;
+            width: 0;
             border-radius: 100%;
-            background: #FFFFFF;
+            background: #ffffff;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2;
+            z-index: -1;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0.3;
         }
+
+        &:hover {
+            cursor: pointer;
+            color: #ffffff;
+            box-shadow: 0px 17px 13px 0px #192c4b0f;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 15rem;
+                width: 15rem;
+                border-radius: 100%;
+                background: #ffffff;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity: 0.3;
+            }
+        }
     }
-  }
 }
 </style>

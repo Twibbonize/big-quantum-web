@@ -1,18 +1,24 @@
 <template>
-  <div class="tf-section featured-item style-bottom">
-    <div class="container mx-auto">
-        <div class="row">
-            <div class="md:w-full">
-                <div class="heading-section">
-                    <div>
-                      <h2 class="tf-title">Trending on Twibbonize</h2>
-                      <p class="tf-description">Most Supported Campaigns in the Last 24 Hours</p>
+    <div class="tf-section featured-item style-bottom">
+        <div class="container mx-auto">
+            <div class="row">
+                <div class="md:w-full">
+                    <div class="heading-section">
+                        <div>
+                            <h2 class="tf-title">Trending on Twibbonize</h2>
+                            <p class="tf-description">
+                                Most Supported Campaigns in the Last 24 Hours
+                            </p>
+                        </div>
+                        <a class="flex items-center color_black" href="explore-3.html"
+                            >Explore more <i class="ri-arrow-right-line"></i
+                        ></a>
                     </div>
-                    <a class="flex items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
                 </div>
-            </div>
-            <div class="md:w-full">
-                <div class="featured pt-8 swiper-container carousel" data-swiper='{
+                <div class="md:w-full">
+                    <div
+                        class="featured pt-8 swiper-container carousel"
+                        data-swiper='{
                     "loop":false,
                     "slidesPerView": 1,
                     "observer": true,
@@ -41,30 +47,37 @@
                             "spaceBetween": 30
                         }
                     }
-                }'>
-                    <div class="swiper-wrapper">
-                        <div v-for="{ name, avatar, creator, createdAt, supports, thumbnail }, i in campaigns" :key="i" class="swiper-slide">
-                            <CampaignCard
-                                :name="name"
-                                :creator="creator"
-                                :avatar="getAvatarUrl(avatar)"
-                                :supports="supports"
-                                :created-at="createdAt"
-                                :thumbnail="getThumbnailUrl(thumbnail)"
-                            />
+                }'
+                    >
+                        <div class="swiper-wrapper">
+                            <div
+                                v-for="(
+                                    { name, avatar, creator, createdAt, supports, thumbnail }, i
+                                ) in campaigns"
+                                :key="i"
+                                class="swiper-slide"
+                            >
+                                <CampaignCard
+                                    :name="name"
+                                    :creator="creator"
+                                    :avatar="getAvatarUrl(avatar)"
+                                    :supports="supports"
+                                    :created-at="createdAt"
+                                    :thumbnail="getThumbnailUrl(thumbnail)"
+                                />
+                            </div>
                         </div>
+                        <div class="swiper-pagination d-none"></div>
+                        <div class="slider-next swiper-button-next d-none"></div>
+                        <div class="slider-prev swiper-button-prev d-none"></div>
                     </div>
-                    <div class="swiper-pagination d-none"></div>
-                    <div class="slider-next swiper-button-next d-none"></div>
-                    <div class="slider-prev swiper-button-prev d-none"></div>
                 </div>
             </div>
         </div>
     </div>
-  </div>
 </template>
 
-<script setup >
+<script setup>
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
@@ -77,7 +90,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
         createdAt: dayjs().subtract(5, 'day'),
-        thumbnail: 'sample-campaign-1.jpg',
+        thumbnail: 'sample-campaign-1.jpg'
     },
     {
         name: 'Liberty Scholarship 2025',
@@ -85,7 +98,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-2.jpg',
         supports: 1470,
         createdAt: dayjs().subtract(3, 'week'),
-        thumbnail: 'sample-campaign-2.jpg',
+        thumbnail: 'sample-campaign-2.jpg'
     },
     {
         name: 'Bit by Bit - Retro Gaming',
@@ -93,7 +106,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
         createdAt: dayjs().subtract(5, 'day'),
-        thumbnail: 'sample-campaign-3.jpg',
+        thumbnail: 'sample-campaign-3.jpg'
     },
     {
         name: 'Digital Culture Webinar',
@@ -101,7 +114,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
         createdAt: dayjs().subtract(1, 'week'),
-        thumbnail: 'sample-campaign-4.jpg',
+        thumbnail: 'sample-campaign-4.jpg'
     },
     {
         name: 'UNIVERSE UNPACKED 2022',
@@ -109,7 +122,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
         createdAt: dayjs().subtract(5, 'day'),
-        thumbnail: 'sample-campaign-1.jpg',
+        thumbnail: 'sample-campaign-1.jpg'
     },
     {
         name: 'Liberty Scholarship 2025',
@@ -117,7 +130,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-2.jpg',
         supports: 14700,
         createdAt: dayjs().subtract(3, 'week'),
-        thumbnail: 'sample-campaign-2.jpg',
+        thumbnail: 'sample-campaign-2.jpg'
     },
     {
         name: 'Bit by Bit - Retro Gaming',
@@ -125,7 +138,7 @@ const campaigns = ref([
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
         createdAt: dayjs().subtract(5, 'day'),
-        thumbnail: 'sample-campaign-3.jpg',
+        thumbnail: 'sample-campaign-3.jpg'
     },
     {
         name: 'Digital Culture Webinar',
@@ -133,17 +146,17 @@ const campaigns = ref([
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
         createdAt: dayjs().subtract(1, 'week'),
-        thumbnail: 'sample-campaign-4.jpg',
-    },
-])
+        thumbnail: 'sample-campaign-4.jpg'
+    }
+]);
 
 function getAvatarUrl(name) {
-  const filename = `/assets/img/sample/${name}`; 
-  return new URL(filename, import.meta.url).href;
+    const filename = `/assets/img/sample/${name}`;
+    return new URL(filename, import.meta.url).href;
 }
 function getThumbnailUrl(name) {
-  const filename = `/assets/img/sample/${name}`; 
-  return new URL(filename, import.meta.url).href;
+    const filename = `/assets/img/sample/${name}`;
+    return new URL(filename, import.meta.url).href;
 }
 </script>
 
@@ -155,10 +168,10 @@ function getThumbnailUrl(name) {
 
 .carouselfull::before {
     position: absolute;
-    content: "";
+    content: '';
     top: 0;
     left: -36%;
-    background: linear-gradient(270deg, rgba(22, 22, 22, 0.00) 0%, #161616 100%);
+    background: linear-gradient(270deg, rgba(22, 22, 22, 0) 0%, #161616 100%);
     width: 255px;
     height: 408px;
     z-index: 10;
@@ -166,10 +179,10 @@ function getThumbnailUrl(name) {
 
 .carouselfull::after {
     position: absolute;
-    content: "";
+    content: '';
     top: 0;
     right: -36%;
-    background: linear-gradient(90deg, rgba(22, 22, 22, 0.00) 0%, #161616 100%);
+    background: linear-gradient(90deg, rgba(22, 22, 22, 0) 0%, #161616 100%);
     width: 255px;
     height: 408px;
     z-index: 10;
@@ -189,7 +202,7 @@ function getThumbnailUrl(name) {
     width: 255px;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(90deg, rgba(22, 22, 22, 0.00) 0%, #161616 100%);
+    background: linear-gradient(90deg, rgba(22, 22, 22, 0) 0%, #161616 100%);
 }
 
 .carouselright .swiper-slide {
@@ -224,10 +237,10 @@ function getThumbnailUrl(name) {
 }
 
 .heading-section {
-    display        : flex;
-    align-items    : center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    flex-wrap      : wrap;
+    flex-wrap: wrap;
 }
 
 .heading-section .tf-title {
@@ -248,10 +261,10 @@ function getThumbnailUrl(name) {
     line-height: 19px;
     text-transform: capitalize;
     -webkit-transition: all 0.3s ease;
-    -moz-transition   : all 0.3s ease;
-    -ms-transition    : all 0.3s ease;
-    -o-transition     : all 0.3s ease;
-    transition        : all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
 }
 
@@ -273,8 +286,8 @@ function getThumbnailUrl(name) {
     right: 0;
     content: '';
     border-radius: 20px;
-    border: 1px solid rgba(#1B1B1B, 0.10);
-    background: rgba(#1B1B1B, 0.10);
+    border: 1px solid rgba(#1b1b1b, 0.1);
+    background: rgba(#1b1b1b, 0.1);
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
@@ -323,7 +336,7 @@ function getThumbnailUrl(name) {
 }
 
 .text-bid {
-    color: #1B1B1B;
+    color: #1b1b1b;
     font-size: 12px;
     font-weight: 400;
     line-height: 19px;
@@ -341,7 +354,7 @@ function getThumbnailUrl(name) {
     position: relative;
     border: none;
     color: #161616;
-    background-color: #DEE8E8;
+    background-color: #dee8e8;
     border-radius: 22px;
     font-size: 14px;
     font-weight: 800;
@@ -349,16 +362,16 @@ function getThumbnailUrl(name) {
     height: 42px;
     text-transform: capitalize;
     -webkit-transition: all 0.3s ease;
-    -moz-transition   : all 0.3s ease;
-    -ms-transition    : all 0.3s ease;
-    -o-transition     : all 0.3s ease;
-    transition        : all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .tf-button:hover,
 .tf-button.active {
     color: #161616;
-    background-color: #16DAC1;
+    background-color: #16dac1;
 }
 
 .tf-button:focus {
@@ -370,7 +383,7 @@ function getThumbnailUrl(name) {
     height: 44px;
     gap: 10px;
     flex-shrink: 0;
-    background-color: #16DAC1;
+    background-color: #16dac1;
 }
 
 .tf-button.style-1:hover,
@@ -380,7 +393,7 @@ function getThumbnailUrl(name) {
 }
 
 .tf-button.style-1.active:hover {
-    background-color: #16DAC1;
+    background-color: #16dac1;
 }
 
 /* tf-button loadmore */
@@ -394,17 +407,17 @@ function getThumbnailUrl(name) {
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    background: #DEE8E8;
+    background: #dee8e8;
     cursor: pointer;
     -webkit-transition: all 0.3s ease;
-    -moz-transition   : all 0.3s ease;
-    -ms-transition    : all 0.3s ease;
-    -o-transition     : all 0.3s ease;
-    transition        : all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .tf-button-loadmore:hover {
-    background-color: #16DAC1;
+    background-color: #16dac1;
 }
 
 .tf-button-loadmore span {
