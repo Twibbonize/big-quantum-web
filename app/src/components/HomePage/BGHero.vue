@@ -3,10 +3,10 @@
 
 <template>
   <div class="bg-hero relative">
-    <img class="pattern-left z-10" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
-    <img class="pattern-right z-10" src="/src/assets/img/patterns/hero-right-top.png" alt="">
-    <img class="pattern-center z-20" src="/src/assets/img/patterns/hero-texture.png" alt="">
     <slot></slot>
+    <img class="pattern-left z-0" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
+    <img class="pattern-right z-0" src="/src/assets/img/patterns/hero-right-top.png" alt="">
+    <img class="pattern-center z-0" src="/src/assets/img/patterns/hero-texture.png" alt="">
   </div>
 </template>
 
@@ -29,8 +29,8 @@
 
     .pattern-center {
       position: absolute;
-      bottom: -250%;
-      left: 20%;
+      top: 0;
+      left: 40%;
       filter: blur(15.4px);
       mix-blend-mode: darken;
       animation: 8s move infinite ease-in-out alternate;

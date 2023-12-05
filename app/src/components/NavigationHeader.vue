@@ -34,7 +34,7 @@ const navbarColor = computed(() => {
           <i class="ri-search-line text-xl font-bold" role="button"></i>
         </div>
         <div class="action w-3/12 flex items-center justify-end">
-          <QButton class="text-xs	" :color="buttonColor" size="lg" border-radius="circle">
+          <QButton class="text-xs	whitespace-nowrap" :color="buttonColor" size="lg" border-radius="circle">
             <i class="ri-add-line"></i>
             Start a Campaign
           </QButton>
