@@ -68,7 +68,6 @@ const navbarColor = computed(() => {
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss';
 
 .navigation-header {
     background: $color_white;

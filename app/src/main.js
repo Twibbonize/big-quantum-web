@@ -1,6 +1,9 @@
 import 'animate.css';
 import 'remixicon/fonts/remixicon.css';
-import '@/assets/quantum.scss';
+
+import '@/assets/plugins/open9.css';
+import '@/assets/plugins/softec.css';
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import VueWriter from 'vue-writer';

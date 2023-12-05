@@ -27,8 +27,6 @@ const borderRadiusClass = computed(() => {
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss';
-
 input[type='submit'],
 .btn,
 a.btn input.btn,

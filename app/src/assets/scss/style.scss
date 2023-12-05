@@ -3,7 +3,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './plugins/open9.css';
-@import './plugins/softec.css';
 
-@import './variables.scss';
+@import './variables';
+@import './mixins';
