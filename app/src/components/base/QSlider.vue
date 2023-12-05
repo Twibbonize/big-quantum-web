@@ -3,13 +3,14 @@ import { onMounted } from 'vue';
 import { register } from 'swiper/element/bundle';
 
 const props = defineProps({
+  id: String,
   direction: String,
   spaceBetween: Number,
   grabCursor: Boolean,
   speed: Number,
   centeredSlides: Boolean,
   loop: Boolean,
-  slidesPerView: String,
+  slidesPerView: Number,
   breakpoints: Object,
   observer: Boolean,
   observeParent: Boolean,
@@ -25,6 +26,8 @@ const props = defineProps({
     type: Boolean,
     default: null,
   },
+  gridRows: Number,
+  gridFill: String,
 })
 
 onMounted(() => {
@@ -34,7 +37,7 @@ onMounted(() => {
 
 <template>
   <swiper-container
-    style="--swiper-wrapper-transition-timing-function: linear;"
+    :id="id"
     :direction="direction"
     :space-between="spaceBetween"
     :grab-cursor="grabCursor"
@@ -48,6 +51,8 @@ onMounted(() => {
     :breakpoints="JSON.stringify(breakpoints)"
     :observer-parent="observeParent"
     :observer="observer"
+    :grid-rows="gridRows"
+    :grid-fill="gridFill"
   >
     <slot></slot>
   </swiper-container>

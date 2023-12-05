@@ -72,6 +72,7 @@ import QSlider from '@/components/base/QSlider.vue';
     </QSlider>
     <QSlider
       class="autoslider"
+      style="--swiper-wrapper-transition-timing-function: linear;"
       direction="vertical"
       :space-between="45"
       :grab-cursor="false"
