@@ -1,100 +1,46 @@
 <script setup>
-// import { ref, onMounted } from 'vue';
-import TWButton from '../base/TWButton.vue';
-import HomeSlider from './HomeSlider.vue';
+import QButton from '@/components/base/QButton.vue';
+import HomeSlider from '@/components/HomePage/HomeSlider.vue';
+import BGHero from '@/components/HomePage/BGHero.vue';
 import supportsJSON from '../../assets/lottie/supports.json';
-
-// const tagline = ['supports', 'enthusiasm', 'gratitude', 'sympathy', 'participation'];
 </script>
 
 <template>
-  <div class="hero-participant position-relative">
-    <div class="hero-participant__bg"></div>
-    <img class="hero-participant__pattern-left" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
-    <img class="hero-participant__pattern-right" src="/src/assets/img/patterns/hero-right-top.png" alt="">
-    <img class="hero-participant__pattern-center" src="/src/assets/img/patterns/hero-texture.png" alt="">
-    <!-- <div class="tf-bg-line"></div> -->
-    <div class="container">
-      <div class="row">
-          <div class="col-12 pages-title">
-            <div class="row">
-              <div class="col-4 content">
-                <h1 class="hero-participant__text user-select-none pe-none text-lowercase">
-                  show your  
-                </h1>
-                <div class="hero-participant__text-animation">
-                  <Vue3Lottie :animationData="supportsJSON" :height="200" :width="600" :loop="true" />
-                </div>
-                <!-- <h1 id="hero-typed" class="hero-participant__text-highlight text-lowercase user-select-none pe-none">
-                  supports
-                </h1> -->
-                <!-- <h1 id="hero-line-typed" class="hero-participant__text-highlight-line">
-                  _______
-                </h1> -->
-                <h4 class="hero-participant__description fw-normal fs-5 user-select-none pe-none">
-                  Turn your passion into action; create custom images that show what you stand for and invite friends to join you
-                </h4>
-                <div class="hero-participant__btn-container flat-button d-flex align-items-center mt-4 gap-3">
-                  <TWButton class="fs-14" color="secondary" border-radius="circle">
-                    <i class="ri-add-line"></i>
-                    Start a Campaign
-                  </TWButton>
-                  <div class="hero-participant__or fs-14 fw-bold">or</div>
-                  <TWButton class="fs-14 px-0" color="transparent" border-radius="circle">
-                    Find a Campaign
-                  </TWButton>
-                </div>
-              </div>
+  <BGHero class="hero-participant">
+    <div class="container mx-auto">
+      <div class="w-full pages-title mx-auto">
+        <div class="container mx-auto">
+          <div class="w-4/12 content">
+            <h1 class="hero-participant__text user-select-none pe-none lowercase">
+              show your  
+            </h1>
+            <div class="hero-participant__text-animation">
+              <Vue3Lottie :animationData="supportsJSON" :height="200" :width="600" :loop="true" />
             </div>
-            <HomeSlider/>
+            <h4 class="hero-participant__description fw-normal text-xl	 user-select-none pe-none">
+              Turn your passion into action; create custom images that show what you stand for and invite friends to join you
+            </h4>
+            <div class="hero-participant__btn-container flat-button flex items-center mt-6 gap-3">
+              <QButton class="text-sm" color="yellow" border-radius="circle">
+                <i class="ri-add-line"></i>
+                Start a Campaign
+              </QButton>
+              <div class="hero-participant__or text-sm font-bold">or</div>
+              <QButton class="text-sm !px-0" color="transparent" border-radius="circle">
+                Find a Campaign
+              </QButton>
+            </div>
           </div>
+        </div>
+        <HomeSlider/>
       </div>
     </div>
-  </div>
+  </BGHero>
 </template>
 
 <style lang="scss">
-  @keyframes move {
-    from {
-      transform: scale(1) translateX(-50%) rotate(0deg);
-    }
-    to {
-      transform: scale(1.2) translateX(-50%) rotate(30deg);
-    }
-  }
-
-
   .hero-participant {
     overflow: hidden;
-
-    &__bg {
-      position: absolute;
-      background: #16DAC1;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    &__pattern-left {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
-    &__pattern-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
-    &__pattern-center {
-      position: absolute;
-      bottom: -250%;
-      left: 20%;
-      filter: blur(15.4px);
-      mix-blend-mode: darken;
-      animation: 8s move infinite ease-in-out alternate;
-    }
 
     &__text {
       font-size: 80px !important;

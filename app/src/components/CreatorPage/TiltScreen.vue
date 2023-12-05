@@ -23,12 +23,12 @@ onMounted(() => {
 <template>
   <div class="tilt-screen container">
     <div class="row">
-      <div class="d-flex flex-column align-items-center">
+      <div class="flex flex-col items-center">
         <h2 class="creators-features__title">Get it ready anytime <br>with our built in Twibbon Editor</h2>
-        <h4 class="creators-features__subtitle mt-4">Effortless mobile-friendly editor with hundreds of pre-made templates for every occasions</h4>
+        <h4 class="creators-features__subtitle mt-6">Effortless mobile-friendly editor with hundreds of pre-made templates for every occasions</h4>
       </div>
-      <div class="d-flex justify-content-center container">
-        <div id="tiltImage" ref="tiltImage" class="tilt-screen__wrapper position-relative d-flex align-items-center justify-content-center">
+      <div class="flex justify-center container">
+        <div id="tiltImage" ref="tiltImage" class="tilt-screen__wrapper relative flex items-center justify-center">
           <img class="tilt-screen__image" src="/src/assets/img/campaigns/frame-editor.png" alt="">
           <img class="tilt-screen__frame-1" src="/src/assets/img/campaigns/frame-1.png" alt="">
           <img class="tilt-screen__frame-2" src="/src/assets/img/campaigns/frame-2.png" alt="">

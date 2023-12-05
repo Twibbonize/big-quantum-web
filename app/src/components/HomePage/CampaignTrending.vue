@@ -1,18 +1,18 @@
 <template>
   <div class="tf-section featured-item style-bottom">
-    <div class="container">
+    <div class="container mx-auto">
         <div class="row">
-            <div class="col-md-12">
+            <div class="md:w-full">
                 <div class="heading-section">
                     <div>
                       <h2 class="tf-title">Trending on Twibbonize</h2>
                       <p class="tf-description">Most Supported Campaigns in the Last 24 Hours</p>
                     </div>
-                    <a class="d-flex align-items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
+                    <a class="flex items-center color_black" href="explore-3.html">Explore more <i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="featured pt-30 swiper-container carousel" data-swiper='{
+            <div class="md:w-full">
+                <div class="featured pt-8 swiper-container carousel" data-swiper='{
                     "loop":false,
                     "slidesPerView": 1,
                     "observer": true,
