@@ -9,7 +9,7 @@ import supportsJSON from '../../assets/lottie/supports.json';
   <BGHero class="hero-participant">
     <div class="container mx-auto">
       <div class="w-full pages-title mx-auto">
-        <div class="container mx-auto">
+        <div class="container z-10 absolute mx-auto">
           <div class="w-4/12 content">
             <h1 class="hero-participant__text user-select-none pe-none lowercase">
               show your  
