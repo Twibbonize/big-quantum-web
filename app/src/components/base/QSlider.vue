@@ -3,60 +3,59 @@ import { onMounted } from 'vue';
 import { register } from 'swiper/element/bundle';
 
 const props = defineProps({
-  id: String,
-  direction: String,
-  spaceBetween: Number,
-  grabCursor: Boolean,
-  speed: Number,
-  centeredSlides: Boolean,
-  loop: Boolean,
-  slidesPerView: Number,
-  breakpoints: Object,
-  observer: Boolean,
-  observeParent: Boolean,
-  autoplayDelay: {
-    type: Number,
-    default: null,
-  },
-  autoplayDisableOnInteraction: {
-    type: Boolean,
-    default: null,
-  },
-  autoplayReverseDirection: {
-    type: Boolean,
-    default: null,
-  },
-  gridRows: Number,
-  gridFill: String,
-})
+    id: String,
+    direction: String,
+    spaceBetween: Number,
+    grabCursor: Boolean,
+    speed: Number,
+    centeredSlides: Boolean,
+    loop: Boolean,
+    slidesPerView: Number,
+    breakpoints: Object,
+    observer: Boolean,
+    observeParent: Boolean,
+    autoplayDelay: {
+        type: Number,
+        default: null
+    },
+    autoplayDisableOnInteraction: {
+        type: Boolean,
+        default: null
+    },
+    autoplayReverseDirection: {
+        type: Boolean,
+        default: null
+    },
+    gridRows: Number,
+    gridFill: String
+});
 
 onMounted(() => {
-  register();
+    register();
 });
 </script>
 
 <template>
-  <swiper-container
-    :id="id"
-    :direction="direction"
-    :space-between="spaceBetween"
-    :grab-cursor="grabCursor"
-    :speed="speed"
-    :centered-slides="centeredSlides"
-    :loop="loop"
-    :slides-per-view="slidesPerView"
-    :autoplay-delay="autoplayDelay"
-    :autoplay-disable-on-interaction="autoplayDisableOnInteraction"
-    :autoplay-reverse-direction="autoplayReverseDirection"
-    :breakpoints="JSON.stringify(breakpoints)"
-    :observer-parent="observeParent"
-    :observer="observer"
-    :grid-rows="gridRows"
-    :grid-fill="gridFill"
-  >
-    <slot></slot>
-  </swiper-container>
+    <swiper-container
+        :id="id"
+        :direction="direction"
+        :space-between="spaceBetween"
+        :grab-cursor="grabCursor"
+        :speed="speed"
+        :centered-slides="centeredSlides"
+        :loop="loop"
+        :slides-per-view="slidesPerView"
+        :autoplay-delay="autoplayDelay"
+        :autoplay-disable-on-interaction="autoplayDisableOnInteraction"
+        :autoplay-reverse-direction="autoplayReverseDirection"
+        :breakpoints="JSON.stringify(breakpoints)"
+        :observer-parent="observeParent"
+        :observer="observer"
+        :grid-rows="gridRows"
+        :grid-fill="gridFill"
+    >
+        <slot></slot>
+    </swiper-container>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
