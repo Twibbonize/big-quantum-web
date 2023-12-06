@@ -4,7 +4,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
 </script>
 
 <template>
-  <div class="tp-rated-area overflow-hidden relative">
+  <div class="tp-rated-area mx-auto overflow-hidden relative">
     <div class="banner-creators__ellipse"></div>
     
     <div class="tp-rated-bg relative"  data-background="assets/img/rate/rated-bg.jpg">

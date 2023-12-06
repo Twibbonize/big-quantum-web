@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="tf-author-box style-2 hv-border mb-6">
+  <div class="tf-author-box style-2 hv-border mb-6 w-full">
     <div class="order">{{ `#${props.number}` }}</div>
     <div class="author-avatar ">
       <img :src="avatar" alt="" class="avatar rounded-ull">

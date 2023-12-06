@@ -1,7 +1,8 @@
 <script setup >
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import TWToggleSwitch3State from '@/components/base/TWToggleSwitch3State.vue';
+import QSlider from '@/components/base/QSlider.vue';
 
 const creators = ref([
   {
@@ -51,10 +52,58 @@ const creators = ref([
   },
 ])
 
+const pages = ref(3);
+const activePage = ref(0);
+const progress = ref(0);
+
+const creatorsChunks = computed(() => {
+  const chunkSize = 3;
+
+  if (creators.value.length > 0) {
+    let chunks = [];
+
+    for (let i = 0; i < creators.value.length; i += chunkSize) {
+      const chunk = creators.value.slice(i, i + chunkSize);
+      chunks.push(chunk);
+    }
+
+    return chunks;
+  }
+
+
+  return [];
+})
+
 function getImageUrl(name) {
   const filename = `/assets/img/sample/${name}`; 
   return new URL(filename, import.meta.url).href;
 }
+
+function setProgress(activeIndex) {
+  activePage.value = activeIndex;
+  let timer = 0;
+  let interval = setInterval(() => {
+    if (timer === 100) {
+      const swiperCreators = document.getElementById('swiperCreators');
+      clearInterval(interval);            
+    } else {
+      timer++
+      progress.value = timer;
+    }             
+  }, 50)
+}
+
+onMounted(() => {
+  const swiperCreators = document.getElementById('swiperCreators');
+
+  swiperCreators.addEventListener('swiperslidechange', (event) => {
+    const [swiper] = event.detail;
+
+    setProgress(swiper.activeIndex);
+  });
+
+  setProgress(0);
+})
 </script>
 
 <template>
@@ -70,15 +119,62 @@ function getImageUrl(name) {
                   <a class="flex items-center color_black" href="explore-3.html">View All<i class="ri-arrow-right-line"></i></a>
                 </div>
             </div>
-            <div v-for="{ name, avatar, supports }, i in creators" :key="i + 1" class="wow fadeInUp col-md-4">
+            <QSlider
+              id="swiperCreators"
+              :loop="false"
+              :slides-per-view="1"
+              :space-between="30"
+              :autoplay-delay="5000"
+              >
+              <swiper-slide
+                v-for="chunks, index in creatorsChunks" :key="`col-creators-${index}`"
+                class="flex flex-col"
+              >
                 <CreatorBox
-                  :number="i + 1"
+                  v-for="{ name, avatar, supports }, i in chunks" :key="((index * 3) + i) + 1"
+                  :number="((index * 3) + i) + 1"
                   :name="name"
                   :avatar="getImageUrl(avatar)"
                   :supports="supports"
                 />
+              </swiper-slide>
+            </QSlider>
+            <div class="creators-pagination flex gap-2 justify-center">
+              <div
+                v-for="index in pages" :key="`creators-page-${index}`" 
+                class="bullet"
+                :style="`--progress: ${3.6 * progress}deg`"
+              >
+                <div v-if="(index - 1) === activePage " class="active"></div>
+              </div>
             </div>
         </div>
     </div>
 </div>
 </template>
+
+<style lang="scss">
+   @import '@/assets/variables.scss';
+
+  .creators-pagination {
+    
+    .bullet {
+      width: 14px;
+      height: 14px;
+      border-radius: 7px;
+      background: $color_light;
+      position: relative;
+    }
+
+    .active {
+      width: 14px;
+      height: 14px;
+      border-radius: 7px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      // background: conic-gradient($color_main 90deg, #DEE8E8 0deg);
+      background: conic-gradient($color_light var(--progress), $color_main 0deg);
+    }
+  }
+</style>
