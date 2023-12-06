@@ -9,13 +9,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="hero-participant hero-plus position-relative">
+  <div class="hero-participant hero-plus relative">
     <div class="hero-participant__bg"></div>
     <img class="hero-participant__pattern-left" src="/src/assets/img/patterns/hero-left-bottom.png" alt="">
     <img class="hero-participant__pattern-right" src="/src/assets/img/patterns/hero-right-top.png" alt="">
     <img class="hero-participant__pattern-center" src="/src/assets/img/patterns/hero-texture.png" alt="">
 
-    <div class="hero-plus__content d-flex flex-column align-items-center">
+    <div class="hero-plus__content flex flex-col items-center">
       <img class="hero-plus__logo" src="/src/assets/img/logos/twibbonize-plus.svg" alt="twibbonize-plus">
       <h1>show your</h1>
       <div class="hero-plus__animated-text">

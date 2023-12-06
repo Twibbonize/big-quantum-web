@@ -1,28 +1,28 @@
 <template>
   <div class="creators-features container">
     <div class="row">
-      <div class="d-flex flex-column align-items-center">
+      <div class="flex flex-col items-center">
         <h2 class="creators-features__title">Your all-in-one, user-friendly campaign platform</h2>
-        <h4 class="creators-features__subtitle mt-4">Tools to tailor and expand your campaign as your support Grows.</h4>
+        <h4 class="creators-features__subtitle mt-6">Tools to tailor and expand your campaign as your support Grows.</h4>
       </div>
     </div>
     <div class="creators-features__row px-3 row mt-5">
-      <div class="creators-features__card creators-features__card-1 d-flex flex-column">
+      <div class="creators-features__card creators-features__card-1 flex flex-col">
         <h5 class="creators-features__card-title">
           One of a king Twibbon Generator
         </h5>
-        <p class="creators-features__card-description mt-3">
+        <p class="creators-features__card-description mt-4">
           Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!
         </p>
-        <a class="fw-bold color_black mt-4" href="#">Learn More</a>
+        <a class="font-bold color_black mt-6" href="#">Learn More</a>
       </div>
     </div>
-    <div class="creators-features__row px-3 row mt-4">
+    <div class="creators-features__row px-3 row mt-6">
       <div class="creators-features__card creators-features__card-2 col">
         <h5 class="creators-features__card-title">
           See who supports you
         </h5>
-        <p class="creators-features__card-description mt-3">
+        <p class="creators-features__card-description mt-4">
           See the real people who support your campaign
         </p>
       </div>
@@ -30,17 +30,17 @@
         <h5 class="creators-features__card-title">
           Campaign Analytics
         </h5>
-        <p class="creators-features__card-description mt-3">
+        <p class="creators-features__card-description mt-4">
           You can’t improve what you can’t track.Track your campaign performance and take it to the new heights
         </p>
       </div>
     </div>
-    <div class="creators-features__row px-3 row mt-4">
+    <div class="creators-features__row px-3 row mt-6">
       <div class="creators-features__card creators-features__card-4 col">
         <h5 class="creators-features__card-title">
           Know your supporters’ voices
         </h5>
-        <p class="creators-features__card-description mt-3">
+        <p class="creators-features__card-description mt-4">
           Let them leave their mark by hearing their thoughts, or opinion on the supporter’s voice section. Also, let them interact with each others there
         </p>
       </div>
@@ -48,7 +48,7 @@
         <h5 class="creators-features__card-title">
           Customizable campaign link
         </h5>
-        <p class="creators-features__card-description mt-3">
+        <p class="creators-features__card-description mt-4">
           Make your campaign easy to remember and share
         </p>
       </div>

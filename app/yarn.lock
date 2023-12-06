@@ -2788,6 +2788,11 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+remixicon@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/remixicon/-/remixicon-3.6.0.tgz#d52a8cfe0a7e20da97af5ef7d99cc964ec5e774d"
+  integrity sha512-+IEL/cPimpAhvg7o24Pwyd3v+R0/j0p0WK4MHJUfv/HrsHJ0LElnbMFY8l+Uu/xDBzFIvGB64towtEnAkK9obg==
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
