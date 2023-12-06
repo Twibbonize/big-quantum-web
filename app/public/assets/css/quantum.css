@@ -584,24 +584,21 @@ video {
   position: relative;
 }
 
+.z-0 {
+  z-index: 0;
+}
+
 .z-10 {
   z-index: 10;
-}
-
-.z-20 {
-  z-index: 20;
-}
-
-.z-30 {
-  z-index: 30;
 }
 
 .z-50 {
   z-index: 50;
 }
 
-.z-0 {
-  z-index: 0;
+.-mx-4 {
+  margin-left: -1rem;
+  margin-right: -1rem;
 }
 
 .mx-auto {
@@ -613,8 +610,8 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .mb-60 {
@@ -661,10 +658,6 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-32 {
-  margin-top: 8rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
@@ -675,14 +668,6 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
-}
-
-.mt-8 {
-  margin-top: 2rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .block {
@@ -709,16 +694,20 @@ video {
   aspect-ratio: 1 / 1;
 }
 
-.w-full {
-  width: 100%;
+.h-auto {
+  height: auto;
+}
+
+.w-3\/12 {
+  width: 25%;
 }
 
 .w-4\/12 {
   width: 33.333333%;
 }
 
-.w-3\/12 {
-  width: 25%;
+.w-full {
+  width: 100%;
 }
 
 .flex-1 {
@@ -835,9 +824,9 @@ video {
   padding: 1rem;
 }
 
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
+.\!px-0 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .px-3 {
@@ -850,9 +839,9 @@ video {
   padding-right: 0.875rem;
 }
 
-.py-60 {
-  padding-top: 15rem;
-  padding-bottom: 15rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .py-24 {
@@ -860,9 +849,9 @@ video {
   padding-bottom: 6rem;
 }
 
-.\!px-0 {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-3 {
@@ -875,6 +864,10 @@ video {
 
 .pb-40 {
   padding-bottom: 10rem;
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
 }
 
 .pr-4 {
@@ -897,16 +890,13 @@ video {
   padding-top: 1.25rem;
 }
 
-.pb-8 {
-  padding-bottom: 2rem;
-}
-
-.pt-8 {
-  padding-top: 2rem;
-}
-
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-base {
@@ -924,31 +914,26 @@ video {
   line-height: 1.25rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {
   font-weight: 700;
 }
 
-.font-medium {
-  font-weight: 500;
-}
-
 .font-extrabold {
   font-weight: 800;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .uppercase {

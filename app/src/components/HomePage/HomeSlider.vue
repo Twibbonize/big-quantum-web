@@ -1,138 +1,127 @@
 <script setup>
-const swiperData = `{
-  "direction": "vertical",
-  "spaceBetween": 45,
-  "grabCursor": false,
-  "speed": 10000,
-  "centeredSlides": false,
-  "loop": true,
-  "slidesPerView": "auto",
-  "autoplay": {
-    "delay": "0",
-    "disableOnInteraction": false
-  }
-}`;
-const swiperDataReverse = `{
-  "direction": "vertical",
-  "spaceBetween": 45,
-  "grabCursor": false,
-  "speed": 10000,
-  "centeredSlides": false,
-  "loop": true,
-  "slidesPerView": "auto",
-  "autoplay": {
-    "delay": "0",
-    "disableOnInteraction": false,
-    "reverseDirection": true
-  }
-}`;
+import QSlider from '@/components/base/QSlider.vue';
 </script>
 
 <template>
     <div class="home-slider user-select-none pe-none">
-        <div class="swiper-container autoslider1" :data-swiper="swiperData">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
-                </div>
-            </div>
-        </div>
-        <div class="swiper-container autoslider1" :data-swiper="swiperDataReverse">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
-                </div>
-            </div>
-        </div>
-        <div class="swiper-container autoslider1" :data-swiper="swiperData">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="" />
-                </div>
-            </div>
-        </div>
+        <QSlider
+            class="autoslider"
+            style="overflow: unset"
+            direction="vertical"
+            :space-between="45"
+            :grab-cursor="false"
+            :speed="8000"
+            :centered-slides="false"
+            :loop="true"
+            slides-per-view="auto"
+            :autoplay-delay="0"
+            :autoplay-disable-on-interaction="false"
+            :autoplay-reverse-direction="false"
+        >
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
+            </swiper-slide>
+        </QSlider>
+        <QSlider
+            class="autoslider"
+            direction="vertical"
+            :space-between="45"
+            :grab-cursor="false"
+            :speed="8000"
+            :centered-slides="false"
+            :loop="true"
+            slides-per-view="auto"
+            :autoplay-delay="0"
+            :autoplay-disable-on-interaction="false"
+            :autoplay-reverse-direction="true"
+        >
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
+            </swiper-slide>
+        </QSlider>
+        <QSlider
+            class="autoslider"
+            style="--swiper-wrapper-transition-timing-function: linear"
+            direction="vertical"
+            :space-between="45"
+            :grab-cursor="false"
+            :speed="10000"
+            :centered-slides="false"
+            :loop="true"
+            slides-per-view="auto"
+            :autoplay-delay="0"
+            :autoplay-disable-on-interaction="false"
+            :autoplay-reverse-direction="false"
+        >
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="" />
+            </swiper-slide>
+            <swiper-slide class="h-auto">
+                <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="" />
+            </swiper-slide>
+        </QSlider>
     </div>
 </template>
 
 <style lang="scss">
 .home-slider {
-    width: 577px;
-    height: 435px;
+    width: 825px;
+    height: 1100px;
     transform: rotate(-25deg);
     display: flex;
     gap: 21px;
     position: absolute;
-    right: 80px;
-    top: 0;
+    right: 100px;
+    top: -230px;
     z-index: 1;
-}
 
-.home-slider .swiper-container {
-    overflow: unset;
-}
-
-.home-slider .swiper-container .swiper-wrapper {
-    transition-timing-function: linear !important;
-}
-
-.home-slider .swiper-container .swiper-slide {
-    height: auto;
-}
-
-.home-slider img {
-    width: 178px;
-    height: 269px;
-}
-
-@media screen and (min-width: 1400px) {
-    .home-slider {
-        gap: 27px;
-        width: 742px;
-        height: 590px;
-
-        img {
-            width: 230px;
-            height: 345px;
-        }
+    .autoslider {
+        overflow: unset;
     }
-}
 
-@media screen and (min-width: 1600px) {
-    .home-slider {
-        gap: 30px;
-        width: 825px;
-        height: 622px;
-
-        img {
-            width: 255px;
-            height: 384px;
-        }
+    .swiper-wrapper {
+        transition-timing-function: linear !important;
     }
-}
 
-.slider-scroll-page .home-slider {
-    transform: rotate(0);
-    right: -291px;
+    img {
+        width: 255px;
+        height: 384px;
+    }
 }
 </style>

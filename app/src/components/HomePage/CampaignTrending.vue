@@ -1,87 +1,9 @@
-<template>
-    <div class="tf-section featured-item style-bottom">
-        <div class="container mx-auto">
-            <div class="row">
-                <div class="md:w-full">
-                    <div class="heading-section">
-                        <div>
-                            <h2 class="tf-title">Trending on Twibbonize</h2>
-                            <p class="tf-description">
-                                Most Supported Campaigns in the Last 24 Hours
-                            </p>
-                        </div>
-                        <a class="flex items-center color_black" href="explore-3.html"
-                            >Explore more <i class="ri-arrow-right-line"></i
-                        ></a>
-                    </div>
-                </div>
-                <div class="md:w-full">
-                    <div
-                        class="featured pt-8 swiper-container carousel"
-                        data-swiper='{
-                    "loop":false,
-                    "slidesPerView": 1,
-                    "observer": true,
-                    "observeParents": true,
-                    "spaceBetween": 30,
-                    "navigation": {
-                        "clickable": true,
-                        "nextEl": ".slider-next",
-                        "prevEl": ".slider-prev"
-                    },
-                    "pagination": {
-                        "el": ".swiper-pagination",
-                        "clickable": true
-                    },
-                    "breakpoints": {
-                        "768": {
-                            "slidesPerView": 2,
-                            "spaceBetween": 30
-                        },
-                        "1024": {
-                            "slidesPerView": 3,
-                            "spaceBetween": 30
-                        },
-                        "1300": {
-                            "slidesPerView": 4,
-                            "spaceBetween": 30
-                        }
-                    }
-                }'
-                    >
-                        <div class="swiper-wrapper">
-                            <div
-                                v-for="(
-                                    { name, avatar, creator, createdAt, supports, thumbnail }, i
-                                ) in campaigns"
-                                :key="i"
-                                class="swiper-slide"
-                            >
-                                <CampaignCard
-                                    :name="name"
-                                    :creator="creator"
-                                    :avatar="getAvatarUrl(avatar)"
-                                    :supports="supports"
-                                    :created-at="createdAt"
-                                    :thumbnail="getThumbnailUrl(thumbnail)"
-                                />
-                            </div>
-                        </div>
-                        <div class="swiper-pagination d-none"></div>
-                        <div class="slider-next swiper-button-next d-none"></div>
-                        <div class="slider-prev swiper-button-prev d-none"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup>
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
 import CampaignCard from '@/components/elements/CampaignCard.vue';
+import QSlider from '@/components/base/QSlider.vue';
 
 const campaigns = ref([
     {
@@ -159,6 +81,69 @@ function getThumbnailUrl(name) {
     return new URL(filename, import.meta.url).href;
 }
 </script>
+
+<template>
+    <div class="tf-section featured-item style-bottom">
+        <div class="mx-auto">
+            <div class="row">
+                <div class="container mx-auto md:w-full">
+                    <div class="heading-section">
+                        <div>
+                            <h2 class="tf-title">Trending on Twibbonize</h2>
+                            <p class="tf-description">
+                                Most Supported Campaigns in the Last 24 Hours
+                            </p>
+                        </div>
+                        <a class="flex items-center color_black" href="explore-3.html"
+                            >Explore more <i class="ri-arrow-right-line"></i
+                        ></a>
+                    </div>
+                </div>
+                <div class="container mx-auto md:w-full">
+                    <QSlider
+                        class="-mx-4"
+                        :loop="false"
+                        :slides-per-view="1"
+                        :observer="true"
+                        :observe-parent="true"
+                        :space-between="0"
+                        :breakpoints="{
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 0
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 0
+                            },
+                            1300: {
+                                slidesPerView: 4,
+                                spaceBetween: 0
+                            }
+                        }"
+                    >
+                        <swiper-slide
+                            v-for="(
+                                { name, avatar, creator, createdAt, supports, thumbnail }, i
+                            ) in campaigns"
+                            :key="i"
+                            class="swiper-slide py-8 px-4"
+                        >
+                            <CampaignCard
+                                :name="name"
+                                :creator="creator"
+                                :avatar="getAvatarUrl(avatar)"
+                                :supports="supports"
+                                :created-at="createdAt"
+                                :thumbnail="getThumbnailUrl(thumbnail)"
+                            />
+                        </swiper-slide>
+                    </QSlider>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
 
 <style lang="scss">
 .carouselfull-2,

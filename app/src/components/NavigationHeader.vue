@@ -68,7 +68,6 @@ const navbarColor = computed(() => {
 </template>
 
 <style lang="scss">
-
 .navigation-header {
     background: $color_white;
     gap: 10px;
