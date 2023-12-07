@@ -170,7 +170,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss';
+@import '@/assets/scss/variables.scss';
 
 .creators-pagination {
     .bullet {
