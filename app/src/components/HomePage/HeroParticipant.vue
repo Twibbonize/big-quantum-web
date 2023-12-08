@@ -22,8 +22,31 @@ import supportsJSON from '../../assets/lottie/supports.json';
                                 :loop="true"
                             />
                         </div>
+                        <h4
+                            class="hero-participant__description fw-normal text-xl user-select-none pe-none"
+                        >
+                            Turn your passion into action; create custom images that show what you
+                            stand for and invite friends to join you
+                        </h4>
+                        <div
+                            class="hero-participant__btn-container flat-button flex items-center mt-6 gap-3"
+                        >
+                            <QButton class="text-sm" color="yellow" border-radius="circle">
+                                <i class="ri-add-line"></i>
+                                Start a Campaign
+                            </QButton>
+                            <div class="hero-participant__or text-sm font-bold">or</div>
+                            <QButton
+                                class="text-sm !px-0"
+                                color="transparent"
+                                border-radius="circle"
+                            >
+                                Find a Campaign
+                            </QButton>
+                        </div>
                     </div>
                 </div>
+                <HomeSlider />
             </div>
         </div>
     </BGHero>
