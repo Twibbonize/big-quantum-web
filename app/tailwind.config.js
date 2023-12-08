@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
     content: ['./src/**/*.{html,js,vue}'],
     theme: {
@@ -13,6 +14,9 @@ module.exports = {
             full: '9999px'
         },
         extend: {
+            container: {
+                center: true
+            },
             fontSize: {
                 xxs: ['10px', '10px']
             },
