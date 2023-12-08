@@ -1,7 +1,7 @@
 <script setup>
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import dayjs from 'dayjs';
-import CampaignCard from '@/components/elements/CampaignCard.vue';
+import CampaignCard from '@/components/campaign/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 const campaigns = [

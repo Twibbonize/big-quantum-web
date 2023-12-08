@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
-import CampaignCard from '@/components/elements/CampaignCard.vue';
+import CampaignCard from '@/components/campaign/CampaignCard.vue';
 import QSlider from '@/components/base/QSlider.vue';
 
 const campaigns = ref([
