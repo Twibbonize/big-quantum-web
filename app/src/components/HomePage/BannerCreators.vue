@@ -1,5 +1,5 @@
 <script setup>
-import QButton from '@/components/base/QButton.vue';
+import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
 </script>
 

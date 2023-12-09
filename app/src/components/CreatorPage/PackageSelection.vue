@@ -1,6 +1,6 @@
 <script setup>
 import TWToggleSwitch from '@/components/base/TWToggleSwitch.vue';
-import QButton from '../base/QButton.vue';
+import QButton from '../atoms/QButton.vue';
 </script>
 
 <template>

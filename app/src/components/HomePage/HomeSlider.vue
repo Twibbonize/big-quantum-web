@@ -1,5 +1,5 @@
 <script setup>
-import QSlider from '@/components/base/QSlider.vue';
+import QSlider from '@/components/atoms/QSlider.vue';
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup>
-import QButton from '@/components/base/QButton.vue';
+import QButton from '@/components/atoms/QButton.vue';
 import HomeSlider from '@/components/HomePage/HomeSlider.vue';
 import BGHero from '@/components/HomePage/BGHero.vue';
 import supportsJSON from '../../assets/lottie/supports.json';
@@ -10,7 +10,7 @@ import supportsJSON from '../../assets/lottie/supports.json';
         <div class="container mx-auto">
             <div class="w-full pages-title mx-auto">
                 <div class="container z-10 absolute mx-auto">
-                    <div class="w-4/12 content">
+                    <div class="w-full sm:w-1/3 content">
                         <h1 class="hero-participant__text user-select-none pe-none lowercase">
                             show your
                         </h1>
@@ -126,48 +126,5 @@ import supportsJSON from '../../assets/lottie/supports.json';
     height: 470px;
     text-align: start;
     padding-left: 8px;
-}
-
-/* slider-scroll-page */
-.slider-scroll-page .hero-participant {
-    margin: 35px 0 51px;
-}
-
-.slider-scroll-page::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 514px;
-    bottom: 0px;
-    left: 0;
-    z-index: 1;
-    background-repeat: no-repeat;
-}
-
-.slider-scroll-page .hero-participant::after {
-    display: none;
-}
-
-.slider-scroll-page .hero-participant .content {
-    margin-top: 76px;
-    padding-left: 0;
-    margin-bottom: 260px;
-}
-
-.slider-scroll-page .hero-participant .content h1 {
-    max-width: unset;
-    text-transform: none;
-}
-
-.slider-scroll-page .hero-participant .icon-background .item9 {
-    right: unset;
-    left: 440px;
-}
-
-.slider-scroll-page .hero-participant .icon-background .item10 {
-    left: 460px;
-    right: unset;
-    bottom: 190px;
-    top: unset;
 }
 </style>

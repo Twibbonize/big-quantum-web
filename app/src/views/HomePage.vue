@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useWindowSize } from '@vueuse/core';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
@@ -7,6 +8,7 @@ import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
 import TopCreators from '@/components/HomePage/TopCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
+const { width, height } = useWindowSize();
 const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);

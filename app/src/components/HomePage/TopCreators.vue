@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import TWToggleSwitch3State from '@/components/base/TWToggleSwitch3State.vue';
-import QSlider from '@/components/base/QSlider.vue';
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const creators = ref([
     {
@@ -119,18 +119,6 @@ onMounted(() => {
                             >View All<i class="ri-arrow-right-line"></i
                         ></a>
                     </div>
-                </div>
-                <div
-                    v-for="({ name, avatar, supports }, i) in creators"
-                    :key="i + 1"
-                    class="wow fadeInUp col-md-4"
-                >
-                    <CreatorBox
-                        :number="i + 1"
-                        :name="name"
-                        :avatar="getImageUrl(avatar)"
-                        :supports="supports"
-                    />
                 </div>
             </div>
             <QSlider

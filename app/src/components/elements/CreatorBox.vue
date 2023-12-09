@@ -15,9 +15,13 @@ const props = defineProps({
         <div class="author-avatar rounded-full">
             <img :src="avatar" alt="" class="avatar rounded-full" />
         </div>
-        <div class="author-infor ">
-            <h5><a href="author-2.html">{{ name }}</a></h5>
-            <h6 class="price gem style-1"><i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}</h6>
+        <div class="author-infor">
+            <h5>
+                <a href="author-2.html">{{ name }}</a>
+            </h5>
+            <h6 class="price gem style-1">
+                <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
+            </h6>
         </div>
     </div>
 </template>
