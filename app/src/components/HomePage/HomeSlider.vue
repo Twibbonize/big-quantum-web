@@ -101,14 +101,14 @@ import QSlider from '@/components/atoms/QSlider.vue';
 
 <style lang="scss">
 .home-slider {
-    width: 825px;
-    height: 1100px;
+    width: 412px;
+    height: 550px;
     transform: rotate(-25deg);
     display: flex;
     gap: 21px;
     position: absolute;
-    right: 100px;
-    top: -230px;
+    bottom: -200px;
+    left: 0;
     z-index: 1;
 
     .autoslider {
@@ -120,8 +120,27 @@ import QSlider from '@/components/atoms/QSlider.vue';
     }
 
     img {
-        width: 255px;
-        height: 384px;
+        width: 128px;
+        height: 192px;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .home-slider {
+        width: 825px;
+        height: 1100px;
+        transform: rotate(-25deg);
+        display: flex;
+        gap: 21px;
+        position: absolute;
+        right: 100px;
+        top: -230px;
+        z-index: 1;
+
+        img {
+            width: 255px;
+            height: 384px;
+        }
     }
 }
 </style>

@@ -31,7 +31,7 @@ onUnmounted(() => {
 
 <template>
     <div class="home-page">
-        <HeroParticipant />
+        <HeroParticipant :width="width" :height="height"/>
         <div ref="content"></div>
         <CampaignTrending class="py-24" />
         <TopCreators class="py--60" />

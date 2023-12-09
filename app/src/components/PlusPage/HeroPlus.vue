@@ -94,7 +94,6 @@ onMounted(() => {});
 
 .hero-participant {
     overflow: hidden;
-    height: 650px;
 
     &__bg {
         position: absolute;
