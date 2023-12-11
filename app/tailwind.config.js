@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-    content: ['./src/**/*.{html,js,vue}'],
+    content: [
+        './index.html',
+        './src/**/*.{vue,js,ts,jsx,tsx}'
+    ],
+    darkMode: false,
     theme: {
         fontFamily: {
             sans: ['Manrope', 'sans-serif'],
@@ -9,9 +13,9 @@ module.exports = {
             serif: ['Marck Script', 'cursive']
         },
         borderRadius: {
-            xl: '0.75rem',
+            'xl': '0.75rem',
             '3xl': '1.25rem',
-            full: '9999px'
+            'full': '9999px'
         },
         extend: {
             container: {
@@ -45,5 +49,8 @@ module.exports = {
             }
         }
     },
-    plugins: []
+    variants: {
+        extend: {},
+      },
+    plugins: [],
 };

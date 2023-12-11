@@ -31,7 +31,7 @@ onUnmounted(() => {
 
 <template>
     <div class="home-page">
-        <HeroParticipant :width="width" :height="height" />
+        <HeroParticipant :width="width" :height="height"/>
         <div ref="content"></div>
         <CampaignTrending class="pt-8 md:pt-24 md:pb-16" />
         <TopCreators :width="width" :height="height" />
