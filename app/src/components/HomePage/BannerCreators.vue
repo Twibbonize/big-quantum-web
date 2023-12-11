@@ -7,7 +7,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
     <div class="banner-creators tp-rated-area mx-auto overflow-hidden relative">
         <div class="banner-creators__ellipse"></div>
 
-        <div class="bg relative py-14">
+        <div class="bg relative py-14 sm:pt-32">
             <img
                 class="blob-bg"
                 src="/src/assets/img/patterns/background-banner-creators.png"
