@@ -32,9 +32,9 @@ const props = defineProps({
         <div class="author flex items-center">
             <img class="avatar" :src="avatar" alt="Image" />
             <div class="flex flex-col justify-center info">
-                <a href="#"
-                    ><h6 class="campaign-card__name">{{ props.creator }}</h6></a
-                >
+                <a href="#">
+                    <h6 class="campaign-card__name">{{ props.creator }}</h6>
+                </a>
             </div>
         </div>
         <div class="divider"></div>
@@ -77,6 +77,10 @@ const props = defineProps({
 
     &__name:hover {
         text-decoration: underline;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
 }
 

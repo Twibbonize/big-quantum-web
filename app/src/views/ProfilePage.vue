@@ -22,8 +22,6 @@ const tabs = [
     }
 ];
 
-const activeTab = ref(0);
-
 const campaigns = [
     {
         name: 'UNIVERSE UNPACKED 2022',
@@ -98,46 +96,46 @@ const campaigns = [
             <div class="profile-top__banner"></div>
             <div class="profile-top__card">
                 <div class="profile-top__card__upper">
-                    <div class="flex items-center space-x-4">
+                    <div class="profile-avatar">
                         <img
-                            class="rounded-full w-24 h-24"
+                            class="profile-avatar__img"
                             src="/assets/img/sample/sample-avatar-1.jpg"
                             alt=""
                         />
-                        <div class="flex flex-col">
-                            <h1 class="text-5xl font-bold">Universe Tech</h1>
-                            <div class="text-gray-500 font-medium">@universetech</div>
+                        <div class="profile-avatar__name-wrapper">
+                            <h1 class="profile-avatar__name">Universe Tech</h1>
+                            <div class="profile-avatar__username">@universetech</div>
                         </div>
                     </div>
                 </div>
                 <div class="profile-top__card__lower">
                     <div class="flex items-center justify-between">
-                        <ul class="flex space-x-6">
-                            <li>
-                                <div class="flex flex-col space-y-1 justify-between">
-                                    <div class="text-sm font-medium tracking-wide">Campaigns</div>
-                                    <div class="font-medium text-black opacity-60">3</div>
+                        <ul class="stats">
+                            <li class="stats__item">
+                                <div class="stats__item__wrapper">
+                                    <div class="stats__item__title">Campaigns</div>
+                                    <div class="stats__item__value">3</div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="flex flex-col space-y-1 justify-between">
-                                    <div class="text-sm font-medium tracking-wide">Supporters</div>
-                                    <div class="font-medium text-black opacity-60">85.5k</div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="flex flex-col space-y-1 justify-between">
-                                    <div class="text-sm font-medium tracking-wide">Joined</div>
-                                    <div class="font-medium text-black opacity-60">2 Dec 2023</div>
+                            <li class="stats__item">
+                                <div class="stats__item__wrapper">
+                                    <div class="stats__item__title">Supporters</div>
+                                    <div class="stats__item__value">85.5k</div>
                                 </div>
                             </li>
 
-                            <li>
-                                <div class="flex flex-col space-y-1 justify-between">
-                                    <div class="text-sm font-medium tracking-wide">Website</div>
+                            <li class="stats__item">
+                                <div class="stats__item__wrapper">
+                                    <div class="stats__item__title">Joined</div>
+                                    <div class="stats__item__value">2 Dec 2023</div>
+                                </div>
+                            </li>
+
+                            <li class="stats__item hidden md:block">
+                                <div class="stats__item__wrapper">
+                                    <div class="stats__item__title">Website</div>
                                     <button
-                                        class="rounded-full px-3 py-1 text-xs bg-gray-200 space-x-1"
+                                        class="rounded-full px-3 py-1 text-xs bg-gray-100 space-x-1"
                                     >
                                         <i class="ri-global-line"></i>
                                         <span class="font-semibold text-black">Website</span>
@@ -146,25 +144,25 @@ const campaigns = [
                             </li>
                         </ul>
 
-                        <div class="flex items-center">
+                        <!-- <div class="flex items-center">
                             <button
-                                class="w-8 h-8 p-1 flex items-center justify-center bg-gray-200 rounded-full font-semibold"
+                                class="w-8 h-8 p-1 flex items-center justify-center bg-gray-100 rounded-full font-bold"
                             >
-                                <i class="ri-more-line"></i>
+                                <i class="ri-more-fill"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="profile-main border-b border-stroke pb-12 pt-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-12 gap-10">
-                    <div class="col-span-8">
+        <div class="profile-main">
+            <div class="px-6 max-w-full md:max-w-7xl mx-auto w-full">
+                <div class="grid grid-cols-12 gap-y-10 md:gap-y-0 md:gap-x-10 w-full">
+                    <div class="order-2 md:order-1 col-span-12 md:col-span-8">
                         <q-tabs :tabs="tabs">
                             <template #campaigns>
-                                <div class="grid grid-cols-3 gap-6 mt-6">
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                                     <campaign-card
                                         v-for="(
                                             {
@@ -192,8 +190,8 @@ const campaigns = [
                             </template>
                         </q-tabs>
                     </div>
-                    <div class="col-span-4">
-                        <div class="card">
+                    <div class="order-1 md:order-2 col-span-12 md:col-span-4 w-full">
+                        <div class="about">
                             <div class="space-y-3">
                                 <h3 class="font-semibold">About</h3>
                                 <p class="leading-relaxed text-base">
@@ -217,25 +215,109 @@ const campaigns = [
 }
 
 .profile-top {
+    @apply w-full;
+
     &__banner {
         height: 360px;
         background-image: url('/assets/img/banners/banner-1.jpg');
-        background-position: no-repeat;
+        background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
 
     &__card {
-        @apply bg-white max-w-7xl mx-auto rounded-3xl -mt-24;
-        box-shadow: 0 4px 20px #0000001a;
+        @apply max-w-7xl mx-auto -mt-24 bg-gray-50;
+
+        @include md_screen {
+            @apply rounded-3xl;
+            box-shadow: 0 4px 20px #0000001a;
+        }
     }
 
     &__card__upper {
-        @apply px-5 py-6;
+        @apply p-6;
+
+        @include md_screen {
+            @apply rounded-t-3xl;
+        }
     }
 
     &__card__lower {
-        @apply px-5 py-3 border-t border-stroke bg-gray-50 rounded-b-3xl;
+        @apply px-6 pt-6 pb-10 border-t border-stroke;
+
+        @include md_screen {
+            @apply rounded-b-3xl py-4;
+        }
+    }
+}
+
+.profile-avatar {
+    @apply flex flex-col space-y-4;
+
+    @include md_screen {
+        @apply flex flex-row items-center space-y-0 space-x-4;
+    }
+
+    &__img {
+        @apply rounded-full w-20 h-20 -mt-16;
+
+        @include md_screen {
+            @apply mt-0;
+        }
+    }
+
+    &__name {
+        @apply text-3xl font-bold;
+
+        @include md_screen {
+            @apply text-5xl;
+        }
+    }
+
+    &__username {
+        @apply text-sm text-gray-500 font-medium;
+
+        @include md_screen {
+            @apply text-base;
+        }
+    }
+}
+
+.stats {
+    @apply flex items-center space-x-6 overflow-auto w-full;
+
+    &__item {
+        @apply flex-grow flex-shrink-0;
+
+        @include md_screen {
+            @apply flex-grow-0;
+        }
+
+        &__wrapper {
+            @apply flex flex-col items-center justify-center space-y-1;
+
+            @include md_screen {
+                @apply items-start;
+            }
+        }
+
+        &__title {
+            @apply text-sm font-medium tracking-wide;
+        }
+
+        &__value {
+            @apply text-content font-medium;
+        }
+    }
+}
+
+.profile-main {
+    @apply border-b border-stroke pb-12 -mt-6 bg-white pt-6 rounded-t-3xl;
+    box-shadow: 0 4px 20px #0000001a;
+
+    @include md_screen {
+        @apply mt-0 pt-8 bg-transparent;
+        box-shadow: none;
     }
 }
 
@@ -259,4 +341,17 @@ const campaigns = [
         }
     }
 }
+
+.about {
+    @include md_screen {
+        @apply bg-white rounded-3xl p-4;
+        box-shadow: 0px 5.064px 25.321px 0px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// .about {
+//     @include md_screen {
+//         @extend .card;
+//     }
+// }
 </style>
