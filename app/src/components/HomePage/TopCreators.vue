@@ -122,7 +122,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="tf-section seller background-white py-8 sm:py-32">
+    <div class="tf-section seller background-white py-8 sm:pt-16 sm:pb-24">
         <div class="container px-5 mx-auto">
             <div class="row">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between md:w-full pb-8">
