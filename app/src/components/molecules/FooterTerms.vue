@@ -5,7 +5,7 @@ const currentYear = dayjs().year();
 </script>
 
 <template>
-  <div class="footer-terms flex flex-col sm:flex-row">
+  <div class="footer-terms flex flex-col sm:flex-row gap-2">
       <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
       <ul>
           <li>
@@ -23,7 +23,7 @@ const currentYear = dayjs().year();
 
 <style lang="scss">
 .footer-terms {
-    @apply mt-12 pt-8 flex sm:items-center justify-between text-black;
+    @apply mt-12 pt-4 sm:pt-8 flex sm:items-center justify-between text-black;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 
     p {

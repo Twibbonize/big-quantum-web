@@ -35,21 +35,8 @@ onUnmounted(() => {
         <div ref="content"></div>
         <CampaignTrending class="pt-8 md:pt-24 md:pb-16" />
         <TopCreators :width="width" :height="height" class="py--60" />
-        <BannerCreators class="home-page__banner container">
+        <BannerCreators class="container">
             <CampaignSwiper />
         </BannerCreators>
     </div>
 </template>
-
-<style lang="scss">
-.home-page {
-    &__navbar {
-        background: #16dac1 !important;
-    }
-    &__banner {
-        .tp-rated-bg {
-            border-radius: 60px;
-        }
-    }
-}
-</style>
