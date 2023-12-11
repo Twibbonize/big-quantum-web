@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
-import CampaignCard from '@/components/elements/CampaignCard.vue';
-import QSlider from '@/components/base/QSlider.vue';
+import CampaignCard from '@/components/campaign/CampaignCard.vue';
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const campaigns = ref([
     {
@@ -11,7 +11,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day'),
+        createdAt: dayjs().subtract(5, 'day').unix(),
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -19,7 +19,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 1470,
-        createdAt: dayjs().subtract(3, 'week'),
+        createdAt: dayjs().subtract(3, 'week').unix(),
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -27,7 +27,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day'),
+        createdAt: dayjs().subtract(5, 'day').unix(),
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -35,7 +35,7 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week'),
+        createdAt: dayjs().subtract(1, 'week').unix(),
         thumbnail: 'sample-campaign-4.jpg'
     },
     {
@@ -43,7 +43,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day'),
+        createdAt: dayjs().subtract(5, 'day').unix(),
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -51,7 +51,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 14700,
-        createdAt: dayjs().subtract(3, 'week'),
+        createdAt: dayjs().subtract(3, 'week').unix(),
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -59,7 +59,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day'),
+        createdAt: dayjs().subtract(5, 'day').unix(),
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -67,7 +67,7 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week'),
+        createdAt: dayjs().subtract(1, 'week').unix(),
         thumbnail: 'sample-campaign-4.jpg'
     }
 ]);
@@ -83,42 +83,40 @@ function getThumbnailUrl(name) {
 </script>
 
 <template>
-    <div class="tf-section featured-item style-bottom">
+    <div class="campaign-trending tf-section featured-item style-bottom">
         <div class="mx-auto">
             <div class="row">
-                <div class="container mx-auto md:w-full">
+                <div class="container px-5 mx-auto md:w-full">
                     <div class="heading-section">
                         <div>
-                            <h2 class="tf-title">Trending on Twibbonize</h2>
-                            <p class="tf-description">
-                                Most Supported Campaigns in the Last 24 Hours
-                            </p>
+                            <h2 class="title">Trending on Twibbonize</h2>
+                            <p class="description">Most Supported Campaigns in the Last 24 Hours</p>
                         </div>
-                        <a class="flex items-center color_black" href="explore-3.html"
-                            >Explore more <i class="ri-arrow-right-line"></i
-                        ></a>
+                        <RouterLink
+                            class="mt-6 sm:mt-0 flex items-center color_black"
+                            to="/explore"
+                        >
+                            Explore more <i class="ri-arrow-right-line"></i
+                        ></RouterLink>
                     </div>
                 </div>
                 <div class="container mx-auto md:w-full">
                     <QSlider
                         class="-mx-4"
                         :loop="false"
-                        :slides-per-view="1"
+                        :slides-per-view="1.5"
                         :observer="true"
                         :observe-parent="true"
                         :space-between="0"
                         :breakpoints="{
                             768: {
-                                slidesPerView: 2,
-                                spaceBetween: 0
+                                slidesPerView: 2
                             },
                             1024: {
-                                slidesPerView: 3,
-                                spaceBetween: 0
+                                slidesPerView: 3
                             },
                             1300: {
-                                slidesPerView: 4,
-                                spaceBetween: 0
+                                slidesPerView: 4
                             }
                         }"
                     >
@@ -127,9 +125,10 @@ function getThumbnailUrl(name) {
                                 { name, avatar, creator, createdAt, supports, thumbnail }, i
                             ) in campaigns"
                             :key="i"
-                            class="swiper-slide py-8 px-4"
+                            class="swiper-slide px-4 py-8 first:ml-8 first:sm:ml-0"
                         >
                             <CampaignCard
+                                class=""
                                 :name="name"
                                 :creator="creator"
                                 :avatar="getAvatarUrl(avatar)"
@@ -146,6 +145,16 @@ function getThumbnailUrl(name) {
 </template>
 
 <style lang="scss">
+.campaign-trending {
+    .title {
+        @apply text-2xl sm:text-3xl font-bold;
+    }
+
+    .description {
+        @apply text-lg sm:text-xl;
+    }
+}
+
 .carouselfull-2,
 .carouselfull {
     overflow: unset !important;

@@ -1,20 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const swiperData = ref(`{
-  "direction": "horizontal",
-  "spaceBetween": 10,
-  "grabCursor": false,
-  "speed": 5000,
-  "centeredSlides": false,
-  "loop": true,
-  "slidesPerView": "auto",
-  "autoplay": {
-    "delay": "0",
-    "disableOnInteraction": false,
-    "reverseDirection": true
-  }
-}`);
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const galleries = ref([
     'art-book-fair-1.png',
@@ -50,44 +37,37 @@ function getImageUrl(name) {
 </script>
 
 <template>
-    <div
-        class="campaign-swiper__swiper swiper-container autoslider1 mt-6"
-        :data-swiper="swiperData"
+    <QSlider
+        class="campaign-swiper mt-6"
+        style="--swiper-wrapper-transition-timing-function: linear"
+        direction="horizontal"
+        :space-between="10"
+        :grab-cursor="false"
+        :speed="5000"
+        :centered-slides="false"
+        :loop="true"
+        slides-per-view="auto"
+        :autoplay-delay="0"
+        :autoplay-disable-on-interaction="false"
+        :autoplay-reverse-direction="true"
     >
-        <div class="swiper-wrapper campaign-swiper__slider-wrapper">
-            <div
-                v-for="(filename, i) in galleries"
-                :key="i"
-                class="swiper-slide campaign-swiper__campaign-slider"
-            >
-                <img
-                    class="campaign-swiper__campaign"
-                    :src="getImageUrl(filename)"
-                    :alt="filename"
-                />
-            </div>
-        </div>
-    </div>
+        <swiper-slide v-for="(filename, i) in galleries" :key="i" class="campaign-slider">
+            <img class="campaign" :src="getImageUrl(filename)" :alt="filename" />
+        </swiper-slide>
+    </QSlider>
 </template>
 
 <style lang="scss">
 .campaign-swiper {
-    &__swiper {
-        touch-action: none !important;
-        pointer-events: none !important;
+    .campaign-slider {
+        width: 130px;
+        height: 130px;
     }
-    &__slider-wrapper {
-        transition-timing-function: linear;
-    }
-    &__campaign-slider {
-        width: auto;
-        height: auto;
-    }
-    &__campaign {
+    .campaign {
         width: 130px;
         height: 130px;
         border-radius: 3px;
-        box-shadow: 0px 0.49456px 2.47279px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.1);
     }
 }
 </style>

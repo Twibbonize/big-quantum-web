@@ -2885,7 +2885,7 @@
 }
 
 .home-slider {
-    width: 825px;
+    /* width: 825px;
     height: 622px;
     transform: rotate(-25deg);
     display: flex;
@@ -2893,7 +2893,7 @@
     position: absolute;
     right: -241px;
     top: 0;
-    z-index: -1;
+    z-index: -1; */
 }
 
 .home-slider .swiper-container {

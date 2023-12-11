@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
-import TWToggleSwitch3State from '@/components/base/TWToggleSwitch3State.vue';
-import QSlider from '@/components/base/QSlider.vue';
+import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const creators = ref([
     {
@@ -52,7 +52,6 @@ const creators = ref([
     }
 ]);
 
-const pages = ref(3);
 const activePage = ref(0);
 const progress = ref(0);
 
@@ -71,6 +70,23 @@ const creatorsChunks = computed(() => {
     }
 
     return [];
+});
+
+const slidesPerView = computed(() => {
+    if (props.width < 640) return 1;
+    if (props.width < 1024) return 2;
+    return 3;
+});
+
+const pages = computed(() => {
+    if (props.width < 640) return 3;
+    if (props.width < 1024) return 2;
+    return 0;
+});
+
+const props = defineProps({
+    width: Number,
+    height: Number
 });
 
 function getImageUrl(name) {
@@ -106,37 +122,38 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="tf-section seller background-white">
-        <div class="container mx-auto">
+    <div class="tf-section seller background-white py-8 sm:pt-16 sm:pb-24">
+        <div class="container px-5 mx-auto">
             <div class="row">
-                <div class="flex items-center justify-between md:w-full pb-8">
-                    <div class="heading-section">
-                        <h2 class="tf-title">Top Creators</h2>
-                    </div>
-                    <div class="heading-section flex gap-4 items-center">
-                        <TWToggleSwitch3State />
-                        <a class="flex items-center color_black" href="explore-3.html"
-                            >View All<i class="ri-arrow-right-line"></i
-                        ></a>
-                    </div>
-                </div>
                 <div
-                    v-for="({ name, avatar, supports }, i) in creators"
-                    :key="i + 1"
-                    class="wow fadeInUp col-md-4"
+                    class="flex flex-col sm:flex-row sm:items-center justify-between md:w-full pb-8"
                 >
-                    <CreatorBox
-                        :number="i + 1"
-                        :name="name"
-                        :avatar="getImageUrl(avatar)"
-                        :supports="supports"
-                    />
+                    <div class="heading-section flex justify-between items-center">
+                        <h2 class="tf-title">Top Creators</h2>
+                        <RouterLink
+                            v-if="width < 640"
+                            class="flex items-center color_black"
+                            to="/explore"
+                        >
+                            View All<i class="ri-arrow-right-line"></i>
+                        </RouterLink>
+                    </div>
+                    <div class="heading-section flex gap-4 items-center mt-6 sm:mt-0">
+                        <QSwitchThree class="sm:!w-[225px]" />
+                        <RouterLink
+                            v-if="width >= 640"
+                            class="flex items-center color_black"
+                            to="/explore"
+                        >
+                            View All<i class="ri-arrow-right-line"></i>
+                        </RouterLink>
+                    </div>
                 </div>
             </div>
             <QSlider
                 id="swiperCreators"
                 :loop="false"
-                :slides-per-view="1"
+                :slides-per-view="slidesPerView"
                 :space-between="30"
                 :autoplay-delay="5000"
             >
@@ -175,7 +192,7 @@ onMounted(() => {
         width: 14px;
         height: 14px;
         border-radius: 7px;
-        background: $color_light;
+        background: var(--color-light);
         position: relative;
     }
 
@@ -186,8 +203,8 @@ onMounted(() => {
         position: absolute;
         top: 0;
         left: 0;
-        // background: conic-gradient($color_main 90deg, #DEE8E8 0deg);
-        background: conic-gradient($color_light var(--progress), $color_main 0deg);
+        // background: conic-gradient(var(--color-main) 90deg, #DEE8E8 0deg);
+        background: conic-gradient(var(--color-light) var(--progress), var(--color-main) 0deg);
     }
 }
 </style>

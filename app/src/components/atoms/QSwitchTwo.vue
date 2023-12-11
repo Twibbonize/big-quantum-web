@@ -1,14 +1,10 @@
 <template>
-    <div class="switch-toggle__container">
-        <div class="switch-toggle switch-3 switch-candy">
+    <div class="switch-toggle-two__container">
+        <div class="switch-toggle-two switch-3 switch-candy">
             <input id="on" name="state-d" type="radio" checked />
-            <label for="on" onclick=""><span>7 days</span></label>
-
-            <input id="na" name="state-d" type="radio" />
-            <label for="na" onclick=""><span>30 days</span></label>
-
+            <label for="on" onclick=""><span>Monthly</span></label>
             <input id="off" name="state-d" type="radio" />
-            <label for="off" onclick=""><span>All</span></label>
+            <label for="off" onclick=""><span>Yearly</span></label>
 
             <a></a>
         </div>
@@ -16,7 +12,7 @@
 </template>
 
 <style lang="scss">
-.switch-toggle {
+.switch-toggle-two {
     width: 225px;
     height: 40px;
     border-radius: 20px;
@@ -55,27 +51,27 @@
     }
 }
 
-.switch-toggle label:not(.disabled) {
+.switch-toggle-two label:not(.disabled) {
     cursor: pointer;
 }
 
-.switch-toggle a,
+.switch-toggle-two a,
 .switch-light span span {
     display: none;
 }
 
 /* We can't test for a specific feature,
- * so we only target browsers with support for media queries.
- */
+* so we only target browsers with support for media queries.
+*/
 @media only screen {
     /* Checkbox
- */
+*/
     .switch-light {
         position: relative;
         display: block;
         /* simulate default browser focus outlines on the switch,
-   * when the inputs are focused.
-   */
+ * when the inputs are focused.
+ */
     }
     .switch-light::after {
         clear: both;
@@ -96,7 +92,7 @@
     .switch-light label,
     .switch-light > span {
         /* breathing room for bootstrap/foundation classes.
-     */
+   */
         line-height: 2em;
         vertical-align: middle;
     }
@@ -106,7 +102,7 @@
         outline-style: solid;
         outline-color: Highlight;
         /* Chrome/Opera gets its native focus styles.
-     */
+   */
     }
     @media (-webkit-min-device-pixel-ratio: 0) {
         .switch-light input:focus ~ span a,
@@ -116,7 +112,7 @@
         }
     }
     /* don't hide the input from screen-readers and keyboard access
- */
+*/
     .switch-light input {
         position: absolute;
         opacity: 0;
@@ -126,7 +122,7 @@
         right: 0%;
     }
     /* inherit from label
- */
+*/
     .switch-light strong {
         font-weight: inherit;
     }
@@ -136,8 +132,8 @@
         display: block;
         min-height: 2em;
         /* overwrite 3rd party classes padding
-   * eg. bootstrap .well
-   */
+ * eg. bootstrap .well
+ */
         padding: 0;
         text-align: left;
     }
@@ -164,38 +160,38 @@
         padding: 0;
     }
     /* Radio Switch
- */
-    .switch-toggle {
+*/
+    .switch-toggle-two {
         position: relative;
         display: block;
         /* simulate default browser focus outlines on the switch,
-   * when the inputs are focused.
-   */
+ * when the inputs are focused.
+ */
         /* For callout panels in foundation
-  */
+*/
         padding: 0 !important;
         /* 2 items
-   */
+ */
         /* 3 items
-   */
+ */
         /* 4 items
-   */
+ */
         /* 5 items
-   */
+ */
         /* 6 items
-   */
+ */
     }
-    .switch-toggle::after {
+    .switch-toggle-two::after {
         clear: both;
         content: '';
         display: table;
     }
-    .switch-toggle *,
-    .switch-toggle *:before,
-    .switch-toggle *:after {
+    .switch-toggle-two *,
+    .switch-toggle-two *:before,
+    .switch-toggle-two *:after {
         box-sizing: border-box;
     }
-    .switch-toggle a {
+    .switch-toggle-two a {
         display: block;
         -webkit-transition: all 0.2s ease-out;
         -moz-transition: all 0.2s ease-out;
@@ -205,34 +201,34 @@
             display: none !important;
         }
     }
-    .switch-toggle label,
-    .switch-toggle > span {
+    .switch-toggle-two label,
+    .switch-toggle-two > span {
         /* breathing room for bootstrap/foundation classes.
-     */
+   */
         line-height: 2em;
         vertical-align: middle;
     }
-    .switch-toggle input:focus ~ span a,
-    .switch-toggle input:focus + label {
+    .switch-toggle-two input:focus ~ span a,
+    .switch-toggle-two input:focus + label {
         outline-width: 2px;
         outline-style: solid;
         outline-color: Highlight;
         /* Chrome/Opera gets its native focus styles.
-     */
+   */
     }
     @media (-webkit-min-device-pixel-ratio: 0) {
-        .switch-toggle input:focus ~ span a,
-        .switch-toggle input:focus + label {
+        .switch-toggle-two input:focus ~ span a,
+        .switch-toggle-two input:focus + label {
             outline-color: -webkit-focus-ring-color;
             outline-style: auto;
         }
     }
-    .switch-toggle input {
+    .switch-toggle-two input {
         position: absolute;
         left: 0;
         opacity: 0;
     }
-    .switch-toggle input + label {
+    .switch-toggle-two input + label {
         position: relative;
         z-index: 2;
         display: block;
@@ -241,7 +237,7 @@
         margin: 0;
         text-align: center;
     }
-    .switch-toggle a {
+    .switch-toggle-two a {
         position: absolute;
         top: 0;
         left: 0;
@@ -250,88 +246,148 @@
         width: 10px;
         height: 100%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(4),
-    .switch-toggle label:nth-child(2):nth-last-child(4) ~ label,
-    .switch-toggle label:nth-child(2):nth-last-child(4) ~ a {
+    .switch-toggle-two label:nth-child(2):nth-last-child(4),
+    .switch-toggle-two label:nth-child(2):nth-last-child(4) ~ label,
+    .switch-toggle-two label:nth-child(2):nth-last-child(4) ~ a {
         width: 50%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(4)
+        ~ input:checked:nth-child(3)
+        + label
+        ~ a {
         left: 50%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(6),
-    .switch-toggle label:nth-child(2):nth-last-child(6) ~ label,
-    .switch-toggle label:nth-child(2):nth-last-child(6) ~ a {
+    .switch-toggle-two label:nth-child(2):nth-last-child(6),
+    .switch-toggle-two label:nth-child(2):nth-last-child(6) ~ label,
+    .switch-toggle-two label:nth-child(2):nth-last-child(6) ~ a {
         width: 33.33%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(3) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(6)
+        ~ input:checked:nth-child(3)
+        + label
+        ~ a {
         left: 33.33%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(5) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(6)
+        ~ input:checked:nth-child(5)
+        + label
+        ~ a {
         left: 66.66%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(8),
-    .switch-toggle label:nth-child(2):nth-last-child(8) ~ label,
-    .switch-toggle label:nth-child(2):nth-last-child(8) ~ a {
+    .switch-toggle-two label:nth-child(2):nth-last-child(8),
+    .switch-toggle-two label:nth-child(2):nth-last-child(8) ~ label,
+    .switch-toggle-two label:nth-child(2):nth-last-child(8) ~ a {
         width: 25%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(3) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(8)
+        ~ input:checked:nth-child(3)
+        + label
+        ~ a {
         left: 25%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(5) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(8)
+        ~ input:checked:nth-child(5)
+        + label
+        ~ a {
         left: 50%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(7) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(8)
+        ~ input:checked:nth-child(7)
+        + label
+        ~ a {
         left: 75%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(10),
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ label,
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ a {
+    .switch-toggle-two label:nth-child(2):nth-last-child(10),
+    .switch-toggle-two label:nth-child(2):nth-last-child(10) ~ label,
+    .switch-toggle-two label:nth-child(2):nth-last-child(10) ~ a {
         width: 20%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(3) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(10)
+        ~ input:checked:nth-child(3)
+        + label
+        ~ a {
         left: 20%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(5) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(10)
+        ~ input:checked:nth-child(5)
+        + label
+        ~ a {
         left: 40%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(7) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(10)
+        ~ input:checked:nth-child(7)
+        + label
+        ~ a {
         left: 60%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(9) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(10)
+        ~ input:checked:nth-child(9)
+        + label
+        ~ a {
         left: 80%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12),
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ label,
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ a {
+    .switch-toggle-two label:nth-child(2):nth-last-child(12),
+    .switch-toggle-two label:nth-child(2):nth-last-child(12) ~ label,
+    .switch-toggle-two label:nth-child(2):nth-last-child(12) ~ a {
         width: 16.6%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(3) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(12)
+        ~ input:checked:nth-child(3)
+        + label
+        ~ a {
         left: 16.6%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(5) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(12)
+        ~ input:checked:nth-child(5)
+        + label
+        ~ a {
         left: 33.2%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(7) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(12)
+        ~ input:checked:nth-child(7)
+        + label
+        ~ a {
         left: 49.8%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(9) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(12)
+        ~ input:checked:nth-child(9)
+        + label
+        ~ a {
         left: 66.4%;
     }
-    .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(11) + label ~ a {
+    .switch-toggle-two
+        label:nth-child(2):nth-last-child(12)
+        ~ input:checked:nth-child(11)
+        + label
+        ~ a {
         left: 83%;
     }
     /* Candy Theme
- * Based on the "Sort Switches / Toggles (PSD)" by Ormal Clarck
- * http://www.premiumpixels.com/freebies/sort-switches-toggles-psd/
- */
-    .switch-toggle.switch-candy,
+* Based on the "Sort Switches / Toggles (PSD)" by Ormal Clarck
+* http://www.premiumpixels.com/freebies/sort-switches-toggles-psd/
+*/
+    .switch-toggle-two.switch-candy,
     .switch-light.switch-candy > span {
         background-color: #dee8e8;
-        border-radius: 3px;
+        border-radius: 30px;
     }
     .switch-light.switch-candy span span,
     .switch-light.switch-candy input:checked ~ span span:first-child,
-    .switch-toggle.switch-candy label {
+    .switch-toggle-two.switch-candy label {
         color: #1b1b1b;
         font-weight: 500;
         text-align: center;
@@ -414,12 +470,12 @@
         opacity: 1;
         color: #fff;
     }
-    .switch-ios.switch-toggle {
+    .switch-ios.switch-toggle-two {
         background-color: #d8d9db;
         border-radius: 30px;
         box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;
     }
-    .switch-ios.switch-toggle a {
+    .switch-ios.switch-toggle-two a {
         background-color: #4bd865;
         border: 0.125em solid #d8d9db;
         border-radius: 1.75em;
@@ -427,7 +483,7 @@
         -moz-transition: all 0.12s ease-out;
         transition: all 0.12s ease-out;
     }
-    .switch-ios.switch-toggle label {
+    .switch-ios.switch-toggle-two label {
         height: 2.4em;
         color: #888b92;
         line-height: 2.4em;
@@ -437,8 +493,8 @@
         color: #3e4043;
     }
     /* Holo Theme
- */
-    .switch-toggle.switch-holo,
+*/
+    .switch-toggle-two.switch-holo,
     .switch-light.switch-holo > span {
         background-color: #464747;
         border-radius: 1px;
@@ -482,9 +538,9 @@
         opacity: 1;
     }
     /* Material Theme
- */
+*/
     /* switch-light
- */
+*/
     .switch-light.switch-material a {
         top: -0.1875em;
         width: 1.75em;
@@ -532,17 +588,17 @@
     .switch-material.switch-light input:checked ~ span {
         background: rgba(63, 81, 181, 0.5);
     }
-    /* switch-toggle
- */
-    .switch-toggle.switch-material {
+    /* switch-toggle-two
+*/
+    .switch-toggle-two.switch-material {
         overflow: visible;
     }
-    .switch-toggle.switch-material::after {
+    .switch-toggle-two.switch-material::after {
         clear: both;
         content: '';
         display: table;
     }
-    .switch-toggle.switch-material a {
+    .switch-toggle-two.switch-material a {
         top: 48%;
         width: 0.375em !important;
         height: 0.375em;
@@ -558,11 +614,11 @@
         -moz-transition: -moz-transform 0.4s ease-in;
         transition: transform 0.4s ease-in;
     }
-    .switch-toggle.switch-material label {
+    .switch-toggle-two.switch-material label {
         color: rgba(0, 0, 0, 0.54);
         font-size: 1em;
     }
-    .switch-toggle.switch-material label:before {
+    .switch-toggle-two.switch-material label:before {
         content: '';
         position: absolute;
         top: 48%;
@@ -578,14 +634,14 @@
         -o-transform: translateY(-50%);
         transform: translateY(-50%);
     }
-    .switch-toggle.switch-material input:checked + label:before {
+    .switch-toggle-two.switch-material input:checked + label:before {
         border-color: #3f51b5;
     }
     /* ripple
- */
+*/
     .switch-light.switch-material > span:before,
     .switch-light.switch-material > span:after,
-    .switch-toggle.switch-material label:after {
+    .switch-toggle-two.switch-material label:after {
         content: '';
         position: absolute;
         top: 0;
@@ -614,7 +670,7 @@
         margin-left: 0;
         margin-right: -1.25em;
     }
-    .switch-toggle.switch-material label:after {
+    .switch-toggle-two.switch-material label:after {
         width: 3.25em;
         height: 3.25em;
         margin-top: -0.75em;
@@ -678,33 +734,33 @@
 
     .switch-material.switch-light input:not(:checked) ~ span:after,
     .switch-material.switch-light input:checked ~ span:before,
-    .switch-toggle.switch-material input:checked + label:after {
+    .switch-toggle-two.switch-material input:checked + label:after {
         -webkit-animation: materialRipple 0.4s ease-in;
         -moz-animation: materialRipple 0.4s ease-in;
         animation: materialRipple 0.4s ease-in;
     }
     /* trick to prevent the default checked ripple animation from showing
- * when the page loads.
- * the ripples are hidden by default, and shown only when the input is focused.
- */
+* when the page loads.
+* the ripples are hidden by default, and shown only when the input is focused.
+*/
     .switch-light.switch-material.switch-light input ~ span:before,
     .switch-light.switch-material.switch-light input ~ span:after,
-    .switch-material.switch-toggle input + label:after {
+    .switch-material.switch-toggle-two input + label:after {
         visibility: hidden;
     }
     .switch-light.switch-material.switch-light input:focus:checked ~ span:before,
     .switch-light.switch-material.switch-light input:focus:not(:checked) ~ span:after,
-    .switch-material.switch-toggle input:focus:checked + label:after {
+    .switch-material.switch-toggle-two input:focus:checked + label:after {
         visibility: visible;
     }
 }
 
 /* Bugfix for older Webkit, including mobile Webkit. Adapted from
- * http://css-tricks.com/webkit-sibling-bug/
- */
+* http://css-tricks.com/webkit-sibling-bug/
+*/
 @media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 80em) {
     .switch-light,
-    .switch-toggle {
+    .switch-toggle-two {
         -webkit-animation: webkitSiblingBugfix infinite 1s;
     }
 }

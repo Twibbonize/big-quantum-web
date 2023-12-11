@@ -2,9 +2,13 @@
     <div class="switch-toggle__container">
         <div class="switch-toggle switch-3 switch-candy">
             <input id="on" name="state-d" type="radio" checked />
-            <label for="on" onclick=""><span>Monthly</span></label>
+            <label for="on" onclick=""><span>7 days</span></label>
+
+            <input id="na" name="state-d" type="radio" />
+            <label for="na" onclick=""><span>30 days</span></label>
+
             <input id="off" name="state-d" type="radio" />
-            <label for="off" onclick=""><span>Yearly</span></label>
+            <label for="off" onclick=""><span>All</span></label>
 
             <a></a>
         </div>
@@ -13,12 +17,12 @@
 
 <style lang="scss">
 .switch-toggle {
-    width: 225px;
+    width: 100%;
     height: 40px;
     border-radius: 20px;
 
     &__container {
-        width: 237px;
+        width: 100%;
         height: 52px;
         border-radius: 26px;
         box-sizing: border-box;
@@ -61,17 +65,17 @@
 }
 
 /* We can't test for a specific feature,
- * so we only target browsers with support for media queries.
- */
+* so we only target browsers with support for media queries.
+*/
 @media only screen {
     /* Checkbox
- */
+*/
     .switch-light {
         position: relative;
         display: block;
         /* simulate default browser focus outlines on the switch,
-   * when the inputs are focused.
-   */
+ * when the inputs are focused.
+ */
     }
     .switch-light::after {
         clear: both;
@@ -92,7 +96,7 @@
     .switch-light label,
     .switch-light > span {
         /* breathing room for bootstrap/foundation classes.
-     */
+   */
         line-height: 2em;
         vertical-align: middle;
     }
@@ -102,7 +106,7 @@
         outline-style: solid;
         outline-color: Highlight;
         /* Chrome/Opera gets its native focus styles.
-     */
+   */
     }
     @media (-webkit-min-device-pixel-ratio: 0) {
         .switch-light input:focus ~ span a,
@@ -112,7 +116,7 @@
         }
     }
     /* don't hide the input from screen-readers and keyboard access
- */
+*/
     .switch-light input {
         position: absolute;
         opacity: 0;
@@ -122,7 +126,7 @@
         right: 0%;
     }
     /* inherit from label
- */
+*/
     .switch-light strong {
         font-weight: inherit;
     }
@@ -132,8 +136,8 @@
         display: block;
         min-height: 2em;
         /* overwrite 3rd party classes padding
-   * eg. bootstrap .well
-   */
+ * eg. bootstrap .well
+ */
         padding: 0;
         text-align: left;
     }
@@ -160,26 +164,26 @@
         padding: 0;
     }
     /* Radio Switch
- */
+*/
     .switch-toggle {
         position: relative;
         display: block;
         /* simulate default browser focus outlines on the switch,
-   * when the inputs are focused.
-   */
+ * when the inputs are focused.
+ */
         /* For callout panels in foundation
-  */
+*/
         padding: 0 !important;
         /* 2 items
-   */
+ */
         /* 3 items
-   */
+ */
         /* 4 items
-   */
+ */
         /* 5 items
-   */
+ */
         /* 6 items
-   */
+ */
     }
     .switch-toggle::after {
         clear: both;
@@ -204,7 +208,7 @@
     .switch-toggle label,
     .switch-toggle > span {
         /* breathing room for bootstrap/foundation classes.
-     */
+   */
         line-height: 2em;
         vertical-align: middle;
     }
@@ -214,7 +218,7 @@
         outline-style: solid;
         outline-color: Highlight;
         /* Chrome/Opera gets its native focus styles.
-     */
+   */
     }
     @media (-webkit-min-device-pixel-ratio: 0) {
         .switch-toggle input:focus ~ span a,
@@ -317,13 +321,13 @@
         left: 83%;
     }
     /* Candy Theme
- * Based on the "Sort Switches / Toggles (PSD)" by Ormal Clarck
- * http://www.premiumpixels.com/freebies/sort-switches-toggles-psd/
- */
+* Based on the "Sort Switches / Toggles (PSD)" by Ormal Clarck
+* http://www.premiumpixels.com/freebies/sort-switches-toggles-psd/
+*/
     .switch-toggle.switch-candy,
     .switch-light.switch-candy > span {
         background-color: #dee8e8;
-        border-radius: 30px;
+        border-radius: 3px;
     }
     .switch-light.switch-candy span span,
     .switch-light.switch-candy input:checked ~ span span:first-child,
@@ -433,7 +437,7 @@
         color: #3e4043;
     }
     /* Holo Theme
- */
+*/
     .switch-toggle.switch-holo,
     .switch-light.switch-holo > span {
         background-color: #464747;
@@ -478,9 +482,9 @@
         opacity: 1;
     }
     /* Material Theme
- */
+*/
     /* switch-light
- */
+*/
     .switch-light.switch-material a {
         top: -0.1875em;
         width: 1.75em;
@@ -529,7 +533,7 @@
         background: rgba(63, 81, 181, 0.5);
     }
     /* switch-toggle
- */
+*/
     .switch-toggle.switch-material {
         overflow: visible;
     }
@@ -578,7 +582,7 @@
         border-color: #3f51b5;
     }
     /* ripple
- */
+*/
     .switch-light.switch-material > span:before,
     .switch-light.switch-material > span:after,
     .switch-toggle.switch-material label:after {
@@ -680,9 +684,9 @@
         animation: materialRipple 0.4s ease-in;
     }
     /* trick to prevent the default checked ripple animation from showing
- * when the page loads.
- * the ripples are hidden by default, and shown only when the input is focused.
- */
+* when the page loads.
+* the ripples are hidden by default, and shown only when the input is focused.
+*/
     .switch-light.switch-material.switch-light input ~ span:before,
     .switch-light.switch-material.switch-light input ~ span:after,
     .switch-material.switch-toggle input + label:after {
@@ -696,8 +700,8 @@
 }
 
 /* Bugfix for older Webkit, including mobile Webkit. Adapted from
- * http://css-tricks.com/webkit-sibling-bug/
- */
+* http://css-tricks.com/webkit-sibling-bug/
+*/
 @media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 80em) {
     .switch-light,
     .switch-toggle {
