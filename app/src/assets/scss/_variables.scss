@@ -1,0 +1,23 @@
+$color_main: #16dac1;
+$color_black: #1b1b1b;
+$color_white: #ffffff;
+$color_yellow: #ffef5f;
+$color_light: #dee8e8;
+$color_transparent: transparent;
+
+$navbar-height: 97px;
+$footer-height: 443px;
+
+$transition_function: cubic-bezier(0.4, 0, 0.2, 1);
+
+:root {
+    --color-main: #{$color_main};
+    --color-black: #{$color_black};
+    --color-white: #{$color_white};
+    --color-yellow: #{$color_yellow};
+    --color-light: #{$color_light};
+    --color-transparent: #{$color_transparent};
+
+    --shadow-card: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

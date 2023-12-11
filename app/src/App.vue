@@ -1,28 +1,22 @@
-<script setup >
-  import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue';
 
-  import NavigationHeader from '@/components/NavigationHeader.vue';
-  import FooterDefault from '@/components/FooterDefault.vue';
+import NavbarDefault from '@/components/organisms/NavbarDefault.vue';
+import FooterDefault from '@/components/organisms/FooterDefault.vue';
 
-  const navbarColor = ref('');
-  
+const navbarColor = ref('');
 
-  function changeNavbarColor(value) {
+function changeNavbarColor(value) {
     navbarColor.value = value;
-  }
+}
 </script>
 
 <template>
-  <KeepAlive>
-    <NavigationHeader :color="navbarColor"/>
-  </KeepAlive>
-  <RouterView @change-navbar="changeNavbarColor"></RouterView>
-  <KeepAlive>
-    <FooterDefault/>
-  </KeepAlive>
+    <KeepAlive>
+        <NavbarDefault :color="navbarColor" />
+    </KeepAlive>
+    <RouterView @change-navbar="changeNavbarColor" />
+    <KeepAlive>
+        <FooterDefault/>
+    </KeepAlive>
 </template>
-
-
-<style lang="scss">
-
-</style>
