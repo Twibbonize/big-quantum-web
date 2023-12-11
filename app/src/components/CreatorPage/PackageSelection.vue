@@ -78,7 +78,7 @@ import QButton from '../atoms/QButton.vue';
                         </div>
                         <p>Instant Download for All</p>
                     </div>
-                    <QButton color="primary" class="w-100 color_white mt-6">
+                    <QButton variant="primary" class="w-100 color_white mt-6">
                         Purchase Now <i class="ri-arrow-right-line mb-2"></i>
                     </QButton>
                 </div>
@@ -112,7 +112,7 @@ import QButton from '../atoms/QButton.vue';
                         </div>
                         <p>Instant Download for All</p>
                     </div>
-                    <QButton color="black" class="w-100 color_white mt-6">
+                    <QButton variant="black" class="w-100 color_white mt-6">
                         Purchase Now <i class="ri-arrow-right-line mb-2"></i>
                     </QButton>
                 </div>

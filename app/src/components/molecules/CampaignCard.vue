@@ -55,3 +55,6 @@ const props = defineProps({
         </div>
     </QCard>
 </template>
+
+<style scoped lang="scss">
+</style>

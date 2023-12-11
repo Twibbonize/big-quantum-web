@@ -43,10 +43,12 @@ const searchQuery = ref('');
                     <div class="block md:hidden">
                         <QSearchMobile v-model="searchQuery" />
                     </div>
-                    <QButton :variant="buttonVariant" class="hidden md:flex mr-2">
-                        <i class="ri-add-line mr-1"></i>
-                        <span>Start a Campaign</span>
-                    </QButton>
+                    <div class="hidden sm:flex mr-2">
+                        <QButton :variant="buttonVariant">
+                            <i class="ri-add-line mr-1"></i>
+                            <span>Start a Campaign</span>
+                        </QButton>
+                    </div>
 
                     <QButton variant="secondary" circle size="lg">
                         <i class="ri-menu-fill"></i>

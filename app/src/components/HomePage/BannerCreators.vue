@@ -45,7 +45,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                 <RouterLink to="/creators">
                                     <QButton
                                         class="text-sm ws-nowrap"
-                                        color="yellow"
+                                        variant="yellow"
                                         border-radius="circle"
                                     >
                                         Learn More
