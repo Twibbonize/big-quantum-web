@@ -56,7 +56,7 @@ onMounted(() => {});
                 <i class="ri-group-line text-base mr-1.5"></i>
                 <div class="flex flex-col">
                     <span class="text-xs font-medium">Supporters</span>
-                    <h6 class="text-sm text-light font-medium">
+                    <h6 class="text-sm font-medium">
                         {{ numeral(props.supports).format('0.0a') }}
                     </h6>
                 </div>
@@ -65,7 +65,7 @@ onMounted(() => {});
                 <i class="ri-time-line text-base mr-1.5"></i>
                 <div class="flex flex-col">
                     <span class="text-xs font-medium">Created</span>
-                    <h6 class="text-sm text-light font-medium">
+                    <h6 class="text-sm font-medium">
                         {{ dayjs(props.createdAt).fromNow() }}
                     </h6>
                 </div>

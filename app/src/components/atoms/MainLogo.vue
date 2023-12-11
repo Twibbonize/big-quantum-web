@@ -6,7 +6,7 @@ const props = defineProps({
     color: {
         type: String,
         default: 'main',
-        required: true,
+        required: true
     }
 });
 
@@ -14,15 +14,12 @@ const image = computed(() => {
     if (props.color === 'white') return '/assets/img/logos/twibbonize-logo-white.svg';
     if (props.color === 'black') return '/assets/img/logos/twibbonize-logo-black.svg';
     return '/assets/img/logos/twibbonize-logo.svg';
-})
+});
 </script>
 
 <template>
     <RouterLink to="/">
-        <img
-            class="main-logo"
-            :src="image"
-        />
+        <img class="main-logo" :src="image" />
     </RouterLink>
 </template>
 

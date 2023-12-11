@@ -63,9 +63,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                         </div>
                     </div>
                 </div>
-                <div
-                    class="author-rated-big-img flex justify-center"
-                >
+                <div class="author-rated-big-img flex justify-center">
                     <img
                         class="w-full px-5 sm:px-32 z-30"
                         src="/src/assets/img/logos/creators-brand.png"

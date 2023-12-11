@@ -8,13 +8,13 @@ import supportsJSON from '../../assets/lottie/supports.json';
 
 const props = defineProps({
     width: Number,
-    height: Number,
-})
+    height: Number
+});
 
 const lottieDimension = computed(() => {
     if (props.width >= 640) return { w: 600, h: 200 };
-    return { w: 300, h: 100};
-})
+    return { w: 300, h: 100 };
+});
 </script>
 
 <template>
@@ -23,9 +23,7 @@ const lottieDimension = computed(() => {
             <div class="w-full pages-title mx-auto">
                 <div class="container z-20 absolute mx-auto">
                     <div class="w-full sm:w-1/3 content flex flex-col items-center sm:items-start">
-                        <h1 class="title z-30 user-select-none pe-none lowercase">
-                            show your
-                        </h1>
+                        <h1 class="title z-30 user-select-none pe-none lowercase">show your</h1>
                         <div class="title-animation z-30">
                             <Vue3Lottie
                                 :animationData="supportsJSON"
@@ -34,15 +32,11 @@ const lottieDimension = computed(() => {
                                 :loop="true"
                             />
                         </div>
-                        <h4
-                            class="description z-30 fw-normal text-xl user-select-none pe-none"
-                        >
+                        <h4 class="description z-30 fw-normal text-xl user-select-none pe-none">
                             Turn your passion into action; create custom images that show what you
                             stand for and invite friends to join you
                         </h4>
-                        <div
-                            class="btn-container flat-button"
-                        >
+                        <div class="btn-container flat-button">
                             <QButton class="text-sm" color="yellow" border-radius="circle">
                                 <i class="ri-add-line"></i>
                                 Start a Campaign
@@ -58,7 +52,7 @@ const lottieDimension = computed(() => {
                         </div>
                     </div>
                 </div>
-                <HomeSlider class="z-10"/>
+                <HomeSlider class="z-10" />
             </div>
         </div>
     </BGHero>

@@ -90,11 +90,12 @@ function getThumbnailUrl(name) {
                     <div class="heading-section">
                         <div>
                             <h2 class="title">Trending on Twibbonize</h2>
-                            <p class="description">
-                                Most Supported Campaigns in the Last 24 Hours
-                            </p>
+                            <p class="description">Most Supported Campaigns in the Last 24 Hours</p>
                         </div>
-                        <RouterLink class="mt-6 sm:mt-0 flex items-center color_black" to="/explore">
+                        <RouterLink
+                            class="mt-6 sm:mt-0 flex items-center color_black"
+                            to="/explore"
+                        >
                             Explore more <i class="ri-arrow-right-line"></i
                         ></RouterLink>
                     </div>
@@ -109,13 +110,13 @@ function getThumbnailUrl(name) {
                         :space-between="0"
                         :breakpoints="{
                             768: {
-                                slidesPerView: 2,
+                                slidesPerView: 2
                             },
                             1024: {
-                                slidesPerView: 3,
+                                slidesPerView: 3
                             },
                             1300: {
-                                slidesPerView: 4,
+                                slidesPerView: 4
                             }
                         }"
                     >

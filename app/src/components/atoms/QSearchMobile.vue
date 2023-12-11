@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
     <div class="search-mobile flex p-0">
@@ -9,7 +8,7 @@
 
 <style lang="scss">
 .search-mobile {
-    background: $color_white;
+    background: var(--color-white);
     position: relative;
     height: 52px;
     width: 52px;

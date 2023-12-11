@@ -15,9 +15,7 @@ function changeNavbarColor(value) {
     <KeepAlive>
         <NavbarDefault :color="navbarColor" />
     </KeepAlive>
-    <RouterView
-        @change-navbar="changeNavbarColor"
-    />
+    <RouterView @change-navbar="changeNavbarColor" />
     <KeepAlive>
         <FooterDefault/>
     </KeepAlive>

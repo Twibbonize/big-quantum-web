@@ -8,55 +8,55 @@ import FooterSocial from '@/components/molecules/FooterSocial.vue';
 const discoverLinks = [
     {
         text: 'Explore',
-        url: '',
+        url: ''
     },
     {
         text: 'Leaderboard',
-        url: '',
+        url: ''
     },
     {
         text: 'Pricing',
-        url: '',
+        url: ''
     },
     {
         text: 'Help Center',
-        url: '',
+        url: ''
     }
-]
+];
 
 const resourceLinks = [
     {
         text: 'For Creators',
-        url: '',
+        url: ''
     },
     {
         text: 'What is a Twibbon',
-        url: '',
+        url: ''
     },
     {
         text: 'Use Cases',
-        url: '',
+        url: ''
     },
     {
         text: 'Editor',
-        url: '',
+        url: ''
     }
-]
+];
 
 const companyLinks = [
     {
         text: 'About',
-        url: '',
+        url: ''
     },
     {
         text: 'Blog',
-        url: '',
+        url: ''
     },
     {
         text: 'Contact Us',
-        url: '',
-    },
-]
+        url: ''
+    }
+];
 </script>
 
 <template>
@@ -67,24 +67,26 @@ const companyLinks = [
                     <div class="footer-content grid grid-cols-2 sm:grid-cols-4 gap-8">
                         <div class="widget-logo col-span-2 sm:col-span-1 flex flex-grow w-100">
                             <div class="logo-footer" id="logo-footer">
-                                <MainLogo color="black"/>
+                                <MainLogo color="black" />
                                 <div class="flex gap-2 flex-wrap mt-6">
-                                    <AppDownload type="ios"/>
-                                    <AppDownload type="android"/>
+                                    <AppDownload type="ios" />
+                                    <AppDownload type="android" />
                                 </div>
                             </div>
                         </div>
-                        <FooterMenu title="Discover" :links="discoverLinks"/>
-                        <FooterMenu title="Resources" :links="resourceLinks"/>
+                        <FooterMenu title="Discover" :links="discoverLinks" />
+                        <FooterMenu title="Resources" :links="resourceLinks" />
                         <div class="widget-last col-span-2 sm:col-span-1">
-                            <FooterMenu title="Company" :links="companyLinks"/>
-                            <h5 class="title-widget font-extrabold whitespace-nowrap mt-6 mb-5">Join the community</h5>
-                            <FooterSocial/>
+                            <FooterMenu title="Company" :links="companyLinks" />
+                            <h5 class="title-widget font-extrabold whitespace-nowrap mt-6 mb-5">
+                                Join the community
+                            </h5>
+                            <FooterSocial />
                         </div>
                     </div>
                 </div>
             </div>
-            <FooterTerms/>
+            <FooterTerms />
         </div>
     </footer>
 </template>
@@ -92,7 +94,7 @@ const companyLinks = [
 <style lang="scss">
 #footer {
     @apply mt-16 mb-8;
-    background: $color_white;
+    background: var(--color-white);
 
     .widget {
         @apply mr-10;

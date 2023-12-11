@@ -10,7 +10,12 @@ const { width, height } = useWindowSize();
         <img class="pattern-left z-0" src="/src/assets/img/patterns/hero-left-bottom.png" alt="" />
         <img class="pattern-right z-0" src="/src/assets/img/patterns/hero-right-top.png" alt="" />
         <div v-if="width < 640" class="pattern-gradient"></div>
-        <img v-else class="pattern-center z-0" src="/src/assets/img/patterns/hero-texture.png" alt="" />
+        <img
+            v-else
+            class="pattern-center z-0"
+            src="/src/assets/img/patterns/hero-texture.png"
+            alt=""
+        />
     </div>
 </template>
 
@@ -38,7 +43,11 @@ const { width, height } = useWindowSize();
         left: 0;
         width: 100%;
         height: 100%;
+<<<<<<< HEAD
+        background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00);
+=======
         background-image: linear-gradient(to bottom, #16dac1FF, #16dac1FF, #ffffff00);
+>>>>>>> 295019b6188e72c4e84d84f0a25306bb12af87d4
     }
 }
 

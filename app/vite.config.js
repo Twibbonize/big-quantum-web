@@ -9,7 +9,7 @@ export default defineConfig({
         template: {
             compilerOptions: {
               // treat all tags with a dash as custom elements
-              isCustomElement: (tag) => tag.includes('-')
+              isCustomElement: (tag) => tag.includes('swiper-')
             }
         }
     })],
@@ -21,7 +21,7 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@import "@/assets/scss/style.scss";`
+                additionalData: `@import "@/assets/scss/_mixins.scss";`
             }
         }
     }

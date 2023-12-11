@@ -5,20 +5,20 @@ const currentYear = dayjs().year();
 </script>
 
 <template>
-  <div class="footer-terms flex flex-col sm:flex-row gap-2">
-      <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
-      <ul>
-          <li>
-              <a href="#">Terms & Conditions</a>
-          </li>
-          <li>
-              <a href="#">Privacy Policy</a>
-          </li>
-          <li>
-              <a href="#">Cookie Policy</a>
-          </li>
-      </ul>
-  </div>
+    <div class="footer-terms flex flex-col sm:flex-row gap-2">
+        <p>© {{ currentYear }} PT Twibbonize Teknologi Indonesia</p>
+        <ul>
+            <li>
+                <a href="#">Terms & Conditions</a>
+            </li>
+            <li>
+                <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+                <a href="#">Cookie Policy</a>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <style lang="scss">
@@ -27,7 +27,7 @@ const currentYear = dayjs().year();
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 
     p {
-      @apply text-xs sm:text-sm;
+        @apply text-xs sm:text-sm;
     }
 
     ul {

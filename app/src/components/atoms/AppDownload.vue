@@ -1,17 +1,17 @@
-
 <script setup>
 import { computed } from 'vue';
 
 const props = defineProps({
     type: {
         type: String,
-        required: true,
-    },
+        required: true
+    }
 });
 
 const url = computed(() => {
     if (props.type === 'ios') return 'https://apps.apple.com/id/app/twibbonize/id1610446264';
-    if (props.type === 'android') return 'https://play.google.com/store/apps/details?id=com.twibbonize';
+    if (props.type === 'android')
+        return 'https://play.google.com/store/apps/details?id=com.twibbonize';
     return '';
 });
 
@@ -23,17 +23,8 @@ const image = computed(() => {
 </script>
 
 <template>
-    <a
-        class="app-download"
-        :href="url"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img
-            id="playstore"
-            class="app-download"
-            :src="image"
-        />
+    <a class="app-download" :href="url" target="_blank" rel="noopener noreferrer">
+        <img id="playstore" class="app-download" :src="image" />
     </a>
 </template>
 

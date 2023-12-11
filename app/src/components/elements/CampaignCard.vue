@@ -32,9 +32,9 @@ const props = defineProps({
         <div class="author flex items-center">
             <img class="avatar" :src="avatar" alt="Image" />
             <div class="flex flex-col justify-center info">
-                <a href="#"
-                    ><h6 class="campaign-card__name">{{ props.creator }}</h6></a
-                >
+                <a href="#">
+                    <h6 class="campaign-card__name">{{ props.creator }}</h6>
+                </a>
             </div>
         </div>
         <div class="divider"></div>
@@ -43,7 +43,7 @@ const props = defineProps({
                 <i class="ri-group-line text-xl mr-1"></i>
                 <div class="flex flex-col">
                     <span class="text-xs font-medium">Supporters</span>
-                    <h6 class="text-sm text-black opacity-50 font-medium">
+                    <h6 class="text-sm font-medium">
                         {{ numeral(props.supports).format('0.0a') }}
                     </h6>
                 </div>
@@ -52,7 +52,7 @@ const props = defineProps({
                 <i class="ri-time-line text-xl mr-1"></i>
                 <div class="flex flex-col">
                     <span class="text-xs font-medium">Created</span>
-                    <h6 class="text-sm text-black opacity-50 font-medium">
+                    <h6 class="text-sm font-medium">
                         {{ dayjs(props.createdAt).fromNow() }}
                     </h6>
                 </div>
@@ -77,6 +77,10 @@ const props = defineProps({
 
     &__name:hover {
         text-decoration: underline;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
 }
 

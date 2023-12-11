@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
     title: String,
-    links: Array,
+    links: Array
 });
 </script>
 
@@ -10,7 +10,7 @@ const props = defineProps({
         <h5 class="title-widget">{{ title }}</h5>
         <ul>
             <li v-for="{ url, text } in links" :key="text">
-              <a :href="url">{{ text }}</a>
+                <a :href="url">{{ text }}</a>
             </li>
         </ul>
     </div>
@@ -18,22 +18,22 @@ const props = defineProps({
 
 <style lang="scss">
 .widget-menu {
-  .title-widget {
-    @apply font-extrabold mb-5;
-  }
-
-  ul {
-    li {
-      @apply mb-1;
-
-      &:last-child {
-        @apply mb-0;
-      }
-
-      a {
-        @apply text-sm text-black hover:underline;
-      }
+    .title-widget {
+        @apply font-extrabold mb-5;
     }
-  }
+
+    ul {
+        li {
+            @apply mb-1;
+
+            &:last-child {
+                @apply mb-0;
+            }
+
+            a {
+                @apply text-sm text-black hover:underline;
+            }
+        }
+    }
 }
 </style>
