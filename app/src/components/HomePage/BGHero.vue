@@ -43,11 +43,7 @@ const { width, height } = useWindowSize();
         left: 0;
         width: 100%;
         height: 100%;
-<<<<<<< HEAD
         background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00);
-=======
-        background-image: linear-gradient(to bottom, #16dac1FF, #16dac1FF, #ffffff00);
->>>>>>> 295019b6188e72c4e84d84f0a25306bb12af87d4
     }
 }
 
@@ -71,22 +67,29 @@ const { width, height } = useWindowSize();
         }
 
         .pattern-center {
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 0;
-            left: 40%;
-            filter: blur(15.4px);
+            left: 50%;
+            bottom: -200px;
+            background-position: right bottom;
+            background-size: 1900px 1000px;
+            background: url('../../assets/img/patterns/background-banner-creators.png');
+            filter: blur(15.4px) grayscale(100%);
             mix-blend-mode: darken;
+            background-repeat: no-repeat;
             animation: 8s move infinite ease-in-out alternate;
+            opacity: 0.5;
         }
     }
 }
 
 @keyframes move {
     from {
-        transform: scale(1) translateX(-50%) rotate(0deg);
+        transform: scale(1) rotate(0deg);
     }
     to {
-        transform: scale(1.2) translateX(-50%) rotate(30deg);
+        transform: scale(1.2) rotate(30deg);
     }
 }
 </style>
