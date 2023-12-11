@@ -43,11 +43,7 @@ const { width, height } = useWindowSize();
         left: 0;
         width: 100%;
         height: 100%;
-<<<<<<< HEAD
-        background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00);
-=======
         background-image: linear-gradient(to bottom, #16dac1FF, #16dac1FF, #ffffff00);
->>>>>>> 295019b6188e72c4e84d84f0a25306bb12af87d4
     }
 }
 

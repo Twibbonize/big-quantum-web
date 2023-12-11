@@ -55,13 +55,3 @@ const props = defineProps({
         </div>
     </QCard>
 </template>
-
-<style scoped lang="scss">
-.campaign {
-
-
-    &:hover {
-        @apply 
-    }
-}
-</style>
