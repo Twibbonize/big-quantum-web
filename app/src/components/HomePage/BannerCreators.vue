@@ -67,7 +67,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                     class="author-rated-big-img flex justify-center"
                 >
                     <img
-                        class="w-full px-5 z-30"
+                        class="w-full px-5 sm:px-32 z-30"
                         src="/src/assets/img/logos/creators-brand.png"
                         alt="twibbonize-for-creators"
                     />
@@ -93,6 +93,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
 .banner-creators {
     .bg {
         background: #202124;
+        @apply sm:rounded-[40px];
     }
 
     .blob-bg {
