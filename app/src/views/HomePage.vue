@@ -33,8 +33,8 @@ onUnmounted(() => {
     <div class="home-page">
         <HeroParticipant :width="width" :height="height"/>
         <div ref="content"></div>
-        <CampaignTrending class="py-24" />
-        <TopCreators class="py--60" />
+        <CampaignTrending class="pt-8 md:pt-24 md:pb-16" />
+        <TopCreators :width="width" :height="height" class="py--60" />
         <BannerCreators class="home-page__banner container">
             <CampaignSwiper />
         </BannerCreators>

@@ -61,11 +61,11 @@ const companyLinks = [
 
 <template>
     <footer id="footer">
-        <div class="container mx-auto">
+        <div class="container px-5 mx-auto">
             <div class="flex row">
                 <div class="w-full">
-                    <div class="footer-content flex flex-grow">
-                        <div class="widget-logo flex flex-grow w-100">
+                    <div class="footer-content grid grid-cols-2 sm:grid-cols-4 gap-8">
+                        <div class="widget-logo col-span-2 sm:col-span-1 flex flex-grow w-100">
                             <div class="logo-footer" id="logo-footer">
                                 <MainLogo color="black"/>
                                 <div class="flex gap-2 flex-wrap mt-6">
@@ -76,9 +76,9 @@ const companyLinks = [
                         </div>
                         <FooterMenu title="Discover" :links="discoverLinks"/>
                         <FooterMenu title="Resources" :links="resourceLinks"/>
-                        <div class="widget-last">
+                        <div class="widget-last col-span-2 sm:col-span-1">
                             <FooterMenu title="Company" :links="companyLinks"/>
-                            <h5 class="title-widget whitespace-nowrap mt-6">Join the community</h5>
+                            <h5 class="title-widget font-extrabold whitespace-nowrap mt-6 mb-5">Join the community</h5>
                             <FooterSocial/>
                         </div>
                     </div>

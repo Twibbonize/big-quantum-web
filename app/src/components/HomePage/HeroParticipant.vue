@@ -79,15 +79,15 @@ const lottieDimension = computed(() => {
     }
 
     .title-animation {
-        margin-top: -60px;
+        margin-top: -12px;
     }
 
     .description {
-        @apply text-black text-base sm:text-xl leading-5 font-medium tracking-wide;
+        @apply text-black text-base text-center sm:text-left sm:text-xl leading-5 font-medium tracking-wide;
     }
 
     .btn-container {
-        @apply flex flex-col items-center mt-4 sm:mt-6 gap-2 sm:gap-3;
+        @apply flex flex-col sm:flex-row items-center mt-4 sm:mt-6 gap-2 sm:gap-3;
     }
 
     .or {
