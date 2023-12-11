@@ -1,10 +1,15 @@
 <script setup>
 import { computed, onMounted } from 'vue';
-import QButton from '@/components/base/QButton.vue';
+import QButton from '@/components/atoms/QButton.vue';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import numeral from 'numeral';
+
+dayjs.extend(relativeTime);
 
 const props = defineProps({
     thumbnail: String,
-    title: String,
+    name: String,
     avatar: String,
     creator: String,
     supports: Number,
@@ -12,12 +17,13 @@ const props = defineProps({
 });
 
 const campaignThumbnailUrl = computed(() => {
-    return 'https://placehold.co/350x350?text=Thumbnail';
-    // return `${import.meta.env.VITE_CAMPAIGN_THUMBNAIL_URL}/${props.thumbnail}`;
+    return props.thumbnail;
+    return `${import.meta.env.VITE_CAMPAIGN_THUMBNAIL_URL}/${props.thumbnail}`;
 });
 
 const avatarUrl = computed(() => {
-    return 'https://placehold.co/80x80?text=Avatar';
+    return props.avatar;
+    // return `${import.meta.env.VITE_CAMPAIGN_THUMBNAIL_URL}/${props.avatar}`;
 });
 
 onMounted(() => {});
@@ -27,7 +33,7 @@ onMounted(() => {});
     <div class="camp-card rounded-3xl pt-2.5 px-3.5 pb-3.5">
         <div class="img-container rounded-xl aspect-square flex items-center relative">
             <picture>
-                <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="title" />
+                <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="name" />
             </picture>
             <div class="btn-view">
                 <QButton color="main">View</QButton>
@@ -35,12 +41,12 @@ onMounted(() => {});
         </div>
         <div class="mt-3">
             <h6 class="text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap">
-                Campaign Title with Long Words
+                {{ name }}
             </h6>
             <div class="flex items-center mt-2.5">
                 <img class="avatar rounded-full mr-1.5" :src="avatarUrl" :alt="creator" />
                 <p class="text-base text-ellipsis overflow-hidden whitespace-nowrap">
-                    Creator with Very Long Name
+                    {{ creator }}
                 </p>
             </div>
         </div>
@@ -49,13 +55,19 @@ onMounted(() => {});
             <div class="flex items-center flex-1">
                 <i class="ri-group-line text-base mr-1.5"></i>
                 <div class="flex flex-col">
-                    <h6 class="text-sm">1.5K</h6>
+                    <span class="text-xs font-medium">Supporters</span>
+                    <h6 class="text-sm text-light font-medium">
+                        {{ numeral(props.supports).format('0.0a') }}
+                    </h6>
                 </div>
             </div>
             <div class="flex items-center flex-1">
                 <i class="ri-time-line text-base mr-1.5"></i>
                 <div class="flex flex-col">
-                    <h6 class="text-sm font-medium">1 Day Ago</h6>
+                    <span class="text-xs font-medium">Created</span>
+                    <h6 class="text-sm text-light font-medium">
+                        {{ dayjs(props.createdAt).fromNow() }}
+                    </h6>
                 </div>
             </div>
         </div>

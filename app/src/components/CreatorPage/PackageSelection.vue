@@ -1,6 +1,6 @@
 <script setup>
-import TWToggleSwitch from '@/components/base/TWToggleSwitch.vue';
-import QButton from '../base/QButton.vue';
+import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
+import QButton from '../atoms/QButton.vue';
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import QButton from '../base/QButton.vue';
             <p class="package-selection__description mt-6">
                 Try for free, find what you need, and choose the best plan
             </p>
-            <TWToggleSwitch class="mt-5" />
+            <QSwitchTwo class="mt-5" />
             <div class="package-selection__package w-100 row mt-5">
                 <div class="package-selection__free col w-100 flex flex-col justify-between">
                     <div>

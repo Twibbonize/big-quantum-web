@@ -10,7 +10,7 @@ const props = defineProps({
     speed: Number,
     centeredSlides: Boolean,
     loop: Boolean,
-    slidesPerView: Number,
+    slidesPerView: Number | String,
     breakpoints: Object,
     observer: Boolean,
     observeParent: Boolean,

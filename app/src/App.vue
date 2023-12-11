@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 
-import NavigationHeader from '@/components/NavigationHeader.vue';
-import FooterDefault from '@/components/FooterDefault.vue';
+import NavbarDefault from '@/components/organisms/NavbarDefault.vue';
+import FooterDefault from '@/components/organisms/FooterDefault.vue';
 
 const navbarColor = ref('');
 
@@ -13,12 +13,12 @@ function changeNavbarColor(value) {
 
 <template>
     <KeepAlive>
-        <NavigationHeader :color="navbarColor" />
+        <NavbarDefault :color="navbarColor" />
     </KeepAlive>
-    <RouterView @change-navbar="changeNavbarColor"></RouterView>
+    <RouterView
+        @change-navbar="changeNavbarColor"
+    />
     <KeepAlive>
-        <FooterDefault />
+        <FooterDefault/>
     </KeepAlive>
 </template>
-
-<style lang="scss"></style>

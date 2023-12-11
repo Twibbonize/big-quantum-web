@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import QTabs from '@/components/base/QTabs.vue';
 import dayjs from 'dayjs';
-import CampaignCard from '@/components/elements/CampaignCard.vue';
+import CampaignCard from '@/components/campaign/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 const tabs = [
