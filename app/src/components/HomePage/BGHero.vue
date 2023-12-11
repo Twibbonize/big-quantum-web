@@ -10,7 +10,7 @@ const { width, height } = useWindowSize();
         <img class="pattern-left z-0" src="/src/assets/img/patterns/hero-left-bottom.png" alt="" />
         <img class="pattern-right z-0" src="/src/assets/img/patterns/hero-right-top.png" alt="" />
         <div v-if="width < 640" class="pattern-gradient"></div>
-        <img v-else class="pattern-center z-0" src="/src/assets/img/patterns/hero-texture.png" alt="" />
+        <div class="pattern-center z-0"></div>
     </div>
 </template>
 
@@ -62,22 +62,29 @@ const { width, height } = useWindowSize();
         }
 
         .pattern-center {
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 0;
-            left: 40%;
-            filter: blur(15.4px);
+            left: 50%;
+            bottom: -200px;
+            background-position: right bottom;
+            background-size: 1900px 1000px;
+            background: url('../../assets/img/patterns/background-banner-creators.png');
+            filter: blur(15.4px) grayscale(100%);
             mix-blend-mode: darken;
+            background-repeat: no-repeat;
             animation: 8s move infinite ease-in-out alternate;
+            opacity: 0.5;
         }
     }
 }
 
 @keyframes move {
     from {
-        transform: scale(1) translateX(-50%) rotate(0deg);
+        transform: scale(1) rotate(0deg);
     }
     to {
-        transform: scale(1.2) translateX(-50%) rotate(30deg);
+        transform: scale(1.2) rotate(30deg);
     }
 }
 </style>
