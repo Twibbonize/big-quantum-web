@@ -1,8 +1,28 @@
 <script setup>
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+import { ref } from 'vue';
+import QTabs from '@/components/base/QTabs.vue';
 import dayjs from 'dayjs';
 import CampaignCard from '@/components/campaign/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+
+const tabs = [
+    {
+        title: 'Campaigns',
+        slot: 'campaigns',
+        props: {
+            static: true
+        }
+    },
+    {
+        title: 'Posts',
+        slot: 'posts',
+        props: {
+            static: true
+        }
+    }
+];
+
+const activeTab = ref(0);
 
 const campaigns = [
     {
@@ -142,59 +162,35 @@ const campaigns = [
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-12 gap-10">
                     <div class="col-span-8">
-                        <tab-group as="div" class="tab">
-                            <tab-list class="tab__group">
-                                <tab v-slot="{ selected }">
-                                    <button
-                                        :class="[
-                                            'tab__button',
-                                            selected && 'tab__button--selected'
-                                        ]"
-                                    >
-                                        Campaign
-                                    </button>
-                                </tab>
+                        <q-tabs :tabs="tabs">
+                            <template #campaigns>
+                                <div class="grid grid-cols-3 gap-6 mt-6">
+                                    <campaign-card
+                                        v-for="(
+                                            {
+                                                name,
+                                                avatar,
+                                                creator,
+                                                createdAt,
+                                                supports,
+                                                thumbnail
+                                            },
+                                            i
+                                        ) in campaigns"
+                                        :name="name"
+                                        :creator="creator"
+                                        :avatar="getAvatarUrl(avatar)"
+                                        :supports="supports"
+                                        :created-at="createdAt"
+                                        :thumbnail="getThumbnailUrl(thumbnail)"
+                                    />
+                                </div>
+                            </template>
 
-                                <tab v-slot="{ selected }">
-                                    <button
-                                        :class="[
-                                            'tab__button',
-                                            selected && 'tab__button--selected'
-                                        ]"
-                                    >
-                                        Posts
-                                    </button>
-                                </tab>
-                            </tab-list>
-
-                            <tab-panels class="mt-6">
-                                <tab-panel>
-                                    <div class="grid grid-cols-3 gap-6">
-                                        <campaign-card
-                                            v-for="(
-                                                {
-                                                    name,
-                                                    avatar,
-                                                    creator,
-                                                    createdAt,
-                                                    supports,
-                                                    thumbnail
-                                                },
-                                                i
-                                            ) in campaigns"
-                                            :name="name"
-                                            :creator="creator"
-                                            :avatar="getAvatarUrl(avatar)"
-                                            :supports="supports"
-                                            :created-at="createdAt"
-                                            :thumbnail="getThumbnailUrl(thumbnail)"
-                                        />
-                                    </div>
-                                </tab-panel>
-
-                                <tab-panel> Posts Tab </tab-panel>
-                            </tab-panels>
-                        </tab-group>
+                            <template #posts>
+                                <h1>Posts Tab Content</h1>
+                            </template>
+                        </q-tabs>
                     </div>
                     <div class="col-span-4">
                         <div class="card">

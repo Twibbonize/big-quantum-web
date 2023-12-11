@@ -177,8 +177,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@import '@/assets/scss/variables.scss';
-
 .creators-pagination {
     .bullet {
         width: 14px;
