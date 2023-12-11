@@ -50,8 +50,31 @@ const buttonClasses = computed(() => {
 
 <style scoped lang="scss">
 .btn {
-    @apply font-semibold text-sm flex items-center justify-center relative overflow-hidden;
+    @apply font-bold text-sm flex items-center justify-center;
     border-radius: 100px;
+
+    @include before {
+        height: 0;
+        width: 0;
+        border-radius: 100%;
+        @apply bg-black;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        transition: all 0.3s var(--transition-function);
+        opacity: 0.1;
+    }
+
+    &:hover {
+        color: var(--color-white);
+
+        @include before {
+            height: 20rem;
+            width: 20rem;
+        }
+    }
+
     // sizes
     &--sm {
     }
@@ -66,25 +89,6 @@ const buttonClasses = computed(() => {
     // variants
     &--primary {
         @apply text-black bg-main;
-
-        @include before {
-            height: 0;
-            width: 0;
-            border-radius: 100%;
-            @apply bg-black;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s var(--transition-function);
-            opacity: 0.1;
-        }
-
-        &:hover {
-            @include before {
-                height: 20rem;
-                width: 20rem;
-            }
-        }
     }
 
     &--secondary {
@@ -110,12 +114,6 @@ const buttonClasses = computed(() => {
     &--circle {
         width: 40px;
         height: 40px;
-        @apply rounded-full;
-    }
-
-    &.btn--lg.btn--circle {
-        height: 52px;
-        width: 52px;
     }
 }
 </style>

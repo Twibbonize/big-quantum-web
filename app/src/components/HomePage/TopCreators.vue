@@ -76,18 +76,18 @@ const slidesPerView = computed(() => {
     if (props.width < 640) return 1;
     if (props.width < 1024) return 2;
     return 3;
-})
+});
 
 const pages = computed(() => {
     if (props.width < 640) return 3;
     if (props.width < 1024) return 2;
     return 0;
-})
+});
 
 const props = defineProps({
     width: Number,
-    height: Number,
-})
+    height: Number
+});
 
 function getImageUrl(name) {
     const filename = `/assets/img/sample/${name}`;
@@ -125,16 +125,26 @@ onMounted(() => {
     <div class="tf-section seller background-white py-8 sm:pt-16 sm:pb-24">
         <div class="container px-5 mx-auto">
             <div class="row">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between md:w-full pb-8">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between md:w-full pb-8"
+                >
                     <div class="heading-section flex justify-between items-center">
                         <h2 class="tf-title">Top Creators</h2>
-                        <RouterLink v-if="width < 640" class="flex items-center color_black" to="/explore">
+                        <RouterLink
+                            v-if="width < 640"
+                            class="flex items-center color_black"
+                            to="/explore"
+                        >
                             View All<i class="ri-arrow-right-line"></i>
                         </RouterLink>
                     </div>
                     <div class="heading-section flex gap-4 items-center mt-6 sm:mt-0">
-                        <QSwitchThree class="sm:!w-[225px]"/>
-                        <RouterLink v-if="width >= 640" class="flex items-center color_black" to="/explore">
+                        <QSwitchThree class="sm:!w-[225px]" />
+                        <RouterLink
+                            v-if="width >= 640"
+                            class="flex items-center color_black"
+                            to="/explore"
+                        >
                             View All<i class="ri-arrow-right-line"></i>
                         </RouterLink>
                     </div>
@@ -182,7 +192,7 @@ onMounted(() => {
         width: 14px;
         height: 14px;
         border-radius: 7px;
-        background: $color_light;
+        background: var(--color-light);
         position: relative;
     }
 
@@ -193,8 +203,8 @@ onMounted(() => {
         position: absolute;
         top: 0;
         left: 0;
-        // background: conic-gradient($color_main 90deg, #DEE8E8 0deg);
-        background: conic-gradient($color_light var(--progress), $color_main 0deg);
+        // background: conic-gradient(var(--color-main) 90deg, #DEE8E8 0deg);
+        background: conic-gradient(var(--color-light) var(--progress), var(--color-main) 0deg);
     }
 }
 </style>

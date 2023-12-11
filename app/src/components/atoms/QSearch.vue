@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
     <div class="search flex p-0">
@@ -15,7 +14,7 @@
 
 <style lang="scss">
 .search {
-    background: $color_white;
+    background: var(--color-white);
     position: relative;
     height: 52px;
     border-radius: 26px;

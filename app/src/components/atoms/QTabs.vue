@@ -42,7 +42,6 @@ const tabPresentationStyle = computed(() => {
                     v-for="(tab, i) in tabs"
                     :key="i"
                     v-slot="{ selected }"
-                    as="div"
                     class="tab__button-wrapper"
                 >
                     <button :class="['tab__button', selected && 'tab__button--selected']">
@@ -57,15 +56,11 @@ const tabPresentationStyle = computed(() => {
                 <tab-panel
                     v-for="(tab, i) in tabs"
                     :key="i"
-                    as="div"
                     v-bind="tab.props"
                     v-slot="{ selected }"
                 >
                     <Transition name="fade" mode="out-in">
-                        <div
-                            v-show="selected"
-                            :class="['tab__panel', selected && 'tab__panel--active']"
-                        >
+                        <div v-show="selected" :class="['tab__panel']">
                             <slot :name="tab.slot"></slot>
                         </div>
                     </Transition>

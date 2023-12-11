@@ -51,16 +51,8 @@ function getImageUrl(name) {
         :autoplay-disable-on-interaction="false"
         :autoplay-reverse-direction="true"
     >
-        <swiper-slide
-            v-for="(filename, i) in galleries"
-            :key="i"
-            class="campaign-slider"
-        >
-            <img
-                class="campaign"
-                :src="getImageUrl(filename)"
-                :alt="filename"
-            />
+        <swiper-slide v-for="(filename, i) in galleries" :key="i" class="campaign-slider">
+            <img class="campaign" :src="getImageUrl(filename)" :alt="filename" />
         </swiper-slide>
     </QSlider>
 </template>

@@ -14,9 +14,9 @@ const props = defineProps({
     color: String
 });
 
-const buttonColor = computed(() => {
-    if (/(gradient|transparent)/gi.test(props.color)) return 'white';
-    return 'main';
+const buttonVariant = computed(() => {
+    if (/(gradient|transparent)/gi.test(props.color)) return 'secondary';
+    return 'primary';
 });
 
 const navbarColor = computed(() => {
@@ -63,7 +63,7 @@ const searchQuery = ref('');
     @apply fixed;
 
     width: 100vw;
-    background: $color_white;
+    background: var(--color-white);
     padding-top: 27px;
     padding-bottom: 18px;
     top: 0;
@@ -74,7 +74,7 @@ const searchQuery = ref('');
     }
 
     .action {
-        @apply xl:w-1/3 flex items-center justify-end gap-x-2 lg:gap-x-0 ;
+        @apply xl:w-1/3 flex items-center justify-end gap-x-2 lg:gap-x-0;
     }
 }
 

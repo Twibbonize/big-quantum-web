@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
     <div class="menu btn-white">
@@ -13,11 +12,11 @@
     width: 52px;
     height: 52px;
     border-radius: 26px;
-    background: $color_white;
+    background: var(--color-white);
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
 
     i {
-      @apply text-black text-2xl;
+        @apply text-black text-2xl;
     }
 
     &:hover {

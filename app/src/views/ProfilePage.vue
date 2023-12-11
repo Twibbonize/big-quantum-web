@@ -1,9 +1,12 @@
 <script setup>
-import { ref } from 'vue';
-import QTabs from '@/components/base/QTabs.vue';
+import { computed, ref } from 'vue';
+import QTabs from '@/components/atoms/QTabs.vue';
 import dayjs from 'dayjs';
-import CampaignCard from '@/components/campaign/CampaignCard.vue';
+import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
+
 
 const tabs = [
     {
@@ -24,72 +27,106 @@ const tabs = [
 
 const activeTab = ref(0);
 
-const campaigns = [
-    {
-        name: 'UNIVERSE UNPACKED 2022',
-        creator: 'Universe Tech',
-        avatar: 'sample-avatar-1.jpg',
-        supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
-        thumbnail: 'sample-campaign-1.jpg'
-    },
-    {
-        name: 'Liberty Scholarship 2025',
-        creator: 'Liberty Scholarship',
-        avatar: 'sample-avatar-2.jpg',
-        supports: 1470,
-        createdAt: dayjs().subtract(3, 'week').unix(),
-        thumbnail: 'sample-campaign-2.jpg'
-    },
-    {
-        name: 'Bit by Bit - Retro Gaming',
-        creator: 'Bit by Bit',
-        avatar: 'sample-avatar-3.jpg',
-        supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
-        thumbnail: 'sample-campaign-3.jpg'
-    },
-    {
-        name: 'Digital Culture Webinar',
-        creator: 'Digital Culture',
-        avatar: 'sample-avatar-4.jpg',
-        supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
-        thumbnail: 'sample-campaign-4.jpg'
-    },
-    {
-        name: 'UNIVERSE UNPACKED 2022',
-        creator: 'Universe Tech',
-        avatar: 'sample-avatar-1.jpg',
-        supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
-        thumbnail: 'sample-campaign-1.jpg'
-    },
-    {
-        name: 'Liberty Scholarship 2025',
-        creator: 'Liberty Scholarship',
-        avatar: 'sample-avatar-2.jpg',
-        supports: 14700,
-        createdAt: dayjs().subtract(3, 'week').unix(),
-        thumbnail: 'sample-campaign-2.jpg'
-    },
-    {
-        name: 'Bit by Bit - Retro Gaming',
-        creator: 'Bit by Bit',
-        avatar: 'sample-avatar-3.jpg',
-        supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
-        thumbnail: 'sample-campaign-3.jpg'
-    },
-    {
-        name: 'Digital Culture Webinar',
-        creator: 'Digital Culture',
-        avatar: 'sample-avatar-4.jpg',
-        supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
-        thumbnail: 'sample-campaign-4.jpg'
-    }
-];
+// const campaigns = /
+
+
+const campaigns = computed(() => {
+    const samples = [
+        {
+            name: 'UNIVERSE UNPACKED 2022',
+            campaignCreator: {
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg',
+            },
+            hit: 85500,
+            createdAt: dayjs().subtract(5, 'day').fromNow(),
+            thumbnail: 'sample-campaign-1.jpg'
+        },
+        {
+            name: 'Liberty Scholarship 2025',
+            campaignCreator: {
+                name: 'Liberty Scholarship',
+                avatar: 'sample-avatar-2.jpg',
+            },
+            hit: 1470,
+            createdAt: dayjs().subtract(3, 'week').fromNow(),
+            thumbnail: 'sample-campaign-2.jpg'
+        },
+        {
+            name: 'Bit by Bit - Retro Gaming',
+            campaignCreator: {
+                name: 'Bit by Bit',
+                avatar: 'sample-avatar-3.jpg',
+            },
+            hit: 15100,
+            createdAt: dayjs().subtract(5, 'day').fromNow(),
+            thumbnail: 'sample-campaign-3.jpg'
+        },
+        {
+            name: 'Digital Culture Webinar',
+            campaignCreator: {
+                name: 'Digital Culture',
+                avatar: 'sample-avatar-4.jpg',
+            },
+            hit: 7700,
+            createdAt: dayjs().subtract(1, 'week').fromNow(),
+            thumbnail: 'sample-campaign-4.jpg'
+        },
+        {
+            name: 'UNIVERSE UNPACKED 2022',
+            campaignCreator: {
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg',
+            },
+            hit: 85500,
+            createdAt: dayjs().subtract(5, 'day').fromNow(),
+            thumbnail: 'sample-campaign-1.jpg'
+        },
+        {
+            name: 'Liberty Scholarship 2025',
+            campaignCreator: {
+                name: 'Liberty Scholarship',
+                avatar: 'sample-avatar-2.jpg',
+            },
+            hit: 14700,
+            createdAt: dayjs().subtract(3, 'week').fromNow(),
+            thumbnail: 'sample-campaign-2.jpg'
+        },
+        {
+            name: 'Bit by Bit - Retro Gaming',
+            campaignCreator: {
+                name: 'Bit by Bit',
+                avatar: 'sample-avatar-3.jpg',
+            },
+            createdAt: dayjs().subtract(5, 'day').fromNow(),
+            thumbnail: 'sample-campaign-3.jpg',
+            hit: 14929
+        },
+        {
+            name: 'Digital Culture Webinar',
+            campaignCreator: {
+                name: 'Digital Culture',
+                avatar: 'sample-avatar-4.jpg',
+            },
+            hit: 7700,
+            createdAt: dayjs().subtract(1, 'week').fromNow(),
+            thumbnail: 'sample-campaign-4.jpg'
+        }
+    ];
+
+
+    return samples.map(({ thumbnail, campaignCreator, ...other}) => {
+        const { name, avatar } = campaignCreator
+        return {
+            ...other,
+            thumbnail: getThumbnailUrl(thumbnail),
+            campaignCreator: {
+                name,
+                avatar: getAvatarUrl(avatar)
+            }
+        }
+    })
+});
 </script>
 
 <template>
@@ -99,11 +136,7 @@ const campaigns = [
             <div class="profile-top__card">
                 <div class="profile-top__card__upper">
                     <div class="flex items-center space-x-4">
-                        <img
-                            class="rounded-full w-24 h-24"
-                            src="/assets/img/sample/sample-avatar-1.jpg"
-                            alt=""
-                        />
+                        <img class="rounded-full w-24 h-24" src="/assets/img/sample/sample-avatar-1.jpg" alt="" />
                         <div class="flex flex-col">
                             <h1 class="text-5xl font-bold">Universe Tech</h1>
                             <div class="text-gray-500 font-medium">@universetech</div>
@@ -136,9 +169,7 @@ const campaigns = [
                             <li>
                                 <div class="flex flex-col space-y-1 justify-between">
                                     <div class="text-sm font-medium tracking-wide">Website</div>
-                                    <button
-                                        class="rounded-full px-3 py-1 text-xs bg-gray-200 space-x-1"
-                                    >
+                                    <button class="rounded-full px-3 py-1 text-xs bg-gray-200 space-x-1">
                                         <i class="ri-global-line"></i>
                                         <span class="font-semibold text-black">Website</span>
                                     </button>
@@ -148,8 +179,7 @@ const campaigns = [
 
                         <div class="flex items-center">
                             <button
-                                class="w-8 h-8 p-1 flex items-center justify-center bg-gray-200 rounded-full font-semibold"
-                            >
+                                class="w-8 h-8 p-1 flex items-center justify-center bg-gray-200 rounded-full font-semibold">
                                 <i class="ri-more-line"></i>
                             </button>
                         </div>
@@ -165,25 +195,7 @@ const campaigns = [
                         <q-tabs :tabs="tabs">
                             <template #campaigns>
                                 <div class="grid grid-cols-3 gap-6 mt-6">
-                                    <campaign-card
-                                        v-for="(
-                                            {
-                                                name,
-                                                avatar,
-                                                creator,
-                                                createdAt,
-                                                supports,
-                                                thumbnail
-                                            },
-                                            i
-                                        ) in campaigns"
-                                        :name="name"
-                                        :creator="creator"
-                                        :avatar="getAvatarUrl(avatar)"
-                                        :supports="supports"
-                                        :created-at="createdAt"
-                                        :thumbnail="getThumbnailUrl(thumbnail)"
-                                    />
+                                    <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
                                 </div>
                             </template>
 
