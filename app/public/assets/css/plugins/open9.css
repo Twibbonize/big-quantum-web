@@ -2878,15 +2878,15 @@
 }
 
 .home-slider {
-  width: 825px;
-  height: 1200px;
+  /* width: 825px;
+  height: 1200px; */
   /* transform: rotate(-25deg); */
-  display: flex;
+  /* display: flex;
   gap: 30px;
   position: absolute; 
   right: -241px;
   top: 0;
-  z-index: -1;
+  z-index: -1; */
 }
 
 .home-slider .swiper-container {
