@@ -35,7 +35,7 @@ onUnmounted(() => {
 
 <template>
     <div class="creators-page">
-        <BannerCreators :width="width" :height="height"/>
+        <BannerCreators :width="width" :height="height" />
         <div ref="content"></div>
         <CampaignSwiper class="swiper" />
         <VerticalCarousel />

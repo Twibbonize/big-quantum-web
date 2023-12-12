@@ -35,7 +35,7 @@ const searchQuery = ref('');
 
 <template>
     <header class="navbar z-50" :class="navbarColor">
-        <div class="container px-5 mx-auto">
+        <div class="container px-5 md:px-0">
             <div class="w-full flex flex-row items-center justify-between sm:gap-x-4">
                 <MainLogo class="logo" :color="logoColor" />
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />

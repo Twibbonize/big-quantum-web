@@ -12,14 +12,14 @@ module.exports = {
             body: ['Manrope', 'sans-serif'],
             serif: ['Marck Script', 'cursive']
         },
-        borderRadius: {
-            'xl': '0.75rem',
-            '3xl': '1.25rem',
-            'full': '9999px'
-        },
         extend: {
             container: {
                 center: true
+            },
+            borderRadius: {
+                'xl': '0.75rem',
+                '3xl': '1.25rem',
+                'full': '9999px'
             },
             fontSize: {
                 xxs: ['10px', '10px']
@@ -52,5 +52,7 @@ module.exports = {
     variants: {
         extend: {},
       },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography')
+    ],
 };
