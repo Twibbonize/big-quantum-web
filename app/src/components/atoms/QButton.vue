@@ -99,6 +99,10 @@ const buttonClasses = computed(() => {
         @apply text-black bg-gray-200;
     }
 
+    &--black {
+        @apply text-white bg-black;
+    }
+
     &--link {
         @apply text-black bg-transparent;
 
@@ -106,6 +110,8 @@ const buttonClasses = computed(() => {
             @apply underline;
         }
     }
+
+
 
     &--circle {
         width: 40px;
