@@ -25,8 +25,8 @@ const navbarColor = computed(() => {
 });
 
 const logoColor = computed(() => {
-    if (/(gradient)/ig.test(props.color)) return 'black';
-    if (/(transparent)/ig.test(props.color)) return 'white';
+    if (/(gradient)/gi.test(props.color)) return 'black';
+    if (/(transparent)/gi.test(props.color)) return 'white';
     return 'main';
 });
 
@@ -37,21 +37,22 @@ const searchQuery = ref('');
     <header class="navbar z-50" :class="navbarColor">
         <div class="container px-5 mx-auto">
             <div class="w-full flex flex-row items-center justify-between sm:gap-x-4">
-                <MainLogo class="logo" :color="logoColor"/>
-                <QSearch v-if="width >= 1024" v-model="searchQuery"/>
+                <MainLogo class="logo" :color="logoColor" />
+                <QSearch v-if="width >= 1024" v-model="searchQuery" />
                 <div class="action">
-                    <QSearchMobile v-if="width < 640" v-model="searchQuery"/>
-                    <QButton
-                        v-if="width >= 1024"
-                        class="text-xs whitespace-nowrap"
-                        :color="buttonColor"
-                        size="lg"
-                        border-radius="circle"
-                    >
-                        <i class="ri-add-line"></i>
-                        Start a Campaign
+                    <div class="block md:hidden">
+                        <QSearchMobile v-model="searchQuery" />
+                    </div>
+                    <div class="hidden sm:flex mr-2">
+                        <QButton :variant="buttonVariant">
+                            <i class="ri-add-line mr-1"></i>
+                            <span>Start a Campaign</span>
+                        </QButton>
+                    </div>
+
+                    <QButton variant="secondary" circle size="lg">
+                        <i class="ri-menu-fill"></i>
                     </QButton>
-                    <QMenu/>
                 </div>
             </div>
         </div>

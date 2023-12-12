@@ -36,7 +36,7 @@ onMounted(() => {});
                 <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="name" />
             </picture>
             <div class="btn-view">
-                <QButton color="main">View</QButton>
+                <QButton variant="primary">View</QButton>
             </div>
         </div>
         <div class="mt-3">
