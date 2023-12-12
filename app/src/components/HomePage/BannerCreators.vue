@@ -45,7 +45,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                 <RouterLink to="/creators">
                                     <QButton
                                         class="text-sm ws-nowrap"
-                                        variant="yellow"
+                                        variant="accent"
                                         border-radius="circle"
                                     >
                                         Learn More
@@ -54,7 +54,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                 <span class="text-sm text-white ml-4">or</span>
                                 <QButton
                                     class="!text-white text-sm ws-nowrap"
-                                    color="transparent"
+                                    variant="transparent"
                                     border-radius="circle"
                                 >
                                     Try it now, Free!
