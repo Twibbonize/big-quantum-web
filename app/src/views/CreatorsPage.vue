@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useWindowSize } from '@vueuse/core';
 
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
@@ -13,6 +14,8 @@ import PackageSelection from '@/components/CreatorPage/PackageSelection.vue';
 const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);
+
+const { width, height } = useWindowSize();
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
@@ -32,9 +35,9 @@ onUnmounted(() => {
 
 <template>
     <div class="creators-page">
-        <BannerCreators />
+        <BannerCreators :width="width" :height="height"/>
         <div ref="content"></div>
-        <CampaignSwiper class="creators-page__swiper" />
+        <CampaignSwiper class="swiper" />
         <VerticalCarousel />
         <BentoGrid />
         <TiltScreen />
@@ -52,15 +55,6 @@ onUnmounted(() => {
         box-sizing: border-box;
     }
 
-    .tp-section-title-3 {
-        font-size: 85px;
-        line-height: 85px;
-
-        span {
-            font-size: 130px;
-        }
-    }
-
     .banner-creators__spark {
         top: 24px;
     }
@@ -74,8 +68,8 @@ onUnmounted(() => {
         display: none !important;
     }
 
-    &__swiper {
-        margin-top: -150px !important;
+    .swiper {
+        margin-top: -80px !important;
     }
 
     .campaign-swiper__campaign {

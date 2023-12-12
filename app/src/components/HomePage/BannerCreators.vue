@@ -1,4 +1,16 @@
 <script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+    width: Number,
+    height: Number,
+});
+
+const lottieDimension = computed(() => {
+    if (props.width >= 640) return { w: 250, h: 100 };
+    return { w: 125, h: 50 };
+});
+
 import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
 </script>
@@ -7,7 +19,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
     <div class="banner-creators tp-rated-area mx-auto overflow-hidden relative">
         <div class="banner-creators__ellipse"></div>
 
-        <div class="bg relative py-14 sm:pt-32">
+        <div class="bg relative pb-14 pt-32">
             <img
                 class="blob-bg"
                 src="/src/assets/img/patterns/background-banner-creators.png"
@@ -20,21 +32,21 @@ import gatherJSON from '../../assets/lottie/gather.json';
                 />
             </div>
 
-            <div class="container z-10 mt-4 mx-auto">
+            <div class="container z-30 mt-4 mx-auto">
                 <div class="row justify-center">
                     <div class="col-xl-10">
                         <div class="tp-rated-title-box text-center mb-14">
-                            <h5 class="tp-section-title-3 text-white pb-4">
+                            <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4">
                                 <div class="flex justify-center items-center">
                                     <div class="flex relative">
                                         <Vue3Lottie
                                             :animationData="gatherJSON"
-                                            :height="100"
-                                            :width="250"
+                                            :height="lottieDimension.h"
+                                            :width="lottieDimension.w"
                                             :loop="false"
                                         />
                                     </div>
-                                    <div class="pr-4 pb-3">your</div>
+                                    <div class="-ml-4 pb-3">your</div>
                                     <br />
                                 </div>
                                 supporters with <br />Twibbonize

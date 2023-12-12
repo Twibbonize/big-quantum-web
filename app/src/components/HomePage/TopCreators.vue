@@ -72,6 +72,11 @@ const creatorsChunks = computed(() => {
     return [];
 });
 
+const props = defineProps({
+    width: Number,
+    height: Number
+});
+
 const slidesPerView = computed(() => {
     if (props.width < 640) return 1;
     if (props.width < 1024) return 2;
@@ -82,11 +87,6 @@ const pages = computed(() => {
     if (props.width < 640) return 3;
     if (props.width < 1024) return 2;
     return 0;
-});
-
-const props = defineProps({
-    width: Number,
-    height: Number
 });
 
 function getImageUrl(name) {
@@ -111,11 +111,13 @@ function setProgress(activeIndex) {
 onMounted(() => {
     const swiperCreators = document.getElementById('swiperCreators');
 
-    swiperCreators.addEventListener('swiperslidechange', (event) => {
-        const [swiper] = event.detail;
-
-        setProgress(swiper.activeIndex);
-    });
+    if (swiperCreators) {
+        swiperCreators.addEventListener('swiperslidechange', (event) => {
+            const [swiper] = event.detail;
+    
+            setProgress(swiper.activeIndex);
+        });
+    }
 
     setProgress(0);
 });
