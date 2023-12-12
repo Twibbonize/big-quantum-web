@@ -54,6 +54,8 @@ const buttonClasses = computed(() => {
     border-radius: 100px;
     // sizes
     &--sm {
+        padding: 8px 16px;
+        @apply text-sm;
     }
 
     &--md {
