@@ -57,8 +57,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container mx-auto">
-        <div class="flex pt-5 row">
+    <div class="container px-5 pt-24 pb-10 mx-auto">
+        <div class="flex pt-5 flex-col sm:flex-row">
             <div class="flex flex-col justify-center col">
                 <div
                     v-for="({ icon, title, subtitle, description }, i) in values"
@@ -69,10 +69,10 @@ onMounted(() => {
                         'items-center': i !== index
                     }"
                 >
-                    <img class="creators-values__icon mr-3" :src="icon" :alt="title" />
+                    <img class="icon mr-3" :src="icon" :alt="title" />
                     <div v-if="i === index" class="flex flex-col">
                         <div class="flex">
-                            <h5 class="creators-values__title-active">
+                            <h5 class="title-active">
                                 <span class="mr-1">{{ title }}</span
                                 >{{ subtitle }}
                             </h5>
@@ -88,9 +88,9 @@ onMounted(() => {
                     <h5 v-else class="font-bold text-2xl">{{ title }}</h5>
                 </div>
             </div>
-            <div class="flex col justify-end">
+            <div class="pt-8 sm:pt-0 flex  justify-center sm:justify-end">
                 <video
-                    class="creators-values__video"
+                    class="video"
                     muted
                     autoplay
                     :src="values[index].video"
@@ -102,11 +102,11 @@ onMounted(() => {
 
 <style lang="scss">
 .creators-values {
-    &__icon {
+    .icon {
         height: 60px;
         width: 60px;
     }
-    &__video {
+    .video {
         border-radius: 20px;
         outline: 1px solid rgba(27, 27, 27, 0.2);
     }
@@ -134,7 +134,7 @@ onMounted(() => {
         background-image: linear-gradient(to right, #ffffff, #f3f3f3, #e8e8e8, #dcdcdc, #d1d1d1);
         animation: loadingbar 5s linear infinite;
     }
-    &__title-active {
+    .title-active {
         span {
             font-family: Marck Script;
             font-size: 48px;

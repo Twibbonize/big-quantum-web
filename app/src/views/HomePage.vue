@@ -35,7 +35,7 @@ onUnmounted(() => {
         <div ref="content"></div>
         <CampaignTrending class="pt-8 md:pt-24 md:pb-16" />
         <TopCreators :width="width" :height="height" />
-        <BannerCreators class="container">
+        <BannerCreators :width="width" :height="height" class="container">
             <CampaignSwiper />
         </BannerCreators>
     </div>
