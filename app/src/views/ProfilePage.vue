@@ -1,7 +1,7 @@
 <script setup>
 import { computed, inject, ref } from 'vue';
 import dayjs from 'dayjs';
-
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
@@ -225,11 +225,68 @@ const campaigns = computed(() => {
                                 </div>
                             </div>
 
-                            <div class="profile-top__more">
-                                <QButton circle variant="secondary">
-                                    <i class="ri-more-line ri-lg"></i>
-                                </QButton>
-                            </div>
+                            <Popover>
+                                <div class="profile-top__more">
+                                    <QButton circle variant="secondary">
+                                        <PopoverButton>
+                                            <i class="ri-more-line ri-lg"></i>
+                                        </PopoverButton>
+                                    </QButton>
+
+                                    <transition
+                                        enter-active-class="transition duration-200 ease-out"
+                                        enter-from-class="translate-y-1 opacity-0"
+                                        enter-to-class="translate-y-0 opacity-100"
+                                        leave-active-class="transition duration-150 ease-in"
+                                        leave-from-class="translate-y-0 opacity-100"
+                                        leave-to-class="translate-y-1 opacity-0"
+                                    >
+                                        <PopoverPanel
+                                            class="absolute z-10 mt-3 w-56 rounded-xl shadow-card top-auto right-0 transform py-3 bg-white"
+                                        >
+                                            <ul class="menu">
+                                                <li class="menu__item">
+                                                    <span class="menu__title"
+                                                        >Share This Profile</span
+                                                    >
+                                                </li>
+
+                                                <li class="menu__item">
+                                                    <a class="menu__link">
+                                                        <i class="ri-facebook-line ri-lg"></i>
+                                                        <span>Facebook</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="menu__item">
+                                                    <a class="menu__link">
+                                                        <i class="ri-whatsapp-line ri-lg"></i>
+                                                        <span>WhatsApp</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="menu__item">
+                                                    <a class="menu__link">
+                                                        <i class="ri-twitter-x-line"></i>
+                                                        <span>Twitter</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="menu__item">
+                                                    <div class="menu__separator"></div>
+                                                </li>
+
+                                                <li>
+                                                    <a class="menu__link">
+                                                        <i class="ri-flag-line"></i>
+                                                        <span>Report</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </PopoverPanel>
+                                    </transition>
+                                </div>
+                            </Popover>
                         </div>
                         <div class="profile-top__main__lower">
                             <div class="flex items-center justify-between">
@@ -514,6 +571,32 @@ const campaigns = computed(() => {
         &--selected {
             @apply bg-white font-semibold;
         }
+    }
+}
+
+.menu {
+    &__title {
+        @apply block px-4 py-1 text-sm font-medium text-content;
+    }
+
+    &__link {
+        @apply px-4 py-2 font-medium  text-sm flex items-center space-x-2 transition-colors duration-300 cursor-pointer;
+
+        i {
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            @apply inline-flex items-center justify-center;
+        }
+
+        &:hover {
+            @apply bg-stroke;
+        }
+    }
+
+    &__separator {
+        height: 1px;
+        @apply w-full bg-stroke my-2;
     }
 }
 </style>
