@@ -66,7 +66,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                 <span class="text-sm text-white ml-4">or</span>
                                 <QButton
                                     class="!text-white text-sm ws-nowrap"
-                                    variant="transparent"
+                                    variant="link"
                                     border-radius="circle"
                                 >
                                     Try it now, Free!

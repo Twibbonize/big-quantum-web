@@ -44,7 +44,7 @@ const lottieDimension = computed(() => {
                             <div class="hero-participant__or text-sm font-bold">or</div>
                             <QButton
                                 class="text-sm !px-0"
-                                variant="transparent"
+                                variant="link"
                                 border-radius="circle"
                             >
                                 Find a Campaign

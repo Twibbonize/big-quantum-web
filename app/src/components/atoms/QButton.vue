@@ -131,6 +131,10 @@ function handleClick(e) {
         }
     }
 
+    &--black {
+        @apply text-white bg-black;
+    }
+
     &--link {
         @apply text-black bg-transparent;
 

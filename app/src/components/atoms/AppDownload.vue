@@ -16,8 +16,8 @@ const url = computed(() => {
 });
 
 const image = computed(() => {
-    if (props.type === 'ios') return '/src/assets/img/logos/download-appstore.png';
-    if (props.type === 'android') return '/src/assets/img/logos/download-playstore.png';
+    if (props.type === 'ios') return '/assets/img/logos/download-appstore.png';
+    if (props.type === 'android') return '/assets/img/logos/download-playstore.png';
     return '';
 });
 </script>
