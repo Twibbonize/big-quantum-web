@@ -69,7 +69,7 @@ const props = defineProps({
                 <div class="meta__copy">
                     <div class="meta__title">Supporters</div>
                     <div class="meta__value">
-                        {{ abbreviateNumber(hit) }}
+                        {{ abbreviateNumber(hit) }} <span class="md:hidden">Supporters</span>
                     </div>
                 </div>
             </div>
@@ -141,33 +141,45 @@ const props = defineProps({
         @apply flex items-center space-x-2;
 
         &__avatar {
-            @apply h-6 w-6 rounded-full;
+            @apply h-6 w-6 rounded-full border border-stroke;
         }
 
         &__name {
-            @apply text-sm font-medium;
+            @apply text-sm font-medium flex-grow-0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
     &__meta {
-        @apply border-t border-black/10 flex items-center space-x-3.5 pt-2.5;
+        @apply border-t border-black/10 flex flex-col space-y-3 pt-2.5;
+
+        @include md_screen {
+            @apply flex-row items-center space-x-3.5 space-y-0;
+        }
     }
 
     .meta {
-        @apply flex items-center;
+        @apply flex items-center space-x-1.5;
 
         .meta__icon i,
         .meta__icon svg {
-            @apply text-black;
-            margin-right: 6px;
+            @apply text-content;
         }
 
         .meta__copy {
-            @apply space-y-1;
+            @include lg_screen {
+                @apply space-y-1;
+            }
         }
 
         .meta__title {
-            @apply text-xxs font-medium tracking-normal;
+            @apply text-xxs font-medium tracking-normal hidden;
+
+            @include md_screen {
+                @apply block;
+            }
         }
 
         .meta__value {

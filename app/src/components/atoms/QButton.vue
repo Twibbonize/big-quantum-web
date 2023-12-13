@@ -101,7 +101,26 @@ function handleClick(e) {
     }
 
     &--secondary {
-        @apply text-black bg-white shadow-card;
+        @apply text-black bg-white border border-stroke transition-colors duration-300;
+
+        @include before {
+            height: 0;
+            width: 0;
+            border-radius: 100%;
+            @apply bg-black;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s var(--transition-function);
+            opacity: 0.1;
+        }
+
+        &:hover {
+            @include before {
+                height: 20rem;
+                width: 20rem;
+            }
+        }
     }
 
     &--accent {
@@ -170,6 +189,7 @@ function handleClick(e) {
     &--circle {
         width: 40px;
         height: 40px;
+        @apply flex-shrink-0 p-0;
     }
 
     &.btn--xs.btn--circle,
@@ -193,5 +213,11 @@ function handleClick(e) {
     &--square {
         @apply rounded-lg;
     }
+}
+</style>
+
+<style>
+.btn * {
+    z-index: 1;
 }
 </style>

@@ -41,7 +41,7 @@ onUnmounted(() => {
         <VerticalCarousel />
         <BentoGrid />
         <TiltScreen />
-        <CreatorStories :width="width" :height="height"/>
+        <CreatorStories :width="width" :height="height" />
         <FrameSelection />
         <PackageSelection />
     </div>

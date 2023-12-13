@@ -10,6 +10,10 @@ const props = defineProps({
     modelValue: {
         type: Number,
         default: 0
+    },
+    block: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -35,7 +39,7 @@ const tabPresentationStyle = computed(() => {
 </script>
 
 <template>
-    <div ref="tabEl" class="tab">
+    <div ref="tabEl" :class="['tab', block && 'tab--block']">
         <tab-group :selected-index="innerValue" as="div" class="tab__group" @change="onChangeTab">
             <tab-list class="tab__list">
                 <tab
@@ -72,6 +76,16 @@ const tabPresentationStyle = computed(() => {
 
 <style scoped lang="scss">
 .tab {
+    &.tab--block {
+        .tab__list {
+            @apply flex;
+        }
+
+        .tab__button-wrapper {
+            @apply flex-grow;
+        }
+    }
+
     .tab__list {
         @apply bg-light inline-flex space-x-2 p-1 rounded-full relative;
     }

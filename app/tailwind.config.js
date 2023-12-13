@@ -25,6 +25,7 @@ module.exports = {
                 xxs: ['10px', '10px']
             },
             spacing: {
+                '1.5': '6px',
                 '2.5': '10px',
                 '3.5': '14px'
             },
