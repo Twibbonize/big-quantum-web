@@ -53,6 +53,10 @@ const close = () => {
                                 <div class="dialog__panel__body">
                                     <slot name="body"></slot>
                                 </div>
+
+                                <div v-if="$slots.footer" class="dialog__panel__footer">
+                                    <slot name="footer"></slot>
+                                </div>
                             </DialogPanel>
                         </TransitionChild>
                     </div>
@@ -84,14 +88,18 @@ const close = () => {
 }
 
 .dialog__panel {
-    @apply w-full max-w-md bg-white text-left relative rounded-3xl;
+    @apply w-full max-w-md bg-white shadow-card text-left relative rounded-3xl;
 }
 
 .dialog__panel__header {
-    @apply px-5 py-2;
+    @apply px-5 py-3;
+}
+
+.dialog__panel__footer {
+    @apply px-5 py-3;
 }
 
 .dialog__panel__body {
-    @apply px-5 pb-5;
+    @apply px-5;
 }
 </style>

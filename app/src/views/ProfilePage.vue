@@ -5,7 +5,8 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QModal from '@/components/organisms/QModal.vue';
+import QModal from '@/components/atoms/QModal.vue';
+import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
@@ -34,7 +35,9 @@ const tabs = [
 ];
 
 const activeTab = ref(0);
+const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
+const reportModal = ref(false);
 const isMobile = inject('isMobile');
 
 // const campaigns = /
@@ -162,7 +165,7 @@ const campaigns = computed(() => {
                     <div class="border-t border-light pt-3">
                         <h3 class="font-semibold">Details</h3>
 
-                        <ul class="space-y-2 pt-3">
+                        <ul class="space-y-3 pt-3">
                             <li>
                                 <div class="flex items-center space-x-2">
                                     <i class="ri-layout-bottom-line ri-xl"></i>
@@ -198,7 +201,9 @@ const campaigns = computed(() => {
                             <li>
                                 <div class="flex items-center space-x-2">
                                     <i class="ri-global-line ri-xl"></i>
-                                    <span class="text-sm font-light">www.universe-tech.com</span>
+                                    <a href="#" class="text-sm font-light underline"
+                                        >www.universe-tech.com</a
+                                    >
                                 </div>
                             </li>
                         </ul>
@@ -206,6 +211,9 @@ const campaigns = computed(() => {
                 </div>
             </template>
         </QModal>
+
+        <ReportModal :show="reportModal" :uuid="creatorUuid" @close="reportModal = false" />
+
         <div class="profile-top">
             <div class="profile-top__banner"></div>
             <div class="profile-top__wrapper container grid grid-cols-12 gap-0 md:gap-4">
@@ -228,7 +236,10 @@ const campaigns = computed(() => {
                             <Popover>
                                 <div class="profile-top__more">
                                     <QButton circle variant="secondary">
-                                        <PopoverButton>
+                                        <PopoverButton
+                                            as="span"
+                                            class="h-full w-full flex items-center justify-center"
+                                        >
                                             <i class="ri-more-line ri-lg"></i>
                                         </PopoverButton>
                                     </QButton>
@@ -277,7 +288,10 @@ const campaigns = computed(() => {
                                                 </li>
 
                                                 <li>
-                                                    <a class="menu__link">
+                                                    <a
+                                                        class="menu__link"
+                                                        @click="reportModal = true"
+                                                    >
                                                         <i class="ri-flag-line"></i>
                                                         <span>Report</span>
                                                     </a>
@@ -346,7 +360,12 @@ const campaigns = computed(() => {
                                 </ul>
 
                                 <div class="hidden md:flex items-center">
-                                    <QButton variant="neutral" size="sm" circle>
+                                    <QButton
+                                        variant="neutral"
+                                        size="sm"
+                                        circle
+                                        @click="reportModal = true"
+                                    >
                                         <i class="ri-flag-line"></i>
                                     </QButton>
                                 </div>
