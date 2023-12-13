@@ -3,7 +3,7 @@ import { computed } from 'vue';
 
 const props = defineProps({
     width: Number,
-    height: Number,
+    height: Number
 });
 
 const lottieDimension = computed(() => {

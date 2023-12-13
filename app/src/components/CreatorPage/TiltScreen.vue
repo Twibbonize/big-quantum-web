@@ -23,7 +23,7 @@ onMounted(() => {
 <template>
     <div class="tilt-screen container mx-auto px-5">
         <div class="flex flex-col items-center">
-            <h2 class="text-center text-3xl	sm:text-6xl font-bold">
+            <h2 class="text-center text-3xl sm:text-6xl font-bold">
                 Get it ready anytime <br />with our built in Twibbon Editor
             </h2>
             <h4 class="text-center text-base sm:text-2xl mt-8">
@@ -37,41 +37,13 @@ onMounted(() => {
                 ref="tiltImage"
                 class="wrapper relative flex items-center justify-center"
             >
-                <img
-                    class="image"
-                    src="/src/assets/img/campaigns/frame-editor.png"
-                    alt=""
-                />
-                <img
-                    class="frame-1"
-                    src="/src/assets/img/campaigns/frame-1.png"
-                    alt=""
-                />
-                <img
-                    class="frame-2"
-                    src="/src/assets/img/campaigns/frame-2.png"
-                    alt=""
-                />
-                <img
-                    class="frame-3"
-                    src="/src/assets/img/campaigns/frame-3.png"
-                    alt=""
-                />
-                <img
-                    class="frame-4"
-                    src="/src/assets/img/campaigns/frame-4.png"
-                    alt=""
-                />
-                <img
-                    class="frame-5"
-                    src="/src/assets/img/campaigns/frame-5.png"
-                    alt=""
-                />
-                <img
-                    class="frame-6"
-                    src="/src/assets/img/campaigns/frame-6.png"
-                    alt=""
-                />
+                <img class="image" src="/src/assets/img/campaigns/frame-editor.png" alt="" />
+                <img class="frame-1" src="/src/assets/img/campaigns/frame-1.png" alt="" />
+                <img class="frame-2" src="/src/assets/img/campaigns/frame-2.png" alt="" />
+                <img class="frame-3" src="/src/assets/img/campaigns/frame-3.png" alt="" />
+                <img class="frame-4" src="/src/assets/img/campaigns/frame-4.png" alt="" />
+                <img class="frame-5" src="/src/assets/img/campaigns/frame-5.png" alt="" />
+                <img class="frame-6" src="/src/assets/img/campaigns/frame-6.png" alt="" />
             </div>
         </div>
     </div>
@@ -211,6 +183,6 @@ onMounted(() => {
             bottom: -50px;
             transform: translateZ(100px);
         }
-        }
+    }
 }
 </style>

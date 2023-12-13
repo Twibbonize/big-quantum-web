@@ -17,6 +17,6 @@ function changeNavbarColor(value) {
     </KeepAlive>
     <RouterView @change-navbar="changeNavbarColor" />
     <KeepAlive>
-        <FooterDefault/>
+        <FooterDefault />
     </KeepAlive>
 </template>

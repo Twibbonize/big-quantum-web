@@ -35,13 +35,13 @@ onUnmounted(() => {
 
 <template>
     <div class="creators-page">
-        <BannerCreators :width="width" :height="height"/>
+        <BannerCreators :width="width" :height="height" />
         <div ref="content"></div>
         <CampaignSwiper class="swiper" />
         <VerticalCarousel />
         <BentoGrid />
         <TiltScreen />
-        <CreatorStories :width="width" :height="height"/>
+        <CreatorStories :width="width" :height="height" />
         <FrameSelection />
         <PackageSelection />
     </div>
