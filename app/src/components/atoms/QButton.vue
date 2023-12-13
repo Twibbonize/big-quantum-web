@@ -71,6 +71,7 @@ function handleClick(e) {
 
     &--md {
         padding: 16px 20px;
+        @apply text-base;
     }
 
     &--lg {
