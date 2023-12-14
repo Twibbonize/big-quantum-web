@@ -30,7 +30,10 @@ module.exports = {
                 '3.5': '14px'
             },
             colors: {
-                main: '#16DAC1',
+                main: {
+                    DEFAULT: '#16DAC1',
+                    darker: '#14BEA9'
+                },
                 black: '#1B1B1B',
                 content: '#8D8D8D',
                 white: '#FFFFFF',

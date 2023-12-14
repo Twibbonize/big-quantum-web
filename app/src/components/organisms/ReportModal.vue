@@ -1,12 +1,9 @@
 <script setup>
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupDescription,
-    RadioGroupOption
-} from '@headlessui/vue';
+import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
+import { Form, Field } from 'vee-validate';
+import { object as yupObject, number as yupNumber } from 'yup';
 import { ref } from 'vue';
 
 defineProps({
@@ -21,9 +18,26 @@ defineProps({
 });
 defineEmits(['close']);
 
-const reasons = ['Abusive or harmful', 'Prentending to be someone else', 'Senstive content'];
+const reasons = [
+    {
+        value: 0,
+        text: 'Abusive or harmful'
+    },
+    {
+        value: 1,
+        text: 'Prentending to be someone else'
+    },
+    {
+        value: 2,
+        text: 'Senstive content'
+    }
+];
 
 const selectedReason = ref(null);
+
+const reportValidation = yupObject().shape({
+    reason: yupNumber().required()
+});
 </script>
 <template>
     <QModal :show="show" @close="$emit('close')">
@@ -39,24 +53,45 @@ const selectedReason = ref(null);
 
         <template #body>
             <div class="pt-2 pb-6">
-                <RadioGroup>
-                    <div class="space-y-3">
-                        <RadioGroupOption
-                            as="template"
-                            v-for="(reason, i) in reasons"
-                            :key="i"
-                            :value="reason"
-                            v-slot="{ checked }"
-                        >
-                            <div :class="['radio-option', checked && 'radio-option--checked']">
-                                <div class="radio-option__indicator"></div>
-                                <div class="radio-option__text">
-                                    {{ reason }}
+                <Form :validation-schema="reportValidation" v-slot="{ meta }">
+                    <div class="space-y-6">
+                        <Field name="reason" v-model="selectedReason" v-slot="{ field }">
+                            <RadioGroup v-bind="field">
+                                <div class="space-y-3">
+                                    <RadioGroupOption
+                                        as="template"
+                                        v-for="reason in reasons"
+                                        :key="reason.value"
+                                        :value="reason.value"
+                                        v-slot="{ checked }"
+                                    >
+                                        <div
+                                            :class="[
+                                                'radio-option',
+                                                checked && 'radio-option--checked'
+                                            ]"
+                                        >
+                                            <div class="radio-option__indicator"></div>
+                                            <div class="radio-option__text">
+                                                {{ reason.text }}
+                                            </div>
+                                        </div>
+                                    </RadioGroupOption>
                                 </div>
-                            </div>
-                        </RadioGroupOption>
+                            </RadioGroup>
+                        </Field>
+
+                        <p class="text-sm text-content">
+                            Twibbonize Community Guidelines protect the privacy of reporter's
+                            identity. <a href="#" class="link">Read more.</a>
+                        </p>
+
+                        <div class="flex justify-end space-x-2">
+                            <QButton variant="subtle" @click="$emit('close')"> Cancel </QButton>
+                            <QButton :enabled="meta.valid"> Send </QButton>
+                        </div>
                     </div>
-                </RadioGroup>
+                </Form>
             </div>
         </template>
     </QModal>

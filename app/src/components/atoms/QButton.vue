@@ -71,10 +71,18 @@ function handleClick(e) {
 
     &--md {
         padding: 16px 20px;
-        @apply text-base;
+        @apply text-base leading-none;
     }
 
-    &--lg {
+    &:disabled {
+        @apply opacity-60 cursor-default bg-light;
+
+        &:hover {
+            @include before {
+                height: 0px;
+                width: 0px;
+            }
+        }
     }
 
     // variants
