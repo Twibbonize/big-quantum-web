@@ -78,5 +78,11 @@ onUnmounted(() => {
         margin: 0 4px;
         border-radius: 8px;
     }
+
+    .banner-creators {
+        .bg {
+            @apply pt-32;
+        }
+    }
 }
 </style>
