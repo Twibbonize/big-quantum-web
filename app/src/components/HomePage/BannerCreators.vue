@@ -53,7 +53,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                             :loop="false"
                                         />
                                     </div>
-                                    <div class="-ml-4 pb-3">your</div>
+                                    <div class="-ml-2 sm:-ml-4 pb-3">your</div>
                                     <br />
                                 </div>
                                 supporters with <br />Twibbonize

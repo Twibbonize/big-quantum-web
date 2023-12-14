@@ -54,7 +54,7 @@
 <style lang="scss">
 .creators-features {
     .card {
-        @apply p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px];
+        @apply p-6 sm:p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px];
         border: 1px solid rgba(27, 27, 27, 0.1);
         // height: 360px;
         background-position: right bottom;
