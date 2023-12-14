@@ -154,7 +154,7 @@ const campaigns = computed(() => {
             </template>
 
             <template #body>
-                <div class="space-y-3">
+                <div class="space-y-3 pb-6">
                     <div class="prose prose-sm">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure doloribus
                         ipsum, consequatur earum inventore eum blanditiis. Repudiandae, nihil,
