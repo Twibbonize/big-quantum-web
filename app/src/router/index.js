@@ -4,6 +4,7 @@ import CreatorsPage from '@/views/CreatorsPage.vue';
 import PlusPage from '@/views/PlusPage.vue';
 import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import PreferencesPage from '@/views/PreferencesPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
             path: '/profile',
             name: 'profile',
             component: ProfilePage
+        },
+        {
+            path: '/preferences',
+            name: 'preferences',
+            component: PreferencesPage
         }
     ]
 });

@@ -450,11 +450,6 @@ const campaigns = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.page {
-    min-height: 100vh;
-    padding-top: 97px;
-}
-
 .profile-top {
     @apply bg-gray-50;
 

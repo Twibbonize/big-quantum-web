@@ -11,7 +11,7 @@ const props = defineProps({
     size: {
         type: String,
         default: 'md',
-        validators: ['xs', 'sm', 'md', 'lg']
+        validators: (value) => ['xs', 'sm', 'md', 'lg'].includes(value)
     },
     square: {
         type: Boolean,
@@ -39,7 +39,8 @@ const buttonClasses = computed(() => {
         `btn--${size}`,
         `btn--${variant}`,
         square && !circle && 'btn--square',
-        circle && !block && !square && 'btn--circle'
+        circle && !block && !square && 'btn--circle',
+        block && 'btn--block'
     ];
 });
 
@@ -71,7 +72,7 @@ function handleClick(e) {
 
     &--md {
         padding: 16px 20px;
-        @apply text-base leading-none;
+        @apply leading-none;
     }
 
     &:disabled {
@@ -85,6 +86,9 @@ function handleClick(e) {
         }
     }
 
+    &--block {
+        @apply w-full;
+    }
     // variants
     &--primary {
         @apply text-black bg-main;

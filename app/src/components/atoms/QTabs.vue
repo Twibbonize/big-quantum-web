@@ -14,6 +14,11 @@ const props = defineProps({
     block: {
         type: Boolean,
         default: false
+    },
+    variant: {
+        type: String,
+        default: 'pills',
+        validators: (value) => ['bordered', 'pills'].includes(value)
     }
 });
 
@@ -34,12 +39,14 @@ const tabPresentationStyle = computed(() => {
     }
     const activeTab = tabEl.value.querySelectorAll('.tab__button')[innerValue.value];
     const { width } = getComputedStyle(activeTab);
-    return { transform: `translateX(${activeTab.offsetLeft - 8}px)`, width };
+
+    const offsetModifier = props.variant === 'bordered' ? 0 : 8;
+    return { transform: `translateX(${activeTab.offsetLeft - offsetModifier}px)`, width };
 });
 </script>
 
 <template>
-    <div ref="tabEl" :class="['tab', block && 'tab--block']">
+    <div ref="tabEl" :class="['tab', block && 'tab--block', `tab--${variant}`]">
         <tab-group :selected-index="innerValue" as="div" class="tab__group" @change="onChangeTab">
             <tab-list class="tab__list">
                 <tab
@@ -86,38 +93,85 @@ const tabPresentationStyle = computed(() => {
         }
     }
 
-    .tab__list {
-        @apply bg-light inline-flex space-x-2 p-1 rounded-full relative;
-    }
-
     .tab__button-wrapper {
         @apply outline-none;
     }
 
-    .tab__button {
-        height: 48px;
-        padding: 0 18px;
-        width: auto;
-        @apply rounded-full flex items-center justify-center text-sm relative z-10 text-black/50 font-semibold transition-colors duration-200;
-
-        &:focus {
-            outline: none;
+    &--pills {
+        .tab__list {
+            @apply bg-light inline-flex space-x-2 p-1 rounded-full relative;
         }
 
-        &--selected {
-            @apply text-black;
+        .tab__button {
+            height: 48px;
+            padding: 0 18px;
+            width: 100%;
+            @apply rounded-full flex items-center justify-center text-sm relative z-10 text-black/50 font-semibold transition-colors duration-200;
+
+            &:focus {
+                outline: none;
+            }
+
+            &--selected {
+                @apply text-black;
+            }
+        }
+
+        .tab__presentation {
+            position: absolute;
+            height: 48px;
+            left: 0;
+            top: 4px;
+            display: block;
+            @apply bg-white rounded-full transition-all duration-500 ease-in-out;
+            width: 50%;
+            z-index: 0;
         }
     }
 
-    .tab__presentation {
-        position: absolute;
-        height: 48px;
-        left: 0;
-        top: 4px;
-        display: block;
-        @apply bg-white rounded-full transition-transform duration-500 ease-in-out;
-        width: 50%;
-        z-index: 0;
+    &--bordered {
+        .tab__list {
+            @apply flex items-center py-4 w-full relative overflow-auto;
+            background-image: linear-gradient(
+                to right,
+                rgb(34, 34, 34) 0px,
+                rgb(34, 34, 34) 10%,
+                rgba(255, 255, 255, 0) 10%
+            );
+            background-repeat: repeat-x;
+            background-position: bottom;
+            background-size: 8px 1px;
+        }
+
+        .tab__button {
+            @apply px-3 flex-shrink-0 flex items-center h-full text-black/50 tracking-wide font-medium cursor-pointer transition-colors duration-500 ease-out;
+
+            font-size: 12px;
+
+            @include sm {
+                @apply flex-grow;
+            }
+
+            @include md_screen {
+                font-size: 14px;
+            }
+
+            &:hover,
+            &--selected {
+                @apply text-black;
+            }
+        }
+
+        .tab__presentation {
+            position: absolute;
+            height: 2.2px;
+            left: 0;
+            bottom: 0px;
+            display: block;
+            @apply bg-black rounded-full transition-all duration-300 ease-linear;
+            // width: 50%;
+            z-index: 0;
+        }
     }
 }
 </style>
