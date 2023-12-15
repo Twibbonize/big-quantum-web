@@ -6,7 +6,9 @@ const props = defineProps({
         type: String,
         default: 'primary',
         validators: (value) =>
-            ['primary', 'secondary', 'accent', 'neutral', 'link', 'subtle'].includes(value)
+            ['primary', 'secondary', 'accent', 'neutral', 'danger', 'link', 'subtle'].includes(
+                value
+            )
     },
     size: {
         type: String,
@@ -89,6 +91,7 @@ function handleClick(e) {
     &--block {
         @apply w-full;
     }
+
     // variants
     &--primary {
         @apply text-black bg-main;
@@ -177,6 +180,29 @@ function handleClick(e) {
 
     &--subtle {
         @apply text-black bg-transparent;
+
+        @include before {
+            height: 0;
+            width: 0;
+            border-radius: 100%;
+            @apply bg-black;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s var(--transition-function);
+            opacity: 0.1;
+        }
+
+        &:hover {
+            @include before {
+                height: 20rem;
+                width: 20rem;
+            }
+        }
+    }
+
+    &--danger {
+        @apply text-red-50 bg-red-500;
 
         @include before {
             height: 0;
