@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .menu {
     @apply flex items-center justify-center lg:ml-4;
     width: 52px;

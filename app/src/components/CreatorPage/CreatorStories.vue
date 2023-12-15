@@ -4,8 +4,8 @@ import QSlider from '@/components/atoms/QSlider.vue';
 
 const props = defineProps({
     width: Number,
-    height: Number,
-})
+    height: Number
+});
 
 const slidesPerView = computed(() => {
     if (props.width >= 640) return 3.5;
@@ -38,19 +38,16 @@ const stories = [
             'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
     }
 ];
-
 </script>
 
 <template>
     <div class="creator-stories py-24 flex flex-col items-center">
-        <h4 class="text-center text-3xl	sm:text-6xl font-bold">Stories from our Creators</h4>
-        <p class="text-center text-base sm:text-2xl mt-8">Unique campaigns brought to life with Twibbonize</p>
+        <h4 class="text-center text-3xl sm:text-6xl font-bold">Stories from our Creators</h4>
+        <p class="text-center text-base sm:text-2xl mt-8">
+            Unique campaigns brought to life with Twibbonize
+        </p>
         <div class="container mx-auto">
-            <QSlider
-                class="slider mt-16 w-100"
-                :slides-per-view="slidesPerView"
-                space-between="32"
-            >
+            <QSlider class="slider mt-16 w-100" :slides-per-view="slidesPerView" space-between="32">
                 <swiper-slide
                     v-for="({ image, title, description }, i) in stories"
                     :key="`stories-${i}`"
