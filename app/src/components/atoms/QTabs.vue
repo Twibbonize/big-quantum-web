@@ -53,6 +53,7 @@ const tabPresentationStyle = computed(() => {
                     v-for="(tab, i) in tabs"
                     :key="i"
                     v-slot="{ selected }"
+                    as="div"
                     class="tab__button-wrapper"
                 >
                     <button :class="['tab__button', selected && 'tab__button--selected']">
@@ -94,7 +95,7 @@ const tabPresentationStyle = computed(() => {
     }
 
     .tab__button-wrapper {
-        @apply outline-none;
+        @apply outline-none flex-shrink-0;
     }
 
     &--pills {
