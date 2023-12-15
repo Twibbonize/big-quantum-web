@@ -116,7 +116,7 @@ const updateEmailValidation = yupObject().shape({
                                                                 </div>
 
                                                                 <div
-                                                                    class="inline-flex flex-col justify-center items-center space-y-2 relative"
+                                                                    class="inline-flex flex-col justify-center items-start space-y-2 relative"
                                                                 >
                                                                     <input
                                                                         type="file"
@@ -139,15 +139,38 @@ const updateEmailValidation = yupObject().shape({
                                                                         </div>
                                                                     </div>
 
-                                                                    <label class="w-20">
-                                                                        <QButton
-                                                                            size="xs"
-                                                                            block
-                                                                            variant="secondary"
+                                                                    <div
+                                                                        class="flex items-center space-x-2"
+                                                                    >
+                                                                        <label
+                                                                            for="profile_img"
+                                                                            class="w-20"
                                                                         >
-                                                                            Change
-                                                                        </QButton>
-                                                                    </label>
+                                                                            <QButton
+                                                                                size="xs"
+                                                                                block
+                                                                                variant="secondary"
+                                                                            >
+                                                                                Change
+                                                                            </QButton>
+                                                                        </label>
+
+                                                                        <label
+                                                                            for="profile_img"
+                                                                            class="w-20"
+                                                                        >
+                                                                            <QButton
+                                                                                size="xs"
+                                                                                block
+                                                                                variant="secondary"
+                                                                            >
+                                                                                <span
+                                                                                    class="text-red-500"
+                                                                                    >Delete</span
+                                                                                >
+                                                                            </QButton>
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
 
                                                                 <p class="text-xs text-content">
@@ -190,14 +213,34 @@ const updateEmailValidation = yupObject().shape({
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="w-20">
-                                                                        <QButton
-                                                                            size="xs"
-                                                                            block
-                                                                            variant="secondary"
+                                                                    <div
+                                                                        class="flex items-center space-x-2"
+                                                                    >
+                                                                        <label
+                                                                            for="banner"
+                                                                            class="w-20"
                                                                         >
-                                                                            Change
-                                                                        </QButton>
+                                                                            <QButton
+                                                                                size="xs"
+                                                                                block
+                                                                                variant="secondary"
+                                                                            >
+                                                                                Change
+                                                                            </QButton>
+                                                                        </label>
+
+                                                                        <div class="w-20">
+                                                                            <QButton
+                                                                                size="xs"
+                                                                                block
+                                                                                variant="secondary"
+                                                                            >
+                                                                                <span
+                                                                                    class="text-red-500"
+                                                                                    >Delete</span
+                                                                                >
+                                                                            </QButton>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
