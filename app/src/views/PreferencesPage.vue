@@ -459,7 +459,7 @@ const updateEmailValidation = yupObject().shape({
                                                                 class="brand-icon w-12 h-12 bg-gray-200 flex items-center justify-center rounded-full"
                                                             >
                                                                 <img
-                                                                    src="assets/img/logos/facebook.svg"
+                                                                    src="/assets/img/logos/facebook.svg"
                                                                     class="w-6 h-6"
                                                                     alt=""
                                                                 />
