@@ -1,127 +1,72 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 
+import BGHero from '@/components/HomePage/BGHero.vue';
 import supportsJSON from '../../assets/lottie/supports.json';
+
+const props = defineProps({
+    width: Number,
+    height: Number,
+})
+
+const lottieDimension = computed(() => {
+    if (props.width >= 640) return { w: 600, h: 200 };
+    return { w: 300, h: 100 };
+});
 
 onMounted(() => {});
 </script>
 
 <template>
-    <div class="hero-participant hero-plus relative">
-        <div class="hero-participant__bg"></div>
-        <img
-            class="hero-participant__pattern-left"
-            src="/src/assets/img/patterns/hero-left-bottom.png"
-            alt=""
-        />
-        <img
-            class="hero-participant__pattern-right"
-            src="/src/assets/img/patterns/hero-right-top.png"
-            alt=""
-        />
-        <img
-            class="hero-participant__pattern-center"
-            src="/src/assets/img/patterns/hero-texture.png"
-            alt=""
-        />
-
-        <div class="hero-plus__content flex flex-col items-center">
-            <img
-                class="hero-plus__logo"
-                src="/src/assets/img/logos/twibbonize-plus.svg"
-                alt="twibbonize-plus"
-            />
-            <h1>show your</h1>
-            <div class="hero-plus__animated-text">
-                <Vue3Lottie :animationData="supportsJSON" :height="250" :width="800" :loop="true" />
+    <BGHero class="hero-plus">
+        <div class="container mx-auto">
+            <div class="w-full pages-title mx-auto">
+                <div class="container z-20 absolute mx-auto">
+                    <div class="mt-32 flex flex-col items-center">
+                        <img
+                            class="hero-plus__logo"
+                            src="/src/assets/img/logos/twibbonize-plus.svg"
+                            alt="twibbonize-plus"
+                        />
+                        <h1 class="title mt-4">show your</h1>
+                        <div class="animation">
+                            <Vue3Lottie :animationData="supportsJSON" :height="lottieDimension.h" :width="lottieDimension.w" :loop="true" />
+                        </div>
+                        <h1 class="title -mt-3">on a whole new level</h1>
+                        <p class="description">
+                            Take action and make the most out of your moments with the help of our personalized
+                            templates suitable for every occassions
+                        </p>
+                    </div>
+                </div>
+                <HomeSlider class="z-10" />
             </div>
-            <h1>on a whole new level</h1>
-            <p>
-                Take action and make the most out of your moments with the help of our personalized
-                templates suitable for every occassions
-            </p>
         </div>
-    </div>
+    </BGHero>
 </template>
 
 <style lang="scss">
-@keyframes move {
-    from {
-        transform: scale(1) translateX(-50%) rotate(0deg);
-    }
-    to {
-        transform: scale(1.2) translateX(-50%) rotate(30deg);
-    }
-}
-
 .hero-plus {
-    &__content {
-        margin-top: 130px;
-        z-index: 3;
+    overflow: hidden;
+    height: 500px;
+
+    .title {
+        @apply text-3xl sm:text-7xl font-bold;
     }
 
-    &__logo {
-        height: 45px;
-        z-index: 3;
+    .animation {
+        @apply -mt-4;
     }
 
-    &__animated-text {
-        height: 200px;
-        margin-top: -50px;
-    }
-
-    h1 {
-        text-align: center;
-        font-size: 80.34px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 78.221px; /* 97.362% */
-        letter-spacing: -3.214px;
-    }
-
-    p {
-        z-index: 3;
-        max-width: 560px;
-        color: #1b1b1b;
-        text-align: center;
-        font-family: Manrope;
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 130%; /* 28.6px */
+    .description {
+        @apply sm:text-xl text-center mt-6;
     }
 }
 
-.hero-participant {
-    overflow: hidden;
-
-    &__bg {
-        position: absolute;
-        background: #16dac1;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-    }
-
-    &__pattern-left {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
-
-    &__pattern-right {
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
-    &__pattern-center {
-        position: absolute;
-        bottom: -250%;
-        left: 20%;
-        filter: blur(15.4px);
-        mix-blend-mode: darken;
-        animation: 8s move infinite ease-in-out alternate;
+@media screen and (min-width: 640px) {
+    .hero-plus {
+        overflow: hidden;
+        height: 540px;
     }
 }
 </style>
