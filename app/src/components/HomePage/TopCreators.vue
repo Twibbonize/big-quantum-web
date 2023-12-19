@@ -114,7 +114,7 @@ onMounted(() => {
     if (swiperCreators) {
         swiperCreators.addEventListener('swiperslidechange', (event) => {
             const [swiper] = event.detail;
-    
+
             setProgress(swiper.activeIndex);
         });
     }

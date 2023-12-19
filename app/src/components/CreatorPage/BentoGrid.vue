@@ -1,7 +1,7 @@
 <template>
     <div class="creators-features container px-5 py-24 flex flex-col gap-8">
         <div class="flex flex-col items-center">
-            <h2 class="text-center text-3xl	sm:text-6xl font-bold">
+            <h2 class="text-center text-3xl sm:text-6xl font-bold">
                 Your all-in-one, user-friendly campaign platform
             </h2>
             <h4 class="text-center text-base sm:text-2xl mt-8">
@@ -21,9 +21,7 @@
         <div class="flex flex-col sm:flex-row gap-8 px-3 row">
             <div class="card card-2 col">
                 <h5 class="text-2xl sm:text-3xl font-bold">See who supports you</h5>
-                <p class="text-sm sm:text-lg mt-4">
-                    See the real people who support your campaign
-                </p>
+                <p class="text-sm sm:text-lg mt-4">See the real people who support your campaign</p>
             </div>
             <div class="card card-3 col">
                 <h5 class="text-2xl sm:text-3xl font-bold">Campaign Analytics</h5>
@@ -43,15 +41,13 @@
             </div>
             <div class="card card-5 col">
                 <h5 class="text-2xl sm:text-3xl font-bold">Customizable campaign link</h5>
-                <p class="text-sm sm:text-lg mt-4">
-                    Make your campaign easy to remember and share
-                </p>
+                <p class="text-sm sm:text-lg mt-4">Make your campaign easy to remember and share</p>
             </div>
         </div>
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .creators-features {
     .card {
         @apply p-6 sm:p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px];

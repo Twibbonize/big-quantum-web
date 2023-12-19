@@ -5,8 +5,8 @@ import QSliderNavigation from '@/components/atoms/QSliderNavigation.vue';
 
 const props = defineProps({
     width: Number,
-    height: Number,
-})
+    height: Number
+});
 
 const slidesPerView = computed(() => {
     if (props.width > 1280) return 4;
@@ -87,13 +87,14 @@ const handleNext = () => {
     if (Number(swiper.progress === 1)) nextDisabled.value = true;
     else nextDisabled.value = false;
 }
-
 </script>
 
 <template>
     <div class="creator-stories py-24 flex flex-col items-center">
-        <h4 class="text-center text-3xl	sm:text-6xl font-bold">Stories from our Creators</h4>
-        <p class="text-center text-base sm:text-2xl mt-8">Unique campaigns brought to life with Twibbonize</p>
+        <h4 class="text-center text-3xl sm:text-6xl font-bold">Stories from our Creators</h4>
+        <p class="text-center text-base sm:text-2xl mt-8">
+            Unique campaigns brought to life with Twibbonize
+        </p>
         <div class="container mx-auto">
             <QSlider
                 id="sliderStories"
