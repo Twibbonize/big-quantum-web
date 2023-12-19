@@ -28,12 +28,14 @@ const { width, height } = useWindowSize();
         position: absolute;
         bottom: 0;
         left: 0;
+        width: 50%;
     }
 
     .pattern-right {
         position: absolute;
         top: 0;
         right: 0;
+        width: 50%;
     }
 
     .pattern-gradient {
@@ -43,7 +45,7 @@ const { width, height } = useWindowSize();
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00);
+        background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00, #ffffff00);
     }
 }
 

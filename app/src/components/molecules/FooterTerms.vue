@@ -23,7 +23,7 @@ const currentYear = dayjs().year();
 
 <style lang="scss">
 .footer-terms {
-    @apply mt-12 pt-4 sm:pt-8 flex sm:items-center justify-between text-black;
+    @apply mt-8 sm:mt-12 pt-4 sm:pt-8 flex sm:items-center justify-between text-black;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 
     p {
@@ -31,7 +31,7 @@ const currentYear = dayjs().year();
     }
 
     ul {
-        @apply flex justify-between gap-x-8;
+        @apply flex flex-wrap justify-start gap-x-8 gap-y-1;
 
         li {
             a {
