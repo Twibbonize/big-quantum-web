@@ -24,7 +24,7 @@ onMounted(() => {});
                 <div class="container z-20 absolute mx-auto">
                     <div class="mt-32 flex flex-col items-center">
                         <img
-                            class="hero-plus__logo"
+                            class="hidden sm:block logo"
                             src="/src/assets/img/logos/twibbonize-plus.svg"
                             alt="twibbonize-plus"
                         />
@@ -32,7 +32,7 @@ onMounted(() => {});
                         <div class="animation">
                             <Vue3Lottie :animationData="supportsJSON" :height="lottieDimension.h" :width="lottieDimension.w" :loop="true" />
                         </div>
-                        <h1 class="title -mt-3">on a whole new level</h1>
+                        <h1 class="title -mt-6">on a whole new level</h1>
                         <p class="description">
                             Take action and make the most out of your moments with the help of our personalized
                             templates suitable for every occassions
@@ -42,6 +42,11 @@ onMounted(() => {});
                 <HomeSlider class="z-10" />
             </div>
         </div>
+        <img
+            class="pattern-center z-0"
+            src="/src/assets/img/patterns/hero-texture.png"
+            alt=""
+        />
     </BGHero>
 </template>
 
@@ -60,6 +65,15 @@ onMounted(() => {});
 
     .description {
         @apply sm:text-xl text-center mt-6;
+    }
+
+    .pattern-center {
+        @apply absolute;
+        right: -120px;
+        bottom: -440px;
+        width: 757px;
+        height: 1014px;
+        mix-blend-mode: darken;
     }
 }
 
