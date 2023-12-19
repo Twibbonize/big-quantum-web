@@ -6,9 +6,16 @@ const props = defineProps({
         type: String,
         default: 'primary',
         validators: (value) =>
-            ['primary', 'secondary', 'accent', 'neutral', 'danger', 'link', 'subtle'].includes(
-                value
-            )
+            [
+                'primary',
+                'secondary',
+                'accent',
+                'neutral',
+                'danger',
+                'link',
+                'subtle',
+                'connect'
+            ].includes(value)
     },
     size: {
         type: String,
@@ -75,6 +82,15 @@ function handleClick(e) {
     &--md {
         padding: 16px 20px;
         @apply leading-none;
+    }
+
+    &--connect {
+        height: 58px;
+        @apply text-black bg-white border border-stroke transition-colors duration-300 pl-1 pr-4 py-1;
+
+        &:hover {
+            @apply bg-gray-200;
+        }
     }
 
     &:disabled {

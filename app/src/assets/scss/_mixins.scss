@@ -475,6 +475,17 @@
     }
 }
 
+// Hide scrollbar
+
+@mixin no_scrollbar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 // Fade up animation
 
 @mixin fade_up() {

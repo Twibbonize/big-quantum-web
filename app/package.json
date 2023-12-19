@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -23,7 +23,7 @@
     "vanilla-tilt": "^1.8.1",
     "vara": "^1.4.1",
     "vee-validate": "^4.12.2",
-    "vue": "^3.3.4",
+    "vue": "3.3.8",
     "vue-router": "^4.2.5",
     "vue-writer": "^1.2.0",
     "vue3-lottie": "^3.2.0"

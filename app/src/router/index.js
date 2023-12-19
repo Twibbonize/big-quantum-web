@@ -35,8 +35,8 @@ const router = createRouter({
             component: ProfilePage
         },
         {
-            path: '/preferences',
-            name: 'preferences',
+            path: '/settings',
+            name: 'settings',
             component: PreferencesPage
         }
     ]

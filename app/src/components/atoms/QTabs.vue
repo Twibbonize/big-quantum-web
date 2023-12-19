@@ -98,6 +98,10 @@ const tabPresentationStyle = computed(() => {
         @apply outline-none flex-shrink-0;
     }
 
+    .tab__list {
+        @include no_scrollbar();
+    }
+
     &--pills {
         .tab__list {
             @apply bg-light inline-flex space-x-2 p-1 rounded-full relative;
@@ -147,14 +151,10 @@ const tabPresentationStyle = computed(() => {
         .tab__button {
             @apply px-3 flex-shrink-0 flex items-center h-full text-black/50 tracking-wide font-medium cursor-pointer transition-colors duration-500 ease-out;
 
-            font-size: 12px;
+            font-size: 14px;
 
             @include sm {
                 @apply flex-grow;
-            }
-
-            @include md_screen {
-                font-size: 14px;
             }
 
             &:hover,
