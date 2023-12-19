@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import QSlider from '@/components/atoms/QSlider.vue';
 import QPills from '@/components/atoms/QPills.vue';
+import QOpenLink from '@/components/atoms/QOpenLink.vue';
 import CollectionsCard from '@/components/PlusPage/CollectionsCard.vue';
 
 const moods = computed(() => {
@@ -53,9 +54,9 @@ const setMoodIndex = (index) => {
   <div class="campaign-collections">
     <h2 class="title">There's always a template for that</h2>
     <p class="description">Make any moments special with our curated collection of templates. Perfect for every occasions.</p>
-    <div class="container mx-auto md:w-full pt-10">
+    <div class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10">
       <QSlider
-          class="-mx-5"
+          class="-mx-5 w-fit"
           direction="horizontal"
           :loop="false"
           slides-per-view="auto"
@@ -75,7 +76,7 @@ const setMoodIndex = (index) => {
         </swiper-slide>
       </QSlider>
     </div>
-    <div class="container mx-auto md:w-full pt-10 pb-14 grid grid-cols-1 sm:grid-cols-2 gap-8">
+    <div class="container mx-auto md:w-full pt-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
       <CollectionsCard
         v-for="collection,i in collectionsCard" :key="`colllection-${i}`"
         :title="collection.title"
@@ -83,6 +84,9 @@ const setMoodIndex = (index) => {
         :campaigns="collection.campaigns"
         :url="collection.url"
       />
+    </div>
+    <div class="flex justify-center mt-6">
+      <QOpenLink url="/collections" text="Explore More Collections"/>
     </div>
   </div>
 </template>
