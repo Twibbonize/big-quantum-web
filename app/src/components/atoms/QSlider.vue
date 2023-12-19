@@ -2,6 +2,8 @@
 import { onMounted } from 'vue';
 import { register } from 'swiper/element/bundle';
 
+const emit = defineEmits(['swiper']);
+
 const props = defineProps({
     id: String,
     direction: String,
@@ -12,6 +14,7 @@ const props = defineProps({
     loop: Boolean,
     slidesPerView: Number | String,
     breakpoints: Object,
+    navigation: Boolean,
     observer: Boolean,
     observeParent: Boolean,
     autoplayDelay: {
@@ -49,6 +52,7 @@ onMounted(() => {
         :autoplay-disable-on-interaction="autoplayDisableOnInteraction"
         :autoplay-reverse-direction="autoplayReverseDirection"
         :breakpoints="JSON.stringify(breakpoints)"
+        :navigation="navigation"
         :observer-parent="observeParent"
         :observer="observer"
         :grid-rows="gridRows"

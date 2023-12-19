@@ -11,6 +11,14 @@ const lottieDimension = computed(() => {
     return { w: 125, h: 50 };
 });
 
+const creatorsLogo = [
+    '/creators-logo-1.svg',
+    '/creators-logo-2.svg',
+    '/creators-logo-3.svg',
+    '/creators-logo-4.svg',
+    '/creators-logo-5.svg',
+]
+
 import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
 </script>
@@ -19,19 +27,18 @@ import gatherJSON from '../../assets/lottie/gather.json';
     <div class="banner-creators tp-rated-area mx-auto overflow-hidden relative">
         <div class="banner-creators__ellipse"></div>
 
-        <div class="bg relative pb-14 pt-32">
+        <div class="bg relative py-14">
             <img
                 class="blob-bg"
                 src="/src/assets/img/patterns/background-banner-creators.png"
                 alt=""
             />
-            <div class="flex justify-center">
+            <div class="flex flex-wrap justify-center items-center">
                 <img
-                    src="/src/assets/img/logos/twibbonize-creators.svg"
+                    src="/assets/img/logos/twibbonize-creators.svg"
                     alt="twibbonize-for-creators"
                 />
             </div>
-
             <div class="container z-30 mt-4 mx-auto">
                 <div class="row justify-center">
                     <div class="col-xl-10">
@@ -46,7 +53,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                                             :loop="false"
                                         />
                                     </div>
-                                    <div class="-ml-4 pb-3">your</div>
+                                    <div class="-ml-2 sm:-ml-4 pb-3">your</div>
                                     <br />
                                 </div>
                                 supporters with <br />Twibbonize
@@ -75,10 +82,10 @@ import gatherJSON from '../../assets/lottie/gather.json';
                         </div>
                     </div>
                 </div>
-                <div class="author-rated-big-img flex justify-center">
+                <div class="flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10">
                     <img
-                        class="w-full px-5 sm:px-32 z-30"
-                        src="/src/assets/img/logos/creators-brand.png"
+                        v-for="url in creatorsLogo" :key="url"
+                        :src="`/assets/img/logos/${url}`"
                         alt="twibbonize-for-creators"
                     />
                 </div>
