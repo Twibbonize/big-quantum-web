@@ -69,14 +69,13 @@ const { width, height } = useWindowSize();
         }
 
         .pattern-center {
-            width: 100%;
-            height: 100%;
+            width: 2954px;
+            height: 2374px;
             position: absolute;
-            left: 50%;
-            bottom: -200px;
+            left: 0;
+            bottom: -150%;
             background-position: right bottom;
-            background-size: 1900px 1000px;
-            background: url('../../assets/img/patterns/background-banner-creators.png');
+            background-size: 4000px 2000px;
             filter: blur(15.4px) grayscale(100%);
             mix-blend-mode: darken;
             background-repeat: no-repeat;
