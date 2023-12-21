@@ -147,6 +147,8 @@ function getThumbnailUrl(name) {
 
 <style lang="scss">
 .campaign-trending {
+    @apply overflow-x-hidden;
+
     .title {
         @apply text-2xl sm:text-3xl font-bold;
     }

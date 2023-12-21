@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <RouterLink to="/profile">
+    <RouterLink to="/u/universetech">
         <div class="tf-author-box style-2 hv-border mb-6 w-full">
             <div class="order">{{ `#${props.number}` }}</div>
             <div class="author-avatar rounded-full">
@@ -19,7 +19,7 @@ const props = defineProps({
             </div>
             <div class="author-infor">
                 <h5>
-                    <RouterLink to="/profile">{{ name }}</RouterLink>
+                    <RouterLink to="/u/universetech">{{ name }}</RouterLink>
                 </h5>
                 <h6 class="price gem style-1">
                     <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}

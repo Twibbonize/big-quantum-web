@@ -47,7 +47,7 @@ onMounted(() => {});
                 <div class="flex items-center mt-2.5">
                     <img class="avatar rounded-full mr-1.5" :src="avatarUrl" :alt="creator" />
                     <router-link
-                        to="/profile"
+                        to="/u/universetech"
                         class="text-base text-ellipsis overflow-hidden whitespace-nowrap hover:underline"
                     >
                         {{ creator }}
