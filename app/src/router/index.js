@@ -31,7 +31,7 @@ const router = createRouter({
             component: TestPage
         },
         {
-            path: '/profile',
+            path: '/u/universetech',
             name: 'profile',
             component: ProfilePage
         },
