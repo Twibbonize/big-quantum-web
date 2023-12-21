@@ -178,6 +178,7 @@ const backgroundGalleries = [
         z-index: 1;
         bottom: -600px;
         width: 1000px;
+        mix-blend-mode: lighten;
     }
     .badge {
         position: absolute;
