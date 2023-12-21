@@ -1,5 +1,6 @@
 <script setup>
 import numeral from 'numeral';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
     number: Number,
@@ -17,7 +18,7 @@ const props = defineProps({
         </div>
         <div class="author-infor">
             <h5>
-                <a href="author-2.html">{{ name }}</a>
+                <RouterLink to="/profile">{{ name }}</RouterLink>
             </h5>
             <h6 class="price gem style-1">
                 <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
