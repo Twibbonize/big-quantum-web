@@ -6,7 +6,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
     <div class="home-slider user-select-none pe-none">
         <QSlider
             class="autoslider"
-            style="--swiper-wrapper-transition-timing-function: linear !important"
+            style="--swiper-wrapper-transition-timing-function: linear"
             direction="vertical"
             :space-between="45"
             :grab-cursor="false"
@@ -39,7 +39,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         </QSlider>
         <QSlider
             class="autoslider"
-            style="--swiper-wrapper-transition-timing-function: linear !important"
+            style="--swiper-wrapper-transition-timing-function: linear"
             direction="vertical"
             :space-between="45"
             :grab-cursor="false"
@@ -72,7 +72,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         </QSlider>
         <QSlider
             class="autoslider"
-            style="--swiper-wrapper-transition-timing-function: linear !important"
+            style="--swiper-wrapper-transition-timing-function: linear"
             direction="vertical"
             :space-between="45"
             :grab-cursor="false"
@@ -117,7 +117,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
     }
 
     .swiper-wrapper {
-        transition-timing-function: linear !important;
+        transition-timing-function: linear;
     }
 
     img {
