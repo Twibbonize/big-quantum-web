@@ -99,8 +99,8 @@ function setProgress(activeIndex) {
     let timer = 0;
     let interval = setInterval(() => {
         if (timer === 100) {
-            const swiperCreators = document.getElementById('swiperCreators');
             clearInterval(interval);
+            timer = 0;
         } else {
             timer++;
             progress.value = timer;
@@ -110,6 +110,8 @@ function setProgress(activeIndex) {
 
 onMounted(() => {
     const swiperCreators = document.getElementById('swiperCreators');
+
+    console.log(swiperCreators);
 
     if (swiperCreators) {
         swiperCreators.addEventListener('swiperslidechange', (event) => {
