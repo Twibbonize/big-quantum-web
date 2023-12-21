@@ -74,12 +74,13 @@ const basicFeatures = computed(() => {
         py-14 sm:py-36 px-5 sm:px-20 container items-center;
 
     .package {
-        @apply flex flex-col sm:flex-row gap-8  w-full mt-8 gap-8;
+        @apply flex flex-col justify-center items-center sm:flex-row gap-8  w-full mt-8 gap-8;
         max-width: 1200px;
     }
 
     .package-card {
         @apply py-16 px-8 sm:px-16 w-full flex flex-col rounded-3xl relative;
+        max-width: 360px;
 
         h6 {
             @apply text-xxs font-bold uppercase absolute;
