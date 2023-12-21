@@ -2,7 +2,7 @@
 import QSlider from '@/components/atoms/QSlider.vue';
 
 const props = defineProps({
-    galleries: Array
+    galleries: Array,
 });
 
 function getImageUrl(name) {

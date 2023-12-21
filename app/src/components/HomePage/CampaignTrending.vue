@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 
 import CampaignCard from '@/components/campaign/CampaignCard.vue';
@@ -72,6 +72,17 @@ const campaigns = ref([
     }
 ]);
 
+const props = defineProps({
+    width: Number,
+});
+
+const slidesPerView = computed(() => {
+    if (props.width >= 1300) return 4;
+    if (props.width >= 1024) return 3;
+    if (props.width >= 768) return 2;
+    return 1.5
+})
+
 function getAvatarUrl(name) {
     const filename = `/assets/img/sample/${name}`;
     return new URL(filename, import.meta.url).href;
@@ -102,23 +113,13 @@ function getThumbnailUrl(name) {
                 </div>
                 <div class="container mx-auto md:w-full">
                     <QSlider
+                        :key="width"
                         class="-mx-4"
                         :loop="false"
-                        :slides-per-view="1.5"
+                        :slides-per-view="slidesPerView"
                         :observer="true"
                         :observe-parent="true"
                         :space-between="0"
-                        :breakpoints="{
-                            768: {
-                                slidesPerView: 2
-                            },
-                            1024: {
-                                slidesPerView: 3
-                            },
-                            1300: {
-                                slidesPerView: 4
-                            }
-                        }"
                     >
                         <swiper-slide
                             v-for="(
