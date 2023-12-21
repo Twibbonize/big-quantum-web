@@ -1,5 +1,6 @@
 <script setup>
 import numeral from 'numeral';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
     number: Number,
@@ -10,20 +11,22 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="tf-author-box style-2 hv-border mb-6 w-full">
-        <div class="order">{{ `#${props.number}` }}</div>
-        <div class="author-avatar rounded-full">
-            <img :src="avatar" alt="" class="avatar rounded-full" />
+    <RouterLink to="/profile">
+        <div class="tf-author-box style-2 hv-border mb-6 w-full">
+            <div class="order">{{ `#${props.number}` }}</div>
+            <div class="author-avatar rounded-full">
+                <img :src="avatar" alt="" class="avatar rounded-full" />
+            </div>
+            <div class="author-infor">
+                <h5>
+                    <RouterLink to="/profile">{{ name }}</RouterLink>
+                </h5>
+                <h6 class="price gem style-1">
+                    <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
+                </h6>
+            </div>
         </div>
-        <div class="author-infor">
-            <h5>
-                <a href="author-2.html">{{ name }}</a>
-            </h5>
-            <h6 class="price gem style-1">
-                <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
-            </h6>
-        </div>
-    </div>
+    </RouterLink>
 </template>
 
 <style lang="scss">
