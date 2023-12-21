@@ -54,7 +54,7 @@ const setMoodIndex = (index) => {
   <div class="campaign-collections">
     <h2 class="title">There's always a template for that</h2>
     <p class="description">Make any moments special with our curated collection of templates. Perfect for every occasions.</p>
-    <div class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10">
+    <div class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10 overflow-hidden">
       <QSlider
           class="-mx-5 w-fit"
           direction="horizontal"

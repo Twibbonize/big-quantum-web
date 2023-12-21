@@ -12,11 +12,11 @@ const lottieDimension = computed(() => {
 });
 
 const creatorsLogo = [
-    '/creators-logo-1.svg',
-    '/creators-logo-2.svg',
-    '/creators-logo-3.svg',
-    '/creators-logo-4.svg',
-    '/creators-logo-5.svg',
+    'creators-logo-1.svg',
+    'creators-logo-2.svg',
+    'creators-logo-3.svg',
+    'creators-logo-4.svg',
+    'creators-logo-5.svg',
 ]
 
 import QButton from '@/components/atoms/QButton.vue';
