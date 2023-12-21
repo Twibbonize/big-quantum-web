@@ -58,7 +58,7 @@ onMounted(() => {
 
 <template>
     <div class="container px-5 pt-24 pb-10 mx-auto">
-        <div class="flex pt-5 flex-col sm:flex-row">
+        <div class="flex pt-5 flex-col sm:flex-row gap-8">
             <div class="flex flex-col justify-center col">
                 <div
                     v-for="({ icon, title, subtitle, description }, i) in values"
