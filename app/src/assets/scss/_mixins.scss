@@ -56,6 +56,7 @@
 // =======================================================
 @mixin absolute {
     position: absolute;
+    z-index: -1;
     @content;
 }
 @mixin before {
@@ -472,6 +473,17 @@
     &:before {
         display: none;
     }
+}
+
+// Hide scrollbar
+
+@mixin no_scrollbar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 // Fade up animation

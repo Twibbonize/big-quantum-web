@@ -3,3 +3,7 @@
     min-height: calc(100vh - $footer-height);
     width: 100vw;
 }
+
+.link {
+    @apply text-main-darker hover:underline;
+}

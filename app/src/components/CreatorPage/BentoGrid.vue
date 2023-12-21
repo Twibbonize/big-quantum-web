@@ -47,7 +47,7 @@
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .creators-features {
     .card {
         @apply p-6 sm:p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px];
