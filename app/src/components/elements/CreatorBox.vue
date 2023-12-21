@@ -101,8 +101,9 @@ const props = defineProps({
 
 .tf-author-box .author-avatar img {
     border-radius: 50%;
-    height: 80px;
-    width: 80px;
+    aspect-ratio: 1;
+    max-height: 80px;
+    max-width: 80px;
 }
 
 .tf-author-box.style-2.type-1 {

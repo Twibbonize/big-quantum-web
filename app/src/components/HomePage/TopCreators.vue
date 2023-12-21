@@ -153,6 +153,7 @@ onMounted(() => {
                 </div>
             </div>
             <QSlider
+                :key="width"
                 id="swiperCreators"
                 :loop="false"
                 :slides-per-view="slidesPerView"

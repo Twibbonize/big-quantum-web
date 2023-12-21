@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 
 import CampaignCard from '@/components/campaign/CampaignCard.vue';
@@ -11,7 +11,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -19,7 +19,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 1470,
-        createdAt: dayjs().subtract(3, 'week').unix(),
+        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -27,7 +27,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -35,7 +35,7 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
+        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-4.jpg'
     },
     {
@@ -43,7 +43,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -51,7 +51,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 14700,
-        createdAt: dayjs().subtract(3, 'week').unix(),
+        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -59,7 +59,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -67,10 +67,21 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
+        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-4.jpg'
     }
 ]);
+
+const props = defineProps({
+    width: Number,
+});
+
+const slidesPerView = computed(() => {
+    if (props.width >= 1300) return 4;
+    if (props.width >= 1024) return 3;
+    if (props.width >= 768) return 2;
+    return 1.5
+})
 
 function getAvatarUrl(name) {
     const filename = `/assets/img/sample/${name}`;
@@ -102,23 +113,13 @@ function getThumbnailUrl(name) {
                 </div>
                 <div class="container mx-auto md:w-full">
                     <QSlider
+                        :key="width"
                         class="-mx-4"
                         :loop="false"
-                        :slides-per-view="1.5"
+                        :slides-per-view="slidesPerView"
                         :observer="true"
                         :observe-parent="true"
                         :space-between="0"
-                        :breakpoints="{
-                            768: {
-                                slidesPerView: 2
-                            },
-                            1024: {
-                                slidesPerView: 3
-                            },
-                            1300: {
-                                slidesPerView: 4
-                            }
-                        }"
                     >
                         <swiper-slide
                             v-for="(
