@@ -5,8 +5,8 @@ import QSliderNavigation from '@/components/atoms/QSliderNavigation.vue';
 
 const props = defineProps({
     width: Number,
-    height: Number,
-})
+    height: Number
+});
 
 const slidesPerView = computed(() => {
     if (props.width > 1280) return 4;
@@ -65,35 +65,36 @@ const stories = [
         title: 'The 2024 State of the Website',
         description:
             'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
+    }
 ];
 
 const handlePrev = () => {
-    const { swiper }  = document.getElementById('sliderStories');
+    const { swiper } = document.getElementById('sliderStories');
     swiper.slidePrev();
 
     nextDisabled.value = false;
 
     if (swiper.activeIndex === 0) prevDisabled.value = true;
-    else prevDisabled.value = false;    
+    else prevDisabled.value = false;
 };
 
 const handleNext = () => {
-    const { swiper }  = document.getElementById('sliderStories');
+    const { swiper } = document.getElementById('sliderStories');
     swiper.slideNext();
 
     prevDisabled.value = false;
 
     if (Number(swiper.progress === 1)) nextDisabled.value = true;
     else nextDisabled.value = false;
-}
-
+};
 </script>
 
 <template>
     <div class="creator-stories py-24 flex flex-col items-center">
-        <h4 class="text-center text-3xl	sm:text-6xl font-bold">Stories from our Creators</h4>
-        <p class="text-center text-base sm:text-2xl mt-8">Unique campaigns brought to life with Twibbonize</p>
+        <h4 class="text-center text-3xl sm:text-6xl font-bold">Stories from our Creators</h4>
+        <p class="text-center text-base sm:text-2xl mt-8">
+            Unique campaigns brought to life with Twibbonize
+        </p>
         <div class="container mx-auto">
             <QSlider
                 id="sliderStories"
@@ -154,7 +155,8 @@ const handleNext = () => {
         }
     }
 
-    .swiper-button-next, .swiper-button-prev {
+    .swiper-button-next,
+    .swiper-button-prev {
         @apply rounded-3xl flex items-center justify-center;
         width: 40px !important;
         height: 40px !important;

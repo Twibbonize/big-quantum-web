@@ -88,13 +88,8 @@ onMounted(() => {
                     <h5 v-else class="font-bold text-2xl">{{ title }}</h5>
                 </div>
             </div>
-            <div class="pt-8 sm:pt-0 flex  justify-center sm:justify-end">
-                <video
-                    class="video"
-                    muted
-                    autoplay
-                    :src="values[index].video"
-                ></video>
+            <div class="pt-8 sm:pt-0 flex justify-center sm:justify-end">
+                <video class="video" muted autoplay :src="values[index].video"></video>
             </div>
         </div>
     </div>

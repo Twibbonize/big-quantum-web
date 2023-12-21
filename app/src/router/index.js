@@ -38,12 +38,12 @@ const router = createRouter({
             path: '/campaign',
             name: 'campaign',
             component: CampaignPage
-        },
+        }
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
-        return { top: 0 }
-    },
+        return { top: 0 };
+    }
 });
 
 export default router;

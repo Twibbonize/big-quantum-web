@@ -11,7 +11,7 @@ const props = defineProps({
         required: true
     },
     uuid: {
-        type: String,
+        type: String
     },
     thumbnail: {
         type: String,
@@ -22,7 +22,7 @@ const props = defineProps({
         required: true
     },
     url: {
-        type: String,
+        type: String
     },
     hit: {
         type: Number,
@@ -31,18 +31,17 @@ const props = defineProps({
 });
 </script>
 
-
 <template>
     <QCard>
         <div class="campaign">
             <figure class="campaign__thumbnail">
-                <img :src="thumbnail" class="campaign__thumbnail__img">
+                <img :src="thumbnail" class="campaign__thumbnail__img" />
             </figure>
             <h3 class="campaign__title">
                 {{ name }}
             </h3>
             <div class="campaign__creator">
-                <img :src="campaignCreator.avatar" class="campaign___creator__avatar">
+                <img :src="campaignCreator.avatar" class="campaign___creator__avatar" />
                 <h4 class="campaign__creator__name">{{ campaignCreator.name }}</h4>
             </div>
 
@@ -50,11 +49,10 @@ const props = defineProps({
                 <div class="campaign__stat">
                     {{ hit }}
                 </div>
-                <div class="campaign__stat"> {{ createdAt }}</div>
+                <div class="campaign__stat">{{ createdAt }}</div>
             </div>
         </div>
     </QCard>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -25,21 +25,15 @@ const backgroundGalleries = [
         <div class="flex flex-col items-center">
             <h2 class="text-center text-3xl sm:text-6xl font-bold">More than just frames</h2>
             <h4 class="text-center text-base sm:text-2xl mt-8">
-                Spice up your online campaign game, not only with a frame, but also with
-                creative backgrounds
+                Spice up your online campaign game, not only with a frame, but also with creative
+                backgrounds
             </h4>
         </div>
         <div class="flex flex-col sm:flex-row gap-6 mt-8 justify-center">
             <div class="card flex flex-col items-center">
-                <img
-                    class="icon"
-                    src="/assets/img/frames/frame-icon.png"
-                    alt="frame"
-                />
+                <img class="icon" src="/assets/img/frames/frame-icon.png" alt="frame" />
                 <h5 class="mt-4">Frame Twibbon</h5>
-                <p class="mt-4 text-base">
-                    The OG Twibbon; a frame that's placed on your picture
-                </p>
+                <p class="mt-4 text-base">The OG Twibbon; a frame that's placed on your picture</p>
                 <div class="frame-blob">
                     <svg
                         version="1.1"
@@ -54,10 +48,7 @@ const backgroundGalleries = [
                         <defs>
                             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" style="stop-color: rgb(255, 255, 255)"></stop>
-                                <stop
-                                    offset="100%"
-                                    style="stop-color: rgb(22, 218, 193)"
-                                ></stop>
+                                <stop offset="100%" style="stop-color: rgb(22, 218, 193)"></stop>
                             </linearGradient>
                         </defs>
                         <path id="blob" fill="url(#gradient)" style="opacity: 0.3">
@@ -81,16 +72,8 @@ const backgroundGalleries = [
                 <FrameSwiper :galleries="frameGalleries" class="slider mt-10 mb-10" />
             </div>
             <div class="card flex flex-col items-center">
-                <img
-                    class="badge"
-                    src="/assets/img/frames/bookmark.png"
-                    alt="bookmark"
-                />
-                <img
-                    class="icon"
-                    src="/assets/img/frames/bg-icon.png"
-                    alt="frame"
-                />
+                <img class="badge" src="/assets/img/frames/bookmark.png" alt="bookmark" />
+                <img class="icon" src="/assets/img/frames/bg-icon.png" alt="frame" />
                 <h5 class="mt-4">Background Twibbon</h5>
                 <p class="mt-4 text-base">
                     A fresh variation of Twibbon that poses as the background of your picture
@@ -109,10 +92,7 @@ const backgroundGalleries = [
                         <defs>
                             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" style="stop-color: rgb(255, 255, 255)"></stop>
-                                <stop
-                                    offset="100%"
-                                    style="stop-color: rgb(22, 218, 193)"
-                                ></stop>
+                                <stop offset="100%" style="stop-color: rgb(22, 218, 193)"></stop>
                             </linearGradient>
                         </defs>
                         <path id="blob" fill="url(#gradient)" style="opacity: 0.3">

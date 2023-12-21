@@ -111,8 +111,6 @@ const buttonClasses = computed(() => {
         }
     }
 
-
-
     &--circle {
         width: 40px;
         height: 40px;
