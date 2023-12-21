@@ -7,8 +7,13 @@ import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import { useExpandMenuStore } from '@/stores/expandMenuStore';
+import { storeToRefs } from 'pinia';
 
 const { width, height } = useWindowSize();
+
+const expandMenuStore = useExpandMenuStore();
+const { open } = storeToRefs(expandMenuStore);
 
 const props = defineProps({
     color: String
@@ -34,12 +39,16 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header class="navbar z-50" :class="navbarColor">
-        <div class="container px-5 md:px-0">
-            <div class="w-full flex flex-row items-center justify-between sm:gap-x-4">
+    <header :class="['header', navbarColor !== '' && `header--${navbarColor}`]">
+        <div class="header__wrapper">
+            <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
+            </div>
+            <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
-                <div class="action">
+            </div>
+            <div class="header__right">
+                <div class="header__actions">
                     <div class="block md:hidden">
                         <QSearchMobile v-model="searchQuery" />
                     </div>
@@ -50,42 +59,120 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <QButton variant="secondary" circle size="lg">
-                        <i class="ri-menu-fill"></i>
-                    </QButton>
+                    <button
+                        :class="['header__burger', open && 'header__burger--open']"
+                        @click="open = !open"
+                    >
+                        <div class="header__burger__js">
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="header__burger__avatar">
+                            <img src="/assets/img/avatars/default.svg" alt="Avatar" />
+                        </div>
+                    </button>
                 </div>
             </div>
+            <div class="header__mobile"></div>
         </div>
     </header>
 </template>
 
-<style lang="scss">
-.navbar {
-    @apply fixed;
-
-    width: 100vw;
-    background: var(--color-white);
-    padding-top: 27px;
-    padding-bottom: 18px;
-    top: 0;
+<style scoped lang="scss">
+.header {
+    @apply fixed bg-white top-0 w-screen z-50 transition-colors duration-300 ease-in-out;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
 
-    .logo {
-        @apply xl:w-1/3;
+    &__wrapper {
+        padding-top: 27px;
+        padding-bottom: 18px;
+
+        @apply w-full flex items-center justify-between container px-5 md:px-0 relative;
     }
 
-    .action {
-        @apply xl:w-1/3 flex items-center justify-end gap-x-2 lg:gap-x-0;
+    &__left,
+    &__right {
+        flex: 1 1 0;
+        min-width: 24px;
     }
-}
 
-.navbar.gradient {
-    background: linear-gradient(180deg, #16dac1 0%, rgba(22, 218, 193, 0) 100%);
-    box-shadow: none;
-}
+    &__center {
+        flex: 0 1 0;
+        white-space: nowrap;
+        @apply flex justify-center;
+    }
 
-.navbar.transparent {
-    background: transparent;
-    box-shadow: none;
+    &__actions {
+        @apply flex items-center justify-end;
+    }
+
+    &--transparent {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    &--gradient {
+        background: linear-gradient(180deg, #16dac1 0%, rgba(22, 218, 193, 0) 100%);
+        box-shadow: none;
+    }
+
+    &--gradient &__burger {
+        @apply border-transparent;
+    }
+
+    &__burger {
+        @apply flex items-center space-x-3 rounded-full bg-white border border-gray-200 flex-shrink-0;
+        padding: 4px 0px;
+        padding-left: 10px;
+        padding-right: 6px;
+        height: 48px;
+
+        &__js {
+            height: 16px;
+            width: 22px;
+            @apply flex items-center justify-center relative;
+        }
+
+        &__js span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            opacity: 1;
+            right: 0;
+            background-color: #000;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+            transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+
+            &:nth-child(1) {
+                top: 4px;
+            }
+
+            &:nth-child(2) {
+                top: 11px;
+            }
+        }
+
+        &.header__burger--open .header__burger__js span:nth-child(1) {
+            top: 7px;
+            transform: rotate(45deg);
+        }
+
+        &.header__burger--open .header__burger__js span:nth-child(2) {
+            transform: rotate(-45deg);
+            top: 7px;
+        }
+    }
 }
 </style>

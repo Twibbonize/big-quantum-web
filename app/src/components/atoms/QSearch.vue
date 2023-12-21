@@ -21,6 +21,7 @@
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
     max-width: 521px;
     width: 100%;
+    min-width: 340px;
 
     input {
         width: 100%;
@@ -28,6 +29,7 @@
         height: 52px !important;
         border-radius: 26px;
         padding: 13.5px 54px 13.5px 18px;
+        font-size: 14px;
     }
 
     i {

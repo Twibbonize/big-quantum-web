@@ -9,6 +9,9 @@ const props = defineProps({
     name: {
         type: String
     },
+    id: {
+        type: String
+    },
     placeholder: {
         type: String
     },
@@ -27,13 +30,17 @@ const props = defineProps({
     maxlength: {
         type: Number,
         default: undefined
+    },
+    autocomplete: {
+        type: String,
+        default: 'current-password',
+        validators: (value) => ['current-password', 'new-password'].includes(value)
     }
 });
 
 const emit = defineEmits(['update:modelValue']);
 
 const name = toRef(props, 'name');
-const type = toRef(props, 'type');
 
 function updateValue(e) {
     emit('update:modelValue', e.target.value);
@@ -44,6 +51,7 @@ function updateValue(e) {
         :model-value="modelValue"
         :rules="rules"
         :name="name"
+        :id="id || name"
         type="password"
         v-slot="{ field, meta, value }"
     >
@@ -51,13 +59,15 @@ function updateValue(e) {
             <input
                 v-bind="field"
                 :value="value"
-                :id="name"
+                :id="id || name"
+                type="password"
                 :class="['field__input', readonly && 'field__input--readonly']"
                 :readonly="readonly"
                 :placeholder="placeholder"
                 @input="updateValue"
                 :minlength="minlength"
                 :maxlength="maxlength"
+                :autocomplete="autocomplete"
             />
         </div>
     </Field>

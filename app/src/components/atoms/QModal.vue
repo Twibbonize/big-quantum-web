@@ -8,20 +8,26 @@ defineProps({
     isStatic: {
         type: Boolean,
         default: false
+    },
+    position: {
+        type: String,
+        default: 'center',
+        validators: (value) => ['top', 'center', 'bottom', 'screen'].includes(value)
+    },
+    size: {
+        type: String,
+        default: 'md',
+        validators: (value) => ['md', 'lg']
     }
 });
 
 const emit = defineEmits(['close']);
-
-const close = () => {
-    emit('close');
-};
 </script>
 
 <template>
     <TransitionRoot appear :show="show" as="template">
         <Dialog @close="!isStatic && $emit('close')">
-            <div class="dialog">
+            <div :class="['dialog', `dialog--${position}`, `dialog--${size}`]">
                 <TransitionChild
                     as="template"
                     enter="duration-300 ease-out"
@@ -66,40 +72,72 @@ const close = () => {
     </TransitionRoot>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .dialog {
     @apply relative;
     z-index: 9995;
+
+    .dialog__overlay {
+        @apply fixed inset-0 bg-black/25;
+        z-index: 9996;
+        pointer-events: none;
+    }
+
+    .dialog__content {
+        @apply fixed inset-0 overflow-y-auto;
+        z-index: 9997;
+    }
+
+    .dialog__panel-wrapper {
+        @apply flex min-h-full items-center justify-center p-4 text-center;
+    }
+
+    &.dialog--top .dialog__panel-wrapper {
+        @apply items-start;
+    }
+
+    &.dialog--bottom .dialog__panel-wrapper {
+        @apply items-end;
+    }
+
+    &.dialog--screen .dialog__panel-wrapper {
+        @apply items-start p-0;
+    }
+
+    &.dialog--screen .dialog__panel {
+        @apply h-screen rounded-none shadow-none overflow-auto;
+
+        max-height: 100vh;
+    }
+
+    &.dialog--md .dialog__panel {
+        @apply max-w-md;
+    }
+
+    &.dialog--lg .dialog__panel {
+        @apply max-w-6xl;
+    }
+
+    .dialog__panel {
+        @apply w-full max-w-md bg-white shadow-card text-left relative rounded-3xl overflow-auto flex flex-col;
+        max-height: 90vh;
+        min-height: 693px;
+    }
+
+    .dialog__panel__header {
+        @apply px-5 py-3;
+    }
+
+    .dialog__panel__footer {
+        @apply px-5 py-3;
+    }
+
+    .dialog__panel__body {
+        @apply max-h-full h-0 flex-grow overflow-auto;
+    }
 }
 
-.dialog__overlay {
-    @apply fixed inset-0 bg-black/25;
-    z-index: 9996;
-    pointer-events: none;
-}
-
-.dialog__content {
-    @apply fixed inset-0 overflow-y-auto;
-    z-index: 9997;
-}
-
-.dialog__panel-wrapper {
-    @apply flex min-h-full items-center justify-center p-4 text-center;
-}
-
-.dialog__panel {
-    @apply w-full max-w-md bg-white shadow-card text-left relative rounded-3xl;
-}
-
-.dialog__panel__header {
-    @apply px-5 py-3;
-}
-
-.dialog__panel__footer {
-    @apply px-5 py-3;
-}
-
-.dialog__panel__body {
+/* .dialog__panel__body {
     @apply px-5;
-}
+} */
 </style>

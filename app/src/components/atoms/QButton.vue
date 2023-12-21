@@ -110,7 +110,7 @@ function handleClick(e) {
 
     // variants
     &--primary {
-        @apply text-black bg-main;
+        @apply text-black bg-main border border-transparent;
 
         @include before {
             height: 0;

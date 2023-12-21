@@ -16,8 +16,8 @@ const creatorsLogo = [
     '/creators-logo-2.svg',
     '/creators-logo-3.svg',
     '/creators-logo-4.svg',
-    '/creators-logo-5.svg',
-]
+    '/creators-logo-5.svg'
+];
 
 import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
@@ -82,9 +82,12 @@ import gatherJSON from '../../assets/lottie/gather.json';
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10">
+                <div
+                    class="flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10"
+                >
                     <img
-                        v-for="url in creatorsLogo" :key="url"
+                        v-for="url in creatorsLogo"
+                        :key="url"
                         :src="`/assets/img/logos/${url}`"
                         alt="twibbonize-for-creators"
                     />

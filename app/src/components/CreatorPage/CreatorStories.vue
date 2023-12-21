@@ -65,28 +65,28 @@ const stories = [
         title: 'The 2024 State of the Website',
         description:
             'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
+    }
 ];
 
 const handlePrev = () => {
-    const { swiper }  = document.getElementById('sliderStories');
+    const { swiper } = document.getElementById('sliderStories');
     swiper.slidePrev();
 
     nextDisabled.value = false;
 
     if (swiper.activeIndex === 0) prevDisabled.value = true;
-    else prevDisabled.value = false;    
+    else prevDisabled.value = false;
 };
 
 const handleNext = () => {
-    const { swiper }  = document.getElementById('sliderStories');
+    const { swiper } = document.getElementById('sliderStories');
     swiper.slideNext();
 
     prevDisabled.value = false;
 
     if (Number(swiper.progress === 1)) nextDisabled.value = true;
     else nextDisabled.value = false;
-}
+};
 </script>
 
 <template>
@@ -155,7 +155,8 @@ const handleNext = () => {
         }
     }
 
-    .swiper-button-next, .swiper-button-prev {
+    .swiper-button-next,
+    .swiper-button-prev {
         @apply rounded-3xl flex items-center justify-center;
         width: 40px !important;
         height: 40px !important;
