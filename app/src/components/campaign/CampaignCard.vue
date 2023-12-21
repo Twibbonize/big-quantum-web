@@ -30,48 +30,50 @@ onMounted(() => {});
 </script>
 
 <template>
-    <div class="camp-card rounded-3xl pt-2.5 px-3.5 pb-3.5">
-        <div class="img-container rounded-xl aspect-square flex items-center relative">
-            <picture>
-                <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="name" />
-            </picture>
-            <div class="btn-view">
-                <QButton variant="primary">View</QButton>
-            </div>
-        </div>
-        <div class="mt-3">
-            <h6 class="text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap">
-                {{ name }}
-            </h6>
-            <div class="flex items-center mt-2.5">
-                <img class="avatar rounded-full mr-1.5" :src="avatarUrl" :alt="creator" />
-                <p class="text-base text-ellipsis overflow-hidden whitespace-nowrap">
-                    {{ creator }}
-                </p>
-            </div>
-        </div>
-        <div class="line mt-2.5"></div>
-        <div class="flex content-between gap-2 mt-2.5">
-            <div class="flex items-center flex-1">
-                <i class="ri-group-line text-base mr-1.5"></i>
-                <div class="flex flex-col">
-                    <span class="text-xs font-medium">Supporters</span>
-                    <h6 class="text-sm font-medium">
-                        {{ numeral(props.supports).format('0.0a') }}
-                    </h6>
+    <RouterLink to="/campaign">
+        <div class="camp-card rounded-3xl pt-2.5 px-3.5 pb-3.5">
+            <div class="img-container rounded-xl aspect-square flex items-center relative">
+                <picture>
+                    <img class="w-full rounded-xl" :src="campaignThumbnailUrl" :alt="name" />
+                </picture>
+                <div class="btn-view">
+                    <QButton variant="primary">View</QButton>
                 </div>
             </div>
-            <div class="flex items-center flex-1">
-                <i class="ri-time-line text-base mr-1.5"></i>
-                <div class="flex flex-col">
-                    <span class="text-xs font-medium">Created</span>
-                    <h6 class="text-sm font-medium">
-                        {{ dayjs(props.createdAt).fromNow() }}
-                    </h6>
+            <div class="mt-3">
+                <h6 class="text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap">
+                    {{ name }}
+                </h6>
+                <div class="flex items-center mt-2.5">
+                    <img class="avatar rounded-full mr-1.5" :src="avatarUrl" :alt="creator" />
+                    <router-link to="/profile" class="text-base text-ellipsis overflow-hidden whitespace-nowrap hover:underline">
+                        {{ creator }}
+                    </router-link>
+                </div>
+            </div>
+            <div class="line mt-2.5"></div>
+            <div class="flex content-between gap-2 mt-2.5">
+                <div class="flex items-center flex-1">
+                    <i class="ri-group-line text-base mr-1.5"></i>
+                    <div class="flex flex-col">
+                        <span class="text-xs font-medium">Supporters</span>
+                        <h6 class="text-sm font-medium">
+                            {{ numeral(props.supports).format('0.0a') }}
+                        </h6>
+                    </div>
+                </div>
+                <div class="flex items-center flex-1">
+                    <i class="ri-time-line text-base mr-1.5"></i>
+                    <div class="flex flex-col">
+                        <span class="text-xs font-medium">Created</span>
+                        <h6 class="text-sm font-medium">
+                            {{ dayjs(props.createdAt).fromNow() }}
+                        </h6>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </RouterLink>
 </template>
 
 <style lang="scss">
