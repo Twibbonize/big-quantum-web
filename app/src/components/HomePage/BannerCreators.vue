@@ -61,15 +61,14 @@ import gatherJSON from '../../assets/lottie/gather.json';
                             <div
                                 class="banner-creators__btn-container flex justify-center items-center mt-4"
                             >
-                                <RouterLink to="/creators">
-                                    <QButton
-                                        class="text-sm ws-nowrap"
-                                        variant="accent"
-                                        border-radius="circle"
-                                    >
-                                        Learn More
-                                    </QButton>
-                                </RouterLink>
+                                <QButton
+                                    class="text-sm ws-nowrap"
+                                    variant="accent"
+                                    border-radius="circle"
+                                    @click="$router.push('/creators')"
+                                >
+                                    Learn More
+                                </QButton>
                                 <span class="text-sm text-white ml-4">or</span>
                                 <QButton
                                     class="!text-white text-sm ws-nowrap"
@@ -117,7 +116,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
     }
 
     .blob-bg {
-        position: absolute;
+        @apply absolute pointer-events-none;
         bottom: -30%;
         left: 50%;
         transform: translateX(-50%);
@@ -154,7 +153,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
 @media screen and (min-width: 640px) {
     .banner-creators {
         .blob-bg {
-            position: absolute;
+            @apply absolute pointer-events-none;
             bottom: -40%;
             left: 50%;
             transform: translateX(-50%);
