@@ -11,7 +11,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -19,7 +19,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 1470,
-        createdAt: dayjs().subtract(3, 'week').unix(),
+        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -27,7 +27,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -35,7 +35,7 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
+        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-4.jpg'
     },
     {
@@ -43,7 +43,7 @@ const campaigns = ref([
         creator: 'Universe Tech',
         avatar: 'sample-avatar-1.jpg',
         supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-1.jpg'
     },
     {
@@ -51,7 +51,7 @@ const campaigns = ref([
         creator: 'Liberty Scholarship',
         avatar: 'sample-avatar-2.jpg',
         supports: 14700,
-        createdAt: dayjs().subtract(3, 'week').unix(),
+        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-2.jpg'
     },
     {
@@ -59,7 +59,7 @@ const campaigns = ref([
         creator: 'Bit by Bit',
         avatar: 'sample-avatar-3.jpg',
         supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix(),
+        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
         thumbnail: 'sample-campaign-3.jpg'
     },
     {
@@ -67,7 +67,7 @@ const campaigns = ref([
         creator: 'Digital Culture',
         avatar: 'sample-avatar-4.jpg',
         supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix(),
+        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-4.jpg'
     }
 ]);
