@@ -8,3 +8,7 @@
 @import './mixins';
 @import './transition';
 @import './base';
+
+html {
+    @apply text-black;
+}

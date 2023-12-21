@@ -5,6 +5,7 @@ import PlusPage from '@/views/PlusPage.vue';
 import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
+import PreferencesPage from '@/views/PreferencesPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
             path: '/campaign',
             name: 'campaign',
             component: CampaignPage
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: PreferencesPage
         }
     ],
     scrollBehavior(to, from, savedPosition) {
