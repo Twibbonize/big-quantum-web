@@ -7,7 +7,6 @@ import QSlider from '@/components/atoms/QSlider.vue';
         <QSlider
             class="autoslider"
             style="--swiper-wrapper-transition-timing-function: linear !important"
-            style="overflow: unset"
             direction="vertical"
             :space-between="45"
             :grab-cursor="false"
