@@ -6,12 +6,12 @@ const cards = computed(() => {
     {
       title: 'Ad-Free Experience',
       description: 'Enjoy uninterrupted experience with no ads on Twibbonize. Get ready to embrace a cleaner, more user-friendly version of Twibbonize',
-      image: '/feature-ad-free.png',
+      image: 'feature-ad-free.png',
     },
     {
       title: 'No Watermark',
       description: 'Delight in your uniquely pure and personalized twibbon, free from any intrusive watermarks',
-      image: '/feature-no-watermark.png',
+      image: 'feature-no-watermark.png',
     }
   ]
 });
