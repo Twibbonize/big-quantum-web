@@ -53,7 +53,7 @@ function updateValue(e) {
             type="checkbox"
             :id="id"
             :name="name"
-            :value="value"
+            :value="checkedValue"
             style="display: none"
             @input="updateValue"
             @change="handleChange"

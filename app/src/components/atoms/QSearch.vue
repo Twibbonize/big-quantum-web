@@ -1,40 +1,51 @@
 <script setup></script>
 
 <template>
-    <div class="search flex p-0">
-        <input
-            type="text"
-            name="navigation-search"
-            id="navigation-search"
-            placeholder="Find Campaigns or Creators"
-        />
-        <i class="ri-search-line text-xl font-bold" role="button"></i>
+    <div class="search">
+        <div class="search__input-wrapper">
+            <input
+                type="search"
+                class="search__input"
+                id="search_lg"
+                placeholder="Find Campaigns or Creators"
+            />
+            <span class="search__input-icon">
+                <i class="ri-search-line ri-lg" role="button"></i>
+            </span>
+        </div>
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .search {
-    background: var(--color-white);
-    position: relative;
-    height: 52px;
-    border-radius: 26px;
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
-    max-width: 521px;
-    width: 100%;
+    @apply relative;
+    .search__input-wrapper {
+        @apply bg-white rounded-full flex items-center border border-transparent transition-colors duration-200;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+        height: 52px;
+        min-width: 320px;
 
-    input {
-        width: 100%;
-        border: none !important;
-        height: 52px !important;
-        border-radius: 26px;
-        padding: 13.5px 54px 13.5px 18px;
+        &:focus-within {
+            @apply border-main-darker;
+        }
+
+        @include lg_screen {
+            min-width: 360px;
+        }
     }
 
-    i {
-        position: absolute;
-        right: 18px;
-        top: 50%;
-        transform: translateY(-50%);
+    .search__input {
+        @apply flex-grow h-full bg-transparent border-0 border-transparent text-sm outline-none;
+        padding: 13.5px 13.5px;
+        padding-left: 18px;
+
+        &:focus {
+            @apply outline-none;
+        }
+    }
+
+    .search__input-icon {
+        @apply h-full w-14 flex items-center justify-center font-medium;
     }
 }
 </style>

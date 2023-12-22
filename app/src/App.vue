@@ -3,6 +3,8 @@ import { ref } from 'vue';
 
 import NavbarDefault from '@/components/organisms/NavbarDefault.vue';
 import FooterDefault from '@/components/organisms/FooterDefault.vue';
+import AuthModal from '@/components/organisms/AuthModal.vue';
+import ExpandMenu from '@/components/organisms/ExpandMenu.vue';
 
 const navbarColor = ref('');
 
@@ -19,4 +21,7 @@ function changeNavbarColor(value) {
     <KeepAlive>
         <FooterDefault />
     </KeepAlive>
+
+    <AuthModal />
+    <ExpandMenu />
 </template>
