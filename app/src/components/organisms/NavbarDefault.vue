@@ -7,8 +7,13 @@ import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import { useExpandMenuStore } from '@/stores/expandMenuStore';
+import { storeToRefs } from 'pinia';
 
 const { width, height } = useWindowSize();
+
+const expandMenuStore = useExpandMenuStore();
+const { open } = storeToRefs(expandMenuStore);
 
 const props = defineProps({
     color: String
@@ -34,14 +39,18 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header class="navbar z-50" :class="navbarColor">
-        <div class="container px-5 md:px-0">
-            <div class="w-full flex flex-row items-center justify-between sm:gap-x-4">
+    <header :class="['header', navbarColor !== '' && `header--${navbarColor}`]">
+        <div class="header__wrapper">
+            <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
+            </div>
+            <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
-                <div class="action">
+            </div>
+            <div class="header__right">
+                <div class="header__actions">
                     <div class="block md:hidden">
-                        <QSearchMobile v-model="searchQuery" />
+                        <QSearchMobile :variant="navbarColor === 'transparent' ? 'white' : 'black'" />
                     </div>
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
@@ -50,42 +59,179 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <QButton variant="secondary" circle size="lg">
-                        <i class="ri-menu-fill"></i>
-                    </QButton>
+                    <button :class="['header__burger', open && 'header__burger--open']" @click="open = !open">
+                        <div class="header__burger__js">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="header__burger__avatar">
+                            <img src="/assets/img/avatars/default.svg" alt="Avatar" />
+                        </div>
+                    </button>
                 </div>
             </div>
+            <div class="header__mobile"></div>
         </div>
     </header>
 </template>
 
-<style lang="scss">
-.navbar {
-    @apply fixed;
-
-    width: 100vw;
-    background: var(--color-white);
-    padding-top: 27px;
-    padding-bottom: 18px;
-    top: 0;
+<style scoped lang="scss">
+.header {
+    @apply fixed bg-white top-0 w-screen z-50 transition-colors duration-300 ease-in-out;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
 
-    .logo {
-        @apply xl:w-1/3;
+    &__wrapper {
+        padding-top: 27px;
+        padding-bottom: 18px;
+
+        @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;
     }
 
-    .action {
-        @apply xl:w-1/3 flex items-center justify-end gap-x-2 lg:gap-x-0;
+    &__left,
+    &__right {
+        flex: 1 1 0;
+        min-width: 24px;
     }
-}
 
-.navbar.gradient {
-    background: linear-gradient(180deg, #16dac1 0%, rgba(22, 218, 193, 0) 100%);
-    box-shadow: none;
-}
+    &__center {
+        flex: 0 1 0;
+        white-space: nowrap;
+        @apply flex justify-center;
+    }
 
-.navbar.transparent {
-    background: transparent;
-    box-shadow: none;
+    &__actions {
+        @apply flex items-center justify-end space-x-1;
+
+        @include md_screen {
+            @apply space-x-2;
+        }
+    }
+
+    &--transparent {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    &--gradient {
+        background: linear-gradient(180deg, #16dac1 0%, rgba(22, 218, 193, 0) 100%);
+        box-shadow: none;
+    }
+
+    &__burger {
+        @apply bg-white rounded-full flex items-center justify-center border border-stroke;
+        height: 40px;
+        width: 40px;
+        // padding: 12px;
+
+
+        @include md_screen {
+            width: 32px;
+            height: 32px;
+        }
+
+
+        .header__burger__js {
+            @apply hidden;
+        }
+
+        .header__burger__avatar {
+            height: 48px;
+            width: 48px;
+            flex-shrink: 0;
+            @apply hidden;
+
+            @include md_screen {
+                width: 32px;
+                height: 32px;
+                @apply block;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+                @apply border-2 border-gray-200 rounded-full;
+            }
+        }
+
+        .header__burger__js {
+            height: 16px;
+            width: 18px;
+            @apply flex items-center justify-center relative;
+        }
+
+        .header__burger__js span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 18px;
+            opacity: 1;
+            right: 0;
+            background-color: #000;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+            transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+
+            border-radius: 1px;
+
+            &:nth-child(1) {
+                top: 1px;
+            }
+
+            &:nth-child(2) {
+                top: 7px;
+            }
+
+            &:nth-child(3) {
+                top: 13px;
+            }
+        }
+
+        @include md_screen {
+            @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
+            padding: 4px 10px;
+            width: auto;
+            height: 48px;
+
+            @include before {
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-black;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s var(--transition-function);
+                opacity: 0.1;
+            }
+
+            &:hover {
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
+            }
+
+            // &.header__burger--open .header__burger__js span:nth-child(1) {
+            //     top: 7px;
+            //     transform: rotate(45deg);
+            // }
+
+            // &.header__burger--open .header__burger__js span:nth-child(2) {
+            //     transform: rotate(-45deg);
+            //     top: 7px;
+            // }
+        }
+    }
 }
 </style>

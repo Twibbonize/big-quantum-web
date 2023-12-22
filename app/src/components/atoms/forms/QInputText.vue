@@ -14,6 +14,9 @@ const props = defineProps({
     name: {
         type: String
     },
+    id: {
+        type: String
+    },
     placeholder: {
         type: String
     },
@@ -32,6 +35,9 @@ const props = defineProps({
     maxlength: {
         type: Number,
         default: undefined
+    },
+    autocomplete: {
+        type: String
     }
 });
 
@@ -56,13 +62,14 @@ function updateValue(e) {
             <input
                 v-bind="field"
                 :value="value"
-                :id="name"
+                :id="id || name"
                 :class="['field__input', readonly && 'field__input--readonly']"
                 :readonly="readonly"
                 :placeholder="placeholder"
                 @input="updateValue"
                 :minlength="minlength"
                 :maxlength="maxlength"
+                :autocomplete="autocomplete"
             />
         </div>
     </Field>
@@ -82,6 +89,13 @@ function updateValue(e) {
 
         &:focus {
             @apply outline-none bg-white;
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            outline: none;
+            -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
         }
     }
 

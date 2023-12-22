@@ -1,9 +1,20 @@
 .page {
-    padding-top: $navbar-height;
+    padding-top: 93px;
     min-height: calc(100vh - $footer-height);
     width: 100vw;
+
+    @include md_screen {
+        padding-top: 97px;
+    }
 }
 
 .link {
-    @apply text-main-darker hover:underline;
+    @apply text-main-darker hover:underline cursor-pointer;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+    -webkit-appearance: none;
 }
