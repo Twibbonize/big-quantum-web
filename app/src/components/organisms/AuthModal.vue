@@ -329,7 +329,6 @@ const handleAuthNative = async (formValues) => {
 
         @apply flex-grow flex-shrink-0 rounded-l-3xl;
 
-        background-image: url('/assets/img/brandings/patterns.svg');
         @apply bg-gray-50;
         background-repeat: no-repeat;
         background-position: center;
