@@ -50,7 +50,9 @@ const searchQuery = ref('');
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block md:hidden">
-                        <QSearchMobile :variant="navbarColor === 'transparent' ? 'white' : 'black'" />
+                        <QSearchMobile
+                            :variant="navbarColor === 'transparent' ? 'white' : 'black'"
+                        />
                     </div>
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
@@ -59,7 +61,10 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <button :class="['header__burger', open && 'header__burger--open']" @click="open = !open">
+                    <button
+                        :class="['header__burger', open && 'header__burger--open']"
+                        @click="open = !open"
+                    >
                         <div class="header__burger__js">
                             <span></span>
                             <span></span>
@@ -125,12 +130,10 @@ const searchQuery = ref('');
         width: 40px;
         // padding: 12px;
 
-
         @include md_screen {
             width: 32px;
             height: 32px;
         }
-
 
         .header__burger__js {
             @apply hidden;

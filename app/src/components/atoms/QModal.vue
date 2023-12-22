@@ -31,18 +31,34 @@ const emit = defineEmits(['close']);
     <TransitionRoot appear :show="show" as="template">
         <Dialog @close="!isStatic && $emit('close')">
             <div :class="['dialog', `dialog--${position}`, `dialog--${size}`]">
-                <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
-                    leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
+                <TransitionChild
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0"
+                    enter-to="opacity-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100"
+                    leave-to="opacity-0"
+                >
                     <div class="dialog__overlay" />
                 </TransitionChild>
 
                 <div class="dialog__content">
                     <div class="dialog__panel-wrapper">
-                        <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
-                            enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95">
+                        <TransitionChild
+                            as="template"
+                            enter="duration-300 ease-out"
+                            enter-from="opacity-0 scale-95"
+                            enter-to="opacity-100 scale-100"
+                            leave="duration-200 ease-in"
+                            leave-from="opacity-100 scale-100"
+                            leave-to="opacity-0 scale-95"
+                        >
                             <DialogPanel as="template">
-                                <div class="dialog__panel" :style="{ minHeight: minHeight ? `${minHeight}px` : 'auto' }">
+                                <div
+                                    class="dialog__panel"
+                                    :style="{ minHeight: minHeight ? `${minHeight}px` : 'auto' }"
+                                >
                                     <div v-if="$slots.header" class="dialog__panel__header">
                                         <slot name="header"></slot>
                                     </div>
@@ -55,7 +71,6 @@ const emit = defineEmits(['close']);
                                         <slot name="footer"></slot>
                                     </div>
                                 </div>
-
                             </DialogPanel>
                         </TransitionChild>
                     </div>
@@ -71,7 +86,7 @@ const emit = defineEmits(['close']);
     z-index: 9995;
 
     .dialog__overlay {
-        @apply fixed inset-0 bg-black/25;
+        @apply fixed inset-0 bg-black/60;
         z-index: 9996;
         pointer-events: none;
     }
@@ -108,7 +123,7 @@ const emit = defineEmits(['close']);
     }
 
     &.dialog--lg .dialog__panel {
-        @apply max-w-6xl;
+        @apply max-w-xl;
     }
 
     .dialog__panel {
