@@ -1,24 +1,18 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 
 const props = defineProps({
     text: {
         type: String,
         required: true
-    },
-    maxLength: {
-        type: Number,
-        default: 148
     }
 });
 
 const showFullText = ref(false);
+const textContainer = ref(null);
 
-const truncatedText = computed(() => {
-    return props.text.length > props.maxLength
-        ? props.text.slice(0, props.maxLength) + '...'
-        : props.text;
-});
+const isMobile = inject('isMobile');
+
 
 const toggleText = () => {
     showFullText.value = !showFullText.value;
@@ -27,10 +21,28 @@ const toggleText = () => {
 const toggleTextLabel = computed(() => {
     return showFullText.value ? 'Show less' : 'more';
 });
+
+
+const maxLength = computed(() => {
+    if (!textContainer.value) {
+        return 60;
+    }
+
+    const averageCharWidth = (isMobile.value ? 0.6 : 0.5 ) * 14;
+    const maxCharacters = Math.floor(textContainer.value.offsetWidth / averageCharWidth) * 2 - 10;
+    return maxCharacters;
+});
+
+const truncatedText = computed(() => {
+    return props.text.length > maxLength.value
+        ? props.text.slice(0, maxLength.value) + '...'
+        : props.text;
+});
+
 </script>
 
 <template>
-    <div class="collapsible-text">
+    <div ref="textContainer" class="collapsible-text">
         <span v-if="!showFullText" class="collapsible-text__truncated">
             {{ truncatedText }}
         </span>
@@ -44,6 +56,6 @@ const toggleTextLabel = computed(() => {
 
 <style scoped lang="scss">
 .collapsible-text {
-    @apply prose prose-sm prose-a:cursor-pointer prose-a:ml-1;
+    @apply prose md:prose-sm prose-a:cursor-pointer prose-a:ml-1;
 }
 </style>
