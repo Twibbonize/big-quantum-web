@@ -18,6 +18,9 @@ defineProps({
         type: String,
         default: 'md',
         validators: (value) => ['md', 'lg']
+    },
+    minHeight: {
+        type: Number
     }
 });
 
@@ -28,41 +31,31 @@ const emit = defineEmits(['close']);
     <TransitionRoot appear :show="show" as="template">
         <Dialog @close="!isStatic && $emit('close')">
             <div :class="['dialog', `dialog--${position}`, `dialog--${size}`]">
-                <TransitionChild
-                    as="template"
-                    enter="duration-300 ease-out"
-                    enter-from="opacity-0"
-                    enter-to="opacity-100"
-                    leave="duration-200 ease-in"
-                    leave-from="opacity-100"
-                    leave-to="opacity-0"
-                >
+                <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
+                    leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
                     <div class="dialog__overlay" />
                 </TransitionChild>
 
                 <div class="dialog__content">
                     <div class="dialog__panel-wrapper">
-                        <TransitionChild
-                            as="template"
-                            enter="duration-300 ease-out"
-                            enter-from="opacity-0 scale-95"
-                            enter-to="opacity-100 scale-100"
-                            leave="duration-200 ease-in"
-                            leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95"
-                        >
-                            <DialogPanel class="dialog__panel">
-                                <div v-if="$slots.header" class="dialog__panel__header">
-                                    <slot name="header"></slot>
+                        <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
+                            enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
+                            leave-to="opacity-0 scale-95">
+                            <DialogPanel as="template">
+                                <div class="dialog__panel" :style="{ minHeight: minHeight ? `${minHeight}px` : 'auto' }">
+                                    <div v-if="$slots.header" class="dialog__panel__header">
+                                        <slot name="header"></slot>
+                                    </div>
+
+                                    <div class="dialog__panel__body">
+                                        <slot name="body"></slot>
+                                    </div>
+
+                                    <div v-if="$slots.footer" class="dialog__panel__footer">
+                                        <slot name="footer"></slot>
+                                    </div>
                                 </div>
 
-                                <div class="dialog__panel__body">
-                                    <slot name="body"></slot>
-                                </div>
-
-                                <div v-if="$slots.footer" class="dialog__panel__footer">
-                                    <slot name="footer"></slot>
-                                </div>
                             </DialogPanel>
                         </TransitionChild>
                     </div>
@@ -121,7 +114,7 @@ const emit = defineEmits(['close']);
     .dialog__panel {
         @apply w-full max-w-md bg-white shadow-card text-left relative rounded-3xl overflow-auto flex flex-col;
         max-height: 90vh;
-        min-height: 693px;
+        // min-height: 693px;
     }
 
     .dialog__panel__header {
@@ -133,7 +126,7 @@ const emit = defineEmits(['close']);
     }
 
     .dialog__panel__body {
-        @apply max-h-full h-0 flex-grow overflow-auto;
+        @apply max-h-full flex-grow overflow-auto;
     }
 }
 

@@ -41,7 +41,7 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="modal.show" :position="modalPosition" size="lg">
+    <QModal :show="modal.show" :position="modalPosition" size="lg" :min-height="693">
         <template #body>
             <div class="login">
                 <div v-show="modal.authOption === 'sign-in'" class="login__wrapper">
@@ -80,7 +80,7 @@ const handleAuthNative = async (formValues) => {
                             class="login__inner"
                             v-slot="{ meta, values }"
                         >
-                            <div class="space-y-">
+                            <div class="space-y-8">
                                 <h1 class="text-2xl font-black">Sign In</h1>
 
                                 <div class="space-y-4">
@@ -301,7 +301,11 @@ const handleAuthNative = async (formValues) => {
 
 <style scoped lang="scss">
 .login {
-    @apply h-full bg-white rounded-3xl;
+    @apply bg-white rounded-3xl h-full;
+
+    @include md_screen {
+        height: 693px;
+    }
 
     .login__wrapper {
         @apply relative flex flex-col h-full;
