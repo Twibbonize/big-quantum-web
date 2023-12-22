@@ -4,14 +4,15 @@ import QModal from '@/components/atoms/QModal.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QInputPassword from '@/components/atoms/forms/QInputPassword.vue';
 import { Form as VeeForm } from 'vee-validate';
-import { computed, inject, onMounted, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { object as yupObject, string as yupString } from 'yup';
 import { authNative } from '@/apis';
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '@/stores/authStore';
+const authStore = useAuthStore();
+const { modal } = storeToRefs(authStore);
 
-const show = ref(true);
 const isMobile = inject('isMobile');
-
-const authOption = ref('sign-in');
 
 const modalPosition = computed(() => {
     return isMobile.value ? 'screen' : 'center';
@@ -40,12 +41,12 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="show" :position="modalPosition" size="lg">
+    <QModal :show="modal.show" :position="modalPosition" size="lg">
         <template #body>
             <div class="login">
-                <div v-show="authOption === 'sign-in'" class="login__wrapper">
+                <div v-show="modal.authOption === 'sign-in'" class="login__wrapper">
                     <div class="login__close">
-                        <QButton variant="black" size="sm" square @click="show = false">
+                        <QButton variant="black" size="sm" square @click="modal.show = false">
                             <i class="ri-close-fill ri-lg"></i>
                         </QButton>
                     </div>
@@ -63,7 +64,9 @@ const handleAuthNative = async (formValues) => {
 
                                 <div class="text-sm md:text-base">
                                     <span class="font-medium">Doesn't have a account yet? </span>
-                                    <a class="link" @click="authOption = 'sign-up'">Sign Up</a>
+                                    <a class="link" @click="modal.authOption = 'sign-up'"
+                                        >Sign Up</a
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -147,9 +150,9 @@ const handleAuthNative = async (formValues) => {
                     </div>
                 </div>
 
-                <div v-show="authOption === 'sign-up'" class="login__wrapper">
+                <div v-show="modal.authOption === 'sign-up'" class="login__wrapper">
                     <div class="login__close">
-                        <QButton variant="black" size="sm" square @click="show = false">
+                        <QButton variant="black" size="sm" square @click="modal.show = false">
                             <i class="ri-close-fill ri-lg"></i>
                         </QButton>
                     </div>
@@ -167,7 +170,9 @@ const handleAuthNative = async (formValues) => {
 
                                 <div class="text-sm md:text-base">
                                     <span class="font-medium">Already have an account? </span>
-                                    <a class="link" @click="authOption = 'sign-in'">Sign in</a>
+                                    <a class="link" @click="modal.authOption = 'sign-in'"
+                                        >Sign in</a
+                                    >
                                 </div>
                             </div>
                         </div>

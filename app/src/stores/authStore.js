@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia';
 
-export const useAccountStore = defineStore('accountStore', {
+export const useAuthStore = defineStore('authStore', {
     state: () => ({
         user: null,
         loading: false,
+        modal: {
+            show: false,
+            authOption: 'sign-in'
+        },
         error: null,
         verifyPayload: {
             otp: null,

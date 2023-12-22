@@ -66,6 +66,7 @@ const searchQuery = ref('');
                         <div class="header__burger__js">
                             <span></span>
                             <span></span>
+                            <span></span>
                         </div>
 
                         <div class="header__burger__avatar">
@@ -88,7 +89,7 @@ const searchQuery = ref('');
         padding-top: 27px;
         padding-bottom: 18px;
 
-        @apply w-full flex items-center justify-between container px-5 md:px-0 relative;
+        @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;
     }
 
     &__left,
@@ -122,7 +123,36 @@ const searchQuery = ref('');
     }
 
     &__burger {
-        @apply flex items-center space-x-3 rounded-full bg-white border border-gray-200 flex-shrink-0;
+        @apply flex items-center rounded-full bg-white border border-transparent flex-shrink-0;
+
+        @include sm {
+            @apply bg-transparent flex items-center;
+            height: 48px;
+            width: 48px;
+            padding: 12px;
+
+            .header__burger__js {
+                @apply hidden;
+            }
+
+            .header__burger__avatar {
+                height: 24px;
+                width: 24px;
+                flex-shrink: 0;
+                margin: auto;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    @apply border border-gray-200 rounded-full;
+                }
+            }
+        }
+
+        @include md_screen {
+            @apply space-x-2 border-gray-200;
+        }
+
         padding: 4px 0px;
         padding-left: 10px;
         padding-right: 6px;
@@ -155,24 +185,30 @@ const searchQuery = ref('');
                 transform 0.2s ease-in-out,
                 top 0.2s ease-in-out;
 
+            border-radius: 1px;
+
             &:nth-child(1) {
-                top: 4px;
+                top: 1px;
             }
 
             &:nth-child(2) {
-                top: 11px;
+                top: 7px;
+            }
+
+            &:nth-child(3) {
+                top: 13px;
             }
         }
 
-        &.header__burger--open .header__burger__js span:nth-child(1) {
-            top: 7px;
-            transform: rotate(45deg);
-        }
+        // &.header__burger--open .header__burger__js span:nth-child(1) {
+        //     top: 7px;
+        //     transform: rotate(45deg);
+        // }
 
-        &.header__burger--open .header__burger__js span:nth-child(2) {
-            transform: rotate(-45deg);
-            top: 7px;
-        }
+        // &.header__burger--open .header__burger__js span:nth-child(2) {
+        //     transform: rotate(-45deg);
+        //     top: 7px;
+        // }
     }
 }
 </style>
