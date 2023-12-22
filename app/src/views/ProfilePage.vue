@@ -213,7 +213,6 @@ const campaigns = computed(() => {
         </QModal>
 
         <ReportModal :show="reportModal" :uuid="creatorUuid" @close="reportModal = false" />
-
         <div class="profile-top">
             <div class="profile-top__banner"></div>
             <div class="profile-top__wrapper container grid grid-cols-12 gap-0 md:gap-4">

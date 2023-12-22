@@ -50,6 +50,10 @@ const collectionsCard = computed(() => {
     ];
 });
 
+const props = defineProps({
+    width: Number,
+});
+
 let moodIndex = ref(0);
 
 const setMoodIndex = (index) => {
@@ -64,8 +68,11 @@ const setMoodIndex = (index) => {
             Make any moments special with our curated collection of templates. Perfect for every
             occasions.
         </p>
-        <div class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10">
+        <div
+            class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10 overflow-hidden"
+        >
             <QSlider
+                :key="width"
                 class="-mx-5 w-fit"
                 direction="horizontal"
                 :loop="false"

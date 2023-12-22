@@ -97,6 +97,7 @@ const handleNext = () => {
         </p>
         <div class="container mx-auto">
             <QSlider
+                :key="width"
                 id="sliderStories"
                 class="slider mt-16 w-100"
                 :slides-per-view="slidesPerView"

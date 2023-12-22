@@ -12,11 +12,11 @@ const lottieDimension = computed(() => {
 });
 
 const creatorsLogo = [
-    '/creators-logo-1.svg',
-    '/creators-logo-2.svg',
-    '/creators-logo-3.svg',
-    '/creators-logo-4.svg',
-    '/creators-logo-5.svg'
+    'creators-logo-1.svg',
+    'creators-logo-2.svg',
+    'creators-logo-3.svg',
+    'creators-logo-4.svg',
+    'creators-logo-5.svg'
 ];
 
 import QButton from '@/components/atoms/QButton.vue';
@@ -61,15 +61,14 @@ import gatherJSON from '../../assets/lottie/gather.json';
                             <div
                                 class="banner-creators__btn-container flex justify-center items-center mt-4"
                             >
-                                <RouterLink to="/creators">
-                                    <QButton
-                                        class="text-sm ws-nowrap"
-                                        variant="accent"
-                                        border-radius="circle"
-                                    >
-                                        Learn More
-                                    </QButton>
-                                </RouterLink>
+                                <QButton
+                                    class="text-sm ws-nowrap"
+                                    variant="accent"
+                                    border-radius="circle"
+                                    @click="$router.push('/creators')"
+                                >
+                                    Learn More
+                                </QButton>
                                 <span class="text-sm text-white ml-4">or</span>
                                 <QButton
                                     class="!text-white text-sm ws-nowrap"
@@ -117,7 +116,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
     }
 
     .blob-bg {
-        position: absolute;
+        @apply absolute pointer-events-none;
         bottom: -30%;
         left: 50%;
         transform: translateX(-50%);
@@ -125,6 +124,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
         width: 920px;
         height: 640px;
         max-width: 940px;
+        mix-blend-mode: lighten;
     }
     &__ellipse {
         position: absolute;
@@ -153,11 +153,12 @@ import gatherJSON from '../../assets/lottie/gather.json';
 @media screen and (min-width: 640px) {
     .banner-creators {
         .blob-bg {
-            position: absolute;
+            @apply absolute pointer-events-none;
             bottom: -40%;
             left: 50%;
             transform: translateX(-50%);
             animation: 8s glow infinite ease-in-out alternate;
+            mix-blend-mode: lighten;
         }
     }
 }

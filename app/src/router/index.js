@@ -4,6 +4,7 @@ import CreatorsPage from '@/views/CreatorsPage.vue';
 import PlusPage from '@/views/PlusPage.vue';
 import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 
 const router = createRouter({
@@ -35,16 +36,25 @@ const router = createRouter({
             component: TestPage
         },
         {
-            path: '/profile',
+            path: '/u/universetech',
             name: 'profile',
             component: ProfilePage
+        },
+        {
+            path: '/campaign',
+            name: 'campaign',
+            component: CampaignPage
         },
         {
             path: '/settings',
             name: 'settings',
             component: PreferencesPage
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 };
+    }
 });
 
 export default router;

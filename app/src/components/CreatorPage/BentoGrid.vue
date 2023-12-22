@@ -50,7 +50,7 @@
 <style scoped lang="scss">
 .creators-features {
     .card {
-        @apply p-6 sm:p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px];
+        @apply p-6 sm:p-10 bg-white h-[360px] sm:h-[420px] rounded-[20px] w-full;
         border: 1px solid rgba(27, 27, 27, 0.1);
         // height: 360px;
         background-position: right bottom;
@@ -75,6 +75,31 @@
     .card-5 {
         background-image: url('../../assets/img/campaigns/bento-5.png');
         background-size: 80%;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .creators-features {
+        .card-1 {
+            background-image: url('../../assets/img/campaigns/bento-1.png');
+            background-size: 50%;
+        }
+        .card-2 {
+            background-image: url('../../assets/img/campaigns/bento-2.png');
+            background-size: 50%;
+        }
+        .card-3 {
+            background-image: url('../../assets/img/campaigns/bento-3.png');
+            background-size: 50%;
+        }
+        .card-4 {
+            background-image: url('../../assets/img/campaigns/bento-4.png');
+            background-size: 50%;
+        }
+        .card-5 {
+            background-image: url('../../assets/img/campaigns/bento-5.png');
+            background-size: 50%;
+        }
     }
 }
 </style>

@@ -4,6 +4,7 @@ import { useWindowSize } from '@vueuse/core';
 import HeroPlus from '@/components/PlusPage/HeroPlus.vue';
 import CampaignCollections from '@/components/PlusPage/CampaignCollections.vue';
 import FeaturesList from '@/components/PlusPage/FeaturesList.vue';
+import PackageSelection from '@/components/PlusPage/PackageSelection.vue';
 
 const emit = defineEmits(['change-navbar']);
 const content = ref(null);
@@ -29,8 +30,9 @@ onUnmounted(() => {
     <div class="plus-page">
         <HeroPlus :width="width" :height="height" />
         <div ref="content"></div>
-        <CampaignCollections />
+        <CampaignCollections :width="width"/>
         <FeaturesList />
+        <PackageSelection />
     </div>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup>
 import numeral from 'numeral';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
     number: Number,
@@ -10,20 +11,22 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="tf-author-box style-2 hv-border mb-6 w-full">
-        <div class="order">{{ `#${props.number}` }}</div>
-        <div class="author-avatar rounded-full">
-            <img :src="avatar" alt="" class="avatar rounded-full" />
+    <RouterLink to="/u/universetech">
+        <div class="tf-author-box style-2 hv-border mb-6 w-full">
+            <div class="order">{{ `#${props.number}` }}</div>
+            <div class="author-avatar rounded-full">
+                <img :src="avatar" alt="" class="avatar rounded-full" />
+            </div>
+            <div class="author-infor">
+                <h5>
+                    <RouterLink to="/u/universetech">{{ name }}</RouterLink>
+                </h5>
+                <h6 class="price gem style-1">
+                    <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
+                </h6>
+            </div>
         </div>
-        <div class="author-infor">
-            <h5>
-                <a href="author-2.html">{{ name }}</a>
-            </h5>
-            <h6 class="price gem style-1">
-                <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
-            </h6>
-        </div>
-    </div>
+    </RouterLink>
 </template>
 
 <style lang="scss">
@@ -98,8 +101,9 @@ const props = defineProps({
 
 .tf-author-box .author-avatar img {
     border-radius: 50%;
-    height: 80px;
-    width: 80px;
+    aspect-ratio: 1;
+    max-height: 80px;
+    max-width: 80px;
 }
 
 .tf-author-box.style-2.type-1 {

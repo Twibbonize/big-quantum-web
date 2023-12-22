@@ -55,6 +55,12 @@ onUnmounted(() => {
         box-sizing: border-box;
     }
 
+    .banner-creators {
+        .bg {
+            border-radius: 0 !important;
+        }
+    }
+
     .banner-creators__spark {
         top: 24px;
     }
