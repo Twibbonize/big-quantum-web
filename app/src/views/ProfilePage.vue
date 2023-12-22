@@ -6,6 +6,7 @@ import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QModal from '@/components/atoms/QModal.vue';
+import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
@@ -33,6 +34,13 @@ const tabs = [
         slot: 'collections'
     }
 ];
+
+const profile = {
+    name: 'Universe Tech',
+    username: '@universetech',
+    bio: 'Embark on a cosmic journey with Universe Tech! 🌌✨ Discover a world where style meets innovation. Elevate your tech game with sleek designs and powerful performance. Join us inredefining the future of connectivity. 🚀 #UniverseTech #InnovationUnleashed #TechStyle',
+    link: 'www.universe-tech.com'
+};
 
 const activeTab = ref(0);
 const creatorUuid = '1920371293719237912';
@@ -141,7 +149,7 @@ const campaigns = computed(() => {
 </script>
 
 <template>
-    <div class="page">
+    <div class="page profile">
         <QModal :show="showAbout" @close="showAbout = false">
             <template #header v-slot="{ close }">
                 <div class="flex items-center justify-between w-full">
@@ -156,10 +164,7 @@ const campaigns = computed(() => {
             <template #body>
                 <div class="space-y-3 px-5 pt-3 pb-6">
                     <div class="prose prose-sm">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure doloribus
-                        ipsum, consequatur earum inventore eum blanditiis. Repudiandae, nihil,
-                        quaerat earum illo magnam laboriosam omnis debitis nisi, dolores
-                        voluptatibus ipsum doloremque.
+                        {{ profile.bio }}
                     </div>
 
                     <div class="border-t border-light pt-3">
@@ -213,218 +218,33 @@ const campaigns = computed(() => {
         </QModal>
 
         <ReportModal :show="reportModal" :uuid="creatorUuid" @close="reportModal = false" />
-        <div class="profile-top">
-            <div class="profile-top__banner"></div>
-            <div class="profile-top__wrapper container grid grid-cols-12 gap-0 md:gap-4">
-                <div class="col-span-12 lg:col-span-8">
-                    <div class="profile-top__main">
-                        <div class="profile-top__main__upper">
-                            <div class="profile-creator">
-                                <img
-                                    class="profile-creator__avatar"
-                                    src="/assets/img/sample/sample-avatar-1.jpg"
-                                    alt=""
-                                />
+        <div class="profile__top">
+            <div class="profile__banner"></div>
 
-                                <div class="profile-creator__ids">
-                                    <h1 class="profile-creator__name">Universe Tech</h1>
-                                    <div class="profile-creator__username">@universetech</div>
-                                </div>
-                            </div>
+            <div class="profile__avatar">
+                <img
+                    class="profile__avatar__img"
+                    src="/assets/img/sample/sample-avatar-1.jpg"
+                    alt="Universe Tech"
+                />
+            </div>
 
-                            <Popover>
-                                <div class="profile-top__more">
-                                    <QButton circle variant="secondary">
-                                        <PopoverButton
-                                            as="span"
-                                            class="h-full w-full flex items-center justify-center"
-                                        >
-                                            <i class="ri-more-line ri-lg"></i>
-                                        </PopoverButton>
-                                    </QButton>
-
-                                    <transition
-                                        enter-active-class="transition duration-200 ease-out"
-                                        enter-from-class="translate-y-1 opacity-0"
-                                        enter-to-class="translate-y-0 opacity-100"
-                                        leave-active-class="transition duration-150 ease-in"
-                                        leave-from-class="translate-y-0 opacity-100"
-                                        leave-to-class="translate-y-1 opacity-0"
-                                    >
-                                        <PopoverPanel
-                                            class="absolute z-10 mt-3 w-56 rounded-xl shadow-card top-auto right-0 transform py-3 bg-white"
-                                        >
-                                            <ul class="menu">
-                                                <li class="menu__item">
-                                                    <span class="menu__title"
-                                                        >Share This Profile</span
-                                                    >
-                                                </li>
-
-                                                <li class="menu__item">
-                                                    <a class="menu__link">
-                                                        <i class="ri-facebook-line ri-lg"></i>
-                                                        <span>Facebook</span>
-                                                    </a>
-                                                </li>
-
-                                                <li class="menu__item">
-                                                    <a class="menu__link">
-                                                        <i class="ri-whatsapp-line ri-lg"></i>
-                                                        <span>WhatsApp</span>
-                                                    </a>
-                                                </li>
-
-                                                <li class="menu__item">
-                                                    <a class="menu__link">
-                                                        <i class="ri-twitter-x-line"></i>
-                                                        <span>Twitter</span>
-                                                    </a>
-                                                </li>
-
-                                                <li class="menu__item">
-                                                    <div class="menu__separator"></div>
-                                                </li>
-
-                                                <li>
-                                                    <a
-                                                        class="menu__link"
-                                                        @click="reportModal = true"
-                                                    >
-                                                        <i class="ri-flag-line"></i>
-                                                        <span>Report</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </PopoverPanel>
-                                    </transition>
-                                </div>
-                            </Popover>
+            <div class="container px-5 lg:px-0">
+                <div class="flex items-center justify-between">
+                    <div class="profile__common">
+                        <h1 class="profile__name">Universe Tech</h1>
+                        <p class="profile__username">@universetech</p>
+                        <QEllipsisText :text="profile.bio" />
+                        <div class="profile__web">
+                            <i class="ri-links-line"></i>
+                            <a
+                                href="www.universe-tech.com"
+                                target="_blank"
+                                rel="nofollow"
+                                class="link"
+                                >www.universe-tech.com</a
+                            >
                         </div>
-                        <div class="profile-top__main__lower">
-                            <div class="flex items-center justify-between">
-                                <ul class="flex space-x-6 w-full">
-                                    <li class="flex-grow md:flex-grow-0">
-                                        <div
-                                            class="flex flex-col items-center md:items-start space-y-1 justify-between"
-                                        >
-                                            <div class="text-sm font-medium tracking-wide">
-                                                Campaigns
-                                            </div>
-                                            <div class="font-medium text-black opacity-60">3</div>
-                                        </div>
-                                    </li>
-                                    <li class="flex-grow md:flex-grow-0">
-                                        <div
-                                            class="flex flex-col items-center md:items-start space-y-1 justify-between"
-                                        >
-                                            <div class="text-sm font-medium tracking-wide">
-                                                Supporters
-                                            </div>
-                                            <div class="font-medium text-black opacity-60">
-                                                85.5k
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li class="flex-grow md:flex-grow-0">
-                                        <div
-                                            class="flex flex-col items-center md:items-start space-y-1 justify-between"
-                                        >
-                                            <div class="text-sm font-medium tracking-wide">
-                                                Joined
-                                            </div>
-                                            <div class="font-medium text-black opacity-60">
-                                                2 Dec 2023
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li class="hidden md:inline">
-                                        <div
-                                            class="flex flex-col items-center md:items-start space-y-1 justify-between"
-                                        >
-                                            <div class="text-sm font-medium tracking-wide">
-                                                Website
-                                            </div>
-
-                                            <QButton variant="neutral" size="xs">
-                                                <i class="ri-global-line mr-1"></i>
-                                                <span class="font-semibold text-black"
-                                                    >Website</span
-                                                >
-                                            </QButton>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                                <div class="hidden md:flex items-center">
-                                    <QButton
-                                        variant="neutral"
-                                        size="sm"
-                                        circle
-                                        @click="reportModal = true"
-                                    >
-                                        <i class="ri-flag-line"></i>
-                                    </QButton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-span-12 lg:col-span-4">
-                    <div class="profile-top__trivial">
-                        <QCard paddings="padless" :shadow="!isMobile">
-                            <div class="space-y-2 p-5">
-                                <h3 class="text-sm font-medium tracking-wide">About</h3>
-                                <p class="prose prose-sm">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-                                    sunt rerum facere repellendus esse amet veritatis...
-                                </p>
-
-                                <div class="flex justify-end">
-                                    <a
-                                        class="flex items-center space-x-2 cursor-pointer"
-                                        @click="showAbout = true"
-                                    >
-                                        <span class="text-xs font-semibold">Read More</span>
-                                        <QButton circle variant="neutral" size="xs">
-                                            <i class="ri-arrow-right-line"></i>
-                                        </QButton>
-                                    </a>
-                                </div>
-                            </div>
-                        </QCard>
-
-                        <QCard
-                            paddings="padless"
-                            :shadow="!isMobile"
-                            :rounded="!isMobile"
-                            class="hidden lg:block flex-grow"
-                        >
-                            <div class="px-5 py-3 h-full flex items-center">
-                                <div class="flex items-center justify-between w-full">
-                                    <div class="text-sm font-medium tracking-wide leading-none">
-                                        Share this Profile
-                                    </div>
-
-                                    <div class="flex space-x-2">
-                                        <QButton variant="neutral" circle size="sm">
-                                            <i class="ri-facebook-fill"></i>
-                                        </QButton>
-
-                                        <QButton variant="neutral" circle size="sm">
-                                            <i class="ri-whatsapp-line ri-lg"></i>
-                                        </QButton>
-
-                                        <QButton variant="neutral" circle size="sm">
-                                            <i class="ri-twitter-x-line"></i>
-                                        </QButton>
-                                    </div>
-                                </div>
-                            </div>
-                        </QCard>
                     </div>
                 </div>
             </div>
@@ -449,25 +269,49 @@ const campaigns = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.profile-top {
-    @apply bg-gray-50;
-
-    @include md_screen {
-        @apply bg-transparent;
-    }
-
-    &__banner {
+.profile {
+    .profile__top .profile__banner {
         height: 160px;
         background-image: url('/assets/img/banners/banner-1.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        margin-top: -16px;
 
         @include lg_screen {
             height: 360px;
         }
     }
 
+    .profile__avatar {
+        @apply container px-5 lg:px-0 -mt-16;
+
+        .profile__avatar__img {
+            height: 132px;
+            width: 132px;
+            @apply rounded-full border-2 border-stroke;
+        }
+    }
+
+    .profile__common {
+        @apply mt-6 space-y-1;
+        max-width: 720px;
+    }
+
+    .profile__name {
+        @apply text-4xl font-semibold;
+    }
+
+    .profile__username {
+        @apply text-content;
+    }
+
+    .profile__web {
+        @apply flex items-center space-x-1 text-content;
+    }
+}
+
+.profile-top {
     &__wrapper {
         @include lg_screen {
             @apply -mt-24;
@@ -593,7 +437,7 @@ const campaigns = computed(() => {
     }
 
     &__link {
-        @apply px-4 py-2 font-medium  text-sm flex items-center space-x-2 transition-colors duration-300 cursor-pointer;
+        @apply px-4 py-2 font-medium text-sm flex items-center space-x-2 transition-colors duration-300 cursor-pointer;
 
         i {
             width: 24px;

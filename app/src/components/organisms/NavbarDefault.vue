@@ -50,7 +50,9 @@ const searchQuery = ref('');
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block md:hidden">
-                        <QSearchMobile v-model="searchQuery" />
+                        <QSearchMobile
+                            :variant="navbarColor === 'transparent' ? 'white' : 'black'"
+                        />
                     </div>
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
@@ -59,7 +61,10 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <button :class="['header__burger', open && 'header__burger--open']" @click="open = !open">
+                    <button
+                        :class="['header__burger', open && 'header__burger--open']"
+                        @click="open = !open"
+                    >
                         <div class="header__burger__js">
                             <span></span>
                             <span></span>
@@ -102,7 +107,7 @@ const searchQuery = ref('');
     }
 
     &__actions {
-        @apply flex items-center justify-end;
+        @apply flex items-center justify-end space-x-1;
     }
 
     &--transparent {
@@ -116,25 +121,24 @@ const searchQuery = ref('');
     }
 
     &__burger {
-        @apply bg-transparent flex items-center border border-transparent;
-        height: 48px;
-        width: 48px;
-        padding: 12px;
+        @apply bg-transparent rounded-full flex items-center border border-transparent;
+        height: 32px;
+        width: 32px;
+        // padding: 12px;
 
         .header__burger__js {
             @apply hidden;
         }
 
         .header__burger__avatar {
-            height: 24px;
-            width: 24px;
+            height: 32px;
+            width: 32px;
             flex-shrink: 0;
-            margin: auto;
 
             img {
                 height: 100%;
                 width: 100%;
-                @apply border border-gray-200 rounded-full;
+                @apply border-2 border-gray-200 rounded-full;
             }
         }
 
@@ -142,7 +146,7 @@ const searchQuery = ref('');
             @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
             padding: 4px 10px;
             width: auto;
-
+            height: 48px;
 
             @include before {
                 height: 0;
@@ -173,7 +177,7 @@ const searchQuery = ref('');
                 display: block;
                 position: absolute;
                 height: 2px;
-                width: 100%;
+                width: 18px;
                 opacity: 1;
                 right: 0;
                 background-color: #000;
@@ -215,9 +219,6 @@ const searchQuery = ref('');
             //     top: 7px;
             // }
         }
-
-
-
     }
 }
 </style>
