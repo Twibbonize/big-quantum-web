@@ -30,7 +30,7 @@ onUnmounted(() => {
     <div class="plus-page">
         <HeroPlus :width="width" :height="height" />
         <div ref="content"></div>
-        <CampaignCollections :width="width"/>
+        <CampaignCollections :width="width" />
         <FeaturesList />
         <PackageSelection />
     </div>

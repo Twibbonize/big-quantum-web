@@ -1,5 +1,14 @@
+<script setup>
+defineProps({
+    variant: {
+        type: String,
+        default: 'black'
+    }
+});
+</script>
+
 <template>
-    <div class="search">
+    <div :class="['search', `search--${variant}`]">
         <button class="search__button">
             <i class="ri-search-line ri-xl"></i>
         </button>
@@ -11,6 +20,9 @@
 
 <style scoped lang="scss">
 .search {
+    &.search--white .search__button {
+        @apply text-white;
+    }
     .search__button {
         @apply flex items-center justify-center;
 
