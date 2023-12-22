@@ -145,7 +145,7 @@ watch(open, (newValue) => {
     }
 
     .expand-menu__overlay {
-        height: 100vh;
+        height: 100dvh;
         width: 100vw;
         backdrop-filter: blur(20px);
         background: rgba(255, 255, 255, 0.5);
