@@ -47,7 +47,6 @@ const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
-const profileBioEl = ref(null);
 
 // const campaigns = /
 
@@ -148,15 +147,6 @@ const campaigns = computed(() => {
     });
 });
 
-const bioMaxLength = computed(() => {
-    if (!profileBioEl.value) {
-        return 60;
-    }
-
-    const averageCharWidth = 0.5 * 14;
-    const maxCharacters = Math.floor(profileBioEl.value.offsetWidth / averageCharWidth) * 2 - 8;
-    return maxCharacters;
-});
 </script>
 
 <template>
@@ -248,8 +238,8 @@ const bioMaxLength = computed(() => {
                         <div class="space-y-1">
                             <h1 class="profile__name">Universe Tech</h1>
                             <p class="profile__username">@universetech</p>
-                            <div ref="profileBioEl" class="profile__bio">
-                                <QEllipsisText :text="profile.bio" :max-length="bioMaxLength" />
+                            <div class="profile__bio">
+                                <QEllipsisText :text="profile.bio" />
                             </div>
                             <div class="profile__web text-content">
                                 <i class="ri-links-line"></i>
@@ -296,7 +286,7 @@ const bioMaxLength = computed(() => {
                                         <div class="p-1">
                                             <ul class="menu">
                                                 <li class="menu__item">
-                                                    <a href="#" class="menu__link" @click="reportModal = true">
+                                                    <a class="menu__link" @click="reportModal = true">
                                                         <i class="ri-flag-line ri-1x"></i>
                                                         <span>Report Profile</span>
                                                     </a>
