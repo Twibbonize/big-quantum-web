@@ -41,49 +41,50 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="modal.show" :position="modalPosition" size="lg" :min-height="693">
+    <QModal :show="modal.show" :position="modalPosition" size="lg">
+        <template #header>
+            <div class="flex justify-end">
+                <QButton variant="subtle" size="sm" square @click="modal.show = false">
+                    <i class="ri-close-fill ri-xl"></i>
+                </QButton>
+            </div>
+        </template>
         <template #body>
             <div class="login">
                 <div v-show="modal.authOption === 'sign-in'" class="login__wrapper">
-                    <div class="login__close">
-                        <QButton variant="black" size="sm" square @click="modal.show = false">
-                            <i class="ri-close-fill ri-lg"></i>
-                        </QButton>
-                    </div>
-
-                    <div class="login__left">
-                        <div class="login__inner h-full">
-                            <div class="flex flex-col h-full justify-between">
-                                <div class="flex items-end justify-between">
-                                    <img
-                                        src="/assets/img/logos/twibbonize-logo-black.svg"
-                                        class="mt-4 h-6"
-                                        alt="Twibbonize"
-                                    />
-                                </div>
-
-                                <div class="text-base">
-                                    <span class="font-medium">Doesn't have a account yet? </span>
-                                    <a
-                                        class="link font-semibold"
-                                        @click="modal.authOption = 'sign-up'"
-                                        >Sign Up</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="login__right">
                         <VeeForm
                             :validation-schema="signInValidation"
                             class="login__inner"
                             v-slot="{ meta, values }"
                         >
-                            <div class="space-y-8">
-                                <h1 class="text-2xl font-black">Sign In</h1>
+                            <div class="space-y-10">
+                                <h1 class="text-2xl font-bold">Log in with social media</h1>
 
-                                <div class="space-y-4">
+                                <div class="flex space-x-3">
+                                    <QButton variant="secondary" size="lg" circle>
+                                        <img
+                                            src="/assets/img/logos/google.svg"
+                                            class="w-4 h-4"
+                                            alt="Google Logo"
+                                        />
+                                    </QButton>
+
+                                    <QButton variant="secondary" size="lg" circle>
+                                        <img
+                                            src="/assets/img/logos/facebook.svg"
+                                            class="w-4 h-4"
+                                            alt="Facebook Logo"
+                                        />
+                                    </QButton>
+                                </div>
+
+                                <div class="login__separator">
+                                    <div class="login__separator__text">or log in with email</div>
+                                    <div class="login__separator__line"></div>
+                                </div>
+
+                                <div class="space-y-6">
                                     <div class="space-y-3">
                                         <label for="sign_in_email" class="text-sm font-semibold"
                                             >Email</label
@@ -109,43 +110,28 @@ const handleAuthNative = async (formValues) => {
                                         />
                                     </div>
 
+                                    <div class="flex">
+                                        <a href="#" class="link text-sm font-semibold"
+                                            >Forgot your password?</a
+                                        >
+                                    </div>
+
                                     <QButton
                                         block
                                         :enabled="meta.valid"
                                         @click="() => handleAuthNative(values)"
                                     >
-                                        Sign In
+                                        Log In
                                     </QButton>
 
-                                    <div class="flex justify-end">
-                                        <a href="#" class="link text-sm font-medium"
-                                            >Forgot your password?</a
+                                    <p class="text-center text-sm text-content">
+                                        Don't have an account?
+                                        <a
+                                            class="link font-semibold"
+                                            @click="modal.authOption = 'sign-up'"
+                                            >Sign Up.</a
                                         >
-                                    </div>
-                                </div>
-
-                                <div class="space-y-3">
-                                    <div class="text-sm font-medium">Or sign in with</div>
-
-                                    <div class="flex space-x-3">
-                                        <QButton variant="secondary">
-                                            <img
-                                                src="/assets/img/logos/google.svg"
-                                                class="w-4 h-4"
-                                                alt="Google Logo"
-                                            />
-                                            <span class="ml-2 font-medium">Google</span>
-                                        </QButton>
-
-                                        <QButton variant="secondary">
-                                            <img
-                                                src="/assets/img/logos/facebook.svg"
-                                                class="w-4 h-4"
-                                                alt="Facebook Logo"
-                                            />
-                                            <span class="ml-2 font-medium">Facebook</span>
-                                        </QButton>
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
                         </VeeForm>
@@ -153,45 +139,39 @@ const handleAuthNative = async (formValues) => {
                 </div>
 
                 <div v-show="modal.authOption === 'sign-up'" class="login__wrapper">
-                    <div class="login__close">
-                        <QButton variant="black" size="sm" square @click="modal.show = false">
-                            <i class="ri-close-fill ri-lg"></i>
-                        </QButton>
-                    </div>
-
-                    <div class="login__left">
-                        <div class="login__inner h-full">
-                            <div class="flex flex-col h-full justify-between">
-                                <div class="flex items-end justify-between">
-                                    <img
-                                        src="/assets/img/logos/twibbonize-logo-black.svg"
-                                        class="mt-4 h-6"
-                                        alt="Twibbonize"
-                                    />
-                                </div>
-
-                                <div class="text-base">
-                                    <span class="font-medium">Already have an account? </span>
-                                    <a
-                                        class="link font-semibold"
-                                        @click="modal.authOption = 'sign-in'"
-                                        >Sign in</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="login__right">
                         <VeeForm
                             :validation-schema="signUpValidation"
                             class="login__inner"
                             v-slot="{ meta }"
                         >
-                            <div class="space-y-8">
-                                <h1 class="text-2xl font-black">Sign Up</h1>
+                            <div class="space-y-10">
+                                <h1 class="text-2xl font-black">Sign Up Now!</h1>
 
-                                <div class="space-y-4">
+                                <div class="flex space-x-3">
+                                    <QButton variant="secondary" circle size="lg">
+                                        <img
+                                            src="/assets/img/logos/google.svg"
+                                            class="w-4 h-4"
+                                            alt="Google Logo"
+                                        />
+                                    </QButton>
+
+                                    <QButton variant="secondary" circle size="lg">
+                                        <img
+                                            src="/assets/img/logos/facebook.svg"
+                                            class="w-4 h-4"
+                                            alt="Facebook Logo"
+                                        />
+                                    </QButton>
+                                </div>
+
+                                <div class="login__separator">
+                                    <div class="login__separator__text">or sign up with email</div>
+                                    <div class="login__separator__line"></div>
+                                </div>
+
+                                <div class="space-y-6">
                                     <div class="space-y-3">
                                         <label for="name" class="text-sm font-semibold">
                                             Name
@@ -218,7 +198,7 @@ const handleAuthNative = async (formValues) => {
                                         />
                                     </div>
 
-                                    <div class="grid grid-cols-2 gap-3">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div class="space-y-3">
                                             <label
                                                 for="sign_up_password"
@@ -247,9 +227,7 @@ const handleAuthNative = async (formValues) => {
                                         </div>
                                     </div>
 
-                                    <QButton block :enabled="meta.valid"> Sign Up </QButton>
-
-                                    <p class="text-sm text-content">
+                                    <p class="text-sm text-center text-content max-w-md mx-auto">
                                         By clicking “Sign up”, you have read and agree with our
                                         <a
                                             href="https://about.twibbonize.com/terms"
@@ -265,30 +243,17 @@ const handleAuthNative = async (formValues) => {
                                             >Privacy Policy</a
                                         >
                                     </p>
-                                </div>
 
-                                <div class="space-y-3">
-                                    <div class="text-sm font-medium">Or sign up with</div>
+                                    <QButton block :enabled="meta.valid"> Sign Up </QButton>
 
-                                    <div class="flex space-x-3">
-                                        <QButton variant="secondary">
-                                            <img
-                                                src="/assets/img/logos/google.svg"
-                                                class="w-4 h-4"
-                                                alt="Google Logo"
-                                            />
-                                            <span class="ml-2 text-sm font-medium">Google</span>
-                                        </QButton>
-
-                                        <QButton variant="secondary">
-                                            <img
-                                                src="/assets/img/logos/facebook.svg"
-                                                class="w-4 h-4"
-                                                alt="Facebook Logo"
-                                            />
-                                            <span class="ml-2 text-sm font-medium">Facebook</span>
-                                        </QButton>
-                                    </div>
+                                    <p class="text-center text-sm text-content">
+                                        Already have an account?
+                                        <a
+                                            class="link font-semibold"
+                                            @click="modal.authOption = 'sign-in'"
+                                            >Log In.</a
+                                        >
+                                    </p>
                                 </div>
                             </div>
                         </VeeForm>
@@ -301,18 +266,10 @@ const handleAuthNative = async (formValues) => {
 
 <style scoped lang="scss">
 .login {
-    @apply bg-white rounded-3xl h-full;
-
-    @include md_screen {
-        height: 693px;
-    }
+    @apply bg-white rounded-3xl h-full relative;
 
     .login__wrapper {
-        @apply relative flex flex-col h-full;
-
-        @include md_screen {
-            @apply grid grid-cols-2;
-        }
+        @apply relative flex flex-col h-full overflow-auto;
     }
 
     .login__close {
@@ -341,11 +298,7 @@ const handleAuthNative = async (formValues) => {
     }
 
     .login__inner {
-        @apply p-5 overflow-auto;
-
-        @include md_screen {
-            @apply p-10 h-full;
-        }
+        @apply p-10 py-8 overflow-auto;
     }
 
     .login__right {
@@ -353,6 +306,21 @@ const handleAuthNative = async (formValues) => {
 
         @include md_screen {
             @apply h-full;
+        }
+    }
+
+    .login__separator {
+        @apply flex items-center;
+
+        &__text {
+            @apply text-sm text-content;
+        }
+
+        &__line {
+            @apply flex-grow bg-stroke ml-3;
+            height: 1px;
+            width: 0;
+            transform: translateY(2px);
         }
     }
 }

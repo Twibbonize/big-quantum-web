@@ -146,7 +146,6 @@ const campaigns = computed(() => {
         };
     });
 });
-
 </script>
 
 <template>
@@ -286,7 +285,10 @@ const campaigns = computed(() => {
                                         <div class="p-1">
                                             <ul class="menu">
                                                 <li class="menu__item">
-                                                    <a class="menu__link" @click="reportModal = true">
+                                                    <a
+                                                        class="menu__link"
+                                                        @click="reportModal = true"
+                                                    >
                                                         <i class="ri-flag-line ri-1x"></i>
                                                         <span>Report Profile</span>
                                                     </a>
