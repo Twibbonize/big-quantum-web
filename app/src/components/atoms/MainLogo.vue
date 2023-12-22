@@ -23,14 +23,19 @@ const image = computed(() => {
     </RouterLink>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main-logo {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     filter: contrast(1);
+    height: 24px;
 
     &:hover {
         cursor: pointer;
         filter: contrast(0.7);
+    }
+
+    @include md_screen {
+        height: 32px;
     }
 }
 </style>
