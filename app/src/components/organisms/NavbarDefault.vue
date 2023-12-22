@@ -108,6 +108,10 @@ const searchQuery = ref('');
 
     &__actions {
         @apply flex items-center justify-end space-x-1;
+
+        @include md_screen {
+            @apply space-x-2;
+        }
     }
 
     &--transparent {

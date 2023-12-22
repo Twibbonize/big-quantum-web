@@ -47,6 +47,7 @@ const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
+const profileBioEl = ref(null);
 
 // const campaigns = /
 
@@ -146,6 +147,16 @@ const campaigns = computed(() => {
         };
     });
 });
+
+const bioMaxLength = computed(() => {
+    if (!profileBioEl.value) {
+        return 60;
+    }
+
+    const averageCharWidth = 0.5 * 14;
+    const maxCharacters = Math.floor(profileBioEl.value.offsetWidth / averageCharWidth) * 2 - 8;
+    return maxCharacters;
+});
 </script>
 
 <template>
@@ -230,27 +241,131 @@ const campaigns = computed(() => {
             </div>
 
             <div class="container px-5 lg:px-0">
-                <div class="flex items-center justify-between">
+                <div
+                    class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
+                >
                     <div class="profile__common">
-                        <h1 class="profile__name">Universe Tech</h1>
-                        <p class="profile__username">@universetech</p>
-                        <QEllipsisText :text="profile.bio" />
-                        <div class="profile__web">
-                            <i class="ri-links-line"></i>
-                            <a
-                                href="www.universe-tech.com"
-                                target="_blank"
-                                rel="nofollow"
-                                class="link"
-                                >www.universe-tech.com</a
-                            >
+                        <div class="space-y-1">
+                            <h1 class="profile__name">Universe Tech</h1>
+                            <p class="profile__username">@universetech</p>
+                            <div ref="profileBioEl" class="profile__bio">
+                                <QEllipsisText :text="profile.bio" :max-length="bioMaxLength" />
+                            </div>
+                            <div class="profile__web text-content">
+                                <i class="ri-links-line"></i>
+                                <a
+                                    href="https://www.universe-tech.com"
+                                    target="_blank"
+                                    rel="nofollow"
+                                    class="link"
+                                    >www.universe-tech.com</a
+                                >
+                            </div>
                         </div>
+
+                        <div class="profile__actions">
+                            <button class="share flex-grow md:flex-grow-0 md:w-60 flex-shrink-0">
+                                <div class="share__link-wrapper">
+                                    <i class="ri-links-line"></i>
+                                    <span class="share__link">twb.nz/u/universetech</span>
+                                </div>
+                                <div class="share__icon">
+                                    <i class="ri-share-line ri-sm"></i>
+                                </div>
+                            </button>
+
+                            <Popover class="relative">
+                                <QButton variant="secondary" circle size="sm">
+                                    <PopoverButton
+                                        as="span"
+                                        class="h-full w-full flex items-center justify-center"
+                                    >
+                                        <i class="ri-more-line"></i>
+                                    </PopoverButton>
+                                </QButton>
+
+                                <transition
+                                    enter-active-class="transition duration-200 ease-out"
+                                    enter-from-class="translate-y-1 opacity-0"
+                                    enter-to-class="translate-y-0 opacity-100"
+                                    leave-active-class="transition duration-150 ease-in"
+                                    leave-from-class="translate-y-0 opacity-100"
+                                    leave-to-class="translate-y-1 opacity-0"
+                                >
+                                    <PopoverPanel class="popover__panel">
+                                        <div class="p-1">
+                                            <ul class="menu">
+                                                <li class="menu__item">
+                                                    <a href="#" class="menu__link">
+                                                        <i class="ri-flag-line ri-1x"></i>
+                                                        <span>Report Profile</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </PopoverPanel>
+                                </transition>
+                            </Popover>
+                        </div>
+                    </div>
+
+                    <div class="profile__stats w-full flex-grow">
+                        <QCard paddings="padless">
+                            <div class="p-5">
+                                <ul class="space-y-4">
+                                    <li>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center space-x-2">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                >
+                                                    <path
+                                                        d="M2.00065 14.6667C1.63246 14.6667 1.32961 14.3668 1.37508 14.0014C1.70256 11.3699 3.94711 9.33342 6.66732 9.33342C9.38753 9.33342 11.6321 11.3699 11.9596 14.0014C12.005 14.3668 11.7022 14.6667 11.334 14.6667C10.9658 14.6667 10.6731 14.366 10.6125 14.0029C10.2962 12.1097 8.65028 10.6667 6.66732 10.6667C4.68435 10.6667 3.03839 12.1097 2.72216 14.0029C2.66149 14.366 2.36884 14.6667 2.00065 14.6667ZM6.66732 8.66675C4.45732 8.66675 2.66732 6.87675 2.66732 4.66675C2.66732 2.45675 4.45732 0.666748 6.66732 0.666748C8.87732 0.666748 10.6673 2.45675 10.6673 4.66675C10.6673 6.87675 8.87732 8.66675 6.66732 8.66675ZM6.66732 7.33342C8.14065 7.33342 9.33398 6.14008 9.33398 4.66675C9.33398 3.19341 8.14065 2.00008 6.66732 2.00008C5.19398 2.00008 4.00065 3.19341 4.00065 4.66675C4.00065 6.14008 5.19398 7.33342 6.66732 7.33342ZM11.916 10.4104C12.0672 10.0744 12.4651 9.92134 12.7794 10.1136C14.1325 10.9411 15.088 12.3549 15.2929 14.0016C15.3384 14.367 15.0355 14.6667 14.6673 14.6667C14.2991 14.6667 14.0065 14.3661 13.9458 14.003C13.7609 12.8955 13.1208 11.942 12.2245 11.3414C11.9187 11.1365 11.7649 10.7461 11.916 10.4104ZM11.5196 3.01714C11.6325 2.62181 12.0695 2.40958 12.4083 2.6424C13.3702 3.30317 14.0007 4.41099 14.0007 5.66675C14.0007 7.3214 12.906 8.71921 11.401 9.17589C11.0163 9.29264 10.6673 8.97201 10.6673 8.5699C10.6673 8.2294 10.9239 7.95066 11.2378 7.81875C12.0778 7.46576 12.6673 6.63541 12.6673 5.66675C12.6673 4.95265 12.3469 4.31371 11.842 3.88579C11.5876 3.67024 11.428 3.33772 11.5196 3.01714Z"
+                                                        fill="currentColor"
+                                                    />
+                                                </svg>
+
+                                                <span>Supporters</span>
+                                            </div>
+
+                                            <div class="font-medium">85.5k</div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="ri-megaphone-line"></i>
+                                                <span>Campaigns</span>
+                                            </div>
+
+                                            <div class="font-medium">8</div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="ri-calendar-line"></i>
+                                                <span>Joined Since</span>
+                                            </div>
+
+                                            <div class="font-medium">20 Jun 2022</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </QCard>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="profile-main border-b border-stroke py-6 md:py-10">
+        <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
             <div class="container px-5 md:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
@@ -284,136 +399,92 @@ const campaigns = computed(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 lg:px-0 -mt-16;
+        @apply container px-5 lg:px-0 -mt-10;
+
+        @include md_screen {
+            @apply -mt-24;
+        }
 
         .profile__avatar__img {
-            height: 132px;
-            width: 132px;
+            height: 72px;
+            width: 72px;
+
             @apply rounded-full border-2 border-stroke;
+
+            @include md_screen {
+                height: 132px;
+                width: 132px;
+            }
         }
     }
 
     .profile__common {
-        @apply mt-6 space-y-1;
+        @apply mt-2 w-full;
         max-width: 720px;
+
+        @include md_screen {
+            @apply mt-6;
+        }
     }
 
     .profile__name {
-        @apply text-4xl font-semibold;
+        @apply text-2xl font-semibold;
+
+        @include md_screen {
+            @apply text-4xl;
+        }
     }
 
     .profile__username {
-        @apply text-content;
+        @apply text-sm md:text-base text-content;
     }
 
     .profile__web {
-        @apply flex items-center space-x-1 text-content;
+        @apply flex items-center space-x-1 text-sm;
+    }
+
+    .profile__stats {
+        height: 100%;
+
+        @apply mt-6;
+
+        @include md_screen {
+            max-width: 328px;
+        }
+    }
+
+    .profile__actions {
+        margin-top: 24px;
+        @apply flex items-center space-x-2 w-full;
     }
 }
 
-.profile-top {
-    &__wrapper {
-        @include lg_screen {
-            @apply -mt-24;
+.share {
+    height: 40px;
+    padding: 10px 6px;
+    padding-left: 12px;
+    @apply rounded-full border border-stroke inline-flex items-center justify-between space-x-6 relative;
+
+    .share__link-wrapper {
+        @apply space-x-1 h-full flex items-center;
+        width: calc(100% - 32px);
+
+        @include md_screen {
+            width: auto;
         }
     }
 
-    &__main {
-        @include lg_screen {
-            @apply bg-white rounded-3xl shadow-card;
-        }
+    .share__link {
+        @apply text-sm block flex-grow text-left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    &__main__upper {
-        @apply px-5 py-4 relative;
-
-        @include lg_screen {
-            @apply px-5 py-6 rounded-t-3xl;
-        }
-    }
-
-    &__main__lower {
-        @apply px-5 py-6 border-t border-stroke;
-
-        @include lg_screen {
-            @apply rounded-b-3xl py-3 bg-gray-50;
-        }
-    }
-
-    &__trivial {
-        @apply flex flex-col overflow-hidden;
-
-        @include sm {
-            border-radius: 24px;
-            -webkit-box-shadow: 0px -4px 3px rgba(0, 0, 0, 0.1);
-            -moz-box-shadow: 0px -4px 3px rgba(0, 0, 0, 0.1);
-            box-shadow: 0px -2px 3px rgba(0, 0, 0, 0.06);
-        }
-
-        @include lg_screen {
-            @apply space-y-2 overflow-visible;
-            border-radius: 0px;
-            box-shadow: none;
-            -webkit-box-shadow: none;
-            -moz-box-shadow: none;
-        }
-    }
-
-    &__more {
-        @apply block absolute;
-        right: 20px;
-        bottom: 24px;
-
-        @include lg_screen {
-            @apply hidden;
-        }
+    .share__icon {
+        @apply h-7 w-7 rounded-full flex items-center justify-center bg-light absolute right-1;
     }
 }
-
-.profile-creator {
-    @apply flex flex-col;
-
-    @include lg_screen {
-        @apply flex-row items-center space-x-4;
-    }
-
-    &__avatar {
-        @apply rounded-full w-16 h-16 -mt-12 border border-white;
-
-        @include lg_screen {
-            @apply w-24 h-24 -mt-0;
-        }
-    }
-
-    &__ids {
-        @apply flex flex-col mt-3;
-
-        @include lg_screen {
-            @apply mt-0;
-        }
-    }
-
-    &__name {
-        @apply text-3xl font-bold;
-
-        @include lg_screen {
-            @apply text-5xl;
-        }
-    }
-
-    &__username {
-        @apply text-content font-medium text-sm;
-
-        @include lg_screen {
-            @apply text-base;
-        }
-    }
-}
-
-// .card {
-//     @apply bg-white rounded-3xl p-4;
-//     box-shadow: 0px 5.064px 25.321px 0px rgba(0, 0, 0, 0.1);
-// }
 
 .tab {
     .tab__group {
@@ -431,29 +502,25 @@ const campaigns = computed(() => {
     }
 }
 
-.menu {
-    &__title {
-        @apply block px-4 py-1 text-sm font-medium text-content;
+.popover {
+    @apply relative;
+
+    &__panel {
+        @apply absolute right-0 top-auto mt-2 z-10 bg-white shadow rounded-lg overflow-hidden;
+        width: auto;
+        min-width: 180px;
     }
+}
 
-    &__link {
-        @apply px-4 py-2 font-medium text-sm flex items-center space-x-2 transition-colors duration-300 cursor-pointer;
+.menu {
+    @apply flex flex-col space-y-1 w-full;
 
-        i {
-            width: 24px;
-            height: 24px;
-            text-align: center;
-            @apply inline-flex items-center justify-center;
-        }
+    .menu__link {
+        @apply p-2 flex items-center space-x-2 text-sm rounded-lg transition-colors font-medium duration-200;
 
         &:hover {
-            @apply bg-stroke;
+            @apply bg-light;
         }
-    }
-
-    &__separator {
-        height: 1px;
-        @apply w-full bg-stroke my-2;
     }
 }
 </style>

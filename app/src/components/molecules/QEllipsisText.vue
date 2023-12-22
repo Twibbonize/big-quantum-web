@@ -44,6 +44,6 @@ const toggleTextLabel = computed(() => {
 
 <style scoped lang="scss">
 .collapsible-text {
-    @apply prose prose-sm text-content prose-a:cursor-pointer prose-a:ml-1;
+    @apply prose prose-sm prose-a:cursor-pointer prose-a:ml-1;
 }
 </style>
