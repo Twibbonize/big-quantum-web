@@ -296,7 +296,7 @@ const bioMaxLength = computed(() => {
                                         <div class="p-1">
                                             <ul class="menu">
                                                 <li class="menu__item">
-                                                    <a href="#" class="menu__link">
+                                                    <a href="#" class="menu__link" @click="reportModal = true">
                                                         <i class="ri-flag-line ri-1x"></i>
                                                         <span>Report Profile</span>
                                                     </a>
