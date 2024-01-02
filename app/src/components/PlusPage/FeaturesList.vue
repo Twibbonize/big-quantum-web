@@ -26,7 +26,7 @@ const cards = computed(() => {
             <p class="description">
                 Experience an enhanced Twibbonize experience with Premium Basic plan
             </p>
-            <div class="flex flex-col sm:flex-row gap-x-8 gap-y-6 mt-10 sm:mt-14">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mt-10 sm:mt-14">
                 <div class="card" v-for="(card, i) in cards" :key="`feature-${i}`">
                     <h4 class="card-title">{{ card.title }}</h4>
                     <p class="card-description">

@@ -22,7 +22,7 @@ const lottieDimension = computed(() => {
         <div class="container mx-auto">
             <div class="w-full pages-title mx-auto">
                 <div class="container z-20 absolute mx-auto">
-                    <div class="w-full sm:w-1/3 content flex flex-col items-center sm:items-start">
+                    <div class="w-full sm:w-2/3 md:w-1/3 content flex flex-col items-center sm:items-start">
                         <h1 class="title z-30 user-select-none pe-none lowercase">show your</h1>
                         <div class="title-animation z-30">
                             <Vue3Lottie
@@ -37,12 +37,12 @@ const lottieDimension = computed(() => {
                             stand for and invite friends to join you
                         </h4>
                         <div class="btn-container flat-button">
-                            <QButton class="text-sm" variant="accent" border-radius="circle">
+                            <QButton class="text-sm !font-bold" variant="accent" border-radius="circle">
                                 <i class="ri-add-line"></i>
                                 Start a Campaign
                             </QButton>
-                            <div class="hero-participant__or text-sm font-bold">or</div>
-                            <QButton class="text-sm !px-0" variant="link" border-radius="circle">
+                            <div class="hero-participant__or  font-bold">or</div>
+                            <QButton class="text-sm font-bold !px-0" variant="link" border-radius="circle">
                                 Find a Campaign
                             </QButton>
                         </div>
