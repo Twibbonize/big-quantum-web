@@ -5,14 +5,14 @@ const values = [
     {
         icon: '/assets/img/icons/inspire.svg',
         title: 'Inspire',
-        video: '/assets/videos/unite.mp4',
+        video: '/assets/videos/inspire.mp4',
         subtitle: 'your supporters',
         description:
             'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
     },
     {
         icon: '/assets/img/icons/unite.svg',
-        title: 'unite',
+        title: 'Unite',
         video: '/assets/videos/unite.mp4',
         subtitle: 'your supporters',
         description:
@@ -21,7 +21,7 @@ const values = [
     {
         icon: '/assets/img/icons/entertain.svg',
         title: 'Entertain',
-        video: '/assets/videos/unite.mp4',
+        video: '/assets/videos/entertain.mp4',
         subtitle: 'your supporters',
         description:
             'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
@@ -29,7 +29,7 @@ const values = [
     {
         icon: '/assets/img/icons/grow.svg',
         title: 'Grow',
-        video: '/assets/videos/unite.mp4',
+        video: '/assets/videos/grow.mp4',
         subtitle: 'your supporters',
         description:
             'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
@@ -57,15 +57,15 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container px-5 pt-24 pb-10 mx-auto">
+    <div class="creators-values container px-5 pt-24 pb-10 mx-auto">
         <div class="flex pt-5 flex-col sm:flex-row gap-8">
-            <div class="flex flex-col justify-center col">
+            <div class="flex flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description }, i) in values"
                     :key="`value-${i}`"
                     class="flex p-4"
                     :class="{
-                        'creators-values__tab-active': i === index,
+                        'tab-active': i === index,
                         'items-center': i !== index
                     }"
                 >
@@ -79,10 +79,10 @@ onMounted(() => {
                         </div>
                         <p class="color_black mt-4">{{ description }}</p>
                     </div>
-                    <div v-if="i === index" class="creators-values__bar-active">
+                    <div v-if="i === index" class="bar-active">
                         <i
                             v-if="i === index"
-                            class="creators-values__loader-active ri-shining-fill"
+                            class="loader-active ri-shining-fill"
                         ></i>
                     </div>
                     <h5 v-else class="font-bold text-2xl">{{ title }}</h5>
@@ -105,7 +105,7 @@ onMounted(() => {
         border-radius: 20px;
         outline: 1px solid rgba(27, 27, 27, 0.2);
     }
-    &__tab-active {
+    .tab-active {
         border-radius: 10px;
         border: 1px solid rgba(27, 27, 27, 0.2);
         // border-bottom: none;
@@ -115,12 +115,12 @@ onMounted(() => {
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
     }
-    &__loader-active {
+    .loader-active {
         position: absolute;
         font-size: 12px;
         bottom: -9px;
     }
-    &__bar-active {
+    .bar-active {
         position: absolute;
         height: 1px;
         bottom: -1px;
@@ -131,6 +131,7 @@ onMounted(() => {
     }
     .title-active {
         span {
+            @apply lowercase;
             font-family: Marck Script;
             font-size: 48px;
             font-style: normal;
@@ -140,6 +141,7 @@ onMounted(() => {
             text-decoration: underline;
             transform: rotate(-3.671deg);
         }
+
 
         font-size: 24px;
         font-style: normal;
