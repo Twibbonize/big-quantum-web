@@ -134,6 +134,44 @@ import QSlider from '@/components/atoms/QSlider.vue';
         display: flex;
         gap: 21px;
         position: absolute;
+        right: -500px;
+        top: -230px;
+        z-index: 1;
+
+        img {
+            width: 230px;
+            height: 345px;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .home-slider {
+        width: 720px;
+        height: 1100px;
+        transform: rotate(-25deg);
+        display: flex;
+        gap: 21px;
+        position: absolute;
+        right: 100px;
+        top: -230px;
+        z-index: 1;
+
+        img {
+            width: 230px;
+            height: 345px;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .home-slider {
+        width: 720px;
+        height: 1100px;
+        transform: rotate(-25deg);
+        display: flex;
+        gap: 21px;
+        position: absolute;
         right: 100px;
         top: -230px;
         z-index: 1;

@@ -1,92 +1,11 @@
 <script setup>
-import { computed, ref } from 'vue';
-import QSlider from '@/components/atoms/QSlider.vue';
-import QSliderNavigation from '@/components/atoms/QSliderNavigation.vue';
+import QOpenLink from '@/components/atoms/QOpenLink.vue';
+import QButton from '@/components/atoms/QButton.vue';
 
 const props = defineProps({
     width: Number,
     height: Number
 });
-
-const slidesPerView = computed(() => {
-    if (props.width > 1280) return 4;
-    if (props.width >= 640) return 3;
-    return 1;
-});
-
-let nextDisabled = ref(false);
-let prevDisabled = ref(true);
-
-const stories = [
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    },
-    {
-        image: 'https://placehold.co/600x400',
-        title: 'The 2024 State of the Website',
-        description:
-            'Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024'
-    }
-];
-
-const handlePrev = () => {
-    const { swiper } = document.getElementById('sliderStories');
-    swiper.slidePrev();
-
-    nextDisabled.value = false;
-
-    if (swiper.activeIndex === 0) prevDisabled.value = true;
-    else prevDisabled.value = false;
-};
-
-const handleNext = () => {
-    const { swiper } = document.getElementById('sliderStories');
-    swiper.slideNext();
-
-    prevDisabled.value = false;
-
-    if (Number(swiper.progress === 1)) nextDisabled.value = true;
-    else nextDisabled.value = false;
-};
 </script>
 
 <template>
@@ -95,38 +14,52 @@ const handleNext = () => {
         <p class="text-center text-base sm:text-2xl mt-8">
             Unique campaigns brought to life with Twibbonize
         </p>
-        <div class="container mx-auto">
-            <QSlider
-                :key="width"
-                id="sliderStories"
-                class="slider mt-16 w-100"
-                :slides-per-view="slidesPerView"
-                :space-between="32"
-            >
-                <swiper-slide
-                    v-for="({ image, title, description }, i) in stories"
-                    :key="`stories-${i}`"
-                    class="card"
-                >
-                    <img class="w-100" :src="image" :alt="title" />
-                    <h5>{{ title }}</h5>
-                    <p>{{ description }}</p>
-
-                    <div class="heading-section flex items-end mt-5">
-                        <RouterLink class="flex items-center text-black" to="/explore">
-                            View All<i class="ri-arrow-right-line"></i>
-                        </RouterLink>
-                    </div>
-                </swiper-slide>
-            </QSlider>
-            <div v-if="width < 1280" class="w-full flex flex-col items-center">
-                <QSliderNavigation
-                    class="mt-8 sm:mt-16"
-                    :next-disabled="nextDisabled"
-                    :prev-disabled="prevDisabled"
-                    @prev="handlePrev"
-                    @next="handleNext"
-                />
+        <div class="bento-container container w-full grid grid-cols-6 gap-6 px-5 mt-20">
+            <div class="bento-1 col-span-2 card p-5">
+                <h5 class="font-bold text-xl">Hanoi Art Book Fair Maximized Their Reach With Twibbonize</h5>
+                <p class="text-xs">Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024</p>
+                <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
+            </div>
+            <div class="bento-2 col-span-2 card p-5">
+                <h5>“Twibbonize really helps us grow our audience with very little effort.”</h5>
+                <p class="font-bold text-xs mt-6">Clarissa May</p>
+                <p class="text-xs">Creative Director</p>
+                <QOpenLink class="mt-6" classes="text-xs" text="Read Her Story" url="/"/>
+            </div>
+            <div class="bento-3 col-span-2 card">
+                <img class="w-full" src="/assets/img/stories/stories-bento-3.png" alt="">
+                <div class="p-5">
+                    <h5 class="font-bold text-xl">How Twibbonize Enhances Celebrations in Education</h5>
+                    <p class="text-xs mt-2">Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024</p>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Our Article" url="/"/>
+                </div>
+            </div>
+            <div class="bento-4 card col-span-6 p-10">
+                <h5 class="text-4xl font-semibold w-1/2">Turn your creative ideas into actionable & marketable social campaigns</h5>
+                <QButton variant="primary" class="mt-6">
+                    Create Yours Now <i class="ri-arrow-right-line ml-1.5"></i>
+                </QButton>
+            </div>
+            <div class="grid grid-cols-1 col-span-3 gap-6">
+                <div class="bento-5 card p-5">
+                    <h5 class="font-bold text-xl w-1/3">Ultimate Ways To More Engaging Campaign</h5>
+                    <QButton variant="primary" class="mt-6">
+                        Create Yours Now
+                    </QButton>
+                </div>
+                <div class="bento-6 card p-5">
+                    <h5 class="font-bold text-xl w-2/3">How Danone Does Their Internal Giveaways Competition Using Twibbonize</h5>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
+                </div>
+            </div>
+            <div class="bento-7 col-span-3 card p-5">
+                <h5 class="text-xl font-bold">
+                    Twibbonize in Corporate & Business Environments
+                </h5>
+                <p class="text-xs">
+                    Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024
+                </p>
+                <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
             </div>
         </div>
     </div>
@@ -138,31 +71,20 @@ const handleNext = () => {
     background: #dee8e8;
 
     .card {
-        @apply w-full p-4 sm:p-8 rounded-2xl bg-white;
-        border: 1px solid rgba(27, 27, 27, 0.1);
+        @apply bg-white rounded-3xl;
+        border: 0.659px solid rgba(27, 27, 27, 0.10);
+    }
 
-        img {
-            @apply rounded-xl;
-        }
-
+    .bento-2 {
         h5 {
-            @apply text-left mt-8 text-3xl font-bold leading-7;
-            letter-spacing: -1.12px;
-        }
-
-        p {
-            @apply text-left mt-4 text-lg font-medium;
-            line-height: 115%; /* 20.7px */
+            @apply font-bold text-3xl;
+            line-height: 110%; /* 35.2px */
+            letter-spacing: -1.28px;
         }
     }
 
-    .swiper-button-next,
-    .swiper-button-prev {
-        @apply rounded-3xl flex items-center justify-center;
-        width: 40px !important;
-        height: 40px !important;
-        bottom: 0 !important;
-        background: var(--color-main) !important;
+    .bento-3 {
+        @apply overflow-hidden;
     }
 }
 </style>
