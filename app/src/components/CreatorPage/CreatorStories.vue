@@ -19,12 +19,19 @@ const props = defineProps({
                 <h5 class="font-bold text-xl">Hanoi Art Book Fair Maximized Their Reach With Twibbonize</h5>
                 <p class="text-xs">Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024</p>
                 <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
+                <div class="phone-bg"></div>
+                <div class="green-bg"></div>
+                <div class="blue-bg"></div>
             </div>
-            <div class="bento-2 col-span-2 card p-5">
-                <h5>“Twibbonize really helps us grow our audience with very little effort.”</h5>
-                <p class="font-bold text-xs mt-6">Clarissa May</p>
-                <p class="text-xs">Creative Director</p>
-                <QOpenLink class="mt-6" classes="text-xs" text="Read Her Story" url="/"/>
+            <div class="bento-2 col-span-2 card">
+                <div class="p-5">
+                    <h5>“Twibbonize really helps us grow our audience with very little effort.”</h5>
+                    <p class="font-bold text-xs mt-6">Clarissa May</p>
+                    <p class="text-xs">Creative Director</p>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Her Story" url="/"/>
+                </div>
+                <div class="girl-bg"></div>
+                <div class="yellow-bg"></div>
             </div>
             <div class="bento-3 col-span-2 card">
                 <img class="w-full" src="/assets/img/stories/stories-bento-3.png" alt="">
@@ -71,8 +78,50 @@ const props = defineProps({
     background: #dee8e8;
 
     .card {
-        @apply bg-white rounded-3xl;
+        @apply bg-white rounded-3xl overflow-hidden relative;
         border: 0.659px solid rgba(27, 27, 27, 0.10);
+    }
+
+    .bento-1 {
+        .phone-bg {
+            @apply absolute;
+            height: 50%;
+            width: 100%;
+            bottom: 0;
+            background-image: url('/assets/img/stories/stories-bento-1.png');
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            z-index: 2;
+
+        }
+
+        .green-bg {
+            @apply absolute;
+            bottom: -20%;
+            left: 0;
+            width: 531px;
+            height: 214px;
+            transform: rotate(-230deg);
+            border-radius: 531.499px;
+            opacity: 0.4;
+            background: #16DAC1;
+            filter: blur(65px);
+        }
+
+        .blue-bg {
+            @apply absolute;
+            bottom: -20%;
+            right: 0;
+            width: 531px;
+            height: 214px;
+            transform: rotate(62deg);
+            flex-shrink: 0;
+            border-radius: 531px;
+            opacity: 0.4;
+            background: #0095F5;
+            filter: blur(65px);
+        }
     }
 
     .bento-2 {
@@ -80,6 +129,33 @@ const props = defineProps({
             @apply font-bold text-3xl;
             line-height: 110%; /* 35.2px */
             letter-spacing: -1.28px;
+        }
+
+        .girl-bg {
+            @apply absolute;
+            height: 50%;
+            width: 100%;
+            bottom: 0;
+            background-image: url('/assets/img/stories/stories-bento-2.png');
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            z-index: 2;
+
+        }
+
+        .yellow-bg {
+            @apply absolute;
+            left: -20%;
+            right: 0;
+            width: 531px;
+            height: 214px;
+            transform: rotate(37deg);
+            flex-shrink: 0;
+            border-radius: 531px;
+            opacity: 0.4;
+            background: #F8FF35;
+            filter: blur(65px);
         }
     }
 
