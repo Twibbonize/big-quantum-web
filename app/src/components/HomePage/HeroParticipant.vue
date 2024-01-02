@@ -37,12 +37,12 @@ const lottieDimension = computed(() => {
                             stand for and invite friends to join you
                         </h4>
                         <div class="btn-container flat-button">
-                            <QButton class="text-sm" variant="accent" border-radius="circle">
+                            <QButton class="text-sm !font-bold" variant="accent" border-radius="circle">
                                 <i class="ri-add-line"></i>
                                 Start a Campaign
                             </QButton>
-                            <div class="hero-participant__or text-sm font-bold">or</div>
-                            <QButton class="text-sm !px-0" variant="link" border-radius="circle">
+                            <div class="hero-participant__or  font-bold">or</div>
+                            <QButton class="text-sm font-bold !px-0" variant="link" border-radius="circle">
                                 Find a Campaign
                             </QButton>
                         </div>
