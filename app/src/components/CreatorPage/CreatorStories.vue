@@ -47,7 +47,7 @@ const props = defineProps({
                     Create Yours Now <i class="ri-arrow-right-line ml-1.5"></i>
                 </QButton>
             </div>
-            <div class="grid grid-cols-1 col-span-3 gap-6">
+            <!-- <div class="grid grid-cols-1 col-span-3 gap-6">
                 <div class="bento-5 card p-5">
                     <h5 class="font-bold text-xl w-1/3">Ultimate Ways To More Engaging Campaign</h5>
                     <QButton variant="primary" class="mt-6">
@@ -67,7 +67,7 @@ const props = defineProps({
                     Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024
                 </p>
                 <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -161,6 +161,13 @@ const props = defineProps({
 
     .bento-3 {
         @apply overflow-hidden;
+    }
+
+    .bento-4 {
+        background-image: url('/assets/img/stories/stories-bento-4.png');
+        background-size: contain;
+        background-position: right center;
+        background-repeat: no-repeat;
     }
 }
 </style>
