@@ -128,7 +128,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
 
 @media screen and (min-width: 640px) {
     .home-slider {
-        width: 825px;
+        width: 720px;
         height: 1100px;
         transform: rotate(-25deg);
         display: flex;
@@ -139,8 +139,8 @@ import QSlider from '@/components/atoms/QSlider.vue';
         z-index: 1;
 
         img {
-            width: 255px;
-            height: 384px;
+            width: 230px;
+            height: 345px;
         }
     }
 }
