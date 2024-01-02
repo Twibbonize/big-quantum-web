@@ -51,7 +51,7 @@ const collectionsCard = computed(() => {
 });
 
 const props = defineProps({
-    width: Number,
+    width: Number
 });
 
 let moodIndex = ref(0);

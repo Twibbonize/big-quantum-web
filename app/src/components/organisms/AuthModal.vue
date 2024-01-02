@@ -41,7 +41,7 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="modal.show" :position="modalPosition" size="lg">
+    <QModal :show="modal.show" :position="modalPosition" size="lg" :min-height="693">
         <template #body>
             <div class="login">
                 <div v-show="modal.authOption === 'sign-in'" class="login__wrapper">
@@ -62,9 +62,11 @@ const handleAuthNative = async (formValues) => {
                                     />
                                 </div>
 
-                                <div class="text-sm md:text-base">
+                                <div class="text-base">
                                     <span class="font-medium">Doesn't have a account yet? </span>
-                                    <a class="link" @click="modal.authOption = 'sign-up'"
+                                    <a
+                                        class="link font-semibold"
+                                        @click="modal.authOption = 'sign-up'"
                                         >Sign Up</a
                                     >
                                 </div>
@@ -78,7 +80,7 @@ const handleAuthNative = async (formValues) => {
                             class="login__inner"
                             v-slot="{ meta, values }"
                         >
-                            <div class="space-y-10">
+                            <div class="space-y-8">
                                 <h1 class="text-2xl font-black">Sign In</h1>
 
                                 <div class="space-y-4">
@@ -132,7 +134,7 @@ const handleAuthNative = async (formValues) => {
                                                 class="w-4 h-4"
                                                 alt="Google Logo"
                                             />
-                                            <span class="ml-2 text-sm font-medium">Google</span>
+                                            <span class="ml-2 font-medium">Google</span>
                                         </QButton>
 
                                         <QButton variant="secondary">
@@ -141,7 +143,7 @@ const handleAuthNative = async (formValues) => {
                                                 class="w-4 h-4"
                                                 alt="Facebook Logo"
                                             />
-                                            <span class="ml-2 text-sm font-medium">Facebook</span>
+                                            <span class="ml-2 font-medium">Facebook</span>
                                         </QButton>
                                     </div>
                                 </div>
@@ -168,9 +170,11 @@ const handleAuthNative = async (formValues) => {
                                     />
                                 </div>
 
-                                <div class="text-sm md:text-base">
+                                <div class="text-base">
                                     <span class="font-medium">Already have an account? </span>
-                                    <a class="link" @click="modal.authOption = 'sign-in'"
+                                    <a
+                                        class="link font-semibold"
+                                        @click="modal.authOption = 'sign-in'"
                                         >Sign in</a
                                     >
                                 </div>
@@ -184,7 +188,7 @@ const handleAuthNative = async (formValues) => {
                             class="login__inner"
                             v-slot="{ meta }"
                         >
-                            <div class="space-y-10">
+                            <div class="space-y-8">
                                 <h1 class="text-2xl font-black">Sign Up</h1>
 
                                 <div class="space-y-4">
@@ -297,7 +301,11 @@ const handleAuthNative = async (formValues) => {
 
 <style scoped lang="scss">
 .login {
-    @apply h-full bg-white rounded-3xl;
+    @apply bg-white rounded-3xl h-full;
+
+    @include md_screen {
+        height: 693px;
+    }
 
     .login__wrapper {
         @apply relative flex flex-col h-full;

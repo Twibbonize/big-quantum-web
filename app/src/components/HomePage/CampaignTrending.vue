@@ -73,15 +73,15 @@ const campaigns = ref([
 ]);
 
 const props = defineProps({
-    width: Number,
+    width: Number
 });
 
 const slidesPerView = computed(() => {
     if (props.width >= 1300) return 4;
     if (props.width >= 1024) return 3;
     if (props.width >= 768) return 2;
-    return 1.5
-})
+    return 1.5;
+});
 
 function getAvatarUrl(name) {
     const filename = `/assets/img/sample/${name}`;

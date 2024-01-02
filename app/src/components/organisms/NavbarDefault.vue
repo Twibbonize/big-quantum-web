@@ -50,7 +50,7 @@ const searchQuery = ref('');
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block md:hidden">
-                        <QSearchMobile v-model="searchQuery" />
+                        <QSearchMobile :variant="navbarColor === 'transparent' ? 'white' : 'black'" />
                     </div>
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
@@ -102,7 +102,11 @@ const searchQuery = ref('');
     }
 
     &__actions {
-        @apply flex items-center justify-end;
+        @apply flex items-center justify-end space-x-1;
+
+        @include md_screen {
+            @apply space-x-2;
+        }
     }
 
     &--transparent {
@@ -116,25 +120,80 @@ const searchQuery = ref('');
     }
 
     &__burger {
-        @apply bg-transparent flex items-center border border-transparent;
-        height: 48px;
-        width: 48px;
-        padding: 12px;
+        @apply bg-white rounded-full flex items-center justify-center border border-stroke;
+        height: 40px;
+        width: 40px;
+        // padding: 12px;
+
+
+        @include md_screen {
+            width: 32px;
+            height: 32px;
+        }
+
 
         .header__burger__js {
             @apply hidden;
         }
 
         .header__burger__avatar {
-            height: 24px;
-            width: 24px;
+            height: 48px;
+            width: 48px;
             flex-shrink: 0;
-            margin: auto;
+            @apply hidden;
+
+            @include md_screen {
+                width: 32px;
+                height: 32px;
+                @apply block;
+            }
 
             img {
                 height: 100%;
                 width: 100%;
-                @apply border border-gray-200 rounded-full;
+                @apply border-2 border-gray-200 rounded-full;
+            }
+        }
+
+        .header__burger__js {
+            height: 16px;
+            width: 18px;
+            @apply flex items-center justify-center relative;
+        }
+
+        .header__burger__js span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 18px;
+            opacity: 1;
+            right: 0;
+            background-color: #000;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+            transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+
+            border-radius: 1px;
+
+            &:nth-child(1) {
+                top: 1px;
+            }
+
+            &:nth-child(2) {
+                top: 7px;
+            }
+
+            &:nth-child(3) {
+                top: 13px;
             }
         }
 
@@ -142,7 +201,7 @@ const searchQuery = ref('');
             @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
             padding: 4px 10px;
             width: auto;
-
+            height: 48px;
 
             @include before {
                 height: 0;
@@ -163,48 +222,6 @@ const searchQuery = ref('');
                 }
             }
 
-            .header__burger__js {
-                height: 16px;
-                width: 22px;
-                @apply flex items-center justify-center relative;
-            }
-
-            .header__burger__js span {
-                display: block;
-                position: absolute;
-                height: 2px;
-                width: 100%;
-                opacity: 1;
-                right: 0;
-                background-color: #000;
-                -webkit-transform: rotate(0deg);
-                -moz-transform: rotate(0deg);
-                -o-transform: rotate(0deg);
-                transform: rotate(0deg);
-                -webkit-transition:
-                    background-color 0.05s ease-in-out,
-                    transform 0.2s ease-in-out,
-                    top 0.2s ease-in-out;
-                transition:
-                    background-color 0.05s ease-in-out,
-                    transform 0.2s ease-in-out,
-                    top 0.2s ease-in-out;
-
-                border-radius: 1px;
-
-                &:nth-child(1) {
-                    top: 1px;
-                }
-
-                &:nth-child(2) {
-                    top: 7px;
-                }
-
-                &:nth-child(3) {
-                    top: 13px;
-                }
-            }
-
             // &.header__burger--open .header__burger__js span:nth-child(1) {
             //     top: 7px;
             //     transform: rotate(45deg);
@@ -215,9 +232,6 @@ const searchQuery = ref('');
             //     top: 7px;
             // }
         }
-
-
-
     }
 }
 </style>

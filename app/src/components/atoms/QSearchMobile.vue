@@ -1,7 +1,16 @@
+<script setup>
+defineProps({
+    variant: {
+        type: String,
+        default: 'black'
+    }
+});
+</script>
+
 <template>
-    <div class="search">
+    <div :class="['search', `search--${variant}`]">
         <button class="search__button">
-            <i class="ri-search-line ri-xl"></i>
+            <i class="ri-search-line ri-lg"></i>
         </button>
     </div>
     <!-- <div class="search-mobile flex p-0">
@@ -12,12 +21,12 @@
 <style scoped lang="scss">
 .search {
     .search__button {
-        @apply flex items-center justify-center;
+        @apply flex items-center justify-center bg-white border border-stroke rounded-full;
 
         @include sm {
             padding: 12px;
-            height: 48px;
-            width: 48px;
+            height: 40px;
+            width: 40px;
         }
     }
 }
