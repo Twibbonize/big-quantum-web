@@ -141,7 +141,7 @@ const emit = defineEmits(['close']);
     }
 
     .dialog__panel__body {
-        @apply max-h-full flex-grow overflow-auto;
+        @apply max-h-full;
     }
 }
 

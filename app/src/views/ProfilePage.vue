@@ -9,7 +9,8 @@ import QModal from '@/components/atoms/QModal.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
-import ShareButton from '@/components/atoms/ShareButton.vue';
+import QShareButton from '@/components/atoms/QShareButton.vue';
+import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -48,6 +49,9 @@ const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
+const shareStore = useShareStore();
+
+const { openShare } = shareStore;
 
 // const campaigns = /
 
@@ -254,7 +258,18 @@ const campaigns = computed(() => {
                         </div>
 
                         <div class="profile__actions">
-                            <ShareButton link="twb.nz/u/universetech" />
+                            <div class="w-full md:w-60">
+                                <QShareButton
+                                    link="twb.nz/u/universetech"
+                                    @click="
+                                        openShare(
+                                            'twb.nz/u/universetech',
+                                            getAvatarUrl('sample-avatar-1.jpg'),
+                                            'profile'
+                                        )
+                                    "
+                                />
+                            </div>
 
                             <Popover class="relative">
                                 <QButton variant="secondary" circle size="sm">
@@ -474,10 +489,10 @@ const campaigns = computed(() => {
     @apply flex flex-col space-y-1 w-full;
 
     .menu__link {
-        @apply p-2 flex items-center space-x-2 text-sm rounded-lg transition-colors font-medium duration-200;
+        @apply p-2 flex items-center space-x-2 text-sm rounded-lg transition-colors font-medium duration-200 cursor-pointer;
 
         &:hover {
-            @apply bg-light;
+            @apply bg-black/10;
         }
     }
 }

@@ -16,7 +16,7 @@ function handleClick(e) {
 
 <template>
     <div class="share flex-grow md:flex-grow-0 flex-shrink-0">
-        <button class="share__wrapper w-full md:w-60" @click="handleClick">
+        <button class="share__wrapper w-full" @click="handleClick">
             <div class="share__link">
                 <i class="ri-links-line"></i>
                 <span class="share__link__text">{{ link }}</span>
