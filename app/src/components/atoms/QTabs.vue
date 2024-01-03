@@ -113,7 +113,7 @@ const tabPresentationStyle = computed(() => {
             width: 100%;
             @apply rounded-full flex items-center justify-center text-sm relative z-10 text-black/50 font-semibold transition-colors duration-200;
 
-            @include xs {
+            @include sm_screen {
                 @apply text-xs;
             }
 
