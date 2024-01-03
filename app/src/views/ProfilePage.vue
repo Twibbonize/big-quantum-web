@@ -9,6 +9,7 @@ import QModal from '@/components/atoms/QModal.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
+import ShareButton from '@/components/atoms/ShareButton.vue';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -65,8 +66,8 @@ const campaigns = computed(() => {
         {
             name: 'Liberty Scholarship 2025',
             campaignCreator: {
-                name: 'Liberty Scholarship',
-                avatar: 'sample-avatar-2.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             hit: 1470,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
@@ -75,8 +76,8 @@ const campaigns = computed(() => {
         {
             name: 'Bit by Bit - Retro Gaming',
             campaignCreator: {
-                name: 'Bit by Bit',
-                avatar: 'sample-avatar-3.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             hit: 15100,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
@@ -85,52 +86,52 @@ const campaigns = computed(() => {
         {
             name: 'Digital Culture Webinar',
             campaignCreator: {
-                name: 'Digital Culture',
-                avatar: 'sample-avatar-4.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
             thumbnail: 'sample-campaign-4.jpg'
         },
         {
-            name: 'UNIVERSE UNPACKED 2022',
+            name: 'Candy Rush Treats or Treats',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg'
+            thumbnail: 'sample-campaign-5.jpg'
         },
         {
-            name: 'Liberty Scholarship 2025',
+            name: 'Nucleotide Labo Fashion Researcher Program',
             campaignCreator: {
-                name: 'Liberty Scholarship',
-                avatar: 'sample-avatar-2.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             hit: 14700,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg'
+            thumbnail: 'sample-campaign-6.jpg'
         },
         {
-            name: 'Bit by Bit - Retro Gaming',
+            name: 'Fashion Week 2025',
             campaignCreator: {
-                name: 'Bit by Bit',
-                avatar: 'sample-avatar-3.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg',
+            thumbnail: 'sample-campaign-7.jpg',
             hit: 14929
         },
         {
-            name: 'Digital Culture Webinar',
+            name: 'ASO Rock Festa 2024',
             campaignCreator: {
-                name: 'Digital Culture',
-                avatar: 'sample-avatar-4.jpg'
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg'
+            thumbnail: 'sample-campaign-8.jpg'
         }
     ];
 
@@ -253,15 +254,7 @@ const campaigns = computed(() => {
                         </div>
 
                         <div class="profile__actions">
-                            <button class="share flex-grow md:flex-grow-0 md:w-60 flex-shrink-0">
-                                <div class="share__link-wrapper">
-                                    <i class="ri-links-line"></i>
-                                    <span class="share__link">twb.nz/u/universetech</span>
-                                </div>
-                                <div class="share__icon">
-                                    <i class="ri-share-line ri-sm"></i>
-                                </div>
-                            </button>
+                            <ShareButton link="twb.nz/u/universetech" />
 
                             <Popover class="relative">
                                 <QButton variant="secondary" circle size="sm">
@@ -361,7 +354,7 @@ const campaigns = computed(() => {
             <div class="container px-5 md:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-6 md:mt-10">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
                             <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
                         </div>
                     </template>
@@ -448,33 +441,6 @@ const campaigns = computed(() => {
     .profile__actions {
         margin-top: 24px;
         @apply flex items-center space-x-2 w-full;
-    }
-}
-
-.share {
-    height: 40px;
-    padding: 10px 6px;
-    padding-left: 12px;
-    @apply rounded-full border border-stroke inline-flex items-center justify-between space-x-6 relative;
-
-    .share__link-wrapper {
-        @apply space-x-1 h-full flex items-center;
-        width: calc(100% - 32px);
-
-        @include md_screen {
-            width: auto;
-        }
-    }
-
-    .share__link {
-        @apply text-sm block flex-grow text-left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .share__icon {
-        @apply h-7 w-7 rounded-full flex items-center justify-center bg-light absolute right-1;
     }
 }
 

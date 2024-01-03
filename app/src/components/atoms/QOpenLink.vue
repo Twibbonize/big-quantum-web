@@ -4,7 +4,7 @@ const props = defineProps({
     text: String,
     classes: {
         type: String,
-        default: 'text-sm',
+        default: 'text-sm'
     }
 });
 </script>
@@ -37,7 +37,7 @@ const props = defineProps({
             height: 18px;
             top: 5px;
             right: 1px;
-            content: "";
+            content: '';
             border-radius: 20px;
             border: 1px solid rgba(27, 27, 27, 0.1);
             background: rgba(27, 27, 27, 0.1);
