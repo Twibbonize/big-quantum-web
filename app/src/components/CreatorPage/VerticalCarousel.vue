@@ -81,7 +81,7 @@ onMounted(() => {
                     class="flex flex-col p-4"
                     :class="{
                         'tab-active': i === index || isMobile,
-                        'tab': i !== index && !isMobile,
+                        tab: i !== index && !isMobile,
                         'cursor-pointer': i !== index,
                         'items-center': i !== index
                     }"
@@ -92,11 +92,14 @@ onMounted(() => {
                         <img class="icon mr-3" :src="icon" :alt="title" />
                         <div class="flex flex-col">
                             <div class="flex">
-                                <h5  :class="{ 'title-active mb-4': i === index || isMobile }">
-                                    <span class="title mr-1">{{ title }}</span><span class="subtitle">{{ subtitle }}</span>
+                                <h5 :class="{ 'title-active mb-4': i === index || isMobile }">
+                                    <span class="title mr-1">{{ title }}</span
+                                    ><span class="subtitle">{{ subtitle }}</span>
                                 </h5>
                             </div>
-                            <p :class="index === i ? 'description-active' : 'description'">{{ description }}</p>
+                            <p :class="index === i ? 'description-active' : 'description'">
+                                {{ description }}
+                            </p>
                         </div>
                         <div v-if="i === index && !isMobile" class="bar-active">
                             <i v-if="i === index" class="loader-active ri-shining-fill"></i>
@@ -159,7 +162,8 @@ onMounted(() => {
         margin-bottom: 8px;
     }
 
-    .description, .description-active {
+    .description,
+    .description-active {
         @apply text-sm sm:text-base;
     }
 }
@@ -168,18 +172,18 @@ onMounted(() => {
     .creators-values {
         .description {
             height: 0;
-            transition: height .6s ease;
+            transition: height 0.6s ease;
             overflow: hidden;
         }
 
         .description-active {
             height: 60px;
-            transition: height .6s ease;
+            transition: height 0.6s ease;
         }
 
         .tab {
             border-radius: 10px;
-            background: #FFFFFF;
+            background: #ffffff;
             border: none;
             padding-bottom: 16px;
             margin-bottom: 0;
@@ -194,10 +198,8 @@ onMounted(() => {
             position: relative;
             padding-bottom: 16px;
             margin-bottom: 0;
-            transition: background .6s ease;
+            transition: background 0.6s ease;
         }
-
-        
 
         .loader-active {
             position: absolute;
@@ -210,7 +212,14 @@ onMounted(() => {
             bottom: -1px;
             right: 10px;
             width: 100%;
-            background-image: linear-gradient(to right, #ffffff, #f3f3f3, #e8e8e8, #dcdcdc, #d1d1d1);
+            background-image: linear-gradient(
+                to right,
+                #ffffff,
+                #f3f3f3,
+                #e8e8e8,
+                #dcdcdc,
+                #d1d1d1
+            );
             animation: loadingbar 15s linear infinite;
         }
     }
