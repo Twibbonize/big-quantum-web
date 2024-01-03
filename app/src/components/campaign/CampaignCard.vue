@@ -98,6 +98,10 @@ onMounted(() => {});
 
     .img-container {
         overflow: hidden;
+
+        picture, img {
+            transition: all 0.2s ease;
+        }
     }
 
     .btn-view {

@@ -62,6 +62,7 @@ onUnmounted(() => {
 
         .logo-set {
             opacity: 0;
+            height: 0px;
         }
     }
 
