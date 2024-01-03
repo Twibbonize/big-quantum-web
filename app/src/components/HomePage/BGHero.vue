@@ -80,7 +80,7 @@ const { width, height } = useWindowSize();
             mix-blend-mode: darken;
             background-repeat: no-repeat;
             animation: 8s move infinite ease-in-out alternate;
-            opacity: 0.5;
+            opacity: 0.3;
         }
     }
 }

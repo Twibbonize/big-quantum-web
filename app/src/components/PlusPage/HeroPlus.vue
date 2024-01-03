@@ -74,7 +74,13 @@ onMounted(() => {});
         bottom: -440px;
         width: 757px;
         height: 1014px;
+        background-position: right bottom;
+        background-size: 4000px 2000px;
+        filter: blur(15.4px) grayscale(100%);
         mix-blend-mode: darken;
+        background-repeat: no-repeat;
+        animation: 8s move infinite ease-in-out alternate;
+        opacity: 0.3;
     }
 }
 
