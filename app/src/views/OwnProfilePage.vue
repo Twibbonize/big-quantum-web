@@ -220,6 +220,9 @@ const campaigns = computed(() => {
 
             <div class="profile__avatar">
                 <img class="profile__avatar__img" src="/assets/img/sample/sample-avatar-1.jpg" alt="Universe Tech" />
+                <button class="profile__avatar__edit">
+                    <i class="ri-edit-line"></i>
+                </button>
             </div>
 
             <div class="container px-5 lg:px-0">
@@ -249,31 +252,13 @@ const campaigns = computed(() => {
                                     " />
                             </div>
 
-                            <Popover class="relative">
-                                <QButton variant="secondary" circle size="sm">
-                                    <PopoverButton as="span" class="h-full w-full flex items-center justify-center">
-                                        <i class="ri-more-line"></i>
-                                    </PopoverButton>
+                            <div class="flex-shrink-0">
+                                <QButton variant="secondary" size="sm" @click="$router.push({ name: 'settings' })">
+                                    <i class="ri-settings-3-line"></i>
+                                    <span class="ml-1">Edit Profile</span>
                                 </QButton>
+                            </div>
 
-                                <transition enter-active-class="transition duration-200 ease-out"
-                                    enter-from-class="translate-y-1 opacity-0" enter-to-class="translate-y-0 opacity-100"
-                                    leave-active-class="transition duration-150 ease-in"
-                                    leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-1 opacity-0">
-                                    <PopoverPanel class="popover__panel">
-                                        <div class="p-1">
-                                            <ul class="menu">
-                                                <li class="menu__item">
-                                                    <a class="menu__link" @click="reportModal = true">
-                                                        <i class="ri-flag-line ri-1x"></i>
-                                                        <span>Report Profile</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </PopoverPanel>
-                                </transition>
-                            </Popover>
                         </div>
                     </div>
 
@@ -339,12 +324,20 @@ const campaigns = computed(() => {
                     <template #posts>
                         <div class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center">
                             <h4 class="text-xl font-semibold">No Posts Yet</h4>
+                            <p class="text-content">
+                                Find a campaign, and post your twibbon to Twibbonize.
+                            </p>
                         </div>
                     </template>
 
+
                     <template #collections>
                         <div class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center">
-                            <h4 class="text-xl font-semibold">No Collections Yet</h4> 
+                            <h4 class="text-xl font-semibold">Organize your favorite campaigns</h4>
+                            <p class="text-content">On the campaign page, just click the <span><i
+                                        class="ri-bookmark-line"></i></span> icon button to save campaigns you find
+                                interesting into your own collections.
+                            </p>
                         </div>
                     </template>
                 </QTabs>
@@ -369,7 +362,7 @@ const campaigns = computed(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 lg:px-0 -mt-10;
+        @apply container px-5 lg:px-0 -mt-10 relative;
 
         @include md_screen {
             @apply -mt-24;
@@ -384,6 +377,16 @@ const campaigns = computed(() => {
             @include md_screen {
                 height: 132px;
                 width: 132px;
+            }
+        }
+
+        .profile__avatar__edit {
+            @apply absolute bottom-0 bg-white border border-stroke z-10 w-6 h-6 rounded-full text-xs;
+            left: 72px;
+
+            @include md_screen {
+                @apply w-8 h-8 text-sm;
+                left: 92px;
             }
         }
     }
@@ -465,4 +468,5 @@ const campaigns = computed(() => {
             @apply bg-black/10;
         }
     }
-}</style>
+}
+</style>

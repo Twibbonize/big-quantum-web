@@ -4,6 +4,7 @@ import CreatorsPage from '@/views/CreatorsPage.vue';
 import PlusPage from '@/views/PlusPage.vue';
 import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 
@@ -39,6 +40,11 @@ const router = createRouter({
             path: '/u/universetech',
             name: 'profile',
             component: ProfilePage
+        },
+        {
+            path: '/profile',
+            name: 'own-profile',
+            component: OwnProfilePage
         },
         {
             path: '/campaign',

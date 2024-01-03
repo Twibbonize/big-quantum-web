@@ -14,7 +14,10 @@ const props = defineProps({
                 'danger',
                 'link',
                 'subtle',
-                'connect'
+                'connect',
+                'facebook',
+                'twitter',
+                'pinterest'
             ].includes(value)
     },
     size: {
@@ -264,6 +267,16 @@ function handleClick(e) {
         width: 40px;
         height: 40px;
         @apply flex-shrink-0 p-0;
+    }
+
+    &--facebook {
+        background-color: #3f69d9;
+        @apply text-white;
+    }
+
+    &--twitter {
+        background-color: #000000;
+        @apply text-white;
     }
 
     &.btn--xs.btn--circle,

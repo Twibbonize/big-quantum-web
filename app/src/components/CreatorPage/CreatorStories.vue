@@ -14,12 +14,19 @@ const props = defineProps({
         <p class="text-center text-base sm:text-2xl mt-4 sm:mt-8">
             Unique campaigns brought to life with Twibbonize
         </p>
-        <div class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 sm:px-5 mt-6 sm:mt-20">
+        <div
+            class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 sm:px-5 mt-6 sm:mt-20"
+        >
             <div class="bento-1 sm:col-span-2 card">
                 <div class="pb-40 sm:pb-5 p-5">
-                    <h5 class="font-bold text-xl">Hanoi Art Book Fair Maximized Their Reach With Twibbonize</h5>
-                    <p class="text-xs">Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024</p>
-                    <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/"/>
+                    <h5 class="font-bold text-xl">
+                        Hanoi Art Book Fair Maximized Their Reach With Twibbonize
+                    </h5>
+                    <p class="text-xs">
+                        Discover key challenges today’s marketing teams are facing, as well as
+                        opportunities for businesses in 2024
+                    </p>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Report" url="/" />
                 </div>
                 <div class="phone-bg"></div>
                 <div class="green-bg"></div>
@@ -30,21 +37,28 @@ const props = defineProps({
                     <h5>“Twibbonize really helps us grow our audience with very little effort.”</h5>
                     <p class="font-bold text-xs mt-6">Clarissa May</p>
                     <p class="text-xs">Creative Director</p>
-                    <QOpenLink class="mt-6" classes="text-xs" text="Read Her Story" url="/"/>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Her Story" url="/" />
                 </div>
                 <div class="girl-bg"></div>
                 <div class="yellow-bg"></div>
             </div>
             <div class="bento-3 sm:col-span-2 card">
-                <img class="w-full" src="/assets/img/stories/stories-bento-3.png" alt="">
+                <img class="w-full" src="/assets/img/stories/stories-bento-3.png" alt="" />
                 <div class="p-5">
-                    <h5 class="font-bold text-xl">How Twibbonize Enhances Celebrations in Education</h5>
-                    <p class="text-xs mt-2">Discover key challenges today’s marketing teams are facing, as well as opportunities for businesses in 2024</p>
-                    <QOpenLink class="mt-6" classes="text-xs" text="Read Our Article" url="/"/>
+                    <h5 class="font-bold text-xl">
+                        How Twibbonize Enhances Celebrations in Education
+                    </h5>
+                    <p class="text-xs mt-2">
+                        Discover key challenges today’s marketing teams are facing, as well as
+                        opportunities for businesses in 2024
+                    </p>
+                    <QOpenLink class="mt-6" classes="text-xs" text="Read Our Article" url="/" />
                 </div>
             </div>
             <div class="bento-4 card sm:col-span-6 p-5 sm:p-10">
-                <h5 class="text-xl sm:text-4xl font-semibold w-1/2">Turn your creative ideas into actionable & marketable social campaigns</h5>
+                <h5 class="text-xl sm:text-4xl font-semibold w-1/2">
+                    Turn your creative ideas into actionable & marketable social campaigns
+                </h5>
                 <QButton variant="primary" class="mt-6">
                     Create Yours Now <i class="ri-arrow-right-line ml-1.5"></i>
                 </QButton>
@@ -81,7 +95,7 @@ const props = defineProps({
 
     .card {
         @apply bg-white rounded-3xl overflow-hidden relative;
-        border: 0.659px solid rgba(27, 27, 27, 0.10);
+        border: 0.659px solid rgba(27, 27, 27, 0.1);
     }
 
     .bento-1 {
@@ -95,7 +109,6 @@ const props = defineProps({
             background-repeat: no-repeat;
             background-position: bottom center;
             z-index: 2;
-
         }
 
         .green-bg {
@@ -107,7 +120,7 @@ const props = defineProps({
             transform: rotate(-230deg);
             border-radius: 531.499px;
             opacity: 0.4;
-            background: #16DAC1;
+            background: #16dac1;
             filter: blur(65px);
         }
 
@@ -121,7 +134,7 @@ const props = defineProps({
             flex-shrink: 0;
             border-radius: 531px;
             opacity: 0.4;
-            background: #0095F5;
+            background: #0095f5;
             filter: blur(65px);
         }
     }
@@ -143,7 +156,6 @@ const props = defineProps({
             background-repeat: no-repeat;
             background-position: bottom right;
             z-index: 2;
-
         }
 
         .yellow-bg {
@@ -156,7 +168,7 @@ const props = defineProps({
             flex-shrink: 0;
             border-radius: 531px;
             opacity: 0.4;
-            background: #F8FF35;
+            background: #f8ff35;
             filter: blur(65px);
         }
     }
