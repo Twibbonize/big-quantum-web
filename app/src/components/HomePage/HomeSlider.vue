@@ -109,7 +109,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
     gap: 21px;
     position: absolute;
     bottom: -200px;
-    right: 0;
+    right: -100px;
     z-index: 1;
 
     .autoslider {
