@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { computed, inject, ref, onMounted } from 'vue';
 import dayjs from 'dayjs';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
@@ -15,6 +15,8 @@ import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
+
+const emit = defineEmits(['change-navbar']);
 
 const tabs = [
     {
@@ -150,6 +152,10 @@ const campaigns = computed(() => {
             }
         };
     });
+});
+
+onMounted(() => {
+    emit('change-navbar', 'black');
 });
 </script>
 
@@ -347,7 +353,7 @@ const campaigns = computed(() => {
             <div class="container px-5 md:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-6 mt-6 md:mt-10">
                             <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
                         </div>
                     </template>
@@ -464,6 +470,10 @@ const campaigns = computed(() => {
     .profile__actions {
         margin-top: 24px;
         @apply flex items-center space-x-2 w-full;
+
+        @include xs {
+            @apply flex-wrap space-x-0 space-y-2;
+        }
     }
 }
 

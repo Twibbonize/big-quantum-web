@@ -61,7 +61,17 @@ const handleAuthNative = async (formValues) => {
                             <h1 class="text-2xl font-bold">Log in with social media</h1>
 
                             <div class="flex space-x-3">
-                                <QButton variant="secondary" size="lg" circle>
+                                <QButton
+                                    variant="secondary"
+                                    size="lg"
+                                    circle
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
+                                >
                                     <img
                                         src="/assets/img/logos/google.svg"
                                         class="w-4 h-4"
@@ -69,7 +79,17 @@ const handleAuthNative = async (formValues) => {
                                     />
                                 </QButton>
 
-                                <QButton variant="secondary" size="lg" circle>
+                                <QButton
+                                    variant="secondary"
+                                    size="lg"
+                                    circle
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
+                                >
                                     <img
                                         src="/assets/img/logos/facebook.svg"
                                         class="w-4 h-4"
@@ -118,7 +138,12 @@ const handleAuthNative = async (formValues) => {
                                 <QButton
                                     block
                                     :enabled="meta.valid"
-                                    @click="() => handleAuthNative(values)"
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
                                 >
                                     Log In
                                 </QButton>
@@ -146,7 +171,17 @@ const handleAuthNative = async (formValues) => {
                             <h1 class="text-2xl font-black">Sign Up Now!</h1>
 
                             <div class="flex space-x-3">
-                                <QButton variant="secondary" circle size="lg">
+                                <QButton
+                                    variant="secondary"
+                                    circle
+                                    size="lg"
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
+                                >
                                     <img
                                         src="/assets/img/logos/google.svg"
                                         class="w-4 h-4"
@@ -154,7 +189,17 @@ const handleAuthNative = async (formValues) => {
                                     />
                                 </QButton>
 
-                                <QButton variant="secondary" circle size="lg">
+                                <QButton
+                                    variant="secondary"
+                                    circle
+                                    size="lg"
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
+                                >
                                     <img
                                         src="/assets/img/logos/facebook.svg"
                                         class="w-4 h-4"
@@ -231,7 +276,18 @@ const handleAuthNative = async (formValues) => {
                                     >.
                                 </p>
 
-                                <QButton block :enabled="meta.valid"> Sign Up </QButton>
+                                <QButton
+                                    block
+                                    :enabled="meta.valid"
+                                    @click="
+                                        [
+                                            $router.push({ name: 'own-profile' }),
+                                            (modal.show = false)
+                                        ]
+                                    "
+                                >
+                                    Sign Up
+                                </QButton>
 
                                 <p class="text-center text-sm text-content">
                                     Already have an account?

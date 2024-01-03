@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { computed, inject, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
@@ -15,6 +15,8 @@ import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
+
+const emit = defineEmits(['change-navbar']);
 
 const tabs = [
     {
@@ -150,6 +152,10 @@ const campaigns = computed(() => {
             }
         };
     });
+});
+
+onMounted(() => {
+    emit('change-navbar', 'black');
 });
 </script>
 
