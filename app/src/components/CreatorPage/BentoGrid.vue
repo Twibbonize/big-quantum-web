@@ -10,8 +10,8 @@
         </div>
         <div class="flex flex-col sm:flex-row gap-8 px-3 row mt-5">
             <div class="card card-1 flex flex-col">
-                <h5 class="text-2xl sm:text-3xl font-bold w-full sm:w-4/12">One of a king Twibbon Generator</h5>
-                <p class="text-sm sm:text-lg mt-4 w-full sm:w-4/12">
+                <h5 class="text-2xl sm:text-3xl font-bold w-full sm:w-4/12 xl:w-6/12">One of a king Twibbon Generator</h5>
+                <p class="text-sm sm:text-lg mt-4 w-full sm:w-4/12 xl:w-6/12">
                     Bring all your campaign’s supporter community on your Twibbonize page; where
                     supporters connect and you see the impact!
                 </p>
@@ -82,16 +82,16 @@
     .creators-features {
         .card-1 {
             background-image: url('../../assets/img/campaigns/bento-1.png');
-            background-size: 60%;
+            background-size: 50%;
             background-position: right bottom;
         }
         .card-2 {
             background-image: url('../../assets/img/campaigns/bento-2.png');
-            background-size: 80%;
+            background-size: 70%;
         }
         .card-3 {
             background-image: url('../../assets/img/campaigns/bento-3.png');
-            background-size: 70%;
+            background-size: 60%;
         }
         .card-4 {
             background-image: url('../../assets/img/campaigns/bento-4.png');
@@ -100,6 +100,32 @@
         .card-5 {
             background-image: url('../../assets/img/campaigns/bento-5.png');
             background-size: 80%;
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .creators-features {
+        .card-1 {
+            background-image: url('../../assets/img/campaigns/bento-1.png');
+            background-size: 45%;
+            background-position: right bottom;
+        }
+        .card-2 {
+            background-image: url('../../assets/img/campaigns/bento-2.png');
+            background-size: 65%;
+        }
+        .card-3 {
+            background-image: url('../../assets/img/campaigns/bento-3.png');
+            background-size: 50%;
+        }
+        .card-4 {
+            background-image: url('../../assets/img/campaigns/bento-4.png');
+            background-size: 65%;
+        }
+        .card-5 {
+            background-image: url('../../assets/img/campaigns/bento-5.png');
+            background-size: 65%;
         }
     }
 }
