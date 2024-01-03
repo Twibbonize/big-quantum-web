@@ -36,7 +36,7 @@ onMounted(() => {
             mode: 'scroll',
             actions: [
                 {
-                    visibility: [0.50, 1.0],
+                    visibility: [0.1, 1.0],
                     type: 'playOnce'
                 }
             ]
