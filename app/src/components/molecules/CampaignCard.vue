@@ -165,7 +165,7 @@ const props = defineProps({
 
         .meta__icon i,
         .meta__icon svg {
-            @apply text-content;
+            @apply text-black;
         }
 
         .meta__copy {
@@ -175,7 +175,7 @@ const props = defineProps({
         }
 
         .meta__title {
-            @apply text-xxs font-medium tracking-normal hidden;
+            @apply text-xxs font-medium hidden;
 
             @include md_screen {
                 @apply block;
@@ -183,7 +183,7 @@ const props = defineProps({
         }
 
         .meta__value {
-            @apply text-xs text-content leading-none;
+            @apply text-sm text-black/50 font-medium leading-none;
         }
     }
 }
