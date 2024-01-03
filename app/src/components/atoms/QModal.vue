@@ -133,11 +133,11 @@ const emit = defineEmits(['close']);
     }
 
     .dialog__panel__header {
-        @apply px-5 py-3;
+        @apply p-5 absolute left-0 top-0 w-full z-10;
     }
 
     .dialog__panel__footer {
-        @apply px-5 py-3;
+        @apply p-5;
     }
 
     .dialog__panel__body {

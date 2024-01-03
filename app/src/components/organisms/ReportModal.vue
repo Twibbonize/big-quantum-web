@@ -52,7 +52,7 @@ const reportValidation = yupObject().shape({
         </template>
 
         <template #body>
-            <div class="px-5 pt-2 pb-6">
+            <div class="px-5 pt-20 py-6">
                 <Form :validation-schema="reportValidation" v-slot="{ meta }">
                     <div class="space-y-6">
                         <Field name="reason" v-model="selectedReason" v-slot="{ field }">
