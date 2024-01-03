@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",
-    "@lottiefiles/lottie-interactivity": "^1.6.2",
-    "@lottiefiles/lottie-player": "^2.0.2",
     "@vueuse/core": "^10.7.0",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",

@@ -23,7 +23,7 @@ const lottieDimension = computed(() => {
             <div class="w-full pages-title mx-auto">
                 <div class="container z-20 absolute mx-auto">
                     <div
-                        class="w-full sm:w-2/3 md:w-1/3 content flex flex-col items-center sm:items-start"
+                        class="w-full sm:w-2/3 md:w-1/3 content flex flex-col items-center sm:items-start px-5"
                     >
                         <h1 class="title z-30 user-select-none pe-none lowercase">show your</h1>
                         <div class="title-animation z-30">

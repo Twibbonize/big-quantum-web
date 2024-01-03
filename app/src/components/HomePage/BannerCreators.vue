@@ -1,8 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
-
-import * as LottiePlayer from "@lottiefiles/lottie-player";
-import { create } from '@lottiefiles/lottie-interactivity';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
     width: Number,
@@ -10,8 +7,8 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return 'width: 250px;height: 100px;';
-    return 'width: 125px;height: 50px;';
+    if (props.width >= 640) return { w: 250, h: 100 };
+    return { w: 125, h: 50 };
 });
 
 const creatorsLogo = [
@@ -22,27 +19,24 @@ const creatorsLogo = [
     'creators-logo-5.svg'
 ];
 
+const lottieScroll = ref(null);
+const lottieSupports = ref(null);
+
 import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
 
+const doScroll = () => {
+    const { top } = lottieScroll.value.getBoundingClientRect();
+    if (top < 500) lottieSupports.value.play();
+};
+
 onMounted(() => {
-    let player = document.getElementById('lottieSupports');
-    console.log(player);
+    window.addEventListener('scroll', doScroll);
+});
 
-    player.addEventListener('load',function() {
-
-        create({
-            player: '#lottieSupports',
-            mode: 'scroll',
-            actions: [
-                {
-                    visibility: [0.1, 1.0],
-                    type: 'playOnce'
-                }
-            ]
-        });
-    })
-})
+onUnmounted(() => {
+    window.removeEventListener('scroll', doScroll);
+});
 </script>
 
 <template>
@@ -61,6 +55,7 @@ onMounted(() => {
                     alt="twibbonize-for-creators"
                 />
             </div>
+            <div ref="lottieScroll"></div>
             <div class="container z-30 mt-4 mx-auto">
                 <div class="row justify-center">
                     <div class="col-xl-10">
@@ -68,10 +63,13 @@ onMounted(() => {
                             <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4">
                                 <div class="flex justify-center items-center">
                                     <div class="flex relative">
-                                        <lottie-player
-                                            id="lottieSupports"
-                                            src="https://big-quantum.twibbonize.com/assets/lottie/gather.json"
-                                            :style="lottieDimension"
+                                        <Vue3Lottie
+                                            ref="lottieSupports"
+                                            :animationData="gatherJSON"
+                                            :height="lottieDimension.h"
+                                            :width="lottieDimension.w"
+                                            :loop="false"
+                                            :autoPlay="false"
                                         />
                                     </div>
                                     <div class="-ml-2 sm:-ml-4 pb-3">your</div>
