@@ -8,8 +8,7 @@ export default defineConfig({
     plugins: [vue({
         template: {
             compilerOptions: {
-              // treat all tags with a dash as custom elements
-              isCustomElement: (tag) => tag.includes('swiper-')
+              isCustomElement: (tag) => tag.includes('swiper-') || tag.includes('lottie-')
             }
         }
     })],
