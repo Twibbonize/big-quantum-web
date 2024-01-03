@@ -270,4 +270,21 @@ const props = defineProps({
 .background-white .tf-author-box.style-2.hv-border:hover {
     box-shadow: 0px 25px 20px -10px rgb(0 0 2 / 5%);
 }
+
+@media screen and (max-width: 640px) {
+    .tf-author-box.style-2 .author-avatar {
+        width: 64px;
+        margin-right: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+
+    .tf-author-box .author-avatar img {
+        border-radius: 50%;
+        aspect-ratio: 1;
+        max-height: 64px;
+        max-width: 64px;
+    }
+}
 </style>
