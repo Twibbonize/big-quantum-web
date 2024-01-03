@@ -1,5 +1,8 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const props = defineProps({
     width: Number,
@@ -7,8 +10,8 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return { w: 250, h: 100 };
-    return { w: 125, h: 50 };
+    if (props.width >= 640) return { w: 300, h: 100 };
+    return { w: 180, h: 70 };
 });
 
 const creatorsLogo = [
@@ -29,6 +32,10 @@ const doScroll = () => {
     const { top } = lottieScroll.value.getBoundingClientRect();
     if (top < 500) lottieSupports.value.play();
 };
+
+const isAutoPlay = computed(() => {
+    return /(creators)/ig.test(route.path);
+});
 
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
@@ -69,7 +76,7 @@ onUnmounted(() => {
                                             :height="lottieDimension.h"
                                             :width="lottieDimension.w"
                                             :loop="false"
-                                            :autoPlay="false"
+                                            :autoPlay="isAutoPlay"
                                         />
                                     </div>
                                     <div class="-ml-2 sm:-ml-4 pb-3">your</div>
