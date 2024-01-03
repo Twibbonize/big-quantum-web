@@ -1,5 +1,8 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
+
+import * as LottiePlayer from "@lottiefiles/lottie-player";
+import { create } from '@lottiefiles/lottie-interactivity';
 
 const props = defineProps({
     width: Number,
@@ -7,8 +10,8 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return { w: 250, h: 100 };
-    return { w: 125, h: 50 };
+    if (props.width >= 640) return 'width: 250px;height: 100px;';
+    return 'width: 125px;height: 50px;';
 });
 
 const creatorsLogo = [
@@ -21,6 +24,25 @@ const creatorsLogo = [
 
 import QButton from '@/components/atoms/QButton.vue';
 import gatherJSON from '../../assets/lottie/gather.json';
+
+onMounted(() => {
+    let player = document.getElementById('lottieSupports');
+    console.log(player);
+
+    player.addEventListener('load',function() {
+
+        create({
+            player: '#lottieSupports',
+            mode: 'scroll',
+            actions: [
+                {
+                    visibility: [0.50, 1.0],
+                    type: 'playOnce'
+                }
+            ]
+        });
+    })
+})
 </script>
 
 <template>
@@ -46,11 +68,10 @@ import gatherJSON from '../../assets/lottie/gather.json';
                             <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4">
                                 <div class="flex justify-center items-center">
                                     <div class="flex relative">
-                                        <Vue3Lottie
-                                            :animationData="gatherJSON"
-                                            :height="lottieDimension.h"
-                                            :width="lottieDimension.w"
-                                            :loop="false"
+                                        <lottie-player
+                                            id="lottieSupports"
+                                            src="http://big-quantum.twibbonize.com/assets/lottie/gather.json"
+                                            :style="lottieDimension"
                                         />
                                     </div>
                                     <div class="-ml-2 sm:-ml-4 pb-3">your</div>

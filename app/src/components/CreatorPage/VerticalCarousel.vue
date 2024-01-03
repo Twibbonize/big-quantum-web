@@ -61,6 +61,11 @@ function timer() {
     advance();
 }
 
+function setIndex(index) {
+    counter.value = index;
+    advance();
+}
+
 onMounted(() => {
     advance();
 });
@@ -76,8 +81,10 @@ onMounted(() => {
                     class="flex flex-col p-4"
                     :class="{
                         'tab-active': i === index || isMobile,
+                        'cursor-pointer': i !== index,
                         'items-center': i !== index
                     }"
+                    @click="setIndex(i)"
                 >
                     <video class="video sm:hidden mb-6" muted autoplay :src="video"></video>
                     <div class="flex w-full" :class="{ 'items-center': i !== index }">
