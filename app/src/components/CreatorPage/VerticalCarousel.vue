@@ -173,7 +173,14 @@ onMounted(() => {
             bottom: -1px;
             right: 10px;
             width: 100%;
-            background-image: linear-gradient(to right, #ffffff, #f3f3f3, #e8e8e8, #dcdcdc, #d1d1d1);
+            background-image: linear-gradient(
+                to right,
+                #ffffff,
+                #f3f3f3,
+                #e8e8e8,
+                #dcdcdc,
+                #d1d1d1
+            );
             animation: loadingbar 15s linear infinite;
         }
     }

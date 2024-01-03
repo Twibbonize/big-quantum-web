@@ -1,8 +1,7 @@
 import 'animate.css';
 import 'remixicon/fonts/remixicon.css';
 import '@/assets/scss/style.scss';
-import 'aos/dist/aos.css'
-
+import 'aos/dist/aos.css';
 
 import { createApp, ref } from 'vue';
 import { createPinia } from 'pinia';

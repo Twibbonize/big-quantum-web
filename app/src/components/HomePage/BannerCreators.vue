@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 
-import * as LottiePlayer from "@lottiefiles/lottie-player";
+import * as LottiePlayer from '@lottiefiles/lottie-player';
 import { create } from '@lottiefiles/lottie-interactivity';
 
 const props = defineProps({
@@ -29,20 +29,19 @@ onMounted(() => {
     let player = document.getElementById('lottieSupports');
     console.log(player);
 
-    player.addEventListener('load',function() {
-
+    player.addEventListener('load', function () {
         create({
             player: '#lottieSupports',
             mode: 'scroll',
             actions: [
                 {
-                    visibility: [0.50, 1.0],
+                    visibility: [0.5, 1.0],
                     type: 'playOnce'
                 }
             ]
         });
-    })
-})
+    });
+});
 </script>
 
 <template>

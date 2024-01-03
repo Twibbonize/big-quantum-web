@@ -128,8 +128,8 @@ const handleAuthNative = async (formValues) => {
                                     <a
                                         class="link font-semibold"
                                         @click="modal.authOption = 'sign-up'"
-                                        >Sign Up.</a
-                                    >
+                                        >Sign up</a
+                                    >.
                                 </p>
                             </div>
                         </div>
@@ -228,7 +228,7 @@ const handleAuthNative = async (formValues) => {
                                         target="_blank"
                                         class="link"
                                         >Privacy Policy</a
-                                    >
+                                    >.
                                 </p>
 
                                 <QButton block :enabled="meta.valid"> Sign Up </QButton>
@@ -238,8 +238,8 @@ const handleAuthNative = async (formValues) => {
                                     <a
                                         class="link font-semibold"
                                         @click="modal.authOption = 'sign-in'"
-                                        >Log In.</a
-                                    >
+                                        >Log in</a
+                                    >.
                                 </p>
                             </div>
                         </div>
