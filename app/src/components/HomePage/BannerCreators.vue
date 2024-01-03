@@ -70,7 +70,7 @@ onMounted(() => {
                                     <div class="flex relative">
                                         <lottie-player
                                             id="lottieSupports"
-                                            src="http://big-quantum.twibbonize.com/assets/lottie/gather.json"
+                                            src="https://big-quantum.twibbonize.com/assets/lottie/gather.json"
                                             :style="lottieDimension"
                                         />
                                     </div>
