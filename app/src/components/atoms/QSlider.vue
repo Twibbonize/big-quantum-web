@@ -29,6 +29,10 @@ const props = defineProps({
         type: Boolean,
         default: null
     },
+    allowTouchMove: {
+        type: Boolean,
+        default: true
+    },
     gridRows: Number,
     gridFill: String
 });
@@ -57,6 +61,7 @@ onMounted(() => {
         :observer="observer"
         :grid-rows="gridRows"
         :grid-fill="gridFill"
+        :allow-touch-move="allowTouchMove"
     >
         <slot></slot>
     </swiper-container>

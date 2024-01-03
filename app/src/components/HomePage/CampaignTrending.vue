@@ -126,7 +126,7 @@ function getThumbnailUrl(name) {
                                 { name, avatar, creator, createdAt, supports, thumbnail }, i
                             ) in campaigns"
                             :key="i"
-                            class="swiper-slide px-4 py-8 first:ml-8 first:sm:ml-0"
+                            class="swiper-slide px-4 py-8 first:ml-5 first:sm:ml-0"
                         >
                             <CampaignCard
                                 class=""

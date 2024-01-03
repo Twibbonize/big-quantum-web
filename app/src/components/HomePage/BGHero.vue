@@ -45,7 +45,15 @@ const { width, height } = useWindowSize();
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(to bottom, #16dac1ff, #16dac1ff, #ffffff00, #ffffff00);
+        background-image: linear-gradient(
+            to bottom,
+            #16dac1ff,
+            #16dac1ff,
+            #16dac1ff,
+            #16dac1ff,
+            #ffffff00,
+            #ffffff00
+        );
     }
 }
 
