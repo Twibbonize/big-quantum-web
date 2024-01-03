@@ -59,6 +59,10 @@ onUnmounted(() => {
         .bg {
             border-radius: 0 !important;
         }
+
+        .logo-set {
+            opacity: 0;
+        }
     }
 
     .banner-creators__spark {

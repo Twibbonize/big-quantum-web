@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return { w: 600, h: 200 };
+    if (props.width >= 640) return { w: 450, h: 200 };
     return { w: 300, h: 100 };
 });
 </script>
@@ -31,7 +31,7 @@ const lottieDimension = computed(() => {
                                 :animationData="supportsJSON"
                                 :height="lottieDimension.h"
                                 :width="lottieDimension.w"
-                                :loop="true"
+                                :loop="false"
                             />
                         </div>
                         <h4 class="description z-30 fw-normal text-xl user-select-none pe-none">
@@ -47,14 +47,10 @@ const lottieDimension = computed(() => {
                                 <i class="ri-add-line"></i>
                                 Start a Campaign
                             </QButton>
-                            <div class="hero-participant__or font-bold">or</div>
-                            <QButton
-                                class="text-sm font-bold !px-0"
-                                variant="link"
-                                border-radius="circle"
-                            >
+                            <!-- <div class="hero-participant__or  font-bold">or</div>
+                            <QButton class="text-sm font-bold !px-0" variant="link" border-radius="circle">
                                 Find a Campaign
-                            </QButton>
+                            </QButton> -->
                         </div>
                     </div>
                 </div>
@@ -70,7 +66,6 @@ const lottieDimension = computed(() => {
     height: 540px;
 
     .content {
-        @apply px-5;
         margin-top: 120px;
     }
 
@@ -79,6 +74,7 @@ const lottieDimension = computed(() => {
     }
 
     .title-animation {
+        @apply pl-4;
         margin-top: -12px;
     }
 
@@ -100,7 +96,7 @@ const lottieDimension = computed(() => {
         height: 640px;
 
         .title-animation {
-            margin-left: -35px;
+            margin-left: -20px;
             margin-top: -50px;
         }
 
