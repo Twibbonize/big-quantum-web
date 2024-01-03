@@ -132,7 +132,7 @@ onMounted(() => {
                 <div
                     class="flex flex-col sm:flex-row sm:items-center justify-between md:w-full pb-8"
                 >
-                    <div class="heading-section flex justify-between items-center">
+                    <div class="heading-section flex justify-between items-center gap-4">
                         <h2 class="tf-title">Top Creators</h2>
                         <RouterLink
                             v-if="width < 640"
