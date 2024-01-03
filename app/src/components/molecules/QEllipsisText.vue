@@ -13,7 +13,6 @@ const textContainer = ref(null);
 
 const isMobile = inject('isMobile');
 
-
 const toggleText = () => {
     showFullText.value = !showFullText.value;
 };
@@ -22,13 +21,12 @@ const toggleTextLabel = computed(() => {
     return showFullText.value ? 'Show less' : 'more';
 });
 
-
 const maxLength = computed(() => {
     if (!textContainer.value) {
         return 60;
     }
 
-    const averageCharWidth = (isMobile.value ? 0.6 : 0.5 ) * 14;
+    const averageCharWidth = (isMobile.value ? 0.6 : 0.5) * 14;
     const maxCharacters = Math.floor(textContainer.value.offsetWidth / averageCharWidth) * 2 - 10;
     return maxCharacters;
 });
@@ -38,7 +36,6 @@ const truncatedText = computed(() => {
         ? props.text.slice(0, maxLength.value) + '...'
         : props.text;
 });
-
 </script>
 
 <template>

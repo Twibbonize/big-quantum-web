@@ -10,12 +10,16 @@
         </div>
         <div class="flex flex-col sm:flex-row gap-8 px-3 row mt-5">
             <div class="card card-1 flex flex-col">
-                <h5 class="text-2xl sm:text-3xl font-bold w-full sm:w-4/12 xl:w-6/12">One of a king Twibbon Generator</h5>
+                <h5 class="text-2xl sm:text-3xl font-bold w-full sm:w-4/12 xl:w-6/12">
+                    One of a king Twibbon Generator
+                </h5>
                 <p class="text-sm sm:text-lg mt-4 w-full sm:w-4/12 xl:w-6/12">
                     Bring all your campaign’s supporter community on your Twibbonize page; where
                     supporters connect and you see the impact!
                 </p>
-                <a class="text-sm sm:text-lg font-bold text-black mt-6 hover:underline" href="#">Learn More</a>
+                <a class="text-sm sm:text-lg font-bold text-black mt-6 hover:underline" href="#"
+                    >Learn More</a
+                >
             </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-8 px-3 row">

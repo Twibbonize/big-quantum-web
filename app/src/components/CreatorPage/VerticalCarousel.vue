@@ -3,13 +3,13 @@ import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
     width: Number,
-    height: Number,
+    height: Number
 });
 
 const isMobile = computed(() => {
     if (props.width < 640) return true;
     return false;
-})
+});
 
 const values = [
     {
@@ -99,10 +99,7 @@ onMounted(() => {
                             <p class="mt-4">{{ description }}</p>
                         </div>
                         <div v-if="i === index && !isMobile" class="bar-active">
-                            <i
-                                v-if="i === index"
-                                class="loader-active ri-shining-fill"
-                            ></i>
+                            <i v-if="i === index" class="loader-active ri-shining-fill"></i>
                         </div>
                         <h5 v-else-if="!isMobile" class="font-bold text-2xl">{{ title }}</h5>
                     </div>
@@ -138,7 +135,6 @@ onMounted(() => {
             transform: rotate(-3.671deg);
         }
 
-
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
@@ -146,7 +142,7 @@ onMounted(() => {
         letter-spacing: -0.48px;
     }
     .tab-active {
-        border-bottom: 1px solid #DEE8E8;
+        border-bottom: 1px solid #dee8e8;
         padding-bottom: 24px;
         margin-bottom: 8px;
     }

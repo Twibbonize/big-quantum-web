@@ -79,7 +79,6 @@ watch(open, (newValue) => {
                     </ul>
 
                     <div class="space-y-4">
-                       
                         <hr />
 
                         <div class="flex items-center space-x-2">
@@ -142,7 +141,6 @@ watch(open, (newValue) => {
 
     .expand-menu__links {
         @apply space-y-3;
-        
 
         @include md_screen {
             @apply space-y-4;
