@@ -38,7 +38,7 @@ onUnmounted(() => {
         <BannerCreators :width="width" :height="height" />
         <div ref="content"></div>
         <CampaignSwiper class="swiper" />
-        <VerticalCarousel />
+        <VerticalCarousel :width="width" :height="height"/>
         <BentoGrid />
         <TiltScreen />
         <CreatorStories :width="width" :height="height" />
