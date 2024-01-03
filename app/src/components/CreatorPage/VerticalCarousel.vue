@@ -53,11 +53,16 @@ const index = computed(() => {
 });
 
 function advance() {
-    setTimeout(timer, 5000);
+    setTimeout(timer, 15000);
 }
 
 function timer() {
     counter.value = counter.value += 1;
+    advance();
+}
+
+function setIndex(index) {
+    counter.value = index;
     advance();
 }
 
@@ -69,15 +74,17 @@ onMounted(() => {
 <template>
     <div class="creators-values container px-5 pt-24 pb-10 mx-auto">
         <div class="flex pt-5 flex-col sm:flex-row gap-8">
-            <div class="flex flex-col justify-center col h-100">
+            <div class="flex flex-1 flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description, video }, i) in values"
                     :key="`value-${i}`"
                     class="flex flex-col p-4"
                     :class="{
                         'tab-active': i === index || isMobile,
+                        'cursor-pointer': i !== index,
                         'items-center': i !== index
                     }"
+                    @click="setIndex(i)"
                 >
                     <video class="video sm:hidden mb-6" muted autoplay :src="video"></video>
                     <div class="flex w-full" :class="{ 'items-center': i !== index }">
@@ -101,7 +108,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-            <div v-if="!isMobile" class="pt-8 sm:pt-0 flex justify-center sm:justify-end">
+            <div v-if="!isMobile" class="pt-8 sm:pt-0 flex flex-1 justify-center sm:justify-end">
                 <video class="video" muted autoplay :src="values[index].video"></video>
             </div>
         </div>
@@ -111,8 +118,8 @@ onMounted(() => {
 <style lang="scss">
 .creators-values {
     .icon {
-        height: 60px;
-        width: 60px;
+        height: 40px;
+        width: 40px;
     }
     .video {
         border-radius: 20px;
@@ -171,7 +178,7 @@ onMounted(() => {
             right: 10px;
             width: 100%;
             background-image: linear-gradient(to right, #ffffff, #f3f3f3, #e8e8e8, #dcdcdc, #d1d1d1);
-            animation: loadingbar 5s linear infinite;
+            animation: loadingbar 15s linear infinite;
         }
     }
 }
