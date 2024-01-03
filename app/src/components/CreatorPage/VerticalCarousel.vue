@@ -88,7 +88,7 @@ onMounted(() => {
                     @click="setIndex(i)"
                 >
                     <video class="video sm:hidden mb-6" muted autoplay :src="video"></video>
-                    <div class="flex w-full" :class="{ 'items-center': i !== index }">
+                    <div class="flex w-full" :class="{ 'items-center': i !== index && !isMobile }">
                         <img class="icon mr-3" :src="icon" :alt="title" />
                         <div class="flex flex-col">
                             <div class="flex">
@@ -132,9 +132,8 @@ onMounted(() => {
 
     .title-active {
         .title {
-            @apply lowercase;
+            @apply lowercase text-3xl sm:text-5xl;
             font-family: Marck Script;
-            font-size: 48px;
             font-style: normal;
             font-weight: 400;
             line-height: 100%; /* 48px */
@@ -144,9 +143,10 @@ onMounted(() => {
         }
 
         .subtitle {
-            @apply opacity-100;
+            @apply opacity-100 text-xl sm:text-3xl;
         }
 
+        @apply text-2xl text-3xl;
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
@@ -157,6 +157,10 @@ onMounted(() => {
         border-bottom: 1px solid #dee8e8;
         padding-bottom: 24px;
         margin-bottom: 8px;
+    }
+
+    .description, .description-active {
+        @apply text-sm sm:text-base;
     }
 }
 
