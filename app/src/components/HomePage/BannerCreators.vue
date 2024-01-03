@@ -82,7 +82,7 @@ import gatherJSON from '../../assets/lottie/gather.json';
                     </div>
                 </div>
                 <div
-                    class="logo-set flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10"
+                    class="logo-set flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10 px-5"
                 >
                     <img
                         v-for="url in creatorsLogo"

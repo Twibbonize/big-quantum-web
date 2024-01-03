@@ -41,10 +41,10 @@ const lottieDimension = computed(() => {
                                 <i class="ri-add-line"></i>
                                 Start a Campaign
                             </QButton>
-                            <div class="hero-participant__or  font-bold">or</div>
+                            <!-- <div class="hero-participant__or  font-bold">or</div>
                             <QButton class="text-sm font-bold !px-0" variant="link" border-radius="circle">
                                 Find a Campaign
-                            </QButton>
+                            </QButton> -->
                         </div>
                     </div>
                 </div>
