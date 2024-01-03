@@ -99,7 +99,8 @@ onMounted(() => {});
     .img-container {
         overflow: hidden;
 
-        picture, img {
+        picture,
+        img {
             transition: all 0.2s ease;
         }
     }

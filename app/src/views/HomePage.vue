@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, defineAsyncComponent } from 'vue';
 import { useWindowSize } from '@vueuse/core';
-import AOS from "aos";
+import AOS from 'aos';
 
 import CampaignTrending from '@/components/HomePage/CampaignTrending.vue';
 import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
@@ -10,11 +10,11 @@ import TopCreators from '@/components/HomePage/TopCreators.vue';
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
 
-// const BannerCreators = defineAsyncComponent(() => 
+// const BannerCreators = defineAsyncComponent(() =>
 //     import('@/components/HomePage/BannerCreators.vue')
 // )
 
-// const CampaignSwiper = defineAsyncComponent(() => 
+// const CampaignSwiper = defineAsyncComponent(() =>
 //     import('@/components/HomePage/CampaignSwiper.vue')
 // )
 

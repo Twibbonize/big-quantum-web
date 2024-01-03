@@ -31,7 +31,7 @@ const props = defineProps({
     },
     allowTouchMove: {
         type: Boolean,
-        default: true,
+        default: true
     },
     gridRows: Number,
     gridFill: String
