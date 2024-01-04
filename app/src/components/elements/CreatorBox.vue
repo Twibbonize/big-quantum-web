@@ -12,12 +12,12 @@ const props = defineProps({
 
 <template>
     <RouterLink to="/u/universetech">
-        <div class="tf-author-box style-2 hv-border mb-6 w-full">
+        <div class="top-author style-2 hv-border mb-6 w-full">
             <div class="order">{{ `#${props.number}` }}</div>
             <div class="author-avatar rounded-full">
                 <img :src="avatar" alt="" class="avatar rounded-full" />
             </div>
-            <div class="author-infor">
+            <div class="author-info">
                 <h5>
                     <RouterLink to="/u/universetech">{{ name }}</RouterLink>
                 </h5>
@@ -30,45 +30,18 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-.tf-author-box {
+.top-author {
     &:hover {
         cursor: pointer;
     }
 }
 
-.tf-author-box .author-avatar {
+.top-author .author-avatar {
     margin-bottom: 14px;
     position: relative;
 }
 
-.tf-author-box .author-avatar .number {
-    border-radius: 24px;
-    background: #16dac1;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #161616;
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 18px;
-    position: absolute;
-    top: 0;
-    right: 33px;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    -ms-transition: all 0.8s ease-in-out;
-    -o-transition: all 0.8s ease-in-out;
-    transition: all 0.8s ease-in-out;
-}
-
-.tf-author-box:hover .author-avatar .number {
-    transform: rotateY(360deg);
-    background: #16dac1;
-}
-
-.tf-author-box .author-infor h5 {
+.top-author .author-info h5 {
     font-size: 18px;
     font-weight: 800;
     line-height: 25px;
@@ -85,8 +58,8 @@ const props = defineProps({
     font-weight: 400;
 }
 
-/* tf-author-box style-1 */
-.tf-author-box.style-1 {
+/* top-author style-1 */
+.top-author.style-1 {
     align-items: center;
     padding: 10px;
     border-radius: 10000px;
@@ -94,75 +67,41 @@ const props = defineProps({
     width: fit-content;
 }
 
-.tf-author-box.style-1 .author-avatar {
+.top-author.style-1 .author-avatar {
     margin-right: 16px;
     margin-bottom: 0;
 }
 
-.tf-author-box .author-avatar img {
+.top-author .author-avatar img {
     border-radius: 50%;
     aspect-ratio: 1;
     max-height: 80px;
     max-width: 80px;
 }
 
-.tf-author-box.style-2.type-1 {
-    padding: 24px;
-    border-radius: 20px;
-    background: #232323;
-    margin-bottom: 0;
-    border: none;
-}
-
-.tf-author-box.style-2.type-1 .author-avatar {
-    width: 70px;
-    height: 70px;
-    margin-right: 16px;
-}
-
-.tf-author-box.style-2.type-1 .price.gem {
-    font-weight: 400;
-    font-size: 14px;
-}
-
-.tf-author-box .author-infor .price.gem.style-1 i {
+.top-author .author-info .price.gem.style-1 i {
     font-size: 13px;
 }
 
-/* tf-author-box bg-white */
-.tf-author-box.bg-white {
+/* top-author bg-white */
+.top-author.bg-white {
     background-color: #fff;
 }
 
-.tf-author-box.bg-white .author-infor h5 a {
+.top-author.bg-white .author-info h5 a {
     color: #161616;
 }
 
-.tf-author-box.bg-white .author-infor h5 a:hover {
+.top-author.bg-white .author-info h5 a:hover {
     text-decoration: underline !important;
 }
 
-.tf-author-box.bg-white .author-infor h6 i::before,
-.tf-author-box.bg-white .author-infor h6 {
+.top-author.bg-white .author-info h6 i::before,
+.top-author.bg-white .author-info h6 {
     color: rgba(22, 22, 22, 0.3);
 }
 
-/* style-3 */
-.tf-author-box.style-3 .author-avatar img {
-    border-radius: 20px;
-}
-
-.tf-author-box .author-avatar .number {
-    background-color: #dee8e8;
-    left: 50%;
-    margin-left: 23px;
-}
-
-.tf-author-box.style-3 .author-avatar .number {
-    margin-left: 41px;
-}
-
-.tf-author-box.style-2 {
+.top-author.style-2 {
     display: flex;
     align-items: center;
     padding-bottom: 30px;
@@ -170,11 +109,7 @@ const props = defineProps({
     position: relative;
 }
 
-.tf-author-box.style-2.no-border-b {
-    border: none;
-}
-
-.tf-author-box.style-2 .author-avatar {
+.top-author.style-2 .author-avatar {
     width: 80px;
     margin-right: 20px;
     border-radius: 50%;
@@ -182,11 +117,11 @@ const props = defineProps({
     margin-bottom: 0;
 }
 
-.tf-author-box.style-2 .author-infor {
+.top-author.style-2 .author-info {
     flex-grow: 1;
 }
 
-.tf-author-box.style-2 .order {
+.top-author.style-2 .order {
     font-size: 32px;
     font-weight: 800;
     line-height: 44px;
@@ -194,48 +129,48 @@ const props = defineProps({
     margin-left: 10px;
 }
 
-.seller-grid .col-md-4:last-child .tf-author-box {
+.seller-grid .col-md-4:last-child .top-author {
     border: none !important;
 }
 
 /* bg-white */
-.tf-author-box.style-2.bg-white {
+.top-author.style-2.bg-white {
     background-color: #fff;
     border-bottom: 1px solid rgba(22, 22, 22, 0.07);
 }
 
-.tf-author-box.style-2.bg-white .author-avatar {
+.top-author.style-2.bg-white .author-avatar {
     border-radius: 20px;
 }
 
-.tf-author-box.style-2.bg-white .author-avatar img {
+.top-author.style-2.bg-white .author-avatar img {
     border-radius: 0;
 }
 
-.tf-author-box.style-2.bg-white .order {
+.top-author.style-2.bg-white .order {
     color: rgba(22, 22, 22, 0.1);
     margin-left: 0;
     margin-right: 27px;
 }
 
-.background-white .tf-author-box .author-infor h5 a {
+.background-white .top-author .author-info h5 a {
     color: #161616;
 }
 
-.background-white .tf-author-box .author-infor h5 a:hover {
+.background-white .top-author .author-info h5 a:hover {
     text-decoration: underline !important;
 }
 
-.background-white .tf-author-box .price.gem i::before,
-.background-white .tf-author-box .price.gem {
+.background-white .top-author .price.gem i::before,
+.background-white .top-author .price.gem {
     color: rgba(22, 22, 22, 0.3);
 }
 
-.background-white .tf-author-box.style-2 {
+.background-white .top-author.style-2 {
     border-color: rgba(217, 217, 217, 1);
 }
 
-.background-white .tf-author-box.style-2 .order {
+.background-white .top-author.style-2 .order {
     color: rgba(22, 22, 22, 0.1);
     margin-left: 0;
     width: 55px;
@@ -247,15 +182,15 @@ const props = defineProps({
     background-color: #fff;
 }
 
-.background-white .tf-author-box.style-2 .author-avatar {
+.background-white .top-author.style-2 .author-avatar {
     border-radius: 20px;
 }
 
-.background-white .tf-author-box.style-2 .author-avatar img {
+.background-white .top-author.style-2 .author-avatar img {
     border-radius: 0;
 }
 
-.tf-author-box.style-2.hv-border {
+.top-author.style-2.hv-border {
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
@@ -263,28 +198,34 @@ const props = defineProps({
     transition: all 0.3s ease;
 }
 
-.tf-author-box.style-2.hv-border:hover {
+.top-author.style-2.hv-border:hover {
     box-shadow: 0px 30px 50px rgb(0 0 0 / 35%);
 }
 
-.background-white .tf-author-box.style-2.hv-border:hover {
+.background-white .top-author.style-2.hv-border:hover {
     box-shadow: 0px 25px 20px -10px rgb(0 0 2 / 5%);
 }
 
 @media screen and (max-width: 640px) {
-    .tf-author-box.style-2 .author-avatar {
-        width: 64px;
-        margin-right: 20px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 0;
-    }
+    .top-author {
+        .style-2 {
+            &.author-avatar {
+                width: 64px;
+                margin-right: 20px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-bottom: 0;
+            }
+        }
 
-    .tf-author-box .author-avatar img {
-        border-radius: 50%;
-        aspect-ratio: 1;
-        max-height: 64px;
-        max-width: 64px;
+        .author-avatar {
+            img {
+                border-radius: 50%;
+                aspect-ratio: 1;
+                max-height: 64px;
+                max-width: 64px;
+            }
+        }
     }
 }
 </style>
