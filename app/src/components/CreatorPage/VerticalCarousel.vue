@@ -188,7 +188,8 @@ onMounted(() => {
         border-bottom: 1px solid #dee8e8;
     }
 
-    .description, .description-active {
+    .description,
+    .description-active {
         @apply text-sm sm:text-base;
     }
 }
@@ -243,8 +244,6 @@ onMounted(() => {
             }
         }
 
-        
-
         .loader-active {
             position: absolute;
             font-size: 12px;
@@ -256,7 +255,14 @@ onMounted(() => {
             bottom: -1px;
             right: 10px;
             width: 100%;
-            background-image: linear-gradient(to right, #ffffff, #f3f3f3, #e8e8e8, #dcdcdc, #d1d1d1);
+            background-image: linear-gradient(
+                to right,
+                #ffffff,
+                #f3f3f3,
+                #e8e8e8,
+                #dcdcdc,
+                #d1d1d1
+            );
             animation: loadingbar 15s linear infinite;
         }
     }

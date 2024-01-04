@@ -41,7 +41,7 @@ const tabPresentationStyle = computed(() => {
     const { width } = getComputedStyle(activeTab);
 
     const offsetModifier = props.variant === 'bordered' ? 0 : 8;
-    return { transform: `translateX(${activeTab.offsetLeft - offsetModifier}px)`, width };
+    return { transform: `translateX(${activeTab.offsetLeft}px)`, width };
 });
 </script>
 
@@ -104,14 +104,22 @@ const tabPresentationStyle = computed(() => {
 
     &--pills {
         .tab__list {
-            @apply bg-light inline-flex space-x-2 p-1 rounded-full relative;
+            @apply bg-light inline-flex p-1 rounded-full relative;
         }
 
         .tab__button {
-            height: 48px;
-            padding: 0 18px;
+            // height: 48px;
+            padding: 16px 12px;
             width: 100%;
             @apply rounded-full flex items-center justify-center text-sm relative z-10 text-black/50 font-semibold transition-colors duration-200;
+
+            @include sm_screen {
+                @apply text-xs;
+            }
+
+            @include md_screen {
+                padding: 16px 18px;
+            }
 
             &:focus {
                 outline: none;
@@ -131,6 +139,10 @@ const tabPresentationStyle = computed(() => {
             @apply bg-white rounded-full transition-all duration-500 ease-in-out;
             width: 50%;
             z-index: 0;
+
+            @include md_screen {
+                height: 52px;
+            }
         }
     }
 

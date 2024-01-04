@@ -34,7 +34,7 @@ const doScroll = () => {
 };
 
 const isAutoPlay = computed(() => {
-    return /(creators)/ig.test(route.path);
+    return /(creators)/gi.test(route.path);
 });
 
 onMounted(() => {

@@ -12,13 +12,23 @@ const props = defineProps({
     shadow: {
         type: Boolean,
         default: true
+    },
+    border: {
+        type: Boolean,
+        default: false
     }
 });
 </script>
 
 <template>
     <div
-        :class="['card', `card--${paddings}`, shadow && 'card--shadow', rounded && 'card--rounded']"
+        :class="[
+            'card',
+            `card--${paddings}`,
+            shadow && 'card--shadow',
+            border && 'card--border',
+            rounded && 'card--rounded'
+        ]"
     >
         <slot></slot>
     </div>
@@ -46,6 +56,10 @@ const props = defineProps({
 
     &.card--shadow {
         @apply shadow-card;
+    }
+
+    &.card--border {
+        @apply border border-stroke;
     }
 }
 </style>
