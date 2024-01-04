@@ -1,4 +1,5 @@
 <script setup>
+import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
@@ -6,12 +7,14 @@ import QInputPassword from '@/components/atoms/forms/QInputPassword.vue';
 import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
 import QButton from '@/components/atoms/QButton.vue';
+import QBadge from '@/components/atoms/QBadge.vue';
+import QPagination from '@/components/molecules/QPagination.vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
-import { inject } from 'vue';
+import { inject, nextTick, onMounted, ref } from 'vue';
 
 const isMobile = inject('isMobile');
-
+const currentPage = ref(1);
 const tabs = [
     {
         title: 'Profile',
@@ -26,14 +29,39 @@ const tabs = [
         slot: 'account'
     },
     {
-        title: 'Password',
-        slot: 'password'
-    },
-    {
         title: 'Notifications',
         slot: 'notifications'
     }
 ];
+
+const filterOptions = [
+    {
+        name: 'All',
+        value: 'all'
+    },
+    {
+        name: 'Waiting for Payment',
+        value: 'waiting_for_payment'
+    },
+    {
+        name: 'Active',
+        value: 'active'
+    },
+    {
+        name: 'Expired',
+        value: 'expired'
+    },
+    {
+        name: 'Cancelled',
+        value: 'cancelled'
+    },
+    {
+        name: 'Grace Period',
+        value: 'grace_period'
+    }
+];
+
+const filterTransaction = ref(filterOptions[0].value);
 
 const passwordValidation = yupObject().shape({
     old_password: yupString()
@@ -48,6 +76,58 @@ const passwordValidation = yupObject().shape({
 const updateEmailValidation = yupObject().shape({
     new_emai: yupString().required().email()
 });
+
+function animateScroll(element, targetScrollLeft) {
+    const duration = 500; // Adjust the duration of the animation
+    const start = element.scrollLeft;
+    const startTime = performance.now();
+
+    function step(time) {
+        const progress = Math.min(1, (time - startTime) / duration);
+        element.scrollLeft = start + progress * (targetScrollLeft - start);
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+const onClickArrowFilter = (amount) => {
+    const filterContainer = document.querySelector('.bill-filter__inner');
+
+    const targetScrollLeft = filterContainer.scrollLeft + amount;
+
+    animateScroll(filterContainer, targetScrollLeft);
+
+    // if (targetScrollLeft + filterContainer.clientWidth >= filterContainer.scrollWidth) {
+    //     filterContainer.parentElement.classList.add('bill-filter--scrolled')
+
+    //     return
+    // }
+
+    // filterContainer.parentElement.classList.remove('bill-filter--scrolled')
+};
+
+const onScrollBillFilter = (e) => {
+    const arrowLeft = e.target.parentElement.querySelector('.bill-filter__arrow-left');
+    const arrowRight = e.target.parentElement.querySelector('.bill-filter__arrow-right');
+
+    if (e.target.scrollLeft === 0) {
+        arrowLeft.classList.remove('show');
+        arrowRight.classList.add('show');
+    }
+
+    if (e.target.scrollLeft > 0) {
+        arrowLeft.classList.add('show');
+        arrowRight.classList.add('show');
+    }
+
+    if (e.target.scrollLeft + e.target.clientWidth >= e.target.scrollWidth) {
+        arrowRight.classList.remove('show');
+    }
+};
 </script>
 
 <template>
@@ -335,7 +415,132 @@ const updateEmailValidation = yupObject().shape({
                                 <div class="space-y-6">
                                     <div class="space-y-2">
                                         <h3 class="text-lg font-black leading-none">
-                                            Transaction History
+                                            Current Plan
+                                        </h3>
+                                        <!-- <p class="text-content text-sm">
+                                            You're currently on your Twibbonize Plus Annual subscription until January 4 2025.
+                                        </p> -->
+                                    </div>
+
+                                    <div class="max-w-2xl">
+                                        <div class="plan-card plan-card--free">
+                                            <div class="plan-card__upper">
+                                                <div class="plan-card__title">Free</div>
+                                                <div class="plan-card__subtitle">
+                                                    For people who are just getting started
+                                                </div>
+                                            </div>
+                                            <div class="plan-card__lower">
+                                                <div class="space-y-6">
+                                                    <ul class="plan-card__features">
+                                                        <li class="flex items-center space-x-2">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="25"
+                                                                height="25"
+                                                                viewBox="0 0 25 25"
+                                                                fill="none"
+                                                            >
+                                                                <circle
+                                                                    cx="12.6666"
+                                                                    cy="12.7329"
+                                                                    r="12"
+                                                                    fill="#1B1B1B"
+                                                                    fill-opacity="0.1"
+                                                                />
+                                                                <path
+                                                                    d="M7.86475 12.7328L11.4647 16.3328L17.4647 10.3328"
+                                                                    stroke="#1B1B1B"
+                                                                    stroke-width="1.57609"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                />
+                                                            </svg>
+                                                            <span class="font-medium"
+                                                                >Create Unlimited Campaign</span
+                                                            >
+                                                        </li>
+                                                        <li class="flex items-center space-x-2">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="25"
+                                                                height="25"
+                                                                viewBox="0 0 25 25"
+                                                                fill="none"
+                                                            >
+                                                                <circle
+                                                                    cx="12.6666"
+                                                                    cy="12.7329"
+                                                                    r="12"
+                                                                    fill="#1B1B1B"
+                                                                    fill-opacity="0.1"
+                                                                />
+                                                                <path
+                                                                    d="M7.86475 12.7328L11.4647 16.3328L17.4647 10.3328"
+                                                                    stroke="#1B1B1B"
+                                                                    stroke-width="1.57609"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                />
+                                                            </svg>
+                                                            <span class="font-medium"
+                                                                >Easy To Share Short URL</span
+                                                            >
+                                                        </li>
+                                                        <li class="flex items-center space-x-2">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="25"
+                                                                height="25"
+                                                                viewBox="0 0 25 25"
+                                                                fill="none"
+                                                            >
+                                                                <circle
+                                                                    cx="12.6666"
+                                                                    cy="12.7329"
+                                                                    r="12"
+                                                                    fill="#1B1B1B"
+                                                                    fill-opacity="0.1"
+                                                                />
+                                                                <path
+                                                                    d="M7.86475 12.7328L11.4647 16.3328L17.4647 10.3328"
+                                                                    stroke="#1B1B1B"
+                                                                    stroke-width="1.57609"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                />
+                                                            </svg>
+                                                            <span class="font-medium"
+                                                                >Frame Twibbon</span
+                                                            >
+                                                        </li>
+                                                    </ul>
+
+                                                    <div>
+                                                        <div class="flex">
+                                                            <a
+                                                                class="flex items-center space-x-2 cursor-pointer"
+                                                                @click="showAbout = true"
+                                                            >
+                                                                <span class="text-sm font-semibold"
+                                                                    >Upgrade</span
+                                                                >
+                                                                <i
+                                                                    class="ri-arrow-right-line font-semibold ri-xs"
+                                                                ></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-black leading-none">
+                                            Billing History
                                         </h3>
                                         <p class="text-content text-sm">
                                             See detailed info about all your past orders and
@@ -343,17 +548,212 @@ const updateEmailValidation = yupObject().shape({
                                         </p>
                                     </div>
 
-                                    <ul class="chips">
-                                        <li class="active">All</li>
+                                    <div class="bill-filter max-w-2xl">
+                                        <div class="bill-filter__arrow-left">
+                                            <button
+                                                class="bill-filter__arrow"
+                                                @click="() => onClickArrowFilter(-120)"
+                                            >
+                                                <i class="ri-arrow-left-s-line"></i>
+                                            </button>
+                                        </div>
 
-                                        <li>Waiting for Payment</li>
+                                        <div
+                                            class="bill-filter__inner"
+                                            @scroll="onScrollBillFilter"
+                                        >
+                                            <RadioGroup v-model="filterTransaction">
+                                                <ul class="chips">
+                                                    <RadioGroupOption
+                                                        as="template"
+                                                        v-for="option in filterOptions"
+                                                        :key="option.value"
+                                                        :value="option.value"
+                                                        v-slot="{ active, checked }"
+                                                    >
+                                                        <li :class="checked && 'active'">
+                                                            {{ option.name }}
+                                                        </li>
+                                                    </RadioGroupOption>
+                                                </ul>
+                                            </RadioGroup>
+                                        </div>
 
-                                        <li>Active</li>
+                                        <div class="bill-filter__arrow-right show">
+                                            <button
+                                                class="bill-filter__arrow"
+                                                @click="() => onClickArrowFilter(120)"
+                                            >
+                                                <i class="ri-arrow-right-s-line"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                        <li>Expired</li>
+                                    <div class="space-y-4 max-w-2xl">
+                                        <div class="transaction-card">
+                                            <div class="transaction-card__header">
+                                                <img
+                                                    src="/assets/img/brandings/plus.png"
+                                                    class="h-8"
+                                                    alt="Twibbonize Plus"
+                                                />
+                                                <span class="transaction-card__status">
+                                                    <QBadge variant="warning"
+                                                        >Waiting for Payment</QBadge
+                                                    >
+                                                </span>
+                                            </div>
 
-                                        <li>Cancelled</li>
-                                    </ul>
+                                            <div class="transaction-card__body">
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order ID
+                                                        </div>
+                                                        <div class="font-semibold">TW-15096300</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order Date
+                                                        </div>
+                                                        <div class="font-semibold">18 Dec 2023</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Total
+                                                        </div>
+                                                        <div class="font-semibold">Rp35,000</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="transaction-card">
+                                            <div class="transaction-card__header">
+                                                <img
+                                                    src="/assets/img/brandings/plus.png"
+                                                    class="h-8"
+                                                    alt="Twibbonize Plus"
+                                                />
+                                                <span class="transaction-card__status">
+                                                    <QBadge variant="netral">Expired</QBadge>
+                                                </span>
+                                            </div>
+
+                                            <div class="transaction-card__body">
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order ID
+                                                        </div>
+                                                        <div class="font-semibold">TW-15120300</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order Date
+                                                        </div>
+                                                        <div class="font-semibold">11 Nov 2023</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Total
+                                                        </div>
+                                                        <div class="font-semibold">Rp35,000</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="transaction-card">
+                                            <div class="transaction-card__header">
+                                                <img
+                                                    src="/assets/img/brandings/plus.png"
+                                                    class="h-8"
+                                                    alt="Twibbonize Plus"
+                                                />
+                                                <span class="transaction-card__status">
+                                                    <QBadge variant="danger">Cancelled</QBadge>
+                                                </span>
+                                            </div>
+
+                                            <div class="transaction-card__body">
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order ID
+                                                        </div>
+                                                        <div class="font-semibold">TW-15096300</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order Date
+                                                        </div>
+                                                        <div class="font-semibold">18 Dec 2023</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Total
+                                                        </div>
+                                                        <div class="font-semibold">Rp35,000</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="transaction-card">
+                                            <div class="transaction-card__header">
+                                                <img
+                                                    src="/assets/img/brandings/plus.png"
+                                                    class="h-8"
+                                                    alt="Twibbonize Plus"
+                                                />
+                                                <span class="transaction-card__status">
+                                                    <QBadge variant="success">Active</QBadge>
+                                                </span>
+                                            </div>
+
+                                            <div class="transaction-card__body">
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order ID
+                                                        </div>
+                                                        <div class="font-semibold">TW-15096300</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Order Date
+                                                        </div>
+                                                        <div class="font-semibold">18 Dec 2023</div>
+                                                    </div>
+
+                                                    <div class="flex flex-col">
+                                                        <div class="text-sm text-content">
+                                                            Total
+                                                        </div>
+                                                        <div class="font-semibold">Rp35,000</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="max-w-2xl">
+                                        <div class="flex justify-center">
+                                            <QPagination
+                                                :total-pages="5"
+                                                :current-page="currentPage"
+                                                @change="(val) => (currentPage = val)"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </template>
@@ -415,6 +815,62 @@ const updateEmailValidation = yupObject().shape({
                                                 >
                                                     <QButton block :enabled="meta.valid">
                                                         <span class="text-sm">Update Email</span>
+                                                    </QButton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </VeeForm>
+
+                                    <hr />
+
+                                    <VeeForm
+                                        :validation-schema="passwordValidation"
+                                        v-slot="{ meta }"
+                                    >
+                                        <div class="grid grid-cols-12 gap-6 md:gap-10">
+                                            <div class="col-span-12 md:col-span-9 space-y-6">
+                                                <div class="space-y-2">
+                                                    <h3 class="text-lg font-black leading-none">
+                                                        Change Password
+                                                    </h3>
+                                                </div>
+
+                                                <QCard paddings="padless">
+                                                    <div class="p-5">
+                                                        <div class="space-y-6">
+                                                            <div class="space-y-3">
+                                                                <label
+                                                                    for="old_password"
+                                                                    class="text-sm font-semibold"
+                                                                >
+                                                                    Old Password
+                                                                </label>
+                                                                <QInputPassword
+                                                                    placeholder="Enter old password here"
+                                                                    name="old_password"
+                                                                />
+                                                            </div>
+
+                                                            <div class="space-y-3">
+                                                                <label
+                                                                    for="new_password"
+                                                                    class="text-sm font-semibold"
+                                                                >
+                                                                    New Password
+                                                                </label>
+                                                                <QInputPassword
+                                                                    placeholder="Enter new password here"
+                                                                    name="new_password"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </QCard>
+                                            </div>
+                                            <div class="col-span-12 md:col-span-3">
+                                                <div class="space-y-2 sticky top-60">
+                                                    <QButton block :enabled="meta.valid">
+                                                        <span class="text-sm">Update Password</span>
                                                     </QButton>
                                                 </div>
                                             </div>
@@ -560,13 +1016,13 @@ const updateEmailValidation = yupObject().shape({
                                             <h3
                                                 class="text-lg font-black leading-none text-red-500"
                                             >
-                                                Unhappy?
+                                                Delete Account?
                                             </h3>
 
                                             <p class="text-sm text-content">
-                                                We’ll be sad to see you leave, but if you want to
-                                                permanently delete your account and all its data,
-                                                here’s the place.
+                                                You can delete your account if it’s no longer in
+                                                use. Please note that the account will be
+                                                permanently deleted.
                                             </p>
                                         </div>
 
@@ -575,61 +1031,6 @@ const updateEmailValidation = yupObject().shape({
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </template>
-
-                        <template #password>
-                            <div class="mt-10">
-                                <VeeForm :validation-schema="passwordValidation" v-slot="{ meta }">
-                                    <div class="grid grid-cols-12 gap-6 md:gap-10">
-                                        <div class="col-span-12 md:col-span-9 space-y-6">
-                                            <div class="space-y-2">
-                                                <h3 class="text-lg font-black leading-none">
-                                                    Change Password
-                                                </h3>
-                                            </div>
-
-                                            <QCard paddings="padless">
-                                                <div class="p-5">
-                                                    <div class="space-y-6">
-                                                        <div class="space-y-3">
-                                                            <label
-                                                                for="old_password"
-                                                                class="text-sm font-semibold"
-                                                            >
-                                                                Old Password
-                                                            </label>
-                                                            <QInputPassword
-                                                                placeholder="Enter old password here"
-                                                                name="old_password"
-                                                            />
-                                                        </div>
-
-                                                        <div class="space-y-3">
-                                                            <label
-                                                                for="new_password"
-                                                                class="text-sm font-semibold"
-                                                            >
-                                                                New Password
-                                                            </label>
-                                                            <QInputPassword
-                                                                placeholder="Enter new password here"
-                                                                name="new_password"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </QCard>
-                                        </div>
-                                        <div class="col-span-12 md:col-span-3">
-                                            <div class="space-y-2 sticky top-60">
-                                                <QButton block :enabled="meta.valid">
-                                                    <span class="text-sm">Update Password</span>
-                                                </QButton>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </VeeForm>
                             </div>
                         </template>
 
@@ -947,9 +1348,6 @@ const updateEmailValidation = yupObject().shape({
             @apply text-sm;
         }
     }
-
-    &__package {
-    }
 }
 
 .package {
@@ -994,11 +1392,61 @@ const updateEmailValidation = yupObject().shape({
     }
 }
 
+.bill-filter {
+    @apply relative;
+
+    &__arrow-left {
+        width: 60px;
+        height: 100%;
+        @apply bg-white absolute left-0 top-0 block;
+        background: linear-gradient(
+            -90deg,
+            rgba(255, 255, 254, 0.24) 0%,
+            rgba(255, 255, 255, 1) 100%
+        );
+        visibility: hidden;
+    }
+
+    &__arrow-right {
+        width: 60px;
+        height: 100%;
+        @apply bg-white absolute right-0 top-0 block;
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 254, 0.24) 0%,
+            rgba(255, 255, 255, 1) 100%
+        );
+        visibility: hidden;
+    }
+
+    &__arrow-left.show,
+    &__arrow-right.show {
+        visibility: visible;
+    }
+
+    &__inner {
+        @apply overflow-auto;
+        @include no_scrollbar();
+    }
+
+    &__arrow {
+        @apply absolute top-5 bg-white rounded-full h-8 w-8 border border-stroke z-10;
+    }
+
+    &__arrow-left &__arrow {
+        @apply -left-5;
+        transform: translate(50%, -50%);
+    }
+
+    &__arrow-right &__arrow {
+        @apply -right-5;
+        transform: translate(-50%, -50%);
+    }
+}
+
 ul.chips {
     align-items: center;
     display: flex;
-    overflow: scroll;
-    width: 100%;
     justify-content: flex-start;
 
     @apply space-x-2;
@@ -1009,11 +1457,55 @@ ul.chips {
         font-size: 14px;
         cursor: pointer;
         flex-shrink: 0;
-        @apply bg-gray-100 border border-gray-200 font-medium;
+        @apply bg-gray-100 border border-gray-200 font-medium transition-colors duration-200;
 
         &.active {
-            @apply bg-main-darker text-white border-transparent;
+            @apply bg-main text-black border-transparent;
         }
+    }
+}
+
+.transaction-card {
+    @apply border border-stroke rounded-lg;
+
+    &__header {
+        @apply flex items-center justify-between px-5 py-3 border-b border-stroke;
+    }
+
+    &__body {
+        @apply p-5;
+    }
+}
+
+.plan-card {
+    @apply rounded-xl border border-stroke;
+
+    &__lower {
+        @apply p-5;
+    }
+
+    &__upper {
+        @apply py-10 px-5;
+    }
+
+    &__title {
+        @apply text-xl font-semibold;
+    }
+
+    &__subtitle {
+        @apply text-sm;
+    }
+
+    &__features {
+        @apply text-sm space-y-2;
+    }
+
+    &.plan-card--free &__upper {
+        @apply bg-black text-white rounded-t-xl;
+    }
+
+    &.plan-card--free &__lower {
+        @apply bg-gray-50 rounded-b-xl;
     }
 }
 </style>

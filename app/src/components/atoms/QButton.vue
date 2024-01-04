@@ -69,7 +69,7 @@ function handleClick(e) {
 
 <style scoped lang="scss">
 .btn {
-    @apply font-semibold text-sm flex items-center justify-center relative overflow-hidden;
+    @apply font-semibold text-sm flex items-center justify-center relative overflow-hidden transition-colors duration-200;
     border-radius: 100px;
 
     // sizes
