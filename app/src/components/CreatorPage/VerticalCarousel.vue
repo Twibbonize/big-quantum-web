@@ -77,7 +77,7 @@ onMounted(() => {
 
 <template>
     <div class="creators-values container px-5 pt-8 sm:pt-24 pb-10 mx-auto">
-        <div class="content flex justify-center flex-col sm:flex-row gap:8 xl:gap-16 2xl:gap-8">
+        <div class="content flex justify-center flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8">
             <div class="flex w-full sm:w-1/2 xl:w-5/12 flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description, video }, i) in values"
@@ -125,6 +125,10 @@ onMounted(() => {
 .creators-values {
     .icon {
         @apply w-7 h-7 sm:w-8 sm:h-8;
+    }
+
+    .content {
+        @apply sm:h-[400px] lg:h-[500px] xl:h-[600px]
     }
     .video-container {
         @apply h-full relative pt-8 sm:pt-0 flex justify-center sm:justify-center;
@@ -196,10 +200,6 @@ onMounted(() => {
 
 @media screen and (min-width: 640px) {
     .creators-values {
-        .content {
-            height: 600px;
-        }
-
         .icon {
             height: 32px;
             width: 32px;
