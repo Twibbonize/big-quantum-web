@@ -10,7 +10,7 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return { w: 300, h: 100 };
+    if (props.width >= 640) return { w: 360, h: 140 };
     return { w: 180, h: 70 };
 });
 
@@ -69,7 +69,7 @@ onUnmounted(() => {
                         <div class="tp-rated-title-box text-center mb-14">
                             <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4">
                                 <div class="flex justify-center items-center">
-                                    <div class="flex relative -mb-2.5 sm:mb-5">
+                                    <div class="flex relative -mb-2.5 sm:mb-2">
                                         <Vue3Lottie
                                             ref="lottieSupports"
                                             :animationData="gatherJSON"
