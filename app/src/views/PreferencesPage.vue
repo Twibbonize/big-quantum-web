@@ -11,7 +11,7 @@ import QBadge from '@/components/atoms/QBadge.vue';
 import QPagination from '@/components/molecules/QPagination.vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
-import { inject, nextTick, onMounted, ref } from 'vue';
+import { inject, ref } from 'vue';
 
 const isMobile = inject('isMobile');
 const currentPage = ref(1);
@@ -100,14 +100,6 @@ const onClickArrowFilter = (amount) => {
     const targetScrollLeft = filterContainer.scrollLeft + amount;
 
     animateScroll(filterContainer, targetScrollLeft);
-
-    // if (targetScrollLeft + filterContainer.clientWidth >= filterContainer.scrollWidth) {
-    //     filterContainer.parentElement.classList.add('bill-filter--scrolled')
-
-    //     return
-    // }
-
-    // filterContainer.parentElement.classList.remove('bill-filter--scrolled')
 };
 
 const onScrollBillFilter = (e) => {
@@ -746,12 +738,23 @@ const onScrollBillFilter = (e) => {
                                     </div>
 
                                     <div class="max-w-2xl">
-                                        <div class="flex justify-center">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <QButton circle variant="secondary" @click="currentPage -= 1">
+                                                    <i class="ri-arrow-left-s-line ri-lg"></i>
+                                                </QButton>
+                                            </div>
                                             <QPagination
                                                 :total-pages="5"
                                                 :current-page="currentPage"
                                                 @change="(val) => (currentPage = val)"
                                             />
+
+                                            <div>
+                                                <QButton circle variant="secondary" @click="currentPage += 1">
+                                                    <i class="ri-arrow-right-s-line ri-lg"></i>
+                                                </QButton>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
