@@ -24,7 +24,7 @@ const handleChangePage = (page) => {
         <template v-for="i in totalPages" :key="i">
             <QButton
                 circle
-                :variant="currentPage === i ? 'primary' : 'subtle'"
+                :variant="currentPage === i ? 'primary' : 'secondary'"
                 class="pagination__button"
                 @click="() => handleChangePage(i)"
             >
