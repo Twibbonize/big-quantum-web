@@ -22,14 +22,14 @@ onMounted(() => {});
         <div class="container mx-auto">
             <div class="w-full pages-title mx-auto">
                 <div class="container z-20 absolute mx-auto">
-                    <div class="mt-32 flex flex-col items-center">
+                    <div class="mt-32 flex flex-col items-center px-5">
                         <img
                             class="hidden sm:block logo"
                             src="/src/assets/img/logos/twibbonize-plus.svg"
                             alt="twibbonize-plus"
                         />
-                        <h1 class="title mt-4">show your</h1>
-                        <div class="animation">
+                        <h1 class="title mt-4 text-center">show your</h1>
+                        <div class="animation mb-4">
                             <Vue3Lottie
                                 :animationData="supportsJSON"
                                 :height="lottieDimension.h"
@@ -37,7 +37,7 @@ onMounted(() => {});
                                 :loop="true"
                             />
                         </div>
-                        <h1 class="title -mt-6">on a whole new level</h1>
+                        <h1 class="title -mt-6 text-center">on a whole new level</h1>
                         <p class="description">
                             Take action and make the most out of your moments with the help of our
                             personalized templates suitable for every occassions
