@@ -243,7 +243,7 @@ onMounted(() => {
                 </button>
             </div>
 
-            <div class="container px-5 lg:px-0">
+            <div class="container px-5 xl:px-0">
                 <div
                     class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
                 >
@@ -280,10 +280,11 @@ onMounted(() => {
                                 />
                             </div>
 
-                            <div class="flex-shrink-0">
+                            <div class="flex-shrink-0 flex-grow sm:flex-grow-0">
                                 <QButton
                                     variant="secondary"
                                     size="sm"
+                                    block
                                     @click="$router.push({ name: 'settings' })"
                                 >
                                     <i class="ri-settings-3-line"></i>
@@ -350,7 +351,7 @@ onMounted(() => {
         </div>
 
         <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
-            <div class="container px-5 md:px-0">
+            <div class="container px-5 xl:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-6 mt-6 md:mt-10">
@@ -403,7 +404,7 @@ onMounted(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 lg:px-0 -mt-10 relative;
+        @apply container px-5 xl:px-0 -mt-10 relative;
 
         @include md_screen {
             @apply -mt-24;
@@ -422,7 +423,7 @@ onMounted(() => {
         }
 
         .profile__avatar__edit {
-            @apply absolute bottom-0 bg-white border border-stroke z-10 w-6 h-6 rounded-full text-xs;
+            @apply absolute bottom-0 bg-white border-2 border-stroke z-10 w-6 h-6 rounded-full text-xs;
             left: 72px;
 
             @include md_screen {
