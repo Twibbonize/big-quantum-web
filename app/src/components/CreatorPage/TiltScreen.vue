@@ -31,7 +31,7 @@ onMounted(() => {
                 occasions
             </h4>
         </div>
-        <div class="flex justify-center container">
+        <div class="flex justify-center container my-20 sm:my-40">
             <div
                 id="tiltImage"
                 ref="tiltImage"
@@ -52,136 +52,59 @@ onMounted(() => {
 <style lang="scss">
 .tilt-screen {
     .wrapper {
-        margin-top: 100px;
-        margin-bottom: 140px;
-        width: 250px;
-        height: 160px;
+        width: 60% !important;
         transform-style: preserve-3d;
         transform: perspective(1000px);
     }
 
     .image {
-        width: 100%;
+        @apply w-full;
         transform-style: preserve-3d;
         transform: perspective(1000px);
     }
+    .frame-bg {
+        border-radius: 23px;
+        background: rgba(255, 255, 255, 0.50);
+        box-shadow: 0px 4.675px 23.376px 0px rgba(0, 0, 0, 0.10);
+        backdrop-filter: blur(5.844026565551758px);
+    }
     .frame-1 {
-        position: absolute;
-        height: 80px;
-        width: 80px;
-        top: 5px;
-        left: -10px;
-        z-index: 2;
-        transform: translateZ(100px);
+        @apply absolute aspect-square top-0 left-0 z-20;
+        width: 30%;
+        transform: translate3d(-58%, 0%, 100px);
     }
     .frame-2 {
-        position: absolute;
-        width: 55px;
-        height: 55px;
-        right: 24px;
-        bottom: -28px;
-        transform: translateZ(100px);
+        @apply absolute aspect-square top-0 left-0 z-10;
+        width: 20%;
+        transform: translate3d(30%, -55%, 100px);
     }
     .frame-3 {
-        position: absolute;
-        width: 66px;
-        height: 66px;
-        left: 39px;
-        top: -20px;
-        z-index: 1;
-        transform: translateZ(70px);
+        @apply absolute aspect-square top-0 left-0 z-10;
+        width: 20%;
+        transform: translate3d(-40%, 200%, 100px);
     }
     .frame-4 {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        right: -30px;
-        bottom: -10px;
-        transform: translateZ(100px);
+        @apply absolute aspect-square top-0 left-0 z-10;
+        width: 14%;
+        transform: translate3d(640%, -40%, 100px);
     }
     .frame-5 {
-        position: absolute;
-        width: 45px;
-        height: 45px;
-        right: -5px;
-        top: -5px;
-        transform: translateZ(100px);
+        @apply absolute aspect-square top-0 left-0 z-20;
+        width: 35%;
+        transform: translate3d(250%, 70%, 100px);
     }
     .frame-6 {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        left: -10px;
-        bottom: -20px;
-        transform: translateZ(100px);
+        @apply absolute aspect-square top-0 left-0 z-10;
+        width: 18%;
+        transform: translate3d(450%, 270%, 100px);
     }
 }
 
 @media screen and (min-width: 640px) {
     .tilt-screen {
         .wrapper {
-            margin-top: 260px;
-            margin-bottom: 290px;
-            width: 1000px;
-            height: 567px;
             transform-style: preserve-3d;
             transform: perspective(1000px);
-        }
-
-        .image {
-            width: 100%;
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-        }
-        .frame-1 {
-            position: absolute;
-            height: 267px;
-            width: 267px;
-            top: -10px;
-            left: -140px;
-            z-index: 2;
-            transform: translateZ(100px);
-        }
-        .frame-2 {
-            position: absolute;
-            width: 177px;
-            height: 177px;
-            right: 118px;
-            bottom: -83px;
-            transform: translateZ(100px);
-        }
-        .frame-3 {
-            position: absolute;
-            width: 207px;
-            height: 207px;
-            left: 39px;
-            top: -130px;
-            z-index: 1;
-            transform: translateZ(70px);
-        }
-        .frame-4 {
-            position: absolute;
-            width: 257px;
-            height: 257px;
-            right: -77px;
-            bottom: -28px;
-            transform: translateZ(100px);
-        }
-        .frame-5 {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            right: -33px;
-            top: -60px;
-            transform: translateZ(100px);
-        }
-        .frame-6 {
-            position: absolute;
-            width: 189px;
-            height: 189px;
-            left: -30px;
-            bottom: -50px;
-            transform: translateZ(100px);
         }
     }
 }

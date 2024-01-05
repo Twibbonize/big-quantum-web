@@ -273,7 +273,7 @@ onMounted(() => {
                 #dcdcdc,
                 #d1d1d1
             );
-            animation: opac 3s ease, loadingbar 15s linear infinite;
+            animation: opac 3s ease, loadingbar 15.1s linear infinite;
         }
     }
 }
