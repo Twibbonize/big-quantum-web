@@ -32,7 +32,7 @@ onUnmounted(() => {
         <div ref="content"></div>
         <CampaignCollections :width="width" />
         <FeaturesList />
-        <PackageSelection class="my-14" />
+        <PackageSelection class="sm:my-14" />
     </div>
 </template>
 
