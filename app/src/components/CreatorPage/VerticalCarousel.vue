@@ -18,7 +18,7 @@ const values = [
         video: '/assets/videos/inspire.mp4',
         subtitle: 'your supporters',
         description:
-            'Twibbonize links atrracts the curious, drawing them to your cause and sparking interest in your campiagn'
+            'Twibbonize links atrracts the curious, drawing them to your cause and sparking interest in your campaign'
     },
     {
         icon: '/assets/img/icons/unite.svg',
@@ -187,9 +187,15 @@ onMounted(() => {
         // line-height: 100%; /* 24px */
         // letter-spacing: -0.48px;
     }
+    .tab {
+        @apply mb-2;
+        border-bottom: 1px solid #dee8e800;
+        // transition: border 1s ease;
+    }
     .tab-active {
         @apply mb-2;
         border-bottom: 1px solid #dee8e8;
+        transition: border 1s ease;
     }
 
     .description,
@@ -220,7 +226,9 @@ onMounted(() => {
         }
 
         .tab {
-            @apply rounded-xl relative mb-0 bg-transparent border-none;
+            @apply rounded-xl relative mb-0 bg-transparent;
+            border: 1px solid rgba(27, 27, 27, 0);
+            // transition: border 2s ease;
             
             .bg {
                 @apply absolute w-full h-[300px] -z-10 rounded-xl;
@@ -234,6 +242,7 @@ onMounted(() => {
         .tab-active {
             @apply rounded-xl relative mb-0 bg-transparent;
             border: 1px solid rgba(27, 27, 27, 0.2);
+            transition: border 1s ease 1s;
             
             .bg {
                 @apply absolute w-full h-60 -z-10 rounded-xl;
@@ -248,6 +257,7 @@ onMounted(() => {
             position: absolute;
             font-size: 12px;
             bottom: -9px;
+            animation: opac 3s ease;
         }
         .bar-active {
             position: absolute;
@@ -263,7 +273,7 @@ onMounted(() => {
                 #dcdcdc,
                 #d1d1d1
             );
-            animation: loadingbar 15s linear infinite;
+            animation: opac 3s ease, loadingbar 15.1s linear infinite;
         }
     }
 }

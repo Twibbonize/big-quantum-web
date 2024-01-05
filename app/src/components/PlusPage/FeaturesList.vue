@@ -61,7 +61,7 @@ const cards = computed(() => {
     }
 
     .card {
-        @apply rounded-3xl p-10 relative bg-white overflow-hidden pb-[210px];
+        @apply rounded-3xl p-6 sm:p-10 relative bg-white overflow-hidden pb-[210px];
         border: 1px solid rgba(27, 27, 27, 0.1);
 
         .card-title {
