@@ -18,7 +18,7 @@ const values = [
         video: '/assets/videos/inspire.mp4',
         subtitle: 'your supporters',
         description:
-            'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
+            'Twibbonize links atrracts the curious, drawing them to your cause and sparking interest in your campaign'
     },
     {
         icon: '/assets/img/icons/unite.svg',
@@ -34,7 +34,7 @@ const values = [
         video: '/assets/videos/entertain.mp4',
         subtitle: 'your supporters',
         description:
-            'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
+            'Twibbonize engages your supporters by providing a shareable virtual Twibbon for social media and messaging.'
     },
     {
         icon: '/assets/img/icons/grow.svg',
@@ -42,10 +42,11 @@ const values = [
         video: '/assets/videos/grow.mp4',
         subtitle: 'your supporters',
         description:
-            'Bring all your campaign’s supporter community  on your Twibbonize page; where supporters connect and you see the impact!'
+            'Gain more support with a Twibbonize campaign: it not only garners attetion but also creates a bandwagon effect, attracting a growing audience who don\'t want to miss out on your cause.'
     }
 ];
 
+let timerId = ref(null);
 let counter = ref(0);
 
 const index = computed(() => {
@@ -53,7 +54,8 @@ const index = computed(() => {
 });
 
 function advance() {
-    setTimeout(timer, 15000);
+
+    timerId = setTimeout(timer, 15000);
 }
 
 function timer() {
@@ -62,8 +64,10 @@ function timer() {
 }
 
 function setIndex(index) {
+    clearTimeout(timerId);
     counter.value = index;
     advance();
+
 }
 
 onMounted(() => {
@@ -73,42 +77,45 @@ onMounted(() => {
 
 <template>
     <div class="creators-values container px-5 pt-8 sm:pt-24 pb-10 mx-auto">
-        <div class="flex pt-5 flex-col sm:flex-row gap-8">
-            <div class="flex flex-1 flex-col justify-center col h-100">
+        <div class="content flex justify-center flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8">
+            <div class="flex w-full sm:w-1/2 xl:w-5/12 flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description, video }, i) in values"
                     :key="`value-${i}`"
-                    class="flex flex-col p-4"
+                    class="tab flex flex-col"
                     :class="{
                         'tab-active': i === index || isMobile,
-                        tab: i !== index && !isMobile,
                         'cursor-pointer': i !== index,
-                        'items-center': i !== index
                     }"
                     @click="setIndex(i)"
                 >
-                    <video class="video sm:hidden mb-6" muted autoplay :src="video"></video>
-                    <div class="flex w-full" :class="{ 'items-center': i !== index && !isMobile }">
-                        <img class="icon mr-3" :src="icon" :alt="title" />
-                        <div class="flex flex-col">
-                            <div class="flex">
-                                <h5 :class="{ 'title-active mb-4': i === index || isMobile }">
-                                    <span class="title mr-1">{{ title }}</span
-                                    ><span class="subtitle">{{ subtitle }}</span>
-                                </h5>
+                    <div class="relative overflow-hidden rounded-xl p-4">
+                        <div class="bg"></div>
+                        <video class="video-mobile" muted autoplay :src="video"></video>
+                        <div class="flex w-full">
+                            <img class="icon mr-3" :src="icon" :alt="title" />
+                            <div class="flex flex-col">
+                                <div class="flex">
+                                    <h5 :class="{ 'title-active': i === index || isMobile }">
+                                        <span class="title mr-1">{{ title }}</span><span class="subtitle">{{ subtitle }}</span>
+                                    </h5>
+                                </div>
+                                <div :class="index === i ? 'description-active' : 'description'">
+                                    <p>{{ description }}</p>
+                                </div>
                             </div>
-                            <p :class="index === i ? 'description-active' : 'description'">
-                                {{ description }}
-                            </p>
                         </div>
-                        <div v-if="i === index && !isMobile" class="bar-active">
-                            <i v-if="i === index" class="loader-active ri-shining-fill"></i>
-                        </div>
+                    </div>
+                    <div v-if="i === index && !isMobile" class="bar-active">
+                        <i v-if="i === index" class="loader-active ri-shining-fill"></i>
                     </div>
                 </div>
             </div>
-            <div v-if="!isMobile" class="pt-8 sm:pt-0 flex flex-1 justify-center sm:justify-end">
-                <video class="video" muted autoplay :src="values[index].video"></video>
+            <div v-if="!isMobile" class="video-container content">
+                <video :class="{ ' video-active': index === 0 }" class="video" muted autoplay :src="values[0].video"></video>
+                <video :class="{ ' video-active': index === 1 }" class="video" muted autoplay :src="values[1].video"></video>
+                <video :class="{ ' video-active': index === 2 }" class="video" muted autoplay :src="values[2].video"></video>
+                <video :class="{ ' video-active': index === 3 }" class="video" muted autoplay :src="values[3].video"></video>
             </div>
         </div>
     </div>
@@ -117,11 +124,35 @@ onMounted(() => {
 <style lang="scss">
 .creators-values {
     .icon {
-        height: 40px;
-        width: 40px;
+        @apply w-7 h-7 sm:w-8 sm:h-8;
     }
+
+    .content {
+        @apply sm:h-[400px] lg:h-[500px] xl:h-[600px]
+    }
+    .video-container {
+        @apply h-full relative pt-8 sm:pt-0 flex justify-center sm:justify-center;
+        aspect-ratio: 5/6;
+    }
+
     .video {
-        border-radius: 20px;
+        @apply h-full max-w-none absolute rounded-3xl;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        outline: 1px solid rgba(27, 27, 27, 0.2);
+        animation: opac 1s;
+        opacity: 0;
+        transition: opacity 1s  ease;
+    }
+
+    .video-active {
+        opacity: 1;
+        transition: opacity 1s  ease;
+    }
+
+    .video-mobile {
+        @apply rounded-xl sm:hidden mb-6;
         outline: 1px solid rgba(27, 27, 27, 0.2);
     }
 
@@ -135,31 +166,36 @@ onMounted(() => {
 
     .title-active {
         .title {
-            @apply lowercase text-3xl sm:text-5xl;
-            font-family: Marck Script;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 100%; /* 48px */
-            letter-spacing: -2.4px;
-            text-decoration: underline;
-            transform: rotate(-3.671deg);
+            // @apply lowercase text-3xl sm:text-5xl;
+            // font-family: Marck Script;
+            // font-style: normal;
+            // font-weight: 400;
+            // line-height: 100%; /* 48px */
+            // letter-spacing: -2.4px;
+            // text-decoration: underline;
+            // transform: rotate(-3.671deg);
         }
 
         .subtitle {
-            @apply opacity-100 text-xl sm:text-3xl;
+            // @apply opacity-100 text-xl sm:text-3xl;
         }
 
-        @apply text-2xl text-3xl;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 100%; /* 24px */
-        letter-spacing: -0.48px;
+        // @apply text-2xl text-3xl;
+        // font-size: 24px;
+        // font-style: normal;
+        // font-weight: 600;
+        // line-height: 100%; /* 24px */
+        // letter-spacing: -0.48px;
+    }
+    .tab {
+        @apply mb-2;
+        border-bottom: 1px solid #dee8e800;
+        // transition: border 1s ease;
     }
     .tab-active {
+        @apply mb-2;
         border-bottom: 1px solid #dee8e8;
-        padding-bottom: 24px;
-        margin-bottom: 8px;
+        transition: border 1s ease;
     }
 
     .description,
@@ -170,41 +206,58 @@ onMounted(() => {
 
 @media screen and (min-width: 640px) {
     .creators-values {
+        .icon {
+            height: 32px;
+            width: 32px;
+        }
+
         .description {
             height: 0;
-            transition: height 0.6s ease;
+            transition: height 1s ease;
             overflow: hidden;
+            will-change: height;
         }
 
         .description-active {
-            height: 60px;
-            transition: height 0.6s ease;
+            height: calc(2lh);
+            transition: height 1s ease;
+            overflow: hidden;
+            will-change: height;
         }
 
         .tab {
-            border-radius: 10px;
-            background: #ffffff;
-            border: none;
-            padding-bottom: 16px;
-            margin-bottom: 0;
-            // position: relative;
+            @apply rounded-xl relative mb-0 bg-transparent;
+            border: 1px solid rgba(27, 27, 27, 0);
+            // transition: border 2s ease;
+            
+            .bg {
+                @apply absolute w-full h-[300px] -z-10 rounded-xl;
+                top: 0;
+                left: -1000px;
+                transition: left 1s ease;
+                background: linear-gradient(103deg, #dee8e8 23.92%, rgba(222, 232, 232, 0) 105.14%);
+            }
         }
 
         .tab-active {
-            border-radius: 10px;
+            @apply rounded-xl relative mb-0 bg-transparent;
             border: 1px solid rgba(27, 27, 27, 0.2);
-            border-bottom: 1px solid #dee8e8;
-            background: linear-gradient(103deg, #dee8e8 23.92%, rgba(222, 232, 232, 0) 105.14%);
-            position: relative;
-            padding-bottom: 16px;
-            margin-bottom: 0;
-            transition: background 0.6s ease;
+            transition: border 1s ease 1s;
+            
+            .bg {
+                @apply absolute w-full h-60 -z-10 rounded-xl;
+                top: 0;
+                left: 0;
+                transition: left 1s ease;
+                background: linear-gradient(103deg, #dee8e8 23.92%, rgba(222, 232, 232, 0) 105.14%);
+            }
         }
 
         .loader-active {
             position: absolute;
             font-size: 12px;
             bottom: -9px;
+            animation: opac 3s ease;
         }
         .bar-active {
             position: absolute;
@@ -220,8 +273,18 @@ onMounted(() => {
                 #dcdcdc,
                 #d1d1d1
             );
-            animation: loadingbar 15s linear infinite;
+            animation: opac 3s ease, loadingbar 15.1s linear infinite;
         }
+    }
+}
+
+@keyframes opac {
+    from {
+        opacity:0
+    }
+    
+    to {
+        opacity:1
     }
 }
 
@@ -232,15 +295,6 @@ onMounted(() => {
 
     to {
         width: 0%;
-    }
-}
-
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
     }
 }
 </style>
