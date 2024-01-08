@@ -106,12 +106,13 @@ onMounted(() => {
         url('/assets/img/background/bg-default.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: fit-content;
 
     .container {
         @apply mx-auto px-5 flex gap-6;
         padding-top: 20vh;
-        height: 70vh;
+        padding-bottom: 20vh;
+        height: fit-content;
     }
 
     .action {
