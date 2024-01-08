@@ -42,7 +42,7 @@ const values = [
         video: '/assets/videos/grow.mp4',
         subtitle: 'your supporters',
         description:
-            'Gain more support with a Twibbonize campaign: it not only garners attetion but also creates a bandwagon effect, attracting a growing audience who don\'t want to miss out on your cause.'
+            "Gain more support with a Twibbonize campaign: it not only garners attetion but also creates a bandwagon effect, attracting a growing audience who don't want to miss out on your cause."
     }
 ];
 
@@ -54,7 +54,6 @@ const index = computed(() => {
 });
 
 function advance() {
-
     timerId = setTimeout(timer, 15000);
 }
 
@@ -67,7 +66,6 @@ function setIndex(index) {
     clearTimeout(timerId);
     counter.value = index;
     advance();
-
 }
 
 onMounted(() => {
@@ -85,7 +83,7 @@ onMounted(() => {
                     class="tab flex flex-col"
                     :class="{
                         'tab-active': i === index || isMobile,
-                        'cursor-pointer': i !== index,
+                        'cursor-pointer': i !== index
                     }"
                     @click="setIndex(i)"
                 >
@@ -97,7 +95,8 @@ onMounted(() => {
                             <div class="flex flex-col">
                                 <div class="flex">
                                     <h5 :class="{ 'title-active': i === index || isMobile }">
-                                        <span class="title mr-1">{{ title }}</span><span class="subtitle">{{ subtitle }}</span>
+                                        <span class="title mr-1">{{ title }}</span
+                                        ><span class="subtitle">{{ subtitle }}</span>
                                     </h5>
                                 </div>
                                 <div :class="index === i ? 'description-active' : 'description'">
@@ -112,10 +111,34 @@ onMounted(() => {
                 </div>
             </div>
             <div v-if="!isMobile" class="video-container content">
-                <video :class="{ ' video-active': index === 0 }" class="video" muted autoplay :src="values[0].video"></video>
-                <video :class="{ ' video-active': index === 1 }" class="video" muted autoplay :src="values[1].video"></video>
-                <video :class="{ ' video-active': index === 2 }" class="video" muted autoplay :src="values[2].video"></video>
-                <video :class="{ ' video-active': index === 3 }" class="video" muted autoplay :src="values[3].video"></video>
+                <video
+                    :class="{ ' video-active': index === 0 }"
+                    class="video"
+                    muted
+                    autoplay
+                    :src="values[0].video"
+                ></video>
+                <video
+                    :class="{ ' video-active': index === 1 }"
+                    class="video"
+                    muted
+                    autoplay
+                    :src="values[1].video"
+                ></video>
+                <video
+                    :class="{ ' video-active': index === 2 }"
+                    class="video"
+                    muted
+                    autoplay
+                    :src="values[2].video"
+                ></video>
+                <video
+                    :class="{ ' video-active': index === 3 }"
+                    class="video"
+                    muted
+                    autoplay
+                    :src="values[3].video"
+                ></video>
             </div>
         </div>
     </div>
@@ -128,7 +151,7 @@ onMounted(() => {
     }
 
     .content {
-        @apply sm:h-[400px] lg:h-[500px] xl:h-[600px]
+        @apply sm:h-[400px] lg:h-[500px] xl:h-[600px];
     }
     .video-container {
         @apply h-full relative pt-8 sm:pt-0 flex justify-center sm:justify-center;
@@ -143,12 +166,12 @@ onMounted(() => {
         outline: 1px solid rgba(27, 27, 27, 0.2);
         animation: opac 1s;
         opacity: 0;
-        transition: opacity 1s  ease;
+        transition: opacity 1s ease;
     }
 
     .video-active {
         opacity: 1;
-        transition: opacity 1s  ease;
+        transition: opacity 1s ease;
     }
 
     .video-mobile {
@@ -229,7 +252,7 @@ onMounted(() => {
             @apply rounded-xl relative mb-0 bg-transparent;
             border: 1px solid rgba(27, 27, 27, 0);
             // transition: border 2s ease;
-            
+
             .bg {
                 @apply absolute w-full h-[300px] -z-10 rounded-xl;
                 top: 0;
@@ -243,7 +266,7 @@ onMounted(() => {
             @apply rounded-xl relative mb-0 bg-transparent;
             border: 1px solid rgba(27, 27, 27, 0.2);
             transition: border 1s ease 1s;
-            
+
             .bg {
                 @apply absolute w-full h-60 -z-10 rounded-xl;
                 top: 0;
@@ -273,18 +296,20 @@ onMounted(() => {
                 #dcdcdc,
                 #d1d1d1
             );
-            animation: opac 3s ease, loadingbar 15.1s linear infinite;
+            animation:
+                opac 3s ease,
+                loadingbar 15.1s linear infinite;
         }
     }
 }
 
 @keyframes opac {
     from {
-        opacity:0
+        opacity: 0;
     }
-    
+
     to {
-        opacity:1
+        opacity: 1;
     }
 }
 

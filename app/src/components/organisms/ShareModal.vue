@@ -56,7 +56,11 @@ const { closeShare } = shareStore;
     }
 
     .share-modal__thumbnail {
-        @apply rounded-full max-h-28;
+        @apply rounded-xl max-h-28;
+    }
+
+    &.share-modal--profile .share-modal__thumbnail {
+        @apply rounded-full;
     }
 
     .share-modal__close {
@@ -64,7 +68,11 @@ const { closeShare } = shareStore;
     }
 
     .share-modal__body {
-        @apply py-8 px-10;
+        @apply py-8 px-5;
+
+        @include md_screen {
+            @apply px-10;
+        }
     }
 
     .share-modal__title {

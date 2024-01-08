@@ -13,6 +13,7 @@ const props = defineProps({
                 'neutral',
                 'danger',
                 'link',
+                'action',
                 'subtle',
                 'connect',
                 'facebook',
@@ -216,6 +217,14 @@ function handleClick(e) {
         }
     }
 
+    &--action {
+        @apply text-white/80 bg-transparent cursor-pointer;
+
+        &:hover {
+            @apply text-white;
+        }
+    }
+
     &--subtle {
         @apply text-black bg-transparent;
 
@@ -267,6 +276,11 @@ function handleClick(e) {
         width: 40px;
         height: 40px;
         @apply flex-shrink-0 p-0;
+    }
+
+    &.btn--xs.btn--square {
+        width: 32px;
+        height: 32px;
     }
 
     &--facebook {
