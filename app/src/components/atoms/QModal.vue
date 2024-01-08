@@ -17,7 +17,7 @@ defineProps({
     size: {
         type: String,
         default: 'md',
-        validators: (value) => ['md', 'lg']
+        validators: (value) => ['md', 'lg'].includes(value)
     },
     minHeight: {
         type: Number

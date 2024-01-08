@@ -38,6 +38,11 @@ const props = defineProps({
     },
     autocomplete: {
         type: String
+    },
+    size: {
+        type: String,
+        default: 'md',
+        validators: (value) => ['sm', 'md', 'lg'].includes(value)
     }
 });
 
@@ -58,19 +63,31 @@ function updateValue(e) {
         :name="name"
         v-slot="{ field, meta, value }"
     >
-        <div :class="['field', `field--${type}`, !meta.valid && meta.dirty && 'field--error']">
-            <input
-                v-bind="field"
-                :value="value"
-                :id="id || name"
-                :class="['field__input', readonly && 'field__input--readonly']"
-                :readonly="readonly"
-                :placeholder="placeholder"
-                @input="updateValue"
-                :minlength="minlength"
-                :maxlength="maxlength"
-                :autocomplete="autocomplete"
-            />
+        <div
+            :class="[
+                'field',
+                `field--${type}`,
+                `field--${size}`,
+                !meta.valid && meta.dirty && 'field--error'
+            ]"
+        >
+            <div class="field__wrapper">
+                <div v-if="$slots.prefix" class="field__prefix">
+                    <slot name="prefix"></slot>
+                </div>
+                <input
+                    v-bind="field"
+                    :value="value"
+                    :id="id || name"
+                    :class="['field__input', readonly && 'field__input--readonly']"
+                    :readonly="readonly"
+                    :placeholder="placeholder"
+                    @input="updateValue"
+                    :minlength="minlength"
+                    :maxlength="maxlength"
+                    :autocomplete="autocomplete"
+                />
+            </div>
         </div>
     </Field>
 </template>
@@ -83,12 +100,27 @@ function updateValue(e) {
         @apply outline outline-offset-2 outline-main-darker;
     }
 
+    &.field--sm .field__input {
+        @apply px-4 py-3 text-xs;
+    }
+
+    .field__wrapper {
+        @apply w-full rounded-xl  flex items-center bg-gray-100 transition-colors ease-in overflow-hidden;
+
+        &:focus-within {
+            @apply bg-white;
+        }
+    }
+
+    &__prefix {
+        @apply flex items-center justify-center h-full;
+    }
+
     &__input {
-        @apply p-4 rounded-xl text-sm w-full bg-gray-100 transition-colors ease-in block;
-        transition-duration: 0.4s;
+        @apply p-4 text-sm  block flex-grow bg-transparent;
 
         &:focus {
-            @apply outline-none bg-white;
+            @apply outline-none;
         }
 
         &:-webkit-autofill,
@@ -97,6 +129,10 @@ function updateValue(e) {
             outline: none;
             -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
         }
+    }
+
+    &.field--sm &__prefix + &__input {
+        @apply pl-1;
     }
 
     // &.field--email .field__input {
