@@ -67,7 +67,8 @@ const campaigns = computed(() => {
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg'
+            thumbnail: 'sample-campaign-1.jpg',
+            url: 'twb.nz/u/universetech'
         },
         {
             name: 'Liberty Scholarship 2025',
@@ -77,7 +78,8 @@ const campaigns = computed(() => {
             },
             hit: 1470,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg'
+            thumbnail: 'sample-campaign-2.jpg',
+            url: 'twb.nz/u/libertyscholarship'
         },
         {
             name: 'Bit by Bit - Retro Gaming',
@@ -87,7 +89,8 @@ const campaigns = computed(() => {
             },
             hit: 15100,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg'
+            thumbnail: 'sample-campaign-3.jpg',
+            url: 'twb.nz/u/bitbybit'
         },
         {
             name: 'Digital Culture Webinar',
@@ -97,7 +100,8 @@ const campaigns = computed(() => {
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg'
+            thumbnail: 'sample-campaign-4.jpg',
+            url: 'twb.nz/u/digitalculturewebinar'
         },
         {
             name: 'Candy Rush Treats or Treats',
@@ -107,7 +111,8 @@ const campaigns = computed(() => {
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-5.jpg'
+            thumbnail: 'sample-campaign-5.jpg',
+            url: 'twb.nz/u/candyrushtreats'
         },
         {
             name: 'Nucleotide Labo Fashion Researcher Program',
@@ -117,7 +122,8 @@ const campaigns = computed(() => {
             },
             hit: 14700,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-6.jpg'
+            thumbnail: 'sample-campaign-6.jpg',
+            url: 'twb.nz/u/nucleotidelabo'
         },
         {
             name: 'Fashion Week 2025',
@@ -127,6 +133,7 @@ const campaigns = computed(() => {
             },
             createdAt: dayjs().subtract(5, 'day').fromNow(),
             thumbnail: 'sample-campaign-7.jpg',
+            url: 'twb.nz/u/fashionweek2025',
             hit: 14929
         },
         {
@@ -137,7 +144,8 @@ const campaigns = computed(() => {
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-8.jpg'
+            thumbnail: 'sample-campaign-8.jpg',
+            url: 'twb.nz/u/asorockfest2024'
         }
     ];
 
@@ -245,7 +253,7 @@ onMounted(() => {
 
             <div class="container px-5 xl:px-0">
                 <div
-                    class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
+                    class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10 sm:space-x-6"
                 >
                     <div class="profile__common">
                         <div class="space-y-1">
@@ -354,8 +362,14 @@ onMounted(() => {
             <div class="container px-5 xl:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-6 mt-6 md:mt-10">
-                            <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
+                        <div
+                            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-6 mt-6 md:mt-10"
+                        >
+                            <CampaignCard
+                                v-for="campaign in campaigns"
+                                v-bind="campaign"
+                                :actions="true"
+                            />
                         </div>
                     </template>
 

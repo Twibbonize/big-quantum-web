@@ -6,6 +6,7 @@ import FooterDefault from '@/components/organisms/FooterDefault.vue';
 import AuthModal from '@/components/organisms/AuthModal.vue';
 import ExpandMenu from '@/components/organisms/ExpandMenu.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
+import CollectionModal from '@/components/organisms/CollectionModal.vue';
 
 const navbarColor = ref('');
 
@@ -25,5 +26,6 @@ function changeNavbarColor(value) {
 
     <AuthModal />
     <ShareModal />
+    <CollectionModal />
     <ExpandMenu />
 </template>

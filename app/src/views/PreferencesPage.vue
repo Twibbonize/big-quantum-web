@@ -740,7 +740,11 @@ const onScrollBillFilter = (e) => {
                                     <div class="max-w-2xl">
                                         <div class="flex justify-between">
                                             <div>
-                                                <QButton circle variant="secondary" @click="currentPage -= 1">
+                                                <QButton
+                                                    circle
+                                                    variant="secondary"
+                                                    @click="currentPage -= 1"
+                                                >
                                                     <i class="ri-arrow-left-s-line ri-lg"></i>
                                                 </QButton>
                                             </div>
@@ -751,7 +755,11 @@ const onScrollBillFilter = (e) => {
                                             />
 
                                             <div>
-                                                <QButton circle variant="secondary" @click="currentPage += 1">
+                                                <QButton
+                                                    circle
+                                                    variant="secondary"
+                                                    @click="currentPage += 1"
+                                                >
                                                     <i class="ri-arrow-right-s-line ri-lg"></i>
                                                 </QButton>
                                             </div>
