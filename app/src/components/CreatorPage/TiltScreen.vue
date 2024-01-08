@@ -64,8 +64,8 @@ onMounted(() => {
     }
     .frame-bg {
         border-radius: 23px;
-        background: rgba(255, 255, 255, 0.50);
-        box-shadow: 0px 4.675px 23.376px 0px rgba(0, 0, 0, 0.10);
+        background: rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 4.675px 23.376px 0px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5.844026565551758px);
     }
     .frame-1 {

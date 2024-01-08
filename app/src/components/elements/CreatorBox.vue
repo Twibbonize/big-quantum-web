@@ -17,7 +17,9 @@ const props = defineProps({
             <img :src="avatar" alt="" class="avatar" />
             <div class="info">
                 <h5 class="name">{{ name }}</h5>
-                <p class="supporters"><i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}</p>
+                <p class="supporters">
+                    <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
+                </p>
             </div>
         </div>
     </RouterLink>

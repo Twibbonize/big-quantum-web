@@ -7,14 +7,8 @@ import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
-import QCheckbox from '@/components/atoms/forms/QCheckbox.vue';
 import CollectionCardSelection from '@/components/molecules/CollectionCardSelection.vue';
-import {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupDescription,
-    RadioGroupOption
-} from '@headlessui/vue';
+
 import { useCollectionStore } from '@/stores/collectionStore';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
@@ -105,13 +99,14 @@ onMounted(() => {
                         <QButton variant="secondary" size="sm" @click="view = 'create'"
                             >Create a New Collection</QButton
                         >
-                        <QButton size="sm">Done</QButton>
+                        <QButton size="sm" @click="closeCollectionModal">Done</QButton>
                     </div>
                 </div>
 
                 <VeeForm
                     v-if="view === 'create' && campaign"
                     :validation-schema="formValidation"
+                    :initial-values="{ name: campaign.name }"
                     class="collection-modal__create"
                     v-slot="{ meta }"
                 >
@@ -139,7 +134,8 @@ onMounted(() => {
 
                             <div class="space-y-3">
                                 <label for="description" class="text-sm font-semibold"
-                                    >Description</label
+                                    >Description
+                                    <span class="font-normal text-content">(optional)</span></label
                                 >
                                 <QInputTextarea
                                     id="description"

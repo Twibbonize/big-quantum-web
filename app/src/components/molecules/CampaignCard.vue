@@ -108,11 +108,20 @@ const onClickCollection = () => {
                                             <ul class="menu">
                                                 <li class="menu__item">
                                                     <a
+                                                        v-if="deleteAble"
                                                         class="menu__link text-red-500"
                                                         @click.prevent="console.log('delete')"
                                                     >
                                                         <i class="ri-delete-bin-7-line"></i>
                                                         <span>Delete</span>
+                                                    </a>
+                                                    <a
+                                                        v-else
+                                                        class="menu__link text-black"
+                                                        @click.prevent="console.log('delete')"
+                                                    >
+                                                        <i class="ri-flag-line"></i>
+                                                        <span>Report</span>
                                                     </a>
                                                 </li>
                                             </ul>
