@@ -2,6 +2,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 import MetaInfo from '@/components/molecules/MetaInfo.vue';
+import QButton from '@/components/atoms/QButton.vue';
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const emit = defineEmits(['change-navbar']);
 
@@ -13,6 +15,23 @@ const clickReadMore = () => {
     isReadMore.value = true;
 };
 
+const frameLists = [
+    'hanoi-art-frame-1',
+    'hanoi-art-frame-2',
+    'hanoi-art-frame-3',
+    'hanoi-art-frame-4',
+];
+
+const frameIndex = ref(0);
+
+const getFrameUrl = (frame) => {
+    return `/assets/img/frames/${frame}.png`;
+}
+
+const setActiveFrame = (index) => {
+    frameIndex.value = index;
+}
+
 onMounted(() => {
     emit('change-navbar', 'transparent');
 });
@@ -22,6 +41,37 @@ onMounted(() => {
     <div class="campaign-page">
         <div class="container">
             <div class="action">
+                <div class="frame">
+                    <div class="card campaign-frame">
+                        <img class="frame-active" :src="getFrameUrl(frameLists[frameIndex])" :alt="frameLists[frameIndex]">
+                    </div>
+                    <div class="card frame-selector">
+                        <div class="frame-platform">
+                        </div>
+                        <div class="p-2.5">
+                            <QSlider
+                                class="mt-1.5 mb-4 w-fit"
+                                direction="horizontal"
+                                :centered-slides="false"
+                                :centered-slides-bounds="false"
+                                slides-per-view="auto"
+                            >
+                                <swiper-slide
+                                    v-for="(filename, i) in frameLists" :key="i"
+                                    class="frame-slider mr-4 last:mr-0"
+                                    :class="{ 'active': frameIndex === i }"
+                                    @click="setActiveFrame(i)"
+                                >
+                                    <img class="campaign" :src="getFrameUrl(filename)" :alt="filename" />
+                                </swiper-slide>
+                            </QSlider>
+                            <QButton variant="primary" class="frame-button">
+                                <i class="ri-camera-line"></i>
+                                <span>Upload Your Photo</span>
+                            </QButton>
+                        </div>
+                    </div>
+                </div>
                 <div class="card campaign-detail">
                     <h1 class="campaign-title">Hanoi Art Book Fair - Art and Import Book Fair</h1>
                     <div class="flex items-center gap-1.5 mt-4">
@@ -85,8 +135,47 @@ onMounted(() => {
         border-top: rgba(27, 27, 27, 0.1) 1px solid;
     }
 
+    .frame {
+        @apply relative;
+    }
+
+    .campaign-frame {
+        @apply p-2.5 rounded-3xl flex mt-4 mx-4 z-20 relative;
+    }
+
+    .frame-selector {
+        @apply -mt-3.5 w-full z-10;
+        border-radius: 14px 14px 20px 20px !important;
+        border: none !important;
+    }
+
+    .frame-platform {
+        @apply rounded-2xl h-7 bg-light w-full;
+        border: 1.2px solid var(--color-white);
+    }
+
+    .frame-active {
+        @apply w-full rounded-xl;
+    }
+
+    .frame-slider {
+        @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
+        border: 1px solid var(--color-light); 
+
+        &.active {
+            @apply cursor-default;
+            border-color: var(--color-main);
+            background: #DEE8E8;
+        }
+    }
+
+    .frame-button {
+        @apply w-full text-base font-bold gap-2;
+        padding: 13px 20px !important;
+    }
+
     .campaign-detail {
-        @apply p-4;
+        @apply p-4 mt-6;
 
         .avatar {
             @apply rounded-full;
