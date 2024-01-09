@@ -43,7 +43,7 @@ const action = ref(null);;
 
 const feedsHeight = computed(() => {
     if (action.value) {
-        return `${action.value.clientHeight}px;`;
+        return `${action.value.clientHeight}px`;
     }
 
     return '100%';
@@ -107,8 +107,8 @@ onMounted(() => {
                     <MetaInfo />
                 </div>
             </div>
-            <div class="feeds">
-                <div class="card campaign-feeds" :style="{ height: feedsHeight }">
+            <div class="feeds" :style="{ height: feedsHeight }">
+                <div class="card campaign-feeds">
                     <div class="feeds-empty-state">
                         <div v-for="i in 9" :key="i" class="card-empty-state">
                             <div class="overlay"></div>
@@ -141,12 +141,12 @@ onMounted(() => {
         url('/assets/img/background/bg-default.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: fit-content;
+    height: 100vh;
 
     .container {
         @apply mx-auto px-5 flex gap-6;
-        padding-top: 20vh;
-        padding-bottom: 20vh;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
         height: fit-content;
     }
 
@@ -237,6 +237,7 @@ onMounted(() => {
 
     .campaign-feeds {
         @apply w-full p-2.5 relative overflow-hidden;
+        height: 80vh;
     }
 
     .feeds-empty-state {
@@ -261,10 +262,6 @@ onMounted(() => {
 
         .icon {
             @apply bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;
-
-            &:hover {
-
-            }
 
             i {
                 @apply text-[32px];
