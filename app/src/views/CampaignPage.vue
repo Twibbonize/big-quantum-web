@@ -105,6 +105,18 @@ onMounted(() => {
                     </p>
                     <div class="card-line mt-4"></div>
                     <MetaInfo />
+                    <div class="campaign-share">
+                        <div class="campaign-link">
+                            <i class="ri-links-line"></i>
+                            <p class="text-sm leading-none">twb.nz/hanoi-art</p>
+                            <div class="share-icon">
+                                <i class="ri-share-line"></i>
+                            </div>
+                        </div>
+                        <div class="bookmark-icon">
+                            <i class="ri-bookmark-line"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="feeds" :style="{ height: feedsHeight }">
@@ -176,6 +188,32 @@ onMounted(() => {
 
     .campaign-frame {
         @apply p-2.5 rounded-3xl flex mx-4 z-20 relative;
+    }
+
+    .campaign-share {
+        @apply flex gap-2 mt-4;
+    }
+
+    .campaign-link {
+        @apply flex pl-3 pr-1.5 bg-white items-center rounded-full w-full gap-2 h-10;
+        border: 1px solid var(--color-light);
+
+        p {
+            @apply w-full text-[#454546] text-ellipsis overflow-hidden whitespace-nowrap;
+        }
+
+        .share-icon {
+            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square; 
+        }
+
+    }
+    .bookmark-icon {
+        @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
+        border: 1px solid var(--color-light);
+
+        i {
+            @apply text-base;
+        }
     }
 
     .frame-selector {
