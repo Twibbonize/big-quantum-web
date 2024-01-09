@@ -369,6 +369,7 @@ onMounted(() => {
                                 v-for="campaign in campaigns"
                                 v-bind="campaign"
                                 :actions="true"
+                                :deleteAble="true"
                             />
                         </div>
                     </template>
