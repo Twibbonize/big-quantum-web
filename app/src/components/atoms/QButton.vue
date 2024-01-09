@@ -131,7 +131,7 @@ function handleClick(e) {
         &:hover {
             @include before {
                 height: 20rem;
-                width: 20rem;
+                width: 100%;
             }
         }
     }
@@ -154,7 +154,7 @@ function handleClick(e) {
         &:hover {
             @include before {
                 height: 20rem;
-                width: 20rem;
+                width: 100%;
             }
         }
     }

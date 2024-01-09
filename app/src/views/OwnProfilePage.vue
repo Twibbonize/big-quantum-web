@@ -27,15 +27,15 @@ const tabs = [
         }
     },
     {
+        title: 'Collections',
+        slot: 'collections'
+    },
+    {
         title: 'Posts',
         slot: 'posts',
         props: {
             static: true
         }
-    },
-    {
-        title: 'Collections',
-        slot: 'collections'
     }
 ];
 
