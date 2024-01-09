@@ -182,4 +182,23 @@ import QSlider from '@/components/atoms/QSlider.vue';
         }
     }
 }
+
+@media screen and (min-width: 1800px) {
+    .home-slider {
+        width: 720px;
+        height: 1100px;
+        transform: rotate(-25deg);
+        display: flex;
+        gap: 21px;
+        position: absolute;
+        right: 250px;
+        top: -230px;
+        z-index: 1;
+
+        img {
+            width: 230px;
+            height: 345px;
+        }
+    }
+}
 </style>
