@@ -119,7 +119,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-            <div class="feeds" :style="{ height: feedsHeight }">
+            <div class="feeds">
                 <div class="card campaign-feeds">
                     <div class="feeds-empty-state">
                         <div v-for="i in 9" :key="i" class="card-empty-state">
@@ -163,12 +163,14 @@ onMounted(() => {
     }
 
     .action {
-        @apply h-full;
+        @apply h-full flex flex-col justify-between;
         width: 320px;
+        height: 85vh;
     }
 
     .feeds {
         @apply w-full relative;
+        height: 85vh;
     }
 
     .card {
@@ -275,7 +277,7 @@ onMounted(() => {
 
     .campaign-feeds {
         @apply w-full p-2.5 relative overflow-hidden;
-        height: 80vh;
+        height: 85vh;
     }
 
     .feeds-empty-state {
