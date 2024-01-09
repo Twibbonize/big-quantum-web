@@ -282,7 +282,11 @@ onMounted(() => {
                                         openShare(
                                             'twb.nz/u/universetech',
                                             getAvatarUrl('sample-avatar-1.jpg'),
-                                            'profile'
+                                            'profile',
+                                            {
+                                                name: 'Universe Tech',
+                                                username: 'universetech'
+                                            }
                                         )
                                     "
                                 />
