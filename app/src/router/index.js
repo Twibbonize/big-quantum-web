@@ -47,7 +47,7 @@ const router = createRouter({
             component: OwnProfilePage
         },
         {
-            path: '/campaign',
+            path: '/hanoi-art',
             name: 'campaign',
             component: CampaignPage
         },
