@@ -52,8 +52,8 @@ const onClickCopyURL = () => {
                         <div class="share-modal__buttons flex items-center space-x-3">
                             <QButton circle size="lg" variant="facebook">
                                 <img
-                                    src="/assets/img/logos/facebook.png"
-                                    class="w-8 h-8 mb-1"
+                                    src="/assets/img/logos/facebook.svg"
+                                    class="w-full h-full"
                                     alt="Facebook Logo"
                                 />
                             </QButton>

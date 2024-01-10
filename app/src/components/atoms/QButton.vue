@@ -284,7 +284,6 @@ function handleClick(e) {
     }
 
     &--facebook {
-        background-color: #0866ff;
         @apply text-white transition-opacity duration-150;
 
         &:hover {
