@@ -1,8 +1,9 @@
 <script setup>
-import { useExpandMenuStore } from '@/stores/expandMenuStore';
-import { useAuthStore } from '@/stores/authStore';
 import { storeToRefs } from 'pinia';
 import { watch } from 'vue';
+import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router';
+import { useExpandMenuStore } from '@/stores/expandMenuStore';
+import { useAuthStore } from '@/stores/authStore';
 import QButton from '@/components/atoms/QButton.vue';
 
 const expandMenuStore = useExpandMenuStore();
@@ -21,6 +22,10 @@ const onClickSignUp = () => {
     modal.value.show = true;
     open.value = false;
 };
+
+onBeforeRouteLeave(() => {
+    open.value = false;
+});
 
 watch(open, (newValue) => {
     if (newValue) {

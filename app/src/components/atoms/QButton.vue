@@ -159,6 +159,29 @@ function handleClick(e) {
         }
     }
 
+    &--light {
+        @apply text-black bg-light border border-stroke transition-colors duration-300;
+
+        @include before {
+            height: 0;
+            width: 0;
+            border-radius: 100%;
+            @apply bg-black;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s var(--transition-function);
+            opacity: 0.1;
+        }
+
+        &:hover {
+            @include before {
+                height: 20rem;
+                width: 100%;
+            }
+        }
+    }
+
     &--accent {
         @apply text-black bg-yellow;
 
