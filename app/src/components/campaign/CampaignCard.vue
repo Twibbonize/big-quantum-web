@@ -30,7 +30,7 @@ onMounted(() => {});
 </script>
 
 <template>
-    <RouterLink to="/campaign">
+    <RouterLink to="/hanoi-art">
         <div class="camp-card rounded-3xl pt-2.5 px-3.5 pb-3.5">
             <div class="img-container rounded-xl aspect-square flex items-center relative">
                 <picture>
