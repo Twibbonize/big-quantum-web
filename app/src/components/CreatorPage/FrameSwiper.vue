@@ -25,6 +25,7 @@ function getImageUrl(name) {
         :autoplay-delay="0"
         :autoplay-disable-on-interaction="false"
         :autoplay-reverse-direction="true"
+        :allow-touch-move="false"
     >
         <swiper-slide v-for="(filename, i) in galleries" :key="i" class="campaign-slider">
             <img class="campaign" :src="getImageUrl(filename)" :alt="filename" />
