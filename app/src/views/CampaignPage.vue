@@ -49,6 +49,10 @@ const feedsHeight = computed(() => {
     return '100%';
 })
 
+const getSampleUser = (index) => {
+    return `/assets/img/sample/sample-person-${index}.jpg`;
+};
+
 onMounted(() => {
     emit('change-navbar', 'transparent');
 });
@@ -104,7 +108,7 @@ onMounted(() => {
                         Read More
                     </p>
                     <div class="card-line mt-4"></div>
-                    <MetaInfo />
+                    <MetaInfo :is-line="true"/>
                     <div class="campaign-share">
                         <div class="campaign-link">
                             <i class="ri-links-line"></i>
@@ -124,7 +128,12 @@ onMounted(() => {
                     <div class="feeds-empty-state">
                         <div v-for="i in 9" :key="i" class="card-empty-state">
                             <div class="overlay"></div>
-                            <img :src="getFrameUrl(frameLists[frameIndex])" :alt="getFrameUrl(frameIndex)">
+                            <img class="frame" :src="getFrameUrl(frameLists[frameIndex])" :alt="getFrameUrl(frameIndex)">
+                            <img class="user" :src="getSampleUser(i)" :alt="`user${i}`">
+                        </div>
+                        <div class="empty-state-text">
+                            <div class="title">No post yet</div>
+                            <div class="description">Be the first to post your support here. <br> Start with uploading your photo!</div>
                         </div>
                     </div>
                     <div class="feeds-action">
@@ -156,9 +165,7 @@ onMounted(() => {
     height: fit-content;
 
     .container {
-        @apply mx-auto px-5 flex gap-6;
-        padding-top: 10vh;
-        padding-bottom: 10vh;
+        @apply mx-auto px-5 flex gap-6 pt-[200px] pb-[100px];
         height: fit-content;
     }
 
@@ -288,16 +295,31 @@ onMounted(() => {
         @apply aspect-square relative;
 
         .overlay {
-            @apply absolute w-full h-full bg-light opacity-[85%];
+            @apply absolute w-full h-full bg-light opacity-[85%] z-20;
         }
 
-        .sample-photo {
-            @apply absolute
+        .frame {
+            @apply absolute top-0 left-0 z-10;
+        }
+
+        .user {
+        }
+    }
+
+    .empty-state-text {
+        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40;
+
+        .title {
+            @apply text-center font-bold text-2xl;
+        }
+
+        .description {
+            @apply text-center text-xl mt-2.5;
         }
     }
     
     .feeds-action {
-        @apply absolute bottom-0 w-full z-10 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
+        @apply absolute bottom-0 w-full z-30 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 83.09%);
 
         .icon {
