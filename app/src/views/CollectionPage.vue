@@ -75,9 +75,9 @@ const { openShare } = shareStore;
                 >
                     <div class="space-y-6">
                         <div class="space-y-3">
-                            <div class="collection__creator flex items-center justify-center">
-                                <div class="text-sm">
-                                    Curated <span class="ml-0.5 text-xxs font-light">By</span>
+                            <div class="collection__creator flex items-end justify-center">
+                                <div class="text-sm font-medium">
+                                    Curated <span class="ml-0.5 text-[9px]">by</span>
                                 </div>
                                 <div class="creator">
                                     <img
@@ -308,7 +308,7 @@ const { openShare } = shareStore;
         }
 
         .creator__name {
-            @apply text-sm font-medium;
+            @apply text-sm font-semibold;
         }
     }
 }
