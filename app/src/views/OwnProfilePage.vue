@@ -9,6 +9,7 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
