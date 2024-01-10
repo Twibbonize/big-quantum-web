@@ -1,10 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useWindowSize } from '@vueuse/core';
+import { ref } from 'vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import MetaInfo from '@/components/molecules/MetaInfo.vue';
 
-const { width, height } = useWindowSize();
 
 const isReadMore = ref(false);
 const navbarColor = ref('transparent');
@@ -63,22 +61,24 @@ const clickReadMore = () => {
         url('/assets/img/background/bg-default.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: fit-content;
 
     .container {
         @apply mx-auto px-5 flex gap-6;
-        padding-top: 20vh;
-        height: 70vh;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+        height: fit-content;
     }
 
     .action {
-        @apply h-full;
+        @apply h-full flex flex-col justify-between;
         width: 320px;
+        height: 85vh;
     }
 
     .feeds {
-        @apply h-full;
-        height: 100%;
+        @apply w-full relative;
+        height: 85vh;
     }
 
     .card {
@@ -92,8 +92,73 @@ const clickReadMore = () => {
         border-top: rgba(27, 27, 27, 0.1) 1px solid;
     }
 
+    .frame {
+        @apply relative;
+    }
+
+    .campaign-frame {
+        @apply p-2.5 rounded-3xl flex mx-4 z-20 relative;
+    }
+
+    .campaign-share {
+        @apply flex gap-2 mt-4;
+    }
+
+    .campaign-link {
+        @apply flex pl-3 pr-1.5 bg-white items-center rounded-full w-full gap-2 h-10;
+        border: 1px solid var(--color-light);
+
+        p {
+            @apply w-full text-[#454546] text-ellipsis overflow-hidden whitespace-nowrap;
+        }
+
+        .share-icon {
+            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square; 
+        }
+
+    }
+    .bookmark-icon {
+        @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
+        border: 1px solid var(--color-light);
+
+        i {
+            @apply text-base;
+        }
+    }
+
+    .frame-selector {
+        @apply -mt-3.5 w-full z-10;
+        border-radius: 14px 14px 20px 20px !important;
+        border: none !important;
+    }
+
+    .frame-platform {
+        @apply rounded-2xl h-7 bg-light w-full;
+        border: 3px solid var(--color-white);
+    }
+
+    .frame-active {
+        @apply w-full rounded-xl;
+    }
+
+    .frame-slider {
+        @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
+        border: 1px solid var(--color-light); 
+
+        &.active {
+            @apply cursor-default;
+            border-color: var(--color-main);
+            background: #DEE8E8;
+        }
+    }
+
+    .frame-button {
+        @apply w-full text-base font-bold gap-2;
+        padding: 13px 20px !important;
+    }
+
     .campaign-detail {
-        @apply p-4;
+        @apply p-4 mt-6;
 
         .avatar {
             @apply rounded-full;
@@ -115,6 +180,40 @@ const clickReadMore = () => {
 
         .read-more {
             @apply text-base font-bold underline cursor-pointer;
+        }
+    }
+
+    .campaign-feeds {
+        @apply w-full p-2.5 relative overflow-hidden;
+        height: 85vh;
+    }
+
+    .feeds-empty-state {
+        @apply grid grid-cols-3 gap-2.5;
+    }
+
+    .card-empty-state {
+        @apply aspect-square relative;
+
+        .overlay {
+            @apply absolute w-full h-full bg-light opacity-[85%];
+        }
+
+        .sample-photo {
+            @apply absolute
+        }
+    }
+    
+    .feeds-action {
+        @apply absolute bottom-0 w-full z-10 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 83.09%);
+
+        .icon {
+            @apply bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;
+
+            i {
+                @apply text-[32px];
+            }
         }
     }
 }

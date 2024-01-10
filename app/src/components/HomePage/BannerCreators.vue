@@ -63,13 +63,13 @@ onUnmounted(() => {
                 />
             </div>
             <div ref="lottieScroll"></div>
-            <div class="container z-30 mt-4 mx-auto px-5">
+            <div class="container z-30 mt-4 mx-auto">
                 <div class="row justify-center">
                     <div class="col-xl-10">
                         <div class="tp-rated-title-box text-center mb-14">
-                            <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4">
-                                <div class="flex justify-center items-center">
-                                    <div class="flex relative -mb-2.5 sm:mb-2">
+                            <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4 px-5">
+                                <div class="flex justify-center items-center sm:-mb-5">
+                                    <div class="flex relative -mb-2.5 sm:-mb-5 -ml-2 sm:-ml-8">
                                         <Vue3Lottie
                                             ref="lottieSupports"
                                             :animationData="gatherJSON"
@@ -79,7 +79,8 @@ onUnmounted(() => {
                                             :autoPlay="isAutoPlay"
                                         />
                                     </div>
-                                    <div class="-ml-2 sm:-ml-4 pb-3">your</div>
+                                    <span class="opacity-0 w-0">gather</span>
+                                    <span class="-ml-2 sm:-ml-8 sm:-mb-4">your</span>
                                     <br />
                                 </div>
                                 supporters with <br />Twibbonize
@@ -97,7 +98,7 @@ onUnmounted(() => {
                                 </QButton>
                                 <span class="text-sm text-white ml-4">or</span>
                                 <QButton
-                                    class="!text-white text-sm ws-nowrap"
+                                    class="!text-white text-sm ws-nowrap !pl-3 !pr-1"
                                     variant="link"
                                     border-radius="circle"
                                 >
@@ -108,7 +109,7 @@ onUnmounted(() => {
                     </div>
                 </div>
                 <div
-                    class="logo-set flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10 px-5"
+                    class="logo-set flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-4 mt-14 mb-10"
                 >
                     <img
                         v-for="url in creatorsLogo"

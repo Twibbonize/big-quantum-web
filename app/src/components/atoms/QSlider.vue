@@ -11,6 +11,7 @@ const props = defineProps({
     grabCursor: Boolean,
     speed: Number,
     centeredSlides: Boolean,
+    centeredSlidesBounds: Boolean,
     loop: Boolean,
     slidesPerView: Number | String,
     breakpoints: Object,
@@ -50,6 +51,7 @@ onMounted(() => {
         :grab-cursor="grabCursor"
         :speed="speed"
         :centered-slides="centeredSlides"
+        :centered-slides-bounds="centeredSlidesBounds"
         :loop="loop"
         :slides-per-view="slidesPerView"
         :autoplay-delay="autoplayDelay"
