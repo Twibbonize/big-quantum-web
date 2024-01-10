@@ -1,48 +1,55 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useWindowSize } from '@vueuse/core';
+import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import MetaInfo from '@/components/molecules/MetaInfo.vue';
-
-const emit = defineEmits(['change-navbar']);
 
 const { width, height } = useWindowSize();
 
 const isReadMore = ref(false);
+const navbarColor = ref('transparent');
 
 const clickReadMore = () => {
     isReadMore.value = true;
 };
-
-onMounted(() => {
-    emit('change-navbar', 'transparent');
-});
 </script>
 
 <template>
-    <div class="campaign-page">
-        <div class="container">
-            <div class="action">
-                <div class="card campaign-detail">
-                    <h1 class="campaign-title">Hanoi Art Book Fair - Art and Import Book Fair</h1>
-                    <div class="flex items-center gap-1.5 mt-4">
-                        <img class="avatar" src="/assets/img/creator/creator-default.jpg" alt="-" />
-                        <p class="creator-name">Hanoi Art Book Fair</p>
+    <LayoutMain :navbarColor="navbarColor">
+        <div class="campaign-page">
+            <div class="container">
+                <div class="action">
+                    <div class="card campaign-detail">
+                        <h1 class="campaign-title">
+                            Hanoi Art Book Fair - Art and Import Book Fair
+                        </h1>
+                        <div class="flex items-center gap-1.5 mt-4">
+                            <img
+                                class="avatar"
+                                src="/assets/img/creator/creator-default.jpg"
+                                alt="-"
+                            />
+                            <p class="creator-name">Hanoi Art Book Fair</p>
+                        </div>
+                        <p
+                            class="campaign-description mt-4"
+                            :class="{ 'line-clamp-2': !isReadMore }"
+                        >
+                            Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate
+                            reading habits, increase art literacy worldwide and build a new
+                            generation of readers, by making books more affordable.
+                        </p>
+                        <p v-if="!isReadMore" @click="clickReadMore" class="read-more mt-2">
+                            Read More
+                        </p>
+                        <div class="card-line mt-4"></div>
+                        <MetaInfo />
                     </div>
-                    <p class="campaign-description mt-4" :class="{ 'line-clamp-2': !isReadMore }">
-                        Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate
-                        reading habits, increase art literacy worldwide and build a new generation
-                        of readers, by making books more affordable.
-                    </p>
-                    <p v-if="!isReadMore" @click="clickReadMore" class="read-more mt-2">
-                        Read More
-                    </p>
-                    <div class="card-line mt-4"></div>
-                    <MetaInfo />
                 </div>
+                <div class="feeds"></div>
             </div>
-            <div class="feeds"></div>
         </div>
-    </div>
+    </LayoutMain>
 </template>
 
 <style lang="scss">
