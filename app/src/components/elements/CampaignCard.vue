@@ -23,7 +23,12 @@ const props = defineProps({
                 <img :src="props.thumbnail" alt="" />
             </a>
             <div class="button-view">
-                <router-link to="/hanoi-art" data-toggle="modal" data-target="#popup_view" class="tf-button">
+                <router-link
+                    to="/hanoi-art"
+                    data-toggle="modal"
+                    data-target="#popup_view"
+                    class="tf-button"
+                >
                     <span>View</span>
                 </router-link>
             </div>

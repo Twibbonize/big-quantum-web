@@ -282,7 +282,7 @@ const onClickCollection = () => {
     }
 
     &__creator {
-        @apply flex items-center space-x-1;
+        @apply flex items-center space-x-2;
 
         &__avatar {
             @apply h-4 w-4 rounded-full border border-stroke;
@@ -323,6 +323,10 @@ const onClickCollection = () => {
     .meta {
         @apply flex items-center space-x-1;
 
+        @include md_screen {
+            @apply space-x-2;
+        }
+
         .meta__icon i,
         .meta__icon svg {
             @apply text-black;
@@ -330,9 +334,6 @@ const onClickCollection = () => {
 
         .meta__copy {
             @apply h-full;
-            @include lg_screen {
-                @apply space-y-1;
-            }
 
             @include sm {
                 @apply flex-grow w-0;
