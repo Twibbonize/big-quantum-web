@@ -131,7 +131,7 @@ function handleClick(e) {
         &:hover {
             @include before {
                 height: 20rem;
-                width: 20rem;
+                width: 100%;
             }
         }
     }
@@ -154,7 +154,7 @@ function handleClick(e) {
         &:hover {
             @include before {
                 height: 20rem;
-                width: 20rem;
+                width: 100%;
             }
         }
     }
@@ -284,13 +284,21 @@ function handleClick(e) {
     }
 
     &--facebook {
-        background-color: #3f69d9;
-        @apply text-white;
+        background-color: #0866ff;
+        @apply text-white transition-opacity duration-150;
+
+        &:hover {
+            @apply opacity-80;
+        }
     }
 
     &--twitter {
         background-color: #000000;
-        @apply text-white;
+        @apply text-white transition-opacity duration-150;
+
+        &:hover {
+            @apply opacity-80;
+        }
     }
 
     &.btn--xs.btn--circle,

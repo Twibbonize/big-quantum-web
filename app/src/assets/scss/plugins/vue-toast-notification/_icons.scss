@@ -1,0 +1,40 @@
+.v-toast {
+    &__item {
+        opacity: 1;
+        min-height: 4em;
+
+        .v-toast__icon {
+            width: 20px;
+            min-width: 20px;
+            height: 20px;
+            margin-left: 8px;
+            transform: translateX(8px);
+            display: none;
+
+            [dir='rtl'] & {
+                margin-left: unset;
+                margin-right: 1em;
+            }
+        }
+
+        &.v-toast__item--success .v-toast__icon {
+            display: block;
+            background: url(#{$toast-icons-path}/success.svg) no-repeat;
+        }
+
+        &.v-toast__item--error .v-toast__icon {
+            display: block;
+            background: url(#{$toast-icons-path}/error.svg) no-repeat;
+        }
+
+        &.v-toast__item--warning .v-toast__icon {
+            display: block;
+            background: url(#{$toast-icons-path}/warning.svg) no-repeat;
+        }
+
+        &.v-toast__item--info .v-toast__icon {
+            display: block;
+            background: url(#{$toast-icons-path}/info.svg) no-repeat;
+        }
+    }
+}

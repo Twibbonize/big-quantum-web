@@ -1,13 +1,31 @@
 <script setup>
+import { storeToRefs } from 'pinia';
+import { useToast } from 'vue-toast-notification';
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import { useShareStore } from '@/stores/shareStore';
-import { storeToRefs } from 'pinia';
 
+const toast = useToast();
 const shareStore = useShareStore();
-const { open, link, thumbnail, type } = storeToRefs(shareStore);
+const { open, link, thumbnail, type, creator } = storeToRefs(shareStore);
 const { closeShare } = shareStore;
+
+const onClickCopyURL = () => {
+    const textToCopy = document.querySelector('.share-modal__copy-url');
+    const range = document.createRange();
+    range.selectNode(textToCopy);
+    window.getSelection().removeAllRanges(); // Clear previous selection
+    window.getSelection().addRange(range); // To select text
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges(); // To deselect
+
+    toast.open({
+        type: 'success',
+        message: 'Link copied to clipboard',
+        position: 'bottom'
+    });
+};
 </script>
 <template>
     <QModal :show="open" @close="closeShare">
@@ -15,6 +33,11 @@ const { closeShare } = shareStore;
             <div :class="['share-modal', `share-modal--${type}`]">
                 <div class="share-modal__header">
                     <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
+
+                    <div v-if="creator" class="share-modal__creator text-center mt-3">
+                        <div class="text-xl font-semibold">{{ creator.name }}</div>
+                        <div class="text-content font-medium">@{{ creator.username }}</div>
+                    </div>
 
                     <div class="share-modal__close">
                         <QButton variant="subtle" size="sm" square @click="closeShare">
@@ -28,19 +51,31 @@ const { closeShare } = shareStore;
 
                         <div class="share-modal__buttons flex items-center space-x-3">
                             <QButton circle size="lg" variant="facebook">
-                                <i class="ri-facebook-circle-fill ri-2x"></i>
+                                <img
+                                    src="/assets/img/logos/facebook.png"
+                                    class="w-8 h-8 mb-1"
+                                    alt="Facebook Logo"
+                                />
                             </QButton>
 
                             <QButton circle size="lg" variant="twitter">
-                                <i class="ri-twitter-x-line ri-2x"></i>
+                                <img
+                                    src="/assets/img/logos/x.svg"
+                                    class="w-6 h-6"
+                                    alt="Facebook Logo"
+                                />
                             </QButton>
                         </div>
 
                         <QSeparator alignment="center"> or copy link </QSeparator>
 
                         <div class="share-modal__copy w-full">
-                            <span>https://{{ link }}</span>
-                            <button class="share-modal__copy-btn">Copy</button>
+                            <span class="share-modal__copy-url">{{ link }}</span>
+                            <div class="share-modal__copy-action">
+                                <button class="share-modal__copy-btn" @click="onClickCopyURL">
+                                    Copy
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +87,7 @@ const { closeShare } = shareStore;
 <style scoped lang="scss">
 .share-modal {
     .share-modal__header {
-        @apply p-10 bg-gray-100 flex items-center justify-center border-b border-stroke relative;
+        @apply p-10 bg-gray-100 flex flex-col items-center justify-center border-b border-stroke relative;
     }
 
     .share-modal__thumbnail {
@@ -61,6 +96,10 @@ const { closeShare } = shareStore;
 
     &.share-modal--profile .share-modal__thumbnail {
         @apply rounded-full;
+    }
+
+    &.share-modal--campaign .share-modal__thumbnail {
+        @apply max-h-44;
     }
 
     .share-modal__close {
@@ -86,9 +125,37 @@ const { closeShare } = shareStore;
     .share-modal__copy {
         @apply bg-white px-3 py-2 text-sm rounded-lg border border-stroke relative;
 
+        .share-modal__copy-action {
+            @apply absolute top-0 right-0 h-full;
+        }
+
         .share-modal__copy-btn {
-            @apply absolute top-0 rounded-r-lg right-0 h-full flex items-center px-3 bg-gray-100 border-l border-stroke text-xs font-semibold tracking-normal;
+            @apply rounded-r-md  h-full flex items-center px-3 bg-gray-100 border-l border-stroke text-xs font-semibold tracking-normal overflow-hidden;
+            @include before {
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-black;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.2s var(--transition-function);
+                opacity: 0.1;
+            }
+
+            &:hover {
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
+            }
         }
     }
+}
+</style>
+
+<style>
+.v-toast__item.v-toast__item--success .v-toast__icon {
+    background: url(/assets/img/icons/success.svg) no-repeat;
 }
 </style>
