@@ -31,7 +31,7 @@ const onClickCopyURL = () => {
     <QModal :show="open" @close="closeShare">
         <template #body>
             <div :class="['share-modal', `share-modal--${type}`]">
-                <div class="share-modal__header">
+                <div v-if="type !== 'collection'" class="share-modal__header">
                     <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
 
                     <div v-if="creator" class="share-modal__creator text-center mt-3">

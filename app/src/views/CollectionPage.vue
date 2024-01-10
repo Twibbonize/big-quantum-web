@@ -124,7 +124,7 @@ const { openShare } = shareStore;
                             <div class="flex-grow">
                                 <QShareButton
                                     link="twb.nz/c/happy-birthday"
-                                    @click="openShare('twb.nz/u/universetech', null, 'collection')"
+                                    @click="openShare('twb.nz/c/happy-birthday', null, 'collection')"
                                 />
                             </div>
 
