@@ -1,7 +1,6 @@
 <script setup>
 import { computed, inject, ref, onMounted } from 'vue';
 import dayjs from 'dayjs';
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
@@ -10,6 +9,7 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import QListbox from '@/components/atoms/forms/QListbox.vue';
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
@@ -46,7 +46,6 @@ const profile = {
     link: 'www.universe-tech.com'
 };
 
-const activeTab = ref(0);
 const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
@@ -161,6 +160,9 @@ const campaigns = computed(() => {
         };
     });
 });
+
+const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
+const selectedSortCampaign = ref(sortCampaignOptions[0]);
 
 onMounted(() => {
     emit('change-navbar', 'black');
@@ -366,15 +368,41 @@ onMounted(() => {
             <div class="container px-5 xl:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
-                        <div
-                            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-6 mt-6 md:mt-10"
-                        >
-                            <CampaignCard
-                                v-for="campaign in campaigns"
-                                v-bind="campaign"
-                                :actions="true"
-                                :deleteAble="true"
-                            />
+                        <div class="space-y-6 mt-6">
+                            <div class="campaigns-filter">
+                                <div class="campaigns-filter__search">
+                                    <QInputText
+                                        name="search"
+                                        size="sm"
+                                        placeholder="Search campaigns..."
+                                    >
+                                        <template #prefix>
+                                            <div class="pl-3 pr-1 h-full">
+                                                <i class="ri-search-line text-content"></i>
+                                            </div>
+                                        </template>
+                                    </QInputText>
+                                </div>
+
+                                <div class="campaigns-filter__sort">
+                                    <QListbox
+                                        v-model="selectedSortCampaign"
+                                        :options="sortCampaignOptions"
+                                        name="campaigns_sort"
+                                    />
+                                </div>
+                            </div>
+
+                            <div
+                                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-6 mt-6 md:mt-10"
+                            >
+                                <CampaignCard
+                                    v-for="campaign in campaigns"
+                                    v-bind="campaign"
+                                    :actions="true"
+                                    :deleteAble="true"
+                                />
+                            </div>
                         </div>
                     </template>
 
@@ -531,6 +559,33 @@ onMounted(() => {
 
         &:hover {
             @apply bg-black/10;
+        }
+    }
+}
+
+// campaigns filter
+.campaigns-filter {
+    @apply flex items-center justify-between space-x-4;
+
+    @include sm {
+        @apply flex flex-col space-x-0 space-y-4;
+
+        .campaigns-filter__search,
+        .campaigns-filter__sort {
+            @apply w-full;
+        }
+    }
+
+    .campaigns-filter__search,
+    .campaigns-filter__sort {
+        @apply flex-grow;
+    }
+
+    .campaigns-filter__sort {
+        // @apply max-w-xs;
+
+        @include md_screen {
+            max-width: 240px;
         }
     }
 }
