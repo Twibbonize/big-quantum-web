@@ -79,6 +79,7 @@ onUnmounted(() => {
                                             :autoPlay="isAutoPlay"
                                         />
                                     </div>
+                                    <span class="opacity-0 w-0">gather</span>
                                     <div class="-ml-2 sm:-ml-8 sm:-mb-4">your</div>
                                     <br />
                                 </div>

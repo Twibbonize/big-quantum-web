@@ -26,6 +26,7 @@ const lottieDimension = computed(() => {
                         class="w-full sm:w-2/3 md:w-1/3 content flex flex-col items-center sm:items-start px-5"
                     >
                         <h1 class="title z-30 user-select-none pe-none lowercase">show your</h1>
+                        <span class="opacity-0 w-0">supports</span>
                         <div class="title-animation z-30">
                             <Vue3Lottie
                                 :animationData="supportsJSON"
