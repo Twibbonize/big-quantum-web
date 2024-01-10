@@ -11,7 +11,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-
 const isReadMore = ref(false);
 const navbarColor = ref('transparent');
 
@@ -352,9 +351,8 @@ onMounted(() => {
         }
 
         .share-icon {
-            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square; 
+            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square;
         }
-
     }
     .bookmark-icon {
         @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
@@ -382,12 +380,12 @@ onMounted(() => {
 
     .frame-slider {
         @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
-        border: 1px solid var(--color-light); 
+        border: 1px solid var(--color-light);
 
         &.active {
             @apply cursor-default;
             border-color: var(--color-main);
-            background: #DEE8E8;
+            background: #dee8e8;
         }
     }
 
@@ -457,7 +455,7 @@ onMounted(() => {
             @apply text-center text-xl mt-2.5;
         }
     }
-    
+
     .feeds-action {
         @apply absolute bottom-0 w-full z-30 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 83.09%);

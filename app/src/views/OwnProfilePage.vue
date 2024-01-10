@@ -375,7 +375,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                         <QInputText
                                             name="search"
                                             size="sm"
-                                            placeholder="Search campaigns..."
+                                            placeholder="Search Campaigns"
                                         >
                                             <template #prefix>
                                                 <div class="pl-3 pr-1 h-full">
