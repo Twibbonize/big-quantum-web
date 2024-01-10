@@ -213,63 +213,6 @@ const onClickCollection = () => {
                             <i class="ri-share-line"></i>
                         </QButton>
                     </div>
-
-                    <div class="flex w-full md:hidden button-group">
-                        <button
-                            class="text-xs sm:text-sm font-semibold"
-                            @click.prevent="onClickShare"
-                        >
-                            <i class="ri-share-line"></i>
-                        </button>
-
-                        <button class="text-xs sm:text-sm font-semibold">
-                            <i class="ri-delete-bin-7-line text-red-500"></i>
-                        </button>
-                    </div>
-
-                    <!-- <div class="block md:hidden">
-                        <Popover class="relative z-10">
-                            <QButton circle variant="secondary" size="sm">
-                                <PopoverButton as="span" class="h-full w-full flex items-center justify-center"
-                                    @click="isMobilePopoverOpen = !isMobilePopoverOpen">
-                                    <i class="ri-more-line ri-lg"></i>
-                                </PopoverButton>
-                            </QButton>
-
-                            <transition enter-active-class="transition duration-200 ease-out"
-                                enter-from-class="translate-y-1 opacity-0" enter-to-class="translate-y-0 opacity-100"
-                                leave-active-class="transition duration-150 ease-in"
-                                leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-1 opacity-0">
-                                <div v-if="isMobilePopoverOpen">
-                                    <PopoverPanel static class="popover__panel popover__panel--top">
-                                        <ul class="menu">
-                                            <li class="menu__item">
-                                                <a class="menu__link" @click.prevent="console.log('delete')">
-                                                    <i class="ri-bookmark-line"></i>
-                                                    <span>Add to Collection</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="menu__item">
-                                                <a class="menu__link" @click.prevent="console.log('delete')">
-                                                    <i class="ri-share-line"></i>
-                                                    <span>Share</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="menu__item">
-                                                <a class="menu__link text-red-500" @click.prevent="console.log('delete')">
-                                                    <i class="ri-delete-bin-7-line"></i>
-                                                    <span>Delete</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </PopoverPanel>
-                                </div>
-                            </transition>
-                        </Popover>
-                    </div>
-                    -->
                 </div>
             </QCard>
         </div>

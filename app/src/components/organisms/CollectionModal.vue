@@ -61,7 +61,7 @@ onMounted(() => {
                                 v-model="query"
                                 name="search"
                                 size="sm"
-                                placeholder="filter collections"
+                                placeholder="Search your Collections"
                                 @input="onFilterCollection"
                             >
                                 <template #prefix>

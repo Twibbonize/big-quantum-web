@@ -83,17 +83,17 @@ const emit = defineEmits(['close']);
 <style scoped lang="scss">
 .dialog {
     @apply relative;
-    z-index: 9995;
+    z-index: 65;
 
     .dialog__overlay {
         @apply fixed inset-0 bg-black/60;
-        z-index: 9996;
+        z-index: 66;
         pointer-events: none;
     }
 
     .dialog__content {
         @apply fixed inset-0 overflow-y-auto;
-        z-index: 9997;
+        z-index: 67;
     }
 
     .dialog__panel-wrapper {
