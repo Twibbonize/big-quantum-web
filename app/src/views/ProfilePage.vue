@@ -6,6 +6,8 @@ import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QModal from '@/components/atoms/QModal.vue';
+import QInputText from '@/components/atoms/forms/QInputText.vue';
+import QListbox from '@/components/atoms/forms/QListbox.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
@@ -27,15 +29,15 @@ const tabs = [
         }
     },
     {
+        title: 'Collections',
+        slot: 'collections'
+    },
+    {
         title: 'Posts',
         slot: 'posts',
         props: {
             static: true
         }
-    },
-    {
-        title: 'Collections',
-        slot: 'collections'
     }
 ];
 
@@ -153,6 +155,9 @@ const campaigns = computed(() => {
         };
     });
 });
+
+const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
+const selectedSortCampaign = ref(sortCampaignOptions[0]);
 
 onMounted(() => {
     emit('change-navbar', 'black');
@@ -375,8 +380,34 @@ onMounted(() => {
             <div class="container px-5 md:px-0">
                 <QTabs :tabs="tabs" :block="isMobile">
                     <template #campaigns>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
-                            <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
+                        <div class="space-y-6 mt-6">
+                            <div class="campaigns-filter">
+                                <div class="campaigns-filter__search">
+                                    <QInputText
+                                        name="search"
+                                        size="sm"
+                                        placeholder="Search campaigns..."
+                                    >
+                                        <template #prefix>
+                                            <div class="pl-3 pr-1 h-full">
+                                                <i class="ri-search-line text-content"></i>
+                                            </div>
+                                        </template>
+                                    </QInputText>
+                                </div>
+
+                                <div class="campaigns-filter__sort">
+                                    <QListbox
+                                        v-model="selectedSortCampaign"
+                                        :options="sortCampaignOptions"
+                                        name="campaigns_sort"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
+                                <campaign-card v-for="campaign in campaigns" v-bind="campaign" />
+                            </div>
                         </div>
                     </template>
 
@@ -511,6 +542,33 @@ onMounted(() => {
 
         &:hover {
             @apply bg-black/10;
+        }
+    }
+}
+
+// campaigns filter
+.campaigns-filter {
+    @apply flex items-center justify-between space-x-4;
+
+    @include sm {
+        @apply flex flex-col space-x-0 space-y-4;
+
+        .campaigns-filter__search,
+        .campaigns-filter__sort {
+            @apply w-full;
+        }
+    }
+
+    .campaigns-filter__search,
+    .campaigns-filter__sort {
+        @apply flex-grow;
+    }
+
+    .campaigns-filter__sort {
+        // @apply max-w-xs;
+
+        @include md_screen {
+            max-width: 240px;
         }
     }
 }
