@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import MetaInfo from '@/components/molecules/MetaInfo.vue';
 
-
 const isReadMore = ref(false);
 const navbarColor = ref('transparent');
 
@@ -113,9 +112,8 @@ const clickReadMore = () => {
         }
 
         .share-icon {
-            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square; 
+            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square;
         }
-
     }
     .bookmark-icon {
         @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
@@ -143,12 +141,12 @@ const clickReadMore = () => {
 
     .frame-slider {
         @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
-        border: 1px solid var(--color-light); 
+        border: 1px solid var(--color-light);
 
         &.active {
             @apply cursor-default;
             border-color: var(--color-main);
-            background: #DEE8E8;
+            background: #dee8e8;
         }
     }
 
@@ -200,13 +198,13 @@ const clickReadMore = () => {
         }
 
         .sample-photo {
-            @apply absolute
+            @apply absolute;
         }
     }
-    
+
     .feeds-action {
         @apply absolute bottom-0 w-full z-10 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 83.09%);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 83.09%);
 
         .icon {
             @apply bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;

@@ -84,8 +84,12 @@ watch(open, (newValue) => {
                     </ul>
 
                     <div class="space-y-4 mt-4 pt-4 border-t border-stroke">
-                        <div class="flex flex-col-reverse md:flex-row items-center space-y-3 space-y-reverse md:space-y-0 md:space-x-3">
-                            <QButton variant="secondary" block @click="onClickSignIn">Sign In</QButton>
+                        <div
+                            class="flex flex-col-reverse md:flex-row items-center space-y-3 space-y-reverse md:space-y-0 md:space-x-3"
+                        >
+                            <QButton variant="secondary" block @click="onClickSignIn"
+                                >Sign In</QButton
+                            >
                             <QButton block @click="onClickSignUp">Sign Up</QButton>
                         </div>
                     </div>

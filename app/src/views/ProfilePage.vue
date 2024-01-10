@@ -13,6 +13,8 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import CollectionsCard from '@/components/PlusPage/CollectionsCard.vue';
+
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
@@ -156,6 +158,45 @@ const campaigns = computed(() => {
         };
     });
 });
+
+const collectionsCard = [
+    {
+        title: '🥳 Happy Birthday!',
+        sum: 21,
+        campaigns: ['campaign-hbd-1.jpg', 'campaign-hbd-2.jpg', 'campaign-hbd-3.jpg'],
+        url: '/c/happy-birthday'
+    },
+    {
+        title: '💍 Wedding Celebration',
+        sum: 12,
+        campaigns: [
+            'campaign-wedding-celebration-1.jpg',
+            'campaign-wedding-celebration-2.jpg',
+            'campaign-wedding-celebration-3.jpg'
+        ],
+        url: '/c/wedding-celebration'
+    },
+    {
+        title: '🎓 Graduation',
+        sum: 10,
+        campaigns: [
+            'campaign-graduation-1.jpg',
+            'campaign-graduation-2.jpg',
+            'campaign-graduation-3.jpg'
+        ],
+        url: '/c/graduation'
+    },
+    {
+        title: '👶 New Baby',
+        sum: 12,
+        campaigns: [
+            'campaign-new-baby-1.jpg',
+            'campaign-new-baby-2.jpg',
+            'campaign-new-baby-3.jpg'
+        ],
+        url: '/c/new-baby'
+    }
+];
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
@@ -385,12 +426,12 @@ onMounted(() => {
                     <QTabs :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
-                                <div class="campaigns-filter">
-                                    <div class="campaigns-filter__search">
+                                <div class="filters">
+                                    <div class="filters__search">
                                         <QInputText
                                             name="search"
                                             size="sm"
-                                            placeholder="Search campaigns..."
+                                            placeholder="Search Campaigns"
                                         >
                                             <template #prefix>
                                                 <div class="pl-3 pr-1 h-full">
@@ -400,7 +441,7 @@ onMounted(() => {
                                         </QInputText>
                                     </div>
 
-                                    <div class="campaigns-filter__sort">
+                                    <div class="filters__sort">
                                         <QListbox
                                             v-model="selectedSortCampaign"
                                             :options="sortCampaignOptions"
@@ -418,19 +459,26 @@ onMounted(() => {
                             </div>
                         </template>
 
+                        <template #collections>
+                            <div class="space-y-6 mt-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <CollectionsCard
+                                        v-for="(collection, i) in collectionsCard"
+                                        :key="`colllection-${i}`"
+                                        :title="collection.title"
+                                        :sum="collection.sum"
+                                        :campaigns="collection.campaigns"
+                                        :url="collection.url"
+                                    />
+                                </div>
+                            </div>
+                        </template>
+
                         <template #posts>
                             <div
                                 class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center"
                             >
                                 <h4 class="text-xl font-semibold">No Posts Yet</h4>
-                            </div>
-                        </template>
-
-                        <template #collections>
-                            <div
-                                class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center"
-                            >
-                                <h4 class="text-xl font-semibold">No Collections Yet</h4>
                             </div>
                         </template>
                     </QTabs>
@@ -555,24 +603,24 @@ onMounted(() => {
 }
 
 // campaigns filter
-.campaigns-filter {
+.filters {
     @apply flex items-center justify-between space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
 
-        .campaigns-filter__search,
-        .campaigns-filter__sort {
+        .filters__search,
+        .filters__sort {
             @apply w-full;
         }
     }
 
-    .campaigns-filter__search,
-    .campaigns-filter__sort {
+    .filters__search,
+    .filters__sort {
         @apply flex-grow;
     }
 
-    .campaigns-filter__sort {
+    .filters__sort {
         // @apply max-w-xs;
 
         @include md_screen {
