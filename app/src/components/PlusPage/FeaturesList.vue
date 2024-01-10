@@ -21,12 +21,12 @@ const cards = computed(() => {
 
 <template>
     <div class="plus-feature">
-        <div class="container px-5 py-14">
+        <div class="container flex flex-col px-5 py-14">
             <h2 class="title">What you will get from <span>plus</span></h2>
             <p class="description">
                 Experience an enhanced Twibbonize experience with Premium Basic plan
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mt-10 sm:mt-14">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6 mt-10 sm:mt-14">
                 <div class="card" v-for="(card, i) in cards" :key="`feature-${i}`">
                     <h4 class="card-title">{{ card.title }}</h4>
                     <p class="card-description">
@@ -61,7 +61,7 @@ const cards = computed(() => {
     }
 
     .card {
-        @apply rounded-3xl p-6 sm:p-10 relative bg-white overflow-hidden pb-[210px];
+        @apply rounded-3xl p-6 sm:p-10 relative bg-white overflow-hidden sm:pb-[300px];
         border: 1px solid rgba(27, 27, 27, 0.1);
 
         .card-title {
@@ -82,12 +82,9 @@ const cards = computed(() => {
         }
 
         .card-image {
+            @apply right-[50%] sm:right-0 translate-x-1/2 sm:translate-x-0 h-44 sm:max-h-72 h-full w-auto max-w-none aspect-auto;
             position: absolute;
-            height: 180px;
-            width: auto;
-            left: 50%;
             bottom: 0;
-            transform: translateX(-50%);
         }
     }
 }
