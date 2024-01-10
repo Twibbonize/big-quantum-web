@@ -80,7 +80,7 @@ onUnmounted(() => {
                                         />
                                     </div>
                                     <span class="opacity-0 w-0">gather</span>
-                                    <div class="-ml-2 sm:-ml-8 sm:-mb-4">your</div>
+                                    <span class="-ml-2 sm:-ml-8 sm:-mb-4">your</span>
                                     <br />
                                 </div>
                                 supporters with <br />Twibbonize
