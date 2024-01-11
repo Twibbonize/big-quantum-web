@@ -2,15 +2,14 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
-import QCard from '@/components/atoms/QCard.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
-import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { getAvatarUrl } from '@/utils/urls.js';
 import { useShareStore } from '@/stores/shareStore';
 
 dayjs.extend(relativeTime);
@@ -46,6 +45,16 @@ const campaigns = computed(() => {
             hit: 15100,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
             thumbnail: '/assets/img/campaigns/campaign-hbd-3.jpg'
+        },
+        {
+            name: 'Water Colour Outer Space Happy Birthday',
+            campaignCreator: {
+                name: 'Universe Tech',
+                avatar: 'sample-avatar-1.jpg'
+            },
+            hit: 85500,
+            createdAt: dayjs().subtract(5, 'day').fromNow(),
+            thumbnail: '/assets/img/campaigns/campaign-hbd-4.webp'
         }
     ];
 
@@ -64,6 +73,10 @@ const campaigns = computed(() => {
 
 const shareStore = useShareStore();
 const { openShare } = shareStore;
+
+const thumbnails = computed(() => {
+    return campaigns ? campaigns.value.map(({ thumbnail }) => thumbnail) : [];
+});
 </script>
 
 <template>
@@ -75,10 +88,8 @@ const { openShare } = shareStore;
                 >
                     <div class="space-y-6">
                         <div class="space-y-3">
-                            <div class="collection__creator flex items-end justify-center">
-                                <div class="text-sm font-medium">
-                                    Curated <span class="ml-0.5 text-[9px]">by</span>
-                                </div>
+                            <div class="collection__creator flex items-center justify-center">
+                                <div class="text-sm">Collected by</div>
                                 <div class="creator">
                                     <img
                                         src="/assets/img/sample/sample-avatar-1.jpg"
@@ -101,7 +112,7 @@ const { openShare } = shareStore;
 
                                     <div class="meta__copy">
                                         <div class="meta__title">Campaigns</div>
-                                        <div class="meta__value">3</div>
+                                        <div class="meta__value">4</div>
                                     </div>
                                 </div>
                                 <div class="meta">
@@ -124,7 +135,13 @@ const { openShare } = shareStore;
                             <div class="flex-grow">
                                 <QShareButton
                                     link="twb.nz/c/happy-birthday"
-                                    @click="openShare('twb.nz/c/happy-birthday', null, 'collection')"
+                                    @click="
+                                        openShare(
+                                            'twb.nz/c/happy-birthday',
+                                            { thumbnails },
+                                            'collection'
+                                        )
+                                    "
                                 />
                             </div>
 

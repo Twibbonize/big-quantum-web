@@ -4,11 +4,13 @@ import { useToast } from 'vue-toast-notification';
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
+import QCollectionThumbnail from '@/components/atoms/QCollectionThumbnail.vue';
 import { useShareStore } from '@/stores/shareStore';
+import { computed } from 'vue';
 
 const toast = useToast();
 const shareStore = useShareStore();
-const { open, link, thumbnail, type, creator } = storeToRefs(shareStore);
+const { open, link, payload, type } = storeToRefs(shareStore);
 const { closeShare } = shareStore;
 
 const onClickCopyURL = () => {
@@ -26,6 +28,16 @@ const onClickCopyURL = () => {
         position: 'bottom'
     });
 };
+
+const thumbnail = computed(() => {
+    if (type.value === 'profile') {
+        return payload.value.avatar;
+    } else if (type.value === 'campaign') {
+        return payload.value.thumbnail;
+    }
+
+    return null;
+});
 </script>
 <template>
     <QModal :show="open" @close="closeShare">
@@ -34,9 +46,9 @@ const onClickCopyURL = () => {
                 <div v-if="type !== 'collection'" class="share-modal__header">
                     <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
 
-                    <div v-if="creator" class="share-modal__creator text-center mt-3">
-                        <div class="text-xl font-semibold">{{ creator.name }}</div>
-                        <div class="text-content font-medium">@{{ creator.username }}</div>
+                    <div v-if="type === 'profile'" class="share-modal__creator text-center mt-3">
+                        <div class="text-xl font-semibold">{{ payload.name }}</div>
+                        <div class="text-content font-medium">@{{ payload.username }}</div>
                     </div>
 
                     <div class="share-modal__close">
@@ -45,6 +57,19 @@ const onClickCopyURL = () => {
                         </QButton>
                     </div>
                 </div>
+
+                <div v-else class="share-modal__header">
+                    <div class="h-40 flex items-center justify-center rounded-xl overflow-hidden">
+                        <QCollectionThumbnail :thumbnails="payload.thumbnails" />
+                    </div>
+
+                    <div class="share-modal__close">
+                        <QButton variant="subtle" size="sm" square @click="closeShare">
+                            <i class="ri-close-fill ri-xl"></i>
+                        </QButton>
+                    </div>
+                </div>
+
                 <div class="share-modal__body">
                     <div class="space-y-6 flex flex-col items-center justify-center">
                         <h3 class="share-modal__title">Share to your social media</h3>
@@ -92,6 +117,10 @@ const onClickCopyURL = () => {
 
     .share-modal__thumbnail {
         @apply rounded-xl max-h-28;
+
+        @include sm {
+            @apply max-h-16;
+        }
     }
 
     &.share-modal--profile .share-modal__thumbnail {
