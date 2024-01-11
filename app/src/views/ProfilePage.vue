@@ -13,12 +13,14 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
-import CollectionsCard from '@/components/PlusPage/CollectionsCard.vue';
+// import CollectionsCard from '@/components/PlusPage/CollectionsCard.vue';
+import CollectionCard from '../components/molecules/CollectionCard.vue';
 
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { RouterLink } from 'vue-router';
 dayjs.extend(relativeTime);
 
 const emit = defineEmits(['change-navbar']);
@@ -159,42 +161,102 @@ const campaigns = computed(() => {
     });
 });
 
-const collectionsCard = [
+const collections = [
     {
-        title: '🥳 Happy Birthday!',
-        sum: 21,
-        campaigns: ['campaign-hbd-1.jpg', 'campaign-hbd-2.jpg', 'campaign-hbd-3.jpg'],
-        url: '/c/happy-birthday'
+        name: '🥳 Happy Birthday!',
+        campaigns: [
+            {
+                name: 'Purple and White Modern Happy Birthday',
+                thumbnail: '/assets/img/campaigns/campaign-hbd-1.jpg'
+            },
+            {
+                name: 'Blue White Happy Birthday',
+                thumbnail: '/assets/img/campaigns/campaign-hbd-2.jpg'
+            },
+            {
+                name: 'Pink Colourful Happy Birthday',
+                thumbnail: '/assets/img/campaigns/campaign-hbd-3.jpg'
+            },
+            {
+                name: 'Water Colour Outer Space Happy Birthday',
+                thumbnail: '/assets/img/campaigns/campaign-hbd-4.webp'
+            }
+        ],
+        uri: 'happy-birthday',
+        creator: {
+            name: 'Universe Tech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg',
+            username: 'universetech'
+        }
     },
     {
-        title: '💍 Wedding Celebration',
-        sum: 12,
+        name: '👶 New Baby',
         campaigns: [
-            'campaign-wedding-celebration-1.jpg',
-            'campaign-wedding-celebration-2.jpg',
-            'campaign-wedding-celebration-3.jpg'
+            {
+                name: 'Neutral New Baby Born',
+                thumbnail: '/assets/img/campaigns/campaign-new-baby-1.jpg'
+            },
+            {
+                name: 'Beige White New Baby Born',
+                thumbnail: '/assets/img/campaigns/campaign-new-baby-2.jpg'
+            },
+            {
+                name: 'Pink White Baby Birth',
+                thumbnail: '/assets/img/campaigns/campaign-new-baby-3.jpg'
+            },
+            {
+                name: 'Pink and Orange Playful Little Family Twibbon',
+                thumbnail: '/assets/img/campaigns/campaign-new-baby-4.webp'
+            }
         ],
-        url: '/c/wedding-celebration'
+        uri: 'new-baby',
+        creator: {
+            name: 'Universe Tech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg',
+            username: 'universetech'
+        }
     },
     {
-        title: '🎓 Graduation',
-        sum: 10,
+        name: '🎓 Graduation',
         campaigns: [
-            'campaign-graduation-1.jpg',
-            'campaign-graduation-2.jpg',
-            'campaign-graduation-3.jpg'
+            {
+                name: 'Brown and Cream Happy Graduation',
+                thumbnail: '/assets/img/campaigns/campaign-graduation-1.jpg'
+            },
+            {
+                name: 'Pink Cute Happy Graduation',
+                thumbnail: '/assets/img/campaigns/campaign-graduation-2.jpg'
+            },
+            {
+                name: 'Yellow and Green Happy Graduation',
+                thumbnail: '/assets/img/campaigns/campaign-graduation-3.jpg'
+            },
+            {
+                name: 'Blue and Yellow Modern Happy Graduation',
+                thumbnail: '/assets/img/campaigns/campaign-graduation-4.webp'
+            }
         ],
-        url: '/c/graduation'
+        uri: 'graduation',
+        creator: {
+            name: 'Universe Tech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg',
+            username: 'universetech'
+        }
     },
     {
-        title: '👶 New Baby',
-        sum: 12,
+        name: '💍 Wedding Celebration',
         campaigns: [
-            'campaign-new-baby-1.jpg',
-            'campaign-new-baby-2.jpg',
-            'campaign-new-baby-3.jpg'
+            {
+                name: 'Brown and Cream Happy Graduation',
+                thumbnail: '/assets/img/campaigns/campaign-wedding-celebration-1.jpg'
+            }
         ],
-        url: '/c/new-baby'
+        uri: 'graduation',
+        creator: {
+            name: 'Universe Tech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg',
+            username: 'universetech'
+        }
     }
 ];
 
@@ -461,15 +523,17 @@ onMounted(() => {
 
                         <template #collections>
                             <div class="space-y-6 mt-6">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <CollectionsCard
-                                        v-for="(collection, i) in collectionsCard"
-                                        :key="`colllection-${i}`"
-                                        :title="collection.title"
-                                        :sum="collection.sum"
-                                        :campaigns="collection.campaigns"
-                                        :url="collection.url"
-                                    />
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                                    <RouterLink
+                                        v-for="collection in collections"
+                                        :key="collection.uri"
+                                        :to="{
+                                            name: 'collection',
+                                            params: { uri: collection.uri }
+                                        }"
+                                    >
+                                        <CollectionCard v-bind="collection" />
+                                    </RouterLink>
                                 </div>
                             </div>
                         </template>
@@ -604,7 +668,7 @@ onMounted(() => {
 
 // campaigns filter
 .filters {
-    @apply flex items-center justify-between space-x-4;
+    @apply flex items-center space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
@@ -618,6 +682,12 @@ onMounted(() => {
     .filters__search,
     .filters__sort {
         @apply flex-grow;
+    }
+
+    .filters__search {
+        @include md_screen {
+            @apply max-w-xs;
+        }
     }
 
     .filters__sort {

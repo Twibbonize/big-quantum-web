@@ -8,7 +8,7 @@ dayjs.extend(relativeTime);
 const props = defineProps({
     supports: Number,
     createdAt: Number,
-    isLine: Boolean,
+    isLine: Boolean
 });
 </script>
 

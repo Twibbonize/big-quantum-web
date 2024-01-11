@@ -285,11 +285,7 @@ const onClickCollection = () => {
         @apply flex items-center space-x-2;
 
         &__avatar {
-            @apply h-4 w-4 rounded-full border border-stroke;
-
-            @include md_screen {
-                @apply h-6 w-6;
-            }
+            @apply h-6 w-6 rounded-full border border-stroke;
         }
 
         &__name {
