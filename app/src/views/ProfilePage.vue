@@ -523,7 +523,24 @@ onMounted(() => {
 
                         <template #collections>
                             <div class="space-y-6 mt-6">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+                                <div class="filters">
+                                    <div class="filters__search">
+                                        <QInputText
+                                            name="search"
+                                            size="sm"
+                                            placeholder="Search Collections"
+                                        >
+                                            <template #prefix>
+                                                <div class="pl-3 pr-1 h-full">
+                                                    <i class="ri-search-line text-content"></i>
+                                                </div>
+                                            </template>
+                                        </QInputText>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2` lg:grid-cols-4 gap-6">
                                     <RouterLink
                                         v-for="collection in collections"
                                         :key="collection.uri"
