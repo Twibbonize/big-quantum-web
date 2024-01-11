@@ -77,74 +77,64 @@ const campaigns = computed(() => {
             thumbnail: 'sample-campaign-1.jpg'
         },
         {
-            name: 'Liberty Scholarship 2025',
+            name: 'Universe Tech Future Developers Bootcamp',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 1470,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg'
+            thumbnail: 'future-developers.jpg'
         },
         {
-            name: 'Bit by Bit - Retro Gaming',
+            name: 'Universe Tech Innovation Day',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 15100,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg'
+            thumbnail: 'innovation-day-1.jpg'
         },
         {
-            name: 'Digital Culture Webinar',
+            name: 'Shot on Universe Phone',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg'
+            thumbnail: 'shot-on.jpg'
         },
         {
-            name: 'Candy Rush Treats or Treats',
+            name: 'Universe Tech Orbit The Next Generation VR',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-5.jpg'
+            thumbnail: 'orbit.jpg'
         },
         {
-            name: 'Nucleotide Labo Fashion Researcher Program',
+            name: 'Universe Tech Innovation Lab',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 14700,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-6.jpg'
+            thumbnail: 'innovation-lab.jpg'
         },
         {
-            name: 'Fashion Week 2025',
+            name: 'Universe Tech Smart Innovation Summit',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-7.jpg',
+            thumbnail: 'smart-innovation-submit.jpg',
             hit: 14929
-        },
-        {
-            name: 'ASO Rock Festa 2024',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-8.jpg'
         }
     ];
 

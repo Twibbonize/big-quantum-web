@@ -56,8 +56,6 @@ const shareStore = useShareStore();
 
 const { openShare } = shareStore;
 
-// const campaigns = /
-
 const campaigns = computed(() => {
     const samples = [
         {
@@ -68,85 +66,67 @@ const campaigns = computed(() => {
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg',
-            url: 'twb.nz/u/universetech'
+            thumbnail: 'sample-campaign-1.jpg'
         },
         {
-            name: 'Liberty Scholarship 2025',
+            name: 'Universe Tech Future Developers Bootcamp',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 1470,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg',
-            url: 'twb.nz/u/libertyscholarship'
+            thumbnail: 'future-developers.jpg'
         },
         {
-            name: 'Bit by Bit - Retro Gaming',
+            name: 'Universe Tech Innovation Day',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 15100,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg',
-            url: 'twb.nz/u/bitbybit'
+            thumbnail: 'innovation-day-1.jpg'
         },
         {
-            name: 'Digital Culture Webinar',
+            name: 'Shot on Universe Phone',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 7700,
             createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg',
-            url: 'twb.nz/u/digitalculturewebinar'
+            thumbnail: 'shot-on.jpg'
         },
         {
-            name: 'Candy Rush Treats or Treats',
+            name: 'Universe Tech Orbit The Next Generation VR',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 85500,
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-5.jpg',
-            url: 'twb.nz/u/candyrushtreats'
+            thumbnail: 'orbit.jpg'
         },
         {
-            name: 'Nucleotide Labo Fashion Researcher Program',
+            name: 'Universe Tech Innovation Lab',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             hit: 14700,
             createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-6.jpg',
-            url: 'twb.nz/u/nucleotidelabo'
+            thumbnail: 'innovation-lab.jpg'
         },
         {
-            name: 'Fashion Week 2025',
+            name: 'Universe Tech Smart Innovation Summit',
             campaignCreator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
             createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-7.jpg',
-            url: 'twb.nz/u/fashionweek2025',
+            thumbnail: 'smart-innovation-submit.jpg',
             hit: 14929
-        },
-        {
-            name: 'ASO Rock Festa 2024',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-8.jpg',
-            url: 'twb.nz/u/asorockfest2024'
         }
     ];
 
@@ -370,8 +350,8 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                     <QTabs :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
-                                <div class="campaigns-filter">
-                                    <div class="campaigns-filter__search">
+                                <div class="filters">
+                                    <div class="filters__search">
                                         <QInputText
                                             name="search"
                                             size="sm"
@@ -385,7 +365,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                         </QInputText>
                                     </div>
 
-                                    <div class="campaigns-filter__sort">
+                                    <div class="filters__sort">
                                         <QListbox
                                             v-model="selectedSortCampaign"
                                             :options="sortCampaignOptions"
@@ -568,24 +548,30 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
 }
 
 // campaigns filter
-.campaigns-filter {
-    @apply flex items-center justify-between space-x-4;
+.filters {
+    @apply flex items-center space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
 
-        .campaigns-filter__search,
-        .campaigns-filter__sort {
+        .filters__search,
+        .filters__sort {
             @apply w-full;
         }
     }
 
-    .campaigns-filter__search,
-    .campaigns-filter__sort {
+    .filters__search,
+    .filters__sort {
         @apply flex-grow;
     }
 
-    .campaigns-filter__sort {
+    .filters__search {
+        @include md_screen {
+            @apply max-w-xs;
+        }
+    }
+
+    .filters__sort {
         // @apply max-w-xs;
 
         @include md_screen {
