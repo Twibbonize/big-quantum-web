@@ -678,7 +678,7 @@ onMounted(() => {
 
 // campaigns filter
 .filters {
-    @apply flex items-center space-x-4;
+    @apply flex items-center justify-between space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
