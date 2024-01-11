@@ -284,12 +284,12 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                         @click="
                                             openShare(
                                                 'twb.nz/u/universetech',
-                                                getAvatarUrl('sample-avatar-1.jpg'),
-                                                'profile',
                                                 {
+                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
                                                     name: 'Universe Tech',
                                                     username: 'universetech'
-                                                }
+                                                },
+                                                'profile'
                                             )
                                         "
                                     />

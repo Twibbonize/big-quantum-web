@@ -382,7 +382,11 @@ onMounted(() => {
                                         @click="
                                             openShare(
                                                 'twb.nz/u/universetech',
-                                                getAvatarUrl('sample-avatar-1.jpg'),
+                                                {
+                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
+                                                    name: 'Universe Tech',
+                                                    username: 'universetech'
+                                                },
                                                 'profile'
                                             )
                                         "
@@ -523,7 +527,6 @@ onMounted(() => {
 
                         <template #collections>
                             <div class="space-y-6 mt-6">
-
                                 <div class="filters">
                                     <div class="filters__search">
                                         <QInputText

@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QButton from '@/components/atoms/QButton.vue';
+import QCollectionThumbnail from '@/components/atoms/QCollectionThumbnail.vue';
 
 const props = defineProps({
     name: {
@@ -54,20 +55,7 @@ const thumbnails = computed(() => {
                 </div>
             </div>
 
-            <div
-                :class="[
-                    'collection-card__covers__grid',
-                    campaigns.length < 4 && 'collection-card__covers__grid--autofill'
-                ]"
-            >
-                <div
-                    v-for="(thumbnail, i) in thumbnails"
-                    :key="i"
-                    class="collection-card__covers__img"
-                >
-                    <img :src="thumbnail" :alt="i" />
-                </div>
-            </div>
+            <QCollectionThumbnail :thumbnails="thumbnails" />
 
             <div class="collection-card__actions">
                 <QButton size="sm" @click="$router.push({ name: 'collection', params: { uri } })">

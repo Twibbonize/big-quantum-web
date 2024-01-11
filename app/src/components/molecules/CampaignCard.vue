@@ -63,7 +63,7 @@ onClickOutside(campaignCardEl, () => {
 
 const onClickShare = () => {
     const { url, thumbnail } = props;
-    openShare(url, thumbnail, 'campaign');
+    openShare(url, { thumbnail }, 'campaign');
 };
 
 const onClickCollection = () => {

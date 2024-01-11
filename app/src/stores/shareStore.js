@@ -4,18 +4,16 @@ export const useShareStore = defineStore('shareStore', {
     state: () => ({
         open: false,
         link: null,
-        thumbnail: null,
-        type: null,
-        creator: null
+        payload: null,
+        type: null
     }),
 
     actions: {
-        openShare(link, thumbnail, type, creator = null) {
+        openShare(link, payload, type) {
             this.open = true;
             this.link = link;
-            this.thumbnail = thumbnail;
+            this.payload = payload;
             this.type = type;
-            this.creator = creator;
         },
         closeShare() {
             this.open = false;
