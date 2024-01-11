@@ -138,7 +138,7 @@ const thumbnails = computed(() => {
                                     @click="
                                         openShare(
                                             'twb.nz/c/happy-birthday',
-                                            { thumbnails },
+                                            { thumbnails, name: '🥳 Happy Birthday!' },
                                             'collection'
                                         )
                                     "
