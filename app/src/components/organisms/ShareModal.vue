@@ -30,7 +30,7 @@ const onClickCopyURL = () => {
 };
 
 const thumbnail = computed(() => {
-    if (type.value === 'profile') {
+    if (type.value === 'profile' || type.value === 'post') {
         return payload.value.avatar;
     } else if (type.value === 'campaign') {
         return payload.value.thumbnail;
@@ -46,9 +46,15 @@ const thumbnail = computed(() => {
                 <div v-if="type !== 'collection'" class="share-modal__header">
                     <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
 
-                    <div v-if="type === 'profile'" class="share-modal__creator text-center mt-3">
+                    <div
+                        v-if="['profile', 'post'].includes(type)"
+                        class="share-modal__creator text-center mt-3"
+                    >
                         <div class="text-xl font-semibold">{{ payload.name }}</div>
-                        <div class="text-content font-medium">@{{ payload.username }}</div>
+                        <div class="text-content">
+                            <span v-if="type === 'post'">by</span>
+                            @{{ payload.username }}
+                        </div>
                     </div>
 
                     <div class="share-modal__close">

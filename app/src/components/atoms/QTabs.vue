@@ -72,7 +72,7 @@ const tabPresentationStyle = computed(() => {
                     v-slot="{ selected }"
                 >
                     <Transition name="fade" mode="out-in">
-                        <div v-show="selected" :class="['tab__panel']">
+                        <div v-if="selected" :class="['tab__panel']">
                             <slot :name="tab.slot"></slot>
                         </div>
                     </Transition>

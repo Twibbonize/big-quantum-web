@@ -20,7 +20,15 @@ defineProps({
 
 <style scoped lang="scss">
 .separator {
-    @apply flex items-center space-x-3 w-full;
+    @apply flex items-center w-full;
+
+    &__line:first-of-type {
+        margin-right: 12px;
+    }
+
+    &__line:last-of-type {
+        margin-left: 12px;
+    }
 
     &--start &__line:first-of-type {
         display: none;
