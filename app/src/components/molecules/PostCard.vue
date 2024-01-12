@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 
 import { useShareStore } from '@/stores/shareStore';
@@ -8,6 +8,8 @@ import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 const shareStore = useShareStore();
 const { openShare } = shareStore;
@@ -53,6 +55,13 @@ const handleOpenShare = () => {
         'post'
     );
 };
+
+const createdOn = computed(() => {
+    const { createdAt } = props;
+    const datetime = dayjs(createdAt);
+
+    return datetime.fromNow();
+});
 </script>
 
 <template>
@@ -67,7 +76,7 @@ const handleOpenShare = () => {
 
                 <div class="flex flex-col">
                     <div class="font-semibold leading-tight text-sm">Universe Tech</div>
-                    <div class="text-content text-xs">5 Days Ago</div>
+                    <div class="text-content text-xs">{{ createdOn }}</div>
                 </div>
             </div>
 
@@ -123,29 +132,22 @@ const handleOpenShare = () => {
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
+                        class="text-black/70 text-xs md:text-sm font-medium cursor-pointer hover:text-black transition-colors"
                     >
-                        <i class="ri ri-message-2-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">Comment</span>
+                        <i class="ri ri-message-3-line ri-lg"></i>
+                        <span class="ml-1 ">3 Comments</span>
                     </a>
 
                     <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
+                        class="text-black/70 text-xs md:text-sm font-medium cursor-pointer hover:text-black transition-colors"
                         @click="handleOpenShare"
                     >
-                        <i class="ri ri-share-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">Share</span>
+                        <i class="ri ri-share-line ri-lg"></i>
+                        <span class="ml-1">Share</span>
                     </a>
                 </div>
 
-                <div class="flex items-center space-x-2">
-                    <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
-                    >
-                        <i class="ri ri-question-answer-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">5</span>
-                    </a>
-                </div>
+                
             </div>
         </div>
     </div>
