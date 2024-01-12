@@ -1,7 +1,13 @@
 <script setup>
 import { computed, inject, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import {
+    Popover,
+    PopoverButton,
+    PopoverPanel,
+    RadioGroup,
+    RadioGroupOption
+} from '@headlessui/vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QTabs from '@/components/atoms/QTabs.vue';
@@ -11,11 +17,11 @@ import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
-import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
-// import CollectionsCard from '@/components/PlusPage/CollectionsCard.vue';
-import CollectionCard from '../components/molecules/CollectionCard.vue';
-
+import CampaignCard from '@/components/molecules/CampaignCard.vue';
+import CollectionCard from '@/components/molecules/CollectionCard.vue';
+import PostCard from '@/components/molecules/PostCard.vue';
+import QSeparator from '@/components/atoms/QSeparator.vue';
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
@@ -57,6 +63,7 @@ const activeTab = ref(0);
 const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
+const bioContainer = ref(null);
 const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
@@ -253,6 +260,71 @@ const collections = [
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
 
+const sortPostOptions = [
+    { name: 'Recent', value: 'recent' },
+    { name: 'Oldest', value: 'oldest' },
+    { name: 'Most Commented', value: 'most_commented' }
+];
+const selectedSortPost = ref(sortPostOptions[0]);
+
+const filterYearOptions = [
+    {
+        name: 'All time',
+        value: 'all_time'
+    },
+    {
+        name: '2024',
+        value: 2024
+    },
+    {
+        name: '2023',
+        value: 2023
+    },
+    {
+        name: '2022',
+        value: '2022'
+    },
+    {
+        name: '2021',
+        value: 2021
+    }
+];
+
+const selectedFilterYear = ref(filterYearOptions[0]);
+
+const posts = [
+    {
+        image: '/assets/img/sample/sample-post-1.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Attending the fair was like taking a journey through the artistic soul of Hanoi. The fusion of traditional and contemporary art forms created a dynamic and immersive experience that left a lasting impression!',
+        createdAt: '2024-01-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech'
+        },
+        uri: '677a623'
+    },
+    {
+        image: '/assets/img/sample/sample-post-2.jpg',
+        campaign: {
+            name: 'Universe Tech Future Developers',
+            url: 'utech-future-developers'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2024-01-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech'
+        },
+        uri: 'f3f3fab'
+    }
+];
+
 onMounted(() => {
     emit('change-navbar', 'black');
 });
@@ -350,8 +422,13 @@ onMounted(() => {
                             <div class="space-y-1">
                                 <h1 class="profile__name">Universe Tech</h1>
                                 <p class="profile__username">@universetech</p>
-                                <div class="profile__bio">
-                                    <QEllipsisText :text="profile.bio" />
+                                <div ref="bioContainer" class="profile__bio">
+                                    <QEllipsisText
+                                        :text="profile.bio"
+                                        :containerWidth="
+                                            (bioContainer && bioContainer.offsetWidth) || 240
+                                        "
+                                    />
                                 </div>
                                 <div class="profile__web text-content">
                                     <i class="ri-links-line"></i>
@@ -549,10 +626,90 @@ onMounted(() => {
                         </template>
 
                         <template #posts>
-                            <div
-                                class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center"
-                            >
-                                <h4 class="text-xl font-semibold">No Posts Yet</h4>
+                            <div class="grid grid-cols-12 gap-0 md:gap-6 mt-6 md:mt-10">
+                                <div class="col-span-2 hidden md:block">
+                                    <RadioGroup v-model="selectedFilterYear">
+                                        <div class="filter-year">
+                                            <RadioGroupOption
+                                                v-for="year in filterYearOptions"
+                                                :key="year.value"
+                                                :value="year"
+                                                v-slot="{ checked }"
+                                            >
+                                                <span
+                                                    :class="[
+                                                        'filter-year__link',
+                                                        checked && 'filter-year__link--active'
+                                                    ]"
+                                                >
+                                                    {{ year.name }}
+                                                </span>
+                                            </RadioGroupOption>
+                                        </div>
+                                    </RadioGroup>
+                                </div>
+                                <div class="col-span-12 md:col-span-5">
+                                    <div class="filters mb-6">
+                                        <div
+                                            class="grid grid-cols-5 items-center space-x-2 flex-grow md:hidden flex-shrink-0 w-full"
+                                        >
+                                            <div class="col-span-1 flex justify-end">
+                                                <span class="text-xs text-content flex-shrink-0"
+                                                    >Year:</span
+                                                >
+                                            </div>
+
+                                            <div class="filters__sort col-span-4">
+                                                <QListbox
+                                                    v-model="selectedFilterYear"
+                                                    :options="filterYearOptions"
+                                                    name="campaigns_sort"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="grid grid-cols-5 md:flex items-center justify-end space-x-2 flex-grow w-full"
+                                        >
+                                            <div class="col-span-1 flex justify-end">
+                                                <span class="text-xs text-content flex-shrink-0"
+                                                    >Sort by:</span
+                                                >
+                                            </div>
+
+                                            <div class="filters__sort col-span-4">
+                                                <QListbox
+                                                    v-model="selectedSortPost"
+                                                    :options="sortPostOptions"
+                                                    name="campaigns_sort"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col space-y-6">
+                                        <QSeparator>
+                                            <span class="text-xs">
+                                                January
+                                                <span class="text-black font-medium"
+                                                    >2024</span
+                                                ></span
+                                            >
+                                        </QSeparator>
+
+                                        <PostCard v-bind="posts[0]" />
+
+                                        <QSeparator>
+                                            <span class="text-xs">
+                                                October
+                                                <span class="text-black font-medium"
+                                                    >2023</span
+                                                ></span
+                                            >
+                                        </QSeparator>
+
+                                        <PostCard v-bind="posts[1]" />
+                                    </div>
+                                </div>
                             </div>
                         </template>
                     </QTabs>
@@ -678,7 +835,7 @@ onMounted(() => {
 
 // campaigns filter
 .filters {
-    @apply flex items-center space-x-4;
+    @apply flex items-center justify-between space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
@@ -705,6 +862,18 @@ onMounted(() => {
 
         @include md_screen {
             max-width: 240px;
+        }
+    }
+}
+
+.filter-year {
+    @apply flex flex-col space-y-2 w-full;
+
+    .filter-year__link {
+        @apply text-sm px-4 py-2 text-content block rounded cursor-pointer hover:bg-gray-100 transition-colors duration-200 ease-in-out;
+
+        &.filter-year__link--active {
+            @apply bg-black text-white;
         }
     }
 }

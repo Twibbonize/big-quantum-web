@@ -30,7 +30,7 @@ const onClickCopyURL = () => {
 };
 
 const thumbnail = computed(() => {
-    if (type.value === 'profile') {
+    if (type.value === 'profile' || type.value === 'post') {
         return payload.value.avatar;
     } else if (type.value === 'campaign') {
         return payload.value.thumbnail;
@@ -46,9 +46,15 @@ const thumbnail = computed(() => {
                 <div v-if="type !== 'collection'" class="share-modal__header">
                     <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
 
-                    <div v-if="type === 'profile'" class="share-modal__creator text-center mt-3">
+                    <div
+                        v-if="['profile', 'post'].includes(type)"
+                        class="share-modal__creator text-center mt-3"
+                    >
                         <div class="text-xl font-semibold">{{ payload.name }}</div>
-                        <div class="text-content font-medium">@{{ payload.username }}</div>
+                        <div class="text-content">
+                            <span v-if="type === 'post'">by</span>
+                            @{{ payload.username }}
+                        </div>
                     </div>
 
                     <div class="share-modal__close">
@@ -59,8 +65,15 @@ const thumbnail = computed(() => {
                 </div>
 
                 <div v-else class="share-modal__header">
-                    <div class="h-40 flex items-center justify-center rounded-xl overflow-hidden">
+                    <div
+                        class="h-32 md:h-40 flex items-center justify-center rounded-lg overflow-hidden"
+                    >
                         <QCollectionThumbnail :thumbnails="payload.thumbnails" />
+                    </div>
+                    <div class="mt-3">
+                        <div class="text-lg md:text-xl font-semibold text-center">
+                            {{ payload.name }}
+                        </div>
                     </div>
 
                     <div class="share-modal__close">
@@ -112,7 +125,11 @@ const thumbnail = computed(() => {
 <style scoped lang="scss">
 .share-modal {
     .share-modal__header {
-        @apply p-10 bg-gray-100 flex flex-col items-center justify-center border-b border-stroke relative;
+        @apply py-8 px-5 bg-gray-100 flex flex-col items-center justify-center border-b border-stroke relative;
+
+        @include md_screen {
+            @apply p-10;
+        }
     }
 
     .share-modal__thumbnail {
