@@ -301,7 +301,7 @@ const posts = [
         },
         caption:
             'Attending the fair was like taking a journey through the artistic soul of Hanoi. The fusion of traditional and contemporary art forms created a dynamic and immersive experience that left a lasting impression!',
-        createdAt: '2024-01-12T10:30:45',
+        createdAt: '2024-01-07T10:30:45',
         creator: {
             name: 'Universe Tech',
             username: 'universetech'
@@ -316,7 +316,7 @@ const posts = [
         },
         caption:
             'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
-        createdAt: '2024-01-12T10:30:45',
+        createdAt: '2023-10-12T10:30:45',
         creator: {
             name: 'Universe Tech',
             username: 'universetech'

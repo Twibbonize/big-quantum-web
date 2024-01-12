@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 
 import { useShareStore } from '@/stores/shareStore';
@@ -8,6 +8,8 @@ import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 const shareStore = useShareStore();
 const { openShare } = shareStore;
@@ -53,6 +55,13 @@ const handleOpenShare = () => {
         'post'
     );
 };
+
+const createdOn = computed(() => {
+    const { createdAt } = props;
+    const datetime = dayjs(createdAt);
+
+    return datetime.fromNow();
+});
 </script>
 
 <template>
@@ -67,7 +76,7 @@ const handleOpenShare = () => {
 
                 <div class="flex flex-col">
                     <div class="font-semibold leading-tight text-sm">Universe Tech</div>
-                    <div class="text-content text-xs">5 Days Ago</div>
+                    <div class="text-content text-xs">{{ createdOn }}</div>
                 </div>
             </div>
 
