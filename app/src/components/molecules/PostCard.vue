@@ -132,29 +132,22 @@ const createdOn = computed(() => {
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
+                        class="text-black/70 text-xs md:text-sm font-medium cursor-pointer hover:text-black transition-colors"
                     >
-                        <i class="ri ri-message-2-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">Comment</span>
+                        <i class="ri ri-message-3-line ri-lg"></i>
+                        <span class="ml-1 ">3 Comments</span>
                     </a>
 
                     <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
+                        class="text-black/70 text-xs md:text-sm font-medium cursor-pointer hover:text-black transition-colors"
                         @click="handleOpenShare"
                     >
-                        <i class="ri ri-share-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">Share</span>
+                        <i class="ri ri-share-line ri-lg"></i>
+                        <span class="ml-1">Share</span>
                     </a>
                 </div>
 
-                <div class="flex items-center space-x-2">
-                    <a
-                        class="text-black/70 text-sm font-medium cursor-pointer hover:text-black transition-colors"
-                    >
-                        <i class="ri ri-question-answer-line"></i>
-                        <span class="ml-1 text-xs md:text-sm">5</span>
-                    </a>
-                </div>
+                
             </div>
         </div>
     </div>
