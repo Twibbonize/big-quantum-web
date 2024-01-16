@@ -46,7 +46,7 @@ const props = defineProps({
     }
 
     .sum {
-        @apply text-lg text-light mt-1;
+        @apply text-lg text-black/40 mt-1;
     }
 
     .image-slide {

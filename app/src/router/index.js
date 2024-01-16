@@ -7,6 +7,7 @@ import ProfilePage from '@/views/ProfilePage.vue';
 import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
+import CollectionPage from '@/views/CollectionPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
             path: '/u/universetech',
             name: 'profile',
             component: ProfilePage
+        },
+        {
+            path: '/c/:uri',
+            name: 'collection',
+            component: CollectionPage
         },
         {
             path: '/profile',

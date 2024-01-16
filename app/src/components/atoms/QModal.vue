@@ -21,6 +21,10 @@ defineProps({
     },
     minHeight: {
         type: Number
+    },
+    closeBtn: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -30,7 +34,14 @@ const emit = defineEmits(['close']);
 <template>
     <TransitionRoot appear :show="show" as="template">
         <Dialog @close="!isStatic && $emit('close')">
-            <div :class="['dialog', `dialog--${position}`, `dialog--${size}`]">
+            <div
+                :class="[
+                    'dialog',
+                    `dialog--${position}`,
+                    `dialog--${size}`,
+                    closeBtn && 'dialog--has-close'
+                ]"
+            >
                 <TransitionChild
                     as="template"
                     enter="duration-300 ease-out"
@@ -43,37 +54,35 @@ const emit = defineEmits(['close']);
                     <div class="dialog__overlay" />
                 </TransitionChild>
 
-                <div class="dialog__content">
-                    <div class="dialog__panel-wrapper">
-                        <TransitionChild
-                            as="template"
-                            enter="duration-300 ease-out"
-                            enter-from="opacity-0 scale-95"
-                            enter-to="opacity-100 scale-100"
-                            leave="duration-200 ease-in"
-                            leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95"
-                        >
-                            <DialogPanel as="template">
-                                <div
-                                    class="dialog__panel"
-                                    :style="{ minHeight: minHeight ? `${minHeight}px` : 'auto' }"
-                                >
-                                    <div v-if="$slots.header" class="dialog__panel__header">
-                                        <slot name="header"></slot>
-                                    </div>
-
-                                    <div class="dialog__panel__body">
-                                        <slot name="body"></slot>
-                                    </div>
-
-                                    <div v-if="$slots.footer" class="dialog__panel__footer">
-                                        <slot name="footer"></slot>
-                                    </div>
-                                </div>
-                            </DialogPanel>
-                        </TransitionChild>
+                <div class="dialog__wrapper">
+                    <div class="dialog__close-wrapper">
+                        <button class="dialog__close-btn" @click="$emit('close')">
+                            <i class="ri ri-close-line ri-lg"></i>
+                        </button>
                     </div>
+                    <TransitionChild
+                        as="template"
+                        enter="duration-300 ease-out"
+                        enter-from="opacity-0 scale-95"
+                        enter-to="opacity-100 scale-100"
+                        leave="duration-200 ease-in"
+                        leave-from="opacity-100 scale-100"
+                        leave-to="opacity-0 scale-95"
+                    >
+                        <DialogPanel as="template">
+                            <div class="dialog__content">
+                                <div v-if="$slots.header" class="dialog__header">
+                                    <slot name="header"></slot>
+                                </div>
+                                <div class="dialog__body">
+                                    <slot name="body"></slot>
+                                </div>
+                                <div v-if="$slots.footer" class="dialog__footer">
+                                    <slot name="footer"></slot>
+                                </div>
+                            </div>
+                        </DialogPanel>
+                    </TransitionChild>
                 </div>
             </div>
         </Dialog>
@@ -91,57 +100,60 @@ const emit = defineEmits(['close']);
         pointer-events: none;
     }
 
-    .dialog__content {
-        @apply fixed inset-0 overflow-y-auto;
+    .dialog__wrapper {
+        @apply fixed inset-0 w-full max-w-md m-auto flex flex-col container px-2 md:px-0;
         z-index: 67;
+        height: fit-content;
     }
 
-    .dialog__panel-wrapper {
-        @apply flex min-h-full items-center justify-center p-4 text-center;
-    }
-
-    &.dialog--top .dialog__panel-wrapper {
-        @apply items-start;
-    }
-
-    &.dialog--bottom .dialog__panel-wrapper {
-        @apply items-end;
-    }
-
-    &.dialog--screen .dialog__panel-wrapper {
-        @apply items-start p-0;
-    }
-
-    &.dialog--screen .dialog__panel {
-        @apply h-screen rounded-none shadow-none overflow-auto;
-
-        max-height: 100vh;
-    }
-
-    &.dialog--md .dialog__panel {
+    &.dialog--md .dialog__wrapper {
         @apply max-w-md;
     }
 
-    &.dialog--lg .dialog__panel {
+    &.dialog--lg .dialog__wrapper {
         @apply max-w-xl;
     }
 
-    .dialog__panel {
-        @apply w-full max-w-md bg-white shadow-card text-left relative rounded-3xl overflow-auto flex flex-col;
-        max-height: 90vh;
-        // min-height: 693px;
+    &.dialog--screen .dialog__wrapper {
+        @apply px-0;
+        max-width: unset;
+        height: auto;
+    }
+    &.dialog--screen .dialog__wrapper .dialog__content {
+        border-radius: 0px;
+        max-height: calc(100dvh);
     }
 
-    .dialog__panel__header {
-        @apply p-5 absolute left-0 top-0 w-full z-10;
+    .dialog__content {
+        @apply relative bg-white shadow-card rounded-xl text-left flex flex-col max-h-full overflow-y-auto flex-grow;
+        z-index: 67;
+        max-height: 80dvh;
     }
 
-    .dialog__panel__footer {
-        @apply p-5;
+    .dialog__header {
+        @apply flex items-center flex-shrink-0 w-full;
     }
 
-    .dialog__panel__body {
-        @apply max-h-full overflow-auto;
+    .dialog__body {
+        position: relative;
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+
+    .dialog__close-wrapper {
+        @apply hidden items-center w-full;
+    }
+
+    &.dialog--has-close .dialog__close-wrapper {
+        @apply flex;
+    }
+
+    .dialog__close-btn {
+        @apply rounded-full h-10 w-10 flex items-center justify-center text-white font-semibold bg-white/40 mt-8 mb-4 ml-4 transition-colors duration-200;
+
+        &:hover {
+            @apply bg-black/50 text-white;
+        }
     }
 }
 

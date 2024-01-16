@@ -7,12 +7,13 @@ dayjs.extend(relativeTime);
 
 const props = defineProps({
     supports: Number,
-    createdAt: Number
+    createdAt: Number,
+    isLine: Boolean
 });
 </script>
 
 <template>
-    <div class="flex content-between gap-2 mt-2.5">
+    <div class="flex content-between items-stretch gap-2 mt-2.5">
         <div class="flex items-center flex-1">
             <i class="ri-group-line text-base mr-1.5"></i>
             <div class="flex flex-col">
@@ -24,6 +25,7 @@ const props = defineProps({
                 </h6>
             </div>
         </div>
+        <div v-if="isLine" class="meta-info-line"></div>
         <div class="flex items-center flex-1">
             <i class="ri-time-line text-base mr-1.5"></i>
             <div class="flex flex-col">
@@ -38,4 +40,9 @@ const props = defineProps({
     </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.meta-info-line {
+    width: 1px;
+    background: rgba(27, 27, 27, 0.1);
+}
+</style>

@@ -39,8 +39,8 @@ onMounted(() => {
             <div class="collection-modal">
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
                     <div class="collection-modal__header">
-                        <h3 class="text-base font-light leading-none">
-                            Collect <span class="font-semibold">{{ campaign.name }}</span>
+                        <h3 class="text-base leading-none">
+                            Add <span class="font-bold">{{ campaign.name }}</span> to Collections
                         </h3>
 
                         <div class="collection-modal__close">

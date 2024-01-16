@@ -29,6 +29,7 @@ onMounted(() => {});
                             alt="twibbonize-plus"
                         />
                         <h1 class="title mt-4 text-center">show your</h1>
+                        <h1 class="opacity-0 w-0 h-0">supports</h1>
                         <div class="animation mb-4">
                             <Vue3Lottie
                                 :animationData="supportsJSON"

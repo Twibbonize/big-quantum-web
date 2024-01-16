@@ -42,16 +42,20 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="modal.show" :position="modalPosition" size="lg">
-        <template #header>
-            <div class="flex justify-end px-5 pt-2">
-                <QButton variant="subtle" size="sm" square @click="modal.show = false">
-                    <i class="ri-close-fill ri-xl"></i>
-                </QButton>
-            </div>
-        </template>
+    <QModal
+        :show="modal.show"
+        :position="modalPosition"
+        size="lg"
+        @close="modal.show = false"
+        :closeBtn="!isMobile"
+    >
         <template #body>
             <div class="login">
+                <div v-if="isMobile" class="fixed right-5 pt-5 z-10">
+                    <QButton variant="subtle" size="sm" square @click="modal.show = false">
+                        <i class="ri-close-fill ri-xl"></i>
+                    </QButton>
+                </div>
                 <template v-if="modal.authOption === 'sign-in'">
                     <div class="login__wrapper">
                         <VeeForm
@@ -316,7 +320,7 @@ const handleAuthNative = async (formValues) => {
 
 <style scoped lang="scss">
 .login {
-    @apply bg-white rounded-3xl h-full relative;
+    @apply rounded-3xl h-full relative;
 
     .login__wrapper {
         @apply relative;
@@ -328,7 +332,6 @@ const handleAuthNative = async (formValues) => {
 
         @apply flex-grow flex-shrink-0 rounded-l-3xl;
 
-        @apply bg-gray-50;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -340,7 +343,11 @@ const handleAuthNative = async (formValues) => {
     }
 
     .login__inner {
-        @apply p-10 py-8 overflow-auto;
+        @apply p-5 overflow-auto;
+
+        @include lg_screen {
+            @apply p-10;
+        }
     }
 
     .login__right {
