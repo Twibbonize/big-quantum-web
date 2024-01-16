@@ -1,5 +1,7 @@
 <script setup>
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
+import { ref } from 'vue';
+
 defineProps({
     show: {
         type: Boolean,
@@ -29,6 +31,8 @@ defineProps({
 });
 
 const emit = defineEmits(['close']);
+
+const dialogBodyEl = ref(null);
 </script>
 
 <template>
@@ -74,8 +78,11 @@ const emit = defineEmits(['close']);
                                 <div v-if="$slots.header" class="dialog__header">
                                     <slot name="header"></slot>
                                 </div>
-                                <div class="dialog__body">
-                                    <slot name="body"></slot>
+                                <div ref="dialogBodyEl" class="dialog__body">
+                                    <slot
+                                        name="body"
+                                        :bodyEl="dialogBodyEl?.offsetHeight || 0"
+                                    ></slot>
                                 </div>
                                 <div v-if="$slots.footer" class="dialog__footer">
                                     <slot name="footer"></slot>
@@ -101,9 +108,8 @@ const emit = defineEmits(['close']);
     }
 
     .dialog__wrapper {
-        @apply fixed inset-0 w-full max-w-md m-auto flex flex-col container px-2 md:px-0;
+        @apply fixed inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0;
         z-index: 67;
-        height: fit-content;
     }
 
     &.dialog--md .dialog__wrapper {
@@ -112,6 +118,10 @@ const emit = defineEmits(['close']);
 
     &.dialog--lg .dialog__wrapper {
         @apply max-w-xl;
+    }
+
+    &.dialog--xl .dialog__wrapper {
+        @apply max-w-5xl;
     }
 
     &.dialog--screen .dialog__wrapper {
@@ -125,9 +135,10 @@ const emit = defineEmits(['close']);
     }
 
     .dialog__content {
-        @apply relative bg-white shadow-card rounded-xl text-left flex flex-col max-h-full overflow-y-auto flex-grow;
+        @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
         z-index: 67;
-        max-height: 80dvh;
+        max-height: 80vh;
+        min-height: 360px;
     }
 
     .dialog__header {

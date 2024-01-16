@@ -82,7 +82,6 @@ watch(
 
     .field__input {
         @apply p-4 rounded-xl text-sm w-full bg-transparent transition-colors ease-in block;
-
         min-height: 86px;
         outline: none;
         resize: none;
