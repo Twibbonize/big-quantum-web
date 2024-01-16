@@ -1,33 +1,37 @@
 <script setup>
-import { computed, inject, onMounted, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import dayjs from 'dayjs';
-import {
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    RadioGroup,
-    RadioGroupOption
-} from '@headlessui/vue';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { RouterLink } from 'vue-router';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { Form as VeeForm } from 'vee-validate';
+import { object as yupObject, string as yupString } from 'yup';
+
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
-import QCard from '@/components/atoms/QCard.vue';
-import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QModal from '@/components/atoms/QModal.vue';
+import QCard from '@/components/atoms/QCard.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
+import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
-import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
-import ReportModal from '@/components/organisms/ReportModal.vue';
+import QModal from '@/components/atoms/QModal.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import QTabs from '@/components/atoms/QTabs.vue';
+import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
 import PostCard from '@/components/molecules/PostCard.vue';
-import QSeparator from '@/components/atoms/QSeparator.vue';
+import ReportModal from '@/components/organisms/ReportModal.vue';
+import QPopover from '@/components/atoms/QPopover.vue';
+import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
+import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
+
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { RouterLink } from 'vue-router';
 dayjs.extend(relativeTime);
+gsap.registerPlugin(ScrollTrigger);
 
 const emit = defineEmits(['change-navbar']);
 
@@ -260,38 +264,6 @@ const collections = [
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
 
-const sortPostOptions = [
-    { name: 'Recent', value: 'recent' },
-    { name: 'Oldest', value: 'oldest' },
-    { name: 'Most Commented', value: 'most_commented' }
-];
-const selectedSortPost = ref(sortPostOptions[0]);
-
-const filterYearOptions = [
-    {
-        name: 'All time',
-        value: 'all_time'
-    },
-    {
-        name: '2024',
-        value: 2024
-    },
-    {
-        name: '2023',
-        value: 2023
-    },
-    {
-        name: '2022',
-        value: '2022'
-    },
-    {
-        name: '2021',
-        value: 2021
-    }
-];
-
-const selectedFilterYear = ref(filterYearOptions[0]);
-
 const posts = [
     {
         image: '/assets/img/sample/sample-post-1.jpg',
@@ -300,13 +272,98 @@ const posts = [
             url: 'hanoi-art-book-fair-2025'
         },
         caption:
-            'Attending the fair was like taking a journey through the artistic soul of Hanoi. The fusion of traditional and contemporary art forms created a dynamic and immersive experience that left a lasting impression!',
+            'Immersed in the vibrant tapestry of Hanoi Art Fair 2025 – a captivating journey through the heart of creativity! The fusion of traditional and contemporary art forms has left me absolutely exhilarated. 🎨✨ #HanoiArtFair #ArtisticAdventure',
         createdAt: '2024-01-07T10:30:45',
         creator: {
             name: 'Universe Tech',
-            username: 'universetech'
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
         },
-        uri: '677a623'
+        uri: '677a623',
+        comments: [
+            {
+                creator: {
+                    name: 'Martin Emmerich',
+                    avatar: '/assets/img/sample/sample-avatar-3.jpg'
+                },
+                createdAt: 1705403365744,
+                comment:
+                    "The fair in Hanoi seems like an incredible event, a true celebration of the city's artistic spirit. I can only imagine the richness of the traditional and contemporary art forms on display.",
+                likes: 0,
+                replies: [
+                    {
+                        creator: {
+                            name: 'Alice Smith',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/414.jpg'
+                        },
+                        comment:
+                            "The fair in Hanoi seems like an incredible event, a true celebration of the city's artistic spirit. I can only imagine the richness of the traditional and contemporary art forms on display.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Bob Johnson',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/554.jpg'
+                        },
+                        comment:
+                            'Absolutely! The Hanoi fair is a magical experience, blending the old and the new in a vibrant showcase of art. Have you had the chance to attend it yourself?',
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Charlie Brown',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/314.jpg'
+                        },
+                        comment:
+                            "I couldn't agree more! The fusion of traditional and contemporary art at the Hanoi fair is simply mesmerizing. It's a testament to the city's rich cultural tapestry.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Diana Miller',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/112.jpg'
+                        },
+                        comment:
+                            'The Hanoi fair is indeed a celebration of art and culture. The diverse range of artistic expressions creates an immersive experience. Which particular art forms are you most interested in?',
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Ethan Davis',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/859.jpg'
+                        },
+                        comment:
+                            "I feel the same way! Hanoi's fair is like a canvas that paints the city's artistic soul. If you haven't been yet, it's definitely worth experiencing firsthand.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Fiona Wilson',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/397.jpg'
+                        },
+                        comment:
+                            "It truly is a spectacle! The Hanoi fair manages to capture the essence of the city's artistic evolution. Any specific art installations or performances that caught your attention?",
+                        createdAt: 1705403361044
+                    }
+                ]
+            },
+            {
+                creator: {
+                    name: 'Rhonda Pouros',
+                    avatar: '/assets/img/sample/sample-avatar-5.jpg'
+                },
+                createdAt: 1705403365744,
+                comment:
+                    'This event in Hanoi looks like a dream for art enthusiasts! The blend of traditional and contemporary art forms creates a unique and immersive atmosphere. Truly a feast for the senses.',
+                likes: 0,
+                replies: []
+            }
+        ]
     },
     {
         image: '/assets/img/sample/sample-post-2.jpg',
@@ -319,14 +376,15 @@ const posts = [
         createdAt: '2023-10-12T10:30:45',
         creator: {
             name: 'Universe Tech',
-            username: 'universetech'
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
         },
         uri: 'f3f3fab'
     }
 ];
 
-onMounted(() => {
-    emit('change-navbar', 'black');
+const commentValidation = yupObject().shape({
+    comment_input: yupString().required()
 });
 </script>
 
@@ -556,7 +614,7 @@ onMounted(() => {
 
             <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
                 <div class="container px-5 md:px-0">
-                    <QTabs :tabs="tabs" :block="isMobile">
+                    <QTabs v-model="activeTab" :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
                                 <div class="filters">
@@ -626,87 +684,12 @@ onMounted(() => {
                         </template>
 
                         <template #posts>
-                            <div class="grid grid-cols-12 gap-0 md:gap-6 mt-6 md:mt-10">
-                                <div class="col-span-2 hidden md:block">
-                                    <RadioGroup v-model="selectedFilterYear">
-                                        <div class="filter-year">
-                                            <RadioGroupOption
-                                                v-for="year in filterYearOptions"
-                                                :key="year.value"
-                                                :value="year"
-                                                v-slot="{ checked }"
-                                            >
-                                                <span
-                                                    :class="[
-                                                        'filter-year__link',
-                                                        checked && 'filter-year__link--active'
-                                                    ]"
-                                                >
-                                                    {{ year.name }}
-                                                </span>
-                                            </RadioGroupOption>
-                                        </div>
-                                    </RadioGroup>
-                                </div>
-                                <div class="col-span-12 md:col-span-5">
-                                    <div class="filters mb-6">
-                                        <div
-                                            class="grid grid-cols-5 items-center space-x-2 flex-grow md:hidden flex-shrink-0 w-full"
-                                        >
-                                            <div class="col-span-1 flex justify-end">
-                                                <span class="text-xs text-content flex-shrink-0"
-                                                    >Year:</span
-                                                >
-                                            </div>
-
-                                            <div class="filters__sort col-span-4">
-                                                <QListbox
-                                                    v-model="selectedFilterYear"
-                                                    :options="filterYearOptions"
-                                                    name="campaigns_sort"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="grid grid-cols-5 md:flex items-center justify-end space-x-2 flex-grow w-full"
-                                        >
-                                            <div class="col-span-1 flex justify-end">
-                                                <span class="text-xs text-content flex-shrink-0"
-                                                    >Sort by:</span
-                                                >
-                                            </div>
-
-                                            <div class="filters__sort col-span-4">
-                                                <QListbox
-                                                    v-model="selectedSortPost"
-                                                    :options="sortPostOptions"
-                                                    name="campaigns_sort"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col space-y-6">
-                                        <QSeparator>
-                                            <span class="text-xs">
-                                                January
-                                                <span class="text-black font-medium"
-                                                    >2024</span
-                                                ></span
-                                            >
-                                        </QSeparator>
-
+                            <div
+                                class="grid grid-cols-12 justify-center gap-0 md:gap-6 mt-6 md:mt-10"
+                            >
+                                <div class="col-span-12 lg:col-span-8 lg:col-start-3">
+                                    <div class="flex flex-col space-y-4 w-full">
                                         <PostCard v-bind="posts[0]" />
-
-                                        <QSeparator>
-                                            <span class="text-xs">
-                                                October
-                                                <span class="text-black font-medium"
-                                                    >2023</span
-                                                ></span
-                                            >
-                                        </QSeparator>
-
                                         <PostCard v-bind="posts[1]" />
                                     </div>
                                 </div>

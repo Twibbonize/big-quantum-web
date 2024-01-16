@@ -7,6 +7,7 @@ import AuthModal from '@/components/organisms/AuthModal.vue';
 import ExpandMenu from '@/components/organisms/ExpandMenu.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
 import CollectionModal from '@/components/organisms/CollectionModal.vue';
+import PostModal from '@/components/organisms/PostModal.vue';
 
 defineProps({
     navbarColor: {
@@ -32,5 +33,6 @@ defineProps({
     <AuthModal />
     <ShareModal />
     <CollectionModal />
+    <PostModal />
     <ExpandMenu />
 </template>

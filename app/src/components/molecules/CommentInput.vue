@@ -58,6 +58,7 @@ watch(
                 data-gramm="false"
                 data-gramm_editor="false"
                 data-enable-grammarly="false"
+                rows="1"
                 @input="adjustTextareaHeight"
                 >{{ value }}</textarea
             >
@@ -70,7 +71,7 @@ watch(
 </template>
 <style scoped lang="scss">
 .field {
-    @apply rounded-xl border border-stroke transition-all duration-100 ease-in-out bg-gray-100;
+    @apply relative rounded-xl border border-stroke transition-all duration-100 ease-in-out bg-white overflow-hidden flex items-center;
 
     &:focus-within {
         @apply outline outline-offset-2 outline-main-darker;
@@ -81,14 +82,19 @@ watch(
     }
 
     .field__input {
-        @apply p-4 rounded-xl text-sm w-full bg-transparent transition-colors ease-in block;
-        min-height: 86px;
+        @apply p-4 text-sm bg-transparent transition-colors ease-in block flex-grow;
         outline: none;
+        border-radius: 0px;
         resize: none;
 
         &:focus {
             @apply outline-none bg-white;
         }
     }
+
+    .field__suffix {
+        @apply flex items-center justify-end pr-2;
+    }
 }
 </style>
+˝

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { RouterView, createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 import CreatorsPage from '@/views/CreatorsPage.vue';
 import PlusPage from '@/views/PlusPage.vue';
@@ -61,6 +61,11 @@ const router = createRouter({
             path: '/settings',
             name: 'settings',
             component: PreferencesPage
+        },
+        {
+            path: '/p/:uri',
+            name: 'post',
+            component: RouterView
         }
     ],
     scrollBehavior(to, from, savedPosition) {
