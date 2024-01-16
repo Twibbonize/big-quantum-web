@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { computed, inject, ref, watch } from 'vue';
 
 const props = defineProps({
     text: {
@@ -9,14 +9,25 @@ const props = defineProps({
     containerWidth: {
         type: Number,
         default: 240
+    },
+    expandable: {
+        type: Boolean,
+        default: true
     }
 });
 
+const emit = defineEmits(['toggle']);
+
 const showFullText = ref(false);
-const isMobile = inject('isMobile');
 
 const toggleText = () => {
-    showFullText.value = !showFullText.value;
+    const { expandable } = props;
+
+    if (expandable) {
+        showFullText.value = !showFullText.value;
+    }
+
+    emit('toggle');
 };
 
 const toggleTextLabel = computed(() => {
