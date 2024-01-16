@@ -44,15 +44,19 @@ const commentValidation = yupObject().shape({
 const handleOpenReply = (creator = null) => {
     showCommentInput.value = true;
     targetReply.value = creator;
+
+    if (creator) {
+        reply.value = `@${creator.username} `;
+    }
     replyInputEl.value.scrollIntoView({ behavior: 'smooth' });
 };
 </script>
 
 <template>
     <CommentItem v-bind="props" @reply="handleOpenReply">
-        <template v-if="replies.length" #replies>
+        <template #replies>
             <div class="replies">
-                <div v-if="showReplies" class="replies__list">
+                <div v-if="showReplies && replies.length" class="replies__list">
                     <CommentItem v-for="reply in replies" v-bind="reply" @reply="handleOpenReply" />
                 </div>
 
@@ -70,7 +74,7 @@ const handleOpenReply = (creator = null) => {
                     </VeeForm>
                 </div>
 
-                <div class="replies__loader">
+                <div v-if="replies.length" class="replies__loader">
                     <a
                         v-if="!showReplies && replies.length"
                         class="replies__loader__link"

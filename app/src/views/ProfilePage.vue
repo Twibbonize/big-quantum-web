@@ -284,6 +284,7 @@ const posts = [
             {
                 creator: {
                     name: 'Martin Emmerich',
+                    username: 'martinem129',
                     avatar: '/assets/img/sample/sample-avatar-3.jpg'
                 },
                 createdAt: 1705403365744,
@@ -294,6 +295,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Alice Smith',
+                            username: 'alicesmith',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/414.jpg'
                         },
                         comment:
@@ -304,6 +306,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Bob Johnson',
+                            username: 'bobjohson',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/554.jpg'
                         },
                         comment:
@@ -314,6 +317,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Charlie Brown',
+                            username: 'charliebrown',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/314.jpg'
                         },
                         comment:
@@ -324,6 +328,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Diana Miller',
+                            username: 'dianamiller',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/112.jpg'
                         },
                         comment:
@@ -334,6 +339,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Ethan Davis',
+                            username: 'ethandavis',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/859.jpg'
                         },
                         comment:
@@ -344,6 +350,7 @@ const posts = [
                     {
                         creator: {
                             name: 'Fiona Wilson',
+                            username: 'fionawilson',
                             avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/397.jpg'
                         },
                         comment:
@@ -355,6 +362,7 @@ const posts = [
             {
                 creator: {
                     name: 'Rhonda Pouros',
+                    username: 'rhonda99',
                     avatar: '/assets/img/sample/sample-avatar-5.jpg'
                 },
                 createdAt: 1705403365744,
