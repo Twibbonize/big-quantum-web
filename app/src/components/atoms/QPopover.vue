@@ -3,9 +3,9 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 </script>
 
 <template>
-    <Popover class="relative">
+    <Popover class="relative" v-slot="{ open }">
         <PopoverButton>
-            <slot name="trigger"></slot>
+            <slot name="trigger" :open="open"></slot>
         </PopoverButton>
 
         <transition

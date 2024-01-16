@@ -43,6 +43,9 @@ const props = defineProps({
         type: String,
         default: 'md',
         validators: (value) => ['sm', 'md', 'lg'].includes(value)
+    },
+    variant: {
+        type: String
     }
 });
 
@@ -68,7 +71,8 @@ function updateValue(e) {
                 'field',
                 `field--${type}`,
                 `field--${size}`,
-                !meta.valid && meta.dirty && 'field--error'
+                !meta.valid && meta.dirty && 'field--error',
+                variant && `field--${variant}`
             ]"
         >
             <div class="field__wrapper">
@@ -87,6 +91,10 @@ function updateValue(e) {
                     :maxlength="maxlength"
                     :autocomplete="autocomplete"
                 />
+
+                <div v-if="$slots.suffix" class="field__suffix">
+                    <slot name="suffix"></slot>
+                </div>
             </div>
         </div>
     </Field>
@@ -112,7 +120,12 @@ function updateValue(e) {
         }
     }
 
-    &__prefix {
+    &.field--white .field__wrapper {
+        @apply bg-white;
+    }
+
+    &__prefix,
+    &__suffix {
         @apply flex items-center justify-center h-full;
     }
 

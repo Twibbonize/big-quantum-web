@@ -125,7 +125,7 @@ const thumbnail = computed(() => {
 <style scoped lang="scss">
 .share-modal {
     .share-modal__header {
-        @apply py-8 px-5 bg-gray-100 flex flex-col items-center justify-center border-b border-stroke relative;
+        @apply py-8 px-5 bg-gray-100 flex flex-col items-center justify-center border-b border-stroke relative rounded-t-3xl;
 
         @include md_screen {
             @apply p-10;

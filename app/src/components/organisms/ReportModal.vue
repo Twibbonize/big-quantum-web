@@ -42,7 +42,7 @@ const reportValidation = yupObject().shape({
 <template>
     <QModal :show="show" @close="$emit('close')">
         <template #header>
-            <div class="flex items-center justify-between w-full">
+            <div class="flex items-center justify-between w-full p-5">
                 <h2 class="text-sm md:text-lg font-semibold">Why do you report this profile?</h2>
 
                 <QButton variant="subtle" size="sm" square @click="$emit('close')">
@@ -52,7 +52,7 @@ const reportValidation = yupObject().shape({
         </template>
 
         <template #body>
-            <div class="px-5 pt-20 py-6">
+            <div class="px-5 py-3">
                 <Form :validation-schema="reportValidation" v-slot="{ meta }">
                     <div class="space-y-6">
                         <Field name="reason" v-model="selectedReason" v-slot="{ field }">

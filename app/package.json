@@ -17,6 +17,7 @@
     "aos": "^2.3.4",
     "axios": "^1.5.0",
     "dayjs": "^1.11.10",
+    "gsap": "^3.12.4",
     "numeral": "^2.0.6",
     "pinia": "^2.1.7",
     "remixicon": "^3.6.0",
@@ -25,8 +26,8 @@
     "vara": "^1.4.1",
     "vee-validate": "^4.12.2",
     "vue": "3.3.8",
-    "vue-toast-notification": "^3.1.1",
     "vue-router": "^4.2.5",
+    "vue-toast-notification": "^3.1.1",
     "vue-writer": "^1.2.0",
     "vue3-lottie": "^3.2.0"
   },
