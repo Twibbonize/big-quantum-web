@@ -6,15 +6,19 @@ const props = defineProps({
     number: Number,
     name: String,
     avatar: String,
-    supports: Number
+    supports: Number,
+    bordered: {
+        type: Boolean,
+        default: true
+    }
 });
 </script>
 
 <template>
     <RouterLink to="/u/universetech">
-        <div class="creator-box">
-            <div class="order">{{ `#${props.number}` }}</div>
-            <img :src="avatar" alt="" class="avatar" />
+        <div :class="['creator-box', bordered && 'creator-box--bordered']">
+            <div v-if="number" class="order">{{ `#${props.number}` }}</div>
+            <img :src="avatar" :alt="name" class="avatar" />
             <div class="info">
                 <h5 class="name">{{ name }}</h5>
                 <p class="supporters">
@@ -25,23 +29,27 @@ const props = defineProps({
     </RouterLink>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .creator-box {
-    @apply flex items-center pb-8 mb-6 hover:cursor-pointer;
-    border-bottom: 1px solid rgb(217, 217, 217);
+    @apply flex items-center hover:cursor-pointer;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 
-    &:hover {
-        box-shadow: 0px 30px 50px rgb(0 0 0 / 35%);
-        box-shadow: 0px 25px 20px -10px rgb(0 0 2 / 5%);
+    &.creator-box--bordered {
+        @apply pb-8 mb-6;
+        border-bottom: 1px solid rgb(217, 217, 217);
+
+        &:hover {
+            box-shadow: 0px 30px 50px rgb(0 0 0 / 35%);
+            box-shadow: 0px 25px 20px -10px rgb(0 0 2 / 5%);
+        }
     }
 
     .order {
-        @apply font-bold text-2xl text-3xl opacity-10 mr-5;
+        @apply font-bold text-3xl opacity-10 mr-5;
     }
 
     .avatar {

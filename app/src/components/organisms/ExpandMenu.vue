@@ -50,7 +50,7 @@ watch(open, (newValue) => {
                 <div class="h-full flex flex-col md:justify-between">
                     <ul class="expand-menu__links">
                         <li>
-                            <RouterLink :to="{ name: 'creators' }" class="expand-menu__link">
+                            <RouterLink :to="{ name: 'explore' }" class="expand-menu__link">
                                 Explore
                             </RouterLink>
                         </li>
