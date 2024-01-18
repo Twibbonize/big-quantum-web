@@ -13,26 +13,30 @@ defineProps({
     navbarColor: {
         type: String,
         default: 'white'
+    },
+    navbarShadow: {
+        type: Boolean,
+        default: true
     }
 });
 </script>
 
 <template>
-    <KeepAlive>
-        <NavbarDefault :color="navbarColor" />
-    </KeepAlive>
-
     <div id="app__content">
+        <KeepAlive>
+            <NavbarDefault :color="navbarColor" :shadow="navbarShadow" />
+        </KeepAlive>
+
         <slot></slot>
+
+        <KeepAlive>
+            <FooterDefault />
+        </KeepAlive>
+
+        <AuthModal />
+        <ShareModal />
+        <CollectionModal />
+        <PostModal />
+        <ExpandMenu />
     </div>
-
-    <KeepAlive>
-        <FooterDefault />
-    </KeepAlive>
-
-    <AuthModal />
-    <ShareModal />
-    <CollectionModal />
-    <PostModal />
-    <ExpandMenu />
 </template>

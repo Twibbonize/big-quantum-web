@@ -16,7 +16,11 @@ const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
 
 const props = defineProps({
-    color: String
+    color: String,
+    shadow: {
+        type: Boolean,
+        default: true
+    }
 });
 
 const buttonVariant = computed(() => {
@@ -39,7 +43,13 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header :class="['header', navbarColor !== '' && `header--${navbarColor}`]">
+    <header
+        :class="[
+            'header',
+            navbarColor !== '' && `header--${navbarColor}`,
+            shadow && 'header--shadow'
+        ]"
+    >
         <div class="header__wrapper">
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
@@ -85,10 +95,14 @@ const searchQuery = ref('');
 <style scoped lang="scss">
 .header {
     @apply fixed bg-white top-0 w-screen z-50 transition-colors duration-300 ease-in-out;
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+
+    &.header--shadow {
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+        @apply border-0;
+    }
 
     &__wrapper {
-        padding-top: 27px;
+        padding-top: 18px;
         padding-bottom: 18px;
 
         @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;

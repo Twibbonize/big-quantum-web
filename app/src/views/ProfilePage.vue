@@ -1,12 +1,9 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
+import { inject, ref } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { RouterLink } from 'vue-router';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { Form as VeeForm } from 'vee-validate';
 import { object as yupObject, string as yupString } from 'yup';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -23,15 +20,13 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
 import PostCard from '@/components/molecules/PostCard.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
-import QPopover from '@/components/atoms/QPopover.vue';
-import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
-import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
 
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { ownCampaigns } from '@/mock/campaigns';
+import { ownCollections } from '@/mock/collections';
 
 dayjs.extend(relativeTime);
-gsap.registerPlugin(ScrollTrigger);
 
 const emit = defineEmits(['change-navbar']);
 
@@ -72,194 +67,6 @@ const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
 const { openShare } = shareStore;
-
-// const campaigns = /
-
-const campaigns = computed(() => {
-    const samples = [
-        {
-            name: 'UNIVERSE UNPACKED 2022',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg'
-        },
-        {
-            name: 'Universe Tech Future Developers Bootcamp',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 1470,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'future-developers.jpg'
-        },
-        {
-            name: 'Universe Tech Innovation Day',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 15100,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'innovation-day-1.jpg'
-        },
-        {
-            name: 'Shot on Universe Phone',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'shot-on.jpg'
-        },
-        {
-            name: 'Universe Tech Orbit The Next Generation VR',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'orbit.jpg'
-        },
-        {
-            name: 'Universe Tech Innovation Lab',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 14700,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'innovation-lab.jpg'
-        },
-        {
-            name: 'Universe Tech Smart Innovation Summit',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'smart-innovation-submit.jpg',
-            hit: 14929
-        }
-    ];
-
-    return samples.map(({ thumbnail, campaignCreator, ...other }) => {
-        const { name, avatar } = campaignCreator;
-        return {
-            ...other,
-            thumbnail: getThumbnailUrl(thumbnail),
-            campaignCreator: {
-                name,
-                avatar: getAvatarUrl(avatar)
-            }
-        };
-    });
-});
-
-const collections = [
-    {
-        name: '🥳 Happy Birthday!',
-        campaigns: [
-            {
-                name: 'Purple and White Modern Happy Birthday',
-                thumbnail: '/assets/img/campaigns/campaign-hbd-1.jpg'
-            },
-            {
-                name: 'Blue White Happy Birthday',
-                thumbnail: '/assets/img/campaigns/campaign-hbd-2.jpg'
-            },
-            {
-                name: 'Pink Colourful Happy Birthday',
-                thumbnail: '/assets/img/campaigns/campaign-hbd-3.jpg'
-            },
-            {
-                name: 'Water Colour Outer Space Happy Birthday',
-                thumbnail: '/assets/img/campaigns/campaign-hbd-4.webp'
-            }
-        ],
-        uri: 'happy-birthday',
-        creator: {
-            name: 'Universe Tech',
-            avatar: '/assets/img/sample/sample-avatar-1.jpg',
-            username: 'universetech'
-        }
-    },
-    {
-        name: '👶 New Baby',
-        campaigns: [
-            {
-                name: 'Neutral New Baby Born',
-                thumbnail: '/assets/img/campaigns/campaign-new-baby-1.jpg'
-            },
-            {
-                name: 'Beige White New Baby Born',
-                thumbnail: '/assets/img/campaigns/campaign-new-baby-2.jpg'
-            },
-            {
-                name: 'Pink White Baby Birth',
-                thumbnail: '/assets/img/campaigns/campaign-new-baby-3.jpg'
-            },
-            {
-                name: 'Pink and Orange Playful Little Family Twibbon',
-                thumbnail: '/assets/img/campaigns/campaign-new-baby-4.webp'
-            }
-        ],
-        uri: 'new-baby',
-        creator: {
-            name: 'Universe Tech',
-            avatar: '/assets/img/sample/sample-avatar-1.jpg',
-            username: 'universetech'
-        }
-    },
-    {
-        name: '🎓 Graduation',
-        campaigns: [
-            {
-                name: 'Brown and Cream Happy Graduation',
-                thumbnail: '/assets/img/campaigns/campaign-graduation-1.jpg'
-            },
-            {
-                name: 'Pink Cute Happy Graduation',
-                thumbnail: '/assets/img/campaigns/campaign-graduation-2.jpg'
-            },
-            {
-                name: 'Yellow and Green Happy Graduation',
-                thumbnail: '/assets/img/campaigns/campaign-graduation-3.jpg'
-            },
-            {
-                name: 'Blue and Yellow Modern Happy Graduation',
-                thumbnail: '/assets/img/campaigns/campaign-graduation-4.webp'
-            }
-        ],
-        uri: 'graduation',
-        creator: {
-            name: 'Universe Tech',
-            avatar: '/assets/img/sample/sample-avatar-1.jpg',
-            username: 'universetech'
-        }
-    },
-    {
-        name: '💍 Wedding Celebration',
-        campaigns: [
-            {
-                name: 'Brown and Cream Happy Graduation',
-                thumbnail: '/assets/img/campaigns/campaign-wedding-celebration-1.jpg'
-            }
-        ],
-        uri: 'graduation',
-        creator: {
-            name: 'Universe Tech',
-            avatar: '/assets/img/sample/sample-avatar-1.jpg',
-            username: 'universetech'
-        }
-    }
-];
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
@@ -457,9 +264,9 @@ const commentValidation = yupObject().shape({
                                 <li>
                                     <div class="flex items-center space-x-2">
                                         <i class="ri-global-line ri-xl"></i>
-                                        <a href="#" class="text-sm font-light underline"
-                                            >www.universe-tech.com</a
-                                        >
+                                        <a href="#" class="text-sm font-light underline">
+                                            www.universe-tech.com
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -651,7 +458,7 @@ const commentValidation = yupObject().shape({
 
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
                                     <campaign-card
-                                        v-for="campaign in campaigns"
+                                        v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
                                     />
                                 </div>
@@ -678,7 +485,7 @@ const commentValidation = yupObject().shape({
 
                                 <div class="grid grid-cols-1 sm:grid-cols-2` lg:grid-cols-4 gap-6">
                                     <RouterLink
-                                        v-for="collection in collections"
+                                        v-for="collection in ownCollections"
                                         :key="collection.uri"
                                         :to="{
                                             name: 'collection',

@@ -12,10 +12,12 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { ownCampaigns } from '@/mock/campaigns';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 const emit = defineEmits(['change-navbar']);
@@ -55,93 +57,6 @@ const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
 const { openShare } = shareStore;
-
-const campaigns = computed(() => {
-    const samples = [
-        {
-            name: 'UNIVERSE UNPACKED 2022',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg'
-        },
-        {
-            name: 'Universe Tech Future Developers Bootcamp',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 1470,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'future-developers.jpg'
-        },
-        {
-            name: 'Universe Tech Innovation Day',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 15100,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'innovation-day-1.jpg'
-        },
-        {
-            name: 'Shot on Universe Phone',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'shot-on.jpg'
-        },
-        {
-            name: 'Universe Tech Orbit The Next Generation VR',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'orbit.jpg'
-        },
-        {
-            name: 'Universe Tech Innovation Lab',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 14700,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'innovation-lab.jpg'
-        },
-        {
-            name: 'Universe Tech Smart Innovation Summit',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'smart-innovation-submit.jpg',
-            hit: 14929
-        }
-    ];
-
-    return samples.map(({ thumbnail, campaignCreator, ...other }) => {
-        const { name, avatar } = campaignCreator;
-        return {
-            ...other,
-            thumbnail: getThumbnailUrl(thumbnail),
-            campaignCreator: {
-                name,
-                avatar: getAvatarUrl(avatar)
-            }
-        };
-    });
-});
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
@@ -378,7 +293,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                     class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-6 mt-6 md:mt-10"
                                 >
                                     <CampaignCard
-                                        v-for="campaign in campaigns"
+                                        v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
                                         :actions="true"
                                         :deleteAble="true"
