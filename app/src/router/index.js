@@ -8,7 +8,7 @@ import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 import CollectionPage from '@/views/CollectionPage.vue';
-import SearchPage from '@/views/SearchPage.vue';
+import ExplorePage from '@/views/ExplorePage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +22,7 @@ const router = createRouter({
         {
             path: '/explore/:tab(campaign|collection|creator)?',
             name: 'explore',
-            component: SearchPage,
+            component: ExplorePage,
             props: true
         },
         {
