@@ -16,6 +16,9 @@ const props = defineProps({
         type: Array,
         required: true
     },
+    prefix: {
+        type: String
+    },
     modelValue: {
         type: null
     }
@@ -38,7 +41,11 @@ watch(value, updateValue);
     <Listbox v-model="value" v-slot="{ open }">
         <div :class="['listbox', open && 'listbox--open']">
             <ListboxButton class="listbox__button">
-                <span class="block truncate">{{ value.name }}</span>
+                <div class="block truncate">
+                    <span v-if="prefix">{{ prefix }}</span>
+                    <span class="font-medium">{{ value.name }}</span>
+                </div>
+
                 <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <i class="ri-expand-up-down-line ri-lg"></i>
                 </span>
@@ -85,7 +92,7 @@ watch(value, updateValue);
     @apply relative;
 
     .listbox__button {
-        @apply px-4 py-3 first-letter:relative w-full h-full cursor-default rounded-xl border border-stroke bg-white text-xs text-left outline-none transition-all duration-100 ease-in-out;
+        @apply px-4 py-3 first-letter:relative w-full h-full cursor-default rounded-xl border border-stroke bg-white text-sm text-left outline-none transition-all duration-100 ease-in-out;
     }
 
     &.listbox.listbox--open .listbox__button,

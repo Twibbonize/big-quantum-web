@@ -50,24 +50,20 @@ watch(open, (newValue) => {
                 <div class="h-full flex flex-col md:justify-between">
                     <ul class="expand-menu__links">
                         <li>
-                            <RouterLink :to="{ name: 'home' }" class="expand-menu__link">
+                            <RouterLink :to="{ name: 'creators' }" class="expand-menu__link">
                                 Explore
                             </RouterLink>
                         </li>
 
                         <li>
-                            <a href="#" class="expand-menu__link">Leaderboard</a>
-                        </li>
-
-                        <li>
                             <RouterLink :to="{ name: 'creators' }" class="expand-menu__link">
-                                Creators
+                                Leaderboard
                             </RouterLink>
                         </li>
 
                         <li>
                             <RouterLink :to="{ name: 'plus' }" class="expand-menu__link">
-                                Plus
+                                Pricing
                             </RouterLink>
                         </li>
 
@@ -146,7 +142,7 @@ watch(open, (newValue) => {
     }
 
     .expand-menu__links {
-        @apply space-y-3;
+        @apply space-y-5;
 
         @include md_screen {
             @apply space-y-4;

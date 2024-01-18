@@ -132,6 +132,7 @@ const dialogBodyEl = ref(null);
     &.dialog--screen .dialog__wrapper .dialog__content {
         border-radius: 0px;
         max-height: calc(100dvh);
+        height: 100%;
     }
 
     .dialog__content {
