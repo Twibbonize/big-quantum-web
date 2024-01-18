@@ -18,7 +18,7 @@ const campaigns = computed(() => {
     const samples = [
         {
             name: 'Purple and White Modern Happy Birthday',
-            campaignCreator: {
+            creator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
@@ -28,7 +28,7 @@ const campaigns = computed(() => {
         },
         {
             name: 'Blue White Happy Birthday',
-            campaignCreator: {
+            creator: {
                 name: 'Eleanor Pena',
                 avatar: 'sample-avatar-7.jpg'
             },
@@ -38,7 +38,7 @@ const campaigns = computed(() => {
         },
         {
             name: 'Pink Colourful Happy Birthday',
-            campaignCreator: {
+            creator: {
                 name: 'Albert Forest',
                 avatar: 'sample-avatar-5.jpg'
             },
@@ -48,7 +48,7 @@ const campaigns = computed(() => {
         },
         {
             name: 'Water Colour Outer Space Happy Birthday',
-            campaignCreator: {
+            creator: {
                 name: 'Universe Tech',
                 avatar: 'sample-avatar-1.jpg'
             },
@@ -58,12 +58,12 @@ const campaigns = computed(() => {
         }
     ];
 
-    return samples.map(({ thumbnail, campaignCreator, ...other }) => {
-        const { name, avatar } = campaignCreator;
+    return samples.map(({ thumbnail, creator, ...other }) => {
+        const { name, avatar } = creator;
         return {
             ...other,
             thumbnail,
-            campaignCreator: {
+            creator: {
                 name,
                 avatar: getAvatarUrl(avatar)
             }

@@ -1,7 +1,14 @@
-<script setup></script>
+<script setup>
+defineProps({
+    shadow: {
+        type: Boolean,
+        default: true
+    }
+});
+</script>
 
 <template>
-    <div class="search">
+    <div :class="['search', shadow && 'search--shadow']">
         <div class="search__input-wrapper">
             <input
                 type="search"
@@ -19,9 +26,9 @@
 <style scoped lang="scss">
 .search {
     @apply relative;
+
     .search__input-wrapper {
         @apply bg-white rounded-full flex items-center border border-transparent transition-colors duration-200;
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
         height: 52px;
         min-width: 320px;
 
@@ -32,6 +39,10 @@
         @include lg_screen {
             min-width: 360px;
         }
+    }
+
+    &.search--shadow .search__input-wrapper {
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
     }
 
     .search__input {

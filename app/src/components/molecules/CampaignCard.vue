@@ -10,7 +10,7 @@ import { useCollectionStore } from '@/stores/collectionStore';
 import { ref } from 'vue';
 
 const props = defineProps({
-    campaignCreator: {
+    creator: {
         type: Object,
         required: true
     },
@@ -143,9 +143,9 @@ const onClickCollection = () => {
                     {{ name }}
                 </h3>
                 <div class="campaign__creator">
-                    <img :src="campaignCreator.avatar" class="campaign__creator__avatar" />
+                    <img :src="creator.avatar" class="campaign__creator__avatar" />
                     <RouterLink :to="{ name: 'profile' }" class="campaign__creator__name">
-                        {{ campaignCreator.name }}
+                        {{ creator.name }}
                     </RouterLink>
                 </div>
 
