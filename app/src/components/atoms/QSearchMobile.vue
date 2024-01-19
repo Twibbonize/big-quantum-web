@@ -23,11 +23,9 @@ defineProps({
     .search__button {
         @apply flex items-center justify-center bg-white border border-stroke rounded-full;
 
-        @include sm {
-            padding: 12px;
-            height: 40px;
-            width: 40px;
-        }
+        padding: 12px;
+        height: 40px;
+        width: 40px;
     }
 }
 // .search-mobile {

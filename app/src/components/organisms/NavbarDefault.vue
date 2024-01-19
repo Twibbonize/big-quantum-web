@@ -59,11 +59,18 @@ const searchQuery = ref('');
             </div>
             <div class="header__right">
                 <div class="header__actions">
-                    <div class="block md:hidden">
+                    <div class="block lg:hidden">
                         <QSearchMobile
                             :variant="navbarColor === 'transparent' ? 'white' : 'black'"
                         />
                     </div>
+
+                    <div class="header__links">
+                        <a href="#" class="header__link">
+                            <i class="ri ri-compass-line"></i>
+                        </a>
+                    </div>
+
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
                             <i class="ri-add-line mr-1"></i>
@@ -121,16 +128,47 @@ const searchQuery = ref('');
     }
 
     &__actions {
-        @apply flex items-center justify-end space-x-1;
+        @apply flex items-center justify-end;
+    }
 
-        @include md_screen {
-            @apply space-x-2;
+    .header__links {
+        @apply flex items-center pr-2 border-r border-stroke mr-4;
+
+        .header__link {
+            height: 48px;
+            width: 48px;
+            font-size: 28px;
+
+            @apply text-black rounded-full flex items-center justify-center overflow-hidden  transition-colors duration-300;
+
+            @include before {
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-black;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s var(--transition-function);
+                opacity: 0.1;
+            }
+
+            &:hover {
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
+            }
         }
     }
 
     &--transparent {
         background: transparent;
         box-shadow: none;
+    }
+
+    &.header--transparent .header__links .header__link {
+        @apply text-white;
     }
 
     &--gradient {

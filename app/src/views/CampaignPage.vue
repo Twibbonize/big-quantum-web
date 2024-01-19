@@ -170,7 +170,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="false">
         <div class="campaign-page">
             <div class="container">
                 <div ref="action" class="action">

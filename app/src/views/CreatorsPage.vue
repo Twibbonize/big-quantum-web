@@ -22,10 +22,10 @@ const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
     if (top < 97) {
         navbarColor.value = 'white';
-        navbarShadow.value = true
+        navbarShadow.value = true;
     } else {
         navbarColor.value = 'transparent';
-        navbarShadow.value = false
+        navbarShadow.value = false;
     }
 };
 
