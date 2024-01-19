@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useWindowSize } from '@vueuse/core';
-
 import MainLogo from '@/components/atoms/MainLogo.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
@@ -57,6 +56,7 @@ const searchQuery = ref('');
             <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
             </div>
+
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block lg:hidden">
@@ -139,7 +139,7 @@ const searchQuery = ref('');
             width: 48px;
             font-size: 28px;
 
-            @apply text-black rounded-full flex items-center justify-center overflow-hidden  transition-colors duration-300;
+            @apply text-black rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300;
 
             @include before {
                 height: 0;
