@@ -17,15 +17,14 @@ const content = ref(null);
 const navbarColor = ref('gradient');
 const navbarShadow = ref(false);
 
-
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
     if (top < 97) {
         navbarColor.value = 'white';
-        navbarShadow.value = true
+        navbarShadow.value = true;
     } else {
         navbarColor.value = 'gradient';
-        navbarShadow.value = false
+        navbarShadow.value = false;
     }
 };
 

@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 const props = defineProps({
     title: String,
     links: Array
@@ -9,8 +11,11 @@ const props = defineProps({
     <div class="widget widget-menu">
         <h5 class="title-widget">{{ title }}</h5>
         <ul>
-            <li v-for="{ url, text } in links" :key="text">
-                <a :href="url">{{ text }}</a>
+            <li v-for="{ url, text, isInAppPage } in links" :key="text">
+                <RouterLink :to="url" v-if="isInAppPage">
+                    {{ text }}
+                </RouterLink>
+                <a :href="url" v-else="isInAppPage">{{ text }}</a>
             </li>
         </ul>
     </div>
