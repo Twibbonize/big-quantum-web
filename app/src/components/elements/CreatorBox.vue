@@ -10,19 +10,25 @@ const props = defineProps({
     bordered: {
         type: Boolean,
         default: true
+    },
+    size: {
+        type: String,
+        default: 'md',
+        validators: (value) => ['sm', 'md'].includes(value)
     }
 });
 </script>
 
 <template>
-    <RouterLink to="/u/universetech">
-        <div :class="['creator-box', bordered && 'creator-box--bordered']">
+    <RouterLink to="/u/universetech" class="block">
+        <div :class="['creator-box', bordered && 'creator-box--bordered', `creator-box--${size}`]">
             <div v-if="number" class="order">{{ `#${props.number}` }}</div>
             <img :src="avatar" :alt="name" class="avatar" />
             <div class="info">
                 <h5 class="name">{{ name }}</h5>
                 <p class="supporters">
-                    <i class="ri-group-line"></i>{{ numeral(props.supports).format('0.0a') }}
+                    <i class="ri-group-line"></i>
+                    <span>{{ numeral(props.supports).format('0.0a') }}</span>
                 </p>
             </div>
         </div>
@@ -48,12 +54,31 @@ const props = defineProps({
         }
     }
 
+    &.creator-box--sm {
+        @apply px-4 py-2 hover:bg-black/10;
+        .avatar {
+            @apply w-10 h-10 mr-2;
+        }
+
+        .info .name {
+            @apply text-sm font-semibold;
+        }
+
+        .info .supporters {
+            @apply text-xs text-content opacity-100;
+        }
+
+        .info .supporters span {
+            @apply ml-1;
+        }
+    }
+
     .order {
         @apply font-bold text-3xl opacity-10 mr-5;
     }
 
     .avatar {
-        @apply w-[64px] sm:w-[80px] aspect-square mr-4;
+        @apply w-[64px] sm:w-[80px] aspect-square mr-4 rounded-full;
     }
 
     .info {

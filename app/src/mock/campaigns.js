@@ -5,8 +5,10 @@ dayjs.extend(relativeTime);
 const publicCampaigns = [
     {
         name: 'UNIVERSE UNPACKED 2022',
+        uri: 'universe-unpacked-2022',
         creator: {
             name: 'Universe Tech',
+            username: 'universetech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
         },
         hit: 85500,
@@ -17,8 +19,10 @@ const publicCampaigns = [
     },
     {
         name: 'Digital Culture Webinar',
+        uri: 'digital-culture-webinar',
         creator: {
             name: 'Craig Gottlieb',
+            username: 'craiggottlieb',
             avatar: '/assets/img/sample/sample-person-1.jpg'
         },
         hit: 85500,
@@ -29,8 +33,10 @@ const publicCampaigns = [
     },
     {
         name: 'Bit by Bit - Retro Gaming Festival',
+        uri: 'bit-by-bit-retro-gaming-festival',
         creator: {
             name: 'Christina Abbott',
+            username: 'christabbot',
             avatar: '/assets/img/sample/sample-person-2.jpg'
         },
         hit: 85500,
@@ -41,8 +47,10 @@ const publicCampaigns = [
     },
     {
         name: 'Liberty Scholarships 2025',
+        uri: 'liberty-scholarships-2025',
         creator: {
             name: 'Liberty Scholarship',
+            username: 'libscholarship',
             avatar: '/assets/img/sample/sample-avatar-4.jpg'
         },
         hit: 85500,
@@ -53,8 +61,10 @@ const publicCampaigns = [
     },
     {
         name: 'My Coffee Moment with Kohi!',
+        uri: 'my-coffee-moment-with-kohi',
         creator: {
             name: 'Darrel Upton',
+            username: 'darrelupton',
             avatar: '/assets/img/sample/sample-person-5.jpg'
         },
         hit: 85500,
@@ -65,8 +75,10 @@ const publicCampaigns = [
     },
     {
         name: 'Digital Marketing Course',
+        uri: 'digital-marketing-course',
         creator: {
             name: 'Travis Conner',
+            username: 'traviscorner',
             avatar: '/assets/img/sample/sample-person-16.jpg'
         },
         hit: 85500,
@@ -77,8 +89,10 @@ const publicCampaigns = [
     },
     {
         name: 'ASO Rock Festa 2025',
+        uri: 'aso-rock-festa-2025',
         creator: {
             name: 'Fernando Heathcote',
+            username: 'fernando192',
             avatar: '/assets/img/sample/sample-person-12.jpg'
         },
         hit: 85500,
@@ -89,8 +103,10 @@ const publicCampaigns = [
     },
     {
         name: '+Ultra Uni O-Week 2025',
+        uri: 'ultra-uni-o-week',
         creator: {
             name: 'Melissa Gleichner',
+            username: 'melltwb912',
             avatar: '/assets/img/sample/sample-person-11.jpg'
         },
         hit: 85500,
