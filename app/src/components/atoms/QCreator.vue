@@ -15,7 +15,7 @@ defineProps({
     },
     size: {
         type: String,
-        validators: ['sm', 'md', 'lg']
+        validators: ['xs', 'sm', 'md', 'lg']
     }
 });
 </script>
@@ -39,6 +39,17 @@ defineProps({
 
     .creator__name {
         @apply text-sm font-medium;
+    }
+
+
+    &.creator--xs {
+
+        .creator__avatar {
+            @apply w-4 h-4;
+        }
+        .creator__name {
+            @apply text-xs;
+        }
     }
 
     &.creator--sm {
