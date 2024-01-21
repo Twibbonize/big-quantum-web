@@ -192,10 +192,13 @@ watch(searchQuery, (newValue) => {
         @apply absolute left-1/2 z-10 mt-2 -translate-x-1/2 transform shadow-card flex flex-wrap rounded-lg;
         white-space: initial;
         min-width: 360px;
-        max-width: 360px;
         backdrop-filter: blur(24px);
         background: rgba(255, 255, 255, 0.8);
 
+
+        @include md_screen {
+            max-width: 360px;
+        }
         .search__result-tablist {
             @apply flex items-center space-x-4 border-b border-black/10 w-full px-4;
 
