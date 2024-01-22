@@ -5,7 +5,6 @@ import CampaignSearchItem from '@/components/molecules/CampaignSearchItem.vue';
 import CollectionSearchItem from '@/components/molecules/CollectionSearchItem.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 
-
 defineProps({
     collections: {
         type: Array,
@@ -27,28 +26,25 @@ defineProps({
         <TabGroup>
             <TabList class="search__result-tablist">
                 <Tab as="template" v-slot="{ selected }">
-                    <button :class="[
-                        'search__result-tab',
-                        selected && 'search__result-tab--selected'
-                    ]">
+                    <button
+                        :class="['search__result-tab', selected && 'search__result-tab--selected']"
+                    >
                         <span>Campaigns</span>
                     </button>
                 </Tab>
 
                 <Tab as="template" v-slot="{ selected }">
-                    <button :class="[
-                        'search__result-tab',
-                        selected && 'search__result-tab--selected'
-                    ]">
+                    <button
+                        :class="['search__result-tab', selected && 'search__result-tab--selected']"
+                    >
                         Collections
                     </button>
                 </Tab>
 
                 <Tab as="template" v-slot="{ selected }">
-                    <button :class="[
-                        'search__result-tab',
-                        selected && 'search__result-tab--selected'
-                    ]">
+                    <button
+                        :class="['search__result-tab', selected && 'search__result-tab--selected']"
+                    >
                         Creators
                     </button>
                 </Tab>
@@ -59,12 +55,25 @@ defineProps({
                     <Transition name="fade" mode="out-in">
                         <div>
                             <div>
-                                <CampaignSearchItem v-for="campaign in campaigns" :key="campaign.uri" v-bind="campaign" />
+                                <CampaignSearchItem
+                                    v-for="campaign in campaigns"
+                                    :key="campaign.uri"
+                                    v-bind="campaign"
+                                />
                             </div>
 
                             <div class="px-4 py-3">
-                                <QButton variant="black" size="sm" block
-                                    @click="$router.push({ name: 'explore', params: { tab: 'campaign' } })">
+                                <QButton
+                                    variant="black"
+                                    size="sm"
+                                    block
+                                    @click="
+                                        $router.push({
+                                            name: 'explore',
+                                            params: { tab: 'campaign' }
+                                        })
+                                    "
+                                >
                                     <i class="ri-search-line"></i>
                                     <span class="ml-2 text-xs">See All Campaigns</span>
                                 </QButton>
@@ -77,13 +86,25 @@ defineProps({
                     <Transition name="fade" mode="out-in">
                         <div>
                             <div>
-                                <CollectionSearchItem v-for="collection in collections" :key="collection.uri"
-                                    v-bind="collection" />
+                                <CollectionSearchItem
+                                    v-for="collection in collections"
+                                    :key="collection.uri"
+                                    v-bind="collection"
+                                />
                             </div>
 
                             <div class="px-4 py-3">
-                                <QButton variant="black" size="sm" block
-                                    @click="$router.push({ name: 'explore', params: { tab: 'collection' } })">
+                                <QButton
+                                    variant="black"
+                                    size="sm"
+                                    block
+                                    @click="
+                                        $router.push({
+                                            name: 'explore',
+                                            params: { tab: 'collection' }
+                                        })
+                                    "
+                                >
                                     <i class="ri-search-line"></i>
                                     <span class="ml-2 text-xs">See All Collections</span>
                                 </QButton>
@@ -95,11 +116,25 @@ defineProps({
                     <Transition name="fade" mode="out-in">
                         <div>
                             <div>
-                                <CreatorBox v-for="creator in creators" v-bind="creator" size="sm" :bordered="false" />
+                                <CreatorBox
+                                    v-for="creator in creators"
+                                    v-bind="creator"
+                                    size="sm"
+                                    :bordered="false"
+                                />
                             </div>
                             <div class="px-4 py-3">
-                                <QButton variant="black" size="sm" block
-                                    @click="$router.push({ name: 'explore', params: { tab: 'creator' } })">
+                                <QButton
+                                    variant="black"
+                                    size="sm"
+                                    block
+                                    @click="
+                                        $router.push({
+                                            name: 'explore',
+                                            params: { tab: 'creator' }
+                                        })
+                                    "
+                                >
                                     <i class="ri-search-line"></i>
                                     <span class="ml-2 text-xs">See All Creators</span>
                                 </QButton>
@@ -115,7 +150,6 @@ defineProps({
 <style scoped lang="scss">
 .search__result {
     @apply flex flex-wrap rounded-lg w-full;
-
 
     @include md_screen {
         min-width: 360px;

@@ -19,7 +19,6 @@ const isSearchOpen = ref(false);
 const searchQuery = ref('');
 const isShowResult = ref(false);
 
-
 watch(xs, (newValue) => {
     if (newValue === false) {
         isSearchOpen.value = false;
@@ -57,8 +56,12 @@ watch(searchQuery, (newValue) => {
                             <button class="search-mobile__input-prefix">
                                 <i class="ri-search-line"></i>
                             </button>
-                            <input v-model="searchQuery" class="search-mobile__input" type="text"
-                                placeholder="Find campaigns, collections, or creators">
+                            <input
+                                v-model="searchQuery"
+                                class="search-mobile__input"
+                                type="text"
+                                placeholder="Find campaigns, collections, or creators"
+                            />
                         </div>
 
                         <button class="search-mobile__close" @click="isSearchOpen = false">
@@ -66,15 +69,17 @@ watch(searchQuery, (newValue) => {
                         </button>
                     </div>
 
-
                     <Transition name="slide-fade">
                         <div v-show="isShowResult" class="search-mobile__body">
-                            <SearchResult :campaigns="campaigns" :collections="collections" :creators="computedCreators" />
+                            <SearchResult
+                                :campaigns="campaigns"
+                                :collections="collections"
+                                :creators="computedCreators"
+                            />
                         </div>
                     </Transition>
                 </div>
             </Transition>
-
         </Teleport>
     </div>
     <!-- <div class="search-mobile flex p-0">
@@ -92,7 +97,6 @@ watch(searchQuery, (newValue) => {
         width: 40px;
     }
 }
-
 
 .search-mobile {
     @apply fixed top-0 left-0 w-full bg-white border-b border-stroke;
@@ -135,12 +139,10 @@ watch(searchQuery, (newValue) => {
         }
     }
 
-
     .search-mobile__body {
         @apply w-full bg-white;
     }
 }
-
 
 .slide-fade-enter-active {
     transition: all 0.3s ease-out;

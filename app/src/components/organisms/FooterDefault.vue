@@ -13,7 +13,7 @@ const discoverLinks = [
     },
     {
         text: 'Leaderboard',
-        url: '/explore',
+        url: '/leaderboard',
         isInAppPage: true
     },
     {

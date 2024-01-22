@@ -9,6 +9,7 @@ import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
+import LeaderboardPage from '@/views/LeaderboardPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ const router = createRouter({
             name: 'explore',
             component: ExplorePage,
             props: true
+        },
+        {
+            path: '/leaderboard',
+            name: 'leaderboard',
+            component: LeaderboardPage
         },
         {
             path: '/creators',

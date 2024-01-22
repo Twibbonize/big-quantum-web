@@ -2,14 +2,17 @@
 import { ref, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+import { useSearchStore } from '@/stores/searchStore';
+import { useDebounceFn } from '@vueuse/core';
+
 import QButton from '@/components/atoms/QButton.vue';
 import CampaignSearchItem from '@/components/molecules/CampaignSearchItem.vue';
 import CollectionSearchItem from '@/components/molecules/CollectionSearchItem.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
-
 import { publicCampaigns } from '@/mock/campaigns';
 import { publicCollections } from '@/mock/collections';
 import { creators } from '@/mock/creators';
+import { storeToRefs } from 'pinia';
 
 defineProps({
     shadow: {
@@ -18,13 +21,22 @@ defineProps({
     }
 });
 
+const searchStore = useSearchStore();
+const { query, campaigns, collections } = storeToRefs(searchStore);
+const { updateCampaigns, updateCollections } = searchStore;
+
 const searchEl = ref(null);
 const isFocus = ref(false);
 const isShowResult = ref(false);
 const searchQuery = ref('');
 onClickOutside(searchEl, () => (isFocus.value = false));
 
-watch(searchQuery, (newValue) => {
+const onInputQuery = useDebounceFn(() => {
+    updateCampaigns();
+    updateCollections();
+}, 300);
+
+watch(query, (newValue) => {
     isShowResult.value = newValue.length >= 3;
 });
 </script>
@@ -33,12 +45,13 @@ watch(searchQuery, (newValue) => {
     <div ref="searchEl" :class="['search', shadow && 'search--shadow']">
         <div class="search__input-wrapper">
             <input
-                v-model="searchQuery"
+                v-model="query"
                 type="search"
                 class="search__input"
                 id="search_lg"
                 placeholder="Find Campaigns or Creators"
                 @focus="isFocus = true"
+                @input="onInputQuery"
             />
             <span class="search__input-icon">
                 <i class="ri-search-line ri-lg" role="button"></i>
@@ -87,19 +100,33 @@ watch(searchQuery, (newValue) => {
                         <TabPanel>
                             <Transition name="fade" mode="out-in">
                                 <div>
-                                    <div>
-                                        <CampaignSearchItem
-                                            v-for="campaign in publicCampaigns.slice(0, 3)"
-                                            :key="campaign.uri"
-                                            v-bind="campaign"
-                                        />
-                                    </div>
+                                    <div v-if="campaigns.length">
+                                        <div>
+                                            <CampaignSearchItem
+                                                v-for="campaign in campaigns.slice(0, 3)"
+                                                :key="campaign.uri"
+                                                v-bind="campaign"
+                                            />
+                                        </div>
 
-                                    <div class="px-4 py-3">
-                                        <QButton variant="black" size="sm" block>
-                                            <i class="ri-search-line"></i>
-                                            <span class="ml-2 text-xs">See All Campaigns</span>
-                                        </QButton>
+                                        <div class="px-4 py-3">
+                                            <QButton variant="black" size="sm" block>
+                                                <i class="ri-search-line"></i>
+                                                <span class="ml-2 text-xs">See All Campaigns</span>
+                                            </QButton>
+                                        </div>
+                                    </div>
+                                    <div v-else>
+                                        <div
+                                            class="flex flex-col space-y-1 items-center justify-center text-center px-10 py-4"
+                                        >
+                                            <h4 class="text-sm font-semibold">
+                                                Oops, no campaigns were found :(
+                                            </h4>
+                                            <p class="text-content text-xs">
+                                                Please check your spelling or try other keywords!
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </Transition>
@@ -108,19 +135,36 @@ watch(searchQuery, (newValue) => {
                         <TabPanel>
                             <Transition name="fade" mode="out-in">
                                 <div>
-                                    <div>
-                                        <CollectionSearchItem
-                                            v-for="collection in publicCollections.slice(0, 3)"
-                                            :key="collection.uri"
-                                            v-bind="collection"
-                                        />
+                                    <div v-if="collections.length">
+                                        <div>
+                                            <CollectionSearchItem
+                                                v-for="collection in collections.slice(0, 3)"
+                                                :key="collection.uri"
+                                                v-bind="collection"
+                                            />
+                                        </div>
+
+                                        <div class="px-4 py-3">
+                                            <QButton variant="black" size="sm" block>
+                                                <i class="ri-search-line"></i>
+                                                <span class="ml-2 text-xs"
+                                                    >See All Collections</span
+                                                >
+                                            </QButton>
+                                        </div>
                                     </div>
 
-                                    <div class="px-4 py-3">
-                                        <QButton variant="black" size="sm" block>
-                                            <i class="ri-search-line"></i>
-                                            <span class="ml-2 text-xs">See All Collections</span>
-                                        </QButton>
+                                    <div v-else>
+                                        <div
+                                            class="flex flex-col space-y-1 items-center justify-center text-center px-10 py-4"
+                                        >
+                                            <h4 class="text-sm font-semibold">
+                                                Oops, no campaigns were found :(
+                                            </h4>
+                                            <p class="text-content text-xs">
+                                                Please check your spelling or try other keywords!
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </Transition>
@@ -195,10 +239,10 @@ watch(searchQuery, (newValue) => {
         backdrop-filter: blur(24px);
         background: rgba(255, 255, 255, 0.8);
 
-
         @include md_screen {
             max-width: 360px;
         }
+
         .search__result-tablist {
             @apply flex items-center space-x-4 border-b border-black/10 w-full px-4;
 
