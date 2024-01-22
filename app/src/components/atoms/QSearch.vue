@@ -46,7 +46,7 @@ watch(searchQuery, (newValue) => {
         </div>
 
         <div v-show="isFocus" class="search__result">
-            <div v-show="isShowResult">
+            <div v-show="isShowResult" class="w-full">
                 <TabGroup>
                     <TabList class="search__result-tablist">
                         <Tab as="template" v-slot="{ selected }">
