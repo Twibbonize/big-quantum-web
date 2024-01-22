@@ -154,11 +154,7 @@ const selectedTabIndex = computed(() => {
                                     <div
                                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-y-10 gap-x-6"
                                     >
-                                        <CreatorBox
-                                            v-for="creator in creators"
-                                            v-bind="creator"
-                                            :bordered="false"
-                                        />
+                                        <CreatorBox v-for="creator in creators" v-bind="creator" />
                                     </div>
                                 </div>
                             </div>

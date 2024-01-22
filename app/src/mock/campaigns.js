@@ -15,7 +15,8 @@ const publicCampaigns = [
         createdAt: dayjs(1704192977229).fromNow(),
         thumbnail: '/assets/img/sample/sample-campaign-1.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'universe unpacked 2022 tech'
     },
     {
         name: 'Digital Culture Webinar',
@@ -29,7 +30,8 @@ const publicCampaigns = [
         createdAt: dayjs(1705192977229).fromNow(),
         thumbnail: '/assets/img/sample/sample-campaign-4.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'digital culture webinar craig gottlieb'
     },
     {
         name: 'Bit by Bit - Retro Gaming Festival',
@@ -43,7 +45,8 @@ const publicCampaigns = [
         createdAt: dayjs(1704092977229).fromNow(),
         thumbnail: '/assets/img/sample/sample-campaign-3.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'bit by retro gaming festival christina abbott'
     },
     {
         name: 'Liberty Scholarships 2025',
@@ -57,7 +60,8 @@ const publicCampaigns = [
         createdAt: dayjs(1704001077229).fromNow(),
         thumbnail: '/assets/img/sample/sample-campaign-2.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'liberty scholarships 2025 scholarship'
     },
     {
         name: 'My Coffee Moment with Kohi!',
@@ -71,7 +75,8 @@ const publicCampaigns = [
         createdAt: dayjs(1701001077229).fromNow(),
         thumbnail: '/assets/img/sample/Kohi.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'my coffee moment with kohi darrel upton'
     },
     {
         name: 'Digital Marketing Course',
@@ -85,7 +90,8 @@ const publicCampaigns = [
         createdAt: dayjs(1705192977229).fromNow(),
         thumbnail: '/assets/img/sample/Online-Course.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'digital marketing course travis conner'
     },
     {
         name: 'ASO Rock Festa 2025',
@@ -99,7 +105,8 @@ const publicCampaigns = [
         createdAt: dayjs(1705203097229).fromNow(),
         thumbnail: '/assets/img/sample/sample-campaign-8.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'aso rock festa 2025 fernando heathcote'
     },
     {
         name: '+Ultra Uni O-Week 2025',
@@ -113,7 +120,8 @@ const publicCampaigns = [
         createdAt: dayjs(1705183197029).fromNow(),
         thumbnail: '/assets/img/sample/O-Week.jpg',
         deleteAble: false,
-        actions: false
+        actions: false,
+        keywords: 'ultra uni o-week 2025 melissa gleichner'
     }
 ];
 

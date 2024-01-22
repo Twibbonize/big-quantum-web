@@ -34,9 +34,11 @@ defineProps({
 </script>
 
 <template>
-    <RouterLink :to="{ name: 'campaign', params: { uri } }"
-        class="flex items-center space-x-2 px-4 py-3 w-full hover:bg-black/10">
-        <div class="h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
+    <RouterLink
+        :to="{ name: 'campaign', params: { uri } }"
+        class="flex items-center space-x-2 px-4 py-3 w-full hover:bg-black/10"
+    >
+        <div class="h-16 w-16 rounded-lg overflow-hidden flex-shrink-0 border border-stroke">
             <img :src="thumbnail" :alt="name" />
         </div>
 

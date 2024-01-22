@@ -56,7 +56,7 @@ watch(open, (newValue) => {
                         </li>
 
                         <li>
-                            <RouterLink :to="{ name: 'creators' }" class="expand-menu__link">
+                            <RouterLink :to="{ name: 'leaderboard' }" class="expand-menu__link">
                                 Leaderboard
                             </RouterLink>
                         </li>

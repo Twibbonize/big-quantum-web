@@ -66,9 +66,9 @@ const searchQuery = ref('');
                     </div>
 
                     <div class="header__links">
-                        <a href="#" class="header__link">
+                        <RouterLink :to="{ name: 'explore' }" class="header__link">
                             <i class="ri ri-compass-line"></i>
-                        </a>
+                        </RouterLink>
                     </div>
 
                     <div class="hidden sm:flex mr-2">
