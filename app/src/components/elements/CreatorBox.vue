@@ -28,7 +28,7 @@ const props = defineProps({
                 <h5 class="name">{{ name }}</h5>
                 <p class="supporters">
                     <i class="ri-group-line"></i>
-                    <span>{{ numeral(props.supports).format('0.0a') }}</span>
+                    <span class="ml-1">{{ numeral(props.supports).format('0.0a') }}</span>
                 </p>
             </div>
         </div>
@@ -74,7 +74,7 @@ const props = defineProps({
     }
 
     .order {
-        @apply font-bold text-3xl opacity-10 mr-5;
+        @apply font-bold text-3xl text-black/20 mr-5;
     }
 
     .avatar {

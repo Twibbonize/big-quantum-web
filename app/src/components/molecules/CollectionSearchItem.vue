@@ -43,12 +43,12 @@ const thumbnails = computed(() => {
         :to="{ name: 'collection', params: { uri } }"
         class="flex items-center px-4 py-2 hover:bg-black/10"
     >
-        <div class="w-12 h-12 rounded overflow-hidden mr-2">
+        <div class="w-16 h-16 rounded overflow-hidden mr-2 flex-shrink-0 border border-stroke">
             <QCollectionThumbnail :thumbnails="thumbnails" />
         </div>
 
-        <div class="space-y-1">
-            <div class="font-semibold leading-none">
+        <div class="space-y-1 flex-grow w-0">
+            <div class="font-semibold leading-none w-full truncate">
                 {{ name }}
             </div>
 

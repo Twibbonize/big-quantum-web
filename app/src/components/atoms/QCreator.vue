@@ -41,9 +41,7 @@ defineProps({
         @apply text-sm font-medium;
     }
 
-
     &.creator--xs {
-
         .creator__avatar {
             @apply w-4 h-4;
         }

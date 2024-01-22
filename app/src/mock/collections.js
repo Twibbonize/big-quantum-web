@@ -229,7 +229,9 @@ const publicCollections = [
             name: 'Jeanette Kirlin',
             avatar: '/assets/img/sample/sample-person-13.jpg',
             username: 'jeanette128'
-        }
+        },
+        keywords:
+            'christmas celebration red gold merry xmas 2024 colorful simple twibbon navy green white jeanette kirlin juana stamm jacqueline bahringer alexander dietrich dolores cruickshank'
     },
     {
         name: '🎓 Graduation',
@@ -280,7 +282,9 @@ const publicCollections = [
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg',
             username: 'universetech'
-        }
+        },
+        keywords:
+            'graduation brown cream happy pink cute yellow green blue modern albert forest universe tech kristy amore eleanor pena darin rempel'
     },
     {
         name: 'Illustrative Twibbon',
@@ -331,7 +335,9 @@ const publicCollections = [
             name: 'Sara Bradtke',
             avatar: '/assets/img/sample/sample-person-15.jpg',
             username: 'sarabradtke'
-        }
+        },
+        keywords:
+            'illustrative twibbon blue colorful pop international woman day pink orange creative october 90s sticker bomb sara bradtke carol rogahn marian thompson yellow'
     },
     {
         name: '🥳 Happy Birthday!',
@@ -382,7 +388,9 @@ const publicCollections = [
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg',
             username: 'universetech'
-        }
+        },
+        keywords:
+            'happy birthday purple white modern blue pink colourful water colour outer space universe tech eleanor pena albert forest'
     },
     {
         name: '💍 Wedding Celebration',
@@ -403,7 +411,8 @@ const publicCollections = [
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg',
             username: 'universetech'
-        }
+        },
+        keywords: 'wedding celebration brown cream albert forest universe tech'
     },
     {
         name: 'Back to School Twibbon',
@@ -454,7 +463,9 @@ const publicCollections = [
             name: 'Dewey Schuster',
             avatar: '/assets/img/sample/sample-person-24.jpg',
             username: 'dewe19e1'
-        }
+        },
+        keywords:
+            'back to school twibbon blue yellow beige creative for instagram green playful dewey schuster lucia lang ollie lesch jay mosciski vera'
     },
     {
         name: 'Dirgahayu Indonesia',
@@ -505,7 +516,9 @@ const publicCollections = [
             name: 'Aji Abdul',
             avatar: '/assets/img/sample/sample-avatar-7.jpg',
             username: 'johnhuel81'
-        }
+        },
+        keywords:
+            'dirgahayu indonesia red white republik merah putih hut kemerdekaan selamat hari pahlawan aji abdul bobbie kuhlman harry gleason jeremy romaguera elizabeth ruecker'
     },
     {
         name: '👶 New Baby',
@@ -556,7 +569,9 @@ const publicCollections = [
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg',
             username: 'universetech'
-        }
+        },
+        keywords:
+            'new baby neutral born beige white pink birth orange little family twibbon universe tech darin rempel eleanor pena kristy amore albert forest'
     }
 ];
 
