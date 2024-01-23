@@ -43,7 +43,7 @@ watch(query, (newValue) => {
     <div ref="searchEl" :class="['search', shadow && 'search--shadow']">
         <div class="search__input-wrapper">
             <input v-model="query" type="search" class="search__input" id="search_lg"
-                placeholder="Find Campaigns, Collections, or Creators" @focus="isFocus = true" @input="onInputQuery" />
+                placeholder="Find Campaigns, Collections, or Creators" @focus="isFocus = true" @input="onInputQuery" autocomplete="off" />
             <span class="search__input-icon">
                 <i class="ri-search-line ri-lg" role="button"></i>
             </span>
