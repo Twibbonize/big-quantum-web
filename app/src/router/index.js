@@ -17,64 +17,92 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: HomePage
+            component: HomePage,
+            meta: {
+                navbarSearch: true
+            }
         },
 
         {
             path: '/explore/:tab(campaign|collection|creator)?',
             name: 'explore',
             component: ExplorePage,
-            props: true
+            props: true,
+            meta: {
+                navbarSearch: false
+            }
         },
         {
             path: '/leaderboard',
             name: 'leaderboard',
-            component: LeaderboardPage
+            component: LeaderboardPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/creators',
             name: 'creators',
-            component: CreatorsPage
+            component: CreatorsPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/plus',
             name: 'plus',
-            component: PlusPage
+            component: PlusPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/test',
             name: 'test',
-            component: TestPage
+            component: TestPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/u/universetech',
             name: 'profile',
-            component: ProfilePage
+            component: ProfilePage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/c/:uri',
             name: 'collection',
-            component: CollectionPage
+            component: CollectionPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/profile',
             name: 'own-profile',
-            component: OwnProfilePage
+            component: OwnProfilePage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/hanoi-art',
             name: 'campaign',
-            component: CampaignPage
+            component: CampaignPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/settings',
             name: 'settings',
-            component: PreferencesPage
-        },
-        {
-            path: '/p/:uri',
-            name: 'post',
-            component: RouterView
+            component: PreferencesPage,
+            meta: {
+                navbarSearch: true
+            }
         }
     ],
     scrollBehavior(to, from, savedPosition) {

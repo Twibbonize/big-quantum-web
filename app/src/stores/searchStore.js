@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia';
 import { publicCampaigns } from '@/mock/campaigns';
 import { publicCollections } from '@/mock/collections';
+import { creators } from '@/mock/creators';
 
 export const useSearchStore = defineStore('searchStore', {
     state: () => ({
         query: '',
         campaigns: [],
-        collections: []
+        collections: [],
+        creators: []
     }),
-    getters: {},
     actions: {
         updateCampaigns() {
             const $query = this.query;
@@ -20,6 +21,13 @@ export const useSearchStore = defineStore('searchStore', {
             const $query = this.query;
             this.collections = [
                 ...publicCollections.filter((collection) => collection.keywords.includes($query))
+            ];
+        },
+
+        updateCreators() {
+            const $query = this.query;
+            this.creators = [
+                ...creators.filter((creator) => creator.name.toLowerCase().includes($query))
             ];
         }
     }

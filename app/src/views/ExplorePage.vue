@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -10,6 +10,7 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
 import CreatorCard from '@/components/molecules/CreatorCard.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
+import { useSearchStore } from '@/stores/searchStore';
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -18,6 +19,8 @@ dayjs.extend(relativeTime);
 import { publicCampaigns } from '@/mock/campaigns';
 import { publicCollections } from '@/mock/collections';
 import { creators } from '@/mock/creators';
+import { storeToRefs } from 'pinia';
+
 
 const props = defineProps({
     tab: {
@@ -26,7 +29,12 @@ const props = defineProps({
     }
 });
 
+
+const searchStore = useSearchStore();
+const { query } = storeToRefs(searchStore);
+
 const router = useRouter();
+const route = useRoute();
 const tabs = ['campaign', 'collection', 'creator'];
 
 const sortCampaignOptions = [{ name: 'Trending' }, { name: 'Most Popular' }];
@@ -152,7 +160,7 @@ const selectedTabIndex = computed(() => {
                             <div class="explore__tab-panel">
                                 <div class="container px-4 xl:px-0 py-6">
                                     <div
-                                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-y-10 gap-x-6"
+                                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6"
                                     >
                                         <CreatorBox v-for="creator in creators" v-bind="creator" />
                                     </div>
