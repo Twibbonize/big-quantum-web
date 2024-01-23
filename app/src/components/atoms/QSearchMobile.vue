@@ -66,6 +66,7 @@ watch(query, (newValue) => {
                                 type="text"
                                 placeholder="Find campaigns, collections, or creators"
                                 @input="onInputQuery"
+                                autocomplete="off"
                             />
                         </div>
 
