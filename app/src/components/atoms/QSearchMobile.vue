@@ -1,10 +1,10 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { breakpointsTailwind, useBreakpoints, useDebounceFn } from '@vueuse/core';
+import { storeToRefs } from 'pinia';
+import { useSearchStore } from '@/stores/searchStore';
 import SearchResult from '@/components/molecules/SearchResult.vue';
-import { publicCampaigns } from '@/mock/campaigns';
-import { publicCollections } from '@/mock/collections';
-import { creators } from '@/mock/creators';
 
 defineProps({
     variant: {
@@ -15,8 +15,14 @@ defineProps({
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const xs = breakpoints.smallerOrEqual('sm');
+
+const route = useRoute();
+const searchStore = useSearchStore();
+const { navbarSearch } = route.meta;
+const { query, campaigns, collections, creators } = storeToRefs(searchStore);
+const { updateCampaigns, updateCollections, updateCreators } = searchStore;
+
 const isSearchOpen = ref(false);
-const searchQuery = ref('');
 const isShowResult = ref(false);
 
 watch(xs, (newValue) => {
@@ -25,20 +31,18 @@ watch(xs, (newValue) => {
     }
 });
 
-const campaigns = computed(() => {
-    return publicCampaigns.slice(0, 3);
-});
+const onInputQuery = useDebounceFn(() => {
 
-const collections = computed(() => {
-    return publicCollections.slice(0, 3);
-});
+    if (!navbarSearch) return 
 
-const computedCreators = computed(() => {
-    return creators.slice(0, 3);
-});
+    
+    updateCampaigns();
+    updateCollections();
+    updateCreators();
+}, 300);
 
-watch(searchQuery, (newValue) => {
-    isShowResult.value = newValue.length >= 3;
+watch(query, (newValue) => {
+    isShowResult.value = newValue.length >= 3 && navbarSearch;
 });
 </script>
 
@@ -57,10 +61,11 @@ watch(searchQuery, (newValue) => {
                                 <i class="ri-search-line"></i>
                             </button>
                             <input
-                                v-model="searchQuery"
+                                v-model="query"
                                 class="search-mobile__input"
                                 type="text"
                                 placeholder="Find campaigns, collections, or creators"
+                                @input="onInputQuery"
                             />
                         </div>
 
@@ -74,7 +79,7 @@ watch(searchQuery, (newValue) => {
                             <SearchResult
                                 :campaigns="campaigns"
                                 :collections="collections"
-                                :creators="computedCreators"
+                                :creators="creators"
                             />
                         </div>
                     </Transition>
@@ -82,9 +87,6 @@ watch(searchQuery, (newValue) => {
             </Transition>
         </Teleport>
     </div>
-    <!-- <div class="search-mobile flex p-0">
-        <i class="ri-search-line text-xl font-bold" role="button"></i>
-    </div> -->
 </template>
 
 <style scoped lang="scss">
@@ -104,11 +106,12 @@ watch(searchQuery, (newValue) => {
 
     .search-mobile__header {
         height: 76px;
-        @apply flex items-center container border-b border-stroke px-4 space-x-1;
+        @apply flex items-center container px-4 space-x-1;
     }
 
     .search-mobile__input-wrapper {
-        @apply flex-grow rounded-lg border border-stroke overflow-hidden transition-all duration-100 ease-in-out flex items-center;
+        @apply flex-grow rounded-full overflow-hidden transition-all duration-100 ease-in-out flex items-center;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
         height: 40px;
 
         &:focus-within {
