@@ -32,10 +32,8 @@ watch(xs, (newValue) => {
 });
 
 const onInputQuery = useDebounceFn(() => {
+    if (!navbarSearch) return;
 
-    if (!navbarSearch) return 
-
-    
     updateCampaigns();
     updateCollections();
     updateCreators();

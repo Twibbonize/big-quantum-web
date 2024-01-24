@@ -21,14 +21,12 @@ import { publicCollections } from '@/mock/collections';
 import { creators } from '@/mock/creators';
 import { storeToRefs } from 'pinia';
 
-
 const props = defineProps({
     tab: {
         type: String,
         default: 'campaign'
     }
 });
-
 
 const searchStore = useSearchStore();
 const { query } = storeToRefs(searchStore);

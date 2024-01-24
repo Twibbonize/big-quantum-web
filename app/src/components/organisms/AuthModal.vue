@@ -42,7 +42,13 @@ const handleAuthNative = async (formValues) => {
 </script>
 
 <template>
-    <QModal :show="modal.show" :position="modalPosition" size="lg" @close="modal.show = false" :closeBtn="false">
+    <QModal
+        :show="modal.show"
+        :position="modalPosition"
+        size="lg"
+        @close="modal.show = false"
+        :closeBtn="false"
+    >
         <template #body>
             <div class="login">
                 <div class="absolute top-5 lg:top-8 right-10">
@@ -55,27 +61,47 @@ const handleAuthNative = async (formValues) => {
 
                 <template v-if="modal.authOption === 'sign-in'">
                     <div class="login__wrapper">
-                        <VeeForm :validation-schema="signInValidation" class="login__inner" v-slot="{ meta, values }">
+                        <VeeForm
+                            :validation-schema="signInValidation"
+                            class="login__inner"
+                            v-slot="{ meta, values }"
+                        >
                             <div class="space-y-10">
                                 <h1 class="text-2xl font-bold">Log in</h1>
                                 <div class="space-y-4 w-full">
-                                    <QButton block variant="secondary" @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
-                                        <img src="/assets/img/logos/google.svg" class="w-4 h-4" alt="Google Logo" />
+                                    <QButton
+                                        block
+                                        variant="secondary"
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
+                                        <img
+                                            src="/assets/img/logos/google.svg"
+                                            class="w-4 h-4"
+                                            alt="Google Logo"
+                                        />
                                         <span class="ml-2">Sign In With Google</span>
                                     </QButton>
 
-                                    <QButton variant="secondary" block @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
-                                        <img src="/assets/img/logos/facebook.svg" class="w-4 h-4" alt="Facebook Logo" />
+                                    <QButton
+                                        variant="secondary"
+                                        block
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
+                                        <img
+                                            src="/assets/img/logos/facebook.svg"
+                                            class="w-4 h-4"
+                                            alt="Facebook Logo"
+                                        />
                                         <span class="ml-2">Sign In With Facebook</span>
                                     </QButton>
                                 </div>
@@ -84,34 +110,56 @@ const handleAuthNative = async (formValues) => {
 
                                 <div class="space-y-6">
                                     <div class="space-y-3">
-                                        <label for="sign_in_email" class="text-sm font-semibold">Email</label>
+                                        <label for="sign_in_email" class="text-sm font-semibold"
+                                            >Email</label
+                                        >
 
-                                        <QInputText id="sign_in_email" name="email" type="email" placeholder="Enter email"
-                                            autocomplete="username" />
+                                        <QInputText
+                                            id="sign_in_email"
+                                            name="email"
+                                            type="email"
+                                            placeholder="Enter email"
+                                            autocomplete="username"
+                                        />
                                     </div>
 
                                     <div class="space-y-3">
-                                        <label for="password" class="text-sm font-semibold">Password</label>
-                                        <QInputPassword name="password" placeholder="Enter password"
-                                            autocomplate="current-password" />
+                                        <label for="password" class="text-sm font-semibold"
+                                            >Password</label
+                                        >
+                                        <QInputPassword
+                                            name="password"
+                                            placeholder="Enter password"
+                                            autocomplate="current-password"
+                                        />
                                     </div>
 
                                     <div class="flex">
-                                        <a href="#" class="link text-sm font-semibold">Forgot your password?</a>
+                                        <a href="#" class="link text-sm font-semibold"
+                                            >Forgot your password?</a
+                                        >
                                     </div>
 
-                                    <QButton block :enabled="meta.valid" @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
+                                    <QButton
+                                        block
+                                        :enabled="meta.valid"
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
                                         Log In
                                     </QButton>
 
                                     <p class="text-center text-sm text-content">
                                         Don't have an account?
-                                        <a class="link font-semibold" @click="modal.authOption = 'sign-up'">Sign up</a>.
+                                        <a
+                                            class="link font-semibold"
+                                            @click="modal.authOption = 'sign-up'"
+                                            >Sign up</a
+                                        >.
                                     </p>
                                 </div>
                             </div>
@@ -121,28 +169,48 @@ const handleAuthNative = async (formValues) => {
 
                 <template v-if="modal.authOption === 'sign-up'">
                     <div class="login__wrapper">
-                        <VeeForm :validation-schema="signUpValidation" class="login__inner" v-slot="{ meta }">
+                        <VeeForm
+                            :validation-schema="signUpValidation"
+                            class="login__inner"
+                            v-slot="{ meta }"
+                        >
                             <div class="space-y-10">
                                 <h1 class="text-2xl font-black">Sign Up</h1>
 
                                 <div class="space-y-4 w-full">
-                                    <QButton block variant="secondary" @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
-                                        <img src="/assets/img/logos/google.svg" class="w-4 h-4" alt="Google Logo" />
+                                    <QButton
+                                        block
+                                        variant="secondary"
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
+                                        <img
+                                            src="/assets/img/logos/google.svg"
+                                            class="w-4 h-4"
+                                            alt="Google Logo"
+                                        />
                                         <span class="ml-2">Sign Up With Google</span>
                                     </QButton>
 
-                                    <QButton variant="secondary" block @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
-                                        <img src="/assets/img/logos/facebook.svg" class="w-4 h-4" alt="Facebook Logo" />
+                                    <QButton
+                                        variant="secondary"
+                                        block
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
+                                        <img
+                                            src="/assets/img/logos/facebook.svg"
+                                            class="w-4 h-4"
+                                            alt="Facebook Logo"
+                                        />
                                         <span class="ml-2">Sign Up With Facebook</span>
                                     </QButton>
                                 </div>
@@ -155,7 +223,11 @@ const handleAuthNative = async (formValues) => {
                                             Name
                                         </label>
 
-                                        <QInputText name="name" type="text" placeholder="Enter name" />
+                                        <QInputText
+                                            name="name"
+                                            type="text"
+                                            placeholder="Enter name"
+                                        />
                                     </div>
 
                                     <div class="space-y-3">
@@ -163,45 +235,81 @@ const handleAuthNative = async (formValues) => {
                                             Email
                                         </label>
 
-                                        <QInputText id="sign_up_email" name="email" type="email" placeholder="Enter email"
-                                            autocomplete="username" />
+                                        <QInputText
+                                            id="sign_up_email"
+                                            name="email"
+                                            type="email"
+                                            placeholder="Enter email"
+                                            autocomplete="username"
+                                        />
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div class="space-y-3">
-                                            <label for="sign_up_password" class="text-sm font-semibold">Password</label>
-                                            <QInputPassword id="sign_up_password" name="password"
-                                                placeholder="Enter password" autocomplete="new-password" />
+                                            <label
+                                                for="sign_up_password"
+                                                class="text-sm font-semibold"
+                                                >Password</label
+                                            >
+                                            <QInputPassword
+                                                id="sign_up_password"
+                                                name="password"
+                                                placeholder="Enter password"
+                                                autocomplete="new-password"
+                                            />
                                         </div>
 
                                         <div class="space-y-3">
-                                            <label for="confirm_password" class="text-sm font-semibold">Confirm
-                                                Password</label>
-                                            <QInputPassword name="confirm_password" placeholder="Re-enter your password"
-                                                autocomplete="new-password" />
+                                            <label
+                                                for="confirm_password"
+                                                class="text-sm font-semibold"
+                                                >Confirm Password</label
+                                            >
+                                            <QInputPassword
+                                                name="confirm_password"
+                                                placeholder="Re-enter your password"
+                                                autocomplete="new-password"
+                                            />
                                         </div>
                                     </div>
 
                                     <p class="text-sm text-center text-content max-w-md mx-auto">
                                         By clicking “Sign up”, you have read and agree with our
-                                        <a href="https://about.twibbonize.com/terms" target="_blank" class="link">Terms</a>
+                                        <a
+                                            href="https://about.twibbonize.com/terms"
+                                            target="_blank"
+                                            class="link"
+                                            >Terms</a
+                                        >
                                         &
-                                        <a href="https://about.twibbonize.com/privacy-policy" target="_blank"
-                                            class="link">Privacy Policy</a>.
+                                        <a
+                                            href="https://about.twibbonize.com/privacy-policy"
+                                            target="_blank"
+                                            class="link"
+                                            >Privacy Policy</a
+                                        >.
                                     </p>
 
-                                    <QButton block :enabled="meta.valid" @click="
-                                        [
-                                            $router.push({ name: 'own-profile' }),
-                                            (modal.show = false)
-                                        ]
-                                        ">
+                                    <QButton
+                                        block
+                                        :enabled="meta.valid"
+                                        @click="
+                                            [
+                                                $router.push({ name: 'own-profile' }),
+                                                (modal.show = false)
+                                            ]
+                                        "
+                                    >
                                         Sign Up
                                     </QButton>
 
                                     <p class="text-center text-sm text-content">
                                         Already have an account?
-                                        <a class="link font-semibold" @click="modal.authOption = 'sign-in'">Log in</a>.
+                                        <a
+                                            class="link font-semibold"
+                                            @click="modal.authOption = 'sign-in'"
+                                            >Log in</a
+                                        >.
                                     </p>
                                 </div>
                             </div>
