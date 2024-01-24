@@ -59,5 +59,15 @@ defineProps({
             @apply text-sm font-normal;
         }
     }
+
+    &.creator--lg {
+        .creator__avatar {
+            @apply w-7 h-7;
+        }
+
+        .creator__name {
+            @apply text-lg font-medium;
+        }
+    }
 }
 </style>

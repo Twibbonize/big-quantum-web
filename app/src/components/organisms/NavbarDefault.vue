@@ -132,7 +132,7 @@ const searchQuery = ref('');
     }
 
     .header__links {
-        @apply hidden md:flex items-center pr-2 border-r border-stroke mr-4;
+        @apply hidden lg:flex items-center pr-2 border-r border-stroke mr-4;
 
         .header__link {
             height: 48px;
