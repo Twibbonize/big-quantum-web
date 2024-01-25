@@ -1,6 +1,6 @@
 const publicPosts = [
     {
-        image: '/assets/img/sample/sample-post-1.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -108,7 +108,7 @@ const publicPosts = [
         ]
     },
     {
-        image: '/assets/img/sample/sample-post-3.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_3.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -124,7 +124,7 @@ const publicPosts = [
         uri: 'f3f3fab'
     },
     {
-        image: '/assets/img/sample/sample-post-4.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_4.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -140,7 +140,7 @@ const publicPosts = [
         uri: 'aniod1'
     },
     {
-        image: '/assets/img/sample/sample-post-5.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_5.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -156,7 +156,7 @@ const publicPosts = [
         uri: '0bf13r'
     },
     {
-        image: '/assets/img/sample/sample-post-6.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_6.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -172,7 +172,7 @@ const publicPosts = [
         uri: 'c1n0i'
     },
     {
-        image: '/assets/img/sample/sample-post-7.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_7.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
@@ -188,7 +188,231 @@ const publicPosts = [
         uri: 'c0hsc'
     },
     {
-        image: '/assets/img/sample/sample-post-8.jpg',
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_8.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_9.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_10.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_11.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_12.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_13.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_14.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_15.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_16.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_17.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_18.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_19.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_20.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_21.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'dinq1'
+    },
+    {
+        image: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_22.jpg',
         campaign: {
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'

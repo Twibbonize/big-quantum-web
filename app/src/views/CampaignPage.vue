@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { breakpointsTailwind, useBreakpoints, useResizeObserver } from '@vueuse/core';
+import { onMounted, ref } from 'vue';
+import { breakpointsTailwind, useBreakpoints, useResizeObserver, useScroll } from '@vueuse/core';
 import {
     RadioGroup,
     RadioGroupOption,
@@ -10,6 +10,8 @@ import {
     TabPanels,
     TabPanel
 } from '@headlessui/vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
@@ -17,40 +19,27 @@ import QShareButton from '@/components/atoms/QShareButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostMedia from '@/components/molecules/PostMedia.vue';
+import QSkeleton from '@/components/atoms/QSkeleton.vue';
 
 import { publicPosts } from '@/mock/posts';
 
-const getFrameUrl = (frame) => {
-    return `/assets/img/frames/${frame}.png`;
-};
-const getSampleUser = (index) => {
-    return `/assets/img/sample/sample-person-${index}.jpg`;
-};
+gsap.registerPlugin(ScrollTrigger);
 
-const frameLists = [
-    'hanoi-art-frame-1',
-    'hanoi-art-frame-2',
-    'hanoi-art-frame-3',
-    'hanoi-art-frame-4',
-    'hanoi-art-frame-2',
-    'hanoi-art-frame-1',
-    'hanoi-art-frame-3',
-    'hanoi-art-frame-2',
-    'hanoi-art-frame-4',
-    'hanoi-art-frame-4'
-];
-
-const layout = ref('grid');
+//
+const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignFeeds = ref(null);
+const campaignFeedsPanels = ref(null);
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
     const { height } = entry.contentRect;
 
-    campaignFeeds.value.style.height = `${height}px`;
-
-    //   text.value = `width: ${width}, height: ${height}`
+    if (!sm.value) {
+        campaignFeeds.value.style.height = `${height}px`;
+    } else {
+        campaignFeeds.value.style.height = 'fit-content';
+    }
 });
 
 const frames = [
@@ -64,14 +53,54 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const selectedFrames = ref(frames[0]);
 
 const sm = breakpoints.smallerOrEqual('sm');
+
+const posts = ref([...publicPosts.slice(0, 6)]);
+const isLoadingPost = ref(false);
+const itemsToAdd = 3;
+const lazyLoad = () => {
+    if (isLoadingPost.value) return;
+
+    if (posts.value.length >= 21) {
+        return;
+    }
+
+    isLoadingPost.value = true;
+
+    setTimeout(() => {
+        posts.value = [
+            ...posts.value,
+            ...publicPosts.slice(posts.value.length, posts.value.length + itemsToAdd)
+        ];
+        isLoadingPost.value = false;
+    }, 1000);
+};
+
+onMounted(() => {
+    gsap.to('.campaign__feeds-panels', {
+        scrollTrigger: {
+            trigger: '.campaign__feeds-panels',
+            end: 'bottom top',
+            start: 'bottom bottom',
+            onEnter: () => {
+                console.log('enter');
+            },
+            onUpdate: () => {
+                lazyLoad();
+            },
+            onLeave: () => {
+                console.log('leave');
+            }
+        }
+    });
+});
 </script>
 <template>
     <LayoutMain navbarColor="transparent" :navbarShadow="false">
-        <div class="page campaign">
+        <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
-            <div class="campaign__content container py-24">
-                <div class="grid grid-cols-12 xl:gap-6">
-                    <div class="col-span-12 sm:col-span-5 lg:col-span-3">
+            <div class="campaign__content container pt-24">
+                <div class="grid grid-cols-12 md:gap-6">
+                    <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
@@ -149,13 +178,7 @@ const sm = breakpoints.smallerOrEqual('sm');
 
                             <div class="campaign__detail">
                                 <div class="campaign__detail__title">Hanoi Art Book Fair 2025</div>
-                                <p class="campaign__detail__description">
-                                    <QEllipsisText
-                                        text="Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate reading habits,
-                                increase art literacy worldwide and build a new generation of readers, by making books more
-                                affordable."
-                                    />
-                                </p>
+
                                 <div class="campaign__detail__creator">
                                     <QCreator
                                         name="Universe Tech"
@@ -164,6 +187,15 @@ const sm = breakpoints.smallerOrEqual('sm');
                                         size="md"
                                     />
                                 </div>
+
+                                <p class="campaign__detail__description">
+                                    <QEllipsisText
+                                        text="Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate reading habits,
+                                increase art literacy worldwide and build a new generation of readers, by making books more
+                                affordable."
+                                    />
+                                </p>
+
                                 <div class="campaign__detail__meta">
                                     <div class="campaign__detail__meta-wrapper">
                                         <CampaignMeta title="Supporters" value="95.5K">
@@ -222,34 +254,68 @@ const sm = breakpoints.smallerOrEqual('sm');
                         </div>
                     </div>
 
-                    <div class="col-span-12 sm:col-span-7 lg:col-span-9">
+                    <div class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9">
                         <div ref="campaignFeeds" class="campaign__feeds">
                             <TabGroup>
-                                <TabPanels class="campaign__feeds-panels">
-                                    <!-- feed grid -->
-                                    <TabPanel>
-                                        <div
-                                            class="grid grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-1 lg:gap-2.5"
-                                        >
-                                            <PostMedia
-                                                v-for="post in publicPosts"
-                                                :key="post.uri"
-                                                v-bind="post"
-                                                :rounded="!sm"
-                                            />
-                                        </div>
-                                    </TabPanel>
-                                    <!-- end of feed grid -->
+                                <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
+                                    <TabPanels>
+                                        <!-- feed grid -->
+                                        <TabPanel>
+                                            <div
+                                                class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5 border-b border-stroke"
+                                            >
+                                                <PostMedia
+                                                    v-for="post in posts"
+                                                    :key="post.uri"
+                                                    v-bind="post"
+                                                    :rounded="!sm"
+                                                />
+                                                <QSkeleton
+                                                    v-if="isLoadingPost"
+                                                    height="100%"
+                                                    square
+                                                />
+                                                <QSkeleton
+                                                    v-if="isLoadingPost"
+                                                    height="100%"
+                                                    square
+                                                />
+                                                <QSkeleton
+                                                    v-if="isLoadingPost"
+                                                    height="100%"
+                                                    square
+                                                />
 
-                                    <!-- feed list -->
-                                    <TabPanel></TabPanel>
-                                    <!-- end of feed list -->
-                                </TabPanels>
+                                                <Transition name="slide-fade">
+                                                    <div
+                                                        v-if="posts.length >= 21"
+                                                        class="col-span-3 md:col-span-2 lg:col-span-3"
+                                                    >
+                                                        <div class="campaign__feeds-all">
+                                                            <QButton
+                                                                variant="secondary"
+                                                                size="sm"
+                                                                block
+                                                            >
+                                                                View All
+                                                            </QButton>
+                                                        </div>
+                                                    </div>
+                                                </Transition>
+                                            </div>
+                                        </TabPanel>
+                                        <!-- end of feed grid -->
+
+                                        <!-- feed list -->
+                                        <TabPanel></TabPanel>
+                                        <!-- end of feed list -->
+                                    </TabPanels>
+                                </div>
 
                                 <TabList class="campaign__feeds-control">
                                     <Tab>
                                         <QButton circle :variant="sm ? 'secondary' : 'neutral'">
-                                            <i class="ri-layout-grid-line"></i>
+                                            <i class="ri-layout-grid-line ri-lg font-normal"></i>
                                         </QButton>
                                     </Tab>
 
@@ -287,16 +353,20 @@ const sm = breakpoints.smallerOrEqual('sm');
     .campaign__background {
         background: url('/assets/img/background/bg-default.jpg');
         background-repeat: no-repeat;
-        height: 300px;
         width: 100%;
         background-size: cover;
         background-position: center;
         position: absolute;
         top: 0;
         left: 0;
+        height: 300px;
 
         // background-position: top;
         // background-size: 100vw 300px;
+
+        @media screen and (min-width: 630px) {
+            height: 244px;
+        }
 
         @include md_screen {
             height: 100%;
@@ -323,7 +393,7 @@ const sm = breakpoints.smallerOrEqual('sm');
             width: fit-content;
             max-width: 120px;
 
-            @include lg_screen {
+            @include md_screen {
                 @apply p-2;
                 max-width: 94%;
                 box-shadow: 0px 3.972px 3.972px 0px rgba(0, 0, 0, 0.25);
@@ -338,7 +408,7 @@ const sm = breakpoints.smallerOrEqual('sm');
         .campaign__frames__card {
             @apply px-2.5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
 
-            @include lg_screen {
+            @include md_screen {
                 @apply rounded-3xl pt-12 -mt-4;
 
                 @include before {
@@ -378,20 +448,20 @@ const sm = breakpoints.smallerOrEqual('sm');
     .campaign__detail {
         @apply relative mx-4 pt-4 mt-2 border-t border-stroke bg-white space-y-4 flex flex-col justify-center;
 
-        @include lg_screen {
+        @include md_screen {
             @apply mx-0 mt-6 p-4 rounded-xl;
         }
 
         .campaign__detail__title {
-            @apply text-lg lg:text-2xl font-bold text-ellipsis overflow-hidden truncate whitespace-nowrap leading-none text-center lg:text-left;
+            @apply text-lg lg:text-2xl font-bold text-ellipsis overflow-hidden truncate whitespace-nowrap leading-none text-center md:text-left;
         }
 
         .campaign__detail__description {
-            @apply text-center lg:text-left;
+            @apply text-center md:text-left;
         }
 
         .campaign__detail__creator {
-            @apply flex items-center justify-center lg:justify-start;
+            @apply flex items-center justify-center md:justify-start;
         }
 
         .campaign__detail__actions {
@@ -422,20 +492,21 @@ const sm = breakpoints.smallerOrEqual('sm');
     }
 
     .campaign__feeds {
+        margin-top: 24px;
         @apply h-full w-full bg-white relative overflow-hidden;
-        max-height: 320px;
+        // max-height: 320px;
 
         @include md_screen {
             @apply rounded-3xl border-transparent;
             max-height: unset;
+            margin-top: 0px;
         }
 
         .campaign__feeds-panels {
-            @apply absolute left-0 top-0 pb-32 h-full w-full overflow-scroll;
+            @apply absolute left-0 top-0 h-full w-full;
 
             @include sm {
-                margin-top: 24px;
-                padding-top: 6px;
+                padding-top: 7px;
 
                 @include before {
                     height: 12px;
@@ -452,14 +523,23 @@ const sm = breakpoints.smallerOrEqual('sm');
             }
 
             @include md_screen {
-                @apply p-2;
+                @apply p-2 overflow-scroll;
             }
         }
 
+        .campaign__feeds-all {
+            @apply container px-4 py-3;
+        }
+
         .campaign__feeds-control {
-            @apply absolute w-full z-10 bottom-0 right-0 flex items-end pb-2 pl-2 space-x-2;
-            height: 160px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 70%);
+            @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-4 pr-5 space-x-2;
+            // height: 160px;
+            // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 70%);
+
+            @include md_screen {
+                @apply bottom-0 justify-start pt-2 pb-2 pr-0 pl-2 bg-white;
+                top: unset;
+            }
         }
     }
 }
@@ -511,5 +591,19 @@ const sm = breakpoints.smallerOrEqual('sm');
             @apply text-[32px];
         }
     }
+}
+
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(38px);
+    opacity: 0;
 }
 </style>
