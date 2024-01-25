@@ -182,13 +182,15 @@ defineProps({
         }
     }
 
-    &:hover {
-        .post__thumbnail-overlay {
-            opacity: 100;
-        }
+    @include md_screen {
+        &:hover {
+            .post__thumbnail-overlay {
+                opacity: 100;
+            }
 
-        .post__more-menu {
-            opacity: 100;
+            .post__more-menu {
+                opacity: 100;
+            }
         }
     }
 }
