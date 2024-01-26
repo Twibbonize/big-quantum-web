@@ -1,15 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { breakpointsTailwind, useBreakpoints, useResizeObserver, useScroll } from '@vueuse/core';
-import {
-    RadioGroup,
-    RadioGroupOption,
-    TabGroup,
-    TabList,
-    Tab,
-    TabPanels,
-    TabPanel
-} from '@headlessui/vue';
+import { breakpointsTailwind, useBreakpoints, useResizeObserver } from '@vueuse/core';
+import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -18,18 +10,28 @@ import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
-import PostMedia from '@/components/molecules/PostMedia.vue';
+import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
 
 import { publicPosts } from '@/mock/posts';
 
 gsap.registerPlugin(ScrollTrigger);
 
-//
+const frames = [
+    '/assets/img/frames/hanoi-art-frame-1.png',
+    '/assets/img/frames/hanoi-art-frame-2.png',
+    '/assets/img/frames/hanoi-art-frame-3.png',
+    '/assets/img/frames/hanoi-art-frame-4.png'
+];
+
 const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
+const selectedFrames = ref(frames[0]);
+const posts = ref([...publicPosts.slice(0, 6)]);
+const isLoadingPost = ref(false);
+const displayType = ref('grid');
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
@@ -42,21 +44,12 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
-const frames = [
-    '/assets/img/frames/hanoi-art-frame-1.png',
-    '/assets/img/frames/hanoi-art-frame-2.png',
-    '/assets/img/frames/hanoi-art-frame-3.png',
-    '/assets/img/frames/hanoi-art-frame-4.png'
-];
-
 const breakpoints = useBreakpoints(breakpointsTailwind);
-const selectedFrames = ref(frames[0]);
 
 const sm = breakpoints.smallerOrEqual('sm');
 
-const posts = ref([...publicPosts.slice(0, 6)]);
-const isLoadingPost = ref(false);
 const itemsToAdd = 3;
+
 const lazyLoad = () => {
     if (isLoadingPost.value) return;
 
@@ -75,20 +68,18 @@ const lazyLoad = () => {
     }, 1000);
 };
 
+const toggleDisplay = () => {
+    displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
+};
+
 onMounted(() => {
     gsap.to('.campaign__feeds-panels', {
         scrollTrigger: {
             trigger: '.campaign__feeds-panels',
             end: 'bottom top',
             start: 'bottom bottom',
-            onEnter: () => {
-                console.log('enter');
-            },
             onUpdate: () => {
                 lazyLoad();
-            },
-            onLeave: () => {
-                console.log('leave');
             }
         }
     });
@@ -98,7 +89,9 @@ onMounted(() => {
     <LayoutMain navbarColor="transparent" :navbarShadow="false">
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
-            <div class="campaign__content container pt-24">
+            <div class="campaign__linear"></div>
+
+            <div class="campaign__content container py-24">
                 <div class="grid grid-cols-12 md:gap-6">
                     <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
@@ -256,88 +249,92 @@ onMounted(() => {
 
                     <div class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9">
                         <div ref="campaignFeeds" class="campaign__feeds">
-                            <TabGroup>
-                                <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
-                                    <TabPanels>
-                                        <!-- feed grid -->
-                                        <TabPanel>
-                                            <div
-                                                class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5 border-b border-stroke"
-                                            >
-                                                <PostMedia
-                                                    v-for="post in posts"
-                                                    :key="post.uri"
-                                                    v-bind="post"
-                                                    :rounded="!sm"
-                                                />
-                                                <QSkeleton
-                                                    v-if="isLoadingPost"
-                                                    height="100%"
-                                                    square
-                                                />
-                                                <QSkeleton
-                                                    v-if="isLoadingPost"
-                                                    height="100%"
-                                                    square
-                                                />
-                                                <QSkeleton
-                                                    v-if="isLoadingPost"
-                                                    height="100%"
-                                                    square
-                                                />
+                            <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
+                                <div
+                                    :class="
+                                        displayType === 'grid'
+                                            ? 'campaign__feeds-grid'
+                                            : 'campaign__feeds-list'
+                                    "
+                                >
+                                    <PostWrapper
+                                        v-for="post in posts"
+                                        :key="post.uri"
+                                        v-bind="post"
+                                        :campaignOwnerPriviledge="true"
+                                        :display="displayType"
+                                        :rounded="!sm"
+                                    />
 
-                                                <Transition name="slide-fade">
-                                                    <div
-                                                        v-if="posts.length >= 21"
-                                                        class="col-span-3 md:col-span-2 lg:col-span-3"
-                                                    >
-                                                        <div class="campaign__feeds-all">
-                                                            <QButton
-                                                                variant="secondary"
-                                                                size="sm"
-                                                                block
-                                                            >
-                                                                View All
-                                                            </QButton>
-                                                        </div>
-                                                    </div>
-                                                </Transition>
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'list'"
+                                        height="200px"
+                                        rounded
+                                    />
+
+                                    <Transition name="slide-fade">
+                                        <div
+                                            v-if="posts.length >= 21 && sm"
+                                            class="col-span-3 md:col-span-2 lg:col-span-3"
+                                        >
+                                            <div class="campaign__feeds-all">
+                                                <QButton variant="secondary" size="sm" block>
+                                                    View All
+                                                </QButton>
                                             </div>
-                                        </TabPanel>
-                                        <!-- end of feed grid -->
-
-                                        <!-- feed list -->
-                                        <TabPanel></TabPanel>
-                                        <!-- end of feed list -->
-                                    </TabPanels>
+                                        </div>
+                                    </Transition>
                                 </div>
+                            </div>
 
-                                <TabList class="campaign__feeds-control">
-                                    <Tab>
-                                        <QButton circle :variant="sm ? 'secondary' : 'neutral'">
-                                            <i class="ri-layout-grid-line ri-lg font-normal"></i>
-                                        </QButton>
-                                    </Tab>
+                            <div class="campaign__feeds-control">
+                                <QButton
+                                    circle
+                                    :variant="sm ? 'secondary' : 'neutral'"
+                                    @click="toggleDisplay"
+                                >
+                                    <i
+                                        :class="[
+                                            displayType === 'grid'
+                                                ? 'ri-layout-grid-line'
+                                                : 'ri-list-unordered',
+                                            'ri-lg',
+                                            'font-normal'
+                                        ]"
+                                    ></i>
+                                </QButton>
 
-                                    <Tab>
-                                        <QButton circle :variant="sm ? 'secondary' : 'neutral'">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                viewBox="0 0 32 32"
-                                                fill="none"
-                                            >
-                                                <path
-                                                    d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
-                                                    fill="#1B1B1B"
-                                                />
-                                            </svg>
-                                        </QButton>
-                                    </Tab>
-                                </TabList>
-                            </TabGroup>
-                            <div class="campaign__feeds__grid"></div>
+                                <QButton circle :variant="sm ? 'secondary' : 'neutral'">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
+                                            fill="#1B1B1B"
+                                        />
+                                    </svg>
+                                </QButton>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -361,9 +358,6 @@ onMounted(() => {
         left: 0;
         height: 300px;
 
-        // background-position: top;
-        // background-size: 100vw 300px;
-
         @media screen and (min-width: 630px) {
             height: 244px;
         }
@@ -371,10 +365,28 @@ onMounted(() => {
         @include md_screen {
             height: 100%;
             width: 100%;
-            /* Create the parallax scrolling effect */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }
+    }
+
+    .campaign__linear {
+        background: linear-gradient(
+            0deg,
+            #fff -1.71%,
+            #dee8e8 22.56%,
+            rgba(222, 232, 232, 0) 101.85%
+        );
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: none;
+
+        @include md_screen {
+            display: block;
         }
     }
 
@@ -419,10 +431,6 @@ onMounted(() => {
             }
         }
 
-        // .campaign__frames__stage {
-        //     @apply absolute;
-        // }
-
         .campaign__frames__options {
             @apply flex items-center justify-center space-x-2 max-w-full overflow-scroll;
             @include no_scrollbar();
@@ -446,7 +454,7 @@ onMounted(() => {
     }
 
     .campaign__detail {
-        @apply relative mx-4 pt-4 mt-2 border-t border-stroke bg-white space-y-4 flex flex-col justify-center;
+        @apply relative mx-4 sm:mx-0 pt-4 mt-2 border-t border-stroke bg-white space-y-4 flex flex-col justify-center;
 
         @include md_screen {
             @apply mx-0 mt-6 p-4 rounded-xl;
@@ -494,7 +502,6 @@ onMounted(() => {
     .campaign__feeds {
         margin-top: 24px;
         @apply h-full w-full bg-white relative overflow-hidden;
-        // max-height: 320px;
 
         @include md_screen {
             @apply rounded-3xl border-transparent;
@@ -509,21 +516,29 @@ onMounted(() => {
                 padding-top: 7px;
 
                 @include before {
-                    height: 12px;
+                    height: 18px;
                     top: -5px;
                     left: 0;
                     display: block;
                     width: 100%;
-                    background: linear-gradient(
-                        180deg,
-                        rgba(194, 196, 203, 0) 18.65%,
-                        #d6d8de 100%
-                    );
+                    background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
                 }
             }
 
             @include md_screen {
-                @apply p-2 overflow-scroll;
+                @apply p-2 overflow-scroll pb-16;
+            }
+        }
+
+        .campaign__feeds-grid {
+            @apply grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5;
+        }
+
+        .campaign__feeds-list {
+            @apply flex flex-col space-y-2.5 mt-1;
+
+            @include sm {
+                @apply container px-4;
             }
         }
 
@@ -532,63 +547,12 @@ onMounted(() => {
         }
 
         .campaign__feeds-control {
-            @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-4 pr-5 space-x-2;
-            // height: 160px;
-            // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 70%);
+            @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-2;
 
             @include md_screen {
                 @apply bottom-0 justify-start pt-2 pb-2 pr-0 pl-2 bg-white;
                 top: unset;
             }
-        }
-    }
-}
-
-.campaign-feeds {
-    @apply w-full p-2.5 relative overflow-hidden;
-    height: 100%;
-}
-
-.feeds-empty-state {
-    @apply grid grid-cols-3 gap-2.5;
-}
-
-.card-empty-state {
-    @apply aspect-square relative rounded-lg overflow-hidden;
-
-    .overlay {
-        @apply absolute w-full h-full bg-light opacity-[85%] z-20;
-    }
-
-    .frame {
-        @apply absolute top-0 left-0 z-10;
-    }
-
-    .user {
-    }
-}
-
-.empty-state-text {
-    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40;
-
-    .title {
-        @apply text-center font-bold text-2xl;
-    }
-
-    .description {
-        @apply text-center text-xl mt-2.5;
-    }
-}
-
-.feeds-action {
-    @apply absolute bottom-0 w-full z-30 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 83.09%);
-
-    .icon {
-        @apply font-normal bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;
-
-        i {
-            @apply text-[32px];
         }
     }
 }

@@ -62,6 +62,6 @@ const truncatedText = computed(() => {
 
 <style scoped lang="scss">
 .collapsible-text {
-    @apply prose prose-sm prose-a:cursor-pointer prose-a:ml-1 max-w-none;
+    @apply prose prose-sm prose-a:cursor-pointer prose-a:ml-1 max-w-none text-black;
 }
 </style>
