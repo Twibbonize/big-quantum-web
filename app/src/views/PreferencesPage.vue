@@ -294,7 +294,7 @@ const onScrollBillFilter = (e) => {
                                                                                 class="banner__wrapper"
                                                                             >
                                                                                 <img
-                                                                                    src="/assets/img/banners/banner-1.jpg"
+                                                                                    src="/assets/img/background/bg-default.jpg"
                                                                                     alt="Universe Tech"
                                                                                     class="banner__img"
                                                                                 />
