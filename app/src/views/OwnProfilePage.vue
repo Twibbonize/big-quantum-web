@@ -337,18 +337,21 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
 <style scoped lang="scss">
 .profile {
     .profile__top .profile__banner {
-        height: 160px;
-        background-image: url('/assets/img/banners/banner-1.jpg');
+        height: 220px;
+        background-image: url('/assets/img/background/bg-default.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
+        background-position: top;
         margin-top: -16px;
 
         @include lg_screen {
+            height: 320px;
+        }
+
+        @include xl_screen {
             height: 360px;
         }
     }
-
     .profile__avatar {
         @apply container px-5 xl:px-0 -mt-10 relative;
 
