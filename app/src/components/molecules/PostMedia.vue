@@ -2,8 +2,9 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
+import { usePostStore } from '@/stores/postStore';
 
-defineProps({
+const props = defineProps({
     image: {
         type: String,
         required: true
@@ -37,57 +38,73 @@ defineProps({
         default: true
     }
 });
+
+const postStore = usePostStore();
+const { showPost } = postStore;
+
+const handleShowPost = () => {
+    showPost({
+        ...props
+    });
+};
 </script>
 
 <template>
     <div :class="['post', rounded && 'post--rounded']">
-        <div class="post__thumbnail">
+        <a class="post__thumbnail" @click="handleShowPost">
             <img :src="image" alt="frame" class="post__thumbnail-frame" />
             <div class="post__thumbnail-overlay"></div>
+        </a>
 
-            <Menu as="div" class="post__more-menu">
-                <MenuButton class="post__more-menu__button">
-                    <i class="ri-more-line ri-lg"></i>
-                </MenuButton>
-                <transition
-                    enter-active-class="transition duration-100 ease-out"
-                    enter-from-class="transform scale-95 opacity-0"
-                    enter-to-class="transform scale-100 opacity-100"
-                    leave-active-class="transition duration-75 ease-in"
-                    leave-from-class="transform scale-100 opacity-100"
-                    leave-to-class="transform scale-95 opacity-0"
+        <Menu as="div" class="post__more-menu">
+            <MenuButton class="post__more-menu__button">
+                <i class="ri-more-line ri-lg"></i>
+            </MenuButton>
+            <transition
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
+            >
+                <MenuItems
+                    class="absolute right-0 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
                 >
-                    <MenuItems
-                        class="absolute right-0 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
-                    >
-                        <QPopoverMenu>
-                            <MenuItem>
-                                <QPopoverMenuItem>
-                                    <i class="ri-pushpin-line"></i>
-                                    <span>Pin Post</span>
-                                </QPopoverMenuItem>
-                            </MenuItem>
+                    <QPopoverMenu>
+                        <MenuItem>
+                            <QPopoverMenuItem>
+                                <i class="ri-pushpin-line"></i>
+                                <span>Pin Post</span>
+                            </QPopoverMenuItem>
+                        </MenuItem>
 
-                            <MenuItem>
-                                <QPopoverMenuItem>
-                                    <i class="ri-eye-off-line"></i>
-                                    <span>Hide Post</span>
-                                </QPopoverMenuItem>
-                            </MenuItem>
+                        <MenuItem>
+                            <QPopoverMenuItem>
+                                <i class="ri-eye-off-line"></i>
+                                <span>Hide Post</span>
+                            </QPopoverMenuItem>
+                        </MenuItem>
 
-                            <MenuItem>
-                                <QPopoverMenuItem>
-                                    <div class="flex items-center text-red-500 space-x-2">
-                                        <i class="ri-flag-line"></i>
-                                        <span>Report</span>
-                                    </div>
-                                </QPopoverMenuItem>
-                            </MenuItem>
-                        </QPopoverMenu>
-                    </MenuItems>
-                </transition>
-            </Menu>
-        </div>
+                        <MenuItem>
+                            <QPopoverMenuItem>
+                                <i class="ri-share-line"></i>
+                                <span>Share</span>
+                            </QPopoverMenuItem>
+                        </MenuItem>
+
+                        <MenuItem>
+                            <QPopoverMenuItem>
+                                <div class="flex items-center text-red-500 space-x-2">
+                                    <i class="ri-flag-line"></i>
+                                    <span>Report</span>
+                                </div>
+                            </QPopoverMenuItem>
+                        </MenuItem>
+                    </QPopoverMenu>
+                </MenuItems>
+            </transition>
+        </Menu>
     </div>
 </template>
 

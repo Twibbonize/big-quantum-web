@@ -207,11 +207,19 @@ const commentValidation = yupObject().shape({
     }
 
     .post-modal__image {
-        @apply max-w-full bg-gray-100 px-4 py-6 flex items-center justify-center flex-grow h-0;
-        min-height: 450px;
+        @apply max-w-full bg-gray-100 px-4 py-6 flex items-center justify-center flex-grow;
+
+        @include lg_screen {
+            @apply h-0;
+            min-height: 450px;
+
+            img {
+                @apply max-h-full;
+            }
+        }
 
         img {
-            @apply rounded-xl max-w-full h-full;
+            @apply rounded-xl max-w-full;
         }
     }
 

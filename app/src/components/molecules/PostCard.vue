@@ -51,6 +51,14 @@ const props = defineProps({
     comments: {
         type: Array,
         default: []
+    },
+    campaignBanner: {
+        type: Boolean,
+        default: true
+    },
+    campaignOwnerPriviledge: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -108,6 +116,16 @@ const handleShowPost = () => {
                 </template>
 
                 <QPopoverMenu>
+                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                        <i class="ri-pushpin-line ri-1x"></i>
+                        <span>Pin Post</span>
+                    </QPopoverMenuItem>
+
+                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                        <i class="ri-eye-off-line ri-1x"></i>
+                        <span>Hide Post</span>
+                    </QPopoverMenuItem>
+
                     <QPopoverMenuItem @click="handleOpenShare">
                         <i class="ri-share-line ri-1x"></i>
                         <span>Share</span>
@@ -123,16 +141,55 @@ const handleShowPost = () => {
             </QPopover>
         </div>
 
-        <div class="profile-card__image-wrapper">
+        <a class="profile-card__image-wrapper" @click="handleShowPost">
             <img
                 class="h-full object-cover object-center md:rounded-xl"
                 :src="image"
                 :alt="campaign.name"
             />
+        </a>
+
+        <div class="flex items-center space-x-2 absolute right-2 top-2 z-10">
+            <QPopover>
+                <template #trigger>
+                    <span
+                        class="w-8 h-8 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
+                    >
+                        <i class="ri-more-line ri-lg"></i>
+                    </span>
+                </template>
+
+                <QPopoverMenu>
+                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                        <i class="ri-pushpin-line ri-1x"></i>
+                        <span>Pin Post</span>
+                    </QPopoverMenuItem>
+
+                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                        <i class="ri-eye-off-line ri-1x"></i>
+                        <span>Hide Post</span>
+                    </QPopoverMenuItem>
+
+                    <QPopoverMenuItem @click="handleOpenShare">
+                        <i class="ri-share-line ri-1x"></i>
+                        <span>Share</span>
+                    </QPopoverMenuItem>
+
+                    <QPopoverMenuItem>
+                        <div class="text-red-400 space-x-2">
+                            <i class="ri-flag-line ri-1x"></i>
+                            <span>Report</span>
+                        </div>
+                    </QPopoverMenuItem>
+                </QPopoverMenu>
+            </QPopover>
         </div>
 
-        <div class="profile-card__main md:ml-4">
-            <div class="hidden md:flex items-center justify-between">
+        <div class="profile-card__main">
+            <div
+                v-if="campaignBanner"
+                class="hidden md:flex items-center justify-between relative mb-2 lg:mb-3"
+            >
                 <div class="flex items-center space-x-3 flex-shrink-0">
                     <div class="flex flex-col flex-shrink-0">
                         <div
@@ -153,58 +210,36 @@ const handleShowPost = () => {
                         </QButton>
                     </div>
                 </div>
+            </div>
 
-                <div class="flex items-center space-x-2">
-                    <QPopover>
-                        <template #trigger>
-                            <span
-                                class="w-8 h-8 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
-                            >
-                                <i class="ri-more-line ri-lg"></i>
-                            </span>
-                        </template>
-
-                        <QPopoverMenu>
-                            <QPopoverMenuItem @click="handleOpenShare">
-                                <i class="ri-share-line ri-1x"></i>
-                                <span>Share</span>
-                            </QPopoverMenuItem>
-
-                            <QPopoverMenuItem>
-                                <div class="text-red-400 space-x-2">
-                                    <i class="ri-flag-line ri-1x"></i>
-                                    <span>Report</span>
-                                </div>
-                            </QPopoverMenuItem>
-                        </QPopoverMenu>
-                    </QPopover>
+            <div class="pr-4">
+                <div ref="captionContainer" class="profile-card__caption">
+                    <QEllipsisText
+                        :text="caption"
+                        :expandable="false"
+                        :containerWidth="(captionContainer && captionContainer.offsetWidth) || 240"
+                        @toggle="handleShowPost"
+                    />
                 </div>
-            </div>
 
-            <div ref="captionContainer" class="profile-card__caption">
-                <QEllipsisText
-                    :text="caption"
-                    :expandable="false"
-                    :containerWidth="(captionContainer && captionContainer.offsetWidth) || 240"
-                    @toggle="handleShowPost"
-                />
-            </div>
+                <div class="hidden md:flex mb-2 lg:mb-3">
+                    <QCreator v-bind="creator" />
+                </div>
 
-            <div class="hidden md:flex">
-                <QCreator v-bind="creator" />
-            </div>
-
-            <div class="hidden md:flex items-center space-x-2">
-                <a
-                    class="text-xs md:text-sm cursor-pointer transition-colors"
-                    @click="handleShowPost"
+                <div
+                    class="hidden md:flex items-center space-x-2 pt-2 lg:pt-3 border-t border-stroke"
                 >
-                    <i class="ri ri-message-3-line ri-lg"></i>
-                    <span v-if="comments.length" class="ml-1 text-content hover:text-black"
-                        >View all {{ comments.length }} Comments</span
+                    <a
+                        class="text-xs md:text-sm cursor-pointer transition-colors"
+                        @click="handleShowPost"
                     >
-                    <span v-else class="ml-1 text-content hover:text-black">Comment</span>
-                </a>
+                        <i class="ri ri-message-3-line ri-lg"></i>
+                        <span v-if="comments.length" class="ml-1 text-content hover:text-black"
+                            >View all {{ comments.length }} Comments</span
+                        >
+                        <span v-else class="ml-1 text-content hover:text-black">Comment</span>
+                    </a>
+                </div>
             </div>
 
             <div class="block md:hidden border-t border-stroke px-3 py-3 rounded-b-xl">
@@ -229,20 +264,30 @@ const handleShowPost = () => {
 
 <style scoped lang="scss">
 .profile-card {
-    @apply border border-stroke rounded-xl w-full block;
+    @apply border border-stroke rounded-xl w-full block relative;
 
     @include md_screen {
-        @apply flex items-center border border-stroke rounded-xl w-full p-1 pr-4;
+        @apply flex border items-center border-stroke rounded-xl w-full p-1 pr-4;
+    }
+
+    @include lg_screen {
+        @apply items-center;
     }
 
     .profile-card__image-wrapper {
+        @apply cursor-pointer;
+
         @include md_screen {
+            @apply h-32 w-32 aspect-square flex-shrink-0;
+        }
+
+        @include lg_screen {
             @apply h-52 w-52 flex items-center justify-center flex-shrink-0;
         }
     }
 
     .profile-card__caption {
-        @apply px-3 py-2;
+        @apply px-3 py-2 mb-2 lg:mb-3;
 
         @include md_screen {
             @apply px-0 py-0;
@@ -250,10 +295,14 @@ const handleShowPost = () => {
     }
 
     .profile-card__main {
-        @apply px-0;
+        @apply px-0 relative py-2;
 
         @include md_screen {
-            @apply flex flex-col flex-grow space-y-3 h-full px-0 py-0;
+            @apply flex flex-col flex-grow px-0  ml-2;
+        }
+
+        @include lg_screen {
+            @apply ml-4;
         }
     }
 }
