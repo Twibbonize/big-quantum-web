@@ -1,10 +1,10 @@
 <script setup>
 import { string as yupString, object as yupObject } from 'yup';
-import { Field, Form as VeeForm } from 'vee-validate';
+import { Form as VeeForm } from 'vee-validate';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QSeparator from '@/components/atoms/QSeparator.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import CollectionCardSelection from '@/components/molecules/CollectionCardSelection.vue';
@@ -25,6 +25,11 @@ const formValidation = yupObject().shape({
     description: yupString()
 });
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+
+const calculateHeight = () => {};
+
 const onFilterCollection = useDebounceFn(() => {
     filterCollectionsByName(query.value);
 }, 600);
@@ -34,16 +39,16 @@ onMounted(() => {
 });
 </script>
 <template>
-    <QModal :show="show" @close="show = false" size="lg">
+    <QModal :show="show" @close="show = false" size="lg" :position="sm ? 'bottom' : 'center'">
         <template #body>
             <div class="collection-modal">
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
                     <div class="collection-modal__header">
-                        <h3 class="text-base leading-none">
+                        <h3 class="text-base max-w-xs sm:max-w-none">
                             Add <span class="font-bold">{{ campaign.name }}</span> to Collections
                         </h3>
 
-                        <div class="collection-modal__close">
+                        <div v-show="!sm" class="collection-modal__close">
                             <QButton
                                 variant="subtle"
                                 size="sm"
@@ -97,8 +102,9 @@ onMounted(() => {
 
                     <div class="collection-modal__footer">
                         <QButton variant="secondary" size="sm" @click="view = 'create'"
-                            >Create a New Collection</QButton
-                        >
+                            >Create a New Collection
+                        </QButton>
+
                         <QButton size="sm" @click="closeCollectionModal">Done</QButton>
                     </div>
                 </div>
@@ -181,7 +187,7 @@ onMounted(() => {
     // }
 
     .collection-modal__list {
-        height: 320px;
+        // height: 320px;
         overflow: auto;
         @apply px-5 pt-2 pb-5;
     }

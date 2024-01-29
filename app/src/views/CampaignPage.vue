@@ -12,7 +12,9 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
+import { useCollectionStore } from '@/stores/collectionStore';
 
+import { useShareStore } from '@/stores/shareStore';
 import { publicPosts } from '@/mock/posts';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -32,6 +34,11 @@ const selectedFrames = ref(frames[0]);
 const posts = ref([...publicPosts.slice(0, 6)]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
+
+const shareStore = useShareStore();
+const collectionStore = useCollectionStore();
+const { openShare } = shareStore;
+const { showCollectionModal } = collectionStore;
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
@@ -70,6 +77,22 @@ const lazyLoad = () => {
 
 const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
+};
+
+const onClickShare = () => {
+    // const { url, thumbnail } = props;
+    openShare(
+        'twb.nz/hanoi-art-2025',
+        { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
+        'campaign'
+    );
+};
+
+const onClickCollection = () => {
+    showCollectionModal({
+        name: 'Hanoi Art Book Fair 2025',
+        thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+    });
 };
 
 onMounted(() => {
@@ -222,23 +245,17 @@ onMounted(() => {
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
                                         <QShareButton
-                                            link="twb.nz/u/universetech"
-                                            @click="
-                                                openShare(
-                                                    'twb.nz/u/universetech',
-                                                    {
-                                                        avatar: getAvatarUrl('sample-avatar-1.jpg'),
-                                                        name: 'Universe Tech',
-                                                        username: 'universetech'
-                                                    },
-                                                    'profile'
-                                                )
-                                            "
+                                            link="twb.nz/hanoi-art-2025"
+                                            @click="onClickShare"
                                         />
                                     </div>
 
                                     <div class="flex-shrink-0">
-                                        <QButton circle variant="secondary">
+                                        <QButton
+                                            circle
+                                            variant="secondary"
+                                            @click="onClickCollection"
+                                        >
                                             <i class="ri-bookmark-line"></i>
                                         </QButton>
                                     </div>

@@ -1,8 +1,10 @@
 <script setup>
-import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useMotionProperties, useSpring } from '@vueuse/motion';
+import { useDrag } from '@vueuse/gesture';
+import { onClickOutside } from '@vueuse/core';
 
-defineProps({
+const props = defineProps({
     show: {
         type: Boolean,
         default: false
@@ -31,72 +33,134 @@ defineProps({
 });
 
 const emit = defineEmits(['close']);
+const dialogContentEl = ref(null);
 
-const dialogBodyEl = ref(null);
+const { motionProperties } = useMotionProperties(dialogContentEl, {
+    cursor: 'default',
+    x: 0,
+    y: 0
+});
+const { set } = useSpring(motionProperties);
+// const { push } = useMotionTransitions(motionProperties);
+
+const dialogClasses = computed(() => {
+    const { position, size, closeBtn } = props;
+    return ['dialog', `dialog--${position}`, `dialog--${size}`, closeBtn && 'dialog--has-close'];
+});
+
+const handleClose = () => {
+    emit('close');
+
+    setTimeout(() => {
+        set({ x: 0, y: 0, cursor: 'default' });
+    }, 500);
+};
+
+const dragHandler = ({ movement: [_x, y], dragging }) => {
+    if (props.position !== 'bottom') {
+        return;
+    }
+
+    if (!dragging) {
+        if (y >= dialogContentEl.value.clientHeight / 2) {
+            handleClose();
+            return;
+        }
+
+        set({ x: 0, y: 0, cursor: 'default' });
+        return;
+    } else {
+        if (y < 0) return;
+
+        set({
+            cursor: 'default',
+            y
+        });
+    }
+};
+
+useDrag(dragHandler, {
+    domTarget: dialogContentEl,
+    filterTaps: true,
+    cursor: 'default'
+});
+
+onClickOutside(dialogContentEl, handleClose);
+
+watch(
+    () => props.show,
+    (newValue) => {
+        if (newValue) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+);
 </script>
 
 <template>
-    <TransitionRoot appear :show="show" as="template">
-        <Dialog @close="!isStatic && $emit('close')">
-            <div
-                :class="[
-                    'dialog',
-                    `dialog--${position}`,
-                    `dialog--${size}`,
-                    closeBtn && 'dialog--has-close'
-                ]"
-            >
-                <TransitionChild
-                    as="template"
-                    enter="duration-300 ease-out"
-                    enter-from="opacity-0"
-                    enter-to="opacity-100"
-                    leave="duration-200 ease-in"
-                    leave-from="opacity-100"
-                    leave-to="opacity-0"
-                >
-                    <div class="dialog__overlay" />
-                </TransitionChild>
+    <div :class="dialogClasses">
+        <Transition>
+            <div v-show="show" class="dialog__overlay" />
+        </Transition>
 
-                <div class="dialog__wrapper">
-                    <div class="dialog__close-wrapper">
-                        <button class="dialog__close-btn" @click="$emit('close')">
-                            <i class="ri ri-close-line ri-lg"></i>
-                        </button>
+        <Transition name="slide-up">
+            <div v-show="show" class="dialog__wrapper">
+                <div class="dialog__close-wrapper">
+                    <button class="dialog__close-btn" @click="$emit('close')">
+                        <i class="ri ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+                <div ref="dialogContentEl" class="dialog__content">
+                    <div class="dialog__drag-handler">
+                        <span class="dialog__drag-handler__thumb"></span>
                     </div>
-                    <TransitionChild
-                        as="template"
-                        enter="duration-300 ease-out"
-                        enter-from="opacity-0 scale-95"
-                        enter-to="opacity-100 scale-100"
-                        leave="duration-200 ease-in"
-                        leave-from="opacity-100 scale-100"
-                        leave-to="opacity-0 scale-95"
-                    >
-                        <DialogPanel as="template">
-                            <div class="dialog__content">
-                                <div v-if="$slots.header" class="dialog__header">
-                                    <slot name="header"></slot>
-                                </div>
-                                <div ref="dialogBodyEl" class="dialog__body">
-                                    <slot
-                                        name="body"
-                                        :bodyEl="dialogBodyEl?.offsetHeight || 0"
-                                    ></slot>
-                                </div>
-                                <div v-if="$slots.footer" class="dialog__footer">
-                                    <slot name="footer"></slot>
-                                </div>
-                            </div>
-                        </DialogPanel>
-                    </TransitionChild>
+
+                    <div v-if="$slots.header" class="dialog__header">
+                        <slot name="header"></slot>
+                    </div>
+                    <div class="dialog__body">
+                        <slot name="body"></slot>
+                    </div>
+                    <div v-if="$slots.footer" class="dialog__footer">
+                        <slot name="footer"></slot>
+                    </div>
                 </div>
             </div>
-        </Dialog>
-    </TransitionRoot>
+        </Transition>
+    </div>
 </template>
 
 <style scoped lang="scss">
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.slide-up-enter-active {
+    animation: slide-up 0.5s ease-out;
+}
+
+.slide-up-leave-active {
+    animation: slide-up 0.5s reverse ease-out;
+}
+
 .dialog {
     @apply relative;
     z-index: 65;
@@ -129,10 +193,20 @@ const dialogBodyEl = ref(null);
         max-width: unset;
         height: auto;
     }
+
     &.dialog--screen .dialog__wrapper .dialog__content {
         border-radius: 0px;
         max-height: calc(100dvh);
         height: 100%;
+    }
+
+    &.dialog--bottom .dialog__wrapper {
+        @apply justify-end px-0 md:px-0 lg:px-0;
+    }
+
+    &.dialog--bottom .dialog__wrapper .dialog__content {
+        @apply rounded-none rounded-tr-xl rounded-tl-xl;
+        max-height: 95vh;
     }
 
     .dialog__content {
@@ -140,6 +214,22 @@ const dialogBodyEl = ref(null);
         z-index: 67;
         max-height: 80vh;
         min-height: 360px;
+    }
+
+    & .dialog__drag-handler {
+        @apply hidden items-center justify-center pt-4;
+    }
+
+    .dialog__drag-handler__thumb {
+        width: 32px;
+        height: 4px;
+        display: block;
+        background: #79747e;
+        border-radius: 100px;
+    }
+
+    &.dialog--bottom .dialog__content .dialog__drag-handler {
+        @apply flex;
     }
 
     .dialog__header {

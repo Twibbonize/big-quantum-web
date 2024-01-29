@@ -29,7 +29,7 @@ const props = defineProps({
         type: String,
         required: true
     },
-    url: {
+    uri: {
         type: String
     },
     hit: {
@@ -62,8 +62,8 @@ onClickOutside(campaignCardEl, () => {
 });
 
 const onClickShare = () => {
-    const { url, thumbnail } = props;
-    openShare(url, { thumbnail }, 'campaign');
+    const { uri, thumbnail } = props;
+    openShare(uri, { thumbnail }, 'campaign');
 };
 
 const onClickCollection = () => {

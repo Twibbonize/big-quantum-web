@@ -2,6 +2,7 @@ import 'animate.css';
 import 'remixicon/fonts/remixicon.css';
 import '@/assets/scss/style.scss';
 import 'aos/dist/aos.css';
+import { MotionPlugin } from '@vueuse/motion';
 
 import { createApp, ref } from 'vue';
 import { createPinia } from 'pinia';
@@ -28,5 +29,6 @@ app.use(createPinia());
 app.use(router);
 app.use(VueWriter);
 app.use(Vue3Lottie);
+app.use(MotionPlugin);
 
 app.mount('#app');
