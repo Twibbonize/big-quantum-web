@@ -149,7 +149,7 @@ const handleShowPost = () => {
             />
         </a>
 
-        <div class="flex items-center space-x-2 absolute right-2 top-2 z-10">
+        <div class="hidden md:flex items-center space-x-2 absolute right-2 top-2 z-10">
             <QPopover>
                 <template #trigger>
                     <span
