@@ -12,10 +12,12 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { ownCampaigns } from '@/mock/campaigns';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 const emit = defineEmits(['change-navbar']);
@@ -55,113 +57,6 @@ const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
 const { openShare } = shareStore;
-
-// const campaigns = /
-
-const campaigns = computed(() => {
-    const samples = [
-        {
-            name: 'UNIVERSE UNPACKED 2022',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg',
-            url: 'twb.nz/u/universetech'
-        },
-        {
-            name: 'Liberty Scholarship 2025',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 1470,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg',
-            url: 'twb.nz/u/libertyscholarship'
-        },
-        {
-            name: 'Bit by Bit - Retro Gaming',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 15100,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg',
-            url: 'twb.nz/u/bitbybit'
-        },
-        {
-            name: 'Digital Culture Webinar',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg',
-            url: 'twb.nz/u/digitalculturewebinar'
-        },
-        {
-            name: 'Candy Rush Treats or Treats',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-5.jpg',
-            url: 'twb.nz/u/candyrushtreats'
-        },
-        {
-            name: 'Nucleotide Labo Fashion Researcher Program',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 14700,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-6.jpg',
-            url: 'twb.nz/u/nucleotidelabo'
-        },
-        {
-            name: 'Fashion Week 2025',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-7.jpg',
-            url: 'twb.nz/u/fashionweek2025',
-            hit: 14929
-        },
-        {
-            name: 'ASO Rock Festa 2024',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-8.jpg',
-            url: 'twb.nz/u/asorockfest2024'
-        }
-    ];
-
-    return samples.map(({ thumbnail, campaignCreator, ...other }) => {
-        const { name, avatar } = campaignCreator;
-        return {
-            ...other,
-            thumbnail: getThumbnailUrl(thumbnail),
-            campaignCreator: {
-                name,
-                avatar: getAvatarUrl(avatar)
-            }
-        };
-    });
-});
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
@@ -284,12 +179,12 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                         @click="
                                             openShare(
                                                 'twb.nz/u/universetech',
-                                                getAvatarUrl('sample-avatar-1.jpg'),
-                                                'profile',
                                                 {
+                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
                                                     name: 'Universe Tech',
                                                     username: 'universetech'
-                                                }
+                                                },
+                                                'profile'
                                             )
                                         "
                                     />
@@ -370,12 +265,12 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                     <QTabs :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
-                                <div class="campaigns-filter">
-                                    <div class="campaigns-filter__search">
+                                <div class="filters">
+                                    <div class="filters__search">
                                         <QInputText
                                             name="search"
                                             size="sm"
-                                            placeholder="Search campaigns..."
+                                            placeholder="Search Campaigns"
                                         >
                                             <template #prefix>
                                                 <div class="pl-3 pr-1 h-full">
@@ -385,7 +280,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                         </QInputText>
                                     </div>
 
-                                    <div class="campaigns-filter__sort">
+                                    <div class="filters__sort">
                                         <QListbox
                                             v-model="selectedSortCampaign"
                                             :options="sortCampaignOptions"
@@ -398,7 +293,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                     class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-6 mt-6 md:mt-10"
                                 >
                                     <CampaignCard
-                                        v-for="campaign in campaigns"
+                                        v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
                                         :actions="true"
                                         :deleteAble="true"
@@ -568,24 +463,30 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
 }
 
 // campaigns filter
-.campaigns-filter {
+.filters {
     @apply flex items-center justify-between space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
 
-        .campaigns-filter__search,
-        .campaigns-filter__sort {
+        .filters__search,
+        .filters__sort {
             @apply w-full;
         }
     }
 
-    .campaigns-filter__search,
-    .campaigns-filter__sort {
+    .filters__search,
+    .filters__sort {
         @apply flex-grow;
     }
 
-    .campaigns-filter__sort {
+    .filters__search {
+        @include md_screen {
+            @apply max-w-xs;
+        }
+    }
+
+    .filters__sort {
         // @apply max-w-xs;
 
         @include md_screen {

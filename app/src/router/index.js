@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { RouterView, createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 import CreatorsPage from '@/views/CreatorsPage.vue';
 import PlusPage from '@/views/PlusPage.vue';
@@ -7,6 +7,9 @@ import ProfilePage from '@/views/ProfilePage.vue';
 import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
+import CollectionPage from '@/views/CollectionPage.vue';
+import ExplorePage from '@/views/ExplorePage.vue';
+import LeaderboardPage from '@/views/LeaderboardPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,47 +17,92 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: HomePage
+            component: HomePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+
+        {
+            path: '/explore/:tab(campaign|collection|creator)?',
+            name: 'explore',
+            component: ExplorePage,
+            props: true,
+            meta: {
+                navbarSearch: false
+            }
         },
         {
-            path: '/explore',
-            name: 'explore',
-            component: HomePage
+            path: '/leaderboard',
+            name: 'leaderboard',
+            component: LeaderboardPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/creators',
             name: 'creators',
-            component: CreatorsPage
+            component: CreatorsPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/plus',
             name: 'plus',
-            component: PlusPage
+            component: PlusPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/test',
             name: 'test',
-            component: TestPage
+            component: TestPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/u/universetech',
             name: 'profile',
-            component: ProfilePage
+            component: ProfilePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/c/:uri',
+            name: 'collection',
+            component: CollectionPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/profile',
             name: 'own-profile',
-            component: OwnProfilePage
+            component: OwnProfilePage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/hanoi-art',
             name: 'campaign',
-            component: CampaignPage
+            component: CampaignPage,
+            meta: {
+                navbarSearch: true
+            }
         },
         {
             path: '/settings',
             name: 'settings',
-            component: PreferencesPage
+            component: PreferencesPage,
+            meta: {
+                navbarSearch: true
+            }
         }
     ],
     scrollBehavior(to, from, savedPosition) {

@@ -15,13 +15,16 @@ const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);
 const navbarColor = ref('gradient');
+const navbarShadow = ref(false);
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
     if (top < 97) {
         navbarColor.value = 'white';
+        navbarShadow.value = true;
     } else {
         navbarColor.value = 'gradient';
+        navbarShadow.value = false;
     }
 };
 
@@ -36,7 +39,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div class="home-page">
             <HeroParticipant :width="width" :height="height" />
             <div ref="content"></div>

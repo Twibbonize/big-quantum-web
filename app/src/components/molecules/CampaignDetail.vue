@@ -1,12 +1,8 @@
-<script setup>
-</script>
+<script setup></script>
 
-<template>
-
-</template>
+<template></template>
 
 <style lang="scss">
-  .campaign-detail {
-    
-  }
+.campaign-detail {
+}
 </style>

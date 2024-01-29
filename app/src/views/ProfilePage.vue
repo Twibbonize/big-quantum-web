@@ -1,22 +1,31 @@
 <script setup>
-import { computed, inject, onMounted, ref } from 'vue';
+import { inject, ref } from 'vue';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { RouterLink } from 'vue-router';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { object as yupObject, string as yupString } from 'yup';
+
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
-import QCard from '@/components/atoms/QCard.vue';
-import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QModal from '@/components/atoms/QModal.vue';
+import QCard from '@/components/atoms/QCard.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
+import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
-import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
-import ReportModal from '@/components/organisms/ReportModal.vue';
-import CampaignCard from '@/components/molecules/CampaignCard.vue';
+import QModal from '@/components/atoms/QModal.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import QTabs from '@/components/atoms/QTabs.vue';
+import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
+import CampaignCard from '@/components/molecules/CampaignCard.vue';
+import CollectionCard from '@/components/molecules/CollectionCard.vue';
+import PostCard from '@/components/molecules/PostCard.vue';
+import ReportModal from '@/components/organisms/ReportModal.vue';
+
 import { useShareStore } from '@/stores/shareStore';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { ownCampaigns } from '@/mock/campaigns';
+import { ownCollections } from '@/mock/collections';
 
-import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 const emit = defineEmits(['change-navbar']);
@@ -53,115 +62,144 @@ const activeTab = ref(0);
 const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
+const bioContainer = ref(null);
 const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
 const { openShare } = shareStore;
 
-// const campaigns = /
-
-const campaigns = computed(() => {
-    const samples = [
-        {
-            name: 'UNIVERSE UNPACKED 2022',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-1.jpg'
-        },
-        {
-            name: 'Liberty Scholarship 2025',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 1470,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-2.jpg'
-        },
-        {
-            name: 'Bit by Bit - Retro Gaming',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 15100,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-3.jpg'
-        },
-        {
-            name: 'Digital Culture Webinar',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-4.jpg'
-        },
-        {
-            name: 'Candy Rush Treats or Treats',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 85500,
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-5.jpg'
-        },
-        {
-            name: 'Nucleotide Labo Fashion Researcher Program',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 14700,
-            createdAt: dayjs().subtract(3, 'week').fromNow(),
-            thumbnail: 'sample-campaign-6.jpg'
-        },
-        {
-            name: 'Fashion Week 2025',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            createdAt: dayjs().subtract(5, 'day').fromNow(),
-            thumbnail: 'sample-campaign-7.jpg',
-            hit: 14929
-        },
-        {
-            name: 'ASO Rock Festa 2024',
-            campaignCreator: {
-                name: 'Universe Tech',
-                avatar: 'sample-avatar-1.jpg'
-            },
-            hit: 7700,
-            createdAt: dayjs().subtract(1, 'week').fromNow(),
-            thumbnail: 'sample-campaign-8.jpg'
-        }
-    ];
-
-    return samples.map(({ thumbnail, campaignCreator, ...other }) => {
-        const { name, avatar } = campaignCreator;
-        return {
-            ...other,
-            thumbnail: getThumbnailUrl(thumbnail),
-            campaignCreator: {
-                name,
-                avatar: getAvatarUrl(avatar)
-            }
-        };
-    });
-});
-
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
 
-onMounted(() => {
-    emit('change-navbar', 'black');
+const posts = [
+    {
+        image: '/assets/img/sample/sample-post-1.jpg',
+        campaign: {
+            name: 'Hanoi Art Book Fair 2025',
+            url: 'hanoi-art-book-fair-2025'
+        },
+        caption:
+            'Immersed in the vibrant tapestry of Hanoi Art Fair 2025 – a captivating journey through the heart of creativity! The fusion of traditional and contemporary art forms has left me absolutely exhilarated. 🎨✨ #HanoiArtFair #ArtisticAdventure',
+        createdAt: '2024-01-07T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: '677a623',
+        comments: [
+            {
+                creator: {
+                    name: 'Martin Emmerich',
+                    username: 'martinem129',
+                    avatar: '/assets/img/sample/sample-avatar-3.jpg'
+                },
+                createdAt: 1705403365744,
+                comment:
+                    "The fair in Hanoi seems like an incredible event, a true celebration of the city's artistic spirit. I can only imagine the richness of the traditional and contemporary art forms on display.",
+                likes: 0,
+                replies: [
+                    {
+                        creator: {
+                            name: 'Alice Smith',
+                            username: 'alicesmith',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/414.jpg'
+                        },
+                        comment:
+                            "The fair in Hanoi seems like an incredible event, a true celebration of the city's artistic spirit. I can only imagine the richness of the traditional and contemporary art forms on display.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Bob Johnson',
+                            username: 'bobjohson',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/554.jpg'
+                        },
+                        comment:
+                            'Absolutely! The Hanoi fair is a magical experience, blending the old and the new in a vibrant showcase of art. Have you had the chance to attend it yourself?',
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Charlie Brown',
+                            username: 'charliebrown',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/314.jpg'
+                        },
+                        comment:
+                            "I couldn't agree more! The fusion of traditional and contemporary art at the Hanoi fair is simply mesmerizing. It's a testament to the city's rich cultural tapestry.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Diana Miller',
+                            username: 'dianamiller',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/112.jpg'
+                        },
+                        comment:
+                            'The Hanoi fair is indeed a celebration of art and culture. The diverse range of artistic expressions creates an immersive experience. Which particular art forms are you most interested in?',
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Ethan Davis',
+                            username: 'ethandavis',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/859.jpg'
+                        },
+                        comment:
+                            "I feel the same way! Hanoi's fair is like a canvas that paints the city's artistic soul. If you haven't been yet, it's definitely worth experiencing firsthand.",
+                        createdAt: 1705403361044
+                    },
+
+                    {
+                        creator: {
+                            name: 'Fiona Wilson',
+                            username: 'fionawilson',
+                            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/397.jpg'
+                        },
+                        comment:
+                            "It truly is a spectacle! The Hanoi fair manages to capture the essence of the city's artistic evolution. Any specific art installations or performances that caught your attention?",
+                        createdAt: 1705403361044
+                    }
+                ]
+            },
+            {
+                creator: {
+                    name: 'Rhonda Pouros',
+                    username: 'rhonda99',
+                    avatar: '/assets/img/sample/sample-avatar-5.jpg'
+                },
+                createdAt: 1705403365744,
+                comment:
+                    'This event in Hanoi looks like a dream for art enthusiasts! The blend of traditional and contemporary art forms creates a unique and immersive atmosphere. Truly a feast for the senses.',
+                likes: 0,
+                replies: []
+            }
+        ]
+    },
+    {
+        image: '/assets/img/sample/sample-post-2.jpg',
+        campaign: {
+            name: 'Universe Tech Future Developers',
+            url: 'utech-future-developers'
+        },
+        caption:
+            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
+        createdAt: '2023-10-12T10:30:45',
+        creator: {
+            name: 'Universe Tech',
+            username: 'universetech',
+            avatar: '/assets/img/sample/sample-avatar-1.jpg'
+        },
+        uri: 'f3f3fab'
+    }
+];
+
+const commentValidation = yupObject().shape({
+    comment_input: yupString().required()
 });
 </script>
 
@@ -226,9 +264,9 @@ onMounted(() => {
                                 <li>
                                     <div class="flex items-center space-x-2">
                                         <i class="ri-global-line ri-xl"></i>
-                                        <a href="#" class="text-sm font-light underline"
-                                            >www.universe-tech.com</a
-                                        >
+                                        <a href="#" class="text-sm font-light underline">
+                                            www.universe-tech.com
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -257,8 +295,13 @@ onMounted(() => {
                             <div class="space-y-1">
                                 <h1 class="profile__name">Universe Tech</h1>
                                 <p class="profile__username">@universetech</p>
-                                <div class="profile__bio">
-                                    <QEllipsisText :text="profile.bio" />
+                                <div ref="bioContainer" class="profile__bio">
+                                    <QEllipsisText
+                                        :text="profile.bio"
+                                        :containerWidth="
+                                            (bioContainer && bioContainer.offsetWidth) || 240
+                                        "
+                                    />
                                 </div>
                                 <div class="profile__web text-content">
                                     <i class="ri-links-line"></i>
@@ -279,7 +322,11 @@ onMounted(() => {
                                         @click="
                                             openShare(
                                                 'twb.nz/u/universetech',
-                                                getAvatarUrl('sample-avatar-1.jpg'),
+                                                {
+                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
+                                                    name: 'Universe Tech',
+                                                    username: 'universetech'
+                                                },
                                                 'profile'
                                             )
                                         "
@@ -382,15 +429,15 @@ onMounted(() => {
 
             <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
                 <div class="container px-5 md:px-0">
-                    <QTabs :tabs="tabs" :block="isMobile">
+                    <QTabs v-model="activeTab" :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
-                                <div class="campaigns-filter">
-                                    <div class="campaigns-filter__search">
+                                <div class="filters">
+                                    <div class="filters__search">
                                         <QInputText
                                             name="search"
                                             size="sm"
-                                            placeholder="Search campaigns..."
+                                            placeholder="Search Campaigns"
                                         >
                                             <template #prefix>
                                                 <div class="pl-3 pr-1 h-full">
@@ -400,7 +447,7 @@ onMounted(() => {
                                         </QInputText>
                                     </div>
 
-                                    <div class="campaigns-filter__sort">
+                                    <div class="filters__sort">
                                         <QListbox
                                             v-model="selectedSortCampaign"
                                             :options="sortCampaignOptions"
@@ -411,26 +458,56 @@ onMounted(() => {
 
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
                                     <campaign-card
-                                        v-for="campaign in campaigns"
+                                        v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
                                     />
                                 </div>
                             </div>
                         </template>
 
-                        <template #posts>
-                            <div
-                                class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center"
-                            >
-                                <h4 class="text-xl font-semibold">No Posts Yet</h4>
+                        <template #collections>
+                            <div class="space-y-6 mt-6">
+                                <div class="filters">
+                                    <div class="filters__search">
+                                        <QInputText
+                                            name="search"
+                                            size="sm"
+                                            placeholder="Search Collections"
+                                        >
+                                            <template #prefix>
+                                                <div class="pl-3 pr-1 h-full">
+                                                    <i class="ri-search-line text-content"></i>
+                                                </div>
+                                            </template>
+                                        </QInputText>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2` lg:grid-cols-4 gap-6">
+                                    <RouterLink
+                                        v-for="collection in ownCollections"
+                                        :key="collection.uri"
+                                        :to="{
+                                            name: 'collection',
+                                            params: { uri: collection.uri }
+                                        }"
+                                    >
+                                        <CollectionCard v-bind="collection" />
+                                    </RouterLink>
+                                </div>
                             </div>
                         </template>
 
-                        <template #collections>
+                        <template #posts>
                             <div
-                                class="flex flex-col items-center justify-center py-20 space-y-3 max-w-md mx-auto text-center"
+                                class="grid grid-cols-12 justify-center gap-0 md:gap-6 mt-6 md:mt-10"
                             >
-                                <h4 class="text-xl font-semibold">No Collections Yet</h4>
+                                <div class="col-span-12 lg:col-span-8 lg:col-start-3">
+                                    <div class="flex flex-col space-y-4 w-full">
+                                        <PostCard v-bind="posts[0]" />
+                                        <PostCard v-bind="posts[1]" />
+                                    </div>
+                                </div>
                             </div>
                         </template>
                     </QTabs>
@@ -555,28 +632,46 @@ onMounted(() => {
 }
 
 // campaigns filter
-.campaigns-filter {
+.filters {
     @apply flex items-center justify-between space-x-4;
 
     @include sm {
         @apply flex flex-col space-x-0 space-y-4;
 
-        .campaigns-filter__search,
-        .campaigns-filter__sort {
+        .filters__search,
+        .filters__sort {
             @apply w-full;
         }
     }
 
-    .campaigns-filter__search,
-    .campaigns-filter__sort {
+    .filters__search,
+    .filters__sort {
         @apply flex-grow;
     }
 
-    .campaigns-filter__sort {
+    .filters__search {
+        @include md_screen {
+            @apply max-w-xs;
+        }
+    }
+
+    .filters__sort {
         // @apply max-w-xs;
 
         @include md_screen {
             max-width: 240px;
+        }
+    }
+}
+
+.filter-year {
+    @apply flex flex-col space-y-2 w-full;
+
+    .filter-year__link {
+        @apply text-sm px-4 py-2 text-content block rounded cursor-pointer hover:bg-gray-100 transition-colors duration-200 ease-in-out;
+
+        &.filter-year__link--active {
+            @apply bg-black text-white;
         }
     }
 }

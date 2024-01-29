@@ -14,6 +14,7 @@ import PackageSelection from '@/components/CreatorPage/PackageSelection.vue';
 
 const content = ref(null);
 const navbarColor = ref('transparent');
+const navbarShadow = ref(false);
 
 const { width, height } = useWindowSize();
 
@@ -21,8 +22,10 @@ const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
     if (top < 97) {
         navbarColor.value = 'white';
+        navbarShadow.value = true;
     } else {
         navbarColor.value = 'transparent';
+        navbarShadow.value = false;
     }
 };
 
@@ -36,7 +39,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div class="creators-page">
             <BannerCreators :width="width" :height="height" />
             <div ref="content"></div>

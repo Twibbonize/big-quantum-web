@@ -43,6 +43,9 @@ const props = defineProps({
         type: String,
         default: 'md',
         validators: (value) => ['sm', 'md', 'lg'].includes(value)
+    },
+    variant: {
+        type: String
     }
 });
 
@@ -68,7 +71,8 @@ function updateValue(e) {
                 'field',
                 `field--${type}`,
                 `field--${size}`,
-                !meta.valid && meta.dirty && 'field--error'
+                !meta.valid && meta.dirty && 'field--error',
+                variant && `field--${variant}`
             ]"
         >
             <div class="field__wrapper">
@@ -87,6 +91,10 @@ function updateValue(e) {
                     :maxlength="maxlength"
                     :autocomplete="autocomplete"
                 />
+
+                <div v-if="$slots.suffix" class="field__suffix">
+                    <slot name="suffix"></slot>
+                </div>
             </div>
         </div>
     </Field>
@@ -100,19 +108,24 @@ function updateValue(e) {
         @apply outline outline-offset-2 outline-main-darker;
     }
 
-    &.field--sm .field__input {
-        @apply px-4 py-3 text-xs;
-    }
-
     .field__wrapper {
-        @apply w-full rounded-xl  flex items-center bg-gray-100 transition-colors ease-in overflow-hidden;
-
+        @apply w-full rounded-xl  flex items-center bg-gray-100 transition-colors ease-in;
+        height: 52px;
         &:focus-within {
             @apply bg-white;
         }
     }
 
-    &__prefix {
+    &.field--sm .field__wrapper {
+        height: auto;
+    }
+
+    &.field--white .field__wrapper {
+        @apply bg-white;
+    }
+
+    &__prefix,
+    &__suffix {
         @apply flex items-center justify-center h-full;
     }
 
@@ -131,51 +144,12 @@ function updateValue(e) {
         }
     }
 
+    &.field--sm .field__input {
+        @apply px-4 py-3 text-xs;
+    }
+
     &.field--sm &__prefix + &__input {
         @apply pl-1;
     }
-
-    // &.field--email .field__input {
-    //     @apply text-center;
-    // }
-
-    // .field__input {
-    //     height: 48px;
-    //     padding: 0 12px;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     font-size: 14px;
-    //     width: 100%;
-    //     @apply rounded-lg border border-stroke text-sm;
-
-    //     &::placeholder {
-    //         color: #757484;
-    //         opacity: 0.8;
-    //         @apply font-light;
-    //     }
-
-    //     &--readonly {
-    //         @apply bg-gray-100;
-
-    //         &:focus {
-    //             outline: none !important;
-    //         }
-    //     }
-    // }
-
-    // & .field__error {
-    //     font-size: 12px;
-    //     margin-top: 8px;
-    //     @apply text-red-600;
-    // }
-
-    // &.field--error .field__input {
-    //     @apply outline outline-red-500;
-    // }
-
-    // &:not(.field--error) .field__input:focus {
-    //     @apply outline outline-primary;
-    // }
 }
 </style>

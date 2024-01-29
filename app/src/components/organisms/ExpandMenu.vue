@@ -47,27 +47,23 @@ watch(open, (newValue) => {
                     </QButton>
                 </div>
 
-                <div class="h-full flex flex-col justify-between">
+                <div class="h-full flex flex-col md:justify-between">
                     <ul class="expand-menu__links">
                         <li>
-                            <RouterLink :to="{ name: 'home' }" class="expand-menu__link">
+                            <RouterLink :to="{ name: 'explore' }" class="expand-menu__link">
                                 Explore
                             </RouterLink>
                         </li>
 
                         <li>
-                            <a href="#" class="expand-menu__link">Leaderboard</a>
-                        </li>
-
-                        <li>
-                            <RouterLink :to="{ name: 'creators' }" class="expand-menu__link">
-                                Creators
+                            <RouterLink :to="{ name: 'leaderboard' }" class="expand-menu__link">
+                                Leaderboard
                             </RouterLink>
                         </li>
 
                         <li>
                             <RouterLink :to="{ name: 'plus' }" class="expand-menu__link">
-                                Plus
+                                Pricing
                             </RouterLink>
                         </li>
 
@@ -83,10 +79,10 @@ watch(open, (newValue) => {
                         </li>
                     </ul>
 
-                    <div class="space-y-4">
-                        <hr />
-
-                        <div class="flex items-center space-x-2">
+                    <div class="space-y-4 mt-4 pt-4 border-t border-stroke">
+                        <div
+                            class="flex flex-col-reverse md:flex-row items-center space-y-3 space-y-reverse md:space-y-0 md:space-x-3"
+                        >
                             <QButton variant="secondary" block @click="onClickSignIn"
                                 >Sign In</QButton
                             >
@@ -138,6 +134,7 @@ watch(open, (newValue) => {
         color: #16161a;
         background: white;
         padding: 40px 24px;
+        padding-top: 27px;
         position: relative;
         display: flex;
         height: 100%;
@@ -145,7 +142,7 @@ watch(open, (newValue) => {
     }
 
     .expand-menu__links {
-        @apply space-y-3;
+        @apply space-y-5;
 
         @include md_screen {
             @apply space-y-4;
@@ -161,7 +158,8 @@ watch(open, (newValue) => {
     }
 
     .expand-menu__close {
-        @apply absolute right-4 top-10;
+        @apply absolute right-4;
+        top: 27px;
     }
 }
 </style>

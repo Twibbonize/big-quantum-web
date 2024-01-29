@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useWindowSize } from '@vueuse/core';
-
 import MainLogo from '@/components/atoms/MainLogo.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
@@ -16,7 +15,11 @@ const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
 
 const props = defineProps({
-    color: String
+    color: String,
+    shadow: {
+        type: Boolean,
+        default: true
+    }
 });
 
 const buttonVariant = computed(() => {
@@ -39,7 +42,13 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header :class="['header', navbarColor !== '' && `header--${navbarColor}`]">
+    <header
+        :class="[
+            'header',
+            navbarColor !== '' && `header--${navbarColor}`,
+            shadow && 'header--shadow'
+        ]"
+    >
         <div class="header__wrapper">
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
@@ -47,13 +56,21 @@ const searchQuery = ref('');
             <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
             </div>
+
             <div class="header__right">
                 <div class="header__actions">
-                    <div class="block md:hidden">
+                    <div class="block lg:hidden mr-2">
                         <QSearchMobile
                             :variant="navbarColor === 'transparent' ? 'white' : 'black'"
                         />
                     </div>
+
+                    <div class="header__links">
+                        <RouterLink :to="{ name: 'explore' }" class="header__link">
+                            <i class="ri ri-compass-line"></i>
+                        </RouterLink>
+                    </div>
+
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
                             <i class="ri-add-line mr-1"></i>
@@ -85,10 +102,14 @@ const searchQuery = ref('');
 <style scoped lang="scss">
 .header {
     @apply fixed bg-white top-0 w-screen z-50 transition-colors duration-300 ease-in-out;
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+
+    &.header--shadow {
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+        @apply border-0;
+    }
 
     &__wrapper {
-        padding-top: 27px;
+        padding-top: 18px;
         padding-bottom: 18px;
 
         @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;
@@ -107,16 +128,47 @@ const searchQuery = ref('');
     }
 
     &__actions {
-        @apply flex items-center justify-end space-x-1;
+        @apply flex items-center justify-end;
+    }
 
-        @include md_screen {
-            @apply space-x-2;
+    .header__links {
+        @apply hidden md:flex items-center pr-2 border-r border-stroke mr-4;
+
+        .header__link {
+            height: 48px;
+            width: 48px;
+            font-size: 28px;
+
+            @apply text-black rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300;
+
+            @include before {
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-black;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s var(--transition-function);
+                opacity: 0.1;
+            }
+
+            &:hover {
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
+            }
         }
     }
 
     &--transparent {
         background: transparent;
         box-shadow: none;
+    }
+
+    &.header--transparent .header__links .header__link {
+        @apply text-white;
     }
 
     &--gradient {

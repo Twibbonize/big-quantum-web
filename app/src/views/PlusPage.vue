@@ -10,6 +10,8 @@ import PackageSelection from '@/components/PlusPage/PackageSelection.vue';
 
 const content = ref(null);
 const navbarColor = ref('gradient');
+const navbarShadow = ref(false);
+
 const { width, height } = useWindowSize;
 
 const doScroll = () => {
@@ -17,8 +19,10 @@ const doScroll = () => {
 
     if (top < 97) {
         navbarColor.value = 'white';
+        navbarShadow.value = true;
     } else {
         navbarColor.value = 'gradient';
+        navbarShadow.value = false;
     }
 };
 
@@ -32,7 +36,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div class="plus-page">
             <HeroPlus :width="width" :height="height" />
             <div ref="content"></div>

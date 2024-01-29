@@ -137,7 +137,7 @@ onMounted(() => {
                         <RouterLink
                             v-if="width < 640"
                             class="flex items-center color_black"
-                            to="/explore"
+                            to="/leaderboard"
                         >
                             View All<i class="ri-arrow-right-line"></i>
                         </RouterLink>
@@ -147,7 +147,7 @@ onMounted(() => {
                         <RouterLink
                             v-if="width >= 640"
                             class="flex items-center color_black"
-                            to="/explore"
+                            to="/leaderboard"
                         >
                             View All<i class="ri-arrow-right-line"></i>
                         </RouterLink>

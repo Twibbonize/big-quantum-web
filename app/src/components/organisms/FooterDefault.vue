@@ -8,53 +8,64 @@ import FooterSocial from '@/components/molecules/FooterSocial.vue';
 const discoverLinks = [
     {
         text: 'Explore',
-        url: ''
+        url: '/explore',
+        isInAppPage: true
     },
     {
         text: 'Leaderboard',
-        url: ''
+        url: '/leaderboard',
+        isInAppPage: true
     },
     {
         text: 'Pricing',
-        url: ''
+        url: '/creators',
+        isInAppPage: true
     },
     {
         text: 'Help Center',
-        url: ''
+        url: '/',
+        isInAppPage: false
     }
 ];
 
 const resourceLinks = [
     {
         text: 'For Creators',
-        url: ''
+        url: '/',
+        isInAppPage: true
     },
     {
         text: 'What is a Twibbon',
-        url: ''
+        url: '/',
+        isInAppPage: true
     },
     {
         text: 'Use Cases',
-        url: ''
+        url: '/',
+        isInAppPage: true
     },
     {
         text: 'Editor',
-        url: ''
+        url: '/',
+        isInAppPage: false
     }
 ];
 
 const companyLinks = [
     {
         text: 'About',
-        url: ''
+        url: 'https://about.twibbonize.com',
+        isInAppPage: false
     },
     {
         text: 'Blog',
-        url: ''
+        url: 'https://news.twibbonize.com',
+        isInAppPage: false
     },
     {
         text: 'Contact Us',
-        url: ''
+        url: 'https://about.twibbonize.com',
+        isInAppPage: false
     }
 ];
 </script>

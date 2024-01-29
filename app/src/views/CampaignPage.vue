@@ -11,7 +11,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-
 const isReadMore = ref(false);
 const navbarColor = ref('transparent');
 
@@ -23,27 +22,27 @@ const frameLists = [
     'hanoi-art-frame-1',
     'hanoi-art-frame-2',
     'hanoi-art-frame-3',
-    'hanoi-art-frame-4',
+    'hanoi-art-frame-4'
 ];
 
 const frameIndex = ref(0);
 
 const getFrameUrl = (frame) => {
     return `/assets/img/frames/${frame}.png`;
-}
+};
 
 const setActiveFrame = (index) => {
     frameIndex.value = index;
-}
+};
 
 const layout = ref('grid');
 
 const changeLayout = () => {
     if (layout.value === 'grid') layout.value = 'list';
     else if (layout.value === 'list') layout.value = 'grid';
-}
+};
 
-const action = ref(null);;
+const action = ref(null);
 
 const feedsHeight = computed(() => {
     if (action.value) {
@@ -51,7 +50,7 @@ const feedsHeight = computed(() => {
     }
 
     return '100%';
-})
+});
 
 const getSampleUser = (index) => {
     return `/assets/img/sample/sample-person-${index}.jpg`;
@@ -153,7 +152,7 @@ const moreCampaigns = [
         supports: 43000,
         createdAt: dayjs().subtract(3, 'week').unix() * 1000,
         thumbnail: 'sample-campaign-12.jpg'
-    },
+    }
 ];
 
 function getAvatarUrl(name) {
@@ -171,17 +170,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="false">
         <div class="campaign-page">
             <div class="container">
                 <div ref="action" class="action">
                     <div class="frame">
                         <div class="card campaign-frame">
-                            <img class="frame-active" :src="getFrameUrl(frameLists[frameIndex])" :alt="frameLists[frameIndex]">
+                            <img
+                                class="frame-active"
+                                :src="getFrameUrl(frameLists[frameIndex])"
+                                :alt="frameLists[frameIndex]"
+                            />
                         </div>
                         <div class="card frame-selector">
-                            <div class="frame-platform">
-                            </div>
+                            <div class="frame-platform"></div>
                             <div class="p-2.5">
                                 <QSlider
                                     class="mt-1.5 mb-4 w-fit"
@@ -191,12 +193,17 @@ onMounted(() => {
                                     slides-per-view="auto"
                                 >
                                     <swiper-slide
-                                        v-for="(filename, i) in frameLists" :key="i"
+                                        v-for="(filename, i) in frameLists"
+                                        :key="i"
                                         class="frame-slider mr-4 last:mr-0"
-                                        :class="{ 'active': frameIndex === i }"
+                                        :class="{ active: frameIndex === i }"
                                         @click="setActiveFrame(i)"
                                     >
-                                        <img class="campaign" :src="getFrameUrl(filename)" :alt="filename" />
+                                        <img
+                                            class="campaign"
+                                            :src="getFrameUrl(filename)"
+                                            :alt="filename"
+                                        />
                                     </swiper-slide>
                                 </QSlider>
                                 <QButton variant="primary" class="frame-button">
@@ -207,21 +214,30 @@ onMounted(() => {
                         </div>
                     </div>
                     <div class="card campaign-detail">
-                        <h1 class="campaign-title">Hanoi Art Book Fair - Art and Import Book Fair</h1>
+                        <h1 class="campaign-title">
+                            Hanoi Art Book Fair - Art and Import Book Fair
+                        </h1>
                         <div class="flex items-center gap-1.5 mt-4">
-                            <img class="avatar" src="/assets/img/creator/creator-default.jpg" alt="-" />
+                            <img
+                                class="avatar"
+                                src="/assets/img/creator/creator-default.jpg"
+                                alt="-"
+                            />
                             <p class="creator-name">Hanoi Art Book Fair</p>
                         </div>
-                        <p class="campaign-description mt-4" :class="{ 'line-clamp-2': !isReadMore }">
+                        <p
+                            class="campaign-description mt-4"
+                            :class="{ 'line-clamp-2': !isReadMore }"
+                        >
                             Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate
-                            reading habits, increase art literacy worldwide and build a new generation
-                            of readers, by making books more affordable.
+                            reading habits, increase art literacy worldwide and build a new
+                            generation of readers, by making books more affordable.
                         </p>
                         <p v-if="!isReadMore" @click="clickReadMore" class="read-more mt-2">
                             Read More
                         </p>
                         <div class="card-line mt-4"></div>
-                        <MetaInfo :is-line="true"/>
+                        <MetaInfo :is-line="true" />
                         <div class="campaign-share">
                             <div class="campaign-link">
                                 <i class="ri-links-line"></i>
@@ -242,24 +258,52 @@ onMounted(() => {
                         <div class="feeds-empty-state">
                             <div v-for="i in 9" :key="i" class="card-empty-state">
                                 <div class="overlay"></div>
-                                <img class="frame" :src="getFrameUrl(frameLists[frameIndex])" :alt="getFrameUrl(frameIndex)">
-                                <img class="user" :src="getSampleUser(i)" :alt="`user${i}`">
+                                <img
+                                    class="frame"
+                                    :src="getFrameUrl(frameLists[frameIndex])"
+                                    :alt="getFrameUrl(frameIndex)"
+                                />
+                                <img class="user" :src="getSampleUser(i)" :alt="`user${i}`" />
                             </div>
                             <div class="empty-state-text">
                                 <div class="title">No post yet</div>
-                                <div class="description">Be the first to post your support here. <br> Start with uploading your photo!</div>
+                                <div class="description">
+                                    Be the first to post your support here. <br />
+                                    Start with uploading your photo!
+                                </div>
                             </div>
                         </div>
                         <div class="feeds-action">
-                            <QButton @click="changeLayout" v-if="layout === 'grid'" variant="light" :circle="true" class="icon">
+                            <QButton
+                                @click="changeLayout"
+                                v-if="layout === 'grid'"
+                                variant="light"
+                                :circle="true"
+                                class="icon"
+                            >
                                 <i class="ri-layout-grid-line"></i>
                             </QButton>
-                            <QButton @click="changeLayout" v-else-if="layout === 'list'" variant="light" :circle="true" class="icon">
+                            <QButton
+                                @click="changeLayout"
+                                v-else-if="layout === 'list'"
+                                variant="light"
+                                :circle="true"
+                                class="icon"
+                            >
                                 <i class="ri-list-unordered"></i>
                             </QButton>
                             <QButton variant="light" :circle="true" class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <path d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z" fill="#1B1B1B"/>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
+                                        fill="#1B1B1B"
+                                    />
                                 </svg>
                             </QButton>
                         </div>
@@ -268,25 +312,25 @@ onMounted(() => {
             </div>
         </div>
         <div class="more-campaign py-24">
-        <div class="flex justify-between items-center gap-14 pb-10 w-full container px-5">
-            <div class="line"></div>
-            <h3 class="title">More Like This</h3>
-            <div class="line"></div>
-        </div>
-        <div class="campaign-grid container px-5">
-            <CampaignCard
-                v-for="(
-                    { name, avatar, creator, createdAt, supports, thumbnail }, i
-                ) in moreCampaigns"
-                :key="i"
-                :name="name"
-                :creator="creator"
-                :avatar="getAvatarUrl(avatar)"
-                :supports="supports"
-                :created-at="createdAt"
-                :thumbnail="getThumbnailUrl(thumbnail)"
-            />
-        </div>
+            <div class="flex justify-between items-center gap-14 pb-10 w-full container px-5">
+                <div class="line"></div>
+                <h3 class="title">More Like This</h3>
+                <div class="line"></div>
+            </div>
+            <div class="campaign-grid container px-5">
+                <CampaignCard
+                    v-for="(
+                        { name, avatar, creator, createdAt, supports, thumbnail }, i
+                    ) in moreCampaigns"
+                    :key="i"
+                    :name="name"
+                    :creator="creator"
+                    :avatar="getAvatarUrl(avatar)"
+                    :supports="supports"
+                    :created-at="createdAt"
+                    :thumbnail="getThumbnailUrl(thumbnail)"
+                />
+            </div>
         </div>
     </LayoutMain>
 </template>
@@ -352,9 +396,8 @@ onMounted(() => {
         }
 
         .share-icon {
-            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square; 
+            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square;
         }
-
     }
     .bookmark-icon {
         @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
@@ -382,12 +425,12 @@ onMounted(() => {
 
     .frame-slider {
         @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
-        border: 1px solid var(--color-light); 
+        border: 1px solid var(--color-light);
 
         &.active {
             @apply cursor-default;
             border-color: var(--color-main);
-            background: #DEE8E8;
+            background: #dee8e8;
         }
     }
 
@@ -457,10 +500,10 @@ onMounted(() => {
             @apply text-center text-xl mt-2.5;
         }
     }
-    
+
     .feeds-action {
         @apply absolute bottom-0 w-full z-30 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 83.09%);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 83.09%);
 
         .icon {
             @apply font-normal bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;
@@ -472,14 +515,13 @@ onMounted(() => {
     }
 }
 
-
 .more-campaign {
     .campaign-grid {
         @apply grid grid-cols-4 gap-8;
     }
-    
+
     .title {
-        @apply font-bold text-3xl;;
+        @apply font-bold text-3xl;
     }
 
     .line {

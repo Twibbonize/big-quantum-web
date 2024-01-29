@@ -230,6 +230,10 @@ function handleClick(e) {
 
     &--black {
         @apply text-white bg-black;
+
+        &:hover {
+            @apply bg-black/80;
+        }
     }
 
     &--link {
