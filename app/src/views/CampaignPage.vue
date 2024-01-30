@@ -1,6 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { breakpointsTailwind, useBreakpoints, useResizeObserver } from '@vueuse/core';
+import { nextTick, onMounted, ref } from 'vue';
+import {
+    breakpointsTailwind,
+    useBreakpoints,
+    useResizeObserver,
+    useWindowSize
+} from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,14 +13,17 @@ import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
+import QSeparator from '@/components/atoms/QSeparator.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
+import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
 import { useCollectionStore } from '@/stores/collectionStore';
 
 import { useShareStore } from '@/stores/shareStore';
 import { publicPosts } from '@/mock/posts';
+import { publicCampaigns } from '@/mock/campaigns';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,10 +43,16 @@ const posts = ref([...publicPosts.slice(0, 6)]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
 
+const { height } = useWindowSize();
 const shareStore = useShareStore();
 const collectionStore = useCollectionStore();
 const { openShare } = shareStore;
 const { showCollectionModal } = collectionStore;
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const sm = breakpoints.smallerOrEqual('sm');
+const xl = breakpoints.greaterOrEqual('xl');
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
@@ -51,9 +65,34 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
-const breakpoints = useBreakpoints(breakpointsTailwind);
+useResizeObserver(campaignPage, (entries) => {
+    const entry = entries[0];
+    const { height: campaignHeight, top } = entry.contentRect;
 
-const sm = breakpoints.smallerOrEqual('sm');
+    const campaignContent = document.querySelector('.campaign__content');
+    const campaignContentHeight = campaignContent.clientHeight;
+
+    if (sm.value || height.value > 904) {
+        return;
+    }
+
+    if (campaignHeight > campaignContentHeight) {
+        return;
+    }
+
+    const additionalSpace = xl.value ? 0 : 0;
+    const paddingY = top + additionalSpace;
+    let targetScale = (campaignHeight - paddingY) / (campaignContentHeight - 32);
+    const targetHeight = campaignContentHeight * targetScale;
+    const translateY = campaignHeight - targetHeight;
+
+    if (targetHeight < 540) {
+        targetScale = 1;
+        translateY = 0;
+    }
+
+    campaignContent.style.transform = `scale(${targetScale}) translateY(-${translateY}px)`;
+});
 
 const itemsToAdd = 3;
 
@@ -95,7 +134,7 @@ const onClickCollection = () => {
     });
 };
 
-onMounted(() => {
+onMounted(async () => {
     gsap.to('.campaign__feeds-panels', {
         scrollTrigger: {
             trigger: '.campaign__feeds-panels',
@@ -106,6 +145,11 @@ onMounted(() => {
             }
         }
     });
+
+    await nextTick();
+    const campaignContent = document.querySelector('.campaign__content');
+    console.log(campaignContent.clientHeight);
+    // nextTick(() =)
 });
 </script>
 <template>
@@ -113,8 +157,7 @@ onMounted(() => {
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
-
-            <div class="campaign__content container py-24">
+            <div class="campaign__content container px-0 md:px-5 2xl:px-0">
                 <div class="grid grid-cols-12 md:gap-6">
                     <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
@@ -197,9 +240,9 @@ onMounted(() => {
 
                                 <div class="campaign__detail__creator">
                                     <QCreator
-                                        name="Universe Tech"
-                                        username="universetech"
-                                        avatar="/assets/img/sample/sample-avatar-1.jpg"
+                                        name="Hanoi Art 2025"
+                                        username="hanoiart"
+                                        avatar="/assets/img/sample/sampel-avatar-18.jpg"
                                         size="md"
                                     />
                                 </div>
@@ -357,12 +400,36 @@ onMounted(() => {
                 </div>
             </div>
         </div>
+
+        <div class="campaign-recommendations">
+            <div class="container px-4 2xl:px-0 pb-10 pt-20">
+                <div class="mb-20">
+                    <QSeparator alignment="center">
+                        <h4 class="text-3xl font-semibold text-black">More Like This</h4>
+                    </QSeparator>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <CampaignCard
+                        v-for="campaign in publicCampaigns"
+                        :key="campaign.uri"
+                        v-bind="campaign"
+                    />
+                </div>
+            </div>
+        </div>
     </LayoutMain>
 </template>
 
 <style scoped lang="scss">
 .campaign {
     position: relative;
+
+    @include md_screen {
+        max-height: 100vh;
+        // height: 100vh;
+    }
+
+    // margin-top: 20px;
 
     .campaign__background {
         background: url('/assets/img/background/bg-default.jpg');
@@ -410,6 +477,19 @@ onMounted(() => {
     .campaign__content {
         position: relative;
         z-index: 1;
+        width: 100%;
+
+        @include md_screen {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        @include xl_screen {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        // transform-origin: center center;
     }
 
     .campaign__main {
@@ -560,7 +640,7 @@ onMounted(() => {
         }
 
         .campaign__feeds-all {
-            @apply container px-4 py-3;
+            @apply container px-4 py-3 border-b border-stroke;
         }
 
         .campaign__feeds-control {

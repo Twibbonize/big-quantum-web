@@ -2,16 +2,16 @@
 import { computed, ref, watch } from 'vue';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
-import { onClickOutside } from '@vueuse/core';
+import { onClickOutside, onKeyStroke } from '@vueuse/core';
 
 const props = defineProps({
     show: {
         type: Boolean,
         default: false
     },
-    isStatic: {
+    static: {
         type: Boolean,
-        default: false
+        default: true
     },
     position: {
         type: String,
@@ -29,6 +29,10 @@ const props = defineProps({
     closeBtn: {
         type: Boolean,
         default: false
+    },
+    keyboard: {
+        type: Boolean,
+        default: true
     }
 });
 
@@ -40,7 +44,10 @@ const { motionProperties } = useMotionProperties(dialogContentEl, {
     x: 0,
     y: 0
 });
-const { set } = useSpring(motionProperties);
+const { set } = useSpring(motionProperties, {
+    damping: 20,
+    stiffness: 120
+});
 // const { push } = useMotionTransitions(motionProperties);
 
 const dialogClasses = computed(() => {
@@ -85,7 +92,17 @@ useDrag(dragHandler, {
     cursor: 'default'
 });
 
-onClickOutside(dialogContentEl, handleClose);
+onClickOutside(dialogContentEl, () => {
+    if (props.static) {
+        handleClose();
+    }
+});
+
+onKeyStroke('Escape', () => {
+    if (props.keyboard) {
+        handleClose();
+    }
+});
 
 watch(
     () => props.show,

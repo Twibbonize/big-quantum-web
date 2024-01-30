@@ -1,14 +1,11 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
-import QInputText from '@/components/atoms/forms/QInputText.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
-import CreatorCard from '@/components/molecules/CreatorCard.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import { useSearchStore } from '@/stores/searchStore';
 

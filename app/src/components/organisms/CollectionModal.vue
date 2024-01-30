@@ -2,6 +2,7 @@
 import { string as yupString, object as yupObject } from 'yup';
 import { Form as VeeForm } from 'vee-validate';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { onBeforeRouteLeave } from 'vue-router';
 
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
@@ -28,13 +29,19 @@ const formValidation = yupObject().shape({
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 
-
 const onFilterCollection = useDebounceFn(() => {
     filterCollectionsByName(query.value);
 }, 600);
 
 onMounted(() => {
     filterCollectionsByName(query.value);
+});
+
+onBeforeRouteLeave(() => {
+    if (show.value) {
+        show.value = false;
+        return;
+    }
 });
 </script>
 <template>
@@ -194,7 +201,7 @@ onMounted(() => {
     }
 
     .collection-modal__footer {
-        @apply flex items-center justify-between p-5 border-t border-stroke;
+        @apply flex items-center justify-between px-5 pb-8 pt-6 border-t border-stroke;
     }
 }
 </style>
