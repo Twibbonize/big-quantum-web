@@ -28,7 +28,6 @@ const formValidation = yupObject().shape({
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 
-const calculateHeight = () => {};
 
 const onFilterCollection = useDebounceFn(() => {
     filterCollectionsByName(query.value);
@@ -44,7 +43,7 @@ onMounted(() => {
             <div class="collection-modal">
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
                     <div class="collection-modal__header">
-                        <h3 class="text-base max-w-xs sm:max-w-none">
+                        <h3 class="text-lg leading-snug max-w-xs md:max-w-none">
                             Add <span class="font-bold">{{ campaign.name }}</span> to Collections
                         </h3>
 
@@ -101,8 +100,9 @@ onMounted(() => {
                     </div>
 
                     <div class="collection-modal__footer">
-                        <QButton variant="secondary" size="sm" @click="view = 'create'"
-                            >Create a New Collection
+                        <QButton variant="secondary" size="sm" @click="view = 'create'">
+                            <i class="ri-add-line"></i>
+                            <span class="ml-2">New Collection</span>
                         </QButton>
 
                         <QButton size="sm" @click="closeCollectionModal">Done</QButton>
@@ -188,6 +188,7 @@ onMounted(() => {
 
     .collection-modal__list {
         // height: 320px;
+        min-height: 280px;
         overflow: auto;
         @apply px-5 pt-2 pb-5;
     }
