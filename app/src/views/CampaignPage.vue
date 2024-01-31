@@ -72,8 +72,10 @@ useResizeObserver(campaignPage, (entries) => {
     const campaignContent = document.querySelector('.campaign__content');
     const campaignContentHeight = campaignContent.clientHeight;
 
-    if (sm.value || height.value > 904) {
-        return;
+    
+
+    if (!xl.value) {
+        return
     }
 
     if (campaignHeight > campaignContentHeight) {
@@ -84,12 +86,12 @@ useResizeObserver(campaignPage, (entries) => {
     const paddingY = top + additionalSpace;
     let targetScale = (campaignHeight - paddingY) / (campaignContentHeight - 32);
     const targetHeight = campaignContentHeight * targetScale;
-    const translateY = campaignHeight - targetHeight;
+    let translateY = campaignHeight - targetHeight;
 
-    if (targetHeight < 540) {
-        targetScale = 1;
-        translateY = 0;
-    }
+    // if (targetHeight < 540) {
+    //     targetScale = 1;
+    //     translateY = 0;
+    // }
 
     campaignContent.style.transform = `scale(${targetScale}) translateY(-${translateY}px)`;
 });
@@ -148,7 +150,6 @@ onMounted(async () => {
 
     await nextTick();
     const campaignContent = document.querySelector('.campaign__content');
-    console.log(campaignContent.clientHeight);
     // nextTick(() =)
 });
 </script>
@@ -463,7 +464,7 @@ onMounted(async () => {
             rgba(222, 232, 232, 0) 101.85%
         );
         position: absolute;
-        top: 0;
+        bottom: -2px;
         left: 0;
         height: 100%;
         width: 100%;
@@ -608,6 +609,7 @@ onMounted(async () => {
 
         .campaign__feeds-panels {
             @apply absolute left-0 top-0 h-full w-full;
+            // @include no_scrollbar();
 
             @include sm {
                 padding-top: 7px;
