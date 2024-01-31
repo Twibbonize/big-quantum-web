@@ -72,15 +72,14 @@ useResizeObserver(campaignPage, (entries) => {
     const campaignContent = document.querySelector('.campaign__content');
     const campaignContentHeight = campaignContent.clientHeight;
 
-    
-
     if (!xl.value) {
         return
     }
 
-    if (campaignHeight > campaignContentHeight) {
+    if ((campaignHeight + top) > campaignContentHeight) {
         return;
     }
+
 
     const additionalSpace = xl.value ? 0 : 0;
     const paddingY = top + additionalSpace;
@@ -425,7 +424,7 @@ onMounted(async () => {
 .campaign {
     position: relative;
 
-    @include md_screen {
+    @include lg_screen {
         max-height: 100vh;
         // height: 100vh;
     }
@@ -459,7 +458,7 @@ onMounted(async () => {
     .campaign__linear {
         background: linear-gradient(
             0deg,
-            #fff -1.71%,
+            #fff 0%,
             #dee8e8 22.56%,
             rgba(222, 232, 232, 0) 101.85%
         );
@@ -479,14 +478,15 @@ onMounted(async () => {
         position: relative;
         z-index: 1;
         width: 100%;
+        padding-top: 24px;
 
-        @include md_screen {
+        @include lg_screen {
             padding-top: 24px;
             padding-bottom: 24px;
         }
 
         @include xl_screen {
-            padding-top: 0px;
+            padding-top: 12px;
             padding-bottom: 0px;
         }
 
