@@ -74,7 +74,7 @@ const searchQuery = ref('');
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
                             <i class="ri-add-line mr-1"></i>
-                            <span>Start a Campaign</span>
+                            <span class="flex-shrink-0">Start a Campaign</span>
                         </QButton>
                     </div>
 

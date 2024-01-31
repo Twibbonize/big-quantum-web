@@ -131,7 +131,7 @@ const commentValidation = yupObject().shape({
                     </div>
                 </div>
                 <div class="post-modal__lower">
-                    <div class="post-modal__caption px-4 py-3">
+                    <div class="post-modal__caption px-4 py-6">
                         <div class="space-y-2">
                             <div class="flex items-center">
                                 <div class="text-black font-semibold text-base">
@@ -169,7 +169,7 @@ const commentValidation = yupObject().shape({
                                 </CommentInput>
                             </VeeForm>
                         </div>
-                        <div class="post-modal__comments__forum p-4 space-y-3">
+                        <div class="post-modal__comments__forum p-4">
                             <CommentWrapper
                                 v-for="(comment, i) in post.comments"
                                 v-bind="comment"

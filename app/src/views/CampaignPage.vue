@@ -421,7 +421,7 @@ onMounted(async () => {
         </div>
 
         <div class="campaign-recommendations">
-            <div class="container px-4 2xl:px-0 pb-10 pt-20">
+            <div class="container px-4 2xl:px-0 pb-10 pt-28">
                 <div class="mb-20">
                     <QSeparator alignment="center">
                         <h4 class="text-3xl font-semibold text-black">More Like This</h4>
@@ -451,7 +451,7 @@ onMounted(async () => {
     // margin-top: 20px;
 
     .campaign__background {
-        background: url('/assets/img/background/bg-default.jpg');
+        background: url('/assets/img/banners/hanoi.jpg');
         background-repeat: no-repeat;
         width: 100%;
         background-size: cover;
