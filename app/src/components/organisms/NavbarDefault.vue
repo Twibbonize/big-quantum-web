@@ -112,7 +112,7 @@ const searchQuery = ref('');
         padding-top: 18px;
         padding-bottom: 18px;
 
-        @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;
+        @apply w-full flex items-center justify-between container px-5 2xl:px-0 relative;
     }
 
     &__left,
