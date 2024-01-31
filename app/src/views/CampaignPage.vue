@@ -391,8 +391,8 @@ onMounted(async () => {
                                     <i
                                         :class="[
                                             displayType === 'grid'
-                                                ? 'ri-layout-grid-line'
-                                                : 'ri-list-unordered',
+                                                ? 'ri-list-unordered'
+                                                : 'ri-layout-grid-line',
                                             'ri-lg',
                                             'font-normal'
                                         ]"
