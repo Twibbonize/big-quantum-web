@@ -75,11 +75,7 @@ const handleOpenReply = (creator = null) => {
                 </div>
 
                 <div v-if="replies.length" class="replies__loader">
-                    <a
-                        v-if="!showReplies && replies.length"
-                        class="replies__loader__link"
-                        @click="showReplies = true"
-                    >
+                    <a v-if="!showReplies && replies.length" class="replies__loader__link" @click="showReplies = true">
                         <i class="ri-arrow-down-s-fill ri-lg"></i>
                         <span>{{ replies.length }} replies</span>
                     </a>
@@ -98,7 +94,11 @@ const handleOpenReply = (creator = null) => {
     @apply my-3;
 }
 
+.replies__loader {
+    @apply py-2;
+}
+
 .replies__loader__link {
-    @apply text-main hover:text-main-darker text-sm font-medium cursor-pointer;
+    @apply text-main hover:text-main-darker text-xs font-medium cursor-pointer;
 }
 </style>

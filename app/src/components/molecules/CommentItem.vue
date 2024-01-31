@@ -75,7 +75,7 @@ const replyPage = 1;
 
 <style scoped lang="scss">
 .comment {
-    @apply flex;
+    @apply flex py-3;
 
     .comment__avatar {
         @apply flex-shrink-0;
@@ -97,7 +97,8 @@ const replyPage = 1;
     }
 
     .comment__content {
-        @apply text-sm leading-relaxed my-1;
+        @apply leading-relaxed my-1;
+        font-size: 0.8rem;
     }
 
     .comment__likes-replies {
@@ -105,7 +106,7 @@ const replyPage = 1;
     }
 
     .comment__react {
-        @apply font-medium text-black/70 flex items-center space-x-1 text-sm hover:text-main cursor-pointer;
+        @apply font-medium text-black/70 flex items-center space-x-1 text-xs hover:text-main cursor-pointer;
     }
 }
 </style>
