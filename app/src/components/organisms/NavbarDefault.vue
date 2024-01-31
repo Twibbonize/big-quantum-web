@@ -162,8 +162,16 @@ const searchQuery = ref('');
         }
     }
 
+    &.header--gradient .header__links {
+        @apply border-white;
+    }
+
+    &.header--gradient .header__links .header__link {
+        @apply bg-white;
+    }
+
     &--transparent {
-        background: transparent;
+        background: transparent linear-gradient(180deg, #000 0%, rgba(22, 218, 193, 0) 100%);;
         box-shadow: none;
     }
 

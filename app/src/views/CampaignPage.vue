@@ -1,10 +1,11 @@
 <script setup>
-import { nextTick, onMounted, ref } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
 import {
     breakpointsTailwind,
     useBreakpoints,
     useResizeObserver,
-    useWindowSize
+    useWindowSize,
+    useWindowScroll
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -34,6 +35,9 @@ const frames = [
     '/assets/img/frames/hanoi-art-frame-4.png'
 ];
 
+
+const navbarColor = ref('transparent');
+const navbarShadow = ref(false);
 const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignFeeds = ref(null);
@@ -53,6 +57,21 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
+
+
+const { y } = useWindowScroll();
+
+
+watch(y, newValue => {
+    if (newValue > 110) {
+        navbarColor.value = 'white';
+        navbarShadow.value = true;
+    } else {
+        navbarColor.value = 'transparent';
+        navbarShadow.value = false;
+    }
+})
+
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
@@ -153,7 +172,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-    <LayoutMain navbarColor="transparent" :navbarShadow="false">
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
@@ -372,8 +391,8 @@ onMounted(async () => {
                                     <i
                                         :class="[
                                             displayType === 'grid'
-                                                ? 'ri-layout-grid-line'
-                                                : 'ri-list-unordered',
+                                                ? 'ri-list-unordered'
+                                                : 'ri-layout-grid-line',
                                             'ri-lg',
                                             'font-normal'
                                         ]"
