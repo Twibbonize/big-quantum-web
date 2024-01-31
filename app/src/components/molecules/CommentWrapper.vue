@@ -75,7 +75,11 @@ const handleOpenReply = (creator = null) => {
                 </div>
 
                 <div v-if="replies.length" class="replies__loader">
-                    <a v-if="!showReplies && replies.length" class="replies__loader__link" @click="showReplies = true">
+                    <a
+                        v-if="!showReplies && replies.length"
+                        class="replies__loader__link"
+                        @click="showReplies = true"
+                    >
                         <i class="ri-arrow-down-s-fill ri-lg"></i>
                         <span>{{ replies.length }} replies</span>
                     </a>

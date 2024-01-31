@@ -35,7 +35,6 @@ const frames = [
     '/assets/img/frames/hanoi-art-frame-4.png'
 ];
 
-
 const navbarColor = ref('transparent');
 const navbarShadow = ref(false);
 const campaignPage = ref(null);
@@ -58,11 +57,9 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
-
 const { y } = useWindowScroll();
 
-
-watch(y, newValue => {
+watch(y, (newValue) => {
     if (newValue > 110) {
         navbarColor.value = 'white';
         navbarShadow.value = true;
@@ -70,8 +67,7 @@ watch(y, newValue => {
         navbarColor.value = 'transparent';
         navbarShadow.value = false;
     }
-})
-
+});
 
 useResizeObserver(campaignMain, (entries) => {
     const entry = entries[0];
@@ -92,13 +88,12 @@ useResizeObserver(campaignPage, (entries) => {
     const campaignContentHeight = campaignContent.clientHeight;
 
     if (!xl.value) {
-        return
-    }
-
-    if ((campaignHeight + top) > campaignContentHeight) {
         return;
     }
 
+    if (campaignHeight + top > campaignContentHeight) {
+        return;
+    }
 
     const additionalSpace = xl.value ? 0 : 0;
     const paddingY = top + additionalSpace;
@@ -442,6 +437,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 .campaign {
     position: relative;
+    z-index: 0;
 
     @include lg_screen {
         max-height: 100vh;
@@ -475,12 +471,7 @@ onMounted(async () => {
     }
 
     .campaign__linear {
-        background: linear-gradient(
-            0deg,
-            #fff 0%,
-            #dee8e8 22.56%,
-            rgba(222, 232, 232, 0) 101.85%
-        );
+        background: linear-gradient(0deg, #fff 0%, #dee8e8 22.56%, rgba(222, 232, 232, 0) 101.85%);
         position: absolute;
         bottom: -2px;
         left: 0;
