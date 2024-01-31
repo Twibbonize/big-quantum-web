@@ -163,7 +163,7 @@ const searchQuery = ref('');
     }
 
     &--transparent {
-        background: transparent;
+        background: transparent linear-gradient(180deg, #000 0%, rgba(22, 218, 193, 0) 100%);;
         box-shadow: none;
     }
 
