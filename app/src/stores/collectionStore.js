@@ -1,24 +1,12 @@
 import { defineStore } from 'pinia';
+import { ownCollections } from '@/mock/collections';
 
 export const useCollectionStore = defineStore('collectionStore', {
     state: () => ({
         show: false,
         view: 'selection',
         campaign: null,
-        collections: [
-            {
-                id: 1,
-                name: 'Twibbon Campaign Inspiration',
-                totalCampaigns: 6,
-                updated_at: 'Updated 6 days ago',
-                campaigns: [
-                    '/assets/img/sample/Online-Course.jpg',
-                    '/assets/img/sample/Kohi.jpg',
-                    '/assets/img/sample/Sentinels.jpg',
-                    '/assets/img/sample/Universe.jpg'
-                ]
-            }
-        ],
+        collections: [...ownCollections],
         filteredCollections: [],
         selectedCollections: []
     }),

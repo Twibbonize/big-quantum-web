@@ -35,7 +35,7 @@ defineEmits(['click']);
                     :key="i"
                     class="collection-card__covers__img"
                 >
-                    <img :src="campaign" :alt="i" />
+                    <img :src="campaign.thumbnail" :alt="i" />
                 </div>
             </div>
 
@@ -65,14 +65,23 @@ defineEmits(['click']);
         }
 
         .collection-card__covers__grid {
-            @apply grid grid-cols-2 transition-all;
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            grid-template-rows: repeat(2, 50%);
+            @apply transition-all duration-300 ease-in-out;
+
+            &--autofill .collection-card__covers__img {
+                grid-row: span 2;
+                grid-column: span 2;
+            }
         }
 
         .collection-card__covers__img {
-            @apply bg-gray-200;
+            @apply bg-gray-200 overflow-hidden w-full aspect-square;
         }
+
         .collection-card__covers__img img {
-            @apply w-full h-full object-cover object-center;
+            @apply w-full h-full object-cover object-center scale-105;
         }
 
         .collection-card__info {
