@@ -1,16 +1,15 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { RouterLink } from 'vue-router';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import { object as yupObject, string as yupString } from 'yup';
+import { useWindowScroll, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCard from '@/components/atoms/QCard.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
-import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
 import QModal from '@/components/atoms/QModal.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
@@ -22,7 +21,7 @@ import PostCard from '@/components/molecules/PostCard.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
 
 import { useShareStore } from '@/stores/shareStore';
-import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
+import { getAvatarUrl } from '@/utils/urls.js';
 import { ownCampaigns } from '@/mock/campaigns';
 import { ownCollections } from '@/mock/collections';
 
@@ -66,10 +65,27 @@ const bioContainer = ref(null);
 const isMobile = inject('isMobile');
 const shareStore = useShareStore();
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const { y } = useWindowScroll();
+const lg = breakpoints.greaterOrEqual('lg');
+const xl = breakpoints.greaterOrEqual('xl');
+
 const { openShare } = shareStore;
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
+
+const bannerHeight = computed(() => {
+    if (lg.value) {
+        return `${320 - y.value}px`;
+    }
+
+    if (xl.value) {
+        return `${360 - y.value}px`;
+    }
+
+    return `${220 - y.value}px`;
+});
 
 const posts = [
     {
@@ -197,10 +213,6 @@ const posts = [
         uri: 'f3f3fab'
     }
 ];
-
-const commentValidation = yupObject().shape({
-    comment_input: yupString().required()
-});
 </script>
 
 <template>
@@ -287,147 +299,157 @@ const commentValidation = yupObject().shape({
                     />
                 </div>
 
-                <div class="container px-5 lg:px-0">
-                    <div
-                        class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
-                    >
-                        <div class="profile__common">
-                            <div class="space-y-1">
-                                <h1 class="profile__name">Universe Tech</h1>
-                                <p class="profile__username">@universetech</p>
-                                <div ref="bioContainer" class="profile__bio">
-                                    <QEllipsisText
-                                        :text="profile.bio"
-                                        :containerWidth="
-                                            (bioContainer && bioContainer.offsetWidth) || 240
-                                        "
-                                    />
-                                </div>
-                                <div class="profile__web text-content">
-                                    <i class="ri-links-line"></i>
-                                    <a
-                                        href="https://www.universe-tech.com"
-                                        target="_blank"
-                                        rel="nofollow"
-                                        class="link"
-                                        >www.universe-tech.com</a
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="profile__actions">
-                                <div class="w-full md:w-60">
-                                    <QShareButton
-                                        link="twb.nz/u/universetech"
-                                        @click="
-                                            openShare(
-                                                'twb.nz/u/universetech',
-                                                {
-                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
-                                                    name: 'Universe Tech',
-                                                    username: 'universetech'
-                                                },
-                                                'profile'
-                                            )
-                                        "
-                                    />
-                                </div>
-
-                                <Popover class="relative">
-                                    <QButton variant="secondary" circle size="sm">
-                                        <PopoverButton
-                                            as="span"
-                                            class="h-full w-full flex items-center justify-center"
+                <div class="bg-white">
+                    <div class="container px-5 xl:px-0">
+                        <div
+                            class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
+                        >
+                            <div class="profile__common">
+                                <div class="space-y-1">
+                                    <h1 class="profile__name">Universe Tech</h1>
+                                    <p class="profile__username">@universetech</p>
+                                    <div ref="bioContainer" class="profile__bio">
+                                        <QEllipsisText
+                                            :text="profile.bio"
+                                            :containerWidth="
+                                                (bioContainer && bioContainer.offsetWidth) || 240
+                                            "
+                                        />
+                                    </div>
+                                    <div class="profile__web text-content">
+                                        <i class="ri-links-line"></i>
+                                        <a
+                                            href="https://www.universe-tech.com"
+                                            target="_blank"
+                                            rel="nofollow"
+                                            class="link"
+                                            >www.universe-tech.com</a
                                         >
-                                            <i class="ri-more-line"></i>
-                                        </PopoverButton>
-                                    </QButton>
-
-                                    <transition
-                                        enter-active-class="transition duration-200 ease-out"
-                                        enter-from-class="translate-y-1 opacity-0"
-                                        enter-to-class="translate-y-0 opacity-100"
-                                        leave-active-class="transition duration-150 ease-in"
-                                        leave-from-class="translate-y-0 opacity-100"
-                                        leave-to-class="translate-y-1 opacity-0"
-                                    >
-                                        <PopoverPanel class="popover__panel">
-                                            <div class="p-1">
-                                                <ul class="menu">
-                                                    <li class="menu__item">
-                                                        <a
-                                                            class="menu__link"
-                                                            @click="reportModal = true"
-                                                        >
-                                                            <i class="ri-flag-line ri-1x"></i>
-                                                            <span>Report Profile</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </PopoverPanel>
-                                    </transition>
-                                </Popover>
-                            </div>
-                        </div>
-
-                        <div class="profile__stats w-full flex-grow">
-                            <QCard paddings="padless" :shadow="false" :border="true">
-                                <div class="p-5">
-                                    <ul class="space-y-4">
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="16"
-                                                        height="16"
-                                                        viewBox="0 0 16 16"
-                                                        fill="none"
-                                                    >
-                                                        <path
-                                                            d="M2.00065 14.6667C1.63246 14.6667 1.32961 14.3668 1.37508 14.0014C1.70256 11.3699 3.94711 9.33342 6.66732 9.33342C9.38753 9.33342 11.6321 11.3699 11.9596 14.0014C12.005 14.3668 11.7022 14.6667 11.334 14.6667C10.9658 14.6667 10.6731 14.366 10.6125 14.0029C10.2962 12.1097 8.65028 10.6667 6.66732 10.6667C4.68435 10.6667 3.03839 12.1097 2.72216 14.0029C2.66149 14.366 2.36884 14.6667 2.00065 14.6667ZM6.66732 8.66675C4.45732 8.66675 2.66732 6.87675 2.66732 4.66675C2.66732 2.45675 4.45732 0.666748 6.66732 0.666748C8.87732 0.666748 10.6673 2.45675 10.6673 4.66675C10.6673 6.87675 8.87732 8.66675 6.66732 8.66675ZM6.66732 7.33342C8.14065 7.33342 9.33398 6.14008 9.33398 4.66675C9.33398 3.19341 8.14065 2.00008 6.66732 2.00008C5.19398 2.00008 4.00065 3.19341 4.00065 4.66675C4.00065 6.14008 5.19398 7.33342 6.66732 7.33342ZM11.916 10.4104C12.0672 10.0744 12.4651 9.92134 12.7794 10.1136C14.1325 10.9411 15.088 12.3549 15.2929 14.0016C15.3384 14.367 15.0355 14.6667 14.6673 14.6667C14.2991 14.6667 14.0065 14.3661 13.9458 14.003C13.7609 12.8955 13.1208 11.942 12.2245 11.3414C11.9187 11.1365 11.7649 10.7461 11.916 10.4104ZM11.5196 3.01714C11.6325 2.62181 12.0695 2.40958 12.4083 2.6424C13.3702 3.30317 14.0007 4.41099 14.0007 5.66675C14.0007 7.3214 12.906 8.71921 11.401 9.17589C11.0163 9.29264 10.6673 8.97201 10.6673 8.5699C10.6673 8.2294 10.9239 7.95066 11.2378 7.81875C12.0778 7.46576 12.6673 6.63541 12.6673 5.66675C12.6673 4.95265 12.3469 4.31371 11.842 3.88579C11.5876 3.67024 11.428 3.33772 11.5196 3.01714Z"
-                                                            fill="currentColor"
-                                                        />
-                                                    </svg>
-
-                                                    <span>Supporters</span>
-                                                </div>
-
-                                                <div class="font-medium">85.5k</div>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <i class="ri-megaphone-line"></i>
-                                                    <span>Campaigns</span>
-                                                </div>
-
-                                                <div class="font-medium">8</div>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <i class="ri-calendar-line"></i>
-                                                    <span>Joined Since</span>
-                                                </div>
-
-                                                <div class="font-medium">20 Jun 2022</div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    </div>
                                 </div>
-                            </QCard>
+
+                                <div class="profile__actions">
+                                    <div class="w-full md:w-60">
+                                        <QShareButton
+                                            link="twb.nz/u/universetech"
+                                            @click="
+                                                openShare(
+                                                    'twb.nz/u/universetech',
+                                                    {
+                                                        avatar: getAvatarUrl('sample-avatar-1.jpg'),
+                                                        name: 'Universe Tech',
+                                                        username: 'universetech'
+                                                    },
+                                                    'profile'
+                                                )
+                                            "
+                                        />
+                                    </div>
+
+                                    <Popover class="relative">
+                                        <QButton variant="secondary" circle size="sm">
+                                            <PopoverButton
+                                                as="span"
+                                                class="h-full w-full flex items-center justify-center"
+                                            >
+                                                <i class="ri-more-line"></i>
+                                            </PopoverButton>
+                                        </QButton>
+
+                                        <transition
+                                            enter-active-class="transition duration-200 ease-out"
+                                            enter-from-class="translate-y-1 opacity-0"
+                                            enter-to-class="translate-y-0 opacity-100"
+                                            leave-active-class="transition duration-150 ease-in"
+                                            leave-from-class="translate-y-0 opacity-100"
+                                            leave-to-class="translate-y-1 opacity-0"
+                                        >
+                                            <PopoverPanel class="popover__panel">
+                                                <div class="p-1">
+                                                    <ul class="menu">
+                                                        <li class="menu__item">
+                                                            <a
+                                                                class="menu__link"
+                                                                @click="reportModal = true"
+                                                            >
+                                                                <i class="ri-flag-line ri-1x"></i>
+                                                                <span>Report Profile</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </PopoverPanel>
+                                        </transition>
+                                    </Popover>
+                                </div>
+                            </div>
+
+                            <div class="profile__stats w-full flex-grow">
+                                <QCard paddings="padless" :shadow="false" :border="true">
+                                    <div class="p-5">
+                                        <ul class="space-y-4">
+                                            <li>
+                                                <div
+                                                    class="flex items-center justify-between text-sm"
+                                                >
+                                                    <div class="flex items-center space-x-2">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            viewBox="0 0 16 16"
+                                                            fill="none"
+                                                        >
+                                                            <path
+                                                                d="M2.00065 14.6667C1.63246 14.6667 1.32961 14.3668 1.37508 14.0014C1.70256 11.3699 3.94711 9.33342 6.66732 9.33342C9.38753 9.33342 11.6321 11.3699 11.9596 14.0014C12.005 14.3668 11.7022 14.6667 11.334 14.6667C10.9658 14.6667 10.6731 14.366 10.6125 14.0029C10.2962 12.1097 8.65028 10.6667 6.66732 10.6667C4.68435 10.6667 3.03839 12.1097 2.72216 14.0029C2.66149 14.366 2.36884 14.6667 2.00065 14.6667ZM6.66732 8.66675C4.45732 8.66675 2.66732 6.87675 2.66732 4.66675C2.66732 2.45675 4.45732 0.666748 6.66732 0.666748C8.87732 0.666748 10.6673 2.45675 10.6673 4.66675C10.6673 6.87675 8.87732 8.66675 6.66732 8.66675ZM6.66732 7.33342C8.14065 7.33342 9.33398 6.14008 9.33398 4.66675C9.33398 3.19341 8.14065 2.00008 6.66732 2.00008C5.19398 2.00008 4.00065 3.19341 4.00065 4.66675C4.00065 6.14008 5.19398 7.33342 6.66732 7.33342ZM11.916 10.4104C12.0672 10.0744 12.4651 9.92134 12.7794 10.1136C14.1325 10.9411 15.088 12.3549 15.2929 14.0016C15.3384 14.367 15.0355 14.6667 14.6673 14.6667C14.2991 14.6667 14.0065 14.3661 13.9458 14.003C13.7609 12.8955 13.1208 11.942 12.2245 11.3414C11.9187 11.1365 11.7649 10.7461 11.916 10.4104ZM11.5196 3.01714C11.6325 2.62181 12.0695 2.40958 12.4083 2.6424C13.3702 3.30317 14.0007 4.41099 14.0007 5.66675C14.0007 7.3214 12.906 8.71921 11.401 9.17589C11.0163 9.29264 10.6673 8.97201 10.6673 8.5699C10.6673 8.2294 10.9239 7.95066 11.2378 7.81875C12.0778 7.46576 12.6673 6.63541 12.6673 5.66675C12.6673 4.95265 12.3469 4.31371 11.842 3.88579C11.5876 3.67024 11.428 3.33772 11.5196 3.01714Z"
+                                                                fill="currentColor"
+                                                            />
+                                                        </svg>
+
+                                                        <span>Supporters</span>
+                                                    </div>
+
+                                                    <div class="font-medium">85.5k</div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div
+                                                    class="flex items-center justify-between text-sm"
+                                                >
+                                                    <div class="flex items-center space-x-2">
+                                                        <i class="ri-megaphone-line"></i>
+                                                        <span>Campaigns</span>
+                                                    </div>
+
+                                                    <div class="font-medium">8</div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div
+                                                    class="flex items-center justify-between text-sm"
+                                                >
+                                                    <div class="flex items-center space-x-2">
+                                                        <i class="ri-calendar-line"></i>
+                                                        <span>Joined Since</span>
+                                                    </div>
+
+                                                    <div class="font-medium">20 Jun 2022</div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </QCard>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
+            <div
+                class="profile-main overflow-x-hidden bg-white border-b border-stroke py-6 md:py-10"
+            >
                 <div class="container px-5 md:px-0">
                     <QTabs v-model="activeTab" :tabs="tabs" :block="isMobile">
                         <template #campaigns>
@@ -521,11 +543,9 @@ const commentValidation = yupObject().shape({
 .profile {
     .profile__top .profile__banner {
         height: 220px;
-        background-image: url('/assets/img/background/bg-default.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top;
-        margin-top: -16px;
+
+        background-color: white;
+        z-index: -1;
 
         @include lg_screen {
             height: 320px;
@@ -534,13 +554,36 @@ const commentValidation = yupObject().shape({
         @include xl_screen {
             height: 360px;
         }
+
+        @include before {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            background-attachment: scroll;
+            background-image: url('/assets/img/background/bg-default.jpg');
+            left: 0;
+            top: 76px;
+            z-index: -1;
+
+            position: fixed;
+            width: 100%;
+            height: v-bind(bannerHeight);
+
+            @include md_screen {
+                top: 88px;
+            }
+        }
     }
 
     .profile__avatar {
-        @apply container px-5 lg:px-0 -mt-10;
+        @apply container px-5 xl:px-0 -mt-10;
 
         @include md_screen {
-            @apply -mt-24;
+            @apply mt-6;
+        }
+
+        @include xl_screen {
+            @apply -mt-32;
         }
 
         .profile__avatar__img {
