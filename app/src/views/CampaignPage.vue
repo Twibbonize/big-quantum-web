@@ -4,7 +4,6 @@ import {
     breakpointsTailwind,
     useBreakpoints,
     useResizeObserver,
-    useWindowSize,
     useWindowScroll
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
@@ -46,7 +45,6 @@ const posts = ref([...publicPosts.slice(0, 6)]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
 
-const { height } = useWindowSize();
 const shareStore = useShareStore();
 const collectionStore = useCollectionStore();
 const { openShare } = shareStore;
@@ -58,56 +56,6 @@ const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
 const { y } = useWindowScroll();
-
-watch(y, (newValue) => {
-    if (newValue > 110) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
-    } else {
-        navbarColor.value = 'transparent';
-        navbarShadow.value = false;
-    }
-});
-
-useResizeObserver(campaignMain, (entries) => {
-    const entry = entries[0];
-    const { height } = entry.contentRect;
-
-    if (!sm.value) {
-        campaignFeeds.value.style.height = `${height}px`;
-    } else {
-        campaignFeeds.value.style.height = 'fit-content';
-    }
-});
-
-useResizeObserver(campaignPage, (entries) => {
-    const entry = entries[0];
-    const { height: campaignHeight, top } = entry.contentRect;
-
-    const campaignContent = document.querySelector('.campaign__content');
-    const campaignContentHeight = campaignContent.clientHeight;
-
-    if (!xl.value) {
-        return;
-    }
-
-    if (campaignHeight + top > campaignContentHeight) {
-        return;
-    }
-
-    const additionalSpace = xl.value ? 0 : 0;
-    const paddingY = top + additionalSpace;
-    let targetScale = (campaignHeight - paddingY) / (campaignContentHeight - 32);
-    const targetHeight = campaignContentHeight * targetScale;
-    let translateY = campaignHeight - targetHeight;
-
-    // if (targetHeight < 540) {
-    //     targetScale = 1;
-    //     translateY = 0;
-    // }
-
-    campaignContent.style.transform = `scale(${targetScale}) translateY(-${translateY}px)`;
-});
 
 const itemsToAdd = 3;
 
@@ -149,6 +97,67 @@ const onClickCollection = () => {
     });
 };
 
+const scaleCampaignPage = () => {
+    if (!xl.value) {
+        return;
+    }
+
+    const campaignContent = document.querySelector('.campaign__content');
+    const campaignRect = campaignPage.value.getBoundingClientRect();
+    const campaignContentRect = campaignContent.getBoundingClientRect();
+
+    const { height: campaignSectionHeight, top: campaignSectionTop } = campaignRect;
+    const { height: campaignContentHeight, top: campaignContentTop } = campaignContentRect;
+
+    const totalCampaignContentHeight = campaignContentHeight + campaignContentTop;
+
+    if (campaignSectionHeight + campaignSectionTop > totalCampaignContentHeight) {
+        return;
+    }
+
+    const additionalSpace = xl.value ? 88 : 0;
+    const targetScale = campaignSectionHeight / (totalCampaignContentHeight + additionalSpace);
+    const targetHeight = campaignContentHeight * targetScale;
+
+    const translateY = (totalCampaignContentHeight - targetHeight) / 2 - 44;
+
+    campaignContent.style.transform = `scale(${targetScale}) translateY(${-translateY}px)`;
+};
+
+watch(y, (newValue) => {
+    if (newValue > 110) {
+        navbarColor.value = 'white';
+        navbarShadow.value = true;
+    } else {
+        navbarColor.value = 'transparent';
+        navbarShadow.value = false;
+    }
+
+    const scrollMaxY =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+    if (y.value >= scrollMaxY - 300) {
+        document.querySelector('.campaign__background').style.opacity = '0';
+    } else {
+        document.querySelector('.campaign__background').style.opacity = '100';
+    }
+
+    // console.log(y.value)
+});
+
+useResizeObserver(campaignMain, (entries) => {
+    const entry = entries[0];
+    const { height } = entry.contentRect;
+
+    if (!sm.value) {
+        campaignFeeds.value.style.height = `${height}px`;
+    } else {
+        campaignFeeds.value.style.height = 'fit-content';
+    }
+});
+
+useResizeObserver(campaignPage, scaleCampaignPage);
+
 onMounted(async () => {
     gsap.to('.campaign__feeds-panels', {
         scrollTrigger: {
@@ -162,8 +171,7 @@ onMounted(async () => {
     });
 
     await nextTick();
-    const campaignContent = document.querySelector('.campaign__content');
-    // nextTick(() =)
+    scaleCampaignPage();
 });
 </script>
 <template>
@@ -321,7 +329,9 @@ onMounted(async () => {
                         </div>
                     </div>
 
-                    <div class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9">
+                    <div
+                        class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9 bg-white md:bg-transparent"
+                    >
                         <div ref="campaignFeeds" class="campaign__feeds">
                             <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
                                 <div
@@ -415,13 +425,11 @@ onMounted(async () => {
             </div>
         </div>
 
-        <div class="campaign-recommendations">
-            <div class="container px-4 2xl:px-0 pb-10 pt-28">
-                <div class="mb-20">
-                    <QSeparator alignment="center">
-                        <h4 class="text-3xl font-semibold text-black">More Like This</h4>
-                    </QSeparator>
-                </div>
+        <div class="campaign-recommendations bg-gray-50 relative z-10">
+            <div class="campaign__separator"></div>
+
+            <div class="container px-4 2xl:px-0 pb-10">
+                <h3 class="font-bold text-2xl mb-10">More Like This</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <CampaignCard
                         v-for="campaign in publicCampaigns"
@@ -441,37 +449,57 @@ onMounted(async () => {
 
     @include lg_screen {
         max-height: 100vh;
-        // height: 100vh;
     }
 
-    // margin-top: 20px;
-
     .campaign__background {
-        background: url('/assets/img/banners/hanoi.jpg');
-        background-repeat: no-repeat;
         width: 100%;
-        background-size: cover;
-        background-position: center;
-        position: absolute;
         top: 0;
         left: 0;
         height: 300px;
+        position: absolute !important;
 
         @media screen and (min-width: 630px) {
             height: 244px;
+            position: absolute;
         }
 
-        @include md_screen {
-            height: 100%;
-            width: 100%;
+        @include before() {
+            background-color: white;
+            background: url('/assets/img/banners/hanoi.jpg');
+            background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
+            position: fixed;
+            height: 300px;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        // @include md_screen {
+        //     height: auto;
+        //     width: 100%;
+        // }
+
+        @include md_screen {
+            @include before() {
+                background-image: url('/assets/img/banners/hanoi.jpg');
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: calc(100vh);
+                width: 100vw;
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
         }
     }
 
     .campaign__linear {
-        background: linear-gradient(0deg, #fff 0%, #dee8e8 22.56%, rgba(222, 232, 232, 0) 101.85%);
+        background: linear-gradient(0deg, #fff 0%, #dee8e8 22%, rgba(255, 255, 255, 0) 100%);
         position: absolute;
         bottom: -2px;
         left: 0;
@@ -497,10 +525,8 @@ onMounted(async () => {
 
         @include xl_screen {
             padding-top: 12px;
-            padding-bottom: 0px;
+            padding-bottom: 24px;
         }
-
-        // transform-origin: center center;
     }
 
     .campaign__main {
@@ -562,10 +588,21 @@ onMounted(async () => {
     }
 
     .campaign__detail {
-        @apply relative mx-4 sm:mx-0 pt-4 mt-2 border-t border-stroke bg-white space-y-4 flex flex-col justify-center;
+        @apply relative px-4 sm:mx-0 pt-8 bg-white space-y-4 flex flex-col justify-center;
+
+        @include sm {
+            @include before {
+                height: 1px;
+                width: calc(100% - 32px);
+                left: 50%;
+                transform: translate(-50%, 0%);
+                @apply bg-stroke top-2;
+            }
+        }
 
         @include md_screen {
-            @apply mx-0 mt-6 p-4 rounded-xl;
+            @apply mx-0 mt-3 p-4 rounded-xl shadow-sm;
+            // box-shadow: 0px 1px 25.321px 0px rgba(162, 150, 150, 0.1);
         }
 
         .campaign__detail__title {
@@ -612,7 +649,7 @@ onMounted(async () => {
         @apply h-full w-full bg-white relative overflow-hidden;
 
         @include md_screen {
-            @apply rounded-3xl border-transparent;
+            @apply rounded-3xl shadow-sm border-transparent;
             max-height: unset;
             margin-top: 0px;
         }
@@ -652,7 +689,7 @@ onMounted(async () => {
         }
 
         .campaign__feeds-all {
-            @apply container px-4 py-3 border-b border-stroke;
+            @apply container px-4 pt-6;
         }
 
         .campaign__feeds-control {
@@ -663,6 +700,16 @@ onMounted(async () => {
                 top: unset;
             }
         }
+    }
+}
+
+.campaign__separator {
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
+    @apply bg-white mb-16;
+
+    @include md_screen {
+        height: 88px;
     }
 }
 
