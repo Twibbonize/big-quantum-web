@@ -71,7 +71,7 @@ const companyLinks = [
 </script>
 
 <template>
-    <footer id="footer">
+    <footer id="footer" class="bg-white relative z-10">
         <div class="container px-5 mx-auto">
             <div class="flex row">
                 <div class="w-full">
@@ -104,7 +104,7 @@ const companyLinks = [
 
 <style lang="scss">
 #footer {
-    @apply mt-16 mb-8;
+    @apply pt-16 pb-8;
     background: var(--color-white);
 
     .widget {

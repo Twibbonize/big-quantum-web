@@ -74,8 +74,13 @@ onBeforeRouteLeave(() => {
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
                     <div class="collection-modal__body">
                         <div class="collection-modal__filter">
-                            <QInputText v-model="query" name="search" size="sm" placeholder="Search your Collections"
-                                @input="onFilterCollection">
+                            <QInputText
+                                v-model="query"
+                                name="search"
+                                size="sm"
+                                placeholder="Search your Collections"
+                                @input="onFilterCollection"
+                            >
                                 <template #prefix>
                                     <div class="pl-3 pr-1 h-full">
                                         <i class="ri-search-line text-content"></i>
@@ -85,13 +90,23 @@ onBeforeRouteLeave(() => {
                         </div>
 
                         <div class="collection-modal__list">
-                            <div v-if="filteredCollections.length" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <CollectionCard v-for="collection in filteredCollections" v-bind="collection"
-                                    @click="toggleSelection(collection.id)" checkable
-                                    :checked="selectedCollections.includes(collection.id)" />
+                            <div
+                                v-if="filteredCollections.length"
+                                class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                            >
+                                <CollectionCard
+                                    v-for="collection in filteredCollections"
+                                    v-bind="collection"
+                                    @click="toggleSelection(collection.id)"
+                                    checkable
+                                    :checked="selectedCollections.includes(collection.id)"
+                                />
                             </div>
 
-                            <div v-else class="flex flex-col items-center justify-center text-center py-5 space-y-1">
+                            <div
+                                v-else
+                                class="flex flex-col items-center justify-center text-center py-5 space-y-1"
+                            >
                                 <div class="font-semibold">Collection not found</div>
                                 <p class="text-content text-sm">Try filter with other keyword</p>
                             </div>
@@ -108,9 +123,13 @@ onBeforeRouteLeave(() => {
                     </div>
                 </div>
 
-                <VeeForm v-if="view === 'create' && campaign" :validation-schema="formValidation"
-                    :initial-values="{ name: campaign.name }" class="collection-modal__create" v-slot="{ meta }">
-
+                <VeeForm
+                    v-if="view === 'create' && campaign"
+                    :validation-schema="formValidation"
+                    :initial-values="{ name: campaign.name }"
+                    class="collection-modal__create"
+                    v-slot="{ meta }"
+                >
                     <div class="collection-modal__body p-5">
                         <div class="space-y-6">
                             <div class="space-y-3">
@@ -119,14 +138,25 @@ onBeforeRouteLeave(() => {
                             </div>
 
                             <div class="space-y-3">
-                                <label for="description" class="text-sm font-semibold">Description
-                                    <span class="font-normal text-content">(optional)</span></label>
-                                <QInputTextarea id="description" name="description" placeholder="Enter description" />
+                                <label for="description" class="text-sm font-semibold"
+                                    >Description
+                                    <span class="font-normal text-content">(optional)</span></label
+                                >
+                                <QInputTextarea
+                                    id="description"
+                                    name="description"
+                                    placeholder="Enter description"
+                                />
                             </div>
                         </div>
                     </div>
                     <div class="collection-modal__footer">
-                        <QButton v-if="collections.length" variant="secondary" size="sm" @click="view = 'selection'">Cancel
+                        <QButton
+                            v-if="collections.length"
+                            variant="secondary"
+                            size="sm"
+                            @click="view = 'selection'"
+                            >Cancel
                         </QButton>
                         <div v-else></div>
                         <QButton size="sm" :enabled="meta.valid"> Create </QButton>
@@ -154,7 +184,8 @@ onBeforeRouteLeave(() => {
     @apply absolute right-5 top-5 -translate-y-2;
 }
 
-.collection-modal__selection, .collection-modal__create {
+.collection-modal__selection,
+.collection-modal__create {
     height: 100%;
     display: flex;
     flex-direction: column;
