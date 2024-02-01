@@ -580,8 +580,8 @@ const posts = [
             padding-top: calc(220px - 66px);
         }
 
-        @include lg_screen {
-            padding-top: calc(360px - 66px);
+        @include xl_screen {
+            padding-top: calc(360px - 96px);
         }
         // margin-top: calc(180px);
         // transform: translateY(-3.5rem);
@@ -595,6 +595,11 @@ const posts = [
         @include lg_screen {
             padding-top: 66px;
             margin-top: -66px;
+        }
+
+        @include xl_screen {
+            padding-top: 26px;
+            margin-top: -26px;
         }
     }
 

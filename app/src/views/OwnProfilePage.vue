@@ -54,6 +54,7 @@ const creatorUuid = '1920371293719237912';
 const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
+const bioContainer = ref(null);
 const shareStore = useShareStore();
 
 const { openShare } = shareStore;
@@ -138,129 +139,149 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
             <div class="profile__top">
                 <div class="profile__banner"></div>
 
-                <div class="profile__avatar">
-                    <img
-                        class="profile__avatar__img"
-                        src="/assets/img/sample/sample-avatar-1.jpg"
-                        alt="Universe Tech"
-                    />
-                    <button class="profile__avatar__edit">
-                        <i class="ri-edit-line"></i>
-                    </button>
-                </div>
+                <div class="profile__detail">
+                    <div class="profile__avatar">
+                        <img
+                            class="profile__avatar__img"
+                            src="/assets/img/sample/sample-avatar-1.jpg"
+                            alt="Universe Tech"
+                        />
+                        <button class="profile__avatar__edit">
+                            <i class="ri-edit-line"></i>
+                        </button>
+                    </div>
 
-                <div class="container px-5 xl:px-0">
-                    <div
-                        class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10 sm:space-x-6"
-                    >
-                        <div class="profile__common">
-                            <div class="space-y-1">
-                                <h1 class="profile__name">Universe Tech</h1>
-                                <p class="profile__username">@universetech</p>
-                                <div class="profile__bio">
-                                    <QEllipsisText :text="profile.bio" />
-                                </div>
-                                <div class="profile__web text-content">
-                                    <i class="ri-links-line"></i>
-                                    <a
-                                        href="https://www.universe-tech.com"
-                                        target="_blank"
-                                        rel="nofollow"
-                                        class="link"
-                                        >www.universe-tech.com</a
-                                    >
-                                </div>
-                            </div>
+                    <div class="profile__detail-wrapper">
+                        <div class="container px-5 xl:px-0">
+                            <div
+                                class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10 sm:space-x-6"
+                            >
+                                <div class="profile__common">
+                                    <div class="space-y-1">
+                                        <h1 class="profile__name">Universe Tech</h1>
+                                        <p class="profile__username">@universetech</p>
+                                        <div ref="bioContainer" class="profile__bio">
+                                            <QEllipsisText
+                                                :text="profile.bio"
+                                                :containerWidth="
+                                                    (bioContainer && bioContainer.offsetWidth) ||
+                                                    240
+                                                "
+                                            />
+                                        </div>
+                                        <div class="profile__web text-content">
+                                            <i class="ri-links-line"></i>
+                                            <a
+                                                href="https://www.universe-tech.com"
+                                                target="_blank"
+                                                rel="nofollow"
+                                                class="link"
+                                                >www.universe-tech.com</a
+                                            >
+                                        </div>
+                                    </div>
 
-                            <div class="profile__actions">
-                                <div class="w-full md:w-60">
-                                    <QShareButton
-                                        link="twb.nz/u/universetech"
-                                        @click="
-                                            openShare(
-                                                'twb.nz/u/universetech',
-                                                {
-                                                    avatar: getAvatarUrl('sample-avatar-1.jpg'),
-                                                    name: 'Universe Tech',
-                                                    username: 'universetech'
-                                                },
-                                                'profile'
-                                            )
-                                        "
-                                    />
+                                    <div class="profile__actions">
+                                        <div class="w-full md:w-60">
+                                            <QShareButton
+                                                link="twb.nz/u/universetech"
+                                                @click="
+                                                    openShare(
+                                                        'twb.nz/u/universetech',
+                                                        {
+                                                            avatar: getAvatarUrl(
+                                                                'sample-avatar-1.jpg'
+                                                            ),
+                                                            name: 'Universe Tech',
+                                                            username: 'universetech'
+                                                        },
+                                                        'profile'
+                                                    )
+                                                "
+                                            />
+                                        </div>
+
+                                        <div class="flex-shrink-0 flex-grow sm:flex-grow-0">
+                                            <QButton
+                                                variant="secondary"
+                                                size="sm"
+                                                block
+                                                @click="$router.push({ name: 'settings' })"
+                                            >
+                                                <i class="ri-settings-3-line"></i>
+                                                <span class="ml-1">Edit Profile</span>
+                                            </QButton>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="flex-shrink-0 flex-grow sm:flex-grow-0">
-                                    <QButton
-                                        variant="secondary"
-                                        size="sm"
-                                        block
-                                        @click="$router.push({ name: 'settings' })"
-                                    >
-                                        <i class="ri-settings-3-line"></i>
-                                        <span class="ml-1">Edit Profile</span>
-                                    </QButton>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="profile__stats w-full flex-grow">
-                            <QCard paddings="padless" :shadow="false" :border="true">
-                                <div class="p-5">
-                                    <ul class="space-y-4">
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="16"
-                                                        height="16"
-                                                        viewBox="0 0 16 16"
-                                                        fill="none"
+                                <div class="profile__stats w-full flex-grow">
+                                    <QCard paddings="padless" :shadow="false" :border="true">
+                                        <div class="p-5">
+                                            <ul class="space-y-4">
+                                                <li>
+                                                    <div
+                                                        class="flex items-center justify-between text-sm"
                                                     >
-                                                        <path
-                                                            d="M2.00065 14.6667C1.63246 14.6667 1.32961 14.3668 1.37508 14.0014C1.70256 11.3699 3.94711 9.33342 6.66732 9.33342C9.38753 9.33342 11.6321 11.3699 11.9596 14.0014C12.005 14.3668 11.7022 14.6667 11.334 14.6667C10.9658 14.6667 10.6731 14.366 10.6125 14.0029C10.2962 12.1097 8.65028 10.6667 6.66732 10.6667C4.68435 10.6667 3.03839 12.1097 2.72216 14.0029C2.66149 14.366 2.36884 14.6667 2.00065 14.6667ZM6.66732 8.66675C4.45732 8.66675 2.66732 6.87675 2.66732 4.66675C2.66732 2.45675 4.45732 0.666748 6.66732 0.666748C8.87732 0.666748 10.6673 2.45675 10.6673 4.66675C10.6673 6.87675 8.87732 8.66675 6.66732 8.66675ZM6.66732 7.33342C8.14065 7.33342 9.33398 6.14008 9.33398 4.66675C9.33398 3.19341 8.14065 2.00008 6.66732 2.00008C5.19398 2.00008 4.00065 3.19341 4.00065 4.66675C4.00065 6.14008 5.19398 7.33342 6.66732 7.33342ZM11.916 10.4104C12.0672 10.0744 12.4651 9.92134 12.7794 10.1136C14.1325 10.9411 15.088 12.3549 15.2929 14.0016C15.3384 14.367 15.0355 14.6667 14.6673 14.6667C14.2991 14.6667 14.0065 14.3661 13.9458 14.003C13.7609 12.8955 13.1208 11.942 12.2245 11.3414C11.9187 11.1365 11.7649 10.7461 11.916 10.4104ZM11.5196 3.01714C11.6325 2.62181 12.0695 2.40958 12.4083 2.6424C13.3702 3.30317 14.0007 4.41099 14.0007 5.66675C14.0007 7.3214 12.906 8.71921 11.401 9.17589C11.0163 9.29264 10.6673 8.97201 10.6673 8.5699C10.6673 8.2294 10.9239 7.95066 11.2378 7.81875C12.0778 7.46576 12.6673 6.63541 12.6673 5.66675C12.6673 4.95265 12.3469 4.31371 11.842 3.88579C11.5876 3.67024 11.428 3.33772 11.5196 3.01714Z"
-                                                            fill="currentColor"
-                                                        />
-                                                    </svg>
+                                                        <div class="flex items-center space-x-2">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="16"
+                                                                height="16"
+                                                                viewBox="0 0 16 16"
+                                                                fill="none"
+                                                            >
+                                                                <path
+                                                                    d="M2.00065 14.6667C1.63246 14.6667 1.32961 14.3668 1.37508 14.0014C1.70256 11.3699 3.94711 9.33342 6.66732 9.33342C9.38753 9.33342 11.6321 11.3699 11.9596 14.0014C12.005 14.3668 11.7022 14.6667 11.334 14.6667C10.9658 14.6667 10.6731 14.366 10.6125 14.0029C10.2962 12.1097 8.65028 10.6667 6.66732 10.6667C4.68435 10.6667 3.03839 12.1097 2.72216 14.0029C2.66149 14.366 2.36884 14.6667 2.00065 14.6667ZM6.66732 8.66675C4.45732 8.66675 2.66732 6.87675 2.66732 4.66675C2.66732 2.45675 4.45732 0.666748 6.66732 0.666748C8.87732 0.666748 10.6673 2.45675 10.6673 4.66675C10.6673 6.87675 8.87732 8.66675 6.66732 8.66675ZM6.66732 7.33342C8.14065 7.33342 9.33398 6.14008 9.33398 4.66675C9.33398 3.19341 8.14065 2.00008 6.66732 2.00008C5.19398 2.00008 4.00065 3.19341 4.00065 4.66675C4.00065 6.14008 5.19398 7.33342 6.66732 7.33342ZM11.916 10.4104C12.0672 10.0744 12.4651 9.92134 12.7794 10.1136C14.1325 10.9411 15.088 12.3549 15.2929 14.0016C15.3384 14.367 15.0355 14.6667 14.6673 14.6667C14.2991 14.6667 14.0065 14.3661 13.9458 14.003C13.7609 12.8955 13.1208 11.942 12.2245 11.3414C11.9187 11.1365 11.7649 10.7461 11.916 10.4104ZM11.5196 3.01714C11.6325 2.62181 12.0695 2.40958 12.4083 2.6424C13.3702 3.30317 14.0007 4.41099 14.0007 5.66675C14.0007 7.3214 12.906 8.71921 11.401 9.17589C11.0163 9.29264 10.6673 8.97201 10.6673 8.5699C10.6673 8.2294 10.9239 7.95066 11.2378 7.81875C12.0778 7.46576 12.6673 6.63541 12.6673 5.66675C12.6673 4.95265 12.3469 4.31371 11.842 3.88579C11.5876 3.67024 11.428 3.33772 11.5196 3.01714Z"
+                                                                    fill="currentColor"
+                                                                />
+                                                            </svg>
 
-                                                    <span>Supporters</span>
-                                                </div>
+                                                            <span>Supporters</span>
+                                                        </div>
 
-                                                <div class="font-medium">85.5k</div>
-                                            </div>
-                                        </li>
+                                                        <div class="font-medium">85.5k</div>
+                                                    </div>
+                                                </li>
 
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <i class="ri-megaphone-line"></i>
-                                                    <span>Campaigns</span>
-                                                </div>
+                                                <li>
+                                                    <div
+                                                        class="flex items-center justify-between text-sm"
+                                                    >
+                                                        <div class="flex items-center space-x-2">
+                                                            <i class="ri-megaphone-line"></i>
+                                                            <span>Campaigns</span>
+                                                        </div>
 
-                                                <div class="font-medium">8</div>
-                                            </div>
-                                        </li>
+                                                        <div class="font-medium">8</div>
+                                                    </div>
+                                                </li>
 
-                                        <li>
-                                            <div class="flex items-center justify-between text-sm">
-                                                <div class="flex items-center space-x-2">
-                                                    <i class="ri-calendar-line"></i>
-                                                    <span>Joined Since</span>
-                                                </div>
+                                                <li>
+                                                    <div
+                                                        class="flex items-center justify-between text-sm"
+                                                    >
+                                                        <div class="flex items-center space-x-2">
+                                                            <i class="ri-calendar-line"></i>
+                                                            <span>Joined Since</span>
+                                                        </div>
 
-                                                <div class="font-medium">20 Jun 2022</div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                                        <div class="font-medium">20 Jun 2022</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </QCard>
                                 </div>
-                            </QCard>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="profile-main overflow-x-hidden border-b border-stroke py-6 md:py-10">
+            <div
+                class="profile-main bg-white overflow-x-hidden border-b border-stroke py-6 md:py-10"
+            >
                 <div class="container px-5 xl:px-0">
                     <QTabs :tabs="tabs" :block="isMobile">
                         <template #campaigns>
@@ -338,11 +359,11 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
 .profile {
     .profile__top .profile__banner {
         height: 220px;
-        background-image: url('/assets/img/background/bg-default.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top;
-        margin-top: -16px;
+        width: 100%;
+        position: absolute !important;
+
+        background-color: white;
+        z-index: -1;
 
         @include lg_screen {
             height: 320px;
@@ -351,13 +372,71 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
         @include xl_screen {
             height: 360px;
         }
+
+        @include before {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            background-attachment: scroll;
+            background-image: url('/assets/img/background/bg-default.jpg');
+            left: 0;
+            top: 76px;
+            z-index: -1;
+            position: fixed;
+            width: 100%;
+            height: 220px;
+            // transform: translateY(v-bind(translateY));
+
+            @include md_screen {
+                top: 88px;
+            }
+
+            @include lg_screen {
+                height: 320px;
+            }
+
+            @include xl_screen {
+                height: 360px;
+            }
+        }
     }
-    .profile__avatar {
-        @apply container px-5 xl:px-0 -mt-10 relative;
+
+    .profile__detail {
+        padding-top: calc(220px - 36px);
 
         @include md_screen {
-            @apply -mt-24;
+            padding-top: calc(220px - 66px);
         }
+
+        @include lg_screen {
+            padding-top: calc(320px - 66px);
+        }
+
+        @include xl_screen {
+            padding-top: calc(360px - 96px);
+        }
+        // margin-top: calc(180px);
+        // transform: translateY(-3.5rem);
+    }
+
+    .profile__detail-wrapper {
+        @apply bg-white;
+        padding-top: 36px;
+        margin-top: -36px;
+
+        @include lg_screen {
+            padding-top: 66px;
+            margin-top: -66px;
+        }
+
+        @include xl_screen {
+            padding-top: 26px;
+            margin-top: -26px;
+        }
+    }
+
+    .profile__avatar {
+        @apply container px-5 xl:px-0 relative;
 
         .profile__avatar__img {
             height: 72px;
