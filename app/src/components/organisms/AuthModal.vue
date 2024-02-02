@@ -47,15 +47,18 @@ const handleAuthNative = async (formValues) => {
         :position="modalPosition"
         size="lg"
         @close="modal.show = false"
-        :closeBtn="!isMobile"
+        :closeBtn="false"
     >
         <template #body>
             <div class="login">
-                <div v-if="isMobile" class="fixed right-5 pt-5 z-10">
-                    <QButton variant="subtle" size="sm" square @click="modal.show = false">
-                        <i class="ri-close-fill ri-xl"></i>
-                    </QButton>
+                <div class="absolute top-5 lg:top-8 right-10">
+                    <div class="fixed z-10 -translate-x-1/2 lg:-translate-x-full">
+                        <QButton variant="subtle" size="sm" square @click="modal.show = false">
+                            <i class="ri-close-fill ri-xl"></i>
+                        </QButton>
+                    </div>
                 </div>
+
                 <template v-if="modal.authOption === 'sign-in'">
                     <div class="login__wrapper">
                         <VeeForm

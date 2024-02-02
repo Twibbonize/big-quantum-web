@@ -1,18 +1,18 @@
 <script setup>
 import { string as yupString, object as yupObject } from 'yup';
-import { Field, Form as VeeForm } from 'vee-validate';
+import { Form as VeeForm } from 'vee-validate';
+import { breakpointsTailwind, useBreakpoints, useDebounceFn } from '@vueuse/core';
+import { onBeforeRouteLeave } from 'vue-router';
+import { storeToRefs } from 'pinia';
+import { onMounted, ref } from 'vue';
 
 import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QSeparator from '@/components/atoms/QSeparator.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
-import CollectionCardSelection from '@/components/molecules/CollectionCardSelection.vue';
+import CollectionCard from '@/components/molecules/CollectionCard.vue';
 
 import { useCollectionStore } from '@/stores/collectionStore';
-import { storeToRefs } from 'pinia';
-import { onMounted, ref } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
 
 const collectionStore = useCollectionStore();
 const { show, campaign, view, collections, filteredCollections, selectedCollections } =
@@ -25,6 +25,9 @@ const formValidation = yupObject().shape({
     description: yupString()
 });
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+
 const onFilterCollection = useDebounceFn(() => {
     filterCollectionsByName(query.value);
 }, 600);
@@ -32,29 +35,43 @@ const onFilterCollection = useDebounceFn(() => {
 onMounted(() => {
     filterCollectionsByName(query.value);
 });
+
+onBeforeRouteLeave(() => {
+    if (show.value) {
+        show.value = false;
+        return;
+    }
+});
 </script>
 <template>
-    <QModal :show="show" @close="show = false" size="lg">
-        <template #body>
+    <QModal :show="show" @close="show = false" size="lg" :position="sm ? 'bottom' : 'center'">
+        <template #header>
+            <div v-if="campaign" class="collection-modal__header">
+                <div v-if="view === 'selection'">
+                    <h3 class="text-lg leading-snug max-w-xs md:max-w-none">
+                        Add <span class="font-bold">{{ campaign.name }}</span> to Collections
+                    </h3>
+
+                    <div v-show="!sm" class="collection-modal__close">
+                        <QButton variant="subtle" size="sm" square @click="closeCollectionModal">
+                            <i class="ri-close-fill ri-xl"></i>
+                        </QButton>
+                    </div>
+                </div>
+                <div v-else>
+                    <h3 class="text-base leading-none font-semibold">Create New Collection</h3>
+
+                    <div v-show="!sm" class="collection-modal__close">
+                        <QButton variant="subtle" size="sm" square @click="closeCollectionModal">
+                            <i class="ri-close-fill ri-xl"></i>
+                        </QButton>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template #body="{ close }">
             <div class="collection-modal">
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
-                    <div class="collection-modal__header">
-                        <h3 class="text-base leading-none">
-                            Add <span class="font-bold">{{ campaign.name }}</span> to Collections
-                        </h3>
-
-                        <div class="collection-modal__close">
-                            <QButton
-                                variant="subtle"
-                                size="sm"
-                                square
-                                @click="closeCollectionModal"
-                            >
-                                <i class="ri-close-fill ri-xl"></i>
-                            </QButton>
-                        </div>
-                    </div>
-
                     <div class="collection-modal__body">
                         <div class="collection-modal__filter">
                             <QInputText
@@ -77,10 +94,11 @@ onMounted(() => {
                                 v-if="filteredCollections.length"
                                 class="grid grid-cols-1 md:grid-cols-2 gap-4"
                             >
-                                <CollectionCardSelection
+                                <CollectionCard
                                     v-for="collection in filteredCollections"
                                     v-bind="collection"
                                     @click="toggleSelection(collection.id)"
+                                    checkable
                                     :checked="selectedCollections.includes(collection.id)"
                                 />
                             </div>
@@ -96,10 +114,12 @@ onMounted(() => {
                     </div>
 
                     <div class="collection-modal__footer">
-                        <QButton variant="secondary" size="sm" @click="view = 'create'"
-                            >Create a New Collection</QButton
-                        >
-                        <QButton size="sm" @click="closeCollectionModal">Done</QButton>
+                        <QButton variant="secondary" size="sm" @click="view = 'create'">
+                            <i class="ri-add-line"></i>
+                            <span class="ml-2">New Collection</span>
+                        </QButton>
+
+                        <QButton size="sm" @click="close">Done</QButton>
                     </div>
                 </div>
 
@@ -110,21 +130,6 @@ onMounted(() => {
                     class="collection-modal__create"
                     v-slot="{ meta }"
                 >
-                    <div class="collection-modal__header">
-                        <h3 class="text-base leading-none font-semibold">Create New Collection</h3>
-
-                        <div class="collection-modal__close">
-                            <QButton
-                                variant="subtle"
-                                size="sm"
-                                square
-                                @click="closeCollectionModal"
-                            >
-                                <i class="ri-close-fill ri-xl"></i>
-                            </QButton>
-                        </div>
-                    </div>
-
                     <div class="collection-modal__body p-5">
                         <div class="space-y-6">
                             <div class="space-y-3">
@@ -164,30 +169,45 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .collection-modal {
-    .collection-modal__header {
-        @apply p-5 border-b border-stroke;
-    }
+    height: 100%;
+}
 
-    .collection-modal__close {
-        @apply absolute right-5 top-5 -translate-y-2;
-    }
+.collection-modal__header {
+    @apply p-5 pt-0 border-b border-stroke w-full;
 
-    .collection-modal__filter {
-        @apply px-5 py-3;
+    @include md_screen {
+        @apply pt-5;
     }
+}
 
-    // .collection-modal__body {
-    //     @apply p-5;
-    // }
+.collection-modal__close {
+    @apply absolute right-5 top-5 -translate-y-2;
+}
 
-    .collection-modal__list {
-        height: 320px;
-        overflow: auto;
-        @apply px-5 pt-2 pb-5;
-    }
+.collection-modal__selection,
+.collection-modal__create {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-    .collection-modal__footer {
-        @apply flex items-center justify-between p-5 border-t border-stroke;
-    }
+.collection-modal__filter {
+    @apply px-5 py-3;
+}
+
+.collection-modal__body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.collection-modal__list {
+    // height: 320px;
+    min-height: 280px;
+    overflow: auto;
+    @apply px-5 pt-2 pb-5;
+}
+
+.collection-modal__footer {
+    @apply flex items-center justify-between px-5 py-6 border-t border-stroke bg-white;
 }
 </style>

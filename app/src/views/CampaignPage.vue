@@ -1,531 +1,729 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
+import {
+    breakpointsTailwind,
+    useBreakpoints,
+    useResizeObserver,
+    useWindowScroll
+} from '@vueuse/core';
+import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
-import MetaInfo from '@/components/molecules/MetaInfo.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QSlider from '@/components/atoms/QSlider.vue';
-import CampaignCard from '@/components/campaign/CampaignCard.vue';
+import QCreator from '@/components/atoms/QCreator.vue';
+import QShareButton from '@/components/atoms/QShareButton.vue';
+import QSeparator from '@/components/atoms/QSeparator.vue';
+import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
+import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
+import PostWrapper from '@/components/molecules/PostWrapper.vue';
+import CampaignCard from '@/components/molecules/CampaignCard.vue';
+import QSkeleton from '@/components/atoms/QSkeleton.vue';
+import { useCollectionStore } from '@/stores/collectionStore';
 
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import { useShareStore } from '@/stores/shareStore';
+import { publicPosts } from '@/mock/posts';
+import { publicCampaigns } from '@/mock/campaigns';
 
-dayjs.extend(relativeTime);
+gsap.registerPlugin(ScrollTrigger);
 
-const isReadMore = ref(false);
-const navbarColor = ref('transparent');
-
-const clickReadMore = () => {
-    isReadMore.value = true;
-};
-
-const frameLists = [
-    'hanoi-art-frame-1',
-    'hanoi-art-frame-2',
-    'hanoi-art-frame-3',
-    'hanoi-art-frame-4'
+const frames = [
+    '/assets/img/frames/hanoi-art-frame-1.png',
+    '/assets/img/frames/hanoi-art-frame-2.png',
+    '/assets/img/frames/hanoi-art-frame-3.png',
+    '/assets/img/frames/hanoi-art-frame-4.png'
 ];
 
-const frameIndex = ref(0);
+const navbarColor = ref('transparent');
+const navbarShadow = ref(false);
+const campaignPage = ref(null);
+const campaignMain = ref(null);
+const campaignFeeds = ref(null);
+const campaignFeedsPanels = ref(null);
+const selectedFrames = ref(frames[0]);
+const posts = ref([...publicPosts.slice(0, 6)]);
+const isLoadingPost = ref(false);
+const displayType = ref('grid');
 
-const getFrameUrl = (frame) => {
-    return `/assets/img/frames/${frame}.png`;
-};
+const shareStore = useShareStore();
+const collectionStore = useCollectionStore();
+const { openShare } = shareStore;
+const { showCollectionModal } = collectionStore;
 
-const setActiveFrame = (index) => {
-    frameIndex.value = index;
-};
+const breakpoints = useBreakpoints(breakpointsTailwind);
 
-const layout = ref('grid');
+const sm = breakpoints.smallerOrEqual('sm');
+const xl = breakpoints.greaterOrEqual('xl');
 
-const changeLayout = () => {
-    if (layout.value === 'grid') layout.value = 'list';
-    else if (layout.value === 'list') layout.value = 'grid';
-};
+const { y } = useWindowScroll();
 
-const action = ref(null);
+const itemsToAdd = 3;
 
-const feedsHeight = computed(() => {
-    if (action.value) {
-        return `${action.value.clientHeight}px`;
+const lazyLoad = () => {
+    if (isLoadingPost.value) return;
+
+    if (posts.value.length >= 21) {
+        return;
     }
 
-    return '100%';
+    isLoadingPost.value = true;
+
+    setTimeout(() => {
+        posts.value = [
+            ...posts.value,
+            ...publicPosts.slice(posts.value.length, posts.value.length + itemsToAdd)
+        ];
+        isLoadingPost.value = false;
+    }, 1000);
+};
+
+const toggleDisplay = () => {
+    displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
+};
+
+const onClickShare = () => {
+    // const { url, thumbnail } = props;
+    openShare(
+        'twb.nz/hanoi-art-2025',
+        { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
+        'campaign'
+    );
+};
+
+const onClickCollection = () => {
+    showCollectionModal({
+        name: 'Hanoi Art Book Fair 2025',
+        thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+    });
+};
+
+const scaleCampaignPage = () => {
+    if (!xl.value) {
+        return;
+    }
+
+    const campaignContent = document.querySelector('.campaign__content');
+    const campaignRect = campaignPage.value.getBoundingClientRect();
+    const campaignContentRect = campaignContent.getBoundingClientRect();
+
+    const { height: campaignSectionHeight, top: campaignSectionTop } = campaignRect;
+    const { height: campaignContentHeight, top: campaignContentTop } = campaignContentRect;
+
+    const totalCampaignContentHeight = campaignContentHeight + campaignContentTop;
+
+    if (campaignSectionHeight + campaignSectionTop > totalCampaignContentHeight) {
+        return;
+    }
+
+    const additionalSpace = xl.value ? 88 : 0;
+    const targetScale = campaignSectionHeight / (totalCampaignContentHeight + additionalSpace);
+    const targetHeight = campaignContentHeight * targetScale;
+
+    const translateY = (totalCampaignContentHeight - targetHeight) / 2 - 44;
+
+    campaignContent.style.transform = `scale(${targetScale}) translateY(${-translateY}px)`;
+};
+
+watch(y, (newValue) => {
+    if (newValue > 110) {
+        navbarColor.value = 'white';
+        navbarShadow.value = true;
+    } else {
+        navbarColor.value = 'transparent';
+        navbarShadow.value = false;
+    }
+
+    const scrollMaxY =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+    if (y.value >= scrollMaxY - 300) {
+        document.querySelector('.campaign__background').style.opacity = '0';
+    } else {
+        document.querySelector('.campaign__background').style.opacity = '100';
+    }
+
+    // console.log(y.value)
 });
 
-const getSampleUser = (index) => {
-    return `/assets/img/sample/sample-person-${index}.jpg`;
-};
+useResizeObserver(campaignMain, (entries) => {
+    const entry = entries[0];
+    const { height } = entry.contentRect;
 
-const moreCampaigns = [
-    {
-        name: 'UNIVERSE UNPACKED 2022',
-        creator: 'Universe Tech',
-        avatar: 'sample-avatar-1.jpg',
-        supports: 85500,
-        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
-        thumbnail: 'sample-campaign-1.jpg'
-    },
-    {
-        name: 'Liberty Scholarship 2025',
-        creator: 'Liberty Scholarship',
-        avatar: 'sample-avatar-2.jpg',
-        supports: 1470,
-        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-2.jpg'
-    },
-    {
-        name: 'Bit by Bit - Retro Gaming',
-        creator: 'Bit by Bit',
-        avatar: 'sample-avatar-3.jpg',
-        supports: 15100,
-        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
-        thumbnail: 'sample-campaign-3.jpg'
-    },
-    {
-        name: 'Digital Culture Webinar',
-        creator: 'Digital Culture',
-        avatar: 'sample-avatar-4.jpg',
-        supports: 7700,
-        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-4.jpg'
-    },
-    {
-        name: 'Candy Rush Treats or Treats!',
-        creator: 'Candy Rush',
-        avatar: 'sample-avatar-10.jpg',
-        supports: 13600,
-        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-5.jpg'
-    },
-    {
-        name: 'Nucleotide Labo Fashion Researcher Program',
-        creator: 'Nucleotide Labo',
-        avatar: 'sample-avatar-11.jpg',
-        supports: 1300,
-        createdAt: dayjs().subtract(2, 'day').unix() * 1000,
-        thumbnail: 'sample-campaign-6.jpg'
-    },
-    {
-        name: 'Fashion Week 2025',
-        creator: 'Fashion Week',
-        avatar: 'sample-avatar-12.jpg',
-        supports: 180000,
-        createdAt: dayjs().subtract(1, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-7.jpg'
-    },
-    {
-        name: 'ASO Rock Festa 2022',
-        creator: 'ASO Rock Festa',
-        avatar: 'sample-avatar-13.jpg',
-        supports: 3400,
-        createdAt: dayjs().subtract(2, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-4.jpg'
-    },
-    {
-        name: 'Celebrating Women’s History Month',
-        creator: 'The National Library',
-        avatar: 'sample-avatar-14.jpg',
-        supports: 34500,
-        createdAt: dayjs().subtract(5, 'day').unix() * 1000,
-        thumbnail: 'sample-campaign-9.jpg'
-    },
-    {
-        name: 'Fusion Beats Global Music Carnival',
-        creator: 'World Rhythms Collective',
-        avatar: 'sample-avatar-15.jpg',
-        supports: 56200,
-        createdAt: dayjs().subtract(2, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-10.jpg'
-    },
-    {
-        name: 'Blossom Serenity: Flower Watching Extravaganza',
-        creator: 'Floral Harmony Events',
-        avatar: 'sample-avatar-16.jpg',
-        supports: 12800,
-        createdAt: dayjs().subtract(6, 'day').unix() * 1000,
-        thumbnail: 'sample-campaign-11.jpg'
-    },
-    {
-        name: 'Eco-Fiesta: A Green Living Celebration',
-        creator: 'Green Horizon Initiatives',
-        avatar: 'sample-avatar-17.jpg',
-        supports: 43000,
-        createdAt: dayjs().subtract(3, 'week').unix() * 1000,
-        thumbnail: 'sample-campaign-12.jpg'
+    if (!sm.value) {
+        campaignFeeds.value.style.height = `${height}px`;
+    } else {
+        campaignFeeds.value.style.height = 'fit-content';
     }
-];
+});
 
-function getAvatarUrl(name) {
-    const filename = `/assets/img/sample/${name}`;
-    return new URL(filename, import.meta.url).href;
-}
-function getThumbnailUrl(name) {
-    const filename = `/assets/img/sample/${name}`;
-    return new URL(filename, import.meta.url).href;
-}
+useResizeObserver(campaignPage, scaleCampaignPage);
 
-onMounted(() => {
-    emit('change-navbar', 'transparent');
+onMounted(async () => {
+    gsap.to('.campaign__feeds-panels', {
+        scrollTrigger: {
+            trigger: '.campaign__feeds-panels',
+            end: 'bottom top',
+            start: 'bottom bottom',
+            onUpdate: () => {
+                lazyLoad();
+            }
+        }
+    });
+
+    await nextTick();
+    scaleCampaignPage();
 });
 </script>
-
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="false">
-        <div class="campaign-page">
-            <div class="container">
-                <div ref="action" class="action">
-                    <div class="frame">
-                        <div class="card campaign-frame">
-                            <img
-                                class="frame-active"
-                                :src="getFrameUrl(frameLists[frameIndex])"
-                                :alt="frameLists[frameIndex]"
-                            />
-                        </div>
-                        <div class="card frame-selector">
-                            <div class="frame-platform"></div>
-                            <div class="p-2.5">
-                                <QSlider
-                                    class="mt-1.5 mb-4 w-fit"
-                                    direction="horizontal"
-                                    :centered-slides="false"
-                                    :centered-slides-bounds="false"
-                                    slides-per-view="auto"
-                                >
-                                    <swiper-slide
-                                        v-for="(filename, i) in frameLists"
-                                        :key="i"
-                                        class="frame-slider mr-4 last:mr-0"
-                                        :class="{ active: frameIndex === i }"
-                                        @click="setActiveFrame(i)"
-                                    >
-                                        <img
-                                            class="campaign"
-                                            :src="getFrameUrl(filename)"
-                                            :alt="filename"
+    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+        <div ref="campaignPage" class="page campaign">
+            <div class="campaign__background"></div>
+            <div class="campaign__linear"></div>
+            <div class="campaign__content container px-0 md:px-5 2xl:px-0">
+                <div class="grid grid-cols-12 md:gap-6">
+                    <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
+                        <div ref="campaignMain" class="campaign__main">
+                            <div class="campaign__frames">
+                                <div class="campaign__frames__stage">
+                                    <img
+                                        :src="selectedFrames"
+                                        class="campaign__frames__stage__image"
+                                    />
+                                </div>
+
+                                <div class="campaign__frames__card">
+                                    <RadioGroup v-model="selectedFrames">
+                                        <div class="campaign__frames__options">
+                                            <RadioGroupOption
+                                                v-for="(frame, i) in frames"
+                                                :key="i"
+                                                :value="frame"
+                                                v-slot="{ checked }"
+                                            >
+                                                <div
+                                                    :class="[
+                                                        'campaign__frames__option',
+                                                        checked &&
+                                                            'campaign__frames__option--checked'
+                                                    ]"
+                                                >
+                                                    <img :src="frame" :alt="i" />
+                                                </div>
+                                            </RadioGroupOption>
+                                        </div>
+                                    </RadioGroup>
+
+                                    <div class="campaign__frames__action">
+                                        <QButton :block="!sm">
+                                            <span class="flex items-center font-semibold">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="21"
+                                                    height="20"
+                                                    viewBox="0 0 21 20"
+                                                    fill="none"
+                                                >
+                                                    <g clip-path="url(#clip0_2061_6507)">
+                                                        <path
+                                                            d="M19.6663 15.8333C19.6663 16.2754 19.4907 16.6993 19.1782 17.0118C18.8656 17.3244 18.4417 17.5 17.9997 17.5H2.99967C2.55765 17.5 2.13372 17.3244 1.82116 17.0118C1.5086 16.6993 1.33301 16.2754 1.33301 15.8333V6.66667C1.33301 6.22464 1.5086 5.80072 1.82116 5.48816C2.13372 5.17559 2.55765 5 2.99967 5H6.33301L7.99967 2.5H12.9997L14.6663 5H17.9997C18.4417 5 18.8656 5.17559 19.1782 5.48816C19.4907 5.80072 19.6663 6.22464 19.6663 6.66667V15.8333Z"
+                                                            stroke="#1B1B1B"
+                                                            stroke-width="1.66667"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                        />
+                                                        <path
+                                                            d="M10.5003 14.1669C12.3413 14.1669 13.8337 12.6745 13.8337 10.8336C13.8337 8.99263 12.3413 7.50024 10.5003 7.50024C8.65938 7.50024 7.16699 8.99263 7.16699 10.8336C7.16699 12.6745 8.65938 14.1669 10.5003 14.1669Z"
+                                                            stroke="#1B1B1B"
+                                                            stroke-width="1.66667"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                        />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_2061_6507">
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                                transform="translate(0.5)"
+                                                            />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                                <span class="ml-1">Upload Your Photo</span>
+                                            </span>
+                                        </QButton>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="campaign__detail">
+                                <div class="campaign__detail__title">Hanoi Art Book Fair 2025</div>
+
+                                <div class="campaign__detail__creator">
+                                    <QCreator
+                                        name="Hanoi Art 2025"
+                                        username="hanoiart"
+                                        avatar="/assets/img/sample/sampel-avatar-18.jpg"
+                                        size="md"
+                                    />
+                                </div>
+
+                                <p class="campaign__detail__description">
+                                    <QEllipsisText
+                                        text="Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate reading habits,
+                                increase art literacy worldwide and build a new generation of readers, by making books more
+                                affordable."
+                                    />
+                                </p>
+
+                                <div class="campaign__detail__meta">
+                                    <div class="campaign__detail__meta-wrapper">
+                                        <CampaignMeta title="Supporters" value="95.5K">
+                                            <template #icon>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    :width="sm ? 20 : 16"
+                                                    :height="sm ? 20 : 16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                >
+                                                    <path
+                                                        d="M2.00016 14.6667C1.63197 14.6667 1.32913 14.3668 1.37459 14.0014C1.70207 11.3699 3.94663 9.33342 6.66683 9.33342C9.38705 9.33342 11.6316 11.3699 11.9591 14.0014C12.0045 14.3668 11.7017 14.6667 11.3335 14.6667C10.9653 14.6667 10.6727 14.366 10.612 14.0029C10.2958 12.1097 8.6498 10.6667 6.66683 10.6667C4.68386 10.6667 3.0379 12.1097 2.72167 14.0029C2.66101 14.366 2.36835 14.6667 2.00016 14.6667ZM6.66683 8.66675C4.45683 8.66675 2.66683 6.87675 2.66683 4.66675C2.66683 2.45675 4.45683 0.666748 6.66683 0.666748C8.87683 0.666748 10.6668 2.45675 10.6668 4.66675C10.6668 6.87675 8.87683 8.66675 6.66683 8.66675ZM6.66683 7.33342C8.14016 7.33342 9.3335 6.14008 9.3335 4.66675C9.3335 3.19341 8.14016 2.00008 6.66683 2.00008C5.1935 2.00008 4.00016 3.19341 4.00016 4.66675C4.00016 6.14008 5.1935 7.33342 6.66683 7.33342ZM11.9155 10.4104C12.0667 10.0744 12.4646 9.92134 12.7789 10.1136C14.132 10.9411 15.0876 12.3549 15.2924 14.0016C15.3379 14.367 15.035 14.6667 14.6668 14.6667C14.2986 14.6667 14.006 14.3661 13.9453 14.003C13.7604 12.8955 13.1203 11.942 12.224 11.3414C11.9182 11.1365 11.7644 10.7461 11.9155 10.4104ZM11.5191 3.01714C11.632 2.62181 12.069 2.40958 12.4078 2.6424C13.3697 3.30317 14.0002 4.41099 14.0002 5.66675C14.0002 7.3214 12.9055 8.71921 11.4005 9.17589C11.0158 9.29264 10.6668 8.97201 10.6668 8.5699C10.6668 8.2294 10.9234 7.95066 11.2373 7.81875C12.0773 7.46576 12.6668 6.63541 12.6668 5.66675C12.6668 4.95265 12.3464 4.31371 11.8415 3.88579C11.5871 3.67024 11.4275 3.33772 11.5191 3.01714Z"
+                                                        fill="currentColor"
+                                                    />
+                                                </svg>
+                                            </template>
+                                        </CampaignMeta>
+                                    </div>
+                                    <div class="campaign__detail__meta-separator"></div>
+                                    <div class="campaign__detail__meta-wrapper">
+                                        <CampaignMeta
+                                            :iconClass="
+                                                ['ri', 'ri-time-line', sm && 'ri-lg'].join(' ')
+                                            "
+                                            title="Created"
+                                            value="5 days ago"
                                         />
-                                    </swiper-slide>
-                                </QSlider>
-                                <QButton variant="primary" class="frame-button">
-                                    <i class="ri-camera-line"></i>
-                                    <span>Upload Your Photo</span>
+                                    </div>
+                                </div>
+                                <div class="campaign__detail__actions">
+                                    <div class="flex-grow">
+                                        <QShareButton
+                                            link="twb.nz/hanoi-art-2025"
+                                            @click="onClickShare"
+                                        />
+                                    </div>
+
+                                    <div class="flex-shrink-0">
+                                        <QButton
+                                            circle
+                                            variant="secondary"
+                                            @click="onClickCollection"
+                                        >
+                                            <i class="ri-bookmark-line"></i>
+                                        </QButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9 bg-white md:bg-transparent"
+                    >
+                        <div ref="campaignFeeds" class="campaign__feeds">
+                            <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
+                                <div
+                                    :class="
+                                        displayType === 'grid'
+                                            ? 'campaign__feeds-grid'
+                                            : 'campaign__feeds-list'
+                                    "
+                                >
+                                    <PostWrapper
+                                        v-for="post in posts"
+                                        :key="post.uri"
+                                        v-bind="post"
+                                        :campaignOwnerPriviledge="true"
+                                        :display="displayType"
+                                        :rounded="!sm"
+                                    />
+
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'grid'"
+                                        height="100%"
+                                        square
+                                    />
+
+                                    <QSkeleton
+                                        v-if="isLoadingPost && displayType === 'list'"
+                                        height="200px"
+                                        rounded
+                                    />
+
+                                    <Transition name="slide-fade">
+                                        <div
+                                            v-if="posts.length >= 21 && sm"
+                                            class="col-span-3 md:col-span-2 lg:col-span-3"
+                                        >
+                                            <div class="campaign__feeds-all">
+                                                <QButton variant="secondary" size="sm" block>
+                                                    View All
+                                                </QButton>
+                                            </div>
+                                        </div>
+                                    </Transition>
+                                </div>
+                            </div>
+
+                            <div class="campaign__feeds-control">
+                                <QButton
+                                    circle
+                                    :variant="sm ? 'secondary' : 'neutral'"
+                                    @click="toggleDisplay"
+                                >
+                                    <i
+                                        :class="[
+                                            displayType === 'grid'
+                                                ? 'ri-list-unordered'
+                                                : 'ri-layout-grid-line',
+                                            'ri-lg',
+                                            'font-normal'
+                                        ]"
+                                    ></i>
+                                </QButton>
+
+                                <QButton circle :variant="sm ? 'secondary' : 'neutral'">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
+                                            fill="#1B1B1B"
+                                        />
+                                    </svg>
                                 </QButton>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card campaign-detail">
-                        <h1 class="campaign-title">
-                            Hanoi Art Book Fair - Art and Import Book Fair
-                        </h1>
-                        <div class="flex items-center gap-1.5 mt-4">
-                            <img
-                                class="avatar"
-                                src="/assets/img/creator/creator-default.jpg"
-                                alt="-"
-                            />
-                            <p class="creator-name">Hanoi Art Book Fair</p>
-                        </div>
-                        <p
-                            class="campaign-description mt-4"
-                            :class="{ 'line-clamp-2': !isReadMore }"
-                        >
-                            Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate
-                            reading habits, increase art literacy worldwide and build a new
-                            generation of readers, by making books more affordable.
-                        </p>
-                        <p v-if="!isReadMore" @click="clickReadMore" class="read-more mt-2">
-                            Read More
-                        </p>
-                        <div class="card-line mt-4"></div>
-                        <MetaInfo :is-line="true" />
-                        <div class="campaign-share">
-                            <div class="campaign-link">
-                                <i class="ri-links-line"></i>
-                                <p class="text-sm leading-none">twb.nz/hanoi-art</p>
-                                <div class="share-icon">
-                                    <i class="ri-share-line"></i>
-                                </div>
-                            </div>
-
-                            <QButton variant="secondary" :circle="true">
-                                <i class="ri-bookmark-line"></i>
-                            </QButton>
-                        </div>
-                    </div>
-                </div>
-                <div class="feeds">
-                    <div class="card campaign-feeds">
-                        <div class="feeds-empty-state">
-                            <div v-for="i in 9" :key="i" class="card-empty-state">
-                                <div class="overlay"></div>
-                                <img
-                                    class="frame"
-                                    :src="getFrameUrl(frameLists[frameIndex])"
-                                    :alt="getFrameUrl(frameIndex)"
-                                />
-                                <img class="user" :src="getSampleUser(i)" :alt="`user${i}`" />
-                            </div>
-                            <div class="empty-state-text">
-                                <div class="title">No post yet</div>
-                                <div class="description">
-                                    Be the first to post your support here. <br />
-                                    Start with uploading your photo!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="feeds-action">
-                            <QButton
-                                @click="changeLayout"
-                                v-if="layout === 'grid'"
-                                variant="light"
-                                :circle="true"
-                                class="icon"
-                            >
-                                <i class="ri-layout-grid-line"></i>
-                            </QButton>
-                            <QButton
-                                @click="changeLayout"
-                                v-else-if="layout === 'list'"
-                                variant="light"
-                                :circle="true"
-                                class="icon"
-                            >
-                                <i class="ri-list-unordered"></i>
-                            </QButton>
-                            <QButton variant="light" :circle="true" class="icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
-                                    viewBox="0 0 32 32"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
-                                        fill="#1B1B1B"
-                                    />
-                                </svg>
-                            </QButton>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="more-campaign py-24">
-            <div class="flex justify-between items-center gap-14 pb-10 w-full container px-5">
-                <div class="line"></div>
-                <h3 class="title">More Like This</h3>
-                <div class="line"></div>
-            </div>
-            <div class="campaign-grid container px-5">
-                <CampaignCard
-                    v-for="(
-                        { name, avatar, creator, createdAt, supports, thumbnail }, i
-                    ) in moreCampaigns"
-                    :key="i"
-                    :name="name"
-                    :creator="creator"
-                    :avatar="getAvatarUrl(avatar)"
-                    :supports="supports"
-                    :created-at="createdAt"
-                    :thumbnail="getThumbnailUrl(thumbnail)"
-                />
+
+        <div class="campaign-recommendations bg-gray-50 relative z-10">
+            <div class="campaign__separator"></div>
+
+            <div class="container px-4 2xl:px-0 pb-10">
+                <h3 class="font-bold text-2xl mb-10">More Like This</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <CampaignCard
+                        v-for="campaign in publicCampaigns"
+                        :key="campaign.uri"
+                        v-bind="campaign"
+                    />
+                </div>
             </div>
         </div>
     </LayoutMain>
 </template>
 
-<style lang="scss">
-.campaign-page {
-    background: linear-gradient(
-            0deg,
-            #dee8e8 9.54%,
-            rgba(222, 232, 232, 0) 100.73%,
-            rgba(222, 232, 232, 0) 100.73%
-        ),
-        url('/assets/img/background/bg-default.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: fit-content;
+<style scoped lang="scss">
+.campaign {
+    position: relative;
+    z-index: 0;
 
-    .container {
-        @apply mx-auto px-5 flex gap-6 pt-[200px] pb-[100px];
+    @include lg_screen {
+        max-height: 100vh;
+    }
+
+    .campaign__background {
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 300px;
+        position: absolute !important;
+
+        @media screen and (min-width: 630px) {
+            height: 244px;
+            position: absolute;
+        }
+
+        @include before() {
+            background-color: white;
+            background: url('/assets/img/banners/hanoi.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            position: fixed;
+            height: 300px;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        // @include md_screen {
+        //     height: auto;
+        //     width: 100%;
+        // }
+
+        @include md_screen {
+            @include before() {
+                background-image: url('/assets/img/banners/hanoi.jpg');
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: calc(100vh);
+                width: 100vw;
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .campaign__linear {
+        background: linear-gradient(0deg, #fff 0%, #dee8e8 22%, rgba(255, 255, 255, 0) 100%);
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: none;
+
+        @include md_screen {
+            display: block;
+        }
+    }
+
+    .campaign__content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding-top: 24px;
+
+        @include lg_screen {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        @include xl_screen {
+            padding-top: 12px;
+            padding-bottom: 24px;
+        }
+    }
+
+    .campaign__main {
         height: fit-content;
     }
 
-    .action {
-        @apply h-full flex flex-col justify-between;
-        width: 320px;
-        height: 85vh;
-    }
+    .campaign__frames {
+        .campaign__frames__stage {
+            @apply z-10 relative bg-white p-1 flex items-center mx-auto rounded-xl;
+            width: fit-content;
+            max-width: 120px;
 
-    .feeds {
-        @apply w-full relative;
-        height: 85vh;
-    }
+            @include md_screen {
+                @apply p-2;
+                max-width: 94%;
+                box-shadow: 0px 3.972px 3.972px 0px rgba(0, 0, 0, 0.25);
+            }
 
-    .card {
-        @apply bg-white rounded-3xl;
-        border: 1px solid var(--White, #fff);
-        box-shadow: 0px 5.064px 25.321px 0px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-line {
-        @apply w-full;
-        border-top: rgba(27, 27, 27, 0.1) 1px solid;
-    }
-
-    .frame {
-        @apply relative;
-    }
-
-    .campaign-frame {
-        @apply p-2.5 rounded-3xl flex mx-4 z-20 relative;
-    }
-
-    .campaign-share {
-        @apply flex gap-2 mt-4;
-    }
-
-    .campaign-link {
-        @apply flex pl-3 pr-1.5 bg-white items-center rounded-full w-full gap-2 h-10;
-        border: 1px solid var(--color-light);
-
-        p {
-            @apply w-full text-[#454546] text-ellipsis overflow-hidden whitespace-nowrap;
+            .campaign__frames__stage__image {
+                @apply rounded-lg;
+                max-width: 100%;
+            }
         }
 
-        .share-icon {
-            @apply bg-main h-7 w-7 rounded-full flex items-center justify-center aspect-square;
+        .campaign__frames__card {
+            @apply px-2.5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
+
+            @include md_screen {
+                @apply rounded-3xl pt-12 -mt-4;
+
+                @include before {
+                    @apply w-full bg-light border border-white top-0 left-0 rounded-3xl;
+                    box-shadow: 0px 5.064px 25.321px 0px rgba(162, 150, 150, 0.1);
+                    height: 28px;
+                }
+            }
         }
-    }
-    .bookmark-icon {
-        @apply h-10 w-10 rounded-full flex items-center justify-center aspect-square;
-        border: 1px solid var(--color-light);
 
-        i {
-            @apply text-base;
+        .campaign__frames__options {
+            @apply flex items-center justify-center space-x-2 max-w-full overflow-scroll;
+            @include no_scrollbar();
         }
-    }
 
-    .frame-selector {
-        @apply -mt-3.5 w-full z-10;
-        border-radius: 14px 14px 20px 20px !important;
-        border: none !important;
-    }
+        .campaign__frames__option {
+            @apply h-10 w-10 rounded-lg p-2 border border-stroke bg-white transition-colors duration-200 cursor-pointer;
 
-    .frame-platform {
-        @apply rounded-2xl h-7 bg-light w-full;
-        border: 3px solid var(--color-white);
-    }
+            @include md_screen {
+                @apply h-14 w-14;
+            }
 
-    .frame-active {
-        @apply w-full rounded-xl;
-    }
+            &--checked {
+                @apply border-main bg-gray-200;
+            }
+        }
 
-    .frame-slider {
-        @apply p-2 rounded-lg h-14 w-14 cursor-pointer;
-        border: 1px solid var(--color-light);
-
-        &.active {
-            @apply cursor-default;
-            border-color: var(--color-main);
-            background: #dee8e8;
+        .campaign__frames__action {
+            @apply flex items-center justify-center;
         }
     }
 
-    .frame-button {
-        @apply w-full text-base font-bold gap-2;
-        padding: 13px 20px !important;
-    }
+    .campaign__detail {
+        @apply relative px-4 sm:mx-0 pt-8 bg-white space-y-4 flex flex-col justify-center;
 
-    .campaign-detail {
-        @apply p-4 mt-6;
-
-        .avatar {
-            @apply rounded-full;
-            height: 28px;
-            width: 28px;
+        @include sm {
+            @include before {
+                height: 1px;
+                width: calc(100% - 32px);
+                left: 50%;
+                transform: translate(-50%, 0%);
+                @apply bg-stroke top-2;
+            }
         }
 
-        .campaign-title {
-            @apply text-2xl font-bold text-ellipsis overflow-hidden whitespace-nowrap;
+        @include md_screen {
+            @apply mx-0 mt-3 p-4 rounded-xl shadow-sm;
+            // box-shadow: 0px 1px 25.321px 0px rgba(162, 150, 150, 0.1);
         }
 
-        .creator-name {
-            @apply text-lg font-bold text-ellipsis overflow-hidden whitespace-nowrap;
+        .campaign__detail__title {
+            @apply text-lg lg:text-2xl font-bold text-ellipsis overflow-hidden truncate whitespace-nowrap leading-none text-center md:text-left;
         }
 
-        .campaign-description {
-            @apply text-base;
+        .campaign__detail__description {
+            @apply text-center md:text-left;
         }
 
-        .read-more {
-            @apply text-base font-bold underline cursor-pointer;
-        }
-    }
-
-    .campaign-feeds {
-        @apply w-full p-2.5 relative overflow-hidden;
-        height: 85vh;
-    }
-
-    .feeds-empty-state {
-        @apply grid grid-cols-3 gap-2.5;
-    }
-
-    .card-empty-state {
-        @apply aspect-square relative;
-
-        .overlay {
-            @apply absolute w-full h-full bg-light opacity-[85%] z-20;
+        .campaign__detail__creator {
+            @apply flex items-center justify-center md:justify-start;
         }
 
-        .frame {
-            @apply absolute top-0 left-0 z-10;
+        .campaign__detail__actions {
+            @apply flex items-center space-x-1 max-w-full;
         }
 
-        .user {
-        }
-    }
+        .campaign__detail__meta {
+            @apply flex items-center justify-center space-x-3 border-t border-transparent;
 
-    .empty-state-text {
-        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40;
+            @include md_screen {
+                @apply border-stroke pt-2.5;
+            }
 
-        .title {
-            @apply text-center font-bold text-2xl;
-        }
+            .campaign__detail__meta-wrapper {
+                @include md_screen {
+                    @apply flex-grow;
+                }
+            }
 
-        .description {
-            @apply text-center text-xl mt-2.5;
+            .campaign__detail__meta-separator {
+                @apply bg-stroke;
+                width: 1px;
+                height: 34px;
+                display: block;
+                min-height: 100%;
+            }
         }
     }
 
-    .feeds-action {
-        @apply absolute bottom-0 w-full z-30 h-80 flex items-end px-3 pb-2.5 gap-4 pointer-events-none;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 83.09%);
+    .campaign__feeds {
+        margin-top: 24px;
+        @apply h-full w-full bg-white relative overflow-hidden;
 
-        .icon {
-            @apply font-normal bg-light h-14 w-14 rounded-full flex items-center justify-center cursor-pointer pointer-events-auto;
+        @include md_screen {
+            @apply rounded-3xl shadow-sm border-transparent;
+            max-height: unset;
+            margin-top: 0px;
+        }
 
-            i {
-                @apply text-[32px];
+        .campaign__feeds-panels {
+            @apply absolute left-0 top-0 h-full w-full;
+            // @include no_scrollbar();
+
+            @include sm {
+                padding-top: 7px;
+
+                @include before {
+                    height: 18px;
+                    top: -5px;
+                    left: 0;
+                    display: block;
+                    width: 100%;
+                    background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
+                }
+            }
+
+            @include md_screen {
+                @apply p-2 overflow-scroll pb-16;
+            }
+        }
+
+        .campaign__feeds-grid {
+            @apply grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5;
+        }
+
+        .campaign__feeds-list {
+            @apply flex flex-col space-y-2.5 mt-1;
+
+            @include sm {
+                @apply container px-4;
+            }
+        }
+
+        .campaign__feeds-all {
+            @apply container px-4 pt-6;
+        }
+
+        .campaign__feeds-control {
+            @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-2;
+
+            @include md_screen {
+                @apply bottom-0 justify-start pt-2 pb-2 pr-0 pl-2 bg-white;
+                top: unset;
             }
         }
     }
 }
 
-.more-campaign {
-    .campaign-grid {
-        @apply grid grid-cols-4 gap-8;
-    }
+.campaign__separator {
+    height: 40px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
+    @apply bg-white mb-16;
 
-    .title {
-        @apply font-bold text-3xl;
+    @include md_screen {
+        height: 88px;
     }
+}
 
-    .line {
-        @apply bg-light flex-1 w-full h-[1px];
-    }
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(38px);
+    opacity: 0;
 }
 </style>

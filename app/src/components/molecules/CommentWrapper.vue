@@ -98,7 +98,11 @@ const handleOpenReply = (creator = null) => {
     @apply my-3;
 }
 
+.replies__loader {
+    @apply py-2;
+}
+
 .replies__loader__link {
-    @apply text-main hover:text-main-darker text-sm font-medium cursor-pointer;
+    @apply text-main hover:text-main-darker text-xs font-medium cursor-pointer;
 }
 </style>

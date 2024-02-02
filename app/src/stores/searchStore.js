@@ -12,20 +12,20 @@ export const useSearchStore = defineStore('searchStore', {
     }),
     actions: {
         updateCampaigns() {
-            const $query = this.query;
+            const $query = this.query.toLowerCase();
             this.campaigns = [
                 ...publicCampaigns.filter((campaign) => campaign.keywords.includes($query))
             ];
         },
         updateCollections() {
-            const $query = this.query;
+            const $query = this.query.toLowerCase();
             this.collections = [
                 ...publicCollections.filter((collection) => collection.keywords.includes($query))
             ];
         },
 
         updateCreators() {
-            const $query = this.query;
+            const $query = this.query.toLowerCase();
             this.creators = [
                 ...creators.filter((creator) => creator.name.toLowerCase().includes($query))
             ];

@@ -57,7 +57,7 @@ const thumbnails = computed(() => {
 
             <QCollectionThumbnail :thumbnails="thumbnails" />
 
-            <div class="collection-card__actions">
+            <div v-if="!checkable" class="collection-card__actions">
                 <QButton size="sm" @click="$router.push({ name: 'collection', params: { uri } })">
                     View
                 </QButton>

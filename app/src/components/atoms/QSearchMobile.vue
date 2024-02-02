@@ -32,10 +32,8 @@ watch(xs, (newValue) => {
 });
 
 const onInputQuery = useDebounceFn(() => {
+    if (!navbarSearch) return;
 
-    if (!navbarSearch) return 
-
-    
     updateCampaigns();
     updateCollections();
     updateCreators();
@@ -66,6 +64,7 @@ watch(query, (newValue) => {
                                 type="text"
                                 placeholder="Find campaigns, collections, or creators"
                                 @input="onInputQuery"
+                                autocomplete="off"
                             />
                         </div>
 

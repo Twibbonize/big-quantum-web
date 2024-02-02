@@ -4,6 +4,7 @@ dayjs.extend(relativeTime);
 
 const ownCollections = [
     {
+        id: 1,
         name: '🥳 Happy Birthday!',
         campaigns: [
             {
@@ -55,6 +56,7 @@ const ownCollections = [
         }
     },
     {
+        id: 2,
         name: '👶 New Baby',
         campaigns: [
             {
@@ -106,6 +108,7 @@ const ownCollections = [
         }
     },
     {
+        id: 3,
         name: '🎓 Graduation',
         campaigns: [
             {
@@ -157,6 +160,7 @@ const ownCollections = [
         }
     },
     {
+        id: 4,
         name: '💍 Wedding Celebration',
         campaigns: [
             {

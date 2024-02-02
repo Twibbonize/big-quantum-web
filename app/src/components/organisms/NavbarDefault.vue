@@ -74,7 +74,7 @@ const searchQuery = ref('');
                     <div class="hidden sm:flex mr-2">
                         <QButton :variant="buttonVariant">
                             <i class="ri-add-line mr-1"></i>
-                            <span>Start a Campaign</span>
+                            <span class="flex-shrink-0">Start a Campaign</span>
                         </QButton>
                     </div>
 
@@ -112,7 +112,7 @@ const searchQuery = ref('');
         padding-top: 18px;
         padding-bottom: 18px;
 
-        @apply w-full flex items-center justify-between container px-5 xl:px-0 relative;
+        @apply w-full flex items-center justify-between container px-5 2xl:px-0 relative;
     }
 
     &__left,
@@ -132,7 +132,7 @@ const searchQuery = ref('');
     }
 
     .header__links {
-        @apply hidden md:flex items-center pr-2 border-r border-stroke mr-4;
+        @apply hidden lg:flex items-center pr-2 border-r border-stroke mr-4;
 
         .header__link {
             height: 48px;
@@ -162,8 +162,16 @@ const searchQuery = ref('');
         }
     }
 
+    &.header--gradient .header__links {
+        @apply border-white;
+    }
+
+    &.header--gradient .header__links .header__link {
+        @apply bg-white;
+    }
+
     &--transparent {
-        background: transparent;
+        background: transparent linear-gradient(180deg, #000 0%, rgba(22, 218, 193, 0) 100%);
         box-shadow: none;
     }
 
