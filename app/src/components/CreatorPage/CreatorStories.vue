@@ -281,8 +281,9 @@ const testimonials = [
 
             .scrim {
                 @apply w-full h-full absolute top-0 left-0 z-10;
-                background: linear-gradient(90deg, #1B1B1BFF 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,0) 75%, #1B1B1B 100%);
-                // mix-blend-mode: darken;
+                background: linear-gradient(90deg, #636363 0%, #FFFFFF 10%,  #FFFFFF 90%, #636363 100%);
+                // background: linear-gradient(90deg, #1B1B1BFF 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,0) 75%, #1B1B1B 100%);
+                mix-blend-mode: darken;
             }
         }
 
@@ -291,7 +292,7 @@ const testimonials = [
             bottom: -150%;
             left: -20%;
             transform: translateX(-50%);
-            animation: 8s glow infinite ease-in-out alternate;
+            animation: 4s glow infinite ease-in-out alternate;
             width: 1880px;
             height: 1280px;
             max-width: 1880px;
