@@ -31,7 +31,7 @@ const toggleText = () => {
 };
 
 const toggleTextLabel = computed(() => {
-    return showFullText.value ? 'Show less' : 'more';
+    return showFullText.value ? 'Read Less' : 'More';
 });
 
 const maxLength = computed(() => {

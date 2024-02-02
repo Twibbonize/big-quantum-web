@@ -46,7 +46,7 @@ watch(query, (newValue) => {
                 type="search"
                 class="search__input"
                 id="search_lg"
-                placeholder="Find Campaigns, Collections, or Creators"
+                placeholder="Search"
                 @focus="isFocus = true"
                 @input="onInputQuery"
                 autocomplete="off"
