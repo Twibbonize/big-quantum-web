@@ -4,7 +4,8 @@ import {
     breakpointsTailwind,
     useBreakpoints,
     useResizeObserver,
-    useWindowScroll
+    useWindowScroll,
+    useWindowSize
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -55,6 +56,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
+const { height: windowHeight } = useWindowSize();
 const { y } = useWindowScroll();
 
 const itemsToAdd = 3;
@@ -103,22 +105,19 @@ const scaleCampaignPage = () => {
     }
 
     const campaignContent = document.querySelector('.campaign__content');
-    const campaignRect = campaignPage.value.getBoundingClientRect();
     const campaignContentRect = campaignContent.getBoundingClientRect();
 
-    const { height: campaignSectionHeight, top: campaignSectionTop } = campaignRect;
     const { height: campaignContentHeight, top: campaignContentTop } = campaignContentRect;
 
     const totalCampaignContentHeight = campaignContentHeight + campaignContentTop;
 
-    if (campaignSectionHeight + campaignSectionTop > totalCampaignContentHeight) {
+    if (windowHeight.value > totalCampaignContentHeight) {
         return;
     }
 
     const additionalSpace = xl.value ? 88 : 0;
-    const targetScale = campaignSectionHeight / (totalCampaignContentHeight + additionalSpace);
+    const targetScale = windowHeight.value / (totalCampaignContentHeight + additionalSpace);
     const targetHeight = campaignContentHeight * targetScale;
-
     const translateY = (totalCampaignContentHeight - targetHeight) / 2 - 44;
 
     campaignContent.style.transform = `scale(${targetScale}) translateY(${-translateY}px)`;
@@ -156,6 +155,7 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
+// watch(windowHeight, scale)
 useResizeObserver(campaignPage, scaleCampaignPage);
 
 onMounted(async () => {
@@ -447,9 +447,9 @@ onMounted(async () => {
     position: relative;
     z-index: 0;
 
-    @include lg_screen {
-        max-height: 100vh;
-    }
+    // @include lg_screen {
+    //     max-height: 100vh;
+    // }
 
     .campaign__background {
         width: 100%;

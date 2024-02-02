@@ -39,6 +39,10 @@ defineProps({
 
     .creator__name {
         @apply text-sm font-medium;
+
+        &:hover {
+            @apply underline;
+        }
     }
 
     &.creator--xs {

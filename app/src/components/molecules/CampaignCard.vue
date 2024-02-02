@@ -7,6 +7,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import { onClickOutside } from '@vueuse/core';
 import { useShareStore } from '@/stores/shareStore';
 import { useCollectionStore } from '@/stores/collectionStore';
+import { capitalizeFirstLetter } from '@/utils/string';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -194,7 +195,7 @@ const onClickCollection = () => {
                             <div class="meta__title">Created</div>
 
                             <div class="meta__value">
-                                {{ createdAt }}
+                                {{ capitalizeFirstLetter(createdAt) }}
                             </div>
                         </div>
                     </div>
