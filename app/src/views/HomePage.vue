@@ -43,11 +43,24 @@ onUnmounted(() => {
         <div class="home-page">
             <HeroParticipant :width="width" :height="height" />
             <div ref="content"></div>
-            <CampaignTrending :key="width" :width="width" class="pt-8 md:pt-24 md:pb-16" />
-            <TopCreators :width="width" :height="height" />
-            <BannerCreators data-aos="fade-in" :width="width" :height="height" class="container">
-                <CampaignSwiper />
-            </BannerCreators>
+            <div class="bg-white">
+                <CampaignTrending :key="width" :width="width" class="pt-8 md:pt-24 md:pb-16" />
+                <TopCreators :width="width" :height="height" />
+                <BannerCreators data-aos="fade-in" :width="width" :height="height" class="container">
+                    <CampaignSwiper />
+                </BannerCreators>
+            </div>
         </div>
     </LayoutMain>
 </template>
+
+<style lang="scss">
+    .home-page {
+        .banner-creators {
+            .bg::before {
+                width: 100%;
+                @apply sm:rounded-[40px];
+            }
+        }
+    }
+</style>

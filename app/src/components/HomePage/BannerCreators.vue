@@ -138,8 +138,28 @@ onUnmounted(() => {
 
 .banner-creators {
     .bg {
-        background: #202124;
         @apply sm:rounded-[40px];
+
+        &::before {
+            content: "";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            z-index: -1;
+            -moz-pointer-events: none;
+            -webkit-pointer-events: none;
+            -ms-pointer-events: none;
+            pointer-events: none;
+            transform: scale(1);
+            background-attachment: scroll;
+            background-size: cover;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background: #202124;
+        }
     }
 
     .blob-bg {
