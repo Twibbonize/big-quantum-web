@@ -10,6 +10,7 @@ import PreferencesPage from '@/views/PreferencesPage.vue';
 import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
 import LeaderboardPage from '@/views/LeaderboardPage.vue';
+import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -94,7 +95,17 @@ const router = createRouter({
             component: CampaignPage,
             meta: {
                 navbarSearch: true
-            }
+            },
+            children: [
+                {
+                    path: 'feeds',
+                    name: 'campaign-feeds',
+                    component: CampaignFeedsPage,
+                    meta: {
+                        transition: 'slide-up'
+                    }
+                }
+            ]
         },
         {
             path: '/settings',
