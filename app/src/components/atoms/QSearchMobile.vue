@@ -62,7 +62,7 @@ watch(query, (newValue) => {
                                 v-model="query"
                                 class="search-mobile__input"
                                 type="text"
-                                placeholder="Find campaigns, collections, or creators"
+                                placeholder="Search"
                                 @input="onInputQuery"
                                 autocomplete="off"
                             />

@@ -72,17 +72,21 @@ const dialogClasses = computed(() => {
 });
 
 const handleClose = () => {
-    console.log('tes');
     isDragging.value = false;
-    set({ y: initialHeight });
 
-    setTimeout(() => {
+    if (props.position === 'bottom') {
+        set({ y: initialHeight });
+
+        setTimeout(() => {
+            emit('close');
+        }, 300);
+
+        setTimeout(() => {
+            set({ x: 0, y: 0, cursor: 'default' });
+        }, 500);
+    } else {
         emit('close');
-    }, 300);
-
-    setTimeout(() => {
-        set({ x: 0, y: 0, cursor: 'default' });
-    }, 500);
+    }
 };
 
 const dragHandler = ({ movement: [_x, y], dragging, tap, axis }) => {
