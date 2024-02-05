@@ -1,26 +1,30 @@
 <script setup>
 import { nextTick, onMounted, ref, watch } from 'vue';
+
 import {
     breakpointsTailwind,
     useBreakpoints,
     useResizeObserver,
-    useWindowScroll
+    useWindowScroll,
+    useWindowSize
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
-import QSeparator from '@/components/atoms/QSeparator.vue';
+import QSkeleton from '@/components/atoms/QSkeleton.vue';
+import QModal from '@/components/atoms/QModal.vue';
+
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
-import QSkeleton from '@/components/atoms/QSkeleton.vue';
-import { useCollectionStore } from '@/stores/collectionStore';
 
+import { useCollectionStore } from '@/stores/collectionStore';
 import { useShareStore } from '@/stores/shareStore';
 import { publicPosts } from '@/mock/posts';
 import { publicCampaigns } from '@/mock/campaigns';
@@ -36,29 +40,31 @@ const frames = [
 
 const navbarColor = ref('transparent');
 const navbarShadow = ref(false);
+
 const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
+
 const selectedFrames = ref(frames[0]);
-const posts = ref([...publicPosts.slice(0, 6)]);
+const posts = ref([...publicPosts]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
+// const isFullScreenFeedsOpen = ref(false);
 
 const shareStore = useShareStore();
 const collectionStore = useCollectionStore();
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const { height: windowHeight } = useWindowSize();
+const { y } = useWindowScroll();
+
 const { openShare } = shareStore;
 const { showCollectionModal } = collectionStore;
-
-const breakpoints = useBreakpoints(breakpointsTailwind);
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
-const { y } = useWindowScroll();
-
 const itemsToAdd = 3;
-
 const lazyLoad = () => {
     if (isLoadingPost.value) return;
 
@@ -103,22 +109,21 @@ const scaleCampaignPage = () => {
     }
 
     const campaignContent = document.querySelector('.campaign__content');
-    const campaignRect = campaignPage.value.getBoundingClientRect();
     const campaignContentRect = campaignContent.getBoundingClientRect();
 
-    const { height: campaignSectionHeight, top: campaignSectionTop } = campaignRect;
+    campaignContent.style.transform = `scale(${1}) translateY(${0}px)`;
+
     const { height: campaignContentHeight, top: campaignContentTop } = campaignContentRect;
 
     const totalCampaignContentHeight = campaignContentHeight + campaignContentTop;
 
-    if (campaignSectionHeight + campaignSectionTop > totalCampaignContentHeight) {
+    if (windowHeight.value > totalCampaignContentHeight) {
         return;
     }
 
     const additionalSpace = xl.value ? 88 : 0;
-    const targetScale = campaignSectionHeight / (totalCampaignContentHeight + additionalSpace);
+    const targetScale = windowHeight.value / (totalCampaignContentHeight + additionalSpace);
     const targetHeight = campaignContentHeight * targetScale;
-
     const translateY = (totalCampaignContentHeight - targetHeight) / 2 - 44;
 
     campaignContent.style.transform = `scale(${targetScale}) translateY(${-translateY}px)`;
@@ -141,8 +146,6 @@ watch(y, (newValue) => {
     } else {
         document.querySelector('.campaign__background').style.opacity = '100';
     }
-
-    // console.log(y.value)
 });
 
 useResizeObserver(campaignMain, (entries) => {
@@ -159,16 +162,16 @@ useResizeObserver(campaignMain, (entries) => {
 useResizeObserver(campaignPage, scaleCampaignPage);
 
 onMounted(async () => {
-    gsap.to('.campaign__feeds-panels', {
-        scrollTrigger: {
-            trigger: '.campaign__feeds-panels',
-            end: 'bottom top',
-            start: 'bottom bottom',
-            onUpdate: () => {
-                lazyLoad();
-            }
-        }
-    });
+    // gsap.to('.campaign-feeds__panels', {
+    //     scrollTrigger: {
+    //         trigger: '.campaign-feeds__panels',
+    //         end: 'bottom top',
+    //         start: 'bottom bottom',
+    //         onUpdate: () => {
+    //             lazyLoad();
+    //         }
+    //     }
+    // });
 
     await nextTick();
     scaleCampaignPage();
@@ -332,13 +335,13 @@ onMounted(async () => {
                     <div
                         class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9 bg-white md:bg-transparent"
                     >
-                        <div ref="campaignFeeds" class="campaign__feeds">
-                            <div ref="campaignFeedsPanels" class="campaign__feeds-panels">
+                        <div ref="campaignFeeds" class="campaign-feeds">
+                            <div ref="campaignFeedsPanels" class="campaign-feeds__panels">
                                 <div
                                     :class="
                                         displayType === 'grid'
-                                            ? 'campaign__feeds-grid'
-                                            : 'campaign__feeds-list'
+                                            ? 'campaign-feeds__grid'
+                                            : 'campaign-feeds__list'
                                     "
                                 >
                                     <PostWrapper
@@ -377,8 +380,15 @@ onMounted(async () => {
                                             v-if="posts.length >= 21 && sm"
                                             class="col-span-3 md:col-span-2 lg:col-span-3"
                                         >
-                                            <div class="campaign__feeds-all">
-                                                <QButton variant="secondary" size="sm" block>
+                                            <div class="campaign-feeds-all">
+                                                <QButton
+                                                    variant="secondary"
+                                                    size="sm"
+                                                    block
+                                                    @click="
+                                                        $router.push({ name: 'campaign-feeds' })
+                                                    "
+                                                >
                                                     View All
                                                 </QButton>
                                             </div>
@@ -387,7 +397,7 @@ onMounted(async () => {
                                 </div>
                             </div>
 
-                            <div class="campaign__feeds-control">
+                            <div class="campaign-feeds__control">
                                 <QButton
                                     circle
                                     :variant="sm ? 'secondary' : 'neutral'"
@@ -404,7 +414,11 @@ onMounted(async () => {
                                     ></i>
                                 </QButton>
 
-                                <QButton circle :variant="sm ? 'secondary' : 'neutral'">
+                                <QButton
+                                    circle
+                                    :variant="sm ? 'secondary' : 'neutral'"
+                                    @click="$router.push({ name: 'campaign-feeds' })"
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="20"
@@ -425,8 +439,20 @@ onMounted(async () => {
             </div>
         </div>
 
+        <!-- fullscreen mode -->
+        <router-view v-slot="{ Component }">
+            <transition name="fade">
+                <component
+                    :is="Component"
+                    :posts="posts"
+                    :displayType="displayType"
+                    @toggle-display="(newValue) => (displayType = newValue)"
+                />
+            </transition>
+        </router-view>
+
         <div class="campaign-recommendations bg-gray-50 relative z-10">
-            <div class="campaign__separator"></div>
+            <div class="campaign-separator"></div>
 
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
@@ -446,10 +472,6 @@ onMounted(async () => {
 .campaign {
     position: relative;
     z-index: 0;
-
-    @include lg_screen {
-        max-height: 100vh;
-    }
 
     .campaign__background {
         width: 100%;
@@ -476,11 +498,6 @@ onMounted(async () => {
             left: 0;
             top: 0;
         }
-
-        // @include md_screen {
-        //     height: auto;
-        //     width: 100%;
-        // }
 
         @include md_screen {
             @include before() {
@@ -602,7 +619,6 @@ onMounted(async () => {
 
         @include md_screen {
             @apply mx-0 mt-3 p-4 rounded-xl shadow-sm;
-            // box-shadow: 0px 1px 25.321px 0px rgba(162, 150, 150, 0.1);
         }
 
         .campaign__detail__title {
@@ -643,67 +659,92 @@ onMounted(async () => {
             }
         }
     }
+}
 
-    .campaign__feeds {
-        margin-top: 24px;
-        @apply h-full w-full bg-white relative overflow-hidden;
+// campaign feeds
+.campaign-feeds {
+    margin-top: 24px;
+    @apply h-full w-full bg-white relative overflow-hidden;
+
+    @include md_screen {
+        @apply rounded-3xl shadow-sm border-transparent;
+        max-height: unset;
+        margin-top: 0px;
+    }
+
+    .campaign-feeds__header {
+        @apply flex items-center justify-between w-full py-6 container;
+
+        .campaign-feeds__header__left {
+            @apply flex items-center;
+        }
+    }
+
+    .campaign-feeds__panels {
+        @apply absolute left-0 top-0 h-full w-full;
+
+        @include sm {
+            padding-top: 7px;
+
+            @include before {
+                height: 18px;
+                top: -5px;
+                left: 0;
+                display: block;
+                width: 100%;
+                background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
+            }
+        }
 
         @include md_screen {
-            @apply rounded-3xl shadow-sm border-transparent;
-            max-height: unset;
-            margin-top: 0px;
+            @apply p-2 overflow-scroll pb-16;
         }
+    }
 
-        .campaign__feeds-panels {
-            @apply absolute left-0 top-0 h-full w-full;
-            // @include no_scrollbar();
+    .campaign-feeds__grid {
+        @apply container grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5;
+    }
 
-            @include sm {
-                padding-top: 7px;
+    .campaign-feeds__list {
+        @apply flex flex-col space-y-2.5 mt-1;
 
-                @include before {
-                    height: 18px;
-                    top: -5px;
-                    left: 0;
-                    display: block;
-                    width: 100%;
-                    background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
-                }
+        @include sm {
+            @apply container px-4;
+        }
+    }
+
+    .campaign-feeds-all {
+        @apply container px-4 pt-6;
+    }
+
+    .campaign-feeds__control {
+        @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-2;
+
+        @include md_screen {
+            @apply bottom-0 justify-start pt-2 pb-2 pr-0 pl-2 bg-white;
+            top: unset;
+        }
+    }
+
+    &.campaign-feeds--fullscreen {
+        @apply flex flex-col pt-0 mt-0 fixed top-0 left-0 bg-white z-50 rounded-none;
+
+        & .campaign-feeds__panels {
+            padding-top: 0px;
+            @apply flex-grow overflow-y-auto;
+
+            @include before() {
+                display: none;
             }
-
-            @include md_screen {
-                @apply p-2 overflow-scroll pb-16;
-            }
         }
 
-        .campaign__feeds-grid {
-            @apply grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5;
-        }
-
-        .campaign__feeds-list {
-            @apply flex flex-col space-y-2.5 mt-1;
-
-            @include sm {
-                @apply container px-4;
-            }
-        }
-
-        .campaign__feeds-all {
-            @apply container px-4 pt-6;
-        }
-
-        .campaign__feeds-control {
-            @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-2;
-
-            @include md_screen {
-                @apply bottom-0 justify-start pt-2 pb-2 pr-0 pl-2 bg-white;
-                top: unset;
-            }
+        & .campaign-feeds__grid {
+            @apply justify-center grid grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-5;
         }
     }
 }
 
-.campaign__separator {
+.campaign-separator {
     height: 40px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
     @apply bg-white mb-16;
@@ -711,6 +752,16 @@ onMounted(async () => {
     @include md_screen {
         height: 88px;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }
 
 .slide-fade-enter-active {
