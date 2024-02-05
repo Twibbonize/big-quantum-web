@@ -1,11 +1,12 @@
 <script setup>
-import { useWindowSize } from '@vueuse/core';
+import { useWindowSize, useWindowScroll } from '@vueuse/core';
 
 const { width, height } = useWindowSize();
+const { y } = useWindowScroll();
 </script>
 
 <template>
-    <div class="bg-hero relative">
+    <div class="bg-hero relative" :class="{ 'bottom': y > 300 }">
         <slot></slot>
         <img class="pattern-left z-0" src="/src/assets/img/patterns/hero-left-bottom.png" alt="" />
         <img class="pattern-right z-0" src="/src/assets/img/patterns/hero-right-top.png" alt="" />
@@ -22,6 +23,12 @@ const { width, height } = useWindowSize();
 <style lang="scss">
 .bg-hero {
     overflow: hidden;
+
+    &.bottom {
+        &::before {
+            background: var(--color-white) !important;
+        }
+    }
     &::before {
         content: "";
         display: block;
