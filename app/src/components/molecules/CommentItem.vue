@@ -81,7 +81,7 @@ const replyPage = 1;
         @apply flex-shrink-0;
 
         img {
-            @apply w-8 h-8 rounded-full;
+            @apply w-7 h-7 rounded-full border border-stroke;
         }
     }
 

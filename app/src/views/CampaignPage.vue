@@ -8,7 +8,8 @@ import {
     useWindowScroll,
     useWindowSize,
     useScroll,
-    useDebounceFn
+    useDebounceFn,
+    reactiveComputed
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -68,14 +69,6 @@ const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
 const itemsToAdd = 3;
-
-const postClones = computed(() => {
-    if (displayType.value === 'grid') {
-        return posts.value.slice(0, 9);
-    }
-
-    return posts.value.slice(0, 1);
-});
 
 const lazyLoad = () => {
     if (isLoadingPost.value) return;
@@ -173,107 +166,6 @@ useResizeObserver(campaignMain, (entries) => {
 
 useResizeObserver(campaignPage, scaleCampaignPage);
 
-let now;
-let then;
-let startTime;
-let elapsed;
-let fpsInterval;
-let disableScroll = false;
-let scrollHeight = 0,
-    scrollPos = 0,
-    clonesHeight = 0;
-
-const getScrollPos = () => {
-    const context = campaignFeedsPanels.value.querySelector(
-        `.campaign-feeds__${displayType.value}`
-    );
-    return (context.pageYOffset || context.scrollTop) - (context.clientTop || 0);
-};
-
-function setScrollPos(pos) {
-    const context = campaignFeedsPanels.value.querySelector(
-        `.campaign-feeds__${displayType.value}`
-    );
-    context.scrollTop = pos;
-}
-
-function scrollUpdate() {
-    if (!disableScroll) {
-        scrollPos = getScrollPos();
-
-        if (clonesHeight + scrollPos >= scrollHeight) {
-            // Scroll to the top when you’ve reached the bottom
-            setScrollPos(1); // Scroll down 1 pixel to allow upwards scrolling
-            disableScroll = true;
-        } else if (scrollPos <= 0) {
-            // Scroll to the bottom when you reach the top
-            setScrollPos(scrollHeight - clonesHeight);
-            disableScroll = true;
-        }
-    }
-
-    if (disableScroll) {
-        // Disable scroll-jumping for a short time to avoid flickering
-        window.setTimeout(function () {
-            disableScroll = false;
-        }, 40);
-    }
-}
-
-function onFeedsScroll() {
-    window.requestAnimationFrame(scrollUpdate);
-}
-
-function getClonesHeight() {
-    const clones = document.querySelector('.post-wrapper--clone');
-    clonesHeight = 0;
-
-    console.log(clones.offsetHeight);
-    for (let i = 0; i < clones.length; i += 1) {
-        clonesHeight = clonesHeight + clones[i].offsetHeight;
-        console.log(clonesHeight);
-    }
-
-    // console.log(clonesHeight, 'get-clones-height ')
-    return clonesHeight;
-}
-
-function reCalc() {
-    const context = campaignFeedsPanels.value.querySelector(
-        `.campaign-feeds__${displayType.value}`
-    );
-    scrollPos = getScrollPos();
-    scrollHeight = context.scrollHeight;
-    clonesHeight = getClonesHeight();
-
-    if (scrollPos <= 0) {
-        setScrollPos(1); // Scroll 1 pixel to allow upwards scrolling
-    }
-}
-
-const animate = (newtime) => {
-    window.requestAnimationFrame(animate);
-
-    now = newtime;
-    elapsed = now - then;
-
-    if (elapsed > fpsInterval) {
-        then = now - (elapsed % fpsInterval);
-
-        if (scrollPos > 2) {
-            // Added 2 pixel to make it able to scroll above top
-            setScrollPos(getScrollPos() + 1);
-        }
-    }
-};
-
-const startScrolling = (fps) => {
-    fpsInterval = 1000 / fps;
-    then = window.performance.now();
-    startTime = then;
-    animate();
-};
-
 let autoScrollTween;
 let killTime = 0;
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
@@ -282,8 +174,11 @@ const targetDuration = computed(() => {
 });
 
 const calcDuration = () => {
-    console.log(targetDuration.value);
     const context = campaignFeedsWrapper.value;
+    const item = context.querySelector('.post-wrapper');
+
+    const etaDuration = item.clientHeight / (displayType.value === 'grid' ? 4.5 : 1.6);
+
     // Get the maximum scroll position
     const maxScroll = context.scrollHeight - context.offsetHeight;
 
@@ -291,10 +186,8 @@ const calcDuration = () => {
     const remainingDistance = maxScroll - feedsScrollY.value;
 
     // Adjust the duration based on the remaining distance
-    const adjustedDuration = (remainingDistance / maxScroll) * targetDuration.value;
-
-    console.log(adjustedDuration, 'adjusted');
-    return adjustedDuration;
+    const adjustedDuration = (remainingDistance / maxScroll) * etaDuration;
+    return Math.round(adjustedDuration);
 };
 
 const initAutoScrollTween = () => {
@@ -303,37 +196,24 @@ const initAutoScrollTween = () => {
     autoScrollTween = gsap.to('.campaign-feeds__wrapper', {
         scrollTo: {
             y: 'max',
-            autoKill: true,
-            onAutoKill: () => {
-                autoScrollTween = null;
-            }
+            autoKill: true
         },
         ease: 'none',
-        duration: duration,
-        onComplete: () => {
-            gsap.set('.campaign-feeds__wrapper', { scrollTo: 0 });
-            autoScrollTween.duration(targetDuration.value);
-            autoScrollTween.repeat();
-        }
+        duration: duration
     });
 };
 watch(isScrolling, useDebounceFn(initAutoScrollTween, 1500));
 // watch(displayType, () => {
-//     if (autoScrollTween) {
-//         // console.log('heree', autoScrollTween.duration())
-//         autoScrollTween.kill()
-//         // autoScrollTween = null
-//         // initAutoScrollTween();
-
-//     } else {
-//         // initAutoScrollTween();
-//     }
-
+//     nextTick();
+//    autoScrollTween.duration(calcDuration());
 // })
 
 onMounted(async () => {
     await nextTick();
-    scaleCampaignPage();
+
+    // setTimeout(() => {
+    //     scaleCampaignPage();
+    // }, 500)
     initAutoScrollTween();
 });
 </script>
@@ -513,16 +393,6 @@ onMounted(async () => {
                                         :campaignOwnerPriviledge="false"
                                         :display="displayType"
                                         :rounded="!sm"
-                                    />
-
-                                    <PostWrapper
-                                        v-for="post in postClones"
-                                        :key="post.uri"
-                                        v-bind="post"
-                                        :campaignOwnerPriviledge="false"
-                                        :display="displayType"
-                                        :rounded="!sm"
-                                        class="post-wrapper--clone"
                                     />
 
                                     <QSkeleton
@@ -771,6 +641,8 @@ onMounted(async () => {
     .campaign__detail {
         @apply relative px-4 sm:mx-0 pt-8 bg-white space-y-4 flex flex-col justify-center;
         margin-top: -1px;
+        padding-bottom: 24px;
+        box-shadow: 0 19px 24px rgba(0, 0, 0, 0.15);
 
         @include sm {
             @include before {
@@ -828,9 +700,9 @@ onMounted(async () => {
 
 // campaign feeds
 .campaign-feeds {
-    margin-top: 24px;
     @apply h-full w-full bg-white relative overflow-hidden;
 
+    // opacity: 0;
     @include md_screen {
         @apply rounded-3xl shadow-sm border-transparent;
         max-height: unset;
@@ -846,41 +718,74 @@ onMounted(async () => {
     }
 
     .campaign-feeds__panels {
-        @apply absolute left-0 top-0 h-full w-full overflow-y-auto;
         @include no_scrollbar();
 
         @include sm {
-            padding-top: 7px;
-            padding-bottom: 7px;
-
             @include before {
-                height: 18px;
-                top: -5px;
-                left: 0;
+                height: 24px;
+                top: -12px;
+                left: -2px;
                 display: block;
                 width: 100%;
-                background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
+                background: linear-gradient(180deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 91%);
+                filter: blur(24px);
+                z-index: 10;
+                pointer-events: none;
             }
 
             @include after {
-                height: 18px;
-                bottom: -5px;
-                left: 0;
+                height: 24px;
+                bottom: -18px;
+                left: 0px;
                 display: block;
                 width: 100%;
-                background: linear-gradient(180deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
+                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+                filter: blur(24px);
+                z-index: 10;
+                pointer-events: none;
             }
         }
 
         @include md_screen {
-            @apply p-2 overflow-scroll pb-16;
+            @apply absolute left-0 top-0 h-full w-full overflow-y-auto p-2 overflow-scroll pb-16;
+        }
+    }
+
+    .campaign-feeds__wrapper {
+        // padding: 7px 0px;
+        padding-top: 8px;
+        position: relative;
+        z-index: 0;
+
+        @apply rounded-none;
+
+        @include md_screen {
+            @apply rounded-xl;
         }
     }
 
     .campaign-feeds__grid {
         @apply container grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5 overflow-y-auto;
-        max-height: 416px;
+        max-height: 420px;
         @include no_scrollbar();
+
+        @include before {
+            height: 8px;
+            top: 0px;
+            left: 0;
+            display: block;
+            width: 100%;
+            @apply bg-stroke;
+        }
+
+        @include after {
+            height: 8px;
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-top: -4px;
+            @apply bg-stroke col-span-3;
+        }
 
         @include md_screen {
             max-height: 100%;
@@ -890,7 +795,7 @@ onMounted(async () => {
     .campaign-feeds__list {
         @apply flex flex-col space-y-5 pt-4 overflow-y-auto;
 
-        max-height: 620px;
+        max-height: 420px;
         @include no_scrollbar();
 
         @include sm {

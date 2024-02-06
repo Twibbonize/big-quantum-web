@@ -2,14 +2,14 @@
 import QSlider from '@/components/atoms/QSlider.vue';
 
 const props = defineProps({
-  campaigns: Array,
-  campaignClasses: String,
-  slideClasses: String,
-  spaceBetween: {
-    type: Number,
-    default: 10,
-  },
-})
+    campaigns: Array,
+    campaignClasses: String,
+    slideClasses: String,
+    spaceBetween: {
+        type: Number,
+        default: 10
+    }
+});
 </script>
 
 <template>
@@ -28,11 +28,15 @@ const props = defineProps({
         :autoplay-reverse-direction="true"
         :allow-touch-move="false"
     >
-        <swiper-slide v-for="(filename, i) in props.campaigns" :key="i" class="w-auto h-auto" :class="slideClasses">
+        <swiper-slide
+            v-for="(filename, i) in props.campaigns"
+            :key="i"
+            class="w-auto h-auto"
+            :class="slideClasses"
+        >
             <img :class="campaignClasses" :src="filename" :alt="filename" />
         </swiper-slide>
     </QSlider>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

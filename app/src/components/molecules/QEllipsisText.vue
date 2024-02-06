@@ -13,6 +13,10 @@ const props = defineProps({
     expandable: {
         type: Boolean,
         default: true
+    },
+    lines: {
+        type: Number,
+        default: 2
     }
 });
 
@@ -35,8 +39,9 @@ const toggleTextLabel = computed(() => {
 });
 
 const maxLength = computed(() => {
+    const { lines } = props;
     const averageCharWidth = 7;
-    const maxCharacters = Math.floor(props.containerWidth / averageCharWidth) * 2 - 8;
+    const maxCharacters = Math.floor(props.containerWidth / averageCharWidth) * lines - 8;
     return maxCharacters;
 });
 

@@ -7,7 +7,7 @@ const route = useRoute();
 const props = defineProps({
     width: Number,
     height: Number,
-    scrollPosition: Number,
+    scrollPosition: Number
 });
 
 const lottieDimension = computed(() => {
@@ -51,7 +51,7 @@ onUnmounted(() => {
     <div class="banner-creators tp-rated-area mx-auto overflow-hidden relative">
         <div class="banner-creators__ellipse"></div>
 
-        <div class="bg relative py-14" :class="{ 'bottom': scrollPosition > 300 }">
+        <div class="bg relative py-14" :class="{ bottom: scrollPosition > 300 }">
             <img
                 class="blob-bg"
                 src="/src/assets/img/patterns/background-banner-creators.png"
@@ -148,7 +148,7 @@ onUnmounted(() => {
         }
 
         &::before {
-            content: "";
+            content: '';
             display: block;
             position: fixed;
             top: 0;

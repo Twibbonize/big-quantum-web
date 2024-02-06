@@ -20,5 +20,17 @@ export const useAuthStore = defineStore('authStore', {
             return this.user !== null;
         }
     },
-    actions: {}
+    actions: {
+        login() {
+            this.user = {
+                name: 'Universe Tech',
+                avatar: '/assets/img/sample/sample-avatar-1.jpg',
+                username: 'universetech'
+            };
+        },
+
+        logout() {
+            this.user = null;
+        }
+    }
 });
