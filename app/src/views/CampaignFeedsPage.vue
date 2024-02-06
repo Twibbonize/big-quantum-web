@@ -155,11 +155,11 @@ onUnmounted(() => {
     }
 
     .feeds__grid {
-        @apply justify-center grid grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-5;
+        @apply justify-center grid grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-2 md:gap-5;
     }
 
     .feeds__list {
-        @apply flex flex-col space-y-2.5 mt-1;
+        @apply flex flex-col space-y-6 mt-1 max-w-3xl mx-auto;
 
         @include sm {
             @apply container px-4;
@@ -174,7 +174,7 @@ onUnmounted(() => {
         }
 
         .feeds__toggle-btn {
-            @apply p-2 text-sm font-medium text-content transition-colors duration-200 h-10 w-10;
+            @apply py-2 px-3 text-sm font-medium text-content transition-colors duration-200 h-10 w-10;
 
             @include md_screen {
                 @apply w-auto h-auto;
