@@ -10,8 +10,12 @@ import { object as yupObject, string as yupString } from 'yup';
 import { authNative } from '@/apis';
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/authStore';
+import { useRouter } from 'vue-router';
 const authStore = useAuthStore();
 const { modal } = storeToRefs(authStore);
+const { login, logout } = authStore;
+
+const router = useRouter();
 
 const isMobile = inject('isMobile');
 
@@ -38,6 +42,12 @@ const handleAuthNative = async (formValues) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+const handleLogin = () => {
+    login();
+    router.push({ name: 'own-profile' });
+    modal.value.show = false;
 };
 </script>
 
@@ -69,16 +79,7 @@ const handleAuthNative = async (formValues) => {
                             <div class="space-y-10">
                                 <h1 class="text-2xl font-bold">Log in</h1>
                                 <div class="space-y-4 w-full">
-                                    <QButton
-                                        block
-                                        variant="secondary"
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton block variant="secondary" @click="handleLogin">
                                         <img
                                             src="/assets/img/logos/google.svg"
                                             class="w-4 h-4"
@@ -87,16 +88,7 @@ const handleAuthNative = async (formValues) => {
                                         <span class="ml-2">Sign In With Google</span>
                                     </QButton>
 
-                                    <QButton
-                                        variant="secondary"
-                                        block
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton variant="secondary" block @click="handleLogin">
                                         <img
                                             src="/assets/img/logos/facebook.svg"
                                             class="w-4 h-4"
@@ -140,16 +132,7 @@ const handleAuthNative = async (formValues) => {
                                         >
                                     </div>
 
-                                    <QButton
-                                        block
-                                        :enabled="meta.valid"
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton block :enabled="meta.valid" @click="handleLogin">
                                         Log In
                                     </QButton>
 

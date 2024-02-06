@@ -42,16 +42,16 @@ onUnmounted(() => {
 <template>
     <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div class="creators-page">
-            <BannerCreators :width="width" :height="height" :scroll-position="y"/>
+            <BannerCreators :width="width" :height="height" :scroll-position="y" />
             <div ref="content"></div>
             <CampaignSwiper class="swiper" />
             <div class="bg-white">
                 <VerticalCarousel :width="width" :height="height" />
-                <BentoGrid/>
-                <TiltScreen/>
+                <BentoGrid />
+                <TiltScreen />
                 <CreatorStories :width="width" :height="height" />
-                <FrameSelection/>
-                <PackageSelection/>
+                <FrameSelection />
+                <PackageSelection />
             </div>
         </div>
     </LayoutMain>

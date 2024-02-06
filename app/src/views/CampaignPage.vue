@@ -1,23 +1,25 @@
 <script setup>
-import { nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 import {
     breakpointsTailwind,
     useBreakpoints,
     useResizeObserver,
     useWindowScroll,
-    useWindowSize
+    useWindowSize,
+    useScroll,
+    useDebounceFn,
+    reactiveComputed
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { ScrollToPlugin } from 'gsap/all';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
-import QModal from '@/components/atoms/QModal.vue';
 
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
@@ -26,10 +28,12 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 
 import { useCollectionStore } from '@/stores/collectionStore';
 import { useShareStore } from '@/stores/shareStore';
+
 import { publicPosts } from '@/mock/posts';
 import { publicCampaigns } from '@/mock/campaigns';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 const frames = [
     '/assets/img/frames/hanoi-art-frame-1.png',
@@ -45,12 +49,12 @@ const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
+const campaignFeedsWrapper = ref(null);
 
 const selectedFrames = ref(frames[0]);
 const posts = ref([...publicPosts]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
-// const isFullScreenFeedsOpen = ref(false);
 
 const shareStore = useShareStore();
 const collectionStore = useCollectionStore();
@@ -65,6 +69,7 @@ const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
 const itemsToAdd = 3;
+
 const lazyLoad = () => {
     if (isLoadingPost.value) return;
 
@@ -161,20 +166,55 @@ useResizeObserver(campaignMain, (entries) => {
 
 useResizeObserver(campaignPage, scaleCampaignPage);
 
-onMounted(async () => {
-    // gsap.to('.campaign-feeds__panels', {
-    //     scrollTrigger: {
-    //         trigger: '.campaign-feeds__panels',
-    //         end: 'bottom top',
-    //         start: 'bottom bottom',
-    //         onUpdate: () => {
-    //             lazyLoad();
-    //         }
-    //     }
-    // });
+let autoScrollTween;
+let killTime = 0;
+const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
+const targetDuration = computed(() => {
+    return displayType.value === 'grid' ? 30 : 240;
+});
 
+const calcDuration = () => {
+    const context = campaignFeedsWrapper.value;
+    const item = context.querySelector('.post-wrapper');
+
+    const etaDuration = item.clientHeight / (displayType.value === 'grid' ? 4.5 : 1.6);
+
+    // Get the maximum scroll position
+    const maxScroll = context.scrollHeight - context.offsetHeight;
+
+    // Calculate the remaining distance to scroll
+    const remainingDistance = maxScroll - feedsScrollY.value;
+
+    // Adjust the duration based on the remaining distance
+    const adjustedDuration = (remainingDistance / maxScroll) * etaDuration;
+    return Math.round(adjustedDuration);
+};
+
+const initAutoScrollTween = () => {
+    const duration = calcDuration();
+
+    autoScrollTween = gsap.to('.campaign-feeds__wrapper', {
+        scrollTo: {
+            y: 'max',
+            autoKill: true
+        },
+        ease: 'none',
+        duration: duration
+    });
+};
+watch(isScrolling, useDebounceFn(initAutoScrollTween, 1500));
+// watch(displayType, () => {
+//     nextTick();
+//    autoScrollTween.duration(calcDuration());
+// })
+
+onMounted(async () => {
     await nextTick();
-    scaleCampaignPage();
+
+    // setTimeout(() => {
+    //     scaleCampaignPage();
+    // }, 500)
+    initAutoScrollTween();
 });
 </script>
 <template>
@@ -338,17 +378,19 @@ onMounted(async () => {
                         <div ref="campaignFeeds" class="campaign-feeds">
                             <div ref="campaignFeedsPanels" class="campaign-feeds__panels">
                                 <div
-                                    :class="
+                                    ref="campaignFeedsWrapper"
+                                    :class="[
+                                        'campaign-feeds__wrapper',
                                         displayType === 'grid'
                                             ? 'campaign-feeds__grid'
                                             : 'campaign-feeds__list'
-                                    "
+                                    ]"
                                 >
                                     <PostWrapper
                                         v-for="post in posts"
                                         :key="post.uri"
                                         v-bind="post"
-                                        :campaignOwnerPriviledge="true"
+                                        :campaignOwnerPriviledge="false"
                                         :display="displayType"
                                         :rounded="!sm"
                                     />
@@ -374,26 +416,6 @@ onMounted(async () => {
                                         height="200px"
                                         rounded
                                     />
-
-                                    <Transition name="slide-fade">
-                                        <div
-                                            v-if="posts.length >= 21 && sm"
-                                            class="col-span-3 md:col-span-2 lg:col-span-3"
-                                        >
-                                            <div class="campaign-feeds-all">
-                                                <QButton
-                                                    variant="secondary"
-                                                    size="sm"
-                                                    block
-                                                    @click="
-                                                        $router.push({ name: 'campaign-feeds' })
-                                                    "
-                                                >
-                                                    View All
-                                                </QButton>
-                                            </div>
-                                        </div>
-                                    </Transition>
                                 </div>
                             </div>
 
@@ -416,6 +438,7 @@ onMounted(async () => {
 
                                 <QButton
                                     circle
+                                    v-if="!sm"
                                     :variant="sm ? 'secondary' : 'neutral'"
                                     @click="$router.push({ name: 'campaign-feeds' })"
                                 >
@@ -433,6 +456,17 @@ onMounted(async () => {
                                     </svg>
                                 </QButton>
                             </div>
+                        </div>
+
+                        <div v-if="sm" class="pt-5 px-4">
+                            <QButton
+                                variant="secondary"
+                                size="sm"
+                                block
+                                @click="$router.push({ name: 'campaign-feeds' })"
+                            >
+                                View All
+                            </QButton>
                         </div>
                     </div>
                 </div>
@@ -606,6 +640,9 @@ onMounted(async () => {
 
     .campaign__detail {
         @apply relative px-4 sm:mx-0 pt-8 bg-white space-y-4 flex flex-col justify-center;
+        margin-top: -1px;
+        padding-bottom: 24px;
+        box-shadow: 0 19px 24px rgba(0, 0, 0, 0.15);
 
         @include sm {
             @include before {
@@ -663,9 +700,9 @@ onMounted(async () => {
 
 // campaign feeds
 .campaign-feeds {
-    margin-top: 24px;
     @apply h-full w-full bg-white relative overflow-hidden;
 
+    // opacity: 0;
     @include md_screen {
         @apply rounded-3xl shadow-sm border-transparent;
         max-height: unset;
@@ -681,35 +718,93 @@ onMounted(async () => {
     }
 
     .campaign-feeds__panels {
-        @apply absolute left-0 top-0 h-full w-full;
+        @include no_scrollbar();
 
         @include sm {
-            padding-top: 7px;
-
             @include before {
-                height: 18px;
-                top: -5px;
-                left: 0;
+                height: 24px;
+                top: -12px;
+                left: -2px;
                 display: block;
                 width: 100%;
-                background: linear-gradient(0deg, rgba(194, 196, 203, 0) 18.65%, #d6d8de 100%);
+                background: linear-gradient(180deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 91%);
+                filter: blur(24px);
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            @include after {
+                height: 24px;
+                bottom: -18px;
+                left: 0px;
+                display: block;
+                width: 100%;
+                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+                filter: blur(24px);
+                z-index: 10;
+                pointer-events: none;
             }
         }
 
         @include md_screen {
-            @apply p-2 overflow-scroll pb-16;
+            @apply absolute left-0 top-0 h-full w-full overflow-y-auto p-2 overflow-scroll pb-16;
+        }
+    }
+
+    .campaign-feeds__wrapper {
+        // padding: 7px 0px;
+        padding-top: 8px;
+        position: relative;
+        z-index: 0;
+
+        @apply rounded-none;
+
+        @include md_screen {
+            @apply rounded-xl;
         }
     }
 
     .campaign-feeds__grid {
-        @apply container grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5;
+        @apply container grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2.5 overflow-y-auto;
+        max-height: 420px;
+        @include no_scrollbar();
+
+        @include before {
+            height: 8px;
+            top: 0px;
+            left: 0;
+            display: block;
+            width: 100%;
+            @apply bg-stroke;
+        }
+
+        @include after {
+            height: 8px;
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-top: -4px;
+            @apply bg-stroke col-span-3;
+        }
+
+        @include md_screen {
+            max-height: 100%;
+        }
     }
 
     .campaign-feeds__list {
-        @apply flex flex-col space-y-2.5 mt-1;
+        @apply flex flex-col space-y-5 pt-4 overflow-y-auto;
+
+        max-height: 420px;
+        @include no_scrollbar();
 
         @include sm {
             @apply container px-4;
+        }
+
+        @include md_screen {
+            padding-top: 0px;
+            max-height: 100%;
         }
     }
 
