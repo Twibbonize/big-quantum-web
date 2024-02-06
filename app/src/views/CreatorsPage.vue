@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useWindowSize } from '@vueuse/core';
+import { useWindowSize, useWindowScroll } from '@vueuse/core';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
@@ -17,6 +17,7 @@ const navbarColor = ref('transparent');
 const navbarShadow = ref(false);
 
 const { width, height } = useWindowSize();
+const { y } = useWindowScroll();
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
@@ -41,15 +42,17 @@ onUnmounted(() => {
 <template>
     <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
         <div class="creators-page">
-            <BannerCreators :width="width" :height="height" />
+            <BannerCreators :width="width" :height="height" :scroll-position="y"/>
             <div ref="content"></div>
             <CampaignSwiper class="swiper" />
-            <VerticalCarousel :width="width" :height="height" />
-            <BentoGrid />
-            <TiltScreen />
-            <CreatorStories :width="width" :height="height" />
-            <FrameSelection />
-            <PackageSelection />
+            <div class="bg-white">
+                <VerticalCarousel :width="width" :height="height" />
+                <BentoGrid/>
+                <TiltScreen/>
+                <CreatorStories :width="width" :height="height" />
+                <FrameSelection/>
+                <PackageSelection/>
+            </div>
         </div>
     </LayoutMain>
 </template>

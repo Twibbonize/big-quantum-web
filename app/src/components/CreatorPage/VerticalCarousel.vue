@@ -154,12 +154,12 @@ onMounted(() => {
         @apply sm:h-[400px] lg:h-[500px] xl:h-[600px];
     }
     .video-container {
-        @apply h-full relative pt-8 sm:pt-0 flex justify-center sm:justify-center;
-        aspect-ratio: 5/6;
+        @apply h-full max-w-full relative pt-8 sm:pt-0 flex justify-center sm:justify-center;
+        aspect-ratio: 1/1;
     }
 
     .video {
-        @apply h-full max-w-none absolute rounded-3xl;
+        @apply h-full max-w-full absolute rounded-3xl;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
