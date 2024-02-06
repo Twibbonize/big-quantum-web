@@ -170,13 +170,13 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="">
             </div>
-            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 m:px-9 gap-8">
+            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-10">
                 <div class="col-span-2 relative">
                     <h6 class="text-white text-xs uppercase tracking-widest">Testimonials</h6>
                     <h5 class="text-white text-xl sm:text-4xl font-semibold mt-2">
                         Trusted by names you trusted
                     </h5>
-                    <div class="flex flex-col gap-5 mt-20">
+                    <div class="flex flex-col gap-12 mt-20">
                         <div class="logos">
                             <div class="scrim"></div>
                             <CampaignSlider
