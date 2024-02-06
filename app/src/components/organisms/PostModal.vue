@@ -90,9 +90,12 @@ const commentValidation = yupObject().shape({
                             </QPopoverMenu>
                         </QPopover>
 
-                        <QButton variant="subtle" size="sm" square @click="closePost">
-                            <i class="ri-close-line ri-lg"></i>
-                        </QButton>
+                        <div class="hidden md:block">
+                            <QButton variant="subtle" size="sm" square @click="closePost">
+                                <i class="ri-close-line ri-lg"></i>
+                            </QButton>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
