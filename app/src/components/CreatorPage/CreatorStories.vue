@@ -19,7 +19,7 @@ const corporateCampaigns = [
     '/assets/img/campaigns/corporate/twibbon-2.png',
     '/assets/img/campaigns/corporate/twibbon-3.png',
     '/assets/img/campaigns/corporate/twibbon-4.png',
-    '/assets/img/campaigns/corporate/twibbon-5.png',
+    '/assets/img/campaigns/corporate/twibbon-5.png'
 ];
 
 const educationCampaigns = [
@@ -32,7 +32,7 @@ const educationCampaigns = [
     '/assets/img/campaigns/education/twibbon-2.png',
     '/assets/img/campaigns/education/twibbon-3.png',
     '/assets/img/campaigns/education/twibbon-4.png',
-    '/assets/img/campaigns/education/twibbon-5.png',
+    '/assets/img/campaigns/education/twibbon-5.png'
 ];
 
 const eventsCampaigns = [
@@ -45,7 +45,7 @@ const eventsCampaigns = [
     '/assets/img/campaigns/events/twibbon-2.png',
     '/assets/img/campaigns/events/twibbon-3.png',
     '/assets/img/campaigns/events/twibbon-4.png',
-    '/assets/img/campaigns/events/twibbon-5.png',
+    '/assets/img/campaigns/events/twibbon-5.png'
 ];
 
 const firstLogos = [
@@ -63,7 +63,7 @@ const firstLogos = [
     '/assets/img/logos/yamaha-white.svg',
     '/assets/img/logos/dhl-white.svg',
     '/assets/img/logos/bosch-white.svg',
-    '/assets/img/logos/landell-mills-white.svg',
+    '/assets/img/logos/landell-mills-white.svg'
 ];
 
 const secondLogos = [
@@ -84,7 +84,7 @@ const secondLogos = [
     '/assets/img/logos/chevron-white.svg',
     '/assets/img/logos/siemens-white.svg',
     '/assets/img/logos/bayer-white.svg',
-    '/assets/img/logos/unicef-white.svg',
+    '/assets/img/logos/unicef-white.svg'
 ];
 
 const thirdLogos = [
@@ -99,28 +99,27 @@ const thirdLogos = [
     '/assets/img/logos/johnson-and-johnson-white.svg',
     '/assets/img/logos/loreal-white.svg',
     '/assets/img/logos/huawei-white.svg',
-    '/assets/img/logos/grab-white.svg',
+    '/assets/img/logos/grab-white.svg'
 ];
 
 const testimonials = [
     {
         text: 'How Danone Does Their Internal Giveaway Competitions Using Twibbonize',
-        image: '/assets/img/logos/danone-color.png',
+        image: '/assets/img/logos/danone-color.png'
     },
     {
-        text: 'Acer\'s Practical Way In Utilizing Twibbonize',
-        image: '/assets/img/logos/acer-color.png',
-    },
+        text: "Acer's Practical Way In Utilizing Twibbonize",
+        image: '/assets/img/logos/acer-color.png'
+    }
 ];
-
-
 </script>
 
 <template>
     <div class="creator-stories py-14 sm:py-24 flex flex-col items-center">
         <h4 class="text-center text-3xl sm:text-6xl font-bold">Ideas to use Twibbonize for</h4>
         <p class="text-center text-base sm:text-2xl mt-4 sm:mt-8">
-            Jumpstart your exploration with hand-picked examples from our 5,000,000+ Twibbonize campaigns
+            Jumpstart your exploration with hand-picked examples from our 5,000,000+ Twibbonize
+            campaigns
         </p>
         <div
             class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 sm:px-5 mt-6 sm:mt-20"
@@ -131,14 +130,19 @@ const testimonials = [
                     <h5 class="font-semibold text-white text-2xl mt-2.5">
                         Utilize the power of the abundance of your personnels and customers
                     </h5>
-                    <QOpenLink class="mt-5" classes="text-white text-xs" text="Read Case Study" url="/" />
+                    <QOpenLink
+                        class="mt-5"
+                        classes="text-white text-xs"
+                        text="Read Case Study"
+                        url="/"
+                    />
                 </div>
                 <CampaignSlider
                     class="mt-8"
                     :campaigns="corporateCampaigns"
                     campaign-classes="h-20 w-20 rounded slide"
                 />
-                <img class="bg-pattern" src="/assets/img/background/bg-corporate.svg" alt="">
+                <img class="bg-pattern" src="/assets/img/background/bg-corporate.svg" alt="" />
             </div>
             <div class="bento-2 sm:col-span-2 card py-5">
                 <div class="px-5">
@@ -146,14 +150,19 @@ const testimonials = [
                     <h5 class="font-semibold text-white text-2xl mt-2.5">
                         It’s a fun way to add to the learning process
                     </h5>
-                    <QOpenLink class="mt-5" classes="text-white text-xs" text="Read Article" url="/" />
+                    <QOpenLink
+                        class="mt-5"
+                        classes="text-white text-xs"
+                        text="Read Article"
+                        url="/"
+                    />
                 </div>
                 <CampaignSlider
                     class="mt-8"
                     :campaigns="educationCampaigns"
                     campaign-classes="h-20 w-20 rounded slide"
                 />
-                <img class="bg-pattern" src="/assets/img/background/bg-education.svg" alt="">
+                <img class="bg-pattern" src="/assets/img/background/bg-education.svg" alt="" />
             </div>
             <div class="bento-3 sm:col-span-2 card py-5">
                 <div class="px-5">
@@ -161,14 +170,19 @@ const testimonials = [
                     <h5 class="font-semibold text-white text-2xl mt-2.5">
                         Hype up your event with the power of instant virality
                     </h5>
-                    <QOpenLink class="mt-5" classes="text-white text-xs" text="Read Article" url="/" />
+                    <QOpenLink
+                        class="mt-5"
+                        classes="text-white text-xs"
+                        text="Read Article"
+                        url="/"
+                    />
                 </div>
                 <CampaignSlider
                     class="mt-8"
                     :campaigns="eventsCampaigns"
                     campaign-classes="h-20 w-20 rounded slide"
                 />
-                <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="">
+                <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="" />
             </div>
             <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-10">
                 <div class="col-span-2 relative">
@@ -218,15 +232,25 @@ const testimonials = [
                         :loop="false"
                         slides-per-view="1.2"
                     >
-                        <swiper-slide v-for="({ text, image }, i) in testimonials" :key="i" class="w-auto" :class="slideClasses">
+                        <swiper-slide
+                            v-for="({ text, image }, i) in testimonials"
+                            :key="i"
+                            class="w-auto"
+                            :class="slideClasses"
+                        >
                             <div class="testimonial">
                                 <div class="w-1/2">
-                                    <img :src="image" class="max-h-full max-w-full" alt="danone">
+                                    <img :src="image" class="max-h-full max-w-full" alt="danone" />
                                 </div>
 
                                 <div>
                                     <h5 class="font-bold text-2xl">{{ text }}</h5>
-                                    <QOpenLink class="mt-5" classes="text-xs" text="Read More" url="/" />
+                                    <QOpenLink
+                                        class="mt-5"
+                                        classes="text-xs"
+                                        text="Read More"
+                                        url="/"
+                                    />
                                 </div>
                             </div>
                         </swiper-slide>
@@ -250,27 +274,26 @@ const testimonials = [
     .card {
         @apply bg-white rounded-3xl overflow-hidden relative flex flex-col justify-between;
         border: 0.659px solid rgba(27, 27, 27, 0.1);
-        
+
         .bg-pattern {
             @apply absolute top-0 right-0 w-2/3 z-0;
         }
 
         .slide {
-            box-shadow: 0px 1.11px 5.549px 0px rgba(0, 0, 0, 0.10);
+            box-shadow: 0px 1.11px 5.549px 0px rgba(0, 0, 0, 0.1);
         }
     }
 
     .bento-1 {
-        background: #0B5D99;
-
+        background: #0b5d99;
     }
 
     .bento-2 {
-        background: #2266ED;
+        background: #2266ed;
     }
 
     .bento-3 {
-        background: #4D41B9;
+        background: #4d41b9;
     }
 
     .bento-4 {
@@ -281,7 +304,13 @@ const testimonials = [
 
             .scrim {
                 @apply w-full h-full absolute top-0 left-0 z-10;
-                background: linear-gradient(90deg, #636363 0%, #FFFFFF 10%,  #FFFFFF 90%, #636363 100%);
+                background: linear-gradient(
+                    90deg,
+                    #636363 0%,
+                    #ffffff 10%,
+                    #ffffff 90%,
+                    #636363 100%
+                );
                 // background: linear-gradient(90deg, #1B1B1BFF 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,0) 75%, #1B1B1B 100%);
                 mix-blend-mode: darken;
             }

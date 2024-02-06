@@ -1,9 +1,10 @@
 <script setup>
 import { Form as VeeForm } from 'vee-validate';
 import { object as yupObject, string as yupString } from 'yup';
-import { inject, computed } from 'vue';
+import { inject, computed, ref } from 'vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QModal from '@/components/atoms/QModal.vue';
+import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import QPopover from '@/components/atoms/QPopover.vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
@@ -14,7 +15,7 @@ import { usePostStore } from '@/stores/postStore';
 import { storeToRefs } from 'pinia';
 
 const isMobile = inject('isMobile');
-
+const captionContainer = ref(null);
 const postStore = usePostStore();
 const { closePost } = postStore;
 const { show, post } = storeToRefs(postStore);
@@ -28,13 +29,7 @@ const commentValidation = yupObject().shape({
 });
 </script>
 <template>
-    <QModal
-        :show="show"
-        :closeBtn="!isMobile"
-        :position="modalPosition"
-        @close="closePost"
-        size="xl"
-    >
+    <QModal :show="show" :closeBtn="false" :position="modalPosition" @close="closePost" size="xl">
         <template #header>
             <div v-if="post" class="post-modal__header w-full">
                 <div
@@ -64,7 +59,7 @@ const commentValidation = yupObject().shape({
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-1">
+                    <div class="flex items-center space-x-2">
                         <!-- <button
                             class="w-auto px-2.5 h-10 aspect-square md:aspect-auto hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors">
                             <i class="ri-pushpin-line ri-lg"></i>
@@ -94,11 +89,15 @@ const commentValidation = yupObject().shape({
                                 </QPopoverMenuItem>
                             </QPopoverMenu>
                         </QPopover>
+
+                        <QButton variant="subtle" size="sm" square @click="closePost">
+                            <i class="ri-close-line ri-lg"></i>
+                        </QButton>
                     </div>
                 </div>
             </div>
         </template>
-        <template #body="{ bodyEl }">
+        <template #body>
             <div v-if="post" class="post-modal max-h-full flex flex-col">
                 <div class="post-modal__upper">
                     <div class="post-modal__image">
@@ -131,7 +130,7 @@ const commentValidation = yupObject().shape({
                     </div>
                 </div>
                 <div class="post-modal__lower">
-                    <div class="post-modal__caption px-4 py-6">
+                    <div class="px-4 py-6">
                         <div class="space-y-2">
                             <div class="flex items-center">
                                 <div class="text-black font-semibold text-base">
@@ -142,8 +141,14 @@ const commentValidation = yupObject().shape({
 
                                 <div class="text-xs text-content">an hour ago</div>
                             </div>
-                            <div class="text-sm leading-relaxed">
-                                {{ post.caption }}
+                            <div ref="captionContainer" class="post-modal__caption">
+                                <QEllipsisText
+                                    :text="post.caption"
+                                    :lines="3"
+                                    :containerWidth="
+                                        (captionContainer && captionContainer.offsetWidth) || 240
+                                    "
+                                />
                             </div>
                         </div>
                     </div>
@@ -152,8 +157,8 @@ const commentValidation = yupObject().shape({
                         <div
                             class="post-modal__comments__form p-4 border-y border-stroke space-y-3"
                         >
-                            <div class="flex items-center justify-between sticky top-0">
-                                <div class="text-base font-semibold">Comments</div>
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm font-semibold">Comments</div>
 
                                 <div class="flex items-center space-x-1">
                                     <i class="ri-sort-desc"></i>
@@ -164,7 +169,9 @@ const commentValidation = yupObject().shape({
                             <VeeForm :validation-schema="commentValidation" v-slot="{ meta }">
                                 <CommentInput name="comment_input" placeholder="Share your message">
                                     <template #suffix>
-                                        <QButton size="sm" :enabled="meta.valid">Post</QButton>
+                                        <QButton size="sm" :enabled="meta.valid">
+                                            <span class="text-xs">Post</span>
+                                        </QButton>
                                     </template>
                                 </CommentInput>
                             </VeeForm>
@@ -189,16 +196,18 @@ const commentValidation = yupObject().shape({
     @apply flex flex-col max-h-full;
 
     @include md_screen {
-        @apply grid grid-cols-2;
+        @apply grid grid-cols-12;
     }
 
     .post-modal__upper {
         height: 100%;
         max-height: 512px;
-        @apply flex flex-col;
+        @apply flex flex-col col-span-7;
     }
 
     .post-modal__lower {
+        @apply col-span-5;
+
         @include md_screen {
             height: 100%;
             max-height: 512px;
@@ -221,6 +230,11 @@ const commentValidation = yupObject().shape({
         img {
             @apply rounded-xl max-w-full;
         }
+    }
+
+    .post-modal__caption {
+        @apply leading-relaxed my-1;
+        font-size: 0.8rem;
     }
 
     .dot {

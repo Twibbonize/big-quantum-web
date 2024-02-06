@@ -21,7 +21,7 @@ const props = defineProps({
     size: {
         type: String,
         default: 'md',
-        validators: (value) => ['md', 'lg'].includes(value)
+        validators: (value) => ['md', 'lg', 'xl'].includes(value)
     },
     minHeight: {
         type: Number
@@ -262,10 +262,12 @@ watch(
 
     &.dialog--lg .dialog__wrapper {
         @apply max-w-xl;
+        // max-width: 540px;
     }
 
     &.dialog--xl .dialog__wrapper {
-        @apply max-w-5xl;
+        // @apply max-w-3xl;
+        max-width: 52rem;
     }
 
     &.dialog--screen .dialog__wrapper {
@@ -307,7 +309,7 @@ watch(
     .dialog__content {
         @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
         z-index: 69;
-        max-height: 80vh;
+        max-height: calc(100vh - 24px);
         min-height: 360px;
     }
 

@@ -6,7 +6,7 @@ const { y } = useWindowScroll();
 </script>
 
 <template>
-    <div class="bg-hero relative" :class="{ 'bottom': y > 300 }">
+    <div class="bg-hero relative" :class="{ bottom: y > 300 }">
         <slot></slot>
         <img class="pattern-left z-0" src="/src/assets/img/patterns/hero-left-bottom.png" alt="" />
         <img class="pattern-right z-0" src="/src/assets/img/patterns/hero-right-top.png" alt="" />
@@ -30,7 +30,7 @@ const { y } = useWindowScroll();
         }
     }
     &::before {
-        content: "";
+        content: '';
         display: block;
         position: fixed;
         top: 0;

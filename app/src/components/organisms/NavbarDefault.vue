@@ -137,9 +137,9 @@ const searchQuery = ref('');
         .header__link {
             height: 48px;
             width: 48px;
-            font-size: 28px;
+            font-size: 24px;
 
-            @apply text-black rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300;
+            @apply text-black rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300 border border-stroke bg-white;
 
             @include before {
                 height: 0;
@@ -155,8 +155,8 @@ const searchQuery = ref('');
 
             &:hover {
                 @include before {
-                    height: 20rem;
-                    width: 20rem;
+                    height: 4rem;
+                    width: 4rem;
                 }
             }
         }
@@ -173,10 +173,6 @@ const searchQuery = ref('');
     &--transparent {
         background: transparent linear-gradient(180deg, #000 0%, rgba(22, 218, 193, 0) 100%);
         box-shadow: none;
-    }
-
-    &.header--transparent .header__links .header__link {
-        @apply text-white;
     }
 
     &--gradient {
