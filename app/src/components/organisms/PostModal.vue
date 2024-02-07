@@ -95,7 +95,6 @@ const commentValidation = yupObject().shape({
                                 <i class="ri-close-line ri-lg"></i>
                             </QButton>
                         </div>
-                       
                     </div>
                 </div>
             </div>

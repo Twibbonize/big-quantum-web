@@ -1,27 +1,36 @@
 <script setup>
 import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
+import { useElementSize, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 
 import { useShareStore } from '@/stores/shareStore';
 import QPopover from '@/components/atoms/QPopover.vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
-import QButton from '@/components/atoms/QButton.vue';
+import QDot from '@/components/atoms/QDot.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { usePostStore } from '@/stores/postStore';
-import { storeToRefs } from 'pinia';
-
-const postStore = usePostStore();
-const { showPost } = postStore;
+import { capitalizeFirstLetter } from '@/utils/string';
 
 dayjs.extend(relativeTime);
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const postStore = usePostStore();
+const { showPost } = postStore;
+
 const shareStore = useShareStore();
 const { openShare } = shareStore;
+
+const postEl = ref(null);
 const captionContainer = ref(null);
+
+const { width: captionContainerWidth } = useElementSize(captionContainer);
+
+const sm = breakpoints.isSmallerOrEqual('sm');
+const xl = breakpoints.isGreater('lg');
 
 const props = defineProps({
     image: {
@@ -33,8 +42,7 @@ const props = defineProps({
         required: true
     },
     caption: {
-        type: String,
-        required: true
+        type: String
     },
     creator: {
         type: Object,
@@ -80,7 +88,11 @@ const createdOn = computed(() => {
     const { createdAt } = props;
     const datetime = dayjs(createdAt);
 
-    return datetime.fromNow();
+    return capitalizeFirstLetter(datetime.fromNow());
+});
+
+const captionFontSize = computed(() => {
+    return xl ? '16' : 14;
 });
 
 const handleShowPost = () => {
@@ -91,202 +103,150 @@ const handleShowPost = () => {
 </script>
 
 <template>
-    <div class="profile-card">
-        <div class="px-3 py-3 border-b border-stroke flex md:hidden items-center justify-between">
-            <div class="flex items-center space-x-1">
-                <img
-                    src="/assets/img/sample/sample-avatar-1.jpg"
-                    alt="Avatar"
-                    class="w-8 h-8 border border-white/70 rounded-full"
-                />
-
-                <div class="flex flex-col">
-                    <div class="font-semibold leading-tight text-sm">Universe Tech</div>
-                    <div class="text-content text-xs">{{ createdOn }}</div>
+    <div ref="postEl" class="post">
+        <div class="post__main-wrapper">
+            <div class="post__main-header">
+                <div class="flex items-center space-x-1">
+                    <QCreator v-bind="creator" size="md" />
+                    <QDot />
+                    <span class="post__time">{{ createdOn }}</span>
                 </div>
+
+                <QPopover v-if="!sm">
+                    <template #trigger>
+                        <span
+                            class="w-8 h-8 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
+                        >
+                            <i class="ri-more-line ri-lg"></i>
+                        </span>
+                    </template>
+
+                    <QPopoverMenu>
+                        <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                            <i class="ri-pushpin-line ri-1x"></i>
+                            <span>Pin Post</span>
+                        </QPopoverMenuItem>
+
+                        <QPopoverMenuItem v-if="campaignOwnerPriviledge">
+                            <i class="ri-eye-off-line ri-1x"></i>
+                            <span>Hide Post</span>
+                        </QPopoverMenuItem>
+
+                        <QPopoverMenuItem @click="handleOpenShare">
+                            <i class="ri-share-line ri-1x"></i>
+                            <span>Share</span>
+                        </QPopoverMenuItem>
+
+                        <QPopoverMenuItem>
+                            <div class="text-red-400 space-x-2">
+                                <i class="ri-flag-line ri-1x"></i>
+                                <span>Report</span>
+                            </div>
+                        </QPopoverMenuItem>
+                    </QPopoverMenu>
+                </QPopover>
             </div>
-
-            <QPopover>
-                <template #trigger>
-                    <span
-                        class="w-8 h-8 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
-                    >
-                        <i class="ri-more-line ri-lg"></i>
-                    </span>
-                </template>
-
-                <QPopoverMenu>
-                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
-                        <i class="ri-pushpin-line ri-1x"></i>
-                        <span>Pin Post</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
-                        <i class="ri-eye-off-line ri-1x"></i>
-                        <span>Hide Post</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem @click="handleOpenShare">
-                        <i class="ri-share-line ri-1x"></i>
-                        <span>Share</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem>
-                        <div class="text-red-400 space-x-2">
-                            <i class="ri-flag-line ri-1x"></i>
-                            <span>Report</span>
-                        </div>
-                    </QPopoverMenuItem>
-                </QPopoverMenu>
-            </QPopover>
-        </div>
-
-        <a class="profile-card__image-wrapper" @click="handleShowPost">
-            <img
-                class="h-full object-cover object-center md:rounded-xl"
-                :src="image"
-                :alt="campaign.name"
-            />
-        </a>
-
-        <div class="hidden md:flex items-center space-x-2 absolute right-2 top-2 z-10">
-            <QPopover>
-                <template #trigger>
-                    <span
-                        class="w-8 h-8 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
-                    >
-                        <i class="ri-more-line ri-lg"></i>
-                    </span>
-                </template>
-
-                <QPopoverMenu>
-                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
-                        <i class="ri-pushpin-line ri-1x"></i>
-                        <span>Pin Post</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem v-if="campaignOwnerPriviledge">
-                        <i class="ri-eye-off-line ri-1x"></i>
-                        <span>Hide Post</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem @click="handleOpenShare">
-                        <i class="ri-share-line ri-1x"></i>
-                        <span>Share</span>
-                    </QPopoverMenuItem>
-
-                    <QPopoverMenuItem>
-                        <div class="text-red-400 space-x-2">
-                            <i class="ri-flag-line ri-1x"></i>
-                            <span>Report</span>
-                        </div>
-                    </QPopoverMenuItem>
-                </QPopoverMenu>
-            </QPopover>
-        </div>
-
-        <div class="profile-card__main">
-            <div
-                v-if="campaignBanner"
-                class="hidden md:flex items-center justify-between relative mb-2 lg:mb-3"
-            >
-                <div class="flex items-center space-x-3 flex-shrink-0">
-                    <div class="flex flex-col flex-shrink-0">
-                        <div
-                            class="text-sm font-semibold leading-tight w-full text-ellipsis truncate overflow-hidden"
-                        >
-                            {{ campaign.name }}
-                        </div>
-                        <div class="text-xs text-content mt-1">twb.nz/{{ campaign.url }}</div>
-                    </div>
-
-                    <div class="flex-shrink-0">
-                        <QButton
-                            size="xs"
-                            variant="secondary"
-                            @click="$router.push({ name: 'campaign' })"
-                        >
-                            <span class="text-xs">Get Yours</span>
-                        </QButton>
-                    </div>
+            <div class="post__main-body">
+                <div class="post__image-wrapper">
+                    <img class="post__image" :src="image" alt="Post Image" />
                 </div>
-            </div>
-
-            <div class="pr-4">
-                <div ref="captionContainer" class="profile-card__caption">
+                <div v-if="caption" ref="captionContainer" class="post__caption-wrapper">
                     <QEllipsisText
                         :text="caption"
                         :expandable="false"
-                        :containerWidth="(captionContainer && captionContainer.offsetWidth) || 240"
+                        :containerWidth="captionContainerWidth"
+                        :lines="3"
+                        :fontSize="captionFontSize"
                         @toggle="handleShowPost"
                     />
                 </div>
-
-                <div class="hidden md:flex mb-2 lg:mb-3">
-                    <QCreator v-bind="creator" />
-                </div>
-
-                <div
-                    class="hidden md:flex items-center space-x-2 pt-2 lg:pt-3 border-t border-stroke"
-                >
-                    <a
-                        class="text-xs md:text-sm cursor-pointer transition-colors"
-                        @click="handleShowPost"
-                    >
-                        <i class="ri ri-message-3-line ri-lg"></i>
-                        <span v-if="comments.length" class="ml-1 text-content hover:text-black"
-                            >View all {{ comments.length }} Comments</span
-                        >
-                        <span v-else class="ml-1 text-content hover:text-black">Comment</span>
-                    </a>
-                </div>
             </div>
 
-            <div class="block md:hidden border-t border-stroke px-3 py-3 rounded-b-xl">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <a
-                            class="text-black/70 text-xs md:text-sm font-medium cursor-pointer hover:text-black transition-colors"
-                            @click="handleShowPost"
-                        >
-                            <i class="ri ri-message-3-line ri-lg"></i>
-                            <span v-if="comments.length" class="ml-1"
-                                >{{ comments.length }} Comments</span
-                            >
-                            <span v-else class="ml-1">Comment</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="post__main-footer">
+                <button
+                    class="flex items-center space-x-1 hover:text-main transition-colors"
+                    @click="handleShowPost"
+                >
+                    <i class="ri ri-message-3-line ri-1x"></i>
+                    <span v-if="comments.length" class="text-sm font-medium"
+                        >{{ comments.length }} Comments</span
+                    >
+                    <span v-else class="text-sm font-medium">Comment</span>
+                </button>
+
+                <button
+                    class="flex items-center space-x-1 hover:text-main transition-colors"
+                    @click="handleOpenShare"
+                >
+                    <i class="ri ri-share-line ri-1x"></i>
+                    <span class="text-sm font-medium">Share</span>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-.profile-card {
-    @apply border border-stroke rounded-xl w-full block relative;
+.post {
+    @apply w-full relative md:px-4;
 
-    @include md_screen {
-        @apply flex border items-center border-stroke rounded-xl w-full p-1 pr-4;
+    .post__main-wrapper {
+        @apply flex flex-col space-y-5 border-b border-stroke;
     }
 
-    @include lg_screen {
-        @apply items-center;
+    .post__main-header {
+        @apply flex items-center justify-between;
     }
 
-    .profile-card__image-wrapper {
-        @apply cursor-pointer;
+    .post__main-footer {
+        @apply flex items-center justify-between space-x-4 pb-5;
 
         @include md_screen {
-            @apply h-32 w-32 aspect-square flex-shrink-0;
-        }
-
-        @include lg_screen {
-            @apply h-52 w-52 flex items-center justify-center flex-shrink-0;
+            @apply justify-start;
         }
     }
 
-    .profile-card__caption {
+    // @include md_screen {
+    //     @apply flex border items-center border-stroke rounded-xl w-full p-1 pr-4;
+    // }
+
+    // @include lg_screen {
+    //     @apply items-center;
+    // }
+
+    .post__time {
+        @apply text-content font-light text-xs;
+    }
+
+    .post__image-wrapper {
+        aspect-ratio: 1/1;
+        @apply cursor-pointer mr-3;
+        min-width: 64px;
+        max-height: 64px;
+
+        @include md_screen {
+            @apply mr-8;
+            max-height: 180px;
+        }
+
+        // // max-width: 62px;
+        // max-height: v-bind(maxHeightPostImage);
+
+        .post__image {
+            @apply rounded-lg;
+        }
+    }
+
+    .post__main-body {
+        @apply flex;
+    }
+
+    .post__caption-wrapper {
+        // max-width: 420px;
+        @apply max-w-2xl font-normal;
+    }
+
+    .post__caption {
         @apply px-3 py-2 mb-2 lg:mb-3;
 
         @include md_screen {
@@ -294,11 +254,11 @@ const handleShowPost = () => {
         }
     }
 
-    .profile-card__main {
+    .post__main {
         @apply px-0 relative py-2;
 
         @include md_screen {
-            @apply flex flex-col flex-grow px-0  ml-2;
+            @apply flex flex-col flex-grow px-0 ml-2;
         }
 
         @include lg_screen {

@@ -113,8 +113,6 @@ const publicPosts = [
             name: 'Hanoi Art Book Fair 2025',
             url: 'hanoi-art-book-fair-2025'
         },
-        caption:
-            'Thrilled to embark on the coding odyssey at Universe Tech Future Developers Bootcamp! 🌐💻 Ready to shape the future of tech and unleash the developer within. Let the learning adventure begin! 🚀 #UniverseTechBootcamp #FutureDevelopers',
         createdAt: '2023-10-12T10:30:45',
         creator: {
             name: 'Universe Tech',

@@ -15,7 +15,8 @@ defineProps({
     },
     size: {
         type: String,
-        validators: ['xs', 'sm', 'md', 'lg']
+        validators: ['xs', 'sm', 'md', 'lg'],
+        default: 'md'
     }
 });
 </script>
