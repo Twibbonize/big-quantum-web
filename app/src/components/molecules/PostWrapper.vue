@@ -12,8 +12,7 @@ const props = defineProps({
         required: true
     },
     caption: {
-        type: String,
-        required: true
+        type: String
     },
     creator: {
         type: Object,

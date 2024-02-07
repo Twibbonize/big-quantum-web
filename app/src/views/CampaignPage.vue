@@ -167,7 +167,6 @@ useResizeObserver(campaignMain, (entries) => {
 useResizeObserver(campaignPage, scaleCampaignPage);
 
 let autoScrollTween;
-let killTime = 0;
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
 const targetDuration = computed(() => {
     return displayType.value === 'grid' ? 30 : 240;
@@ -458,7 +457,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div v-if="sm" class="pt-5 px-4">
+                        <div v-if="sm" class="pt-8 px-4">
                             <QButton
                                 variant="secondary"
                                 size="sm"
@@ -722,25 +721,25 @@ onMounted(async () => {
 
         @include sm {
             @include before {
-                height: 24px;
-                top: -12px;
-                left: -2px;
+                height: 16px;
+                top: -24px;
+                left: 0;
                 display: block;
                 width: 100%;
-                background: linear-gradient(180deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 91%);
-                filter: blur(24px);
+                background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 91%);
+                filter: blur(10px);
                 z-index: 10;
                 pointer-events: none;
             }
 
             @include after {
                 height: 24px;
-                bottom: -18px;
+                bottom: -24px;
                 left: 0px;
                 display: block;
                 width: 100%;
-                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-                filter: blur(24px);
+                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+                filter: blur(10px);
                 z-index: 10;
                 pointer-events: none;
             }
@@ -760,6 +759,7 @@ onMounted(async () => {
         @apply rounded-none;
 
         @include md_screen {
+            padding-top: 0px;
             @apply rounded-xl;
         }
     }
@@ -769,22 +769,24 @@ onMounted(async () => {
         max-height: 420px;
         @include no_scrollbar();
 
-        @include before {
-            height: 8px;
-            top: 0px;
-            left: 0;
-            display: block;
-            width: 100%;
-            @apply bg-stroke;
-        }
+        @include sm {
+            @include before {
+                height: 8px;
+                top: 0px;
+                left: 0;
+                display: block;
+                width: 100%;
+                @apply bg-stroke;
+            }
 
-        @include after {
-            height: 8px;
-            position: relative;
-            display: block;
-            width: 100%;
-            margin-top: -4px;
-            @apply bg-stroke col-span-3;
+            @include after {
+                height: 8px;
+                position: relative;
+                display: block;
+                width: 100%;
+                margin-top: -4px;
+                @apply bg-stroke col-span-3;
+            }
         }
 
         @include md_screen {
@@ -803,7 +805,6 @@ onMounted(async () => {
         }
 
         @include md_screen {
-            padding-top: 0px;
             max-height: 100%;
         }
     }
