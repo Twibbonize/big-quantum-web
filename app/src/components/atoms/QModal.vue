@@ -199,7 +199,7 @@ watch(
                             </div>
                         </div>
                         <div class="dialog__body">
-                            <slot name="body" :close="handleClose"></slot>
+                            <slot name="body" :close="handleClose" :isDragging="isDragging"></slot>
                         </div>
                         <div v-if="$slots.footer" class="dialog__footer">
                             <slot name="footer"></slot>

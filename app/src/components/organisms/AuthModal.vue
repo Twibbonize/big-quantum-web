@@ -13,7 +13,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useRouter } from 'vue-router';
 const authStore = useAuthStore();
 const { modal } = storeToRefs(authStore);
-const { login, logout } = authStore;
+const { login } = authStore;
 
 const router = useRouter();
 
