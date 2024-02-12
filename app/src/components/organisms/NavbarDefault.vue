@@ -45,13 +45,11 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header
-        :class="[
-            'header',
-            navbarColor !== '' && `header--${navbarColor}`,
-            shadow && 'header--shadow'
-        ]"
-    >
+    <header :class="[
+        'header',
+        navbarColor !== '' && `header--${navbarColor}`,
+        shadow && 'header--shadow'
+    ]">
         <div class="header__wrapper">
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
@@ -64,9 +62,7 @@ const searchQuery = ref('');
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block lg:hidden mr-1">
-                        <QSearchMobile
-                            :variant="navbarColor === 'transparent' ? 'white' : 'black'"
-                        />
+                        <QSearchMobile :variant="navbarColor === 'transparent' ? 'white' : 'black'" />
                     </div>
 
                     <div class="header__links">
@@ -82,22 +78,13 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <button
-                        :class="['header__burger', open && 'header__burger--open']"
-                        @click="open = !open"
-                    >
+                    <button :class="['header__burger', open && 'header__burger--open']" @click="open = !open">
                         <div class="header__burger__js">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <i class="ri-menu-line"></i>
                         </div>
 
                         <div class="header__burger__avatar">
-                            <img
-                                v-if="!isLoggedIn"
-                                src="/assets/img/avatars/default.svg"
-                                alt="Avatar"
-                            />
+                            <img v-if="!isLoggedIn" src="/assets/img/avatars/default.svg" alt="Avatar" />
                             <img v-else :src="user.avatar" :alt="user.name" />
                         </div>
                     </button>
@@ -191,9 +178,14 @@ const searchQuery = ref('');
 
     &__burger {
         @apply bg-white rounded-full flex items-center justify-center border border-stroke pl-2 pr-1;
-        height: 32px;
+        height: 40px;
         // width: 32px;
         // padding: 12px;
+
+        @include xs {
+            @apply pl-2 pr-1;
+            height: 32px;
+        }
 
         @include md_screen {
             @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
@@ -222,15 +214,17 @@ const searchQuery = ref('');
             }
         }
 
-        .header__burger__js {
-            @apply hidden;
-        }
 
         .header__burger__avatar {
-            height: 20px;
-            width: 20px;
+            height: 28px;
+            width: 28px;
             flex-shrink: 0;
             margin-left: 4px;
+
+            @include xs {
+                height: 24px;
+                width: 24px;
+            }
 
             @include md_screen {
                 width: 32px;
@@ -246,54 +240,10 @@ const searchQuery = ref('');
         }
 
         .header__burger__js {
-            height: 12px;
-            width: 14px;
-            @apply flex items-center justify-center relative;
+            font-size: 24px;
 
-            @include md_screen {
-                height: 13px;
-                width: 16px;
-            }
-        }
-
-        .header__burger__js span {
-            display: block;
-            position: absolute;
-            height: 0.09rem;
-            width: 14px;
-            opacity: 1;
-            right: 0;
-            background-color: #000;
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-            -webkit-transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-            transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-
-            border-radius: 0.2rem;
-
-            @include md_screen {
-                height: 2px;
-                width: 16px;
-            }
-
-            &:nth-child(1) {
-                top: 0px;
-            }
-
-            &:nth-child(2) {
-                top: 5px;
-            }
-
-            &:nth-child(3) {
-                top: 10px;
+            @include xs {
+                font-size: 16px;
             }
         }
     }
