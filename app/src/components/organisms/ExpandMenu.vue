@@ -10,6 +10,8 @@ const expandMenuStore = useExpandMenuStore();
 const authStore = useAuthStore();
 const { open } = storeToRefs(expandMenuStore);
 const { modal, isLoggedIn } = storeToRefs(authStore);
+const { logout } = authStore;
+
 
 const onClickSignIn = () => {
     modal.value.authOption = 'sign-in';
@@ -21,6 +23,12 @@ const onClickSignUp = () => {
     modal.value.authOption = 'sign-up';
     modal.value.show = true;
     open.value = false;
+};
+
+
+const handleSignOut = () => {
+    open.value = false;
+    logout();
 };
 
 onBeforeRouteLeave(() => {
@@ -129,6 +137,7 @@ watch(open, (newValue) => {
                         <div class="flex items-center pt-4">
                             <button
                                 class="font-medium flex items-center group hover:text-red-500 text-sm"
+                                @click="handleSignOut"
                             >
                                 <i class="ri-logout-box-r-line ri-lg"></i>
                                 <span class="ml-2 group-hover:underline">Sign Out</span>
