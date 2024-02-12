@@ -538,7 +538,7 @@ onMounted(async () => {
                 position: fixed;
                 top: 0;
                 left: 0;
-                height: calc(100vh);
+                height: calc(100dvh);
                 width: 100vw;
                 background-attachment: scroll;
                 background-size: cover;
