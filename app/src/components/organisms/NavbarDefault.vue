@@ -249,12 +249,17 @@ const searchQuery = ref('');
             height: 12px;
             width: 14px;
             @apply flex items-center justify-center relative;
+
+            @include md_screen {
+                height: 13px;
+                width: 16px;
+            }
         }
 
         .header__burger__js span {
             display: block;
             position: absolute;
-            height: 0.1rem;
+            height: 0.09rem;
             width: 14px;
             opacity: 1;
             right: 0;
@@ -273,6 +278,11 @@ const searchQuery = ref('');
                 top 0.2s ease-in-out;
 
             border-radius: 0.2rem;
+
+            @include md_screen {
+                height: 2px;
+                width: 16px;
+            }
 
             &:nth-child(1) {
                 top: 0px;
