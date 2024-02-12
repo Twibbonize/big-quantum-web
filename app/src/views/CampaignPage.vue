@@ -489,7 +489,7 @@ onMounted(async () => {
 
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="campaign-recommendations__grid">
                     <CampaignCard
                         v-for="campaign in publicCampaigns"
                         :key="campaign.uri"
@@ -847,6 +847,19 @@ onMounted(async () => {
 
     @include md_screen {
         height: 88px;
+    }
+}
+
+
+.campaign-recommendations {
+
+
+    .campaign-recommendations__grid {
+        @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+
+        @include xs {
+            @apply gap-3;
+        }
     }
 }
 

@@ -93,9 +93,15 @@ watch(query, (newValue) => {
     .search__button {
         @apply flex items-center justify-center bg-white border border-stroke rounded-full;
         padding: 12px;
-        height: 32px;
-        width: 32px;
-        font-size: 12px;
+        height: 40px;
+        width: 40px;
+        // font-size: 12px;
+
+        @include xs {
+            height: 32px;
+            width: 32px;
+            font-size: 12px;
+        }
 
         @include md_screen {
             height: 40px;
