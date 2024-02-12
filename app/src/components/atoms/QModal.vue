@@ -309,7 +309,7 @@ watch(
     .dialog__content {
         @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
         z-index: 69;
-        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
         min-height: 360px;
     }
 

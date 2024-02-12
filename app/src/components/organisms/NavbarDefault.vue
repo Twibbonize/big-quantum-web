@@ -6,11 +6,14 @@ import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import { useAuthStore } from '@/stores/authStore';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { storeToRefs } from 'pinia';
 
 const { width, height } = useWindowSize();
 
+const authStore = useAuthStore();
+const { user, isLoggedIn } = storeToRefs(authStore);
 const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
 
@@ -89,7 +92,12 @@ const searchQuery = ref('');
                         </div>
 
                         <div class="header__burger__avatar">
-                            <img src="/assets/img/avatars/default.svg" alt="Avatar" />
+                            <img
+                                v-if="!isLoggedIn"
+                                src="/assets/img/avatars/default.svg"
+                                alt="Avatar"
+                            />
+                            <img v-else :src="user.avatar" :alt="user.name" />
                         </div>
                     </button>
                 </div>

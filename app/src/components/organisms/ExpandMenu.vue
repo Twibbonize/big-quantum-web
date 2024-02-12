@@ -9,7 +9,7 @@ import QButton from '@/components/atoms/QButton.vue';
 const expandMenuStore = useExpandMenuStore();
 const authStore = useAuthStore();
 const { open } = storeToRefs(expandMenuStore);
-const { modal } = storeToRefs(authStore);
+const { modal, isLoggedIn } = storeToRefs(authStore);
 
 const onClickSignIn = () => {
     modal.value.authOption = 'sign-in';
@@ -79,7 +79,7 @@ watch(open, (newValue) => {
                         </li>
                     </ul>
 
-                    <div class="space-y-4 mt-4 pt-4 border-t border-stroke">
+                    <div v-if="!isLoggedIn" class="space-y-4 mt-4 pt-4 border-t border-stroke">
                         <div
                             class="flex flex-col-reverse md:flex-row items-center space-y-3 space-y-reverse md:space-y-0 md:space-x-3"
                         >
@@ -87,6 +87,52 @@ watch(open, (newValue) => {
                                 >Sign In</QButton
                             >
                             <QButton block @click="onClickSignUp">Sign Up</QButton>
+                        </div>
+                    </div>
+
+                    <div v-else class="mt-4">
+                        <div class="flex items-center justify-between py-4 border-y border-stroke">
+                            <div class="flex items-center">
+                                <button @click="$router.push({ name: 'own-profile' })">
+                                    <img
+                                        class="w-10 h-10 rounded-full"
+                                        src="/assets/img/sample/sample-avatar-1.jpg"
+                                        alt="avatar"
+                                    />
+                                </button>
+
+                                <div class="ml-2 flex flex-col">
+                                    <button
+                                        class="font-semibold hover:underline text-left text-base"
+                                        @click="$router.push({ name: 'own-profile' })"
+                                    >
+                                        Universe Tech
+                                    </button>
+                                    <button
+                                        class="text-content text-sm font-light text-left hover:underline"
+                                        @click="$router.push({ name: 'own-profile' })"
+                                    >
+                                        @universetech
+                                    </button>
+                                </div>
+                            </div>
+
+                            <QButton
+                                variant="subtle"
+                                circle
+                                @click="$router.push({ name: 'settings' })"
+                            >
+                                <i class="ri-settings-4-line ri-lg"></i>
+                            </QButton>
+                        </div>
+
+                        <div class="flex items-center pt-4">
+                            <button
+                                class="font-medium flex items-center group hover:text-red-500 text-sm"
+                            >
+                                <i class="ri-logout-box-r-line ri-lg"></i>
+                                <span class="ml-2 group-hover:underline">Sign Out</span>
+                            </button>
                         </div>
                     </div>
                 </div>
