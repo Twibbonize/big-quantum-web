@@ -28,6 +28,7 @@ const image = computed(() => {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     filter: contrast(1);
     height: 24px;
+    max-width: 110px;
 
     &:hover {
         cursor: pointer;
@@ -36,6 +37,7 @@ const image = computed(() => {
 
     @include md_screen {
         height: 32px;
+        max-width: 140px;
     }
 }
 </style>

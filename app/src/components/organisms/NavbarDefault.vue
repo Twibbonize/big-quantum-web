@@ -56,13 +56,14 @@ const searchQuery = ref('');
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
             </div>
+
             <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
             </div>
 
             <div class="header__right">
                 <div class="header__actions">
-                    <div class="block lg:hidden mr-2">
+                    <div class="block lg:hidden mr-1">
                         <QSearchMobile
                             :variant="navbarColor === 'transparent' ? 'white' : 'black'"
                         />
@@ -132,7 +133,7 @@ const searchQuery = ref('');
     &__center {
         flex: 0 1 0;
         white-space: nowrap;
-        @apply flex justify-center;
+        @apply flex justify-center px-4;
     }
 
     &__actions {
@@ -189,84 +190,15 @@ const searchQuery = ref('');
     }
 
     &__burger {
-        @apply bg-white rounded-full flex items-center justify-center border border-stroke;
-        height: 40px;
-        width: 40px;
+        @apply bg-white rounded-full flex items-center justify-center border border-stroke pl-2 pr-1;
+        height: 32px;
+        // width: 32px;
         // padding: 12px;
-
-        @include md_screen {
-            width: 32px;
-            height: 32px;
-        }
-
-        .header__burger__js {
-            @apply hidden;
-        }
-
-        .header__burger__avatar {
-            height: 48px;
-            width: 48px;
-            flex-shrink: 0;
-            @apply hidden;
-
-            @include md_screen {
-                width: 32px;
-                height: 32px;
-                @apply block;
-            }
-
-            img {
-                height: 100%;
-                width: 100%;
-                @apply border-2 border-gray-200 rounded-full;
-            }
-        }
-
-        .header__burger__js {
-            height: 16px;
-            width: 18px;
-            @apply flex items-center justify-center relative;
-        }
-
-        .header__burger__js span {
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 18px;
-            opacity: 1;
-            right: 0;
-            background-color: #000;
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-            -webkit-transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-            transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-
-            border-radius: 1px;
-
-            &:nth-child(1) {
-                top: 1px;
-            }
-
-            &:nth-child(2) {
-                top: 7px;
-            }
-
-            &:nth-child(3) {
-                top: 13px;
-            }
-        }
 
         @include md_screen {
             @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
             padding: 4px 10px;
+            padding-left: 14px;
             width: auto;
             height: 48px;
 
@@ -288,16 +220,71 @@ const searchQuery = ref('');
                     width: 20rem;
                 }
             }
+        }
 
-            // &.header__burger--open .header__burger__js span:nth-child(1) {
-            //     top: 7px;
-            //     transform: rotate(45deg);
-            // }
+        .header__burger__js {
+            @apply hidden;
+        }
 
-            // &.header__burger--open .header__burger__js span:nth-child(2) {
-            //     transform: rotate(-45deg);
-            //     top: 7px;
-            // }
+        .header__burger__avatar {
+            height: 20px;
+            width: 20px;
+            flex-shrink: 0;
+            margin-left: 4px;
+
+            @include md_screen {
+                width: 32px;
+                height: 32px;
+                @apply block;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+                @apply border-2 border-gray-200 rounded-full;
+            }
+        }
+
+        .header__burger__js {
+            height: 12px;
+            width: 14px;
+            @apply flex items-center justify-center relative;
+        }
+
+        .header__burger__js span {
+            display: block;
+            position: absolute;
+            height: 0.1rem;
+            width: 14px;
+            opacity: 1;
+            right: 0;
+            background-color: #000;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+            transition:
+                background-color 0.05s ease-in-out,
+                transform 0.2s ease-in-out,
+                top 0.2s ease-in-out;
+
+            border-radius: 0.2rem;
+
+            &:nth-child(1) {
+                top: 0px;
+            }
+
+            &:nth-child(2) {
+                top: 5px;
+            }
+
+            &:nth-child(3) {
+                top: 10px;
+            }
         }
     }
 }
