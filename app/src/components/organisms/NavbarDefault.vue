@@ -45,11 +45,13 @@ const searchQuery = ref('');
 </script>
 
 <template>
-    <header :class="[
-        'header',
-        navbarColor !== '' && `header--${navbarColor}`,
-        shadow && 'header--shadow'
-    ]">
+    <header
+        :class="[
+            'header',
+            navbarColor !== '' && `header--${navbarColor}`,
+            shadow && 'header--shadow'
+        ]"
+    >
         <div class="header__wrapper">
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
@@ -62,7 +64,9 @@ const searchQuery = ref('');
             <div class="header__right">
                 <div class="header__actions">
                     <div class="block lg:hidden mr-1">
-                        <QSearchMobile :variant="navbarColor === 'transparent' ? 'white' : 'black'" />
+                        <QSearchMobile
+                            :variant="navbarColor === 'transparent' ? 'white' : 'black'"
+                        />
                     </div>
 
                     <div class="header__links">
@@ -78,13 +82,20 @@ const searchQuery = ref('');
                         </QButton>
                     </div>
 
-                    <button :class="['header__burger', open && 'header__burger--open']" @click="open = !open">
+                    <button
+                        :class="['header__burger', open && 'header__burger--open']"
+                        @click="open = !open"
+                    >
                         <div class="header__burger__js">
                             <i class="ri-menu-line"></i>
                         </div>
 
                         <div class="header__burger__avatar">
-                            <img v-if="!isLoggedIn" src="/assets/img/avatars/default.svg" alt="Avatar" />
+                            <img
+                                v-if="!isLoggedIn"
+                                src="/assets/img/avatars/default.svg"
+                                alt="Avatar"
+                            />
                             <img v-else :src="user.avatar" :alt="user.name" />
                         </div>
                     </button>
@@ -213,7 +224,6 @@ const searchQuery = ref('');
                 }
             }
         }
-
 
         .header__burger__avatar {
             height: 28px;

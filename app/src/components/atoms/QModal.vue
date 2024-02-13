@@ -142,7 +142,6 @@ useDrag(dragHandler, {
 
 onClickOutside(dialogContentEl, () => {
     if (props.static && props.show) {
-        console.log('tes');
         handleClose();
     }
 });
@@ -220,24 +219,6 @@ watch(
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
-}
-
-@keyframes slide-up {
-    0% {
-        transform: translateY(100%);
-    }
-
-    100% {
-        transform: translateY(0%);
-    }
-}
-
-.slide-up-enter-active {
-    animation: slide-up 0.5s ease-out;
-}
-
-.slide-up-leave-active {
-    animation: slide-up 0.5s reverse ease-out;
 }
 
 .dialog {

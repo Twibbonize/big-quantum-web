@@ -11,6 +11,7 @@ import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
 import LeaderboardPage from '@/views/LeaderboardPage.vue';
 import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
+import PostPage from '@/views/PostPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -94,7 +95,8 @@ const router = createRouter({
             name: 'campaign',
             component: CampaignPage,
             meta: {
-                navbarSearch: true
+                navbarSearch: true,
+                transition: 'slide-fade'
             },
             children: [
                 {
@@ -113,6 +115,16 @@ const router = createRouter({
             component: PreferencesPage,
             meta: {
                 navbarSearch: true
+            }
+        },
+        {
+            path: '/p/:uri',
+            name: 'post',
+            component: PostPage,
+            props: true,
+            meta: {
+                navbarSearch: false,
+                transition: 'slide-fade'
             }
         }
     ],

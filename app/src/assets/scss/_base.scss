@@ -1,6 +1,6 @@
 .page {
     padding-top: 76px;
-    min-height: calc(100vh - $footer-height);
+    // min-height: calc(100vh - $footer-height);
     width: 100vw;
 
     @include md_screen {
