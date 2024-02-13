@@ -254,12 +254,6 @@ const handleOpenShare = () => {
     </Transition>
 </template>
 
-<style>
-.page {
-    @apply h-screen border-b border-stroke p-0;
-}
-</style>
-
 <style scoped lang="scss">
 .post {
     @apply mx-auto flex flex-col h-full border-t border-stroke;
