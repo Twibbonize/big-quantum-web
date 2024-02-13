@@ -28,7 +28,7 @@ const image = computed(() => {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     filter: contrast(1);
     height: 32px;
-    max-width: 140px;    
+    max-width: 140px;
 
     @include xs {
         height: 24px;

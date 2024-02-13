@@ -12,7 +12,6 @@ const { open } = storeToRefs(expandMenuStore);
 const { modal, isLoggedIn } = storeToRefs(authStore);
 const { logout } = authStore;
 
-
 const onClickSignIn = () => {
     modal.value.authOption = 'sign-in';
     modal.value.show = true;
@@ -24,7 +23,6 @@ const onClickSignUp = () => {
     modal.value.show = true;
     open.value = false;
 };
-
 
 const handleSignOut = () => {
     open.value = false;
