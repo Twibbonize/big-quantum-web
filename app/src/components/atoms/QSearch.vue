@@ -69,7 +69,7 @@ watch(query, (newValue) => {
     .search__input-wrapper {
         @apply bg-white rounded-full flex items-center border border-transparent transition-colors duration-200;
         height: 52px;
-        min-width: 320px;
+        min-width: 280px;
 
         &:focus-within {
             @apply border-main-darker;

@@ -92,10 +92,22 @@ watch(query, (newValue) => {
 .search {
     .search__button {
         @apply flex items-center justify-center bg-white border border-stroke rounded-full;
-
         padding: 12px;
         height: 40px;
         width: 40px;
+        // font-size: 12px;
+
+        @include xs {
+            height: 32px;
+            width: 32px;
+            font-size: 12px;
+        }
+
+        @include md_screen {
+            height: 40px;
+            width: 40px;
+            font-size: 16px;
+        }
     }
 }
 
@@ -134,7 +146,7 @@ watch(query, (newValue) => {
     .search-mobile__close {
         height: 40px;
         width: 40px;
-        @apply rounded-lg transition-colors duration-200;
+        @apply rounded-lg transition-colors duration-100;
 
         &:focus {
             @apply outline-none bg-gray-200;
@@ -147,11 +159,11 @@ watch(query, (newValue) => {
 }
 
 .slide-fade-enter-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.2s ease-out;
 }
 
 .slide-fade-leave-active {
-    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,

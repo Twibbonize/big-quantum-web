@@ -69,7 +69,7 @@ onBeforeRouteLeave(() => {
                 </div>
             </div>
         </template>
-        <template #body="{ close }">
+        <template #body="{ close, isDragging }">
             <div class="collection-modal">
                 <div v-if="view === 'selection' && campaign" class="collection-modal__selection">
                     <div class="collection-modal__body">
@@ -113,14 +113,16 @@ onBeforeRouteLeave(() => {
                         </div>
                     </div>
 
-                    <div class="collection-modal__footer">
-                        <QButton variant="secondary" size="sm" @click="view = 'create'">
-                            <i class="ri-add-line"></i>
-                            <span class="ml-2">New Collection</span>
-                        </QButton>
+                    <Teleport to="body" :disabled="!isDragging">
+                        <div class="collection-modal__footer">
+                            <QButton variant="secondary" size="sm" @click="view = 'create'">
+                                <i class="ri-add-line"></i>
+                                <span class="ml-2">New Collection</span>
+                            </QButton>
 
-                        <QButton size="sm" @click="close">Done</QButton>
-                    </div>
+                            <QButton size="sm" @click="close">Done</QButton>
+                        </div>
+                    </Teleport>
                 </div>
 
                 <VeeForm
@@ -150,17 +152,21 @@ onBeforeRouteLeave(() => {
                             </div>
                         </div>
                     </div>
-                    <div class="collection-modal__footer">
-                        <QButton
-                            v-if="collections.length"
-                            variant="secondary"
-                            size="sm"
-                            @click="view = 'selection'"
-                            >Cancel
-                        </QButton>
-                        <div v-else></div>
-                        <QButton size="sm" :enabled="meta.valid"> Create </QButton>
-                    </div>
+
+                    <Teleport to="body" :disabled="!isDragging">
+                        <div class="collection-modal__footer">
+                            <QButton
+                                v-if="collections.length"
+                                variant="secondary"
+                                size="sm"
+                                @click="view = 'selection'"
+                            >
+                                Cancel
+                            </QButton>
+                            <div v-else></div>
+                            <QButton size="sm" :enabled="meta.valid"> Create </QButton>
+                        </div>
+                    </Teleport>
                 </VeeForm>
             </div>
         </template>
@@ -170,6 +176,11 @@ onBeforeRouteLeave(() => {
 <style scoped lang="scss">
 .collection-modal {
     height: 100%;
+}
+
+.collection-modal__footer {
+    @apply fixed bottom-0 w-full;
+    z-index: 9999;
 }
 
 .collection-modal__header {
