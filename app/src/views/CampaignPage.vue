@@ -61,7 +61,7 @@ const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
 
 const selectedFrames = ref(frames[0]);
-const posts = ref([...publicPosts]);
+const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
 const mocks = [
@@ -328,6 +328,7 @@ watch(
 onMounted(async () => {
     await nextTick();
 
+    posts.value = [...publicPosts]
     // setTimeout(() => {
     //     scaleCampaignPage();
     // }, 0)
