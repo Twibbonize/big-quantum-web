@@ -319,7 +319,6 @@ watch(
 
 onMounted(async () => {
     await nextTick();
-
     posts.value = [...publicPosts];
 });
 </script>
