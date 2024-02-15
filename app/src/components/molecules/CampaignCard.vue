@@ -5,10 +5,11 @@ import { abbreviateNumber } from '@/utils/numbers';
 import { RouterLink } from 'vue-router';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import { onClickOutside } from '@vueuse/core';
-import { useShareStore } from '@/stores/shareStore';
 import { useCollectionStore } from '@/stores/collectionStore';
 import { capitalizeFirstLetter } from '@/utils/string';
 import { ref } from 'vue';
+import { useModal } from '@/composables/modal';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 
 const props = defineProps({
     creator: {
@@ -52,10 +53,9 @@ const campaignCardEl = ref(null);
 const isPopoverOpen = ref(false);
 const isMobilePopoverOpen = ref(false);
 
-const shareStore = useShareStore();
+const { open } = useModal();
 const collectionStore = useCollectionStore();
 const { showCollectionModal } = collectionStore;
-const { openShare } = shareStore;
 
 onClickOutside(campaignCardEl, () => {
     isPopoverOpen.value = false;
@@ -64,7 +64,7 @@ onClickOutside(campaignCardEl, () => {
 
 const onClickShare = () => {
     const { uri, thumbnail } = props;
-    openShare(uri, { thumbnail }, 'campaign');
+    open({ component: ShareModal, props: { link: uri, payload: { thumbnail }, type: 'campaign' } });
 };
 
 const onClickCollection = () => {
@@ -375,6 +375,7 @@ const onClickCollection = () => {
         }
     }
 }
+
 .campaign-btn {
     // width: 45px;
     height: 38px;

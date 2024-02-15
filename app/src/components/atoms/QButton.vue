@@ -21,6 +21,10 @@ const props = defineProps({
                 'pinterest'
             ].includes(value)
     },
+    outlined: {
+        type: Boolean,
+        default: false
+    },
     size: {
         type: String,
         default: 'md',
@@ -46,11 +50,12 @@ const props = defineProps({
 const emit = defineEmits(['click']);
 
 const buttonClasses = computed(() => {
-    const { size, variant, circle, square, block } = props;
+    const { size, variant, circle, square, block, outlined } = props;
     return [
         'btn',
         `btn--${size}`,
         `btn--${variant}`,
+        outlined && 'btn--outlined',
         square && !circle && 'btn--square',
         circle && !block && !square && 'btn--circle',
         block && 'btn--block'
@@ -115,6 +120,10 @@ function handleClick(e) {
     // variants
     &--primary {
         @apply text-black bg-main border border-transparent;
+
+        &.btn--outlined {
+            @apply bg-white text-main border-main;
+        }
 
         @include before {
             height: 0;
@@ -333,6 +342,12 @@ function handleClick(e) {
         width: 20px;
         flex-shrink: 0;
         @apply p-1;
+    }
+
+    &.btn--sm.btn--circle,
+    &.btn--sm.btn--square {
+        height: 32px;
+        width: 32px;
     }
 
     &.btn--lg.btn--circle,
