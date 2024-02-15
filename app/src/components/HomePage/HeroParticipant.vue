@@ -21,9 +21,9 @@ const lottieDimension = computed(() => {
     <BGHero class="hero-participant">
         <div class="container mx-auto">
             <div class="w-full pages-title mx-auto">
-                <div class="container z-20 absolute mx-auto">
+                <div class="container z-20 absolute mx-auto h-full">
                     <div
-                        class="w-full sm:w-2/3 md:w-1/3 content flex flex-col items-center sm:items-start px-5"
+                        class="w-full h-full sm:w-8/12 lg:w-6/12 2xl:w-5/12 content flex flex-col items-center md:items-start justify-center px-5"
                     >
                         <h1 class="title z-30 user-select-none pe-none lowercase">show your</h1>
                         <h1 class="opacity-0 w-0 h-0">supports</h1>
@@ -66,10 +66,6 @@ const lottieDimension = computed(() => {
     overflow: hidden;
     height: 540px;
 
-    .content {
-        margin-top: 120px;
-    }
-
     .title {
         @apply text-4xl sm:text-7xl text-black leading-4 font-bold;
     }
@@ -92,7 +88,7 @@ const lottieDimension = computed(() => {
     }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 768px) {
     .hero-participant {
         height: 640px;
 
@@ -102,10 +98,8 @@ const lottieDimension = computed(() => {
         }
 
         .content {
-            margin-top: 130px;
-            height: 470px;
             text-align: start;
-            padding-left: 8px;
+            padding-left: 24px;
         }
     }
 }

@@ -104,12 +104,12 @@ import QSlider from '@/components/atoms/QSlider.vue';
 .home-slider {
     width: 412px;
     height: 550px;
-    transform: rotate(-25deg);
+    transform: rotate(-25deg) translateX(-40%);
     display: flex;
     gap: 21px;
     position: absolute;
     bottom: -200px;
-    right: -100px;
+    left: 50%;
     z-index: 1;
 
     .autoslider {
@@ -126,7 +126,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
     }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 768px) {
     .home-slider {
         width: 720px;
         height: 1100px;
@@ -134,7 +134,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         display: flex;
         gap: 21px;
         position: absolute;
-        right: -500px;
+        left: 80%;
         top: -230px;
         z-index: 1;
 
@@ -153,7 +153,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         display: flex;
         gap: 21px;
         position: absolute;
-        right: 100px;
+        left: 70%;
         top: -230px;
         z-index: 1;
 
@@ -164,7 +164,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
     }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1024px) {
     .home-slider {
         width: 720px;
         height: 1100px;
@@ -172,7 +172,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         display: flex;
         gap: 21px;
         position: absolute;
-        right: 100px;
+        left: 60%;
         top: -230px;
         z-index: 1;
 
@@ -183,7 +183,8 @@ import QSlider from '@/components/atoms/QSlider.vue';
     }
 }
 
-@media screen and (min-width: 1800px) {
+
+@media screen and (min-width: 1536px) {
     .home-slider {
         width: 720px;
         height: 1100px;
@@ -191,7 +192,7 @@ import QSlider from '@/components/atoms/QSlider.vue';
         display: flex;
         gap: 21px;
         position: absolute;
-        right: 250px;
+        left: 50%;
         top: -230px;
         z-index: 1;
 
