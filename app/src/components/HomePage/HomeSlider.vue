@@ -1,100 +1,62 @@
 <script setup>
 import QSlider from '@/components/atoms/QSlider.vue';
+
+const campaigns = [
+    {
+        speed: 8000,
+        reverse: false,
+        datas: [
+            '/src/assets/img/campaigns/sample-campaign-09.png',
+            '/src/assets/img/campaigns/sample-campaign-05.png',
+            '/src/assets/img/campaigns/sample-campaign-11.png',
+            '/src/assets/img/campaigns/sample-campaign-09.png',
+            '/src/assets/img/campaigns/sample-campaign-05.png',
+            '/src/assets/img/campaigns/sample-campaign-11.png',
+        ],
+    },
+    {
+        speed: 8000,
+        reverse: true,
+        datas: [
+            '/src/assets/img/campaigns/sample-campaign-04.png',
+            '/src/assets/img/campaigns/sample-campaign-10.png',
+            '/src/assets/img/campaigns/sample-campaign-03.png',
+            '/src/assets/img/campaigns/sample-campaign-04.png',
+            '/src/assets/img/campaigns/sample-campaign-10.png',
+            '/src/assets/img/campaigns/sample-campaign-03.png',
+        ],
+    },
+    {
+        speed: 10000,
+        reverse: false,
+        datas:  [
+            '/src/assets/img/campaigns/sample-campaign-06.png',
+            '/src/assets/img/campaigns/sample-campaign-07.png',
+            '/src/assets/img/campaigns/sample-campaign-02.png',
+            '/src/assets/img/campaigns/sample-campaign-01.png',
+        ],
+    }
+];
 </script>
 
 <template>
     <div class="home-slider user-select-none pe-none">
         <QSlider
-            class="autoslider"
+            v-for="{ speed, reverse, datas } in campaigns"
             style="--swiper-wrapper-transition-timing-function: linear"
             direction="vertical"
-            :space-between="45"
+            :space-between="32"
             :grab-cursor="false"
-            :speed="8000"
+            :speed="speed"
             :centered-slides="false"
             :loop="true"
             slides-per-view="auto"
             :autoplay-delay="0"
             :autoplay-disable-on-interaction="false"
-            :autoplay-reverse-direction="false"
-        >
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
-            </swiper-slide>
-        </QSlider>
-        <QSlider
-            class="autoslider"
-            style="--swiper-wrapper-transition-timing-function: linear"
-            direction="vertical"
-            :space-between="45"
-            :grab-cursor="false"
-            :speed="8000"
-            :centered-slides="false"
-            :loop="true"
-            slides-per-view="auto"
-            :autoplay-delay="0"
-            :autoplay-disable-on-interaction="false"
-            :autoplay-reverse-direction="true"
-        >
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
-            </swiper-slide>
-        </QSlider>
-        <QSlider
-            class="autoslider"
-            style="--swiper-wrapper-transition-timing-function: linear"
-            direction="vertical"
-            :space-between="45"
-            :grab-cursor="false"
-            :speed="10000"
-            :centered-slides="false"
-            :loop="true"
-            slides-per-view="auto"
-            :autoplay-delay="0"
-            :autoplay-disable-on-interaction="false"
-            :autoplay-reverse-direction="false"
-        >
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="" />
-            </swiper-slide>
-            <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="" />
+            :autoplay-reverse-direction="reverse"
+            >
+            <swiper-slide v-for="campaign in datas" class="h-auto">
+                <img :src="campaign" alt="" />
             </swiper-slide>
         </QSlider>
     </div>
@@ -102,104 +64,17 @@ import QSlider from '@/components/atoms/QSlider.vue';
 
 <style lang="scss">
 .home-slider {
-    width: 412px;
-    height: 550px;
-    transform: rotate(-25deg) translateX(-40%);
-    display: flex;
-    gap: 21px;
-    position: absolute;
-    bottom: -200px;
-    left: 50%;
-    z-index: 1;
+    @apply gap-6 flex absolute z-10 rotate-[-25deg] translate-x-[-40%] md:translate-x-[0%]
+    w-[432px] md:w-[738px] 2xl:w-[807px]
+    h-[550px] md:h-[1100px]
+    bottom-[-80px] md:bottom-auto
+    top-auto md:top-[-230px]
+    left-[40%] md:left-[80%] lg:left-[70%] xl:left-[60%] 2xl:left-[50%];
 
-    .autoslider {
-        overflow: unset;
-    }
-
-    .swiper-wrapper {
-        transition-timing-function: linear;
-    }
 
     img {
-        width: 128px;
-        height: 192px;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .home-slider {
-        width: 720px;
-        height: 1100px;
-        transform: rotate(-25deg);
-        display: flex;
-        gap: 21px;
-        position: absolute;
-        left: 80%;
-        top: -230px;
-        z-index: 1;
-
-        img {
-            width: 230px;
-            height: 345px;
-        }
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .home-slider {
-        width: 720px;
-        height: 1100px;
-        transform: rotate(-25deg);
-        display: flex;
-        gap: 21px;
-        position: absolute;
-        left: 70%;
-        top: -230px;
-        z-index: 1;
-
-        img {
-            width: 230px;
-            height: 345px;
-        }
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .home-slider {
-        width: 720px;
-        height: 1100px;
-        transform: rotate(-25deg);
-        display: flex;
-        gap: 21px;
-        position: absolute;
-        left: 60%;
-        top: -230px;
-        z-index: 1;
-
-        img {
-            width: 230px;
-            height: 345px;
-        }
-    }
-}
-
-
-@media screen and (min-width: 1536px) {
-    .home-slider {
-        width: 720px;
-        height: 1100px;
-        transform: rotate(-25deg);
-        display: flex;
-        gap: 21px;
-        position: absolute;
-        left: 50%;
-        top: -230px;
-        z-index: 1;
-
-        img {
-            width: 230px;
-            height: 345px;
-        }
+        @apply w-32 md:w-[230px] 2xl:w-[253px]
+        h-48 md:h-[345px] 2xl:h-[380px];
     }
 }
 </style>
