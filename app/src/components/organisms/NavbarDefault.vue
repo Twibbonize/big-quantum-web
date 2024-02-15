@@ -6,11 +6,14 @@ import QButton from '@/components/atoms/QButton.vue';
 import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import { useAuthStore } from '@/stores/authStore';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { storeToRefs } from 'pinia';
 
 const { width, height } = useWindowSize();
 
+const authStore = useAuthStore();
+const { user, isLoggedIn } = storeToRefs(authStore);
 const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
 
@@ -53,13 +56,14 @@ const searchQuery = ref('');
             <div class="header__left">
                 <MainLogo class="logo" :color="logoColor" />
             </div>
+
             <div class="header__center">
                 <QSearch v-if="width >= 1024" v-model="searchQuery" />
             </div>
 
             <div class="header__right">
                 <div class="header__actions">
-                    <div class="block lg:hidden mr-2">
+                    <div class="block lg:hidden mr-1">
                         <QSearchMobile
                             :variant="navbarColor === 'transparent' ? 'white' : 'black'"
                         />
@@ -83,13 +87,16 @@ const searchQuery = ref('');
                         @click="open = !open"
                     >
                         <div class="header__burger__js">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <i class="ri-menu-line"></i>
                         </div>
 
                         <div class="header__burger__avatar">
-                            <img src="/assets/img/avatars/default.svg" alt="Avatar" />
+                            <img
+                                v-if="!isLoggedIn"
+                                src="/assets/img/avatars/default.svg"
+                                alt="Avatar"
+                            />
+                            <img v-else :src="user.avatar" :alt="user.name" />
                         </div>
                     </button>
                 </div>
@@ -124,7 +131,7 @@ const searchQuery = ref('');
     &__center {
         flex: 0 1 0;
         white-space: nowrap;
-        @apply flex justify-center;
+        @apply flex justify-center px-4;
     }
 
     &__actions {
@@ -181,84 +188,20 @@ const searchQuery = ref('');
     }
 
     &__burger {
-        @apply bg-white rounded-full flex items-center justify-center border border-stroke;
+        @apply bg-white rounded-full flex items-center justify-center border border-stroke pl-2 pr-1;
         height: 40px;
-        width: 40px;
+        // width: 32px;
         // padding: 12px;
 
-        @include md_screen {
-            width: 32px;
+        @include xs {
+            @apply pl-2 pr-1;
             height: 32px;
-        }
-
-        .header__burger__js {
-            @apply hidden;
-        }
-
-        .header__burger__avatar {
-            height: 48px;
-            width: 48px;
-            flex-shrink: 0;
-            @apply hidden;
-
-            @include md_screen {
-                width: 32px;
-                height: 32px;
-                @apply block;
-            }
-
-            img {
-                height: 100%;
-                width: 100%;
-                @apply border-2 border-gray-200 rounded-full;
-            }
-        }
-
-        .header__burger__js {
-            height: 16px;
-            width: 18px;
-            @apply flex items-center justify-center relative;
-        }
-
-        .header__burger__js span {
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 18px;
-            opacity: 1;
-            right: 0;
-            background-color: #000;
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-            -webkit-transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-            transition:
-                background-color 0.05s ease-in-out,
-                transform 0.2s ease-in-out,
-                top 0.2s ease-in-out;
-
-            border-radius: 1px;
-
-            &:nth-child(1) {
-                top: 1px;
-            }
-
-            &:nth-child(2) {
-                top: 7px;
-            }
-
-            &:nth-child(3) {
-                top: 13px;
-            }
         }
 
         @include md_screen {
             @apply flex items-center rounded-full bg-white flex-shrink-0 border-stroke space-x-2 relative overflow-hidden;
             padding: 4px 10px;
+            padding-left: 14px;
             width: auto;
             height: 48px;
 
@@ -280,16 +223,38 @@ const searchQuery = ref('');
                     width: 20rem;
                 }
             }
+        }
 
-            // &.header__burger--open .header__burger__js span:nth-child(1) {
-            //     top: 7px;
-            //     transform: rotate(45deg);
-            // }
+        .header__burger__avatar {
+            height: 28px;
+            width: 28px;
+            flex-shrink: 0;
+            margin-left: 4px;
 
-            // &.header__burger--open .header__burger__js span:nth-child(2) {
-            //     transform: rotate(-45deg);
-            //     top: 7px;
-            // }
+            @include xs {
+                height: 24px;
+                width: 24px;
+            }
+
+            @include md_screen {
+                width: 32px;
+                height: 32px;
+                @apply block;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+                @apply border-2 border-gray-200 rounded-full;
+            }
+        }
+
+        .header__burger__js {
+            font-size: 24px;
+
+            @include xs {
+                font-size: 16px;
+            }
         }
     }
 }

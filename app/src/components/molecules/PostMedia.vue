@@ -3,6 +3,13 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
 import { usePostStore } from '@/stores/postStore';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { useShareStore } from '@/stores/shareStore';
+dayjs.extend(relativeTime);
+
+const shareStore = useShareStore();
+const { openShare } = shareStore;
 
 const props = defineProps({
     image: {
@@ -14,8 +21,7 @@ const props = defineProps({
         required: true
     },
     caption: {
-        type: String,
-        required: true
+        type: String
     },
     creator: {
         type: Object,
@@ -41,6 +47,20 @@ const props = defineProps({
 
 const postStore = usePostStore();
 const { showPost } = postStore;
+
+const handleOpenShare = () => {
+    const { creator, createdAt, uri, image } = props;
+
+    const { username } = creator;
+    const datetime = dayjs(createdAt);
+    const formattedDate = datetime.format('MMM D, YYYY');
+
+    openShare(
+        `twb.nz/p/${uri}`,
+        { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
+        'post'
+    );
+};
 
 const handleShowPost = () => {
     showPost({
@@ -87,7 +107,7 @@ const handleShowPost = () => {
                         </MenuItem>
 
                         <MenuItem>
-                            <QPopoverMenuItem>
+                            <QPopoverMenuItem @click="handleOpenShare">
                                 <i class="ri-share-line"></i>
                                 <span>Share</span>
                             </QPopoverMenuItem>

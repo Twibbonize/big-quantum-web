@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue';
 
 import {
     breakpointsTailwind,
@@ -9,7 +9,8 @@ import {
     useWindowSize,
     useScroll,
     useDebounceFn,
-    reactiveComputed
+    useMounted,
+    useElementSize
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -24,6 +25,7 @@ import QSkeleton from '@/components/atoms/QSkeleton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
+import PostMockup from '@/components/molecules/PostMockup.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 
 import { useCollectionStore } from '@/stores/collectionStore';
@@ -42,11 +44,18 @@ const frames = [
     '/assets/img/frames/hanoi-art-frame-4.png'
 ];
 
+const props = defineProps({
+    transitioned: {
+        type: Boolean
+    }
+});
+
 const navbarColor = ref('transparent');
 const navbarShadow = ref(false);
 
 const campaignPage = ref(null);
 const campaignMain = ref(null);
+const campaignContent = ref(null);
 const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
@@ -55,18 +64,126 @@ const selectedFrames = ref(frames[0]);
 const posts = ref([...publicPosts]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
+const mocks = [
+    {
+        frame: frames[0],
+        photo: '/assets/img/sample/sample-person-1.jpg',
+        photoStyle: {
+            left: '14%',
+            top: '-10%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-2.jpg'
+    },
+    {
+        frame: frames[2],
+        photo: '/assets/img/sample/sample-person-3.jpg',
+        photoStyle: {
+            left: '0',
+            top: '20%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-4.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '6%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[0],
+        photo: '/assets/img/sample/sample-person-5.jpg',
+        photoStyle: {
+            left: '16%',
+            top: '-12%',
+            transform: 'scale(0.9)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-8.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '-0%',
+            transform: 'scale(0.9)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-10.jpg',
+        photoStyle: {
+            left: '0',
+            top: '10%',
+            transform: 'scale(1)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-11.jpg',
+        photoStyle: {
+            left: '0',
+            top: '10%',
+            transform: 'scale(1)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-12.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '-0%',
+            transform: 'scale(0.9)'
+        }
+    }
+];
 
 const shareStore = useShareStore();
 const collectionStore = useCollectionStore();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const { height: windowHeight } = useWindowSize();
+const campaignContentSize = useElementSize(campaignContent);
 const { y } = useWindowScroll();
-
+const isMounted = useMounted();
 const { openShare } = shareStore;
 const { showCollectionModal } = collectionStore;
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
+
+const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
+
+const campaignContentStyle = computed(() => {
+    if (!campaignContent.value) {
+        return {
+            transform: `scale(1) translateY(0)`
+        };
+    }
+
+    const { height: contentHeight } = campaignContentSize;
+
+    const totalContentHeight = contentHeight.value;
+    const additionalSpace = 88 + 12 + 24;
+
+    if (!xl.value || windowHeight.value - additionalSpace > totalContentHeight) {
+        return {
+            transform: `scale(1) translateY(0)`
+        };
+    }
+
+    const targetScale = (windowHeight.value - additionalSpace) / totalContentHeight;
+    const targetHeight = totalContentHeight * targetScale;
+    const translateY = (totalContentHeight - targetHeight) / 2;
+
+    return {
+        transform: `scale(${targetScale}) translateY(${-translateY}px)`
+    };
+});
 
 const itemsToAdd = 3;
 
@@ -108,30 +225,43 @@ const onClickCollection = () => {
     });
 };
 
-const scaleCampaignPage = () => {
-    if (!xl.value) {
-        return;
+let autoScrollTween;
+const calcDuration = () => {
+    const context = document.querySelector('.campaign-feeds__wrapper');
+
+    if (!context) {
+        return 30;
+    }
+    const item = context.querySelector('.post-wrapper');
+
+    const etaDuration = item.clientHeight / (displayType.value === 'grid' ? 4.5 : 1.6);
+
+    // Get the maximum scroll position
+    const maxScroll = context.scrollHeight - context.offsetHeight;
+
+    // Calculate the remaining distance to scroll
+    const remainingDistance = maxScroll - feedsScrollY.value;
+
+    // Adjust the duration based on the remaining distance
+    const adjustedDuration = (remainingDistance / maxScroll) * etaDuration;
+    return Math.round(adjustedDuration);
+};
+
+const initAutoScrollTween = () => {
+    const duration = calcDuration();
+
+    if (autoScrollTween) {
+        autoScrollTween.kill();
     }
 
-    const campaignContent = document.querySelector('.campaign__content');
-    const campaignContentRect = campaignContent.getBoundingClientRect();
-
-    campaignContent.style.transform = `scale(${1}) translateY(${0}px)`;
-
-    const { height: campaignContentHeight, top: campaignContentTop } = campaignContentRect;
-
-    const totalCampaignContentHeight = campaignContentHeight + campaignContentTop;
-
-    if (windowHeight.value > totalCampaignContentHeight) {
-        return;
-    }
-
-    const additionalSpace = xl.value ? 88 : 0;
-    const targetScale = windowHeight.value / (totalCampaignContentHeight + additionalSpace);
-    const targetHeight = campaignContentHeight * targetScale;
-    const translateY = (totalCampaignContentHeight - targetHeight) / 2 - 44;
-
-    campaignContent.style.transform = `scale(${targetScale}) translateY(${-translateY}px)`;
+    autoScrollTween = gsap.to('.campaign-feeds__wrapper', {
+        scrollTo: {
+            y: 'max',
+            autoKill: true
+        },
+        ease: 'none',
+        duration: duration
+    });
 };
 
 watch(y, (newValue) => {
@@ -164,57 +294,47 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
-useResizeObserver(campaignPage, scaleCampaignPage);
+// useResizeObserver(campaignFeedsWrapper,  (entries) => {
 
-let autoScrollTween;
-let killTime = 0;
-const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
-const targetDuration = computed(() => {
-    return displayType.value === 'grid' ? 30 : 240;
-});
+//     const entry = entries[0];
+//     const { height } = entry.contentRect;
 
-const calcDuration = () => {
-    const context = campaignFeedsWrapper.value;
-    const item = context.querySelector('.post-wrapper');
+//     console.log(height, 'here')
+//     setTimeout(() => {
+//         scaleCampaignPage()
+//     }, 500)
+// });
 
-    const etaDuration = item.clientHeight / (displayType.value === 'grid' ? 4.5 : 1.6);
+// watch(() => props.transitioned, setTimeout(scaleCampaignPage, 500));
 
-    // Get the maximum scroll position
-    const maxScroll = context.scrollHeight - context.offsetHeight;
-
-    // Calculate the remaining distance to scroll
-    const remainingDistance = maxScroll - feedsScrollY.value;
-
-    // Adjust the duration based on the remaining distance
-    const adjustedDuration = (remainingDistance / maxScroll) * etaDuration;
-    return Math.round(adjustedDuration);
-};
-
-const initAutoScrollTween = () => {
-    const duration = calcDuration();
-
-    autoScrollTween = gsap.to('.campaign-feeds__wrapper', {
-        scrollTo: {
-            y: 'max',
-            autoKill: true
-        },
-        ease: 'none',
-        duration: duration
-    });
-};
-watch(isScrolling, useDebounceFn(initAutoScrollTween, 1500));
+watch(
+    isScrolling,
+    useDebounceFn(() => isMounted.value && initAutoScrollTween(), 1500)
+);
 // watch(displayType, () => {
 //     nextTick();
 //    autoScrollTween.duration(calcDuration());
 // })
+
+watch(
+    posts,
+    useDebounceFn((newValue) => {
+        if (newValue.length) {
+            initAutoScrollTween();
+        }
+    }, 300)
+);
 
 onMounted(async () => {
     await nextTick();
 
     // setTimeout(() => {
     //     scaleCampaignPage();
-    // }, 500)
-    initAutoScrollTween();
+    // }, 0)
+
+    // setTimeout(() => {
+    //     scaleCampaignPage();
+    // }, 600)
 });
 </script>
 <template>
@@ -222,7 +342,11 @@ onMounted(async () => {
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
-            <div class="campaign__content container px-0 md:px-5 2xl:px-0">
+            <div
+                ref="campaignContent"
+                class="campaign__content container px-0 md:px-5 2xl:px-0"
+                :style="campaignContentStyle"
+            >
                 <div class="grid grid-cols-12 md:gap-6">
                     <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
@@ -381,12 +505,22 @@ onMounted(async () => {
                                     ref="campaignFeedsWrapper"
                                     :class="[
                                         'campaign-feeds__wrapper',
+                                        !posts.length && 'campaign-feeds__wrapper--mock',
                                         displayType === 'grid'
                                             ? 'campaign-feeds__grid'
                                             : 'campaign-feeds__list'
                                     ]"
                                 >
+                                    <PostMockup
+                                        v-if="!posts.length"
+                                        v-for="(mock, i) in mocks"
+                                        :key="i"
+                                        v-bind="mock"
+                                        :display="displayType"
+                                        :rounded="!sm"
+                                    />
                                     <PostWrapper
+                                        v-else
                                         v-for="post in posts"
                                         :key="post.uri"
                                         v-bind="post"
@@ -458,7 +592,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div v-if="sm" class="pt-5 px-4">
+                        <div v-if="sm" class="pt-8 px-4">
                             <QButton
                                 variant="secondary"
                                 size="sm"
@@ -490,7 +624,7 @@ onMounted(async () => {
 
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="campaign-recommendations__grid">
                     <CampaignCard
                         v-for="campaign in publicCampaigns"
                         :key="campaign.uri"
@@ -539,7 +673,7 @@ onMounted(async () => {
                 position: fixed;
                 top: 0;
                 left: 0;
-                height: calc(100vh);
+                height: calc(100dvh);
                 width: 100vw;
                 background-attachment: scroll;
                 background-size: cover;
@@ -722,25 +856,25 @@ onMounted(async () => {
 
         @include sm {
             @include before {
-                height: 24px;
-                top: -12px;
-                left: -2px;
+                height: 16px;
+                top: -24px;
+                left: 0;
                 display: block;
                 width: 100%;
-                background: linear-gradient(180deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 91%);
-                filter: blur(24px);
+                background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 91%);
+                filter: blur(10px);
                 z-index: 10;
                 pointer-events: none;
             }
 
             @include after {
                 height: 24px;
-                bottom: -18px;
+                bottom: -24px;
                 left: 0px;
                 display: block;
                 width: 100%;
-                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-                filter: blur(24px);
+                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+                filter: blur(10px);
                 z-index: 10;
                 pointer-events: none;
             }
@@ -760,6 +894,7 @@ onMounted(async () => {
         @apply rounded-none;
 
         @include md_screen {
+            padding-top: 0px;
             @apply rounded-xl;
         }
     }
@@ -769,22 +904,24 @@ onMounted(async () => {
         max-height: 420px;
         @include no_scrollbar();
 
-        @include before {
-            height: 8px;
-            top: 0px;
-            left: 0;
-            display: block;
-            width: 100%;
-            @apply bg-stroke;
-        }
+        @include sm {
+            @include before {
+                height: 8px;
+                top: 0px;
+                left: 0;
+                display: block;
+                width: 100%;
+                @apply bg-stroke;
+            }
 
-        @include after {
-            height: 8px;
-            position: relative;
-            display: block;
-            width: 100%;
-            margin-top: -4px;
-            @apply bg-stroke col-span-3;
+            @include after {
+                height: 8px;
+                position: relative;
+                display: block;
+                width: 100%;
+                margin-top: -4px;
+                @apply bg-stroke col-span-3;
+            }
         }
 
         @include md_screen {
@@ -803,9 +940,13 @@ onMounted(async () => {
         }
 
         @include md_screen {
-            padding-top: 0px;
             max-height: 100%;
         }
+    }
+
+    .campaign-feeds__wrapper.campaign-feeds__wrapper--mock.campaign-feeds__grid,
+    .campaign-feeds__wrapper.campaign-feeds__wrapper--mock.campaign-feeds__list {
+        @apply overflow-y-hidden;
     }
 
     .campaign-feeds-all {
@@ -849,6 +990,16 @@ onMounted(async () => {
     }
 }
 
+.campaign-recommendations {
+    .campaign-recommendations__grid {
+        @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+
+        @include xs {
+            @apply gap-3;
+        }
+    }
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.3s ease;
@@ -856,20 +1007,6 @@ onMounted(async () => {
 
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
-}
-
-.slide-fade-enter-active {
-    transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-    transform: translateY(38px);
     opacity: 0;
 }
 </style>

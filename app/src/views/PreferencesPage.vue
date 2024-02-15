@@ -127,7 +127,7 @@ const onScrollBillFilter = (e) => {
     <LayoutMain>
         <div class="page border-b border-stroke">
             <div class="py-6 md:py-12">
-                <div class="container max-w-5xl px-5 md:px-0">
+                <div class="container max-w-5xl px-5 2xl:px-0">
                     <QCard paddings="padless">
                         <div class="account">
                             <div class="account__wrapper">
@@ -166,8 +166,8 @@ const onScrollBillFilter = (e) => {
                         <QTabs :tabs="tabs" variant="bordered">
                             <template #profile>
                                 <div class="mt-10">
-                                    <div class="grid grid-cols-12 gap-6 md:gap-10">
-                                        <div class="col-span-12 md:col-span-9 space-y-6">
+                                    <div class="grid grid-cols-12 gap-4 md:gap-10">
+                                        <div class="col-span-12 md:col-span-8 space-y-6">
                                             <div class="space-y-2">
                                                 <h3 class="text-lg font-black leading-none">
                                                     Your Profile
@@ -396,7 +396,7 @@ const onScrollBillFilter = (e) => {
                                                 </div>
                                             </QCard>
                                         </div>
-                                        <div class="col-span-12 md:col-span-3">
+                                        <div class="col-span-12 md:col-span-4">
                                             <div class="space-y-2 sticky top-60">
                                                 <QButton block>
                                                     <span class="text-sm">Save Changes</span>

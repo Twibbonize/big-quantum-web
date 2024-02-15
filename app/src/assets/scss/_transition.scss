@@ -7,3 +7,46 @@
 .fade-leave-to {
     opacity: 0;
 }
+
+.flat-enter-active,
+.flat-leave-active {
+    transition: none;
+}
+
+.flat-enter-from,
+.flat-leave-to {
+    opacity: 100;
+    transform: none;
+}
+
+.slide-fade-enter-active {
+    transition: all 0.1s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    // transform: translateY(-100dvh);
+    opacity: 0;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.slide-up-enter-active {
+    animation: slide-up 0.5s ease-out;
+}
+
+.slide-up-leave-active {
+    animation: slide-up 0.5s reverse ease-out;
+}

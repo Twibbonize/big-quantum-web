@@ -142,7 +142,6 @@ useDrag(dragHandler, {
 
 onClickOutside(dialogContentEl, () => {
     if (props.static && props.show) {
-        console.log('tes');
         handleClose();
     }
 });
@@ -199,7 +198,7 @@ watch(
                             </div>
                         </div>
                         <div class="dialog__body">
-                            <slot name="body" :close="handleClose"></slot>
+                            <slot name="body" :close="handleClose" :isDragging="isDragging"></slot>
                         </div>
                         <div v-if="$slots.footer" class="dialog__footer">
                             <slot name="footer"></slot>
@@ -220,24 +219,6 @@ watch(
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
-}
-
-@keyframes slide-up {
-    0% {
-        transform: translateY(100%);
-    }
-
-    100% {
-        transform: translateY(0%);
-    }
-}
-
-.slide-up-enter-active {
-    animation: slide-up 0.5s ease-out;
-}
-
-.slide-up-leave-active {
-    animation: slide-up 0.5s reverse ease-out;
 }
 
 .dialog {
@@ -309,7 +290,7 @@ watch(
     .dialog__content {
         @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
         z-index: 69;
-        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
         min-height: 360px;
     }
 

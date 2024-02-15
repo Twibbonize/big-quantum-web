@@ -13,7 +13,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useRouter } from 'vue-router';
 const authStore = useAuthStore();
 const { modal } = storeToRefs(authStore);
-const { login, logout } = authStore;
+const { login } = authStore;
 
 const router = useRouter();
 
@@ -46,7 +46,6 @@ const handleAuthNative = async (formValues) => {
 
 const handleLogin = () => {
     login();
-    router.push({ name: 'own-profile' });
     modal.value.show = false;
 };
 </script>
@@ -161,16 +160,7 @@ const handleLogin = () => {
                                 <h1 class="text-2xl font-black">Sign Up</h1>
 
                                 <div class="space-y-4 w-full">
-                                    <QButton
-                                        block
-                                        variant="secondary"
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton block variant="secondary" @click="handleLogin">
                                         <img
                                             src="/assets/img/logos/google.svg"
                                             class="w-4 h-4"
@@ -179,16 +169,7 @@ const handleLogin = () => {
                                         <span class="ml-2">Sign Up With Google</span>
                                     </QButton>
 
-                                    <QButton
-                                        variant="secondary"
-                                        block
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton variant="secondary" block @click="handleLogin">
                                         <img
                                             src="/assets/img/logos/facebook.svg"
                                             class="w-4 h-4"
@@ -273,16 +254,7 @@ const handleLogin = () => {
                                         >.
                                     </p>
 
-                                    <QButton
-                                        block
-                                        :enabled="meta.valid"
-                                        @click="
-                                            [
-                                                $router.push({ name: 'own-profile' }),
-                                                (modal.show = false)
-                                            ]
-                                        "
-                                    >
+                                    <QButton block :enabled="meta.valid" @click="handleLogin">
                                         Sign Up
                                     </QButton>
 
