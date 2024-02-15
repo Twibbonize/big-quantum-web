@@ -1,10 +1,11 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { RouterLink } from 'vue-router';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCard from '@/components/atoms/QCard.vue';
@@ -18,8 +19,7 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
 import PostCard from '@/components/molecules/PostCard.vue';
 import ReportModal from '@/components/organisms/ReportModal.vue';
-
-import { useShareStore } from '@/stores/shareStore';
+import { useModal } from '@/composables/modal';
 import { getAvatarUrl } from '@/utils/urls.js';
 import { ownCampaigns } from '@/mock/campaigns';
 import { ownCollections } from '@/mock/collections';
@@ -62,12 +62,24 @@ const showAbout = ref(false);
 const reportModal = ref(false);
 const bioContainer = ref(null);
 const isMobile = inject('isMobile');
-const shareStore = useShareStore();
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
 
-const { openShare } = shareStore;
+const { open: openModal } = useModal();
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
+
+const onClickShare = (link, payload, type) => {
+    openModal({
+        component: ShareModal,
+        props: {
+            link,
+            payload,
+            type
+        }
+    });
+};
 
 const posts = [
     {
@@ -316,7 +328,7 @@ const posts = [
                                             <QShareButton
                                                 link="twb.nz/u/universetech"
                                                 @click="
-                                                    openShare(
+                                                    onClickShare(
                                                         'twb.nz/u/universetech',
                                                         {
                                                             avatar: getAvatarUrl(
@@ -558,6 +570,10 @@ const posts = [
             width: 100%;
             height: 220px;
             // transform: translateY(v-bind(translateY));
+
+            @include xs {
+                top: 68px;
+            }
 
             @include md_screen {
                 top: 88px;

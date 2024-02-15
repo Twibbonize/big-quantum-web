@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 import {
     breakpointsTailwind,
@@ -21,16 +21,14 @@ import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
-
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import PostMockup from '@/components/molecules/PostMockup.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
-
-import { useCollectionStore } from '@/stores/collectionStore';
-import { useShareStore } from '@/stores/shareStore';
-
+import CollectionModal from '@/components/organisms/CollectionModal.vue';
+import ShareModal from '@/components/organisms/ShareModal.vue';
+import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
 import { publicCampaigns } from '@/mock/campaigns';
 
@@ -143,15 +141,12 @@ const mocks = [
     }
 ];
 
-const shareStore = useShareStore();
-const collectionStore = useCollectionStore();
+const { open: modalOpen } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const { height: windowHeight } = useWindowSize();
 const campaignContentSize = useElementSize(campaignContent);
 const { y } = useWindowScroll();
 const isMounted = useMounted();
-const { openShare } = shareStore;
-const { showCollectionModal } = collectionStore;
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
@@ -211,17 +206,27 @@ const toggleDisplay = () => {
 
 const onClickShare = () => {
     // const { url, thumbnail } = props;
-    openShare(
-        'twb.nz/hanoi-art-2025',
-        { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
-        'campaign'
-    );
+    modalOpen({
+        component: ShareModal,
+        props: {
+            link: 'twb.nz/hanoi-art-2025',
+            payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
+            type: 'campaign'
+        }
+    });
 };
 
 const onClickCollection = () => {
-    showCollectionModal({
-        name: 'Hanoi Art Book Fair 2025',
-        thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+    // size="lg" :position="sm ? 'bottom' : 'center'"
+    modalOpen({
+        component: CollectionModal,
+        props: {
+            campaign: {
+                name: 'Hanoi Art Book Fair 2025',
+                thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+            }
+        },
+        config: { size: 'lg', position: sm.value ? 'bottom' : 'center', transition: 'slide-up' }
     });
 };
 
@@ -294,27 +299,14 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
-// useResizeObserver(campaignFeedsWrapper,  (entries) => {
-
-//     const entry = entries[0];
-//     const { height } = entry.contentRect;
-
-//     console.log(height, 'here')
-//     setTimeout(() => {
-//         scaleCampaignPage()
-//     }, 500)
-// });
-
-// watch(() => props.transitioned, setTimeout(scaleCampaignPage, 500));
-
 watch(
     isScrolling,
     useDebounceFn(() => isMounted.value && initAutoScrollTween(), 1500)
 );
-// watch(displayType, () => {
-//     nextTick();
-//    autoScrollTween.duration(calcDuration());
-// })
+watch(displayType, () => {
+    nextTick();
+    initAutoScrollTween();
+});
 
 watch(
     posts,
@@ -327,15 +319,7 @@ watch(
 
 onMounted(async () => {
     await nextTick();
-
-    posts.value = [...publicPosts]
-    // setTimeout(() => {
-    //     scaleCampaignPage();
-    // }, 0)
-
-    // setTimeout(() => {
-    //     scaleCampaignPage();
-    // }, 600)
+    posts.value = [...publicPosts];
 });
 </script>
 <template>
@@ -999,15 +983,5 @@ onMounted(async () => {
             @apply gap-3;
         }
     }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
 }
 </style>

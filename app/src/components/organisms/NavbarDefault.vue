@@ -1,17 +1,21 @@
 <script setup>
-import { computed, ref } from 'vue';
-import { useWindowSize } from '@vueuse/core';
+import { computed, markRaw, ref } from 'vue';
+import { useWindowSize, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import MainLogo from '@/components/atoms/MainLogo.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { storeToRefs } from 'pinia';
+import { useModal } from '@/composables/modal';
 
 const { width, height } = useWindowSize();
+const { open: openModal, close: closeModal } = useModal();
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
 const authStore = useAuthStore();
 const { user, isLoggedIn } = storeToRefs(authStore);
 const expandMenuStore = useExpandMenuStore();
@@ -26,8 +30,8 @@ const props = defineProps({
 });
 
 const buttonVariant = computed(() => {
-    if (/(gradient|transparent)/gi.test(props.color)) return 'secondary';
-    return 'primary';
+    if (/(gradient|transparent)/gi.test(props.color)) return 'accent';
+    return 'accent';
 });
 
 const navbarColor = computed(() => {
@@ -42,6 +46,14 @@ const logoColor = computed(() => {
 });
 
 const searchQuery = ref('');
+const modalPosition = computed(() => (sm ? 'screen' : 'center'));
+
+const handleOpenCreateModal = () => {
+    openModal({
+        component: CampaignCreationModal,
+        config: { size: 'lg', position: 'center' }
+    });
+};
 </script>
 
 <template>
@@ -76,7 +88,7 @@ const searchQuery = ref('');
                     </div>
 
                     <div class="hidden sm:flex mr-2">
-                        <QButton :variant="buttonVariant">
+                        <QButton :variant="buttonVariant" @click="handleOpenCreateModal">
                             <i class="ri-add-line mr-1"></i>
                             <span class="flex-shrink-0">Start a Campaign</span>
                         </QButton>
