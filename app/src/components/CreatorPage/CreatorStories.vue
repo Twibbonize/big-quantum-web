@@ -1,8 +1,14 @@
 <script setup>
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
+
 import QOpenLink from '@/components/atoms/QOpenLink.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import CampaignSlider from '@/components/molecules/CampaignSlider.vue';
 import QSlider from '@/components/atoms/QSlider.vue';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const smallBreakpoints = breakpoints.smallerOrEqual('sm');
 
 const props = defineProps({
     width: Number,
@@ -184,20 +190,20 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="" />
             </div>
-            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-10">
-                <div class="col-span-2 relative">
-                    <h6 class="text-white text-xs uppercase tracking-widest">Testimonials</h6>
+            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-6 sm:gap-10">
+                <div class="col-span-1 sm:col-span-2 relative">
+                    <h6 class="text-white text-[10px] sm:text-xs uppercase tracking-widest">Testimonials</h6>
                     <h5 class="text-white text-xl sm:text-4xl font-semibold mt-2">
                         Trusted by names you trusted
                     </h5>
-                    <div class="flex flex-col gap-12 mt-20">
+                    <div class="flex flex-col gap-4 sm:gap-12 mt-6 sm:mt-20">
                         <div class="logos">
                             <div class="scrim"></div>
                             <CampaignSlider
                                 :campaigns="firstLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                         <div class="logos">
@@ -205,8 +211,8 @@ const testimonials = [
                             <CampaignSlider
                                 :campaigns="secondLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                         <div class="logos">
@@ -214,8 +220,8 @@ const testimonials = [
                             <CampaignSlider
                                 :campaigns="thirdLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                     </div>
@@ -231,23 +237,23 @@ const testimonials = [
                         :centered-slides="false"
                         :loop="false"
                         slides-per-view="1.2"
-                    >
+                        :scrollbar="!smallBreakpoints"
+                        >
                         <swiper-slide
                             v-for="({ text, image }, i) in testimonials"
                             :key="i"
-                            class="w-auto"
+                            class="w-auto h-auto mr-0 sm:mr-4"
                             :class="slideClasses"
                         >
                             <div class="testimonial">
                                 <div class="w-1/2">
                                     <img :src="image" class="max-h-full max-w-full" alt="danone" />
                                 </div>
-
                                 <div>
-                                    <h5 class="font-bold text-2xl">{{ text }}</h5>
+                                    <h5 class="font-bold text-sm sm:text-2xl">{{ text }}</h5>
                                     <QOpenLink
-                                        class="mt-5"
-                                        classes="text-xs"
+                                        class="mt-1 sm:mt-5"
+                                        classes="sm:text-xs"
                                         text="Read More"
                                         url="/"
                                     />
@@ -297,7 +303,7 @@ const testimonials = [
     }
 
     .bento-4 {
-        @apply bg-black grid grid-cols-3;
+        @apply bg-black grid grid-cols-1 sm:grid-cols-3;
 
         .logos {
             @apply relative;
@@ -330,11 +336,11 @@ const testimonials = [
     }
 
     .testimonial {
-        @apply bg-white rounded-lg px-5 py-7 aspect-square flex flex-col justify-between;
+        @apply bg-white rounded-lg px-3 py-5 sm:px-5 sm:py-7 aspect-[4/3] sm:aspect-square flex flex-col justify-between;
     }
 
     .testimonial-container {
-        aspect-ratio: 5/6;
+        @apply aspect-[8/7] sm:aspect-[5/6];
     }
 
     @keyframes glow {
