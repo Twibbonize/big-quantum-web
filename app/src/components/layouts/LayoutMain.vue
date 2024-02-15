@@ -8,6 +8,7 @@ import ExpandMenu from '@/components/organisms/ExpandMenu.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
 import CollectionModal from '@/components/organisms/CollectionModal.vue';
 import PostModal from '@/components/organisms/PostModal.vue';
+import ModalRoot from '@/components/organisms/ModalRoot.vue';
 
 defineProps({
     navbarColor: {
@@ -23,20 +24,14 @@ defineProps({
 
 <template>
     <div id="app__content">
-        <KeepAlive>
-            <NavbarDefault :color="navbarColor" :shadow="navbarShadow" />
-        </KeepAlive>
-
+        <NavbarDefault :color="navbarColor" :shadow="navbarShadow" />
         <slot></slot>
+        <FooterDefault />
 
-        <KeepAlive>
-            <FooterDefault />
-        </KeepAlive>
+        <div id="app__modal">
+            <ModalRoot />
+        </div>
 
-        <AuthModal />
-        <ShareModal />
-        <CollectionModal />
-        <PostModal />
         <ExpandMenu />
     </div>
 </template>

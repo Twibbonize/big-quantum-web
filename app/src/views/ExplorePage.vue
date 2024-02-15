@@ -179,6 +179,10 @@ const selectedTabIndex = computed(() => {
         @apply sticky bg-white z-40;
         top: 76px;
 
+        @include xs {
+            top: 68px;
+        }
+
         @include md_screen {
             top: 88px;
         }

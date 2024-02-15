@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 import { useElementSize, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 
-import { useShareStore } from '@/stores/shareStore';
 import QPopover from '@/components/atoms/QPopover.vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
@@ -12,8 +11,11 @@ import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+import { useModal } from '@/composables/modal';
 import { usePostStore } from '@/stores/postStore';
 import { capitalizeFirstLetter } from '@/utils/string';
+import ShareModal from '@/components/organisms/ShareModal.vue';
+import PostModal from '@/components/organisms/PostModal.vue';
 
 dayjs.extend(relativeTime);
 
@@ -21,15 +23,14 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const postStore = usePostStore();
 const { showPost } = postStore;
 
-const shareStore = useShareStore();
-const { openShare } = shareStore;
+const { open } = useModal();
 
 const postEl = ref(null);
 const captionContainer = ref(null);
 
 const { width: captionContainerWidth } = useElementSize(captionContainer);
 
-const sm = breakpoints.isSmallerOrEqual('sm');
+const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.isGreater('lg');
 
 const props = defineProps({
@@ -77,11 +78,12 @@ const handleOpenShare = () => {
     const datetime = dayjs(createdAt);
     const formattedDate = datetime.format('MMM D, YYYY');
 
-    openShare(
-        `twb.nz/p/${uri}`,
-        { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
-        'post'
-    );
+    const shareProps = {
+        link: `twb.nz/p/${uri}`,
+        payload: { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
+        type: 'post'
+    };
+    open({ component: ShareModal, props: shareProps });
 };
 
 const createdOn = computed(() => {
@@ -96,8 +98,12 @@ const captionFontSize = computed(() => {
 });
 
 const handleShowPost = () => {
-    showPost({
-        ...props
+    open({
+        component: PostModal,
+        props: { ...props },
+        config: {
+            size: 'xl'
+        }
     });
 };
 </script>

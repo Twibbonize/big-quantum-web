@@ -1,17 +1,25 @@
 <script setup>
-import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import { useToast } from 'vue-toast-notification';
-import QModal from '@/components/atoms/QModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QCollectionThumbnail from '@/components/atoms/QCollectionThumbnail.vue';
-import { useShareStore } from '@/stores/shareStore';
-import { computed } from 'vue';
+import { useModal } from '@/composables/modal';
 
+const props = defineProps({
+    link: {
+        type: String
+    },
+    payload: {
+        type: Object
+    },
+    type: {
+        type: String
+    }
+});
+
+const { close } = useModal();
 const toast = useToast();
-const shareStore = useShareStore();
-const { open, link, payload, type } = storeToRefs(shareStore);
-const { closeShare } = shareStore;
 
 const onClickCopyURL = () => {
     const textToCopy = document.querySelector('.share-modal__copy-url');
@@ -30,96 +38,86 @@ const onClickCopyURL = () => {
 };
 
 const thumbnail = computed(() => {
-    if (type.value === 'profile' || type.value === 'post') {
-        return payload.value.avatar;
-    } else if (type.value === 'campaign') {
-        return payload.value.thumbnail;
+    const { payload, type } = props;
+
+    if (type === 'profile' || type === 'post') {
+        return payload.avatar;
+    } else if (type === 'campaign') {
+        return payload.thumbnail;
     }
 
     return null;
 });
 </script>
 <template>
-    <QModal :show="open" @close="closeShare">
-        <template #body>
-            <div :class="['share-modal', `share-modal--${type}`]">
-                <div v-if="type !== 'collection'" class="share-modal__header">
-                    <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
+    <div :class="['share-modal', `share-modal--${type}`]">
+        <div v-if="type !== 'collection'" class="share-modal__header">
+            <img :src="thumbnail" class="share-modal__thumbnail" alt="share" />
 
-                    <div
-                        v-if="['profile', 'post'].includes(type)"
-                        class="share-modal__creator text-center mt-3"
-                    >
-                        <div class="text-xl font-semibold">{{ payload.name }}</div>
-                        <div class="text-content">
-                            <span v-if="type === 'post'">by</span>
-                            @{{ payload.username }}
-                        </div>
-                    </div>
+            <div
+                v-if="['profile', 'post'].includes(type)"
+                class="share-modal__creator text-center mt-3"
+            >
+                <div class="text-xl font-semibold">{{ payload.name }}</div>
+                <div class="text-content">
+                    <span v-if="type === 'post'">by</span>
+                    @{{ payload.username }}
+                </div>
+            </div>
 
-                    <div class="share-modal__close">
-                        <QButton variant="subtle" size="sm" square @click="closeShare">
-                            <i class="ri-close-fill ri-xl"></i>
-                        </QButton>
-                    </div>
+            <div class="share-modal__close">
+                <QButton variant="subtle" size="sm" square @click="close">
+                    <i class="ri-close-fill ri-xl"></i>
+                </QButton>
+            </div>
+        </div>
+
+        <div v-else class="share-modal__header">
+            <div class="h-32 md:h-40 flex items-center justify-center rounded-lg overflow-hidden">
+                <QCollectionThumbnail :thumbnails="payload.thumbnails" />
+            </div>
+            <div class="mt-3">
+                <div class="text-lg md:text-xl font-semibold text-center">
+                    {{ payload.name }}
+                </div>
+            </div>
+
+            <div class="share-modal__close">
+                <QButton variant="subtle" size="sm" square @click="close">
+                    <i class="ri-close-fill ri-xl"></i>
+                </QButton>
+            </div>
+        </div>
+
+        <div class="share-modal__body">
+            <div class="space-y-6 flex flex-col items-center justify-center">
+                <h3 class="share-modal__title">Share to your social media</h3>
+
+                <div class="share-modal__buttons flex items-center space-x-3">
+                    <QButton circle size="lg" variant="facebook">
+                        <img
+                            src="/assets/img/logos/facebook.svg"
+                            class="w-full h-full"
+                            alt="Facebook Logo"
+                        />
+                    </QButton>
+
+                    <QButton circle size="lg" variant="twitter">
+                        <img src="/assets/img/logos/x.svg" class="w-6 h-6" alt="Facebook Logo" />
+                    </QButton>
                 </div>
 
-                <div v-else class="share-modal__header">
-                    <div
-                        class="h-32 md:h-40 flex items-center justify-center rounded-lg overflow-hidden"
-                    >
-                        <QCollectionThumbnail :thumbnails="payload.thumbnails" />
-                    </div>
-                    <div class="mt-3">
-                        <div class="text-lg md:text-xl font-semibold text-center">
-                            {{ payload.name }}
-                        </div>
-                    </div>
+                <QSeparator alignment="center"> or copy link </QSeparator>
 
-                    <div class="share-modal__close">
-                        <QButton variant="subtle" size="sm" square @click="closeShare">
-                            <i class="ri-close-fill ri-xl"></i>
-                        </QButton>
-                    </div>
-                </div>
-
-                <div class="share-modal__body">
-                    <div class="space-y-6 flex flex-col items-center justify-center">
-                        <h3 class="share-modal__title">Share to your social media</h3>
-
-                        <div class="share-modal__buttons flex items-center space-x-3">
-                            <QButton circle size="lg" variant="facebook">
-                                <img
-                                    src="/assets/img/logos/facebook.svg"
-                                    class="w-full h-full"
-                                    alt="Facebook Logo"
-                                />
-                            </QButton>
-
-                            <QButton circle size="lg" variant="twitter">
-                                <img
-                                    src="/assets/img/logos/x.svg"
-                                    class="w-6 h-6"
-                                    alt="Facebook Logo"
-                                />
-                            </QButton>
-                        </div>
-
-                        <QSeparator alignment="center"> or copy link </QSeparator>
-
-                        <div class="share-modal__copy w-full">
-                            <span class="share-modal__copy-url">{{ link }}</span>
-                            <div class="share-modal__copy-action">
-                                <button class="share-modal__copy-btn" @click="onClickCopyURL">
-                                    Copy
-                                </button>
-                            </div>
-                        </div>
+                <div class="share-modal__copy w-full">
+                    <span class="share-modal__copy-url">{{ link }}</span>
+                    <div class="share-modal__copy-action">
+                        <button class="share-modal__copy-btn" @click="onClickCopyURL">Copy</button>
                     </div>
                 </div>
             </div>
-        </template>
-    </QModal>
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -176,7 +174,8 @@ const thumbnail = computed(() => {
         }
 
         .share-modal__copy-btn {
-            @apply rounded-r-md  h-full flex items-center px-3 bg-gray-100 border-l border-stroke text-xs font-semibold tracking-normal overflow-hidden;
+            @apply rounded-r-md h-full flex items-center px-3 bg-gray-100 border-l border-stroke text-xs font-semibold tracking-normal overflow-hidden;
+
             @include before {
                 height: 0;
                 width: 0;

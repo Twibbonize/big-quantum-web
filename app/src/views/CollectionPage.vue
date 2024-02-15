@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -10,7 +10,8 @@ import QButton from '@/components/atoms/QButton.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import { getAvatarUrl } from '@/utils/urls.js';
-import { useShareStore } from '@/stores/shareStore';
+import { useModal } from '@/composables/modal';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 
 dayjs.extend(relativeTime);
 
@@ -71,12 +72,22 @@ const campaigns = computed(() => {
     });
 });
 
-const shareStore = useShareStore();
-const { openShare } = shareStore;
+const { open } = useModal();
 
 const thumbnails = computed(() => {
     return campaigns ? campaigns.value.map(({ thumbnail }) => thumbnail) : [];
 });
+
+const onClickShare = () => {
+    open({
+        component: ShareModal,
+        props: {
+            link: 'twb.nz/c/happy-birthday',
+            payload: { thumbnails, name: '🥳 Happy Birthday!' },
+            type: 'collection'
+        }
+    });
+};
 </script>
 
 <template>
@@ -135,13 +146,7 @@ const thumbnails = computed(() => {
                             <div class="flex-grow">
                                 <QShareButton
                                     link="twb.nz/c/happy-birthday"
-                                    @click="
-                                        openShare(
-                                            'twb.nz/c/happy-birthday',
-                                            { thumbnails, name: '🥳 Happy Birthday!' },
-                                            'collection'
-                                        )
-                                    "
+                                    @click="onClickShare"
                                 />
                             </div>
 
