@@ -122,15 +122,15 @@ const testimonials = [
 
 <template>
     <div class="creator-stories">
-        <h4 class="text-center text-3xl lg:text-6xl font-bold">
+        <h4 class="text-center text-3xl lg:text-6xl font-bold max-container">
             Ideas to use Twibbonize for
         </h4>
-        <p class="text-center text-base lg:text-2xl mt-4 sm:mt-8">
+        <p class="text-center text-base lg:text-2xl mt-4 sm:mt-8 max-container">
             Jumpstart your exploration with hand-picked examples from our 5,000,000+ Twibbonize
             campaigns
         </p>
         <div
-            class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 mt-6 sm:mt-12 lg:mt-20"
+            class="bento-container container max-container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 mt-6 sm:mt-12 lg:mt-20"
         >
             <div class="bento-1 sm:col-span-2 card py-5">
                 <div class="px-5">

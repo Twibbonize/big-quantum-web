@@ -49,11 +49,11 @@ onUnmounted(() => {
                 <div class="bg-swiper"></div>
             </div>
             <div class="bg-white">
-                <VerticalCarousel :width="width" :height="height" />
-                <BentoGrid />
+                <VerticalCarousel class="max-container" :width="width" :height="height" />
+                <BentoGrid class="max-container"/>
                 <TiltScreen />
                 <CreatorStories :width="width" :height="height" />
-                <FrameSelection />
+                <FrameSelection class="max-container" />
                 <PackageSelection />
             </div>
         </div>
@@ -115,6 +115,16 @@ onUnmounted(() => {
     .banner-creators {
         .bg {
             @apply pt-32;
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .creators-page {
+        .max-container {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }
