@@ -89,7 +89,7 @@ onMounted(() => {
                 >
                     <div class="relative overflow-hidden rounded-xl p-4">
                         <div class="bg"></div>
-                        <video class="video-mobile" muted autoplay :src="video"></video>
+                        <video class="video-mobile" muted autoplay loop :src="video"></video>
                         <div class="flex w-full">
                             <img class="icon mr-3" :src="icon" :alt="title" />
                             <div class="flex flex-col">
@@ -116,6 +116,7 @@ onMounted(() => {
                     class="video"
                     muted
                     autoplay
+                    loop
                     :src="values[0].video"
                 ></video>
                 <video
@@ -123,6 +124,7 @@ onMounted(() => {
                     class="video"
                     muted
                     autoplay
+                    loop
                     :src="values[1].video"
                 ></video>
                 <video
@@ -130,6 +132,7 @@ onMounted(() => {
                     class="video"
                     muted
                     autoplay
+                    loop
                     :src="values[2].video"
                 ></video>
                 <video
@@ -137,6 +140,7 @@ onMounted(() => {
                     class="video"
                     muted
                     autoplay
+                    loop
                     :src="values[3].video"
                 ></video>
             </div>
