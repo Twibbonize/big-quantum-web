@@ -9,28 +9,39 @@ import HeroParticipant from '@/components/HomePage/HeroParticipant.vue';
 import TopCreators from '@/components/HomePage/TopCreators.vue';
 import BannerCreators from '@/components/HomePage/BannerCreators.vue';
 import CampaignSwiper from '@/components/HomePage/CampaignSwiper.vue';
+import { useNavbarStore } from '@/stores/navbarStore';
+
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const { width, height } = useWindowSize();
 const emit = defineEmits(['change-navbar']);
 
 const content = ref(null);
-const navbarColor = ref('gradient');
-const navbarShadow = ref(false);
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
     if (top < 97) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
+        setNavbarColor('white');
+        setShadow(true);
+        setLogoVariant('main');
+        setCtaVariant('accent');
     } else {
-        navbarColor.value = 'gradient';
-        navbarShadow.value = false;
+        setNavbarColor('gradient');
+        setShadow(false);
+        setLogoVariant('black');
+        setCtaVariant('secondary');
     }
 };
 
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
     AOS.init();
+
+    setNavbarColor('gradient');
+    setShadow(false);
+    setLogoVariant('black');
+    setCtaVariant('secondary');
 });
 
 onUnmounted(() => {
@@ -39,7 +50,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+    <LayoutMain>
         <div class="home-page">
             <HeroParticipant :width="width" :height="height" />
             <div ref="content"></div>

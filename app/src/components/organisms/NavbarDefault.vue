@@ -1,5 +1,5 @@
 <script setup>
-import { computed, markRaw, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useWindowSize, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import MainLogo from '@/components/atoms/MainLogo.vue';
 import QButton from '@/components/atoms/QButton.vue';
@@ -9,8 +9,11 @@ import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.
 import { useAuthStore } from '@/stores/authStore';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { storeToRefs } from 'pinia';
+import { useNavbarStore } from '@/stores/navbarStore';
 import { useModal } from '@/composables/modal';
 
+const navbarStore = useNavbarStore();
+const { navbarColor, shadow, logoVariant, ctaVariant } = storeToRefs(navbarStore);
 const { width, height } = useWindowSize();
 const { open: openModal, close: closeModal } = useModal();
 
@@ -20,30 +23,6 @@ const authStore = useAuthStore();
 const { user, isLoggedIn } = storeToRefs(authStore);
 const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
-
-const props = defineProps({
-    color: String,
-    shadow: {
-        type: Boolean,
-        default: true
-    }
-});
-
-const buttonVariant = computed(() => {
-    if (/(gradient|transparent)/gi.test(props.color)) return 'accent';
-    return 'accent';
-});
-
-const navbarColor = computed(() => {
-    if (props.color) return props.color;
-    return '';
-});
-
-const logoColor = computed(() => {
-    if (/(gradient)/gi.test(props.color)) return 'black';
-    if (/(transparent)/gi.test(props.color)) return 'white';
-    return 'main';
-});
 
 const searchQuery = ref('');
 const modalPosition = computed(() => (sm ? 'screen' : 'center'));
@@ -57,16 +36,10 @@ const handleOpenCreateModal = () => {
 </script>
 
 <template>
-    <header
-        :class="[
-            'header',
-            navbarColor !== '' && `header--${navbarColor}`,
-            shadow && 'header--shadow'
-        ]"
-    >
+    <header :class="['header', `header--${navbarColor}`, shadow && 'header--shadow']">
         <div class="header__wrapper">
             <div class="header__left">
-                <MainLogo class="logo" :color="logoColor" />
+                <MainLogo class="logo" :color="logoVariant" />
             </div>
 
             <div class="header__center">
@@ -88,7 +61,7 @@ const handleOpenCreateModal = () => {
                     </div>
 
                     <div class="hidden sm:flex mr-2">
-                        <QButton :variant="buttonVariant" @click="handleOpenCreateModal">
+                        <QButton :variant="ctaVariant" @click="handleOpenCreateModal">
                             <i class="ri-add-line mr-1"></i>
                             <span class="flex-shrink-0">Start a Campaign</span>
                         </QButton>

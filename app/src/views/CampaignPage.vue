@@ -31,6 +31,7 @@ import ShareModal from '@/components/organisms/ShareModal.vue';
 import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
 import { publicCampaigns } from '@/mock/campaigns';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
@@ -47,10 +48,6 @@ const props = defineProps({
         type: Boolean
     }
 });
-
-const navbarColor = ref('transparent');
-const navbarShadow = ref(false);
-
 const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignContent = ref(null);
@@ -147,6 +144,8 @@ const { height: windowHeight } = useWindowSize();
 const campaignContentSize = useElementSize(campaignContent);
 const { y } = useWindowScroll();
 const isMounted = useMounted();
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
@@ -271,11 +270,15 @@ const initAutoScrollTween = () => {
 
 watch(y, (newValue) => {
     if (newValue > 110) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
+        setNavbarColor('white');
+        setShadow(true);
+        setLogoVariant('main');
+        setCtaVariant('accent');
     } else {
-        navbarColor.value = 'transparent';
-        navbarShadow.value = false;
+        setNavbarColor('transparent');
+        setShadow(false);
+        setLogoVariant('white');
+        setCtaVariant('accent');
     }
 
     const scrollMaxY =
@@ -319,11 +322,18 @@ watch(
 
 onMounted(async () => {
     await nextTick();
+    
+    setNavbarColor('transparent');
+    setShadow(false);
+    setLogoVariant('white');
+    setCtaVariant('accent');
+
+
     posts.value = [...publicPosts];
 });
 </script>
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+    <LayoutMain>
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>

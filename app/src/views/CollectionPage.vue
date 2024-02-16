@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -12,6 +12,7 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import { getAvatarUrl } from '@/utils/urls.js';
 import { useModal } from '@/composables/modal';
 import ShareModal from '@/components/organisms/ShareModal.vue';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 dayjs.extend(relativeTime);
 
@@ -73,6 +74,8 @@ const campaigns = computed(() => {
 });
 
 const { open } = useModal();
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const thumbnails = computed(() => {
     return campaigns ? campaigns.value.map(({ thumbnail }) => thumbnail) : [];
@@ -88,6 +91,13 @@ const onClickShare = () => {
         }
     });
 };
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>

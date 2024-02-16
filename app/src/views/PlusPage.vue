@@ -7,10 +7,12 @@ import HeroPlus from '@/components/PlusPage/HeroPlus.vue';
 import CampaignCollections from '@/components/PlusPage/CampaignCollections.vue';
 import FeaturesList from '@/components/PlusPage/FeaturesList.vue';
 import PackageSelection from '@/components/PlusPage/PackageSelection.vue';
+import { useNavbarStore } from '@/stores/navbarStore';
+
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const content = ref(null);
-const navbarColor = ref('gradient');
-const navbarShadow = ref(false);
 
 const { width, height } = useWindowSize;
 
@@ -18,16 +20,24 @@ const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
 
     if (top < 97) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
+        setNavbarColor('white');
+        setShadow(true);
+        setLogoVariant('main');
+        setCtaVariant('accent');
     } else {
-        navbarColor.value = 'gradient';
-        navbarShadow.value = false;
+        setNavbarColor('gradient');
+        setShadow(false);
+        setLogoVariant('black');
+        setCtaVariant('accent');
     }
 };
 
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
+    setNavbarColor('gradient');
+    setShadow(false);
+    setLogoVariant('black');
+    setCtaVariant('accent');
 });
 
 onUnmounted(() => {
@@ -36,7 +46,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+    <LayoutMain>
         <div class="plus-page">
             <HeroPlus :width="width" :height="height" />
             <div ref="content"></div>

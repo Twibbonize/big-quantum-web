@@ -5,17 +5,20 @@ import QInputPassword from '@/components/atoms/forms/QInputPassword.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import { Form as VeeForm } from 'vee-validate';
 import { watch } from 'vue';
+import { useRouter } from 'vue-router';
 import { object as yupObject, string as yupString } from 'yup';
 import { authNative } from '@/apis';
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores/authStore';
 import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import { useModal } from '@/composables/modal';
+// import { useExpandMenuStore } from '@/stores/expandMenuStore';
 
 const { update, close } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const authStore = useAuthStore();
+const router = useRouter();
 const { modal } = storeToRefs(authStore);
 const { login } = authStore;
 
@@ -46,8 +49,9 @@ const handleAuthNative = async (formValues) => {
 };
 
 const handleLogin = () => {
-    login();
-    modal.value.show = false;
+    login(); // logged in state
+    close(); // close modal
+    router.push({ name: 'own-profile' });
 };
 </script>
 
