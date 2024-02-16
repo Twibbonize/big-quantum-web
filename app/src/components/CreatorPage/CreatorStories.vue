@@ -121,19 +121,21 @@ const testimonials = [
 </script>
 
 <template>
-    <div class="creator-stories py-14 sm:py-24 flex flex-col items-center">
-        <h4 class="text-center text-3xl sm:text-6xl font-bold">Ideas to use Twibbonize for</h4>
-        <p class="text-center text-xl sm:text-2xl mt-4 sm:mt-8">
+    <div class="creator-stories">
+        <h4 class="text-center text-3xl lg:text-6xl font-bold">
+            Ideas to use Twibbonize for
+        </h4>
+        <p class="text-center text-base lg:text-2xl mt-4 sm:mt-8">
             Jumpstart your exploration with hand-picked examples from our 5,000,000+ Twibbonize
             campaigns
         </p>
         <div
-            class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 sm:px-5 mt-6 sm:mt-20"
+            class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 mt-6 sm:mt-12 lg:mt-20"
         >
             <div class="bento-1 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Corporate</h6>
-                    <h5 class="font-semibold text-white text-xl sm:text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         Utilize the power of the abundance of your personnels and customers
                     </h5>
                     <QOpenLink
@@ -153,7 +155,7 @@ const testimonials = [
             <div class="bento-2 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Education</h6>
-                    <h5 class="font-semibold text-white text-xl sm:text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         It’s a fun way to add to the learning process
                     </h5>
                     <QOpenLink
@@ -173,7 +175,7 @@ const testimonials = [
             <div class="bento-3 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Events</h6>
-                    <h5 class="font-semibold text-white text-xl sm:text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         Hype up your event with the power of instant virality
                     </h5>
                     <QOpenLink
@@ -190,13 +192,13 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="" />
             </div>
-            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-8 sm:gap-10">
-                <div class="col-span-1 sm:col-span-2 relative">
+            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-7 sm:px-7 lg:pt-9 lg:px-9 gap-8 sm:gap-10">
+                <div class="col-span-1 sm:col-span-7 lg:col-span-8 relative">
                     <h6 class="text-white text-[10px] sm:text-xs uppercase tracking-widest">Testimonials</h6>
-                    <h5 class="text-white text-2xl sm:text-4xl font-semibold mt-2">
+                    <h5 class="text-white text-2xl lg:text-4xl font-semibold mt-2">
                         Trusted by names you trusted
                     </h5>
-                    <div class="flex flex-col gap-4 sm:gap-12 mt-6 sm:mt-20">
+                    <div class="flex flex-col gap-4 sm:gap-8 lg:gap-12 mt-6 sm:mt-12 lg:mt-20">
                         <div class="logos">
                             <div class="scrim"></div>
                             <CampaignSlider
@@ -226,7 +228,7 @@ const testimonials = [
                         </div>
                     </div>
                 </div>
-                <div class="col-span-1 testimonial-container">
+                <div class="col-span-1 sm:col-span-5 lg:col-span-4 testimonial-container">
                     <QSlider
                         class="campaign-slider h-full"
                         style="--swiper-wrapper-transition-timing-function: linear"
@@ -250,7 +252,7 @@ const testimonials = [
                                     <img :src="image" class="max-h-full max-w-full" alt="danone" />
                                 </div>
                                 <div>
-                                    <h5 class="font-bold text-sm sm:text-2xl">{{ text }}</h5>
+                                    <h5 class="font-bold text-sm lg:text-2xl">{{ text }}</h5>
                                     <QOpenLink
                                         class="mt-1 sm:mt-5"
                                         classes="sm:text-xs"
@@ -274,7 +276,7 @@ const testimonials = [
 
 <style lang="scss">
 .creator-stories {
-    @apply px-6 md:px-0;
+    @apply px-5 sm:px-10 xl:px-0 py-14 lg:py-24 flex flex-col items-center;
     background: #dee8e8;
 
     .card {
@@ -303,7 +305,7 @@ const testimonials = [
     }
 
     .bento-4 {
-        @apply bg-black grid grid-cols-1 sm:grid-cols-3;
+        @apply bg-black grid grid-cols-1 sm:grid-cols-12;
 
         .logos {
             @apply relative;

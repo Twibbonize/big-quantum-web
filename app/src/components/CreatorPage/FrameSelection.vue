@@ -21,9 +21,9 @@ const backgroundGalleries = [
 </script>
 
 <template>
-    <div class="frames-selection container px-5 py-24">
+    <div class="frames-selection container px-5 sm:px-10 xl:px-0 py-14 lg:py-24">
         <div class="flex flex-col items-center">
-            <h2 class="text-center text-3xl sm:text-6xl font-bold">More than just frames</h2>
+            <h2 class="text-center text-3xl lg:text-6xl font-bold">More than just frames</h2>
             <h4 class="text-center text-base sm:text-2xl mt-8">
                 Spice up your online campaign game, not only with a frame, but also with creative
                 backgrounds

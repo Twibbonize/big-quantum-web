@@ -1,5 +1,5 @@
 <template>
-    <div class="creators-features container px-5 py-14 md:py-24 flex flex-col gap-6 md:gap-8">
+    <div class="creators-features container px-5 sm:px-10 xl:px-0 py-14 lg:py-24 flex flex-col gap-6 md:gap-8">
         <div class="flex flex-col items-center">
             <h2 class="text-center text-2xl md:text-4xl lg:text-6xl font-bold">
                 Your all-in-one, user-friendly campaign platform
@@ -8,7 +8,7 @@
                 Tools to tailor and expand your campaign as your support Grows.
             </h4>
         </div>
-        <div class="flex flex-col sm:flex-row gap-8 md:px-3 row md:mt-5">
+        <div class="flex flex-col sm:flex-row gap-8 md:mt-5">
             <div class="card card-1 flex flex-col">
                 <h5 class="text-2xl md:text-3xl font-bold w-full sm:w-4/12 xl:w-6/12">
                     One of a kind Twibbon Generator
@@ -22,7 +22,7 @@
                 >
             </div>
         </div>
-        <div class="flex flex-col lg:flex-row gap-8 md:px-3 row">
+        <div class="flex flex-col lg:flex-row gap-8">
             <div class="card card-2 col">
                 <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">See who supports you</h5>
                 <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">See the real people who support your campaign</p>
@@ -35,7 +35,7 @@
                 </p>
             </div>
         </div>
-        <div class="flex flex-col lg:flex-row gap-8 md:px-3 row">
+        <div class="flex flex-col lg:flex-row gap-8">
             <div class="card card-4 col">
                 <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">Know your supporters’ voices</h5>
                 <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">
