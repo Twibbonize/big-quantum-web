@@ -144,6 +144,7 @@ onUnmounted(() => {
 .banner-creators {
     .bg {
         @apply sm:rounded-[40px];
+        background: #202124;
 
         &.bottom {
             &::before {
@@ -158,7 +159,7 @@ onUnmounted(() => {
             top: 0;
             left: 0;
             width: 100vw;
-            height: var(--bg-hero);
+            height: 586px;
             z-index: -1;
             -moz-pointer-events: none;
             -webkit-pointer-events: none;
