@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref, watch } from 'vue';
+import { inject, onMounted, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { RouterLink } from 'vue-router';
@@ -23,6 +23,7 @@ import { useModal } from '@/composables/modal';
 import { getAvatarUrl } from '@/utils/urls.js';
 import { ownCampaigns } from '@/mock/campaigns';
 import { ownCollections } from '@/mock/collections';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 dayjs.extend(relativeTime);
 
@@ -64,6 +65,8 @@ const bioContainer = ref(null);
 const isMobile = inject('isMobile');
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const { open: openModal } = useModal();
 
@@ -207,6 +210,13 @@ const posts = [
         uri: 'f3f3fab'
     }
 ];
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>

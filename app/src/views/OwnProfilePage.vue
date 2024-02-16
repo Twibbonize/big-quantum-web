@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { onMounted, inject, ref } from 'vue';
 import dayjs from 'dayjs';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QCard from '@/components/atoms/QCard.vue';
@@ -17,6 +17,7 @@ import ShareModal from '@/components/organisms/ShareModal.vue';
 import { useModal } from '@/composables/modal';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 import { ownCampaigns } from '@/mock/campaigns';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 dayjs.extend(relativeTime);
 
@@ -55,7 +56,8 @@ const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
 const bioContainer = ref(null);
-
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 const { open } = useModal();
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
@@ -71,10 +73,17 @@ const onClickShare = (link, payload, type) => {
         }
     });
 };
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>
-    <LayoutMain :navbarColor="'black'">
+    <LayoutMain>
         <div class="page profile">
             <QModal :show="showAbout" @close="showAbout = false">
                 <template #header v-slot="{ close }">

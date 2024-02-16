@@ -192,7 +192,7 @@ function handleClick(e) {
     }
 
     &--accent {
-        @apply text-black bg-yellow;
+        @apply text-black bg-yellow border border-transparent;
 
         @include before {
             height: 0;

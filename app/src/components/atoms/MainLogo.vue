@@ -18,12 +18,15 @@ const image = computed(() => {
 </script>
 
 <template>
-    <RouterLink to="/">
+    <RouterLink to="/" class="logo-wrapper">
         <img class="main-logo" :src="image" />
     </RouterLink>
 </template>
 
 <style scoped lang="scss">
+.logo-wrapper {
+    @apply block w-fit;
+}
 .main-logo {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     filter: contrast(1);

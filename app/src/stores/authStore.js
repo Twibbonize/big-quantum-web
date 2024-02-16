@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { useModal } from '@/composables/modal';
 
 export const useAuthStore = defineStore('authStore', {
     state: () => ({

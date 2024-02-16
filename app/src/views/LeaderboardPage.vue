@@ -7,6 +7,7 @@ import QTabs from '@/components/atoms/QTabs.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import QPagination from '@/components/molecules/QPagination.vue';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 import { creators } from '@/mock/creators';
 
@@ -54,8 +55,16 @@ const updateFilteredCreators = useDebounceFn(() => {
     }
 }, 300);
 
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
+
 onMounted(() => {
     updateFilteredCreators(searchQuery.value);
+
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
 });
 </script>
 
