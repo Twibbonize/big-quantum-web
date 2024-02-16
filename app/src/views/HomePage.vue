@@ -61,7 +61,7 @@ onUnmounted(() => {
                     data-aos="fade-in"
                     :width="width"
                     :height="height"
-                    class="container"
+                    class="container rounded-[40px]"
                 >
                     <CampaignSwiper />
                 </BannerCreators>

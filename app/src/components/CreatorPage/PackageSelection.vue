@@ -1,7 +1,11 @@
 <script setup>
 import { computed } from 'vue';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
 import QButton from '../atoms/QButton.vue';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isTablet = breakpoints.greaterOrEqual('sm') && breakpoints.smallerOrEqual('md');
 
 const freeFeatures = computed(() => {
     return ['Create Unlimited Campaign', 'Easy To Share Short URL', 'Frame Twibbon'];
@@ -27,20 +31,23 @@ const businessFeatures = computed(() => {
 </script>
 
 <template>
-    <div class="package-selection flex flex-col items-center">
+    <div class="package-selection">
         <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
-        <h4 class="text-center text-3xl sm:text-6xl font-bold text-white">Your supporters await</h4>
+        <h4 class="text-center text-3xl lg:text-6xl font-bold text-white">Your supporters await</h4>
         <p class="text-center text-base sm:text-2xl mt-8 text-white">
             Try for free, find what you need, and choose the best plan
         </p>
         <QSwitchTwo class="mt-8" />
         <div class="package">
-            <div class="package-card free col justify-between">
-                <div>
-                    <h5>Free</h5>
-                    <p class="mt-4">For people who are just getting started</p>
-                    <div class="line"></div>
-                    <div class="flex flex-col gap-6">
+            <div class="package-card free justify-between">
+                <div class="w-full flex sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                    <div class="flex-1">
+                        <h5>Free</h5>
+                        <p class="mt-4">For people who are just getting started</p>
+                        <QButton v-if="isTablet" variant="link" class="btn-free mt-8"> Sign Up </QButton>
+                        <div v-if="!isTablet" class="line"></div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-6">
                         <div
                             v-for="(feature, i) in freeFeatures"
                             :key="`free-feature-${i}`"
@@ -53,50 +60,66 @@ const businessFeatures = computed(() => {
                         </div>
                     </div>
                 </div>
-                <QButton variant="link" class="btn-free mt-8"> Sign Up </QButton>
+                <QButton v-if="!isTablet" variant="link" class="btn-free mt-8"> Sign Up </QButton>
             </div>
             <div class="package-card individual">
-                <h6>Premium</h6>
-                <h5>Individual</h5>
-                <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
-                <span>$12</span>
-                <div class="line-black"></div>
-                <div class="flex flex-col gap-6">
-                    <div
-                        v-for="(feature, i) in individualFeatures"
-                        :key="`ind-feature-${i}`"
-                        class="flex items-center"
-                    >
-                        <div class="icon-container">
-                            <i class="ri-check-line"></i>
+                <div class="w-full flex sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                    <div class="flex-1">
+                        <h6>Premium</h6>
+                        <h5>Individual</h5>
+                        <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
+                        <span>$12</span>
+                        <QButton v-if="isTablet" variant="primary" class="flex items-center gap-2 w-full mt-8">
+                            Purchase Now
+                            <i class="ri-arrow-right-line"></i>
+                        </QButton>
+                        <div v-else class="line-black"></div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-6">
+                        <div
+                            v-for="(feature, i) in individualFeatures"
+                            :key="`ind-feature-${i}`"
+                            class="flex items-center"
+                        >
+                            <div class="icon-container">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p>{{ feature }}</p>
                         </div>
-                        <p>{{ feature }}</p>
                     </div>
                 </div>
-                <QButton variant="primary" class="flex items-center gap-2 w-full mt-8">
+                <QButton v-if="!isTablet" variant="primary" class="flex items-center gap-2 w-full mt-8">
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
             </div>
             <div class="package-card business">
-                <h6>Premium</h6>
-                <h5>Business</h5>
-                <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
-                <span>Start from $48</span>
-                <div class="line-black"></div>
-                <div class="flex flex-col gap-6">
-                    <div
-                        v-for="(feature, i) in businessFeatures"
-                        :key="`free-feature-${i}`"
-                        class="flex items-center"
-                    >
-                        <div class="icon-container">
-                            <i class="ri-check-line"></i>
+                <div class="w-full flex sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                    <div class="flex-1">
+                        <h6>Premium</h6>
+                        <h5>Business</h5>
+                        <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
+                        <span>Start from $48</span>
+                        <QButton v-if="isTablet" variant="black" class="flex items-center gap-2 w-full mt-8">
+                            Purchase Now
+                            <i class="ri-arrow-right-line"></i>
+                        </QButton>
+                        <div v-else class="line-black"></div>
+                    </div>
+                    <div class="flex flex-col flex-1 gap-6">
+                        <div
+                            v-for="(feature, i) in businessFeatures"
+                            :key="`free-feature-${i}`"
+                            class="flex items-center"
+                        >
+                            <div class="icon-container">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p>{{ feature }}</p>
                         </div>
-                        <p>{{ feature }}</p>
                     </div>
                 </div>
-                <QButton variant="black" class="flex items-center gap-2 w-full mt-8">
+                <QButton v-if="!isTablet" variant="black" class="flex items-center gap-2 w-full mt-8">
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
@@ -107,16 +130,15 @@ const businessFeatures = computed(() => {
 
 <style lang="scss">
 .package-selection {
-    @apply sm:rounded-3xl relative overflow-hidden bg-black relative
-        py-14 sm:py-36 px-5 sm:px-20 container items-center;
+    @apply xl:rounded-3xl overflow-hidden bg-black relative flex flex-col py-14 px-5 lg:py-24 sm:px-10 xl:px-20 container items-center;
 
     .package {
-        @apply flex flex-col sm:flex-row gap-8  w-full mt-8 gap-8;
+        @apply flex flex-col lg:flex-row gap-8  w-full mt-8;
         max-width: 1200px;
     }
 
     .package-card {
-        @apply py-16 px-8 sm:px-16 w-full flex flex-col rounded-3xl relative;
+        @apply py-16 px-8 xl:px-16 w-full flex flex-col sm:flex-row lg:flex-col rounded-3xl relative;
 
         h6 {
             @apply text-xxs font-bold uppercase absolute;
@@ -125,11 +147,11 @@ const businessFeatures = computed(() => {
         }
 
         h5 {
-            @apply font-bold text-2xl;
+            @apply font-bold text-xl lg:text-2xl;
         }
 
         p {
-            @apply text-sm sm:text-base;
+            @apply text-sm lg:text-base;
         }
 
         span {

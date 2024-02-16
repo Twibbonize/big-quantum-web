@@ -74,8 +74,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="creators-values container px-5 pt-8 sm:pt-24 pb-10 mx-auto">
-        <div class="content flex justify-center flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8">
+    <div class="creators-values container">
+        <div class="content flex justify-center xl:justify-between flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8">
             <div class="flex w-full sm:w-1/2 xl:w-5/12 flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description, video }, i) in values"
@@ -87,7 +87,7 @@ onMounted(() => {
                     }"
                     @click="setIndex(i)"
                 >
-                    <div class="relative overflow-hidden rounded-xl p-4">
+                    <div class="relative overflow-hidden rounded-xl py-4 px-[1px]">
                         <div class="bg"></div>
                         <video class="video-mobile" muted autoplay loop :src="video"></video>
                         <div class="flex w-full">
@@ -150,6 +150,8 @@ onMounted(() => {
 
 <style lang="scss">
 .creators-values {
+    @apply px-5 sm:px-10 xl:px-0 pt-8 sm:pt-24 lg:pb-10 mx-auto;
+
     .icon {
         @apply w-7 h-7 sm:w-8 sm:h-8;
     }
