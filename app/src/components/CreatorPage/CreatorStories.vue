@@ -1,8 +1,14 @@
 <script setup>
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
+
 import QOpenLink from '@/components/atoms/QOpenLink.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import CampaignSlider from '@/components/molecules/CampaignSlider.vue';
 import QSlider from '@/components/atoms/QSlider.vue';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const mediumBreakpoints = breakpoints.smallerOrEqual('md');
 
 const props = defineProps({
     width: Number,
@@ -115,19 +121,21 @@ const testimonials = [
 </script>
 
 <template>
-    <div class="creator-stories py-14 sm:py-24 flex flex-col items-center">
-        <h4 class="text-center text-3xl sm:text-6xl font-bold">Ideas to use Twibbonize for</h4>
-        <p class="text-center text-base sm:text-2xl mt-4 sm:mt-8">
+    <div class="creator-stories">
+        <h4 class="text-center text-3xl lg:text-6xl font-bold max-container">
+            Ideas to use Twibbonize for
+        </h4>
+        <p class="text-center text-base lg:text-2xl mt-4 sm:mt-8 max-container">
             Jumpstart your exploration with hand-picked examples from our 5,000,000+ Twibbonize
             campaigns
         </p>
         <div
-            class="bento-container container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 sm:px-5 mt-6 sm:mt-20"
+            class="bento-container container max-container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 mt-6 sm:mt-12 lg:mt-20"
         >
             <div class="bento-1 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Corporate</h6>
-                    <h5 class="font-semibold text-white text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         Utilize the power of the abundance of your personnels and customers
                     </h5>
                     <QOpenLink
@@ -147,7 +155,7 @@ const testimonials = [
             <div class="bento-2 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Education</h6>
-                    <h5 class="font-semibold text-white text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         It’s a fun way to add to the learning process
                     </h5>
                     <QOpenLink
@@ -167,7 +175,7 @@ const testimonials = [
             <div class="bento-3 sm:col-span-2 card py-5">
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Events</h6>
-                    <h5 class="font-semibold text-white text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
                         Hype up your event with the power of instant virality
                     </h5>
                     <QOpenLink
@@ -184,20 +192,20 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="" />
             </div>
-            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-9 sm:px-9 gap-10">
-                <div class="col-span-2 relative">
-                    <h6 class="text-white text-xs uppercase tracking-widest">Testimonials</h6>
-                    <h5 class="text-white text-xl sm:text-4xl font-semibold mt-2">
+            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-7 sm:px-7 lg:pt-9 lg:px-9 gap-8 sm:gap-10">
+                <div class="col-span-1 sm:col-span-7 lg:col-span-8 relative">
+                    <h6 class="text-white text-[10px] sm:text-xs uppercase tracking-widest">Testimonials</h6>
+                    <h5 class="text-white text-2xl lg:text-4xl font-semibold mt-2">
                         Trusted by names you trusted
                     </h5>
-                    <div class="flex flex-col gap-12 mt-20">
+                    <div class="flex flex-col gap-4 sm:gap-8 lg:gap-12 mt-6 sm:mt-12 lg:mt-20">
                         <div class="logos">
                             <div class="scrim"></div>
                             <CampaignSlider
                                 :campaigns="firstLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                         <div class="logos">
@@ -205,8 +213,8 @@ const testimonials = [
                             <CampaignSlider
                                 :campaigns="secondLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                         <div class="logos">
@@ -214,13 +222,13 @@ const testimonials = [
                             <CampaignSlider
                                 :campaigns="thirdLogos"
                                 :space-between="25"
-                                campaign-classes="w-auto h-auto"
-                                slide-classes="h-14 flex items-center"
+                                campaign-classes="w-auto h-4 h-14"
+                                slide-classes="h-4 h-14 flex items-center"
                             />
                         </div>
                     </div>
                 </div>
-                <div class="col-span-1 testimonial-container">
+                <div class="col-span-1 sm:col-span-5 lg:col-span-4 testimonial-container">
                     <QSlider
                         class="campaign-slider h-full"
                         style="--swiper-wrapper-transition-timing-function: linear"
@@ -231,23 +239,23 @@ const testimonials = [
                         :centered-slides="false"
                         :loop="false"
                         slides-per-view="1.2"
-                    >
+                        :scrollbar="!mediumBreakpoints"
+                        >
                         <swiper-slide
                             v-for="({ text, image }, i) in testimonials"
                             :key="i"
-                            class="w-auto"
+                            class="w-auto h-auto mr-0 sm:mr-4"
                             :class="slideClasses"
                         >
                             <div class="testimonial">
                                 <div class="w-1/2">
                                     <img :src="image" class="max-h-full max-w-full" alt="danone" />
                                 </div>
-
                                 <div>
-                                    <h5 class="font-bold text-2xl">{{ text }}</h5>
+                                    <h5 class="font-bold text-sm lg:text-2xl">{{ text }}</h5>
                                     <QOpenLink
-                                        class="mt-5"
-                                        classes="text-xs"
+                                        class="mt-1 sm:mt-5"
+                                        classes="sm:text-xs"
                                         text="Read More"
                                         url="/"
                                     />
@@ -268,7 +276,7 @@ const testimonials = [
 
 <style lang="scss">
 .creator-stories {
-    @apply px-8 sm:px-0;
+    @apply px-5 sm:px-10 xl:px-0 py-14 lg:py-24 flex flex-col items-center;
     background: #dee8e8;
 
     .card {
@@ -297,7 +305,7 @@ const testimonials = [
     }
 
     .bento-4 {
-        @apply bg-black grid grid-cols-3;
+        @apply bg-black grid grid-cols-1 sm:grid-cols-12;
 
         .logos {
             @apply relative;
@@ -330,11 +338,11 @@ const testimonials = [
     }
 
     .testimonial {
-        @apply bg-white rounded-lg px-5 py-7 aspect-square flex flex-col justify-between;
+        @apply bg-white rounded-lg px-3 py-5 sm:px-5 sm:py-7 aspect-[4/3] sm:aspect-square flex flex-col justify-between;
     }
 
     .testimonial-container {
-        aspect-ratio: 5/6;
+        @apply aspect-[8/7] sm:aspect-[5/6];
     }
 
     @keyframes glow {
