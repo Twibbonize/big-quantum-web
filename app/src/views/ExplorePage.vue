@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
@@ -8,6 +8,7 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 import CollectionCard from '@/components/molecules/CollectionCard.vue';
 import CreatorBox from '@/components/elements/CreatorBox.vue';
 import { useSearchStore } from '@/stores/searchStore';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -24,6 +25,9 @@ const props = defineProps({
         default: 'campaign'
     }
 });
+
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const searchStore = useSearchStore();
 const { query } = storeToRefs(searchStore);
@@ -44,10 +48,17 @@ const selectedTabIndex = computed(() => {
     const paramTab = props.tab;
     return tabs.findIndex((item) => paramTab === item);
 });
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(false);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>
-    <LayoutMain navbarColor="white" :navbarShadow="false">
+    <LayoutMain>
         <div class="page explore">
             <TabGroup
                 :selectedIndex="selectedTabIndex"
