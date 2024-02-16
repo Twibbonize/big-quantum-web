@@ -1,7 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useElementSize } from '@vueuse/core'
 
 const route = useRoute();
 
@@ -16,8 +15,6 @@ const lottieDimension = computed(() => {
     return { w: 180, h: 70 };
 });
 
-const bgHero = ref(null);
-const { height } = useElementSize(bgHero);
 
 const creatorsLogo = [
     'creators-logo-1.svg',
@@ -55,7 +52,7 @@ onUnmounted(() => {
     <div class="banner-creators tp-rated-area mx-auto overflow-hidden relative">
         <div class="banner-creators__ellipse"></div>
 
-        <div ref="bgHero" class="bg relative py-14" :style="`--bg-hero: ${height + 128 + 56}px;`" :class="{ bottom: scrollPosition > 300 }">
+        <div ref="bgHero" class="bg relative py-14" :class="{ bottom: scrollPosition > 300 }">
             <img
                 class="blob-bg"
                 src="/src/assets/img/patterns/background-banner-creators.png"
