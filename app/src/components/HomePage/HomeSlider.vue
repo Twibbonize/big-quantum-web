@@ -19,22 +19,22 @@ import QSlider from '@/components/atoms/QSlider.vue';
             :autoplay-reverse-direction="false"
         >
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-09.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-05.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-11.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-09.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-09.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-05.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-05.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-11.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-11.png" alt="" />
             </swiper-slide>
         </QSlider>
         <QSlider
@@ -52,22 +52,22 @@ import QSlider from '@/components/atoms/QSlider.vue';
             :autoplay-reverse-direction="true"
         >
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-04.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-10.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-03.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-04.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-04.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-10.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-10.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-03.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-03.png" alt="" />
             </swiper-slide>
         </QSlider>
         <QSlider
@@ -85,16 +85,16 @@ import QSlider from '@/components/atoms/QSlider.vue';
             :autoplay-reverse-direction="false"
         >
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-06.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-06.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-07.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-07.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-02.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-02.png" alt="" />
             </swiper-slide>
             <swiper-slide class="h-auto">
-                <img src="/src/assets/img/campaigns/sample-campaign-01.png" alt="" />
+                <img src="/assets/img/campaigns/home/sample-campaign-01.png" alt="" />
             </swiper-slide>
         </QSlider>
     </div>
