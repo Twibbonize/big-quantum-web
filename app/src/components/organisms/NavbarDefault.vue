@@ -30,7 +30,7 @@ const modalPosition = computed(() => (sm ? 'screen' : 'center'));
 const handleOpenCreateModal = () => {
     openModal({
         component: CampaignCreationModal,
-        config: { size: 'lg', position: 'center' }
+        config: { size: 'xl', position: 'center' }
     });
 };
 </script>
