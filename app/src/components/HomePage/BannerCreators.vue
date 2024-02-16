@@ -143,30 +143,21 @@ onUnmounted(() => {
         @apply sm:rounded-[40px];
         background: #202124;
 
-        &.bottom {
-            &::before {
-                background: var(--color-white) !important;
-            }
-        }
+        // &.bottom {
+        //     &::before {
+        //         background: var(--color-white) !important;
+        //     }
+        // }
 
         &::before {
+            @apply h-[300px] md:h-[586px] w-full fixed block top-0 left-0 z-[-1] scale-100 bg-cover bg-no-repeat;
             content: '';
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 586px;
-            z-index: -1;
             -moz-pointer-events: none;
             -webkit-pointer-events: none;
             -ms-pointer-events: none;
             pointer-events: none;
-            transform: scale(1);
             background-attachment: scroll;
-            background-size: cover;
             background-position: 50%;
-            background-repeat: no-repeat;
             background: #202124;
         }
     }

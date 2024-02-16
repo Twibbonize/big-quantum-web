@@ -274,7 +274,7 @@ const testimonials = [
 
 <style lang="scss">
 .creator-stories {
-    @apply px-8 sm:px-0;
+    @apply px-6 md:px-0;
     background: #dee8e8;
 
     .card {

@@ -44,7 +44,10 @@ onUnmounted(() => {
         <div class="creators-page">
             <BannerCreators :width="width" :height="height" :scroll-position="y" />
             <div ref="content"></div>
-            <CampaignSwiper class="swiper" />
+            <div class="swiper-container">
+                <CampaignSwiper class="swiper"/>
+                <div class="bg-swiper"></div>
+            </div>
             <div class="bg-white">
                 <VerticalCarousel :width="width" :height="height" />
                 <BentoGrid />
@@ -89,9 +92,18 @@ onUnmounted(() => {
         display: none !important;
     }
 
-    .swiper {
-        margin-top: -80px !important;
+    .swiper-container {
+        @apply relative -mt-24;
+
+        .swiper {
+        }
+    
+        .bg-swiper {
+            @apply absolute top-[65px] h-[65px] w-full;
+            background: var(--color-white);
+        }
     }
+
 
     .campaign-swiper__campaign {
         height: 160px;
