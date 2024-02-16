@@ -15,7 +15,7 @@ const basicFeatures = computed(() => {
 <template>
     <div class="package-selection-plus flex flex-col items-center">
         <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
-        <h4 class="text-center text-3xl sm:text-6xl font-bold text-black">Get on the next level</h4>
+        <h4 class="text-center text-3xl lg:text-6xl font-bold text-black">Get on the next level</h4>
         <p class="text-center text-base sm:text-2xl mt-8 text-black">
             Upgrade to Premium plan and enhance your Twibbonize experience
         </p>

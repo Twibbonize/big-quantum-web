@@ -35,7 +35,11 @@ const props = defineProps({
         default: true
     },
     gridRows: Number,
-    gridFill: String
+    gridFill: String,
+    scrollbar: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 onMounted(() => {
@@ -64,6 +68,7 @@ onMounted(() => {
         :grid-rows="gridRows"
         :grid-fill="gridFill"
         :allow-touch-move="allowTouchMove"
+        :scrollbar="scrollbar"
     >
         <slot></slot>
     </swiper-container>

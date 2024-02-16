@@ -55,13 +55,16 @@ onUnmounted(() => {
         <div class="creators-page">
             <BannerCreators :width="width" :height="height" :scroll-position="y" />
             <div ref="content"></div>
-            <CampaignSwiper class="swiper" />
+            <div class="swiper-container">
+                <CampaignSwiper class="swiper"/>
+                <div class="bg-swiper"></div>
+            </div>
             <div class="bg-white">
-                <VerticalCarousel :width="width" :height="height" />
-                <BentoGrid />
+                <VerticalCarousel class="max-container" :width="width" :height="height" />
+                <BentoGrid class="max-container"/>
                 <TiltScreen />
                 <CreatorStories :width="width" :height="height" />
-                <FrameSelection />
+                <FrameSelection class="max-container" />
                 <PackageSelection />
             </div>
         </div>
@@ -100,9 +103,18 @@ onUnmounted(() => {
         display: none !important;
     }
 
-    .swiper {
-        margin-top: -80px !important;
+    .swiper-container {
+        @apply relative -mt-24;
+
+        .swiper {
+        }
+    
+        .bg-swiper {
+            @apply absolute top-[65px] h-[65px] w-full;
+            background: var(--color-white);
+        }
     }
+
 
     .campaign-swiper__campaign {
         height: 160px;
@@ -114,6 +126,16 @@ onUnmounted(() => {
     .banner-creators {
         .bg {
             @apply pt-32;
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .creators-page {
+        .max-container {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }

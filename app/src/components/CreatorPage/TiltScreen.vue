@@ -21,9 +21,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="tilt-screen container mx-auto px-5">
+    <div class="tilt-screen container mx-auto px-5 sm:px-10 xl:px-0">
         <div class="flex flex-col items-center">
-            <h2 class="text-center text-3xl sm:text-6xl font-bold">
+            <h2 class="text-center text-3xl lg:text-6xl font-bold">
                 Get it ready anytime <br />with our built in Twibbon Editor
             </h2>
             <h4 class="text-center text-base sm:text-2xl mt-8">
