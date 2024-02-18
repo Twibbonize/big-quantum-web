@@ -53,7 +53,7 @@ const validationSchema = yupObject().shape({
         </div>
 
         <div class="creation__body">
-            <div class="space-y-8">
+            <div class="space-y-8 container px-5 md:px-0">
                 <div class="space-y-2 text-center">
                     <h1 class="text-2xl font-semibold">What do you want to create?</h1>
                     <p class="text-content font-light">

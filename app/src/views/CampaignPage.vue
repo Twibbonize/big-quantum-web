@@ -322,12 +322,11 @@ watch(
 
 onMounted(async () => {
     await nextTick();
-    
+
     setNavbarColor('transparent');
     setShadow(false);
     setLogoVariant('white');
     setCtaVariant('accent');
-
 
     posts.value = [...publicPosts];
 });
