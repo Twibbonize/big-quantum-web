@@ -7,13 +7,15 @@ import {
 } from '@headlessui/vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSlider from '@/components/atoms/QSlider.vue';
-import { ref } from 'vue';
+import { watch } from 'vue';
 import { Form as VeeForm, useField, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
+
 import { useModal } from '@/composables/modal';
 // import { useField } from "vee-validate";
 
-const { close } = useModal();
+const { update, close } = useModal();
 
 const frameGalleries = [
     '/assets/img/sample/frame-creation/1.png',
@@ -36,6 +38,12 @@ const bgGalleries = [
 
 const validationSchema = yupObject().shape({
     campaign_type: yupString().required()
+});
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+watch(sm, (newValue) => {
+    update({ position: newValue ? 'screen' : 'center' });
 });
 </script>
 
@@ -65,8 +73,14 @@ const validationSchema = yupObject().shape({
                 <Field name="campaign_type" v-slot="{ field }">
                     <RadioGroup v-bind="field">
                         <RadioGroupLabel class="sr-only">Campaign Type</RadioGroupLabel>
-                        <div class="flex items-center space-x-8 justify-center px-5">
-                            <RadioGroupOption value="frame" v-slot="{ checked }">
+                        <div
+                            class="grid grid-cols-2 place-items-center md:place-items-baseline gap-5"
+                        >
+                            <RadioGroupOption
+                                value="frame"
+                                v-slot="{ checked }"
+                                class="col-span-2 sm:col-span-1 flex justify-end w-full"
+                            >
                                 <div
                                     class="campaign-type"
                                     :class="[checked ? 'border-main' : 'border-gray-200']"
@@ -111,10 +125,14 @@ const validationSchema = yupObject().shape({
                                 </div>
                             </RadioGroupOption>
 
-                            <RadioGroupOption value="background" v-slot="{ checked }">
+                            <RadioGroupOption
+                                value="background"
+                                v-slot="{ checked }"
+                                class="col-span-2 sm:col-span-1 flex justify-start w-full"
+                            >
                                 <div
                                     class="campaign-type"
-                                    :class="[checked ? 'border-main' : 'border-stroke']"
+                                    :class="[checked ? 'border-main' : 'border-gray-200']"
                                 >
                                     <div class="space-y-5">
                                         <img
@@ -181,18 +199,34 @@ const validationSchema = yupObject().shape({
     }
 
     .creation__body {
-        @apply flex-grow py-5;
+        @apply flex-grow pb-5;
+
+        @include sm {
+            @apply pb-24;
+        }
     }
 
     .creation__footer {
         @apply flex items-center justify-between py-4 px-5;
+
+        @include sm {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 99;
+            @apply bg-white border-t border-stroke;
+        }
     }
 }
 
 .campaign-type {
     @apply flex flex-col border rounded-xl pt-8 pb-4 transition-all cursor-pointer hover:shadow;
-    aspect-ratio: 1/1;
-    max-width: 350px;
+    max-width: 100%;
+
+    @include md_screen {
+        max-width: 350px;
+    }
+
     // max-width: 300px;
 }
 
