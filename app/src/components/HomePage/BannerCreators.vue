@@ -15,7 +15,6 @@ const lottieDimension = computed(() => {
     return { w: 180, h: 70 };
 });
 
-
 const creatorsLogo = [
     'creators-logo-1.svg',
     'creators-logo-2.svg',

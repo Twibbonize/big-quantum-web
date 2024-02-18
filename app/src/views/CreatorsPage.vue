@@ -56,12 +56,12 @@ onUnmounted(() => {
             <BannerCreators :width="width" :height="height" :scroll-position="y" />
             <div ref="content"></div>
             <div class="swiper-container">
-                <CampaignSwiper class="swiper"/>
+                <CampaignSwiper class="swiper" />
                 <div class="bg-swiper"></div>
             </div>
             <div class="bg-white">
                 <VerticalCarousel class="max-container" :width="width" :height="height" />
-                <BentoGrid class="max-container"/>
+                <BentoGrid class="max-container" />
                 <TiltScreen />
                 <CreatorStories :width="width" :height="height" />
                 <FrameSelection class="max-container" />
@@ -108,13 +108,12 @@ onUnmounted(() => {
 
         .swiper {
         }
-    
+
         .bg-swiper {
             @apply absolute top-[65px] h-[65px] w-full;
             background: var(--color-white);
         }
     }
-
 
     .campaign-swiper__campaign {
         height: 160px;

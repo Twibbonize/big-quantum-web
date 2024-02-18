@@ -11,8 +11,8 @@ const campaigns = [
             '/assets/img/campaigns/home/sample-campaign-11.png',
             '/assets/img/campaigns/home/sample-campaign-09.png',
             '/assets/img/campaigns/home/sample-campaign-05.png',
-            '/assets/img/campaigns/home/sample-campaign-11.png',
-        ],
+            '/assets/img/campaigns/home/sample-campaign-11.png'
+        ]
     },
     {
         speed: 8000,
@@ -23,18 +23,18 @@ const campaigns = [
             '/assets/img/campaigns/home/sample-campaign-03.png',
             '/assets/img/campaigns/home/sample-campaign-04.png',
             '/assets/img/campaigns/home/sample-campaign-10.png',
-            '/assets/img/campaigns/home/sample-campaign-03.png',
-        ],
+            '/assets/img/campaigns/home/sample-campaign-03.png'
+        ]
     },
     {
         speed: 10000,
         reverse: false,
-        datas:  [
+        datas: [
             '/assets/img/campaigns/home/sample-campaign-06.png',
             '/assets/img/campaigns/home/sample-campaign-07.png',
             '/assets/img/campaigns/home/sample-campaign-02.png',
-            '/assets/img/campaigns/home/sample-campaign-01.png',
-        ],
+            '/assets/img/campaigns/home/sample-campaign-01.png'
+        ]
     }
 ];
 </script>
@@ -54,7 +54,7 @@ const campaigns = [
             :autoplay-delay="0"
             :autoplay-disable-on-interaction="false"
             :autoplay-reverse-direction="reverse"
-            >
+        >
             <swiper-slide v-for="campaign in datas" class="h-auto">
                 <img :src="campaign" alt="" />
             </swiper-slide>
@@ -70,7 +70,6 @@ const campaigns = [
     bottom-[-80px] md:bottom-auto
     top-auto md:top-[-230px]
     left-[40%] md:left-[80%] lg:left-[70%] xl:left-[60%] 2xl:left-[50%];
-
 
     img {
         @apply w-32 md:w-[230px] 2xl:w-[253px]

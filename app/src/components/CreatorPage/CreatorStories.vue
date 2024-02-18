@@ -1,5 +1,5 @@
 <script setup>
-import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 
 import QOpenLink from '@/components/atoms/QOpenLink.vue';
 import QButton from '@/components/atoms/QButton.vue';
@@ -192,9 +192,13 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-events.svg" alt="" />
             </div>
-            <div class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-7 sm:px-7 lg:pt-9 lg:px-9 gap-8 sm:gap-10">
+            <div
+                class="bento-4 card sm:col-span-6 pt-5 px-5 sm:pt-7 sm:px-7 lg:pt-9 lg:px-9 gap-8 sm:gap-10"
+            >
                 <div class="col-span-1 sm:col-span-7 lg:col-span-8 relative">
-                    <h6 class="text-white text-[10px] sm:text-xs uppercase tracking-widest">Testimonials</h6>
+                    <h6 class="text-white text-[10px] sm:text-xs uppercase tracking-widest">
+                        Testimonials
+                    </h6>
                     <h5 class="text-white text-2xl lg:text-4xl font-semibold mt-2">
                         Trusted by names you trusted
                     </h5>
@@ -240,7 +244,7 @@ const testimonials = [
                         :loop="false"
                         slides-per-view="1.2"
                         :scrollbar="!mediumBreakpoints"
-                        >
+                    >
                         <swiper-slide
                             v-for="({ text, image }, i) in testimonials"
                             :key="i"

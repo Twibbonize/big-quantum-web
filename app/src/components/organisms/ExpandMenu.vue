@@ -8,6 +8,7 @@ import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { useAuthStore } from '@/stores/authStore';
 import AuthModal from '@/components/organisms/AuthModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
+import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.vue';
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
@@ -18,16 +19,12 @@ const { modal, isLoggedIn } = storeToRefs(authStore);
 const { logout } = authStore;
 const { open: openModal } = useModal();
 
-const onClickSignIn = () => {
-    modal.value.authOption = 'sign-in';
-    modal.value.show = true;
+const handleOpenCreateModal = () => {
     open.value = false;
-};
-
-const onClickSignUp = () => {
-    modal.value.authOption = 'sign-up';
-    modal.value.show = true;
-    open.value = false;
+    openModal({
+        component: CampaignCreationModal,
+        config: { size: 'xl', position: 'screen' }
+    });
 };
 
 const handleSignOut = () => {
@@ -106,7 +103,7 @@ const handleOpenAuthModal = (opt) => {
                     </ul>
 
                     <div v-if="sm" class="mt-10">
-                        <QButton block variant="accent" size="sm">
+                        <QButton block variant="accent" size="sm" @click="handleOpenCreateModal">
                             <i class="ri-add-line mr-1"></i>
                             <span>Start a Campaign</span>
                         </QButton>
