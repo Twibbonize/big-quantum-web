@@ -38,8 +38,8 @@ const props = defineProps({
     gridFill: String,
     scrollbar: {
         type: Boolean,
-        default: false,
-    },
+        default: false
+    }
 });
 
 onMounted(() => {
