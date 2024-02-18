@@ -1,5 +1,7 @@
 <template>
-    <div class="creators-features container px-5 sm:px-10 xl:px-0 py-14 lg:py-24 flex flex-col gap-6 md:gap-8">
+    <div
+        class="creators-features container px-5 sm:px-10 xl:px-0 py-14 lg:py-24 flex flex-col gap-6 md:gap-8"
+    >
         <div class="flex flex-col items-center">
             <h2 class="text-center text-2xl md:text-4xl lg:text-6xl font-bold">
                 Your all-in-one, user-friendly campaign platform
@@ -17,18 +19,26 @@
                     Bring all your campaign’s supporter community on your Twibbonize page; where
                     supporters connect and you see the impact!
                 </p>
-                <a class="text-sm md:text-base lg:text-lg font-bold text-black mt-6 hover:underline" href="#"
+                <a
+                    class="text-sm md:text-base lg:text-lg font-bold text-black mt-6 hover:underline"
+                    href="#"
                     >Learn More</a
                 >
             </div>
         </div>
         <div class="flex flex-col lg:flex-row gap-8">
             <div class="card card-2 col">
-                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">See who supports you</h5>
-                <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">See the real people who support your campaign</p>
+                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">
+                    See who supports you
+                </h5>
+                <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">
+                    See the real people who support your campaign
+                </p>
             </div>
             <div class="card card-3 col">
-                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">Campaign Analytics</h5>
+                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">
+                    Campaign Analytics
+                </h5>
                 <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">
                     You can’t improve what you can’t track.Track your campaign performance and take
                     it to the new heights
@@ -37,15 +47,21 @@
         </div>
         <div class="flex flex-col lg:flex-row gap-8">
             <div class="card card-4 col">
-                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">Know your supporters’ voices</h5>
+                <h5 class="text-xl md:text-3xl font-bold sm:w-7/12 lg:w-full">
+                    Know your supporters’ voices
+                </h5>
                 <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-7/12 lg:w-full">
                     Let them leave their mark by hearing their thoughts, or opinion on the
                     supporter’s voice section. Also, let them interact with each others there
                 </p>
             </div>
             <div class="card card-5 col">
-                <h5 class="text-xl md:text-3xl font-bold sm:w-8/12 lg:w-full">Customizable campaign link</h5>
-                <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-8/12 lg:w-full">Make your campaign easy to remember and share</p>
+                <h5 class="text-xl md:text-3xl font-bold sm:w-8/12 lg:w-full">
+                    Customizable campaign link
+                </h5>
+                <p class="text-sm md:text-base lg:text-lg mt-4 sm:w-8/12 lg:w-full">
+                    Make your campaign easy to remember and share
+                </p>
             </div>
         </div>
     </div>

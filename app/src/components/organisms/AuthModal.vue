@@ -23,7 +23,6 @@ const { modal } = storeToRefs(authStore);
 const { login } = authStore;
 
 watch(sm, (newValue) => {
-    console.log('here');
     update({ position: newValue ? 'screen' : 'center' });
 });
 
