@@ -72,8 +72,7 @@ const setMoodIndex = (index) => {
             class="container sm:flex sm:flex-col sm:items-center mx-auto md:w-full pt-10 overflow-hidden"
         >
             <QSlider
-                :key="width"
-                class="-mx-5 w-fit"
+                class="-mx-5"
                 direction="horizontal"
                 :loop="false"
                 slides-per-view="auto"
@@ -88,7 +87,7 @@ const setMoodIndex = (index) => {
                     :key="`mood-${i}`"
                 >
                     <QPills
-                        class="p-4 w-fit"
+                        class="p-4 w-fit font-bold text-"
                         :class="{ 'mood-active': moodIndex === i }"
                         @click="setMoodIndex(i)"
                     >
@@ -118,11 +117,11 @@ const setMoodIndex = (index) => {
     @apply container mx-auto px-5 py-14 flex flex-col items-center;
 
     .title {
-        @apply text-center text-2xl font-bold;
+        @apply text-center text-[28px] sm:text-[56px] font-bold;
     }
 
     .description {
-        @apply text-center mt-6;
+        @apply text-center text-base sm:text-2xl mt-6;
     }
 
     .mood-active {

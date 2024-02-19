@@ -34,7 +34,6 @@ const businessFeatures = computed(() => {
 
 <template>
     <div class="package-selection">
-        <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
         <h4 class="text-center text-3xl lg:text-6xl font-bold text-white">Your supporters await</h4>
         <p class="text-center text-base sm:text-2xl mt-8 text-white">
             Try for free, find what you need, and choose the best plan
@@ -127,6 +126,8 @@ const businessFeatures = computed(() => {
                 </QButton>
             </div>
         </div>
+        <!-- Background -->
+        <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
     </div>
 </template>
 

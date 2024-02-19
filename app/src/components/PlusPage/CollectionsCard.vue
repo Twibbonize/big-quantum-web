@@ -42,11 +42,11 @@ const props = defineProps({
     border: 1px solid rgba(27, 27, 27, 0.1);
 
     .card-title {
-        @apply font-bold text-xl text-left;
+        @apply font-bold text-[22px] sm:text-[32px] text-left;
     }
 
     .sum {
-        @apply text-lg text-black/40 mt-1;
+        @apply text-sm sm:text-lg text-black/40 mt-1;
     }
 
     .image-slide {

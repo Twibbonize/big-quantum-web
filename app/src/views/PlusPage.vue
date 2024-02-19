@@ -12,7 +12,7 @@ const content = ref(null);
 const navbarColor = ref('gradient');
 const navbarShadow = ref(false);
 
-const { width, height } = useWindowSize;
+const { width, height } = useWindowSize();
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();

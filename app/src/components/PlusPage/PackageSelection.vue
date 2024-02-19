@@ -14,7 +14,6 @@ const basicFeatures = computed(() => {
 
 <template>
     <div class="package-selection-plus flex flex-col items-center">
-        <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
         <h4 class="text-center text-3xl lg:text-6xl font-bold text-black">Get on the next level</h4>
         <p class="text-center text-base sm:text-2xl mt-8 text-black">
             Upgrade to Premium plan and enhance your Twibbonize experience
@@ -65,6 +64,8 @@ const basicFeatures = computed(() => {
                 </QButton>
             </div>
         </div>
+        <!-- Background -->
+        <img class="bg" src="/src/assets/img/patterns/background-banner-creators.png" alt="" />
     </div>
 </template>
 
@@ -79,7 +80,7 @@ const basicFeatures = computed(() => {
     }
 
     .package-card {
-        @apply py-16 px-8 sm:px-16 w-full flex flex-col rounded-3xl relative;
+        @apply py-16 px-8 sm:px-16 w-full flex flex-col rounded-3xl relative z-10;
         max-width: 360px;
 
         h6 {
@@ -130,6 +131,7 @@ const basicFeatures = computed(() => {
         max-width: 2000px;
         transform: translateX(-50%);
         animation: 8s glow infinite ease-in-out alternate;
+        z-index: 0;
     }
 
     .line {
