@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
+import { useWindowSize } from '@vueuse/core';
 import QSlider from '@/components/atoms/QSlider.vue'
 
 const coverflowImages = [
@@ -10,12 +11,28 @@ const coverflowImages = [
     '/assets/img/campaigns/usecases/coverflow-4.jpg',
     '/assets/img/campaigns/usecases/coverflow-5.jpg',
     '/assets/img/campaigns/usecases/coverflow-6.jpg',
+    '/assets/img/campaigns/usecases/coverflow-7.jpg',
+    '/assets/img/campaigns/usecases/coverflow-1.jpg',
+    '/assets/img/campaigns/usecases/coverflow-2.jpg',
+    '/assets/img/campaigns/usecases/coverflow-3.jpg',
+    '/assets/img/campaigns/usecases/coverflow-4.jpg',
+    '/assets/img/campaigns/usecases/coverflow-5.jpg',
+    '/assets/img/campaigns/usecases/coverflow-6.jpg',
 ];
+
+const { width } = useWindowSize();
 
 const doScroll = () => {
     const { top } = lottieScroll.value.getBoundingClientRect();
     if (top < 500) lottieSupports.value.play();
 };
+
+const coverflowEffectOpts = computed(() => {
+    if (width >= 1280) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
+    if (width >= 1024) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
+    if (width >= 640) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
+    return { rotate: 25, stretch: 40, depth: 150, slideShadow: false, };
+})
 
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
@@ -33,7 +50,7 @@ onUnmounted(() => {
                 <h1 class="title">Use Cases</h1>
                 <h2 class="subtitle">For Every Ocassions</h2>
                 <p class="description">Learn more how a diverse set of businesses, organizations, and individuals can maximize Twibbonize for their own use.</p>
-                <div class="coverflow-slider mt-16 overflow-hidden">
+                <div class="coverflow-slider mt-14 xl:mt-16 overflow-hidden">
                     <QSlider
                         direction="horizontal"
                         :grab-cursor="true"
@@ -41,19 +58,23 @@ onUnmounted(() => {
                         slides-per-view="auto"
                         :loop="true"
                         effect="coverflow"
-                        :coverflow-effect-rotate="22"
-                        :coverflow-effect-modifier="1"
-                        :coverflow-effect-stretch="100"
-                        :coverflow-effect-depth="150"
-                        :coverflow-effect-slide-shadows="false"
                         :initial-slide="4"
-                    >
+                        :coverflow-effect-modifier="1"
+                        :coverflow-effect-rotate="coverflowEffectOpts.rotate"
+                        :coverflow-effect-stretch="coverflowEffectOpts.stretch"
+                        :coverflow-effect-depth="coverflowEffectOpts.depth"
+                        :coverflow-effect-slide-shadows="coverflowEffectOpts.slideShadow"
+                        >
                         <swiper-slide
                             v-for="(image, i) in coverflowImages"
                             :key="i"
-                            class="w-[250px] h-[250px]"
+                            class="banner-slide"
                         >
-                            <img :src="image" class="max-h-full max-w-full rounded-[30px]" alt="danone" />
+                            <img
+                                :src="image"
+                                class="banner-image"
+                                alt="danone"
+                            />
                         </swiper-slide>
                     </QSlider>
                 </div>
@@ -78,10 +99,11 @@ onUnmounted(() => {
 }
 
 .banner-use-cases {
-    @apply xl:h-[834px];
+    @apply h-[600px] sm:h-[720px] lg:h-[820px] xl:h-[834px];
+    background: #202124;
 
     .bg {
-        @apply xl:h-[834px];
+        @apply h-[600px] sm:h-[720px] lg:h-[820px] xl:h-[834px];
         background: #202124;
 
         &::before {
@@ -98,29 +120,35 @@ onUnmounted(() => {
     }
 
     .blob-bg {
-        @apply absolute pointer-events-none;
-        bottom: -700px;
+        @apply absolute pointer-events-none  w-[920px] h-[1280px] lg:w-[1840px] lg:h-[1280px] bottom-[-700px] lg:bottom-[-700px];
         left: 50%;
         transform: translateX(-50%);
         animation: 8s glow infinite ease-in-out alternate;
-        width: 1840px;
-        height: 1280px;
         mix-blend-mode: lighten;
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
+        max-width: none;
+    }
+
+    .banner-slide {
+        @apply w-[105px] h-[105px] sm:w-[200px] sm:h-[200px] lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px];
+    }
+
+    .banner-image {
+        @apply max-h-full max-w-full rounded-[10px] sm:rounded-[20px] lg:rounded-[30px];
     }
 
     .title {
-        @apply font-semibold xl:text-2xl text-white uppercase;
+        @apply font-semibold text-center text-base sm:text-xl md:text-2xl text-white uppercase px-5 sm:px-8;
         letter-spacing: 5px;
     }
 
     .subtitle {
-        @apply font-bold xl:text-[65px] text-white mt-8;
+        @apply font-bold text-center text-4xl xl:text-[65px] text-white mt-4 sm:mt-6 xl:mt-8 px-5 sm:px-8;
     }
 
     .description {
-        @apply text-2xl text-center text-white max-w-[820px] mt-8;
+        @apply text-base sm:text-xl md:text-2xl text-center text-white max-w-[820px] mt-4 sm:mt-6 xl:mt-8 px-5 sm:px-8;
     }
 
     .coverflow-slider {
