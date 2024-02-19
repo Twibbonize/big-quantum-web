@@ -10,7 +10,8 @@ const props = defineProps({
 });
 
 const lottieDimension = computed(() => {
-    if (props.width >= 640) return { w: 600, h: 200 };
+    if (props.width >= 1280) return { w: 800, h: 200 };
+    if (props.width >= 640) return { w: 500, h: 140 };
     return { w: 300, h: 100 };
 });
 
@@ -28,7 +29,7 @@ onMounted(() => {});
                             src="/src/assets/img/logos/twibbonize-plus.svg"
                             alt="twibbonize-plus"
                         />
-                        <h1 class="title mt-4 text-center">show your</h1>
+                        <h1 class="title mt-4 sm:mt-6 text-center">show your</h1>
                         <h1 class="opacity-0 w-0 h-0">supports</h1>
                         <div class="animation mb-4">
                             <Vue3Lottie
@@ -39,7 +40,7 @@ onMounted(() => {});
                             />
                         </div>
                         <h1 class="title -mt-6 text-center">on a whole new level</h1>
-                        <p class="description">
+                        <p class="description pb-8">
                             Take action and make the most out of your moments with the help of our
                             personalized templates suitable for every occassions
                         </p>
@@ -54,11 +55,10 @@ onMounted(() => {});
 
 <style lang="scss">
 .hero-plus {
-    overflow: hidden;
-    height: 500px;
+    @apply overflow-hidden h-[520px] sm:h-[640px] xl:h-[700px];
 
     .title {
-        @apply text-3xl sm:text-7xl font-bold;
+        @apply text-4xl sm:text-[56px] xl:text-[80px] font-bold;
     }
 
     .animation {
@@ -66,7 +66,7 @@ onMounted(() => {});
     }
 
     .description {
-        @apply sm:text-xl text-center mt-6;
+        @apply text-base leading-[130%] sm:text-[22px] font-medium text-center mt-12 max-w-[560px] xl:max-w-[720px];
     }
 
     .pattern-center {
@@ -82,13 +82,6 @@ onMounted(() => {});
         background-repeat: no-repeat;
         animation: 8s move infinite ease-in-out alternate;
         opacity: 0.3;
-    }
-}
-
-@media screen and (min-width: 640px) {
-    .hero-plus {
-        overflow: hidden;
-        height: 540px;
     }
 }
 </style>
