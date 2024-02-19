@@ -1,15 +1,19 @@
 <script setup>
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import QPopoverMenu from '@/components/atoms/QPopoverMenu.vue';
 import QPopoverMenuItem from '@/components/atoms/QPopoverMenuItem.vue';
-import { usePostStore } from '@/stores/postStore';
+import PostModal from '@/components/organisms/PostModal.vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { useShareStore } from '@/stores/shareStore';
+import { useModal } from '@/composables/modal';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 dayjs.extend(relativeTime);
 
-const shareStore = useShareStore();
-const { openShare } = shareStore;
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+
+const { open } = useModal();
 
 const props = defineProps({
     image: {
@@ -45,9 +49,6 @@ const props = defineProps({
     }
 });
 
-const postStore = usePostStore();
-const { showPost } = postStore;
-
 const handleOpenShare = () => {
     const { creator, createdAt, uri, image } = props;
 
@@ -55,16 +56,29 @@ const handleOpenShare = () => {
     const datetime = dayjs(createdAt);
     const formattedDate = datetime.format('MMM D, YYYY');
 
-    openShare(
-        `twb.nz/p/${uri}`,
-        { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
-        'post'
-    );
+    open({
+        component: ShareModal,
+        props: {
+            link: `twb.nz/p/${uri}`,
+            payload: {
+                name: `Post shared on ${formattedDate}`,
+                username: username,
+                avatar: image
+            },
+            type: 'post'
+        }
+    });
 };
 
 const handleShowPost = () => {
-    showPost({
-        ...props
+    const { rounded, ...others } = props;
+    open({
+        component: PostModal,
+        props: others,
+        config: {
+            size: 'xl',
+            position: sm.value ? 'screen' : 'center'
+        }
     });
 };
 </script>

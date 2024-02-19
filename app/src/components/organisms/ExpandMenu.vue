@@ -1,27 +1,30 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { watch } from 'vue';
-import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router';
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
+import { onBeforeRouteLeave } from 'vue-router';
+import { useModal } from '@/composables/modal';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { useAuthStore } from '@/stores/authStore';
+import AuthModal from '@/components/organisms/AuthModal.vue';
 import QButton from '@/components/atoms/QButton.vue';
+import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.vue';
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
 const expandMenuStore = useExpandMenuStore();
 const authStore = useAuthStore();
 const { open } = storeToRefs(expandMenuStore);
 const { modal, isLoggedIn } = storeToRefs(authStore);
 const { logout } = authStore;
+const { open: openModal } = useModal();
 
-const onClickSignIn = () => {
-    modal.value.authOption = 'sign-in';
-    modal.value.show = true;
+const handleOpenCreateModal = () => {
     open.value = false;
-};
-
-const onClickSignUp = () => {
-    modal.value.authOption = 'sign-up';
-    modal.value.show = true;
-    open.value = false;
+    openModal({
+        component: CampaignCreationModal,
+        config: { size: 'xl', position: 'screen' }
+    });
 };
 
 const handleSignOut = () => {
@@ -40,6 +43,15 @@ watch(open, (newValue) => {
         document.body.classList.remove('overflow-hidden');
     }
 });
+
+const handleOpenAuthModal = (opt) => {
+    open.value = false;
+    modal.value.authOption = opt;
+    openModal({
+        component: AuthModal,
+        config: { size: 'lg', position: sm.value ? 'screen' : 'center' }
+    });
+};
 </script>
 
 <template>
@@ -48,8 +60,13 @@ watch(open, (newValue) => {
         <div class="expand-menu__wrapper">
             <div class="expand-menu__panel">
                 <div class="expand-menu__close">
-                    <QButton variant="secondary" square @click="open = false">
-                        <i class="ri-close-line ri-lg"></i>
+                    <QButton
+                        variant="secondary"
+                        :size="sm ? 'sm' : 'md'"
+                        square
+                        @click="open = false"
+                    >
+                        <i class="ri-close-line"></i>
                     </QButton>
                 </div>
 
@@ -85,14 +102,30 @@ watch(open, (newValue) => {
                         </li>
                     </ul>
 
-                    <div v-if="!isLoggedIn" class="space-y-4 mt-4 pt-4 border-t border-stroke">
-                        <div
-                            class="flex flex-col-reverse md:flex-row items-center space-y-3 space-y-reverse md:space-y-0 md:space-x-3"
-                        >
-                            <QButton variant="secondary" block @click="onClickSignIn"
-                                >Sign In</QButton
+                    <div v-if="sm" class="mt-10">
+                        <QButton block variant="accent" size="sm" @click="handleOpenCreateModal">
+                            <i class="ri-add-line mr-1"></i>
+                            <span>Start a Campaign</span>
+                        </QButton>
+                    </div>
+
+                    <div v-if="!isLoggedIn" class="space-y-4 mt-3 pt-3 border-t border-stroke">
+                        <div class="flex space-x-3">
+                            <QButton
+                                variant="secondary"
+                                block
+                                :size="sm ? 'sm' : 'md'"
+                                @click="() => handleOpenAuthModal('sign-in')"
                             >
-                            <QButton block @click="onClickSignUp">Sign Up</QButton>
+                                <span>Sign In</span>
+                            </QButton>
+                            <QButton
+                                block
+                                :size="sm ? 'sm' : 'md'"
+                                @click="() => handleOpenAuthModal('sign-up')"
+                            >
+                                <span>Sign Up</span>
+                            </QButton>
                         </div>
                     </div>
 
@@ -195,14 +228,10 @@ watch(open, (newValue) => {
     }
 
     .expand-menu__links {
-        @apply space-y-5;
-
-        @include md_screen {
-            @apply space-y-4;
-        }
+        @apply space-y-4;
 
         .expand-menu__link {
-            @apply font-medium text-lg transition-colors duration-200;
+            @apply font-medium md:text-lg transition-colors duration-200;
 
             &:hover {
                 @apply text-main-darker;

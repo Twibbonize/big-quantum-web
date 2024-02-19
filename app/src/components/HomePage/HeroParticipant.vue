@@ -5,6 +5,22 @@ import QButton from '@/components/atoms/QButton.vue';
 import HomeSlider from '@/components/HomePage/HomeSlider.vue';
 import BGHero from '@/components/HomePage/BGHero.vue';
 import supportsJSON from '../../assets/lottie/supports.json';
+import { useModal } from '@/composables/modal';
+import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.vue';
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+
+const { open: openModal } = useModal();
+
+const handleOpenCreateModal = () => {
+    open.value = false;
+    openModal({
+        component: CampaignCreationModal,
+        config: { size: 'xl', position: sm.value ? 'screen' : 'center' }
+    });
+};
 
 const props = defineProps({
     width: Number,
@@ -41,11 +57,12 @@ const lottieDimension = computed(() => {
                         </h4>
                         <div class="btn-container flat-button">
                             <QButton
-                                class="text-sm !font-bold"
+                                class="text-sm"
                                 variant="accent"
                                 border-radius="circle"
+                                @click="handleOpenCreateModal"
                             >
-                                <i class="ri-add-line"></i>
+                                <i class="ri-add-line mr-1"></i>
                                 Start a Campaign
                             </QButton>
                             <!-- <div class="hero-participant__or  font-bold">or</div>

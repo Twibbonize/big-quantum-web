@@ -10,6 +10,8 @@ import VueWriter from 'vue-writer';
 import Vue3Lottie from 'vue3-lottie';
 import debouce from 'lodash/debounce';
 
+import mitt from 'mitt';
+
 import App from './App.vue';
 import router from './router';
 
@@ -22,9 +24,10 @@ const resizeObserver = new ResizeObserver(
     }, 500)
 );
 resizeObserver.observe(document.body);
+const eventBus = mitt();
 
+app.provide('eventBus', eventBus);
 app.provide('isMobile', isMobile);
-
 app.use(createPinia());
 app.use(router);
 app.use(VueWriter);

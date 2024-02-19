@@ -75,7 +75,9 @@ onMounted(() => {
 
 <template>
     <div class="creators-values container">
-        <div class="content flex justify-center xl:justify-between flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8">
+        <div
+            class="content flex justify-center xl:justify-between flex-col sm:flex-row gap-8 xl:gap-16 2xl:gap-8"
+        >
             <div class="flex w-full sm:w-1/2 xl:w-5/12 flex-col justify-center col h-100">
                 <div
                     v-for="({ icon, title, subtitle, description, video }, i) in values"

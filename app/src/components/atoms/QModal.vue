@@ -9,6 +9,9 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    title: {
+        type: String
+    },
     static: {
         type: Boolean,
         default: true
@@ -33,6 +36,10 @@ const props = defineProps({
     keyboard: {
         type: Boolean,
         default: true
+    },
+    transition: {
+        type: String,
+        default: 'fade'
     }
 });
 
@@ -171,60 +178,48 @@ watch(
 </script>
 
 <template>
-    <Transition>
-        <div v-show="show" :class="dialogClasses">
-            <Transition>
-                <div v-show="show" class="dialog__overlay" />
-            </Transition>
+    <div :class="dialogClasses">
+        <Transition name="fade">
+            <div v-show="show" class="dialog__overlay" />
+        </Transition>
 
-            <Transition name="slide-up">
-                <div v-show="show" class="dialog__wrapper">
-                    <div class="dialog__close-wrapper">
-                        <button class="dialog__close-btn" @click="$emit('close')">
-                            <i class="ri ri-close-line ri-lg"></i>
-                        </button>
+        <Transition :name="transition">
+            <div v-show="show" class="dialog__wrapper">
+                <div class="dialog__close-wrapper">
+                    <button class="dialog__close-btn" @click="$emit('close')">
+                        <i class="ri ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+                <div ref="dialogContentEl" class="dialog__content">
+                    <div ref="dialogContentHeaderEl" class="dialog__header">
+                        <div class="dialog__drag-handler">
+                            <span class="dialog__drag-handler__thumb"></span>
+                        </div>
+
+                        <div v-if="title" class="flex items-center flex-shrink-0 w-full">
+                            <div>{{ title }}</div>
+                            <!-- <slot name="header"></slot> -->
+                        </div>
                     </div>
-                    <div ref="dialogContentEl" class="dialog__content">
-                        <div ref="dialogContentHeaderEl" class="dialog__header">
-                            <div class="dialog__drag-handler">
-                                <span class="dialog__drag-handler__thumb"></span>
-                            </div>
 
-                            <div
-                                v-if="$slots.header"
-                                class="flex items-center flex-shrink-0 w-full"
-                            >
-                                <slot name="header"></slot>
-                            </div>
-                        </div>
-                        <div class="dialog__body">
-                            <slot name="body" :close="handleClose" :isDragging="isDragging"></slot>
-                        </div>
-                        <div v-if="$slots.footer" class="dialog__footer">
-                            <slot name="footer"></slot>
-                        </div>
+                    <div class="dialog__body">
+                        <slot :close="handleClose" :isDragging="isDragging"></slot>
                     </div>
                 </div>
-            </Transition>
-        </div>
-    </Transition>
+            </div>
+        </Transition>
+    </div>
 </template>
 
 <style scoped lang="scss">
-.v-enter-active,
-.v-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-    opacity: 0;
-}
-
 .dialog {
     z-index: 66;
     position: fixed;
-    @apply inset-0;
+    @apply inset-0 pointer-events-none;
+
+    &.dialog--show {
+        @apply pointer-events-auto;
+    }
 
     .dialog__overlay {
         @apply absolute inset-0 bg-black/60;
@@ -233,7 +228,7 @@ watch(
     }
 
     .dialog__wrapper {
-        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0;
+        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-all duration-300;
         z-index: 68;
     }
 

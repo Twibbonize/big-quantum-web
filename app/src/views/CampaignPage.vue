@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
 import {
     breakpointsTailwind,
@@ -21,18 +21,17 @@ import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
 import QSkeleton from '@/components/atoms/QSkeleton.vue';
-
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import PostMockup from '@/components/molecules/PostMockup.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
-
-import { useCollectionStore } from '@/stores/collectionStore';
-import { useShareStore } from '@/stores/shareStore';
-
+import CollectionModal from '@/components/organisms/CollectionModal.vue';
+import ShareModal from '@/components/organisms/ShareModal.vue';
+import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
 import { publicCampaigns } from '@/mock/campaigns';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
@@ -49,10 +48,6 @@ const props = defineProps({
         type: Boolean
     }
 });
-
-const navbarColor = ref('transparent');
-const navbarShadow = ref(false);
-
 const campaignPage = ref(null);
 const campaignMain = ref(null);
 const campaignContent = ref(null);
@@ -61,7 +56,7 @@ const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
 
 const selectedFrames = ref(frames[0]);
-const posts = ref([...publicPosts]);
+const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
 const mocks = [
@@ -143,15 +138,14 @@ const mocks = [
     }
 ];
 
-const shareStore = useShareStore();
-const collectionStore = useCollectionStore();
+const { open: modalOpen } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const { height: windowHeight } = useWindowSize();
 const campaignContentSize = useElementSize(campaignContent);
 const { y } = useWindowScroll();
 const isMounted = useMounted();
-const { openShare } = shareStore;
-const { showCollectionModal } = collectionStore;
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
@@ -211,17 +205,27 @@ const toggleDisplay = () => {
 
 const onClickShare = () => {
     // const { url, thumbnail } = props;
-    openShare(
-        'twb.nz/hanoi-art-2025',
-        { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
-        'campaign'
-    );
+    modalOpen({
+        component: ShareModal,
+        props: {
+            link: 'twb.nz/hanoi-art-2025',
+            payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
+            type: 'campaign'
+        }
+    });
 };
 
 const onClickCollection = () => {
-    showCollectionModal({
-        name: 'Hanoi Art Book Fair 2025',
-        thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+    // size="lg" :position="sm ? 'bottom' : 'center'"
+    modalOpen({
+        component: CollectionModal,
+        props: {
+            campaign: {
+                name: 'Hanoi Art Book Fair 2025',
+                thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg'
+            }
+        },
+        config: { size: 'lg', position: sm.value ? 'bottom' : 'center', transition: 'slide-up' }
     });
 };
 
@@ -266,11 +270,15 @@ const initAutoScrollTween = () => {
 
 watch(y, (newValue) => {
     if (newValue > 110) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
+        setNavbarColor('white');
+        setShadow(true);
+        setLogoVariant('main');
+        setCtaVariant('accent');
     } else {
-        navbarColor.value = 'transparent';
-        navbarShadow.value = false;
+        setNavbarColor('transparent');
+        setShadow(false);
+        setLogoVariant('white');
+        setCtaVariant('accent');
     }
 
     const scrollMaxY =
@@ -294,27 +302,14 @@ useResizeObserver(campaignMain, (entries) => {
     }
 });
 
-// useResizeObserver(campaignFeedsWrapper,  (entries) => {
-
-//     const entry = entries[0];
-//     const { height } = entry.contentRect;
-
-//     console.log(height, 'here')
-//     setTimeout(() => {
-//         scaleCampaignPage()
-//     }, 500)
-// });
-
-// watch(() => props.transitioned, setTimeout(scaleCampaignPage, 500));
-
 watch(
     isScrolling,
     useDebounceFn(() => isMounted.value && initAutoScrollTween(), 1500)
 );
-// watch(displayType, () => {
-//     nextTick();
-//    autoScrollTween.duration(calcDuration());
-// })
+watch(displayType, () => {
+    nextTick();
+    initAutoScrollTween();
+});
 
 watch(
     posts,
@@ -328,17 +323,16 @@ watch(
 onMounted(async () => {
     await nextTick();
 
-    // setTimeout(() => {
-    //     scaleCampaignPage();
-    // }, 0)
+    setNavbarColor('transparent');
+    setShadow(false);
+    setLogoVariant('white');
+    setCtaVariant('accent');
 
-    // setTimeout(() => {
-    //     scaleCampaignPage();
-    // }, 600)
+    posts.value = [...publicPosts];
 });
 </script>
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+    <LayoutMain>
         <div ref="campaignPage" class="page campaign">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
@@ -998,15 +992,5 @@ onMounted(async () => {
             @apply gap-3;
         }
     }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
 }
 </style>

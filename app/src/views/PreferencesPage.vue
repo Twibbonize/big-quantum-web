@@ -12,7 +12,11 @@ import QBadge from '@/components/atoms/QBadge.vue';
 import QPagination from '@/components/molecules/QPagination.vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
-import { inject, ref } from 'vue';
+import { inject, ref, onMounted } from 'vue';
+import { useNavbarStore } from '@/stores/navbarStore';
+
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const isMobile = inject('isMobile');
 const currentPage = ref(1);
@@ -121,6 +125,13 @@ const onScrollBillFilter = (e) => {
         arrowRight.classList.remove('show');
     }
 };
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>

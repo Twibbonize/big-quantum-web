@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { onMounted, inject, ref } from 'vue';
 import dayjs from 'dayjs';
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QCard from '@/components/atoms/QCard.vue';
@@ -13,10 +13,11 @@ import QShareButton from '@/components/atoms/QShareButton.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QListbox from '@/components/atoms/forms/QListbox.vue';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
-import { useShareStore } from '@/stores/shareStore';
+import ShareModal from '@/components/organisms/ShareModal.vue';
+import { useModal } from '@/composables/modal';
 import { getAvatarUrl, getThumbnailUrl } from '@/utils/urls.js';
 import { ownCampaigns } from '@/mock/campaigns';
+import { useNavbarStore } from '@/stores/navbarStore';
 
 dayjs.extend(relativeTime);
 
@@ -55,16 +56,34 @@ const showAbout = ref(false);
 const reportModal = ref(false);
 const isMobile = inject('isMobile');
 const bioContainer = ref(null);
-const shareStore = useShareStore();
-
-const { openShare } = shareStore;
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
+const { open } = useModal();
 
 const sortCampaignOptions = [{ name: 'Recent' }, { name: 'Most Supported' }];
 const selectedSortCampaign = ref(sortCampaignOptions[0]);
+
+const onClickShare = (link, payload, type) => {
+    open({
+        component: ShareModal,
+        props: {
+            link,
+            payload,
+            type
+        }
+    });
+};
+
+onMounted(() => {
+    setNavbarColor('white');
+    setShadow(true);
+    setLogoVariant('main');
+    setCtaVariant('accent');
+});
 </script>
 
 <template>
-    <LayoutMain :navbarColor="'black'">
+    <LayoutMain>
         <div class="page profile">
             <QModal :show="showAbout" @close="showAbout = false">
                 <template #header v-slot="{ close }">
@@ -186,17 +205,18 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
                                             <QShareButton
                                                 link="twb.nz/u/universetech"
                                                 @click="
-                                                    openShare(
-                                                        'twb.nz/u/universetech',
-                                                        {
-                                                            avatar: getAvatarUrl(
-                                                                'sample-avatar-1.jpg'
-                                                            ),
-                                                            name: 'Universe Tech',
-                                                            username: 'universetech'
-                                                        },
-                                                        'profile'
-                                                    )
+                                                    () =>
+                                                        onClickShare(
+                                                            'twb.nz/u/universetech',
+                                                            {
+                                                                avatar: getAvatarUrl(
+                                                                    'sample-avatar-1.jpg'
+                                                                ),
+                                                                name: 'Universe Tech',
+                                                                username: 'universetech'
+                                                            },
+                                                            'profile'
+                                                        )
                                                 "
                                             />
                                         </div>
@@ -387,6 +407,10 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
             height: 220px;
             // transform: translateY(v-bind(translateY));
 
+            @include xs {
+                top: 68px;
+            }
+
             @include md_screen {
                 top: 88px;
             }
@@ -415,6 +439,7 @@ const selectedSortCampaign = ref(sortCampaignOptions[0]);
         @include xl_screen {
             padding-top: calc(360px - 96px);
         }
+
         // margin-top: calc(180px);
         // transform: translateY(-3.5rem);
     }

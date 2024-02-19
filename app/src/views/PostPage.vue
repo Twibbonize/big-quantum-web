@@ -314,14 +314,4 @@ const handleOpenShare = () => {
         @apply w-1 h-1 bg-black/20 mx-2 rounded-full;
     }
 }
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
 </style>

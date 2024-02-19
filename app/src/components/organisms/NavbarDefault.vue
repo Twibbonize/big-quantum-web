@@ -1,60 +1,45 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { useWindowSize } from '@vueuse/core';
+import { useWindowSize, useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import MainLogo from '@/components/atoms/MainLogo.vue';
 import QButton from '@/components/atoms/QButton.vue';
-import QMenu from '@/components/atoms/QMenu.vue';
 import QSearch from '@/components/atoms/QSearch.vue';
 import QSearchMobile from '@/components/atoms/QSearchMobile.vue';
+import CampaignCreationModal from '@/components/organisms/CampaignCreationModal.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useExpandMenuStore } from '@/stores/expandMenuStore';
 import { storeToRefs } from 'pinia';
+import { useNavbarStore } from '@/stores/navbarStore';
+import { useModal } from '@/composables/modal';
 
+const navbarStore = useNavbarStore();
+const { navbarColor, shadow, logoVariant, ctaVariant } = storeToRefs(navbarStore);
 const { width, height } = useWindowSize();
+const { open: openModal, close: closeModal } = useModal();
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
 const authStore = useAuthStore();
 const { user, isLoggedIn } = storeToRefs(authStore);
 const expandMenuStore = useExpandMenuStore();
 const { open } = storeToRefs(expandMenuStore);
 
-const props = defineProps({
-    color: String,
-    shadow: {
-        type: Boolean,
-        default: true
-    }
-});
-
-const buttonVariant = computed(() => {
-    if (/(gradient|transparent)/gi.test(props.color)) return 'secondary';
-    return 'primary';
-});
-
-const navbarColor = computed(() => {
-    if (props.color) return props.color;
-    return '';
-});
-
-const logoColor = computed(() => {
-    if (/(gradient)/gi.test(props.color)) return 'black';
-    if (/(transparent)/gi.test(props.color)) return 'white';
-    return 'main';
-});
-
 const searchQuery = ref('');
+const modalPosition = computed(() => (sm ? 'screen' : 'center'));
+
+const handleOpenCreateModal = () => {
+    openModal({
+        component: CampaignCreationModal,
+        config: { size: 'xl', position: 'center' }
+    });
+};
 </script>
 
 <template>
-    <header
-        :class="[
-            'header',
-            navbarColor !== '' && `header--${navbarColor}`,
-            shadow && 'header--shadow'
-        ]"
-    >
+    <header :class="['header', `header--${navbarColor}`, shadow && 'header--shadow']">
         <div class="header__wrapper">
             <div class="header__left">
-                <MainLogo class="logo" :color="logoColor" />
+                <MainLogo class="logo" :color="logoVariant" />
             </div>
 
             <div class="header__center">
@@ -76,7 +61,7 @@ const searchQuery = ref('');
                     </div>
 
                     <div class="hidden sm:flex mr-2">
-                        <QButton :variant="buttonVariant">
+                        <QButton :variant="ctaVariant" @click="handleOpenCreateModal">
                             <i class="ri-add-line mr-1"></i>
                             <span class="flex-shrink-0">Start a Campaign</span>
                         </QButton>

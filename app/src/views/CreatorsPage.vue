@@ -11,27 +11,38 @@ import TiltScreen from '@/components/CreatorPage/TiltScreen.vue';
 import CreatorStories from '@/components/CreatorPage/CreatorStories.vue';
 import FrameSelection from '@/components/CreatorPage/FrameSelection.vue';
 import PackageSelection from '@/components/CreatorPage/PackageSelection.vue';
+import { useNavbarStore } from '@/stores/navbarStore';
+
+const navbarStore = useNavbarStore();
+const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
 const content = ref(null);
-const navbarColor = ref('transparent');
-const navbarShadow = ref(false);
 
 const { width, height } = useWindowSize();
 const { y } = useWindowScroll();
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
+
     if (top < 97) {
-        navbarColor.value = 'white';
-        navbarShadow.value = true;
+        setNavbarColor('white');
+        setShadow(true);
+        setLogoVariant('main');
+        setCtaVariant('accent');
     } else {
-        navbarColor.value = 'transparent';
-        navbarShadow.value = false;
+        setNavbarColor('transparent');
+        setShadow(false);
+        setLogoVariant('white');
+        setCtaVariant('accent');
     }
 };
 
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
+    setNavbarColor('transparent');
+    setShadow(false);
+    setLogoVariant('white');
+    setCtaVariant('accent');
 });
 
 onUnmounted(() => {
@@ -40,17 +51,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <LayoutMain :navbarColor="navbarColor" :navbarShadow="navbarShadow">
+    <LayoutMain>
         <div class="creators-page">
             <BannerCreators :width="width" :height="height" :scroll-position="y" />
             <div ref="content"></div>
             <div class="swiper-container">
-                <CampaignSwiper class="swiper"/>
+                <CampaignSwiper class="swiper" />
                 <div class="bg-swiper"></div>
             </div>
             <div class="bg-white">
                 <VerticalCarousel class="max-container" :width="width" :height="height" />
-                <BentoGrid class="max-container"/>
+                <BentoGrid class="max-container" />
                 <TiltScreen />
                 <CreatorStories :width="width" :height="height" />
                 <FrameSelection class="max-container" />
@@ -97,13 +108,12 @@ onUnmounted(() => {
 
         .swiper {
         }
-    
+
         .bg-swiper {
             @apply absolute top-[65px] h-[65px] w-full;
             background: var(--color-white);
         }
     }
-
 
     .campaign-swiper__campaign {
         height: 160px;
