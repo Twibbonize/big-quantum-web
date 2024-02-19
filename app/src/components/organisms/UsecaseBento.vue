@@ -21,6 +21,7 @@ const bentoLists = [
         bg: '/assets/img/background/bg-events.svg',
         color: '#4D41B9',
         classes: 'sm:col-span-2',
+        titleClasses: 'sm:text-4xl',
         campaigns: [
 
         ],
@@ -65,6 +66,7 @@ const bentoLists = [
         bg: '/assets/img/background/bg-business.svg',
         color: '#0B5D99',
         classes: 'sm:col-span-2',
+        titleClasses: 'sm:text-4xl',
         campaigns: [
 
         ],
@@ -98,6 +100,7 @@ const bentoLists = [
         bg: '/assets/img/background/bg-education.svg',
         color: '#2266ED',
         classes: 'sm:col-span-2',
+        titleClasses: 'sm:text-4xl',
         campaigns: [
 
         ],
@@ -119,12 +122,8 @@ const corporateCampaigns = [
 </script>
 
 <template>
-    <div
-        class="use-case-bento"
-    >
-        <div 
-            class="bento-container"
-        >
+    <div class="use-case-bento">
+        <div class="bento-container">
             <div
                 v-for="bento, i in bentoLists"
                 :key="`bento-${i}`"
@@ -133,7 +132,7 @@ const corporateCampaigns = [
             >
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">{{ bento.theme }}</h6>
-                    <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
+                    <h5 class="font-semibold text-white text-xl mt-2.5" :class="bento.titleClasses ? bento.titleClasses : 'sm:text-2xl'">
                         {{ bento.title }}
                     </h5>
                     <QOpenLink
@@ -159,11 +158,11 @@ const corporateCampaigns = [
         @apply bg-white mt-6 sm:mt-12 lg:mt-20;
 
         .bento-container {
-            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5;
+            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6;
         }
 
         .bento {
-            @apply relative rounded-3xl py-5 flex flex-col justify-between;
+            @apply relative rounded-3xl pt-5 pb-8 flex flex-col justify-between;
             background-color: var(--bg-color);
 
             .bg-pattern {
