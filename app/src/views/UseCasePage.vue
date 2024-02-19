@@ -21,7 +21,7 @@ onMounted(async () => {
 <template>
    <LayoutMain>
         <UsecaseBanner/>
-        <UsecaseBento class="py-16"/>
+        <UsecaseBento class="py-14 lg:py-18"/>
    </LayoutMain>
 </template>
 

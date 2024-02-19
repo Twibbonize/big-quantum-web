@@ -155,10 +155,10 @@ const corporateCampaigns = [
 
 <style lang="scss" scoped>
     .use-case-bento {
-        @apply bg-white mt-6 sm:mt-12 lg:mt-20;
+        @apply bg-white;
 
         .bento-container {
-            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6;
+            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-5 sm:px-0;
         }
 
         .bento {
