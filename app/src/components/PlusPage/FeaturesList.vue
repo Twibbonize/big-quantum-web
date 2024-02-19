@@ -49,10 +49,10 @@ const cards = computed(() => {
     @apply bg-light;
 
     .title {
-        @apply text-2xl font-bold text-center;
+        @apply text-3xl sm:text-6xl font-bold text-center;
 
         span {
-            @apply text-3xl font-serif underline;
+            @apply text-4xl sm:text-7xl font-serif underline;
         }
     }
 
@@ -61,15 +61,15 @@ const cards = computed(() => {
     }
 
     .card {
-        @apply rounded-3xl p-6 sm:p-10 relative bg-white overflow-hidden sm:pb-[300px];
+        @apply rounded-3xl p-6 sm:p-10 relative bg-white overflow-hidden;
         border: 1px solid rgba(27, 27, 27, 0.1);
 
         .card-title {
-            @apply text-xl font-bold;
+            @apply text-xl sm:text-3xl font-bold;
         }
 
         .card-description {
-            @apply text-sm mt-4;
+            @apply text-sm sm:text-base mt-4;
         }
 
         .card-gradient {
@@ -82,9 +82,7 @@ const cards = computed(() => {
         }
 
         .card-image {
-            @apply right-[50%] sm:right-0 translate-x-1/2 sm:translate-x-0 h-44 sm:max-h-72 h-full w-auto max-w-none aspect-auto;
-            position: absolute;
-            bottom: 0;
+            @apply mt-10 sm:mt-9 float-right max-h-[210px] sm:max-h-[220px] lg:max-h-[230px] xl:max-h-[270px];
         }
     }
 }

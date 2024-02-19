@@ -14,7 +14,7 @@ const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore
 
 const content = ref(null);
 
-const { width, height } = useWindowSize;
+const { width, height } = useWindowSize();
 
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
