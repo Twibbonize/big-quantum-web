@@ -1,6 +1,6 @@
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-
+import { useRoute } from 'vue-router';
 import {
     breakpointsTailwind,
     useBreakpoints,
@@ -10,7 +10,9 @@ import {
     useScroll,
     useDebounceFn,
     useMounted,
-    useElementSize
+    useElementSize,
+    useElementBounding,
+    computedAsync
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -138,12 +140,18 @@ const mocks = [
     }
 ];
 
+const route = useRoute();
+
 const { open: modalOpen } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const { height: windowHeight } = useWindowSize();
+
+const campaignSize = useElementBounding(campaignPage);
 const campaignContentSize = useElementSize(campaignContent);
+
 const { y } = useWindowScroll();
 const isMounted = useMounted();
+
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
@@ -151,6 +159,10 @@ const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
+
+const isAdmin = computed(() => {
+    return route.query.edit !== null;
+});
 
 const campaignContentStyle = computed(() => {
     if (!campaignContent.value) {
@@ -162,7 +174,7 @@ const campaignContentStyle = computed(() => {
     const { height: contentHeight } = campaignContentSize;
 
     const totalContentHeight = contentHeight.value;
-    const additionalSpace = 88 + 12 + 24;
+    const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
 
     if (!xl.value || windowHeight.value - additionalSpace > totalContentHeight) {
         return {
@@ -179,32 +191,33 @@ const campaignContentStyle = computed(() => {
     };
 });
 
-const itemsToAdd = 3;
+const campaignPageStyle = computedAsync(async () => {
+    await nextTick();
 
-const lazyLoad = () => {
-    if (isLoadingPost.value) return;
-
-    if (posts.value.length >= 21) {
-        return;
+    if (!xl.value) {
+        return {
+            height: 'auto'
+        };
     }
+    const scaleRegex = /scale\(([^)]+)\)/;
 
-    isLoadingPost.value = true;
+    const match = scaleRegex.exec(campaignContentStyle.value.transform);
+    const scale = match[1];
 
-    setTimeout(() => {
-        posts.value = [
-            ...posts.value,
-            ...publicPosts.slice(posts.value.length, posts.value.length + itemsToAdd)
-        ];
-        isLoadingPost.value = false;
-    }, 1000);
-};
+    const { height } = campaignSize;
+    const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
+
+    const targetHeight = height.value * scale + additionalSpace;
+    return {
+        height: `${targetHeight}px`
+    };
+});
 
 const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
 };
 
 const onClickShare = () => {
-    // const { url, thumbnail } = props;
     modalOpen({
         component: ShareModal,
         props: {
@@ -268,6 +281,17 @@ const initAutoScrollTween = () => {
     });
 };
 
+useResizeObserver(campaignMain, (entries) => {
+    const entry = entries[0];
+    const { height } = entry.contentRect;
+
+    if (!sm.value) {
+        campaignFeeds.value.style.height = `${height}px`;
+    } else {
+        campaignFeeds.value.style.height = 'fit-content';
+    }
+});
+
 watch(y, (newValue) => {
     if (newValue > 110) {
         setNavbarColor('white');
@@ -288,17 +312,6 @@ watch(y, (newValue) => {
         document.querySelector('.campaign__background').style.opacity = '0';
     } else {
         document.querySelector('.campaign__background').style.opacity = '100';
-    }
-});
-
-useResizeObserver(campaignMain, (entries) => {
-    const entry = entries[0];
-    const { height } = entry.contentRect;
-
-    if (!sm.value) {
-        campaignFeeds.value.style.height = `${height}px`;
-    } else {
-        campaignFeeds.value.style.height = 'fit-content';
     }
 });
 
@@ -333,14 +346,10 @@ onMounted(async () => {
 </script>
 <template>
     <LayoutMain>
-        <div ref="campaignPage" class="page campaign">
+        <div ref="campaignPage" class="page campaign" :style="campaignPageStyle">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
-            <div
-                ref="campaignContent"
-                class="campaign__content container px-0 md:px-5 2xl:px-0"
-                :style="campaignContentStyle"
-            >
+            <div ref="campaignContent" class="campaign__content" :style="campaignContentStyle">
                 <div class="grid grid-cols-12 md:gap-6">
                     <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
@@ -586,7 +595,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div v-if="sm" class="pt-8 px-4">
+                        <div v-if="sm" class="py-8 px-4">
                             <QButton
                                 variant="secondary"
                                 size="sm"
@@ -615,7 +624,6 @@ onMounted(async () => {
 
         <div class="campaign-recommendations bg-gray-50 relative z-10">
             <div class="campaign-separator"></div>
-
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
                 <div class="campaign-recommendations__grid">
@@ -696,6 +704,7 @@ onMounted(async () => {
         z-index: 1;
         width: 100%;
         padding-top: 24px;
+        @apply container px-0 md:px-5 2xl:px-0;
 
         @include lg_screen {
             padding-top: 24px;
@@ -705,6 +714,58 @@ onMounted(async () => {
         @include xl_screen {
             padding-top: 12px;
             padding-bottom: 24px;
+        }
+    }
+
+    .campaign__analytic {
+        @apply relative z-50 container mx-auto px-0 md:px-5 2xl:px-0;
+
+        &-wrapper {
+            @apply bg-white px-6 flex flex-col pt-10 border-t;
+
+            @include lg_screen {
+                @apply flex-row items-center justify-between py-6 rounded-2xl;
+            }
+        }
+
+        &-stats {
+            @apply flex items-center justify-between w-full overflow-hidden;
+
+            @include lg_screen {
+                @apply w-fit;
+            }
+        }
+
+        &-stat {
+            @apply flex flex-col items-center border-r border-stroke flex-grow flex-shrink-0 w-0;
+
+            @include lg_screen {
+                @apply w-fit items-start px-10;
+            }
+
+            &:first-of-type {
+                @apply pl-0;
+            }
+
+            &:last-of-type {
+                @apply border-r-0;
+            }
+        }
+
+        &-detail {
+            @apply flex flex-col-reverse items-center mt-10 text-center;
+
+            @include lg_screen {
+                @apply flex-row mt-0;
+            }
+
+            &__note {
+                @apply text-sm text-content mt-3;
+
+                @include lg_screen {
+                    @apply mt-0 mr-3;
+                }
+            }
         }
     }
 
@@ -824,6 +885,10 @@ onMounted(async () => {
             }
         }
     }
+}
+
+.campaign-edit {
+    @apply fixed bottom-0 right-0 w-full z-50 py-5;
 }
 
 // campaign feeds

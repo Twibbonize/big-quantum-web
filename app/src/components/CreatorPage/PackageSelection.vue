@@ -42,11 +42,19 @@ const businessFeatures = computed(() => {
         <QSwitchTwo class="mt-8" />
         <div class="package">
             <div class="package-card free justify-between">
-                <div class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                <div
+                    class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center"
+                >
                     <div class="flex-1">
                         <h5>Free</h5>
                         <p class="mt-4">For people who are just getting started</p>
-                        <QButton v-if="width >= 640 && width <= 1280" variant="link" class="btn-free mt-8"> Sign Up </QButton>
+                        <QButton
+                            v-if="width >= 640 && width <= 1280"
+                            variant="link"
+                            class="btn-free mt-8"
+                        >
+                            Sign Up
+                        </QButton>
                         <div v-else class="line"></div>
                     </div>
                     <div class="flex flex-col flex-1 gap-6">
@@ -62,16 +70,24 @@ const businessFeatures = computed(() => {
                         </div>
                     </div>
                 </div>
-                <QButton v-if="width <= 640 || width >= 1280" variant="link" class="btn-free mt-8"> Sign Up </QButton>
+                <QButton v-if="width <= 640 || width >= 1280" variant="link" class="btn-free mt-8">
+                    Sign Up
+                </QButton>
             </div>
             <div class="package-card individual">
-                <div class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                <div
+                    class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center"
+                >
                     <div class="flex-1">
                         <h6>Premium</h6>
                         <h5>Individual</h5>
                         <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
                         <span>$12</span>
-                        <QButton v-if="width >= 640 && width <= 1280" variant="primary" class="flex items-center gap-2 w-full mt-8">
+                        <QButton
+                            v-if="width >= 640 && width <= 1280"
+                            variant="primary"
+                            class="flex items-center gap-2 w-full mt-8"
+                        >
                             Purchase Now
                             <i class="ri-arrow-right-line"></i>
                         </QButton>
@@ -90,19 +106,29 @@ const businessFeatures = computed(() => {
                         </div>
                     </div>
                 </div>
-                <QButton v-if="width <= 640 || width >= 1280" variant="primary" class="flex items-center gap-2 w-full mt-8">
+                <QButton
+                    v-if="width <= 640 || width >= 1280"
+                    variant="primary"
+                    class="flex items-center gap-2 w-full mt-8"
+                >
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
             </div>
             <div class="package-card business">
-                <div class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center">
+                <div
+                    class="w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between items-center"
+                >
                     <div class="flex-1">
                         <h6>Premium</h6>
                         <h5>Business</h5>
                         <p class="mt-4 mb-6">For people who want more out of Twibbonize</p>
                         <span>Start from $48</span>
-                        <QButton v-if="width >= 640 && width <= 1280" variant="black" class="flex items-center gap-2 w-full mt-8">
+                        <QButton
+                            v-if="width >= 640 && width <= 1280"
+                            variant="black"
+                            class="flex items-center gap-2 w-full mt-8"
+                        >
                             Purchase Now
                             <i class="ri-arrow-right-line"></i>
                         </QButton>
@@ -121,7 +147,11 @@ const businessFeatures = computed(() => {
                         </div>
                     </div>
                 </div>
-                <QButton v-if="width <= 640 || width >= 1280" variant="black" class="flex items-center gap-2 w-full mt-8">
+                <QButton
+                    v-if="width <= 640 || width >= 1280"
+                    variant="black"
+                    class="flex items-center gap-2 w-full mt-8"
+                >
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
