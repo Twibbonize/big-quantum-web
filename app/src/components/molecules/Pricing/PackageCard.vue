@@ -2,18 +2,18 @@
 const props = defineProps({
     isDark: {
         type: Boolean,
-        default: false,
+        default: false
     },
     isPremium: {
         type: Boolean,
-        default: false,
+        default: false
     },
     type: String,
     title: String,
     description: String,
     price: String,
-    features: Array,
-})
+    features: Array
+});
 </script>
 
 <template>
@@ -24,7 +24,7 @@ const props = defineProps({
                 <h5 class="title">{{ title }}</h5>
                 <p class="description">{{ description }}</p>
                 <span class="price">{{ price }}</span>
-                
+
                 <div class="button-container top">
                     <slot name="cta-top"></slot>
                 </div>
@@ -51,68 +51,67 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-    .package-card {
-        @apply py-16 px-8 sm:px-16 w-full flex flex-col justify-between rounded-3xl relative z-10 xl:max-w-[360px];
-        .card-container {
-            @apply w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between;
-        }
-
-        .type {
-            @apply text-xxs font-bold uppercase absolute;
-            letter-spacing: 2.4px;
-            top: 48px;
-        }
-
-        .title {
-            @apply font-bold text-xl lg:text-2xl;
-        }
-
-        .description {
-            @apply text-sm lg:text-base mt-4 mb-6;
-        }
-
-        .price {
-            @apply text-2xl	font-bold;
-        }
-
-        .button-container {
-            @apply w-full;
-            &.top {
-                @apply hidden sm:flex lg:hidden mt-8;
-            }
-
-            &.bottom {
-                @apply flex sm:hidden lg:flex mt-8;
-            }
-        }
+.package-card {
+    @apply py-16 px-8 sm:px-16 w-full flex flex-col justify-between rounded-3xl relative z-10 xl:max-w-[360px];
+    .card-container {
+        @apply w-full flex flex-col sm:flex-row lg:flex-col gap-8 justify-between;
     }
 
+    .type {
+        @apply text-xxs font-bold uppercase absolute;
+        letter-spacing: 2.4px;
+        top: 48px;
+    }
+
+    .title {
+        @apply font-bold text-xl lg:text-2xl;
+    }
+
+    .description {
+        @apply text-sm lg:text-base mt-4 mb-6;
+    }
+
+    .price {
+        @apply text-2xl	font-bold;
+    }
+
+    .button-container {
+        @apply w-full;
+        &.top {
+            @apply hidden sm:flex lg:hidden mt-8;
+        }
+
+        &.bottom {
+            @apply flex sm:hidden lg:flex mt-8;
+        }
+    }
+}
+
+.line {
+    @apply w-full mt-8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.is-dark {
     .line {
         @apply w-full mt-8;
-        border: 1px solid rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
+}
 
-    .is-dark {
-        .line {
-            @apply w-full mt-8;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }        
-    }
+.icon-container {
+    @apply flex items-center justify-center rounded-full px-1 mr-2;
+    height: 24px;
+    width: 24px;
+    background: rgba(255, 255, 255, 0.2);
+}
 
+.package-basic {
     .icon-container {
         @apply flex items-center justify-center rounded-full px-1 mr-2;
         height: 24px;
         width: 24px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.2);
     }
-
-    .package-basic {
-        .icon-container {
-            @apply flex items-center justify-center rounded-full px-1 mr-2;
-            height: 24px;
-            width: 24px;
-            background: rgba(0, 0, 0, 0.2);
-        }
-    }
-
+}
 </style>

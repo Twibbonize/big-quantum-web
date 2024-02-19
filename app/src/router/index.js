@@ -6,6 +6,7 @@ import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
+import OwnCampaignPage from '@/views/OwnCampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
@@ -92,13 +93,25 @@ const router = createRouter({
         },
         {
             path: '/hanoi-art',
-            name: 'campaign',
-            component: CampaignPage,
-            meta: {
-                navbarSearch: true,
-                transition: 'slide-fade'
-            },
             children: [
+                {
+                    path: '',
+                    name: 'campaign',
+                    component: CampaignPage,
+                    meta: {
+                        navbarSearch: true,
+                        transition: 'slide-fade'
+                    }
+                },
+                {
+                    path: 'admin',
+                    name: 'own-campaign',
+                    component: OwnCampaignPage,
+                    meta: {
+                        navbarSearch: true,
+                        transition: 'slide-fade'
+                    }
+                },
                 {
                     path: 'feeds',
                     name: 'campaign-feeds',

@@ -47,7 +47,7 @@ const businessFeatures = computed(() => {
                 </template>
                 <template v-slot:cta-bottom>
                     <QButton variant="link" class="button-free mt-8"> Sign Up </QButton>
-                </template>  
+                </template>
             </PackageCard>
             <PackageCard
                 class="package-individual"
@@ -123,7 +123,6 @@ const businessFeatures = computed(() => {
             background: rgba(255, 255, 255, 0.08);
         }
     }
-
 
     .package-individual {
         @apply bg-white;
