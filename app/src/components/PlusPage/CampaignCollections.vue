@@ -107,7 +107,7 @@ const setMoodIndex = (index) => {
             />
         </div>
         <div class="flex justify-center mt-6">
-            <QOpenLink url="/collections" text="Explore More Collections" />
+            <QOpenLink classes="text-base" url="/collections" text="Explore More Collections" />
         </div>
     </div>
 </template>

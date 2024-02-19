@@ -32,7 +32,7 @@ const props = defineProps({
                 <img class="image-slide" :src="`/assets/img/campaigns/${campaign}`" />
             </swiper-slide>
         </QSlider>
-        <QOpenLink class="mt-8" text="Explore Collections" :url="url" />
+        <QOpenLink classes="text-base" class="mt-8" text="Explore Collections" :url="url" />
     </div>
 </template>
 
