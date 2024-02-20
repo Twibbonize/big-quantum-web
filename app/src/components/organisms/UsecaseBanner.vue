@@ -118,7 +118,7 @@ const coverflowEffectOpts = computed(() => {
     }
 
     .banner-slide {
-        @apply w-[105px] h-[105px] sm:w-[200px] sm:h-[200px];
+        @apply w-[120px] h-[120px] sm:w-[200px] sm:h-[200px];
     }
 
     .banner-image {
