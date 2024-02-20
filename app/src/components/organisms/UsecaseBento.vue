@@ -11,7 +11,16 @@ const bentoLists = [
         color: '#2D9292',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/government-1.jpg',
+            '/assets/img/campaigns/usecases/government-2.jpg',
+            '/assets/img/campaigns/usecases/government-3.jpg',
+            '/assets/img/campaigns/usecases/government-4.jpg',
+            '/assets/img/campaigns/usecases/government-5.jpg',
+            '/assets/img/campaigns/usecases/government-1.jpg',
+            '/assets/img/campaigns/usecases/government-2.jpg',
+            '/assets/img/campaigns/usecases/government-3.jpg',
+            '/assets/img/campaigns/usecases/government-4.jpg',
+            '/assets/img/campaigns/usecases/government-5.jpg',
         ],
     },
     {
@@ -23,7 +32,16 @@ const bentoLists = [
         classes: 'sm:col-span-2',
         titleClasses: 'sm:text-4xl',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/events-1.jpg',
+            '/assets/img/campaigns/usecases/events-2.jpg',
+            '/assets/img/campaigns/usecases/events-3.jpg',
+            '/assets/img/campaigns/usecases/events-4.jpg',
+            '/assets/img/campaigns/usecases/events-5.jpg',
+            '/assets/img/campaigns/usecases/events-1.jpg',
+            '/assets/img/campaigns/usecases/events-2.jpg',
+            '/assets/img/campaigns/usecases/events-3.jpg',
+            '/assets/img/campaigns/usecases/events-4.jpg',
+            '/assets/img/campaigns/usecases/events-5.jpg',
         ],
     },
     {
@@ -34,7 +52,16 @@ const bentoLists = [
         color: '#448DBC',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/personal-1.jpg',
+            '/assets/img/campaigns/usecases/personal-2.jpg',
+            '/assets/img/campaigns/usecases/personal-3.jpg',
+            '/assets/img/campaigns/usecases/personal-4.jpg',
+            '/assets/img/campaigns/usecases/personal-5.jpg',
+            '/assets/img/campaigns/usecases/personal-1.jpg',
+            '/assets/img/campaigns/usecases/personal-2.jpg',
+            '/assets/img/campaigns/usecases/personal-3.jpg',
+            '/assets/img/campaigns/usecases/personal-4.jpg',
+            '/assets/img/campaigns/usecases/personal-5.jpg',
         ],
     },
     {
@@ -45,7 +72,14 @@ const bentoLists = [
         color: '#2E2E77',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/commemorations-1.jpg',
+            '/assets/img/campaigns/usecases/commemorations-2.jpg',
+            '/assets/img/campaigns/usecases/commemorations-3.jpg',
+            '/assets/img/campaigns/usecases/commemorations-4.jpg',
+            '/assets/img/campaigns/usecases/commemorations-1.jpg',
+            '/assets/img/campaigns/usecases/commemorations-2.jpg',
+            '/assets/img/campaigns/usecases/commemorations-3.jpg',
+            '/assets/img/campaigns/usecases/commemorations-4.jpg',
         ],
     },
     {
@@ -56,7 +90,14 @@ const bentoLists = [
         color: '#37667E',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/politics-1.jpg',
+            '/assets/img/campaigns/usecases/politics-2.jpg',
+            '/assets/img/campaigns/usecases/politics-3.jpg',
+            '/assets/img/campaigns/usecases/politics-4.jpg',
+            '/assets/img/campaigns/usecases/politics-1.jpg',
+            '/assets/img/campaigns/usecases/politics-2.jpg',
+            '/assets/img/campaigns/usecases/politics-3.jpg',
+            '/assets/img/campaigns/usecases/politics-4.jpg',
         ],
     },
     {
@@ -68,18 +109,34 @@ const bentoLists = [
         classes: 'sm:col-span-2',
         titleClasses: 'sm:text-4xl',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/business-1.jpg',
+            '/assets/img/campaigns/usecases/business-2.jpg',
+            '/assets/img/campaigns/usecases/business-3.jpg',
+            '/assets/img/campaigns/usecases/business-4.jpg',
+            '/assets/img/campaigns/usecases/business-5.jpg',
+            '/assets/img/campaigns/usecases/business-1.jpg',
+            '/assets/img/campaigns/usecases/business-2.jpg',
+            '/assets/img/campaigns/usecases/business-3.jpg',
+            '/assets/img/campaigns/usecases/business-4.jpg',
+            '/assets/img/campaigns/usecases/business-5.jpg',
         ],
     },
     {
         title: 'Craft Personalized Digital Flair for Diverse Entertainment Experiences with Twibbonize',
         theme: 'entertainment',
         link: '/',
-        bg: '/assets/img/background/bg-entertainmend.svg',
+        bg: '/assets/img/background/bg-entertainment.svg',
         color: '#7A2997',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/entertainment-1.jpg',
+            '/assets/img/campaigns/usecases/entertainment-2.jpg',
+            '/assets/img/campaigns/usecases/entertainment-3.jpg',
+            '/assets/img/campaigns/usecases/entertainment-4.jpg',
+            '/assets/img/campaigns/usecases/entertainment-1.jpg',
+            '/assets/img/campaigns/usecases/entertainment-2.jpg',
+            '/assets/img/campaigns/usecases/entertainment-3.jpg',
+            '/assets/img/campaigns/usecases/entertainment-4.jpg',
         ],
     },
     {
@@ -90,7 +147,16 @@ const bentoLists = [
         color: '#536A75',
         classes: 'sm:col-span-1',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/social-1.jpg',
+            '/assets/img/campaigns/usecases/social-2.jpg',
+            '/assets/img/campaigns/usecases/social-3.jpg',
+            '/assets/img/campaigns/usecases/social-4.jpg',
+            '/assets/img/campaigns/usecases/social-5.jpg',
+            '/assets/img/campaigns/usecases/social-1.jpg',
+            '/assets/img/campaigns/usecases/social-2.jpg',
+            '/assets/img/campaigns/usecases/social-3.jpg',
+            '/assets/img/campaigns/usecases/social-4.jpg',
+            '/assets/img/campaigns/usecases/social-5.jpg',
         ],
     },
     {
@@ -102,23 +168,19 @@ const bentoLists = [
         classes: 'sm:col-span-2',
         titleClasses: 'sm:text-4xl',
         campaigns: [
-
+            '/assets/img/campaigns/usecases/education-1.jpg',
+            '/assets/img/campaigns/usecases/education-2.jpg',
+            '/assets/img/campaigns/usecases/education-3.jpg',
+            '/assets/img/campaigns/usecases/education-4.jpg',
+            '/assets/img/campaigns/usecases/education-5.jpg',
+            '/assets/img/campaigns/usecases/education-1.jpg',
+            '/assets/img/campaigns/usecases/education-2.jpg',
+            '/assets/img/campaigns/usecases/education-3.jpg',
+            '/assets/img/campaigns/usecases/education-4.jpg',
+            '/assets/img/campaigns/usecases/education-5.jpg',
         ],
     },
 ]
-
-const corporateCampaigns = [
-    '/assets/img/campaigns/corporate/twibbon-1.png',
-    '/assets/img/campaigns/corporate/twibbon-2.png',
-    '/assets/img/campaigns/corporate/twibbon-3.png',
-    '/assets/img/campaigns/corporate/twibbon-4.png',
-    '/assets/img/campaigns/corporate/twibbon-5.png',
-    '/assets/img/campaigns/corporate/twibbon-1.png',
-    '/assets/img/campaigns/corporate/twibbon-2.png',
-    '/assets/img/campaigns/corporate/twibbon-3.png',
-    '/assets/img/campaigns/corporate/twibbon-4.png',
-    '/assets/img/campaigns/corporate/twibbon-5.png'
-];
 </script>
 
 <template>
@@ -144,7 +206,7 @@ const corporateCampaigns = [
                 </div>
                 <CampaignSlider
                     class="mt-8"
-                    :campaigns="corporateCampaigns"
+                    :campaigns="bento.campaigns"
                     campaign-classes="h-20 w-20 rounded slide"
                 />
                 <img class="bg-pattern" :src="bento.bg" alt="" />

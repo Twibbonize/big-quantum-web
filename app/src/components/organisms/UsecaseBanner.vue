@@ -131,11 +131,11 @@ onUnmounted(() => {
     }
 
     .banner-slide {
-        @apply w-[105px] h-[105px] sm:w-[200px] sm:h-[200px] lg:w-[250px] lg:h-[250px] xl:w-[300px] xl:h-[300px];
+        @apply w-[105px] h-[105px] sm:w-[200px] sm:h-[200px];
     }
 
     .banner-image {
-        @apply max-h-full max-w-full rounded-[10px] sm:rounded-[20px] lg:rounded-[30px];
+        @apply max-h-full max-w-full rounded-[10px] sm:rounded-[20px];
     }
 
     .title {
