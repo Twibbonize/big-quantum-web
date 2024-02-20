@@ -1,5 +1,6 @@
 <script setup>
 import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue';
+import {  onBeforeRouteLeave } from 'vue-router';
 import QModal from '@/components/atoms/QModal.vue';
 
 const eventBus = inject('eventBus');
@@ -32,15 +33,20 @@ onBeforeUnmount(() => {
     eventBus.off('modal:update');
     eventBus.off('modal:close');
 });
+
+
+onBeforeRouteLeave(() => {
+    if (!!modalComponent.value) {
+        handleClose();
+        return false;
+    }
+});
 </script>
 
 <template>
     <QModal :show="!!modalComponent" v-bind="modalCfg" @close="handleClose" v-slot="{ isDragging }">
         <template v-if="modalCfg && modalCfg.position === 'bottom'">
-            <Component
-                :is="modalComponent && { ...modalComponent }"
-                v-bind="{ ...modalProps, isDragging }"
-            />
+            <Component :is="modalComponent && { ...modalComponent }" v-bind="{ ...modalProps, isDragging }" />
         </template>
 
         <template v-else>
