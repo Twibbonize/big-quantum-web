@@ -223,7 +223,6 @@ const campaignAnalyticStyle = computed(() => {
 });
 
 const campaignPageStyle = computedAsync(async () => {
-    await nextTick();
 
     if (!xl.value) {
         return {
@@ -233,12 +232,25 @@ const campaignPageStyle = computedAsync(async () => {
     const scaleRegex = /scale\(([^)]+)\)/;
 
     const match = scaleRegex.exec(campaignContentStyle.value.transform);
-    const scale = match[1];
+    const scale = parseFloat(match[1]);
 
     const { height } = campaignSize;
     const { height: analyticHeight } = campaignAnalyticSize;
 
-    const targetHeight = height.value * scale + analyticHeight.value + 24;
+    await nextTick();
+
+    const parsedScale = parseFloat(scale);
+
+    if (parsedScale === 1) {
+        return {
+            height: 'auto'
+        }
+    }
+
+    const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
+
+
+    const targetHeight = height.value * parsedScale + additionalSpace + analyticHeight.value
     return {
         height: `${targetHeight}px`
     };
@@ -659,12 +671,12 @@ onMounted(async () => {
 
                     <div class="campaign__analytic-detail">
                         <span class="campaign__analytic-detail__note">
-                            Real-time estimates Last 30 days
+                            Real-time estimates last 30 days
                         </span>
 
                         <QButton variant="secondary">
                             <i class="ri-line-chart-line"></i>
-                            <span class="ml-2">See Detailed Analytics</span>
+                            <span class="ml-2">See More Analytics</span>
                         </QButton>
                     </div>
                 </div>
