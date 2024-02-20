@@ -93,16 +93,13 @@ const router = createRouter({
         },
         {
             path: '/hanoi-art',
+            name: 'campaign',
+            component: CampaignPage,
+            meta: {
+                navbarSearch: true,
+                transition: 'slide-fade'
+            },
             children: [
-                {
-                    path: '',
-                    name: 'campaign',
-                    component: CampaignPage,
-                    meta: {
-                        navbarSearch: true,
-                        transition: 'slide-fade'
-                    }
-                },
                 {
                     path: 'admin',
                     name: 'own-campaign',

@@ -1,6 +1,5 @@
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
 import {
     breakpointsTailwind,
     useBreakpoints,
@@ -11,7 +10,6 @@ import {
     useDebounceFn,
     useMounted,
     useElementSize,
-    useElementBounding,
     computedAsync
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
@@ -28,11 +26,14 @@ import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import PostMockup from '@/components/molecules/PostMockup.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
+
 import CollectionModal from '@/components/organisms/CollectionModal.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
+import TwibbonModal from '@/components/organisms/TwibbonModal.vue';
+
 import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
-import { publicCampaigns } from '@/mock/campaigns';
+import { publicCampaigns, mockCampaigns } from '@/mock/campaigns';
 import { useNavbarStore } from '@/stores/navbarStore';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -61,92 +62,11 @@ const selectedFrames = ref(frames[0]);
 const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
-const mocks = [
-    {
-        frame: frames[0],
-        photo: '/assets/img/sample/sample-person-1.jpg',
-        photoStyle: {
-            left: '14%',
-            top: '-10%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-2.jpg'
-    },
-    {
-        frame: frames[2],
-        photo: '/assets/img/sample/sample-person-3.jpg',
-        photoStyle: {
-            left: '0',
-            top: '20%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-4.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '6%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[0],
-        photo: '/assets/img/sample/sample-person-5.jpg',
-        photoStyle: {
-            left: '16%',
-            top: '-12%',
-            transform: 'scale(0.9)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-8.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '-0%',
-            transform: 'scale(0.9)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-10.jpg',
-        photoStyle: {
-            left: '0',
-            top: '10%',
-            transform: 'scale(1)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-11.jpg',
-        photoStyle: {
-            left: '0',
-            top: '10%',
-            transform: 'scale(1)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-12.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '-0%',
-            transform: 'scale(0.9)'
-        }
-    }
-];
-
-const route = useRoute();
+const mocks = [...mockCampaigns];
 
 const { open: modalOpen } = useModal();
-const breakpoints = useBreakpoints(breakpointsTailwind);
 const { height: windowHeight } = useWindowSize();
 
-const campaignSize = useElementBounding(campaignPage);
 const campaignContentSize = useElementSize(campaignContent);
 
 const { y } = useWindowScroll();
@@ -155,14 +75,12 @@ const isMounted = useMounted();
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
 
-const isAdmin = computed(() => {
-    return route.query.edit !== null;
-});
 
 const campaignContentStyle = computed(() => {
     if (!campaignContent.value) {
@@ -226,6 +144,7 @@ const campaignPageStyle = computedAsync(async () => {
         height: `${targetHeight}px`
     };
 });
+
 const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
 };
@@ -256,6 +175,7 @@ const onClickCollection = () => {
 };
 
 let autoScrollTween;
+
 const calcDuration = () => {
     const context = document.querySelector('.campaign-feeds__wrapper');
 
@@ -523,8 +443,7 @@ onMounted(async () => {
         <!-- fullscreen mode -->
         <router-view v-slot="{ Component }">
             <transition name="fade">
-                <component :is="Component" :posts="posts" :displayType="displayType"
-                    @toggle-display="(newValue) => (displayType = newValue)" />
+                <component :is="Component" :posts="posts" :displayType="displayType" @toggle-display="(newValue) => (displayType = newValue)" />
             </transition>
         </router-view>
 

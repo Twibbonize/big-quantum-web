@@ -205,4 +205,84 @@ const ownCampaigns = [
     }
 ];
 
-export { publicCampaigns, ownCampaigns };
+
+const mockCampaigns = [
+    {
+        frame: frames[0],
+        photo: '/assets/img/sample/sample-person-1.jpg',
+        photoStyle: {
+            left: '14%',
+            top: '-10%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-2.jpg'
+    },
+    {
+        frame: frames[2],
+        photo: '/assets/img/sample/sample-person-3.jpg',
+        photoStyle: {
+            left: '0',
+            top: '20%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-4.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '6%',
+            transform: 'scale(1.1)'
+        }
+    },
+    {
+        frame: frames[0],
+        photo: '/assets/img/sample/sample-person-5.jpg',
+        photoStyle: {
+            left: '16%',
+            top: '-12%',
+            transform: 'scale(0.9)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-8.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '-0%',
+            transform: 'scale(0.9)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-10.jpg',
+        photoStyle: {
+            left: '0',
+            top: '10%',
+            transform: 'scale(1)'
+        }
+    },
+    {
+        frame: frames[1],
+        photo: '/assets/img/sample/sample-person-11.jpg',
+        photoStyle: {
+            left: '0',
+            top: '10%',
+            transform: 'scale(1)'
+        }
+    },
+    {
+        frame: frames[3],
+        photo: '/assets/img/sample/sample-person-12.jpg',
+        photoStyle: {
+            left: '-20%',
+            top: '-0%',
+            transform: 'scale(0.9)'
+        }
+    }
+];
+
+export { publicCampaigns, ownCampaigns, mockCampaigns };
