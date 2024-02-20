@@ -34,7 +34,7 @@ const props = defineProps({
                 <p v-if="isPremium">All same benefits from <strong>Free</strong>, plus:</p>
                 <div
                     v-for="(feature, i) in features"
-                    :key="`${name}-feature-${i}`"
+                    :key="`${title}-feature-${i}`"
                     class="flex items-center"
                 >
                     <div class="icon-container">

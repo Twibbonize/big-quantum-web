@@ -22,25 +22,12 @@ const coverflowImages = [
 
 const { width } = useWindowSize();
 
-const doScroll = () => {
-    const { top } = lottieScroll.value.getBoundingClientRect();
-    if (top < 500) lottieSupports.value.play();
-};
-
 const coverflowEffectOpts = computed(() => {
     if (width >= 1280) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
     if (width >= 1024) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
     if (width >= 640) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
     return { rotate: 25, stretch: 40, depth: 150, slideShadow: false, };
 })
-
-onMounted(() => {
-    window.addEventListener('scroll', doScroll);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('scroll', doScroll);
-});
 </script>
 
 <template>
