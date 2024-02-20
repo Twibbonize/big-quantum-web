@@ -223,7 +223,6 @@ const campaignAnalyticStyle = computed(() => {
 });
 
 const campaignPageStyle = computedAsync(async () => {
-
     if (!xl.value) {
         return {
             height: 'auto'
@@ -244,13 +243,12 @@ const campaignPageStyle = computedAsync(async () => {
     if (parsedScale === 1) {
         return {
             height: 'auto'
-        }
+        };
     }
 
     const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
 
-
-    const targetHeight = height.value * parsedScale + additionalSpace + analyticHeight.value
+    const targetHeight = height.value * parsedScale + additionalSpace + analyticHeight.value;
     return {
         height: `${targetHeight}px`
     };

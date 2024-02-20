@@ -2,6 +2,10 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+    as: {
+        type: [String, Object],
+        default: 'button'
+    },
     variant: {
         type: String,
         default: 'primary',
@@ -68,9 +72,9 @@ function handleClick(e) {
 }
 </script>
 <template>
-    <button :class="buttonClasses" :disabled="!enabled" @click="handleClick">
+    <component :is="as" :class="buttonClasses" :disabled="!enabled" @click="handleClick">
         <slot></slot>
-    </button>
+    </component>
 </template>
 
 <style scoped lang="scss">

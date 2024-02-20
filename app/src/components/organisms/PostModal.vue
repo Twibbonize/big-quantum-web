@@ -73,20 +73,25 @@ const commentValidation = yupObject().shape({
 </script>
 <template>
     <div class="post-modal max-h-full flex flex-col">
-
         <Teleport to=".dialog__header">
             <div class="post-modal__header w-full">
-                <div class="flex md:hidden items-center justify-between px-4 py-3 w-full border-b border-stroke">
+                <div
+                    class="flex md:hidden items-center justify-between px-4 py-3 w-full border-b border-stroke"
+                >
                     <div class="w-10">
                         <a @click="close">
                             <i class="ri-arrow-left-s-line ri-lg"></i>
                         </a>
                     </div>
-                    <div class="text-sm font-semibold flex-grow flex-shrink-0 text-center">Post</div>
+                    <div class="text-sm font-semibold flex-grow flex-shrink-0 text-center">
+                        Post
+                    </div>
                     <div class="w-10"></div>
                 </div>
 
-                <div class="flex items-center justify-between px-4 py-3 w-full border-b border-stroke">
+                <div
+                    class="flex items-center justify-between px-4 py-3 w-full border-b border-stroke"
+                >
                     <div class="flex items-center space-x-1 flex-shrink-0">
                         <img class="w-8 h-8" :src="creator.avatar" alt="Universe Tech" />
                         <div class="flex flex-col">
@@ -101,7 +106,8 @@ const commentValidation = yupObject().shape({
                         <QPopover>
                             <template #trigger>
                                 <span
-                                    class="w-10 h-10 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors">
+                                    class="w-10 h-10 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
+                                >
                                     <i class="ri-more-line ri-lg"></i>
                                 </span>
                             </template>
@@ -139,14 +145,20 @@ const commentValidation = yupObject().shape({
             <div class="bg-black text-white px-3 py-2 pb-3">
                 <div class="flex items-center justify-between space-x-2">
                     <div class="flex flex-col w-0 flex-grow">
-                        <div class="text-sm font-semibold leading-tight w-full text-ellipsis truncate overflow-hidden">
+                        <div
+                            class="text-sm font-semibold leading-tight w-full text-ellipsis truncate overflow-hidden"
+                        >
                             {{ campaign.name }}
                         </div>
                         <div class="text-xxs text-content mt-1">twb.nz/{{ campaign.url }}</div>
                     </div>
 
                     <div class="flex-shrink-0">
-                        <QButton size="sm" variant="secondary" @click="$router.push({ name: 'campaign' })">
+                        <QButton
+                            size="sm"
+                            variant="secondary"
+                            @click="$router.push({ name: 'campaign' })"
+                        >
                             <span class="text-xs">Get Yours</span>
                         </QButton>
                     </div>
@@ -166,8 +178,14 @@ const commentValidation = yupObject().shape({
                         <div class="text-xs text-content">an hour ago</div>
                     </div>
                     <div ref="captionContainer" class="post-modal__caption">
-                        <QEllipsisText v-if="caption" :text="caption" :lines="3" :containerWidth="(captionContainer && captionContainer.offsetWidth) || 240
-                            " />
+                        <QEllipsisText
+                            v-if="caption"
+                            :text="caption"
+                            :lines="3"
+                            :containerWidth="
+                                (captionContainer && captionContainer.offsetWidth) || 240
+                            "
+                        />
                     </div>
                 </div>
             </div>
