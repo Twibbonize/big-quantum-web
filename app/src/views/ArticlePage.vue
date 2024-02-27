@@ -3,6 +3,7 @@ import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import QBreadcrumbs from '@/components/atoms/QBreadcrumbs.vue';
 import ArticleMore from '@/components/molecules/Article/More.vue';
 import ArticleCategory from '@/components/molecules/Article/Category.vue';
+import ArticleTitle from '@/components/molecules/Article/Title.vue';
 
 const links = [
     {
@@ -31,7 +32,24 @@ const moreLinks = [
         title: 'Empowering Social Causes Through Twibbonize\'s Visual Impact',
         link: '/use-cases',
     },
-]
+];
+
+const articleData = {
+    title: 'How Twibbonize Becomes a Visual Marvel for Various Events',
+    publishedDate: 1704938439000,
+    readtime: 4,
+    content: [
+        {
+
+        },
+        {
+
+        },
+        {
+
+        }
+    ],
+}
 </script>
 
 <template>
@@ -41,6 +59,12 @@ const moreLinks = [
             <div class="article-container">
                 <div class="article-content">
                     <ArticleCategory title="events"/>
+                    <ArticleTitle
+                        :title="articleData.title"
+                        :published-date="articleData.publishedDate"
+                        :readtime="articleData.readtime"
+                    />
+                    <ArticleBlock/>
                 </div>
                 <ArticleMore  class="article-more" title="More Use Cases" :links="moreLinks"/>
             </div>
