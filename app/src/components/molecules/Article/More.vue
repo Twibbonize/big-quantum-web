@@ -29,7 +29,7 @@ defineProps({
         @apply text-[#667085] sm:text-base font-medium capitalize mb-4;
     }
     .content {
-        @apply flex flex-col gap-4 items-center w-full;
+        @apply flex flex-col gap-4 items-start w-full;
     }
 
     .line {
