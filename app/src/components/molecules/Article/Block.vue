@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
     block: {
-      type: String,
+      type: Object,
     },
 });
 </script>
@@ -13,7 +13,7 @@ const props = defineProps({
     <hr v-if="block.line" class="line"/>
     <figure v-if="block.image">
       <img :src="block.image" alt="-">
-      <hr class="mt-2 mb-1">
+      <hr class="mt-4 mb-2">
       <figcaption class="caption">{{ block.caption }}</figcaption>
     </figure>
   </div>
