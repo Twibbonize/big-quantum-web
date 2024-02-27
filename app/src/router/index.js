@@ -14,6 +14,7 @@ import LeaderboardPage from '@/views/LeaderboardPage.vue';
 import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
 import PostPage from '@/views/PostPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
+import ArticlePage from '@/views/ArticlePage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -142,6 +143,14 @@ const router = createRouter({
             path: '/use-cases',
             name: 'usecases',
             component: UseCasePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/use-cases/:uri',
+            name: 'usecases-article',
+            component: ArticlePage,
             meta: {
                 navbarSearch: true
             }

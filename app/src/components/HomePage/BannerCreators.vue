@@ -170,7 +170,7 @@ onUnmounted(() => {
         width: 920px;
         height: 640px;
         max-width: 940px;
-        mix-blend-mode: lighten;
+        // mix-blend-mode: lighten;
     }
     &__ellipse {
         position: absolute;
@@ -204,7 +204,7 @@ onUnmounted(() => {
             left: 50%;
             transform: translateX(-50%);
             animation: 8s glow infinite ease-in-out alternate;
-            mix-blend-mode: lighten;
+            // mix-blend-mode: lighten;
         }
     }
 }

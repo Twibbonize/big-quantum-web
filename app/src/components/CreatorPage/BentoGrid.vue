@@ -143,7 +143,7 @@
 @media screen and (min-width: 1024px) {
     .creators-features {
         .card-1 {
-            background-size: 100%;
+            background-size: 70%;
         }
         .card-2 {
             background-size: 100%;

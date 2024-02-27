@@ -220,7 +220,7 @@ const bentoLists = [
         @apply bg-white;
 
         .bento-container {
-            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-5 sm:px-0;
+            @apply w-full max-w-[1100px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-5 sm:px-8 xl:px-0;
         }
 
         .bento {
