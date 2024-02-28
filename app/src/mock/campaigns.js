@@ -205,7 +205,6 @@ const ownCampaigns = [
     }
 ];
 
-
 const mockCampaigns = [
     {
         frame: frames[0],
