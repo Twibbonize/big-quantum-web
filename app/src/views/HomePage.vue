@@ -61,7 +61,7 @@ onUnmounted(() => {
                     data-aos="fade-in"
                     :width="width"
                     :height="height"
-                    class="container rounded-[40px]"
+                    class="container sm:rounded-[40px]"
                 >
                     <CampaignSwiper />
                 </BannerCreators>
@@ -75,7 +75,7 @@ onUnmounted(() => {
     .banner-creators {
         .bg::before {
             width: 100%;
-            @apply sm:rounded-[40px];
+            @apply rounded-none sm:rounded-[40px];
         }
     }
 }

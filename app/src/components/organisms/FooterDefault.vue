@@ -31,7 +31,7 @@ const discoverLinks = [
 const resourceLinks = [
     {
         text: 'For Creators',
-        url: '/',
+        url: '/creators',
         isInAppPage: true
     },
     {
@@ -41,7 +41,7 @@ const resourceLinks = [
     },
     {
         text: 'Use Cases',
-        url: '/',
+        url: '/use-cases',
         isInAppPage: true
     },
     {
