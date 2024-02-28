@@ -6,8 +6,6 @@ class Editor {
         this.width = width;
         this.height = height;
 
-        console.log(width, height);
-
         const canvas = new fabric.Canvas(el, {
             height: height,
             width: width,
@@ -21,6 +19,7 @@ class Editor {
             hasControls: false,
             hasRotatingPoint: false,
             selectable: false,
+            evented: false,
             lockMovementX: true,
             lockMovementY: true,
             lockScalingX: true,

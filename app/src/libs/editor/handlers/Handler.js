@@ -251,8 +251,13 @@ export default class Handler {
                     return;
                 }
 
-                activeObject.set(key, option[key]);
-                activeObject.setCoords();
+                if (key === 'rotate') {
+                    activeObject.rotate(option[key]);
+                    activeObject.setCoords();
+                } else {
+                    activeObject.set(key, option[key]);
+                    activeObject.setCoords();
+                }
             }
         });
 
@@ -1036,6 +1041,11 @@ export default class Handler {
         return findObject;
     };
 
+    getIndex = (target) => {
+        const activeObject = target || this.canvas.getActiveObject();
+        return this.canvas.getObjects().indexOf(activeObject);
+    };
+
     /**
      * Send backwards
      * @returns
@@ -1089,9 +1099,9 @@ export default class Handler {
         if (target) {
             this.canvas.moveTo(target, targetIndex);
 
-            if (!this.transactionHandler.active) {
-                this.transactionHandler.save('moveToIndex');
-            }
+            // if (!this.transactionHandler.active) {
+            //     this.transactionHandler.save('moveToIndex');
+            // }
 
             const { onModified } = this;
 
