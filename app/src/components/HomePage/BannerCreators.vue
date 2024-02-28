@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, RouterLink } from 'vue-router';
 
 const route = useRoute();
 
@@ -87,7 +87,7 @@ onUnmounted(() => {
                                 supporters with <br />Twibbonize
                             </h5>
                             <div
-                                class="banner-creators__btn-container flex justify-center items-center mt-4"
+                                class="banner-creators__btn-container flex justify-center items-center mt-4 z-20"
                             >
                                 <QButton
                                     class="text-sm ws-nowrap"
@@ -139,7 +139,7 @@ onUnmounted(() => {
 
 .banner-creators {
     .bg {
-        @apply sm:rounded-[40px];
+        @apply rounded-none sm:rounded-[40px];
         background: #202124;
 
         // &.bottom {
