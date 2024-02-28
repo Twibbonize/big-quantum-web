@@ -251,8 +251,13 @@ export default class Handler {
                     return;
                 }
 
-                activeObject.set(key, option[key]);
-                activeObject.setCoords();
+                if (key === 'rotate') {
+                    activeObject.rotate(option[key]);
+                    activeObject.setCoords();
+                } else {
+                    activeObject.set(key, option[key]);
+                    activeObject.setCoords();
+                }
             }
         });
 

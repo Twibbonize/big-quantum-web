@@ -38,6 +38,16 @@ const { update } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 
+const modify = (changedKey, changedValue) => {
+    const { editor } = canvas.value;
+
+    const activeObject = editor.handler.canvas.getActiveObject();
+
+    if (changedKey === 'rotate') {
+        editor.handler.setObject({ rotate: changedValue }, activeObject);
+    }
+};
+
 const handleInsertPhoto = (file) => {
     const reader = new FileReader();
 
@@ -138,6 +148,18 @@ const addWatermark = async () => {
     editor.handler.bringToFront(createObj);
 };
 
+const handleInputRange = (e) => {
+    const value = e.target.value;
+    const snapThreshold = 5;
+
+    if (Math.abs(value) <= snapThreshold) {
+        e.target.value = 0;
+        modify('rotate', 0);
+    } else {
+        modify('rotate', value);
+    }
+};
+
 useResizeObserver(canvasInner, (entries) => {
     const wrapperEl = entries[0];
     const { editor } = canvas.value;
@@ -177,7 +199,7 @@ onMounted(async () => {
         </div>
 
         <Teleport to=".dialog__header">
-            <div class="container flex items-center justify-between px-4 pb-3 space-x-2">
+            <div class="container flex items-center justify-between px-4 pb-3">
                 <QButton variant="subtle" square class="-ml-2">
                     <i class="ri-close-line ri-2x font-light"></i>
                 </QButton>
@@ -235,10 +257,11 @@ onMounted(async () => {
                         type="range"
                         name="rotate"
                         id="rotate"
-                        min="0"
-                        max="360"
-                        value="180"
+                        min="-180"
+                        max="180"
+                        value="0"
                         class="flex-grow"
+                        @input="handleInputRange"
                     />
 
                     <QButton square size="sm">
