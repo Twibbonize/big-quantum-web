@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
 import { onClickOutside, onKeyStroke, useWindowSize } from '@vueuse/core';
@@ -40,6 +40,11 @@ const props = defineProps({
     transition: {
         type: String,
         default: 'fade'
+    },
+    initialSheetSize: {
+        type: String,
+        default: 'half',
+        validators: (value) => ['half', 'full'].includes(value)
     }
 });
 
@@ -106,8 +111,6 @@ const dragHandler = ({ movement: [_x, y], dragging, tap, axis }) => {
     }
 
     if (!dragging) {
-        console.log('no dragging');
-
         // threshold for fully dragged
         if (y <= -(upperLimitY / 2)) {
             set({ x: 0, y: -upperLimitY, cursor: 'default' });
@@ -164,6 +167,14 @@ watch(
     (newValue) => {
         if (newValue) {
             document.body.style.overflow = 'hidden';
+
+            if (props.initialSheetSize === 'full' && props.position === 'bottom') {
+                set({ x: 0, y: -upperLimitY, cursor: 'default' });
+                isFullyDragged.value = true;
+            } else {
+                set({ x: 0, y: 0, cursor: 'default' });
+                isFullyDragged.value = false;
+            }
 
             // nextTick(() => {
             //     isFullyDragged.value = true;

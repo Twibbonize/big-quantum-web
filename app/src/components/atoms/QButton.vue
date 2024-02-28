@@ -32,7 +32,7 @@ const props = defineProps({
     size: {
         type: String,
         default: 'md',
-        validators: (value) => ['xs', 'sm', 'md', 'lg'].includes(value)
+        validators: (value) => ['xs', 'sm', 'md', 'lg', 'auto'].includes(value)
     },
     square: {
         type: Boolean,
@@ -219,7 +219,7 @@ function handleClick(e) {
     }
 
     &--neutral {
-        @apply text-black bg-gray-200;
+        @apply text-black bg-gray-150;
 
         @include before {
             height: 0;
@@ -358,6 +358,12 @@ function handleClick(e) {
     &.btn--lg.btn--square {
         height: 52px;
         width: 52px;
+    }
+
+    &.btn--auto.btn--circle {
+        width: auto;
+        height: 100%;
+        aspect-ratio: 1/1;
     }
 
     &--circle {

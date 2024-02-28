@@ -161,7 +161,12 @@ const onInputPhotoChange = (event) => {
                     name: 'Hanoi Art Book Fair 2025'
                 }
             },
-            config: { size: 'md', position: sm.value ? 'bottom' : 'center', transition: 'slide-up' }
+            config: {
+                size: 'md',
+                position: sm.value ? 'bottom' : 'center',
+                transition: 'slide-up',
+                initialSheetSize: 'full'
+            }
         });
     }
 };

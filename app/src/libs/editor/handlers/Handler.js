@@ -364,31 +364,15 @@ export default class Handler {
             createdObj = await this.addShape(src);
             this.canvas.add(createdObj);
         } else if (obj.type === 'image') {
-            const { src } = obj;
+            const { src, opt } = obj;
             createdObj = await this.addImage(src);
             createdObj.dblclick = true;
+
+            if (opt) {
+                createdObj.set(opt);
+            }
+
             this.canvas.add(createdObj);
-        } else if (obj.type === 'Photo') {
-            createdObj = obj;
-
-            const photos = this.canvas.getObjects().filter((obj) => {
-                return obj.type === 'Photo';
-            });
-            const drawArea = this.canvas.getItemByName('drawing-area');
-            const targetIndex = this.canvas.getObjects().indexOf(drawArea) + photos.length + 1;
-            this.canvas.insertAt(createdObj, targetIndex);
-            // this.transactionHandler.deactivateTransaction()
-        } else if (obj.type === 'Frame') {
-            const photos = this.canvas.getObjects().filter((obj) => {
-                return obj.type === 'Photo';
-            });
-
-            const targetIndex = photos.length ? photos.length + 1 : 1;
-            const { src, originalSrc } = obj;
-            createdObj = await this.addFrame(src);
-            createdObj.set('originalSrc', originalSrc);
-            this.canvas.insertAt(createdObj, targetIndex);
-            // this.transactionHandler.deactivateTransaction()
         } else {
             createdObj = obj;
             this.canvas.add(createdObj);
@@ -396,23 +380,10 @@ export default class Handler {
 
         const drawArea = this.canvas.getItemByName('drawing-area');
         // make sure created object not too big
-        if (Math.max(createdObj.width, createdObj.height) > drawArea.width) {
-            const objectScaleWidth = (80 / 100) * drawArea.width;
-            createdObj.scaleToWidth(objectScaleWidth * this.canvas.getZoom());
-        }
-
-        if (centered) {
-            this.canvas.centerObject(createdObj);
-        } else {
-            createdObj.set({
-                left: obj.left,
-                top: obj.top
-            });
-        }
-
-        if (createdObj.dblclick) {
-            createdObj.on('mousedblclick', this.eventHandler.object.mousedblclick);
-        }
+        // if (Math.max(createdObj.width, createdObj.height) > drawArea.width) {
+        //     const objectScaleWidth = (80 / 100) * drawArea.width;
+        //     createdObj.scaleToWidth(objectScaleWidth * this.canvas.getZoom());
+        // }
 
         createdObj.set({
             id: objId,
@@ -420,6 +391,14 @@ export default class Handler {
             parentType: obj.type,
             centeredScaling: true
         });
+
+        if (centered) {
+            this.canvas.centerObject(createdObj);
+        }
+
+        if (createdObj.dblclick) {
+            createdObj.on('mousedblclick', this.eventHandler.object.mousedblclick);
+        }
 
         this.objects = this.getObjects();
 
@@ -624,14 +603,6 @@ export default class Handler {
                 }
 
                 resolve(photo);
-            });
-        });
-    };
-
-    addFrame = (src) => {
-        return new Promise((resolve) => {
-            fabric.Frame.fromURL(src, (frame) => {
-                resolve(frame);
             });
         });
     };
@@ -918,6 +889,10 @@ export default class Handler {
             return;
         }
 
+        if (activeObject.deleteable !== undefined && !activeObject.deleteable) {
+            return;
+        }
+
         if (activeObject.type === 'activeSelection') {
             this.canvas.discardActiveObject();
             activeObject.forEachObject((obj) => this.canvas.remove(obj));
@@ -986,8 +961,8 @@ export default class Handler {
     /**
      * Bring forward
      */
-    bringForward = () => {
-        const activeObject = this.canvas.getActiveObject();
+    bringForward = (target) => {
+        const activeObject = target || this.canvas.getActiveObject();
         if (activeObject) {
             this.canvas.bringForward(activeObject);
             if (!this.transactionHandler.active) {
@@ -1003,8 +978,8 @@ export default class Handler {
     /**
      * Bring to front
      */
-    bringToFront = () => {
-        const activeObject = this.canvas.getActiveObject();
+    bringToFront = (target) => {
+        const activeObject = target || this.canvas.getActiveObject();
         if (activeObject) {
             this.canvas.bringToFront(activeObject);
             if (!this.transactionHandler.active) {
@@ -1051,12 +1026,22 @@ export default class Handler {
         return findObject;
     };
 
+    findByName = (name) => {
+        const findObject = this.canvas.getItemByName(name);
+
+        if (!findObject) {
+            return null;
+        }
+
+        return findObject;
+    };
+
     /**
      * Send backwards
      * @returns
      */
-    sendBackwards = () => {
-        const activeObject = this.canvas.getActiveObject();
+    sendBackwards = (target) => {
+        const activeObject = target || this.canvas.getActiveObject();
         if (activeObject) {
             const firstObject = this.canvas.getObjects()[1];
             if (firstObject.id === activeObject.id) {
@@ -1085,8 +1070,8 @@ export default class Handler {
     /**
      * Send to back
      */
-    sendToBack = () => {
-        const activeObject = this.canvas.getActiveObject();
+    sendToBack = (target) => {
+        const activeObject = target || this.canvas.getActiveObject();
         if (activeObject) {
             this.canvas.sendToBack(activeObject);
             this.canvas.sendToBack(this.canvas.getObjects()[1]);
