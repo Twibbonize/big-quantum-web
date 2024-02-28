@@ -59,7 +59,7 @@ const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
 const inputPhoto = ref(null);
 
-const selectedFrames = ref(frames[0]);
+const selectedFrame = ref(frames[0]);
 const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
@@ -144,7 +144,8 @@ const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
 };
 
-const openInputPhoto = () => {
+const openInputPhoto = (e) => {
+    e.preventDefault();
     inputPhoto.value.click();
 };
 
@@ -157,15 +158,18 @@ const onInputPhotoChange = (event) => {
             props: {
                 photo: selectedFile,
                 frames: frames,
+                selectedFrameIdx: frames.indexOf(selectedFrame.value),
                 campaign: {
                     name: 'Hanoi Art Book Fair 2025'
-                }
+                },
+                openInputPhoto
             },
             config: {
                 size: 'md',
                 position: sm.value ? 'bottom' : 'center',
                 transition: 'slide-up',
-                initialSheetSize: 'full'
+                initialSheetSize: 'full',
+                static: true
             }
         });
     }
@@ -311,13 +315,13 @@ onMounted(async () => {
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
                                     <img
-                                        :src="selectedFrames"
+                                        :src="selectedFrame"
                                         class="campaign__frames__stage__image"
                                     />
                                 </div>
 
                                 <div class="campaign__frames__card">
-                                    <RadioGroup v-model="selectedFrames">
+                                    <RadioGroup v-model="selectedFrame">
                                         <div class="campaign__frames__options">
                                             <RadioGroupOption
                                                 v-for="(frame, i) in frames"
@@ -386,6 +390,7 @@ onMounted(async () => {
                                             id="photo"
                                             class="hidden"
                                             @change="onInputPhotoChange"
+                                            accept="image/png, image/jpg, image/jpeg, image/webp"
                                         />
                                     </div>
                                 </div>

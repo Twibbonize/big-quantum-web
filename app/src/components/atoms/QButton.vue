@@ -68,7 +68,7 @@ const buttonClasses = computed(() => {
 
 function handleClick(e) {
     e.preventDefault();
-    emit('click');
+    emit('click', e);
 }
 </script>
 <template>

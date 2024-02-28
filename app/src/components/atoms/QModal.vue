@@ -14,7 +14,7 @@ const props = defineProps({
     },
     static: {
         type: Boolean,
-        default: true
+        default: false
     },
     position: {
         type: String,
@@ -151,7 +151,7 @@ useDrag(dragHandler, {
 });
 
 onClickOutside(dialogContentEl, () => {
-    if (props.static && props.show) {
+    if (!props.static && props.show) {
         handleClose();
     }
 });
@@ -183,6 +183,16 @@ watch(
         } else {
             document.body.style.overflow = '';
             stop();
+        }
+    }
+);
+
+watch(
+    () => props.position,
+    (newValue) => {
+        if (newValue !== 'bottom') {
+            set({ x: 0, y: 0, cursor: 'default' });
+            isFullyDragged.value = false;
         }
     }
 );
@@ -301,7 +311,7 @@ watch(
     }
 
     & .dialog__drag-handler {
-        @apply hidden items-center justify-center pt-4 pb-8;
+        @apply hidden items-center justify-center pt-4 pb-6;
     }
 
     .dialog__drag-handler__thumb {
