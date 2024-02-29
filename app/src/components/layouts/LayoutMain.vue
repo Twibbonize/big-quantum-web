@@ -10,7 +10,6 @@ import ModalRoot from '@/components/organisms/ModalRoot.vue';
         <NavbarDefault />
         <slot></slot>
         <FooterDefault />
-
         <div id="app__modal">
             <ModalRoot />
         </div>
