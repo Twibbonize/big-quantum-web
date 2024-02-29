@@ -165,7 +165,7 @@ const onInputPhotoChange = (event) => {
                 openInputPhoto
             },
             config: {
-                size: 'md',
+                size: 'lg',
                 position: sm.value ? 'bottom' : 'center',
                 transition: 'slide-up',
                 initialSheetSize: 'full',
