@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { useModal } from '@/composables/modal';
 import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
+import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
 
 const props = defineProps({
     isDragging: {
@@ -39,6 +40,7 @@ const canvas = ref(null);
 const canvasInner = ref(null);
 const photoRotation = ref(0);
 const selectedFrame = ref(props.frames[props.selectedFrameIdx]);
+const removeWatermark = ref(false);
 
 const { update } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -172,7 +174,7 @@ const rotatePhoto = (degree) => {
     const step = 45;
     const currentRotation = parseInt(photoRotation.value);
     const newRotation = Math.round(currentRotation / step) * step + degree;
-    photoRotation.value = (newRotation + 540) % 360 - 180;
+    photoRotation.value = ((newRotation + 540) % 360) - 180;
     modify('rotate', photoRotation.value);
 };
 
@@ -442,10 +444,46 @@ onMounted(async () => {
 
         <Teleport to="body" :disabled="!isDragging">
             <div class="twibbon-modal__footer">
-                <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
-                    <i class="ri-camera-line ri-lg font-light"></i>
-                </QButton>
-                <QButton block>Download</QButton>
+                <div class="flex items-center justify-between mb-4 bg-main/20 px-4 py-3">
+                    <div class="flex items-center space-x-2">
+                        <img
+                            class="h-10 w-10"
+                            src="/assets/img/brandings/no-watermark.webp"
+                            alt="no-watermark"
+                        />
+                        <div class="flex flex-col">
+                            <div class="flex items-center">
+                                <span class="text-sm font-bold">Remove Watermark</span>
+                                <img
+                                    class="h-4 ml-1"
+                                    src="/assets/img/brandings/badge-gold.png"
+                                    alt=""
+                                />
+                            </div>
+                            <span class="text-xs mt-1"
+                                >Upgrade to Premium, only
+                                <span class="font-semibold">Rp45,000</span> per year</span
+                            >
+                        </div>
+                    </div>
+
+                    <QSwitchToggle
+                        v-model="removeWatermark"
+                        id="remove_watermark"
+                        name="remove_watermark"
+                        :checked-value="true"
+                        :unchecked-value="false"
+                    />
+                </div>
+                <div class="flex items-center justify-between space-x-3 h-16 px-4 pb-3 pt-2">
+                    <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
+                        <i class="ri-camera-line ri-lg font-light"></i>
+                    </QButton>
+                    <QButton block>
+                        <span v-if="removeWatermark">Upgrade and </span>
+                        <span class="ml-1"> Download</span>
+                    </QButton>
+                </div>
             </div>
         </Teleport>
     </div>
@@ -473,7 +511,7 @@ onMounted(async () => {
 
 .twibbon-modal {
     @apply flex flex-col h-full;
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     overflow-y: auto;
 }
 
@@ -492,9 +530,8 @@ onMounted(async () => {
 }
 
 .twibbon-modal__footer {
-    @apply fixed bottom-0 w-full px-4 py-4 flex items-center justify-between space-x-3 shadow-card bg-white;
+    @apply fixed bottom-0 w-full bg-white overflow-hidden;
     z-index: 9999;
-    height: 82px;
 }
 
 .frame-options {
