@@ -103,15 +103,6 @@ const router = createRouter({
             },
             children: [
                 {
-                    path: 'admin',
-                    name: 'own-campaign',
-                    component: OwnCampaignPage,
-                    meta: {
-                        navbarSearch: true,
-                        transition: 'slide-fade'
-                    }
-                },
-                {
                     path: 'feeds',
                     name: 'campaign-feeds',
                     component: CampaignFeedsPage,
@@ -120,6 +111,15 @@ const router = createRouter({
                     }
                 }
             ]
+        },
+        {
+            path: '/hanoi-art/admin',
+            name: 'own-campaign',
+            component: OwnCampaignPage,
+            meta: {
+                navbarSearch: true,
+                transition: 'slide-fade'
+            }
         },
         {
             path: '/settings',
