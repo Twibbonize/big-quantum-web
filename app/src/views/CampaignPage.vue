@@ -166,7 +166,7 @@ const onInputPhotoChange = (event) => {
             },
             config: {
                 size: 'lg',
-                position: sm.value ? 'bottom' : 'center',
+                position: sm.value ? 'screen' : 'center',
                 transition: 'slide-up',
                 initialSheetSize: 'full',
                 static: true

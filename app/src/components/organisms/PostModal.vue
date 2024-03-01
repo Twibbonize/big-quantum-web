@@ -73,7 +73,7 @@ const commentValidation = yupObject().shape({
 </script>
 <template>
     <div class="post-modal max-h-full flex flex-col">
-        <Teleport to=".dialog__header">
+        <Teleport to=".modal__header">
             <div class="post-modal__header w-full">
                 <div
                     class="flex md:hidden items-center justify-between px-4 py-3 w-full border-b border-stroke"

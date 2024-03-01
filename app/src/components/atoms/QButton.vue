@@ -289,7 +289,7 @@ function handleClick(e) {
     }
 
     &--danger {
-        @apply text-red-50 bg-red-500;
+        @apply text-red-50 bg-red-500 border border-transparent;
 
         @include before {
             height: 0;
@@ -307,6 +307,31 @@ function handleClick(e) {
             @include before {
                 height: 20rem;
                 width: 20rem;
+            }
+        }
+
+        &.btn--outlined {
+            @apply text-red-500 bg-white border-red-500;
+
+            @include before {
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-red-500;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s var(--transition-function);
+                opacity: 1;
+            }
+
+            &:hover {
+                @apply text-white;
+
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
             }
         }
     }

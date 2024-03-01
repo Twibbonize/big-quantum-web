@@ -10,17 +10,60 @@ const props = defineProps({
     height: {
         type: Number,
         default: 1080
+    },
+    onModified: {
+        type: Function,
+        default: () => {}
+    },
+
+    onRemove: {
+        type: Function,
+        default: () => {}
+    },
+
+    onAdd: {
+        type: Function,
+        default: () => {}
+    },
+
+    onSelect: {
+        type: Function,
+        default: () => {}
+    },
+
+    onZoom: {
+        type: Function,
+        default: () => {}
+    },
+
+    onDblClick: {
+        type: Function,
+        default: () => {}
+    },
+
+    onContext: {
+        type: Function,
+        default: () => {}
+    },
+
+    onTransaction: {
+        type: Function,
+        default: () => {}
+    },
+
+    onUngroup: {
+        type: Function,
+        default: () => {}
+    },
+
+    onGroup: {
+        type: Function,
+        default: () => {}
     }
 });
 
 const canvasEl = ref(null);
 const editor = ref(null);
-
-const eventListeners = {
-    onModified: (target) => {
-        // console.log(target)
-    }
-};
 
 const onMouseWheel = (opt) => {
     const e = opt.e;
@@ -82,7 +125,25 @@ const onMouseUp = () => {
 };
 
 onMounted(() => {
-    editor.value = markRaw(new Editor({ el: canvasEl.value, ...props, ...eventListeners }));
+    const keyEvent = {
+        move: true,
+        all: false,
+        copy: false,
+        paste: false,
+        esc: false,
+        del: false,
+        clipboard: false,
+        transaction: true,
+        zoom: false,
+        cut: false,
+        grab: false
+    };
+
+    const mouseEvent = {
+        wheel: false
+    };
+
+    editor.value = markRaw(new Editor({ el: canvasEl.value, keyEvent, mouseEvent, ...props }));
 
     const { canvas } = editor.value.handler;
     canvas.on({

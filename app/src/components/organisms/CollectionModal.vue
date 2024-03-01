@@ -60,7 +60,7 @@ onBeforeRouteLeave(() => {
 </script>
 <template>
     <div class="collection-modal">
-        <Teleport to=".dialog__header">
+        <Teleport to=".modal__header">
             <div class="collection-modal__header">
                 <div v-if="view === 'selection'">
                     <h3 class="text-lg leading-snug max-w-xs md:max-w-none">

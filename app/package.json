@@ -28,7 +28,7 @@
     "mitt": "^3.0.1",
     "numeral": "^2.0.6",
     "pinia": "^2.1.7",
-    "remixicon": "^3.6.0",
+    "remixicon": "^4.2.0",
     "sortablejs": "^1.15.0",
     "swiper": "^11.0.5",
     "uuid": "^9.0.1",
