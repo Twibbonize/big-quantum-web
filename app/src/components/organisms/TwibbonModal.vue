@@ -254,11 +254,30 @@ const canvasListeners = {
             return;
         }
 
+        if (target.type === 'textbox') {
+            editState.value = 'text';
+        }
+
         const { editor } = canvas.value;
         const { propertiesToInclude } = editor.handler;
         const properties = target.toObject(propertiesToInclude);
         activeObj.value = properties;
     }
+};
+
+const closeTextState = () => {
+    editState.value = 'crop';
+    const { editor } = canvas.value;
+    editor.handler.clearSelection();
+};
+
+const removeText = () => {
+    console.log('triggered');
+    if (!activeObj.value) {
+        console.log('no object!');
+    }
+
+    // const { editor } = canvas.value;
 };
 
 useResizeObserver(canvasInner, (entries) => {
@@ -481,7 +500,7 @@ onMounted(async () => {
                     <TextModifier
                         :editor="canvas.editor"
                         :modify="modify"
-                        :activeObject="activeObj"
+                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null"
                     />
                 </div>
             </div>
@@ -539,7 +558,13 @@ onMounted(async () => {
                     v-if="editState === 'text'"
                     class="flex items-center px-4 py-3 border-t border-stroke bg-white"
                 >
-                    <QButton circle variant="danger" outlined class="!h-10 !w-10 mr-2">
+                    <QButton
+                        circle
+                        variant="danger"
+                        outlined
+                        class="!h-10 !w-10 mr-2"
+                        @click="removeText"
+                    >
                         <i class="ri-delete-bin-5-line ri-lg font-light"></i>
                     </QButton>
 
@@ -548,7 +573,7 @@ onMounted(async () => {
                         <span class="ml-2">Add Text</span>
                     </QButton>
 
-                    <QButton block @click="editState = 'crop'"> Save </QButton>
+                    <QButton block @click="closeTextState"> Save </QButton>
                 </div>
             </div>
         </Teleport>
@@ -563,6 +588,10 @@ onMounted(async () => {
     justify-content: center;
 
     @apply bg-gray-200;
+
+    @include md_screen {
+        max-height: 360px;
+    }
 }
 
 .canvas-inner {
@@ -579,6 +608,20 @@ onMounted(async () => {
     @apply flex flex-col h-full;
     padding-bottom: 180px;
     overflow-y: auto;
+
+    // transform: scale(0.8);
+    // &::-webkit-scrollbar {
+    //     width: 5px;
+    // }
+
+    // &::-webkit-scrollbar-track {
+    //     background: #fff;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     background: #16DAC1;
+    //     border-radius: 0;
+    // }
 }
 
 .twibbon-modal__body {
