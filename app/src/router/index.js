@@ -13,6 +13,7 @@ import LeaderboardPage from '@/views/LeaderboardPage.vue';
 import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
 import PostPage from '@/views/PostPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
+import TestimonialPage from '@/views/TestimonialPage.vue';
 import ArticlePage from '@/views/ArticlePage.vue';
 
 const router = createRouter({
@@ -144,7 +145,15 @@ const router = createRouter({
             meta: {
                 navbarSearch: true
             }
-        }
+        },
+        {
+            path: '/testimonials',
+            name: 'testimonials',
+            component: TestimonialPage,
+            meta: {
+                navbarSearch: true
+            }
+        },
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
