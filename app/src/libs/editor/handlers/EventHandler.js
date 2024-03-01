@@ -33,7 +33,7 @@ export default class EventHandler {
 
         this.rotateSnaps = [0, 45, 90, 135, 180, 225, 270, 315, 360];
 
-        // this.initHammerManager();
+        this.initHammerManager();
         // this.lastAngleRotation = null
     }
 
