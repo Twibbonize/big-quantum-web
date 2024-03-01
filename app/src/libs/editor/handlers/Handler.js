@@ -14,6 +14,7 @@ import { fabric } from 'fabric';
 import { v4 as uuidv4 } from 'uuid';
 import { angle2rect } from '../utils';
 import FontFaceObserver from 'fontfaceobserver';
+import { keyEvent, mouseEvent } from '../constants/default';
 
 export default class Handler {
     constructor({ canvas, ...option }) {
@@ -59,22 +60,11 @@ export default class Handler {
         // control the keyboard event
 
         this.mouseEvent = {
-            wheel: false
+            ...mouseEvent,
+            ...option.mouseEvent
         };
 
-        this.keyEvent = {
-            move: true,
-            all: true,
-            copy: true,
-            paste: true,
-            esc: true,
-            del: true,
-            clipboard: false,
-            transaction: true,
-            zoom: true,
-            cut: true,
-            grab: true
-        };
+        this.keyEvent = { ...keyEvent, ...option.keyEvent };
 
         this.zoomLimit = {
             minZoom: 10,
@@ -99,7 +89,7 @@ export default class Handler {
         // this.contextmenuHandler = new ContextmenuHandler(this);
         this.alignmentHandler = new AlignmentHandler(this);
         this.eventHandler = new EventHandler(this);
-        this.cropHandler = new CropHandler(this);
+        // this.cropHandler = new CropHandler(this);
     };
 
     initCallback = (options) => {

@@ -82,54 +82,54 @@ fabric.Object.prototype.setCenterToOrigin = function () {
     });
 };
 
-// const rotateIcon = '/assets/img/icons/rotate-icon.svg';
-// const imgRotate = document.createElement('img');
-// imgRotate.src = rotateIcon;
+const rotateIcon = '/assets/img/icons/rotate-icon.svg';
+const imgRotate = document.createElement('img');
+imgRotate.src = rotateIcon;
 
-// function renderIcon(icon) {
-//     return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-//         var size = this.cornerSize;
-//         ctx.save();
-//         ctx.translate(left, top);
-//         ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-//         ctx.drawImage(icon, -size / 2, -size / 2, size, size);
-//         ctx.restore();
-//     };
-// }
+function renderIcon(icon) {
+    return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
+        var size = this.cornerSize;
+        ctx.save();
+        ctx.translate(left, top);
+        ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+        ctx.drawImage(icon, -size / 2, -size / 2, size, size);
+        ctx.restore();
+    };
+}
 
-// function rotationStyleHandler(eventData, control, fabricObject) {
-//     if (fabricObject.lockRotation) {
-//         return NOT_ALLOWED_CURSOR;
-//     }
-//     const angle = treatAngle(fabricObject.angle);
-//     return angleBasedRotateIcon(angle);
-// }
+function rotationStyleHandler(eventData, control, fabricObject) {
+    if (fabricObject.lockRotation) {
+        return NOT_ALLOWED_CURSOR;
+    }
+    const angle = treatAngle(fabricObject.angle);
+    return angleBasedRotateIcon(angle);
+}
 
-// fabric.Object.prototype.controls.mtr = new fabric.Control({
-//     x: 0,
-//     y: -0.5,
-//     offsetY: -40,
-//     cursorStyleHandler: rotationStyleHandler,
-//     actionHandler: fabric.controlsUtils.rotationWithSnapping,
-//     actionName: 'rotate',
-//     render: renderIcon(imgRotate),
-//     cornerSize: 24,
-//     withConnection: false
-// });
+fabric.Object.prototype.controls.mtr = new fabric.Control({
+    x: 0,
+    y: -0.5,
+    offsetY: -40,
+    cursorStyleHandler: rotationStyleHandler,
+    actionHandler: fabric.controlsUtils.rotationWithSnapping,
+    actionName: 'rotate',
+    render: renderIcon(imgRotate),
+    cornerSize: 24,
+    withConnection: false
+});
 
-// fabric.Textbox.prototype.controls.mtr = fabric.Object.prototype.controls.mtr;
+fabric.Textbox.prototype.controls.mtr = fabric.Object.prototype.controls.mtr;
 
-// fabric.Object.prototype.set({
-//     cornerStyle: 'circle',
-//     cornerColor: '#FFFFFF',
-//     cornerStrokeColor: '#000000',
-//     transparentCorners: false,
-//     borderColor: '#1BAAA0',
-//     paintFirst: 'stroke',
-//     borderDashArray: [16, 6],
-//     borderScaleFactor: 2,
-//     snapAngle: 45,
-//     snapThreshold: 5
-// });
+fabric.Object.prototype.set({
+    cornerStyle: 'circle',
+    cornerColor: '#FFFFFF',
+    cornerStrokeColor: '#000000',
+    transparentCorners: false,
+    borderColor: '#1BAAA0',
+    paintFirst: 'stroke',
+    borderDashArray: [16, 6],
+    borderScaleFactor: 2,
+    snapAngle: 45,
+    snapThreshold: 5
+});
 
 export default fabric;
