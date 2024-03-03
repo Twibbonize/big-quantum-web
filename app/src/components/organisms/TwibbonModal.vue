@@ -104,6 +104,50 @@ const modify = (changedKey, changedValue, target = null) => {
         return;
     }
 
+    if (changedKey === 'preset') {
+        const currentPreset = targetObj.preset;
+
+        const preset = changedValue;
+
+        if (!preset || preset.name === currentPreset) {
+            editor.handler.imageHandler.resetFilters();
+            return;
+        }
+
+        let presetValue;
+
+        for (const key in preset) {
+            if (key === 'highlightColor' || key === 'shadowColor') {
+                continue;
+            }
+
+            if (key === 'duotone') {
+                if (!preset[key]) {
+                    continue;
+                }
+
+                presetValue = {
+                    highlightColor: preset['highlightColor'],
+                    shadowColor: preset['shadowColor']
+                };
+            } else if (key === 'vignette') {
+                presetValue = {
+                    radius: preset[key]
+                };
+            } else {
+                presetValue = {};
+                presetValue[key] = preset[key];
+            }
+
+            editor.handler.imageHandler.applyFilterByType(key, preset[key] !== 0, presetValue);
+        }
+
+        editor.handler.set('preset', preset.name);
+        activeObj.value[changedKey] = preset.name;
+
+        return;
+    }
+
     if (changedKey === 'rotate') {
         editor.handler.setObject({ rotate: changedValue }, targetObj);
         return;
@@ -186,8 +230,7 @@ const addWatermark = async () => {
     const { editor } = canvas.value;
 
     //  Calculate position for the bottom right
-    const positionX = editor.width / 2;
-    const positionY = editor.height / 2;
+    // const positionY = editor.height / 2;
 
     const obj = {
         src: 'assets/img/brandings/watermark.png',
@@ -199,19 +242,28 @@ const addWatermark = async () => {
             evented: false,
             selectable: false,
             originX: 'center',
-            originY: 'center',
+            originY: 'bottom',
             globalCompositeOperation: 'source-atop'
         }
     };
 
     const createdObj = await editor.handler.add(obj, true);
 
-    console.log(createdObj.name);
-    createdObj.scaleToHeight(editor.handler.canvas.getHeight() * 0.33);
+    const additionalMultipler = sm.value ? 0.95 : 1;
+
+    // createdObj.scaleToHeight(editor.handler.canvas.getHeight() * 0.33);
     createdObj.scaleToWidth(editor.handler.canvas.getWidth() * 0.33);
+
+    const { width, height } = editor.handler.canvas;
+
+    const positionX =
+        (width / 2 + (width / 2 + createdObj.getScaledWidth() / 2)) * additionalMultipler;
+    const positionY = (height * 2 + createdObj.getScaledHeight() / 2) * additionalMultipler;
+
+    console.log(createdObj.getScaledHeight());
     editor.handler.setObject({
-        left: positionX - 40,
-        top: positionY + createdObj.height * 2
+        left: positionX,
+        top: positionY
     });
 
     editor.handler.bringToFront(createdObj);
@@ -306,7 +358,6 @@ const backToCropState = () => {
 };
 
 const removeText = () => {
-    console.log('triggered');
     if (!activeObj.value) {
         console.log('no object!');
     }
@@ -355,16 +406,18 @@ onMounted(async () => {
                     class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center"
                 >
                     <div class="flex flex-col text-center space-y-2">
-                        <h3 class="font-semibold text-xl">Discard Edits?</h3>
-                        <p class="text-sm">The change you've made on your photo won't be saved.</p>
+                        <h3 class="font-semibold text-xl">Discard edits?</h3>
+                        <p class="text-sm">
+                            If you go back now, you'll lose all the edits you've made.
+                        </p>
                     </div>
 
-                    <div class="flex items-center space-x-2 mt-6 w-full">
-                        <QButton variant="secondary" size="sm" @click="close" block
-                            >Discard</QButton
-                        >
+                    <div class="flex flex-col items-center space-y-2 mt-6 w-full">
+                        <QButton variant="subtle" size="sm" @click="close" block>
+                            <span class="text-red-500">Discard</span>
+                        </QButton>
                         <QButton size="sm" @click="showConfirmDiscard = false" block
-                            >Continue Edit</QButton
+                            >Keep Editing</QButton
                         >
                     </div>
                 </div>
@@ -555,13 +608,11 @@ onMounted(async () => {
 
             <!-- text state -->
             <div v-if="editState === 'text'" class="space-y-5">
-                <div class="px-4 py-4">
-                    <TextModifier
-                        :editor="canvas.editor"
-                        :modify="modify"
-                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null"
-                    />
-                </div>
+                <TextModifier
+                    :editor="canvas.editor"
+                    :modify="modify"
+                    :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null"
+                />
             </div>
             <!-- end of text state -->
 
@@ -625,22 +676,10 @@ onMounted(async () => {
                     v-if="editState === 'text'"
                     class="flex items-center px-4 py-3 border-t border-stroke bg-white"
                 >
-                    <QButton
-                        circle
-                        variant="danger"
-                        outlined
-                        class="!h-10 !w-10 mr-2"
-                        @click="removeText"
-                    >
-                        <i class="ri-delete-bin-5-line ri-lg font-light"></i>
-                    </QButton>
-
                     <QButton variant="secondary" block class="mr-2" @click="addText">
-                        <i class="ri-text-block"></i>
-                        <span class="ml-2">Add Text</span>
+                        <span>Add Text</span>
                     </QButton>
-
-                    <QButton block @click="backToCropState"> Save </QButton>
+                    <QButton block @click="backToCropState"> Done </QButton>
                 </div>
 
                 <div
@@ -652,7 +691,7 @@ onMounted(async () => {
                         <span class="ml-2">Reset</span>
                     </QButton>
 
-                    <QButton block @click="backToCropState"> Save </QButton>
+                    <QButton block @click="backToCropState"> Done </QButton>
                 </div>
             </div>
         </Teleport>
@@ -704,7 +743,6 @@ onMounted(async () => {
 
 .twibbon-modal__body {
     position: relative;
-    z-index: 1;
     @apply flex-grow;
     padding-bottom: v-bind(modalBodyPaddingBottom);
 }
@@ -719,7 +757,7 @@ onMounted(async () => {
 
 .twibbon-modal__footer {
     @apply fixed bottom-0 w-full bg-white overflow-hidden;
-    z-index: 9999;
+    z-index: 100;
 }
 
 .frame-options {
@@ -728,7 +766,11 @@ onMounted(async () => {
 }
 
 .frame {
-    @apply h-12 w-12 rounded-lg p-2 border border-stroke bg-white transition-colors duration-200 cursor-pointer mt-4;
+    @apply h-12 w-12 rounded-lg p-1 border border-stroke bg-white transition-colors duration-200 cursor-pointer mt-4;
+
+    img {
+        @apply rounded;
+    }
 
     @include md_screen {
         @apply h-16 w-16;

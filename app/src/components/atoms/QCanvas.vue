@@ -133,7 +133,7 @@ onMounted(() => {
         esc: false,
         del: false,
         clipboard: false,
-        transaction: true,
+        transaction: false,
         zoom: false,
         cut: false,
         grab: false

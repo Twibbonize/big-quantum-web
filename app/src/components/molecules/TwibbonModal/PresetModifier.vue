@@ -1,6 +1,7 @@
 <script setup>
 import presets from '@/libs/editor/constants/presets';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     editor: {
@@ -10,22 +11,27 @@ const props = defineProps({
     modify: {
         type: Function,
         required: true
-    },
-    activeObject: {
-        type: Object
     }
+});
+
+const selectedPreset = ref(null);
+
+watch(selectedPreset, (newValue) => {
+    const { editor, modify } = props;
+    const photoObj = editor.handler.findByName('photo');
+    modify('preset', newValue, photoObj);
 });
 </script>
 
 <template>
-    <RadioGroup>
+    <RadioGroup v-model="selectedPreset">
         <div class="presets">
             <RadioGroupOption
                 v-for="preset in presets"
                 :key="preset.name"
                 as="template"
                 :value="preset"
-                v-slot="{ active, checked }"
+                v-slot="{ checked }"
             >
                 <div :class="['preset', checked && 'preset--selected']">
                     <img

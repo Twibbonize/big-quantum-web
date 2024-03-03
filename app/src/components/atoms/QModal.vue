@@ -258,8 +258,8 @@ watch(
     }
 
     &.modal--lg .modal__wrapper {
-        @apply max-w-xl;
-        // max-width: 540px;
+        // @apply max-w-/;
+        max-width: 544px;
     }
 
     &.modal--xl .modal__wrapper {
