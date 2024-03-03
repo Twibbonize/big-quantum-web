@@ -1,13 +1,21 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue';
-import { useResizeObserver, breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { computed, onMounted, ref, watch } from 'vue';
+import {
+    useResizeObserver,
+    breakpointsTailwind,
+    useBreakpoints,
+    useElementSize
+} from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { useModal } from '@/composables/modal';
+import { gsap } from 'gsap';
 import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
+import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
 import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
 import RotateSlider from '@/components/molecules/TwibbonModal/RotateSlider.vue';
 import TextModifier from '@/components/molecules/TwibbonModal/TextModifier.vue';
+import PresetModifier from '@/components/molecules/TwibbonModal/PresetModifier.vue';
 
 const props = defineProps({
     isDragging: {
@@ -33,6 +41,8 @@ const props = defineProps({
     }
 });
 
+const showConfirmDiscard = ref(false);
+const modalFooter = ref(null);
 const canvas = ref(null);
 const canvasInner = ref(null);
 const activeObj = ref(null);
@@ -41,9 +51,23 @@ const photoRotation = ref(0);
 const selectedFrame = ref(props.frames[props.selectedFrameIdx]);
 const removeWatermark = ref(false);
 
+const { height: footerHeight } = useElementSize(modalFooter);
 const { update, close } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
+
+const modalBodyPaddingBottom = computed(() => {
+    return `${footerHeight.value + 24}px`;
+});
+
+useResizeObserver(canvasInner, (entries) => {
+    const wrapperEl = entries[0];
+    const { editor } = canvas.value;
+
+    const { width, height } = wrapperEl.contentRect;
+    editor.handler.eventHandler.resize(width, height);
+    editor.handler.zoomHandler.zoomToFit();
+});
 
 const modify = (changedKey, changedValue, target = null) => {
     const { editor } = canvas.value;
@@ -85,7 +109,7 @@ const modify = (changedKey, changedValue, target = null) => {
         return;
     }
 
-    editor.handler.set(changedKey, changedValue);
+    editor.handler.set(changedKey, changedValue, targetObj);
     activeObj.value[changedKey] = changedValue;
 };
 
@@ -181,6 +205,8 @@ const addWatermark = async () => {
     };
 
     const createdObj = await editor.handler.add(obj, true);
+
+    console.log(createdObj.name);
     createdObj.scaleToHeight(editor.handler.canvas.getHeight() * 0.33);
     createdObj.scaleToWidth(editor.handler.canvas.getWidth() * 0.33);
     editor.handler.setObject({
@@ -189,6 +215,14 @@ const addWatermark = async () => {
     });
 
     editor.handler.bringToFront(createdObj);
+};
+
+const toggleWatermark = (show) => {
+    const { editor } = canvas.value;
+    const opac = show ? 1 : 0;
+
+    const watermarkObj = editor.handler.findByName('watermark');
+    modify('opacity', opac, watermarkObj);
 };
 
 const addText = () => {
@@ -265,7 +299,7 @@ const canvasListeners = {
     }
 };
 
-const closeTextState = () => {
+const backToCropState = () => {
     editState.value = 'crop';
     const { editor } = canvas.value;
     editor.handler.clearSelection();
@@ -279,15 +313,6 @@ const removeText = () => {
 
     // const { editor } = canvas.value;
 };
-
-useResizeObserver(canvasInner, (entries) => {
-    const wrapperEl = entries[0];
-    const { editor } = canvas.value;
-
-    const { width, height } = wrapperEl.contentRect;
-    editor.handler.eventHandler.resize(width, height);
-    editor.handler.zoomHandler.zoomToFit();
-});
 
 watch(photoRotation, handleInputRange);
 
@@ -303,6 +328,10 @@ watch(selectedFrame, (newValue) => {
     handleInsertFrame(newValue);
 });
 
+watch(removeWatermark, (newValue) => {
+    toggleWatermark(!newValue);
+});
+
 onMounted(async () => {
     const { photo } = props;
 
@@ -314,6 +343,34 @@ onMounted(async () => {
 
 <template>
     <div class="twibbon-modal h-full">
+        <Teleport to="body">
+            <QConfirmDialog :show="showConfirmDiscard">
+                <div
+                    class="absolute top-0 left-1/2 w-20 h-20 rounded-full bg-red-500 text-white flex items-center justify-center text-4xl -mt-10 -translate-x-1/2"
+                >
+                    <i class="ri-question-mark"></i>
+                </div>
+
+                <div
+                    class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center"
+                >
+                    <div class="flex flex-col text-center space-y-2">
+                        <h3 class="font-semibold text-xl">Discard Edits?</h3>
+                        <p class="text-sm">The change you've made on your photo won't be saved.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-2 mt-6 w-full">
+                        <QButton variant="secondary" size="sm" @click="close" block
+                            >Discard</QButton
+                        >
+                        <QButton size="sm" @click="showConfirmDiscard = false" block
+                            >Continue Edit</QButton
+                        >
+                    </div>
+                </div>
+            </QConfirmDialog>
+        </Teleport>
+
         <div class="canvas-wrapper">
             <div ref="canvasInner" class="canvas-inner">
                 <QCanvas ref="canvas" v-bind="canvasListeners" />
@@ -321,8 +378,10 @@ onMounted(async () => {
         </div>
 
         <Teleport to=".modal__header">
-            <div class="container flex items-center justify-between px-4 py-3">
-                <QButton variant="subtle" square class="-ml-2" @click="close">
+            <div
+                class="container flex items-center justify-between px-4 py-3 border-b border-stroke"
+            >
+                <QButton variant="subtle" square class="-ml-2" @click="showConfirmDiscard = true">
                     <i class="ri-close-line ri-2x font-light"></i>
                 </QButton>
 
@@ -505,13 +564,21 @@ onMounted(async () => {
                 </div>
             </div>
             <!-- end of text state -->
+
+            <div v-if="editState === 'filter'">
+                <div class="py-4">
+                    <PresetModifier :editor="canvas.editor" :modify="modify" />
+                </div>
+            </div>
         </div>
 
         <Teleport to="body" :disabled="!isDragging">
-            <div class="twibbon-modal__footer">
+            <div ref="modalFooter" class="twibbon-modal__footer">
                 <!-- footer for crop state -->
                 <div v-if="editState === 'crop'">
-                    <div class="flex items-center justify-between mb-4 bg-main/20 px-4 py-3">
+                    <div
+                        class="remove-watermark-banner flex items-center justify-between mb-4 px-4 py-3"
+                    >
                         <div class="flex items-center space-x-2">
                             <img
                                 class="h-10 w-10"
@@ -573,7 +640,19 @@ onMounted(async () => {
                         <span class="ml-2">Add Text</span>
                     </QButton>
 
-                    <QButton block @click="closeTextState"> Save </QButton>
+                    <QButton block @click="backToCropState"> Save </QButton>
+                </div>
+
+                <div
+                    v-if="editState === 'filter'"
+                    class="flex items-center px-4 py-3 border-t border-stroke bg-white"
+                >
+                    <QButton variant="secondary" block class="mr-2" @click="addText">
+                        <i class="ri-refresh-line"></i>
+                        <span class="ml-2">Reset</span>
+                    </QButton>
+
+                    <QButton block @click="backToCropState"> Save </QButton>
                 </div>
             </div>
         </Teleport>
@@ -606,7 +685,6 @@ onMounted(async () => {
 
 .twibbon-modal {
     @apply flex flex-col h-full;
-    padding-bottom: 180px;
     overflow-y: auto;
 
     // transform: scale(0.8);
@@ -628,6 +706,7 @@ onMounted(async () => {
     position: relative;
     z-index: 1;
     @apply flex-grow;
+    padding-bottom: v-bind(modalBodyPaddingBottom);
 }
 
 .twibbon-modal__tools {
@@ -721,5 +800,23 @@ onMounted(async () => {
 
 .text-filter {
     @apply flex items-center space-x-3 flex-grow;
+}
+
+.remove-watermark-banner {
+    background: hsla(170, 100%, 82%, 1);
+
+    background: linear-gradient(90deg, hsla(170, 100%, 82%, 1) 0%, hsla(170, 100%, 88%, 1) 100%);
+
+    background: -moz-linear-gradient(
+        90deg,
+        hsla(170, 100%, 82%, 1) 0%,
+        hsla(170, 100%, 88%, 1) 100%
+    );
+
+    background: -webkit-linear-gradient(
+        90deg,
+        hsla(170, 100%, 82%, 1) 0%,
+        hsla(170, 100%, 88%, 1) 100%
+    );
 }
 </style>

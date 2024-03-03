@@ -169,7 +169,8 @@ const onInputPhotoChange = (event) => {
                 position: sm.value ? 'screen' : 'center',
                 transition: 'slide-up',
                 initialSheetSize: 'full',
-                static: true
+                static: true,
+                keyboard: false
             }
         });
     }

@@ -266,7 +266,7 @@ function handleClick(e) {
     }
 
     &--subtle {
-        @apply text-black bg-transparent;
+        @apply text-black bg-transparent border border-transparent;
 
         @include before {
             height: 0;
