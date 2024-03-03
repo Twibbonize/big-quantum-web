@@ -149,8 +149,8 @@ export default class Handler {
         return objects;
     };
 
-    set = (key, value) => {
-        const activeObject = this.canvas.getActiveObject();
+    set = (key, value, target = null) => {
+        const activeObject = target || this.canvas.getActiveObject();
         if (!activeObject) {
             return;
         }
