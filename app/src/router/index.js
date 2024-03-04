@@ -150,7 +150,7 @@ const router = createRouter({
         },
         {
             path: '/use-cases/:uri',
-            name: 'usecases-article',
+            name: 'use-cases-article',
             component: ArticlePage,
             meta: {
                 navbarSearch: true
@@ -160,6 +160,14 @@ const router = createRouter({
             path: '/testimonials',
             name: 'testimonials',
             component: TestimonialPage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/testimonials/:uri',
+            name: 'testimonials-article',
+            component: ArticlePage,
             meta: {
                 navbarSearch: true
             }
