@@ -10,6 +10,10 @@ const props = defineProps({
   <div class="article-block prose">
     <h3 v-if="block.subtitle" class="subtitle">{{ block.subtitle }}</h3>
     <p v-if="block.paragraph" class="paragraph">{{ block.paragraph }}</p>
+    <blockquote v-if="block.tip">
+      <span class="tip">Tip:</span>
+      <p class="blockquote">{{ block.tip }}</p>
+    </blockquote>
     <hr v-if="block.line" class="line"/>
     <figure v-if="block.image">
       <img :src="block.image" alt="-">
@@ -21,9 +25,20 @@ const props = defineProps({
 
 <style lang="scss">
   .article-block {
+    --tw-prose-quote-borders: #16DAC1;
+
     @apply mt-12;
     color: #475467;
     max-width: 100%;
+
+    .tip {
+      @apply not-italic;
+      color: #475467;
+    }
+
+    .blockquote {
+      @apply mt-2;
+    }
 
     .line {
       @apply mt-8;

@@ -6,7 +6,7 @@ const bentoLists = [
     {
         title: 'How Twibbonize Innovates Government Communication in the Digital Age',
         theme: 'government',
-        link: '/',
+        link: '/use-cases/government',
         bg: '/assets/img/background/bg-government.svg',
         color: '#2D9292',
         classes: 'sm:col-span-1',
@@ -26,7 +26,7 @@ const bentoLists = [
     {
         title: 'How Twibbonize Becomes a Visual Marvel for Various Events',
         theme: 'events',
-        link: '/',
+        link: '/use-cases/events',
         bg: '/assets/img/background/bg-events.svg',
         color: '#4D41B9',
         classes: 'sm:col-span-2',
@@ -47,7 +47,7 @@ const bentoLists = [
     {
         title: 'Twibbonize Elevate Personal Celebrations with Customized Digital Flair',
         theme: 'personal',
-        link: '/',
+        link: '/use-cases/personal',
         bg: '/assets/img/background/bg-personal.svg',
         color: '#448DBC',
         classes: 'sm:col-span-1',
@@ -67,7 +67,7 @@ const bentoLists = [
     {
         title: 'Twibbonize Personalizes Digital Commemorations into United Experiences',
         theme: 'commemorations',
-        link: '/',
+        link: '/use-cases/commemorations',
         bg: '/assets/img/background/bg-commemorations.svg',
         color: '#2E2E77',
         classes: 'sm:col-span-1',
@@ -85,7 +85,7 @@ const bentoLists = [
     {
         title: 'How Twibbonize Innovates Government Communication in the Digital Age',
         theme: 'politics',
-        link: '/',
+        link: '/use-cases/politics',
         bg: '/assets/img/background/bg-politics.svg',
         color: '#37667E',
         classes: 'sm:col-span-1',
@@ -103,7 +103,7 @@ const bentoLists = [
     {
         title: 'Utilizing Twibbonize in Corporate & Business Environments',
         theme: 'corporate & business',
-        link: '/',
+        link: '/use-cases/corporate',
         bg: '/assets/img/background/bg-business.svg',
         color: '#0B5D99',
         classes: 'sm:col-span-2',
@@ -124,7 +124,7 @@ const bentoLists = [
     {
         title: 'Craft Personalized Digital Flair for Diverse Entertainment Experiences with Twibbonize',
         theme: 'entertainment',
-        link: '/',
+        link: '/use-cases/entertainment',
         bg: '/assets/img/background/bg-entertainment.svg',
         color: '#7A2997',
         classes: 'sm:col-span-1',
@@ -142,7 +142,7 @@ const bentoLists = [
     {
         title: 'Empowering Social Causes Through Twibbonize\'s Visual Impact',
         theme: 'social causes',
-        link: '/',
+        link: '/use-cases/social',
         bg: '/assets/img/background/bg-social.svg',
         color: '#536A75',
         classes: 'sm:col-span-1',
@@ -162,7 +162,7 @@ const bentoLists = [
     {
         title: 'How Twibbonize Enhances Celebrations in the Education Field',
         theme: 'education',
-        link: '/',
+        link: '/use-cases/education',
         bg: '/assets/img/background/bg-education.svg',
         color: '#2266ED',
         classes: 'sm:col-span-2',
@@ -201,7 +201,7 @@ const bentoLists = [
                         class="mt-5"
                         classes="text-white text-xs"
                         text="Read Case Study"
-                        url="/"
+                        :url="bento.link"
                     />
                 </div>
                 <CampaignSlider

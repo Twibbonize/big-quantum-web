@@ -15,7 +15,7 @@ const articleType = computed(() => {
     if (/(use-case)/ig.test(route.name)) return 'use-case';
     if (/(testimonial)/ig.test(route.name)) return 'testimonial';
     return route.name;
-})
+});
 
 const moreLinks = computed(() => {
     if (articleType.value === 'use-case') {
@@ -30,7 +30,7 @@ const moreLinks = computed(() => {
             },
             {
                 title: 'Twibbonize Elevate Personal Celebrations with Customized Digital Flair',
-                link: '/use-cases/events',
+                link: '/use-cases/personal',
             },
             {
                 title: 'How Twibbonize Elevates Political Engagement with Visual Frames',
@@ -59,6 +59,10 @@ const moreLinks = computed(() => {
         ]
     }
     return null;
+});
+
+const filteredMoreLinks = computed(() => {
+    return moreLinks.value.filter(({ link }) => link !== route.path);
 });
 
 let articleData = ref('');
@@ -97,7 +101,7 @@ const breadcrumbLinks = computed(() => {
                         :block="block"
                     />
                 </article>
-                <ArticleMore  v-if="moreLinks" class="article-more" title="More Use Cases" :links="moreLinks"/>
+                <ArticleMore  v-if="moreLinks" class="article-more" title="More Use Cases" :links="filteredMoreLinks"/>
             </div>
         </div>
     </LayoutMain>
