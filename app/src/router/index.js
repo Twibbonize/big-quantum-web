@@ -15,6 +15,8 @@ import PostPage from '@/views/PostPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
 import TestimonialPage from '@/views/TestimonialPage.vue';
 import ArticlePage from '@/views/ArticlePage.vue';
+import PricingPage from '@/views/PricingPage.vue';
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -158,6 +160,14 @@ const router = createRouter({
             path: '/testimonials/:uri',
             name: 'testimonials-article',
             component: ArticlePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/pricing',
+            name: 'pricing',
+            component: PricingPage,
             meta: {
                 navbarSearch: true
             }
