@@ -7,10 +7,10 @@ const props = defineProps({
         type: String,
     },
     publishedDate: {
-        type: Number,
+        type: [Number,String],
     },
     readtime: {
-        type: Number,
+        type: [Number,String],
         default: 2,
     },
     content: {
