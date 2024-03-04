@@ -75,7 +75,7 @@ const changeActiveList = (i) => {
     }
 
     .content {
-        @apply flex flex-col flex-1 gap-6;
+        @apply flex flex-col flex-1 gap-6 sm:min-w-[416px];
     }
 
     .question {
