@@ -1,12 +1,17 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { Listbox, ListboxOptions, ListboxOption, ListboxButton } from '@headlessui/vue';
+import { computed, onMounted, ref, watch } from 'vue';
+import { useEyeDropper } from '@vueuse/core';
+import {
+    Listbox,
+    ListboxOptions,
+    ListboxOption,
+    ListboxButton,
+    Popover,
+    PopoverButton,
+    PopoverPanel
+} from '@headlessui/vue';
 import WebFont from 'webfontloader';
 import { BASIC_COLORS } from '@/libs/editor/constants/colors';
-import Swiper from 'swiper';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 // import fabric from '@/libs/editor/fabric';
 
@@ -34,44 +39,20 @@ const fonts = [
         googleFont: false
     },
     {
-        family: 'Calibri',
-        googleFont: false
-    },
-    {
         family: 'Courier',
         googleFont: false
     },
     {
-        family: 'Courier New',
-        googleFont: false
+        family: 'Oleo Script',
+        googleFont: true
     },
     {
-        family: 'Verdana',
-        googleFont: false
+        family: 'Bebas Neue',
+        googleFont: true
     },
     {
-        family: 'Georgia',
-        googleFont: false
-    },
-    {
-        family: 'Brush Script',
-        googleFont: false
-    },
-    {
-        family: 'Cursive Standar',
-        googleFont: false
-    },
-    {
-        family: 'Segoe Script',
-        googleFont: false
-    },
-    {
-        family: 'Tahoma',
-        googleFont: false
-    },
-    {
-        family: 'Trebuchet',
-        googleFont: false
+        family: 'Sacramento',
+        googleFont: true
     },
     {
         family: 'Roboto',
@@ -103,7 +84,75 @@ const fonts = [
     }
 ];
 
-const selectedFont = ref('Roboto');
+// const fontSize = ref(42);
+const { isSupported, open, sRGBHex } = useEyeDropper();
+const sipColor = ref('#000');
+
+watch(sRGBHex, (newValue) => {
+    const { activeObject, modify } = props;
+    sipColor.value = compareContrastWithBlackAndWhite(newValue);
+    modify('fill', newValue, activeObject);
+});
+
+function getRelativeLuminance(color) {
+    const rgb = [
+        parseInt(color.slice(1, 3), 16) / 255.0,
+        parseInt(color.slice(3, 5), 16) / 255.0,
+        parseInt(color.slice(5, 7), 16) / 255.0
+    ];
+
+    for (let i = 0; i < rgb.length; i++) {
+        if (rgb[i] <= 0.03928) {
+            rgb[i] /= 12.92;
+        } else {
+            rgb[i] = Math.pow((rgb[i] + 0.055) / 1.055, 2.4);
+        }
+    }
+
+    return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+}
+
+function compareContrastWithBlackAndWhite(hexColor) {
+    const blackLuminance = getRelativeLuminance('#000000');
+    const whiteLuminance = getRelativeLuminance('#FFFFFF');
+    const colorLuminance = getRelativeLuminance(hexColor);
+
+    const contrastWithBlack = Math.abs(colorLuminance - blackLuminance);
+    const contrastWithWhite = Math.abs(colorLuminance - whiteLuminance);
+
+    if (contrastWithBlack > contrastWithWhite) {
+        return '#000';
+    } else if (contrastWithWhite > contrastWithBlack) {
+        return '#FFF';
+    } else {
+        return '#000';
+    }
+}
+
+const fontFamily = computed({
+    get() {
+        if (!props.activeObject) {
+            return 6;
+        }
+
+        return fonts.findIndex((font) => font.family === props.activeObject.fontFamily);
+    },
+    set(newValue) {
+        const font = fonts[newValue];
+        const { modify, activeObject } = props;
+        modify('fontFamily', font, activeObject);
+    }
+});
+
+const fontSize = computed({
+    get() {
+        return props.activeObject ? props.activeObject.fontSize : 42;
+    },
+    set(newValue) {
+        const { activeObject, modify } = props;
+        modify('fontSize', newValue, activeObject);
+    }
+});
 // const control =
 // const emit = defineEmits([''])
 
@@ -174,16 +223,6 @@ onMounted(() => {
             families: googleFonts
         }
     });
-
-    // new Swiper('#color-selector', {
-    //     slidesPerView: 'auto',
-    //     slidesPerGroup: 3,
-    //     modules: [Pagination],
-    //     pagination: {
-    //         el: '.swiper-pagination',
-    //         bulletActiveClass: 'color-selector__slide-active'
-    //     },
-    // });
 });
 </script>
 
@@ -192,17 +231,29 @@ onMounted(() => {
         <div
             class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3 px-4 pt-4"
         >
-            <Listbox v-model="selectedFont" :disabled="!activeObject" v-slot="{ disabled }">
+            <Listbox v-model="fontFamily" :disabled="!activeObject" v-slot="{ disabled }">
                 <div :class="['font-selector', disabled && 'font-selector--disabled']">
-                    <ListboxButton class="font-selector__toggle">
-                        <i class="ri-arrow-left-s-line ri-lg"></i>
-                        <span
-                            class="text-lg"
-                            :style="{ fontFamily: selectedFont, fontWeight: 'normal' }"
-                            >{{ selectedFont }}</span
+                    <div class="font-selector__toggle">
+                        <button
+                            @click="fontFamily = Math.max(fontFamily - 1, 0)"
+                            class="font-selector__arrow"
                         >
-                        <i class="ri-arrow-right-s-line ri-lg"></i>
-                    </ListboxButton>
+                            <i class="ri-arrow-left-s-line ri-lg"></i>
+                        </button>
+                        <ListboxButton class="flex-grow">
+                            <span
+                                class="text-lg"
+                                :style="{ fontFamily: fontFamily, fontWeight: 'normal' }"
+                                >{{ fonts[fontFamily].family }}
+                            </span>
+                        </ListboxButton>
+                        <button
+                            @click="fontFamily = Math.min(fontFamily + 1, 13)"
+                            class="font-selector__arrow"
+                        >
+                            <i class="ri-arrow-right-s-line ri-lg"></i>
+                        </button>
+                    </div>
 
                     <transition
                         leave-active-class="transition duration-100 ease-in"
@@ -210,11 +261,11 @@ onMounted(() => {
                         leave-to-class="opacity-0"
                     >
                         <ListboxOptions
-                            class="absolute mt-1 max-h-32 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-stroke focus:outline-none z-[101]"
+                            class="absolute mt-2 max-h-32 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-stroke focus:outline-none z-[101]"
                         >
                             <ListboxOption
                                 v-for="(font, i) in fonts"
-                                :value="font.family"
+                                :value="i"
                                 :key="i"
                                 v-slot="{ active, selected }"
                             >
@@ -238,16 +289,19 @@ onMounted(() => {
         <div :class="['px-4', 'flex', 'items-center', !activeObject && 'opacity-40', 'flex-wrap']">
             <div class="font-size">
                 <input
+                    v-model="fontSize"
                     type="number"
                     class="font-size__input"
-                    :value="42"
                     :disabled="!activeObject"
                 />
                 <div class="font-size__arrows">
-                    <button class="font-size__increase hover:bg-red-500">
+                    <button class="font-size__increase" @click="fontSize = fontSize + 1">
                         <i class="ri-arrow-up-s-fill"></i>
                     </button>
-                    <button class="font-size__decrease">
+                    <button
+                        class="font-size__decrease"
+                        @click="fontSize = Math.max(6, fontSize - 1)"
+                    >
                         <i class="ri-arrow-down-s-fill"></i>
                     </button>
                 </div>
@@ -287,18 +341,51 @@ onMounted(() => {
                 </button>
             </div>
 
-            <div class="color-selector">
-                <div class="color-selector__toggle">
-                    <div class="color-selector__preview bg-black"></div>
-                    <div class="color-selector__arrows">
-                        <i class="ri ri-arrow-down-s-line"></i>
-                    </div>
-                </div>
+            <Popover class="relative flex-grow">
+                <div class="color-selector relative">
+                    <PopoverButton class="h-full flex-grow">
+                        <div class="color-selector__toggle">
+                            <div class="color-selector__preview bg-black"></div>
+                            <div class="color-selector__arrows">
+                                <i class="ri ri-arrow-down-s-line"></i>
+                            </div>
+                        </div>
+                    </PopoverButton>
 
-                <div class="color-selector__eyedropper">
-                    <i class="ri-sip-line"></i>
+                    <transition
+                        enter-active-class="transition duration-200 ease-out"
+                        enter-from-class="translate-y-1 opacity-0"
+                        enter-to-class="translate-y-0 opacity-100"
+                        leave-active-class="transition duration-150 ease-in"
+                        leave-from-class="translate-y-0 opacity-100"
+                        leave-to-class="translate-y-1 opacity-0"
+                    >
+                        <PopoverPanel
+                            class="absolute left-0 top-0 mt-10 translate-y-1 z-[9999] transform w-full"
+                        >
+                            <div class="rounded-lg shadow ring-1 ring-black/5 p-2 bg-white">
+                                <div class="relative grid grid-cols-7 gap-1">
+                                    <button
+                                        v-for="color in BASIC_COLORS"
+                                        class="w-6 h-6 rounded-full flex-shrink-0 border border-stroke"
+                                        :style="{ backgroundColor: color }"
+                                        @click="modify('fill', color, activeObject)"
+                                    ></button>
+                                </div>
+                            </div>
+                        </PopoverPanel>
+                    </transition>
+
+                    <button
+                        v-if="isSupported"
+                        class="color-selector__eyedropper"
+                        :style="{ backgroundColor: sRGBHex, color: sipColor }"
+                        @click="open"
+                    >
+                        <i class="ri-sip-line"></i>
+                    </button>
                 </div>
-            </div>
+            </Popover>
         </div>
 
         <!-- <div id="color-selector" class="swiper h-16">
@@ -322,12 +409,6 @@ onMounted(() => {
         </div> -->
     </div>
 </template>
-
-<style>
-.color-selector__slide-active {
-    @apply bg-main opacity-100;
-}
-</style>
 
 <style scoped lang="scss">
 .btn-toggle {
@@ -437,6 +518,10 @@ onMounted(() => {
     flex-shrink: 0;
     margin-left: 8px;
 
+    @include md_screen {
+        height: 54px;
+    }
+
     .color-selector__toggle {
         @apply w-full h-full flex items-center border border-stroke rounded-lg overflow-hidden;
     }
@@ -459,15 +544,20 @@ onMounted(() => {
         width: 40px;
         height: 40px;
         border-radius: 100%;
-        background: #f6fafa;
-        box-shadow:
-            0px 4px 6px -2px rgba(16, 24, 40, 0.03),
-            0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
         margin-left: 8px;
+        cursor: pointer;
+        @apply border border-stroke;
+
+        &:hover {
+            box-shadow:
+                0px 4px 6px -2px rgba(16, 24, 40, 0.03),
+                0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+        }
     }
 }
 
@@ -480,7 +570,7 @@ onMounted(() => {
     }
 
     .font-selector__option {
-        @apply px-4 py-2 text-black/70;
+        @apply px-4 py-2 text-black/70 text-lg;
 
         &.font-selector__option--active {
             @apply bg-gray-100 text-black;
@@ -499,11 +589,15 @@ onMounted(() => {
         width: 100%;
         font-size: 16px;
         justify-content: space-between;
-        @apply border border-stroke rounded-xl transition-all;
+        @apply border border-stroke rounded-xl transition-all bg-gray-100;
 
         &:disabled {
             opacity: 0.5;
         }
+    }
+
+    .font-selector__arrow {
+        @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-white;
     }
 }
 

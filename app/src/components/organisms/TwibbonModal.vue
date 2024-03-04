@@ -8,7 +8,6 @@ import {
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { useModal } from '@/composables/modal';
-import { gsap } from 'gsap';
 import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
 import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
@@ -72,11 +71,12 @@ useResizeObserver(canvasInner, (entries) => {
 const modify = (changedKey, changedValue, target = null) => {
     const { editor } = canvas.value;
 
-    const targetObj = target || editor.handler.canvas.getActiveObject();
+    const targetObj =
+        (target && editor.handler.find(target.id)) || editor.handler.canvas.getActiveObject();
 
     if (changedKey === 'fontFamily') {
-        const { family, isGoogleFont } = changedValue;
-        if (isGoogleFont) {
+        const { family, googleFont } = changedValue;
+        if (googleFont) {
             editor.handler.loadFont(family).then((font) => {
                 editor.handler.set(changedKey, font);
                 editor.handler.set('isGoogleFont', true);
@@ -260,7 +260,6 @@ const addWatermark = async () => {
         (width / 2 + (width / 2 + createdObj.getScaledWidth() / 2)) * additionalMultipler;
     const positionY = (height * 2 + createdObj.getScaledHeight() / 2) * additionalMultipler;
 
-    console.log(createdObj.getScaledHeight());
     editor.handler.setObject({
         left: positionX,
         top: positionY
@@ -326,12 +325,21 @@ const rotatePhoto = (degree) => {
 
 const canvasListeners = {
     onModified: (target) => {
-        const properties = target.toObject(['name']);
+        if (!target) return;
 
+        const { editor } = canvas.value;
+        const { propertiesToInclude } = editor.handler;
+        const properties = target.toObject(propertiesToInclude);
         const { angle, name } = properties;
 
         if (name === 'photo') {
             photoRotation.value = angle;
+            return;
+        }
+
+        if (activeObj.value && target.id === activeObj.value.id) {
+            activeObj.value = properties;
+            return;
         }
     },
     onSelect: (target) => {
