@@ -8,11 +8,6 @@
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
-            <img
-                class="blob-bg"
-                src="/src/assets/img/patterns/background-banner-creators.png"
-                alt=""
-            />
         </div>
     </div>
 </template>
