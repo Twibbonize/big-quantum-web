@@ -922,7 +922,7 @@ onMounted(async () => {
     }
 
     .watermark-banner__title {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
 
         @include md_screen {
@@ -931,7 +931,7 @@ onMounted(async () => {
     }
 
     .watermark-banner__desc {
-        font-size: 10px;
+        font-size: 12px;
 
         @include md_screen {
             font-size: 13px;
