@@ -217,7 +217,7 @@ const supporterOptions = [
 }
 
 .banner-pricing {
-    @apply mt-[260px] mx-auto overflow-hidden relative;
+    @apply mt-[200px] sm:mt-[260px] mx-auto overflow-hidden relative;
     background: #202124;
 
     .bg {
