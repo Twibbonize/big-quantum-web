@@ -32,7 +32,7 @@ const supporterOptions = [
 
 <template>
     <div class="banner-pricing tp-rated-area" style="--tw-bg-opacity: .4;">
-        <div ref="bgHero" class="bg relative py-14" :class="{ bottom: scrollPosition > 300 }">
+        <div ref="bgHero" class="bg relative sm:py-14" :class="{ bottom: scrollPosition > 300 }">
             <div class="text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
@@ -285,11 +285,12 @@ const supporterOptions = [
 }
 
 .pricing-compare {
-  @apply flex flex-col-reverse sm:flex-row w-full gap-14 mt-48;
+  @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
 
   .card {
-    @apply rounded-3xl bg-white w-full overflow-hidden relative;
-    border: 3px solid rgba(255, 255, 255, 0.20);
+    @apply sm:rounded-3xl bg-white w-full overflow-hidden relative border-none sm:border-[3px];
+    border-color: rgba(255, 255, 255, 0.20);
+    border-style: solid;
 
     .premium {
       @apply h-5;
@@ -304,7 +305,7 @@ const supporterOptions = [
     }
 
     .content {
-        @apply bg-white mx-12 rounded-3xl;
+        @apply bg-white mx-5 sm:mx-12 rounded-3xl;
     }
 
     .bento-container {
@@ -343,14 +344,14 @@ const supporterOptions = [
     }
 
     .action {
-        @apply text-black absolute bottom-0 left-0 w-full bg-white flex flex-col items-center py-8 px-12 gap-4;
+        @apply text-black absolute bottom-0 left-0 w-full bg-white flex flex-col items-center py-8 px-5 sm:px-12 gap-4;
         box-shadow: 0px -4px 32px 0px rgba(27, 82, 78, 0.08);
     }
   }
 
   .supporters {
     .bg {
-        @apply flex flex-col items-center p-12 pb-20;
+        @apply flex flex-col items-center px-5 pt-10 sm:p-12 pb-20;
         background: url('/assets/img/marketings/bg-supporters.jpg'), linear-gradient(117deg, rgba(22, 218, 193, 0.80) 14.55%, rgba(22, 155, 154, 0.80) 100%);
         background-size: auto 100%, contain;
         background-position: center, center;
@@ -360,7 +361,7 @@ const supporterOptions = [
   .creators {
     @apply text-white;
     .bg {
-        @apply flex flex-col items-center p-12 pb-20;
+        @apply flex flex-col items-center px-5 pt-10 sm:p-12 pb-20;
         background: url('/assets/img/marketings/bg-creators.png'), linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
         background-size: 574px 500px, contain;
         background-position: center, center;
