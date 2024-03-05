@@ -36,7 +36,7 @@ watch(selectedPreset, (newValue) => {
                 <div :class="['preset', checked && 'preset--selected']">
                     <img
                         :src="`/assets/img/presets/${preset.name.toLowerCase()}.webp`"
-                        alt=""
+                        :alt="preset.name"
                         class="preset__preview"
                     />
                     <div class="preset__title">{{ preset.name }}</div>

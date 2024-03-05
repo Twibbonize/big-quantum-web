@@ -21,25 +21,42 @@ export default class ImageHandler {
 
     resetFilters = (imageObj = undefined) => {
         const obj = imageObj || this.handler.canvas.getActiveObject();
-        const noColorFilters = obj.filters.filter((filter) => filter.type === 'Resize');
+
+        if (obj.originalSrc) {
+            const { originalSrc } = obj;
+            const resizedWidth = obj.getScaledWidth();
+            const resizedHeight = obj.getScaledHeight();
+            const noColorFilters = obj.filters.filter((filter) => filter.type === 'Resize');
+
+            imageObj.setSrc(originalSrc, (modifyObj) => {
+                this.handler.setObject(
+                    {
+                        preset: null,
+                        filters: noColorFilters,
+                        originalSrc: null
+                    },
+                    modifyObj
+                );
+
+                imageObj.scaleToWidth(resizedWidth);
+                imageObj.scaleToHeight(resizedHeight);
+                modifyObj.applyFilters();
+                this.handler.canvas.renderAll();
+            });
+
+            return;
+        }
 
         this.handler.setObject(
             {
                 preset: null,
-                filters: noColorFilters
+                filters: []
             },
             obj
         );
-
         obj.applyFilters();
-        // this.handler.canvas.requestRenderAll();
-
-        // const {
-        //   onModified
-        // } = this.handler;
-        // if (onModified) {
-        //   onModified(obj);
-        // }
+        this.handler.canvas.renderAll();
+        return;
     };
 
     createColorMatrix = (shadowColor, highlightColor) => {
@@ -146,7 +163,7 @@ export default class ImageHandler {
         return createdFilters;
     };
 
-    applyFilterByType = (type, apply = true, value = {}, imageObj = undefined) => {
+    applyFilterByType = async (type, apply = true, value = {}, imageObj = undefined) => {
         const obj = imageObj || this.handler.canvas.getActiveObject();
         const findIndex = FILTER_TYPES.findIndex((ft) => ft === type);
         if (obj.filters && findIndex > -1) {
@@ -167,14 +184,7 @@ export default class ImageHandler {
 
                 obj.applyFilters();
             }
-            this.handler.canvas.requestRenderAll();
-
-            // const {
-            //   onModified
-            // } = this.handler;
-            // if (onModified) {
-            //   onModified(obj);
-            // }
+            this.handler.canvas.renderAll();
         }
     };
 }

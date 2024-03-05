@@ -286,7 +286,16 @@ onMounted(() => {
             </Listbox>
         </div>
 
-        <div :class="['px-4', 'flex', 'items-center', !activeObject && 'opacity-40', 'flex-wrap']">
+        <div
+            :class="[
+                'px-4',
+                'flex',
+                'items-center',
+                !activeObject && 'opacity-40',
+                'flex-wrap',
+                'relative'
+            ]"
+        >
             <div class="font-size">
                 <input
                     v-model="fontSize"
@@ -341,8 +350,8 @@ onMounted(() => {
                 </button>
             </div>
 
-            <Popover class="relative flex-grow">
-                <div class="color-selector relative">
+            <Popover class="flex-grow">
+                <div class="color-selector">
                     <PopoverButton class="h-full flex-grow">
                         <div class="color-selector__toggle">
                             <div class="color-selector__preview bg-black"></div>
@@ -361,16 +370,17 @@ onMounted(() => {
                         leave-to-class="translate-y-1 opacity-0"
                     >
                         <PopoverPanel
-                            class="absolute left-0 top-0 mt-10 translate-y-1 z-[9999] transform w-full"
+                            class="absolute left-0 bottom-0 mt-10 translate-y-1 z-[9999] transform w-full px-4"
                         >
-                            <div class="rounded-lg shadow ring-1 ring-black/5 p-2 bg-white">
+                            <div class="rounded-lg shadow ring-1 ring-black/5 py-2 px-1 bg-white">
                                 <div class="relative grid grid-cols-7 gap-1">
-                                    <button
-                                        v-for="color in BASIC_COLORS"
-                                        class="w-6 h-6 rounded-full flex-shrink-0 border border-stroke"
-                                        :style="{ backgroundColor: color }"
-                                        @click="modify('fill', color, activeObject)"
-                                    ></button>
+                                    <div v-for="color in BASIC_COLORS" class="flex justify-center">
+                                        <button
+                                            class="w-8 h-8 rounded-full flex-shrink-0 border border-stroke"
+                                            :style="{ backgroundColor: color }"
+                                            @click="modify('fill', color, activeObject)"
+                                        ></button>
+                                    </div>
                                 </div>
                             </div>
                         </PopoverPanel>

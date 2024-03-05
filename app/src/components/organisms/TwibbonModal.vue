@@ -8,6 +8,7 @@ import {
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { useModal } from '@/composables/modal';
+import fabric from '@/libs/editor/fabric';
 import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
 import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
@@ -72,7 +73,7 @@ const modify = (changedKey, changedValue, target = null) => {
     const { editor } = canvas.value;
 
     const targetObj =
-        (target && editor.handler.find(target.id)) || editor.handler.canvas.getActiveObject();
+        (target && editor.handler.find(target)) || editor.handler.canvas.getActiveObject();
 
     if (changedKey === 'fontFamily') {
         const { family, googleFont } = changedValue;
@@ -85,34 +86,92 @@ const modify = (changedKey, changedValue, target = null) => {
             return;
         }
 
-        editor.handler.set(changedKey, family);
+        editor.handler.set(changedKey, family, targetObj);
         activeObj.value[changedKey] = family;
         return;
     }
 
     if (changedKey === 'fontWeight') {
         const fontWeight = changedValue ? 'normal' : 'bold';
-        editor.handler.set(changedKey, fontWeight);
+        editor.handler.set(changedKey, fontWeight, targetObj);
         activeObj.value[changedKey] = fontWeight;
         return;
     }
 
     if (changedKey === 'fontStyle') {
         const fontStyle = changedValue ? 'normal' : 'italic';
-        editor.handler.set(changedKey, fontStyle);
+        editor.handler.set(changedKey, fontStyle, targetObj);
         activeObj.value[changedKey] = fontStyle;
         return;
     }
 
     if (changedKey === 'preset') {
         const currentPreset = targetObj.preset;
-
         const preset = changedValue;
 
-        if (!preset || preset.name === currentPreset) {
-            editor.handler.imageHandler.resetFilters();
+        const mustResized =
+            Math.max(targetObj.width, targetObj.height) > fabric.textureSize &&
+            !targetObj.originalSrc;
+
+        if (!currentPreset && mustResized) {
+            editor.handler.resizeImage(targetObj).then((resizedImg) => {
+                const originalSrc = targetObj.getSrc();
+                const originalHeight = targetObj.height;
+                const originalWidth = targetObj.width;
+
+                targetObj.filters.push(
+                    new fabric.Image.filters.Duotone({
+                        duotone: false
+                    })
+                );
+
+                targetObj.setSrc(resizedImg);
+                targetObj.scaleToHeight(originalHeight);
+                targetObj.scaleToWidth(originalWidth);
+                let presetValue;
+
+                for (const key in preset) {
+                    if (key === 'highlightColor' || key === 'shadowColor') {
+                        continue;
+                    }
+
+                    if (key === 'duotone') {
+                        if (!preset[key]) {
+                            continue;
+                        }
+
+                        presetValue = {
+                            highlightColor: preset['highlightColor'],
+                            shadowColor: preset['shadowColor']
+                        };
+                    } else if (key === 'vignette') {
+                        presetValue = {
+                            radius: preset[key]
+                        };
+                    } else {
+                        presetValue = {};
+                        presetValue[key] = preset[key];
+                    }
+
+                    editor.handler.imageHandler.applyFilterByType(
+                        key,
+                        preset[key] !== 0,
+                        presetValue,
+                        targetObj
+                    );
+                }
+
+                editor.handler.setObject({ originalSrc, preset: preset.name }, targetObj);
+            });
+
             return;
         }
+        // console.log(currentPreset, target.preset)
+        // const preset = changedValue;
+
+        // if (!preset || preset.name !== currentPreset) {
+        //     editor.handler.imageHandler.resetFilters(targetObj);
+        // }
 
         let presetValue;
 
@@ -139,11 +198,15 @@ const modify = (changedKey, changedValue, target = null) => {
                 presetValue[key] = preset[key];
             }
 
-            editor.handler.imageHandler.applyFilterByType(key, preset[key] !== 0, presetValue);
+            editor.handler.imageHandler.applyFilterByType(
+                key,
+                preset[key] !== 0,
+                presetValue,
+                targetObj
+            );
         }
 
-        editor.handler.set('preset', preset.name);
-        activeObj.value[changedKey] = preset.name;
+        editor.handler.set('preset', preset.name, targetObj);
 
         return;
     }
@@ -273,6 +336,8 @@ const toggleWatermark = (show) => {
     const opac = show ? 1 : 0;
 
     const watermarkObj = editor.handler.findByName('watermark');
+    // editor.handler.remove(watermarkObj);
+    // console.log(watermarkObj.name);
     modify('opacity', opac, watermarkObj);
 };
 
@@ -365,12 +430,15 @@ const backToCropState = () => {
     editor.handler.clearSelection();
 };
 
-const removeText = () => {
-    if (!activeObj.value) {
-        console.log('no object!');
-    }
+const handleDownload = async () => {
+    const { editor } = canvas.value;
+    editor.handler.saveCanvasImage();
+};
 
-    // const { editor } = canvas.value;
+const resetFilter = () => {
+    const { editor } = canvas.value;
+    const photo = editor.handler.findByName('photo');
+    editor.handler.imageHandler.resetFilters(photo);
 };
 
 watch(photoRotation, handleInputRange);
@@ -421,12 +489,10 @@ onMounted(async () => {
                     </div>
 
                     <div class="flex flex-col items-center space-y-2 mt-6 w-full">
-                        <QButton variant="subtle" size="sm" @click="close" block>
+                        <QButton variant="subtle" @click="close" block>
                             <span class="text-red-500">Discard</span>
                         </QButton>
-                        <QButton size="sm" @click="showConfirmDiscard = false" block
-                            >Keep Editing</QButton
-                        >
+                        <QButton @click="showConfirmDiscard = false" block>Keep Editing</QButton>
                     </div>
                 </div>
             </QConfirmDialog>
@@ -635,47 +701,31 @@ onMounted(async () => {
             <div ref="modalFooter" class="twibbon-modal__footer">
                 <!-- footer for crop state -->
                 <div v-if="editState === 'crop'">
-                    <div
-                        class="remove-watermark-banner flex items-center justify-between mb-4 px-4 py-3"
-                    >
-                        <div class="flex items-center space-x-2">
+                    <div class="watermark-banner">
+                        <div class="watermark-banner__copy">
                             <img
-                                class="h-10 w-10"
+                                class="watermark-banner__icon"
                                 src="/assets/img/brandings/no-watermark.webp"
                                 alt="no-watermark"
                             />
                             <div class="flex flex-col">
-                                <div class="flex items-center">
-                                    <span class="text-sm font-bold">Remove Watermark</span>
-                                    <img
-                                        class="h-4 ml-1"
-                                        src="/assets/img/brandings/badge-gold.png"
-                                        alt=""
-                                    />
-                                </div>
-                                <span class="text-xs mt-1"
-                                    >Upgrade to Premium, only
-                                    <span class="font-semibold">Rp45,000</span> per year</span
-                                >
+                                <div class="watermark-banner__title">Remove Watermark For You</div>
+                                <span class="watermark-banner__desc"
+                                    >Upgrade to Premium start from
+                                    <span class="font-semibold">$2.99</span>/week
+                                </span>
                             </div>
                         </div>
 
-                        <QSwitchToggle
-                            v-model="removeWatermark"
-                            id="remove_watermark"
-                            name="remove_watermark"
-                            :checked-value="true"
-                            :unchecked-value="false"
-                        />
+                        <div class="watermark-banner__arrow">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between space-x-3 h-16 px-4 pb-3 pt-2">
                         <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
                             <i class="ri-camera-line ri-lg font-light"></i>
                         </QButton>
-                        <QButton block>
-                            <span v-if="removeWatermark">Upgrade and </span>
-                            <span class="ml-1"> Download</span>
-                        </QButton>
+                        <QButton block @click="handleDownload"> Download </QButton>
                     </div>
                 </div>
 
@@ -694,7 +744,7 @@ onMounted(async () => {
                     v-if="editState === 'filter'"
                     class="flex items-center px-4 py-3 border-t border-stroke bg-white"
                 >
-                    <QButton variant="secondary" block class="mr-2" @click="addText">
+                    <QButton variant="secondary" block class="mr-2" @click="resetFilter">
                         <i class="ri-refresh-line"></i>
                         <span class="ml-2">Reset</span>
                     </QButton>
@@ -852,21 +902,45 @@ onMounted(async () => {
     @apply flex items-center space-x-3 flex-grow;
 }
 
-.remove-watermark-banner {
-    background: hsla(170, 100%, 82%, 1);
+.watermark-banner {
+    @apply flex items-center justify-between mb-4 px-4 py-3 cursor-pointer;
+    background-image: url('/assets/img/background/bg-supporters.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
 
-    background: linear-gradient(90deg, hsla(170, 100%, 82%, 1) 0%, hsla(170, 100%, 88%, 1) 100%);
+    .watermark-banner__copy {
+        @apply flex items-center space-x-2;
+    }
 
-    background: -moz-linear-gradient(
-        90deg,
-        hsla(170, 100%, 82%, 1) 0%,
-        hsla(170, 100%, 88%, 1) 100%
-    );
+    .watermark-banner__icon {
+        @apply h-8 w-8;
 
-    background: -webkit-linear-gradient(
-        90deg,
-        hsla(170, 100%, 82%, 1) 0%,
-        hsla(170, 100%, 88%, 1) 100%
-    );
+        @include md_screen {
+            @apply h-10 w-10;
+        }
+    }
+
+    .watermark-banner__title {
+        font-size: 13px;
+        font-weight: 600;
+
+        @include md_screen {
+            font-size: 15px;
+        }
+    }
+
+    .watermark-banner__desc {
+        font-size: 10px;
+
+        @include md_screen {
+            font-size: 13px;
+        }
+    }
+
+    .watermark-banner__arrow {
+        @apply flex-shrink-0 ml-1;
+        font-size: 24px;
+    }
 }
 </style>
