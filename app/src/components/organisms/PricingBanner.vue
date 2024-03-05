@@ -52,7 +52,7 @@ const supporterOptions = [
                     </div>
                     <div class="content">
                         <div class="bento-container">
-                            <div class="bento flex -mt-9">
+                            <div class="bento flex flex-col -mt-9">
                                 <video
                                     class="w-full"
                                     autoplay loop muted
@@ -109,7 +109,7 @@ const supporterOptions = [
                     </div>
                     <div class="content">
                         <div class="bento-container">
-                            <div class="bento -mt-9">
+                            <div class="bento flex flex-col -mt-9">
                                 <video
                                     class="w-full"
                                     autoplay loop muted
@@ -180,7 +180,7 @@ const supporterOptions = [
                                     <div class="flex flex-col justify-between">
                                         <div class="h-8 relative overflow-hidden">
                                             <video
-                                                class="h-16 absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2"
+                                                class="h-12 absolute top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2"
                                                 autoplay loop muted
                                                 src="/assets/videos/pricing-multiple-frames.mp4"
                                             />
