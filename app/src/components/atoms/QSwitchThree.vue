@@ -1,14 +1,40 @@
+<script setup>
+defineProps({
+    name: {
+        type: String,
+        default: 'q-switch-3'
+    },
+    options: {
+        type: Array,
+        default: () => [
+            {
+                text: '7 days',
+                key: '7'
+            },
+            {
+                text: '30 days',
+                key: '30'
+            },
+            {
+                text: 'All',
+                key: 'all'
+            },
+        ],
+    },
+});
+</script>
+
 <template>
     <div class="switch-toggle__container">
         <div class="switch-toggle switch-3 switch-candy">
-            <input id="on" name="state-d" type="radio" checked />
-            <label for="on" onclick=""><span>7 days</span></label>
+            <input :id="options[0].key" :name="name" type="radio" checked />
+            <label :for="options[0].key" onclick=""><span>{{ options[0].text }}</span></label>
 
-            <input id="na" name="state-d" type="radio" />
-            <label for="na" onclick=""><span>30 days</span></label>
+            <input :id="options[1].key" :name="name" type="radio" />
+            <label :for="options[1].key" onclick=""><span>{{ options[1].text }}</span></label>
 
-            <input id="off" name="state-d" type="radio" />
-            <label for="off" onclick=""><span>All</span></label>
+            <input :id="options[2].key" :name="name" type="radio" />
+            <label :for="options[2].key" onclick=""><span>{{ options[2].text }}</span></label>
 
             <a></a>
         </div>
