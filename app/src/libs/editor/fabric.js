@@ -159,7 +159,6 @@ fabric.Object.prototype.set({
     transparentCorners: false,
     borderColor: '#F54336',
     paintFirst: 'stroke',
-    borderDashArray: [16, 6],
     borderScaleFactor: 2,
     snapAngle: 45,
     snapThreshold: 5
