@@ -57,7 +57,8 @@ const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 
 const modalBodyPaddingBottom = computed(() => {
-    return `${footerHeight.value + 24}px`;
+    const additionalMargin = editState === 'crop' ? 24 : 8;
+    return `${footerHeight.value + additionalMargin}px`;
 });
 
 useResizeObserver(canvasInner, (entries) => {
@@ -690,10 +691,8 @@ onMounted(async () => {
             </div>
             <!-- end of text state -->
 
-            <div v-if="editState === 'filter'">
-                <div class="py-4">
-                    <PresetModifier :editor="canvas.editor" :modify="modify" />
-                </div>
+            <div v-if="editState === 'filter'" class="preset-modifier-wrapper">
+                <PresetModifier :editor="canvas.editor" :modify="modify" />
             </div>
         </div>
 
@@ -942,5 +941,11 @@ onMounted(async () => {
         @apply flex-shrink-0 ml-1;
         font-size: 24px;
     }
+}
+
+.preset-modifier-wrapper {
+    @apply h-full py-4 flex items-center overflow-x-auto;
+
+    @include no_scrollbar;
 }
 </style>

@@ -370,13 +370,13 @@ onMounted(() => {
                         leave-to-class="translate-y-1 opacity-0"
                     >
                         <PopoverPanel
-                            class="absolute left-0 bottom-0 mt-10 translate-y-1 z-[9999] transform w-full px-4"
+                            class="absolute left-0 top-0 translate-y-12 z-[9999] transform w-full px-4"
                         >
-                            <div class="rounded-lg shadow ring-1 ring-black/5 py-2 px-1 bg-white">
-                                <div class="relative grid grid-cols-7 gap-1">
+                            <div class="rounded-lg shadow ring-1 ring-black/5 p-2 bg-white">
+                                <div class="relative grid grid-cols-7 gap-x-4 gap-y-2">
                                     <div v-for="color in BASIC_COLORS" class="flex justify-center">
                                         <button
-                                            class="w-8 h-8 rounded-full flex-shrink-0 border border-stroke"
+                                            class="w-full h-auto aspect-square rounded-full flex-shrink-0 border border-stroke"
                                             :style="{ backgroundColor: color }"
                                             @click="modify('fill', color, activeObject)"
                                         ></button>
@@ -414,9 +414,9 @@ onMounted(() => {
                         </div>
                     </div>
                 </template>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div> -->
+</div>
+<div class="swiper-pagination"></div>
+</div> -->
     </div>
 </template>
 

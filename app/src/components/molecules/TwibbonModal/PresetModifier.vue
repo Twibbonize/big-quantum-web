@@ -48,7 +48,9 @@ watch(selectedPreset, (newValue) => {
 
 <style scoped lang="scss">
 .presets {
-    @apply flex items-center space-x-3 overflow-x-auto pb-2;
+    @apply flex items-center space-x-3 h-full;
+
+    @include no_scrollbar;
 }
 
 .preset {
