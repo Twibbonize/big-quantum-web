@@ -440,7 +440,7 @@ body {
 		transform 18s ease-in-out infinite both alternate, movement_one 12s ease-in-out infinite both;
 	opacity:.7;
 	position: absolute;
-	left: 50%;
+	left: 30%;
 	top: 20%;
     z-index: 0;
 }
