@@ -238,7 +238,6 @@ export default class Handler {
                     const createdFilters = this.imageHandler.createFilters(option[key]);
                     activeObject.set(key, createdFilters);
                     activeObject.applyFilters();
-                    return;
                 }
 
                 if (key === 'rotate') {
@@ -267,7 +266,11 @@ export default class Handler {
         }
     ) {
         // this.zoomHandler.zoomOneToOne();
-        const { left, top, width, height } = this.drawArea;
+        const drawArea = this.findByName('drawing-area');
+        const { left, top, width, height } = drawArea;
+        const center = this.canvas.getCenter();
+        this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+        this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
 
         const dataUrl = this.canvas.toDataURL({
             ...option,
@@ -285,6 +288,8 @@ export default class Handler {
             document.body.appendChild(anchorEl);
             anchorEl.click();
             anchorEl.remove();
+
+            this.zoomHandler.zoomToFit();
         }
     }
 
@@ -304,6 +309,8 @@ export default class Handler {
                         fill: 'transparent'
                     });
                 }
+
+                console.log(cloned.filters);
 
                 const dataUrl = cloned.toDataURL({
                     ...option,
@@ -559,13 +566,11 @@ export default class Handler {
             const tempCanvas = document.createElement('canvas');
 
             if (targetImage.height >= targetImage.width) {
-                tempCanvas.height = fabric.textureSize * 0.5;
-                tempCanvas.width =
-                    ((fabric.textureSize * 0.5) / targetImage.height) * targetImage.width;
+                tempCanvas.height = fabric.textureSize;
+                tempCanvas.width = (fabric.textureSize / targetImage.height) * targetImage.width;
             } else {
-                tempCanvas.width = fabric.textureSize * 0.5;
-                tempCanvas.height =
-                    ((fabric.textureSize * 0.5) / targetImage.width) * targetImage.height;
+                tempCanvas.width = fabric.textureSize;
+                tempCanvas.height = (fabric.textureSize / targetImage.width) * targetImage.height;
             }
 
             const tempContext = tempCanvas.getContext('2d');
@@ -607,29 +612,6 @@ export default class Handler {
             fabric.Image.fromURL(
                 src,
                 (img) => {
-                    img.filters.push(
-                        new fabric.Image.filters.Duotone({
-                            duotone: false
-                        })
-                    );
-
-                    if (Math.max(img.width, img.height) > fabric.textureSize * 0.5) {
-                        this.resizeImage(img).then((resizedImage) => {
-                            img.setSrc(resizedImage, (obj) => {
-                                obj.set({
-                                    centeredRotation: true,
-                                    centeredScaling: true,
-                                    scaleX: 1,
-                                    scaleY: 1,
-                                    perPixelTargetFind: true
-                                });
-                                obj.preset = null;
-                                resolve(obj);
-                            });
-                        });
-                        return;
-                    }
-
                     img.set({
                         centeredRotation: true,
                         centeredScaling: true,
@@ -637,6 +619,7 @@ export default class Handler {
                         scaleY: 1,
                         perPixelTargetFind: true
                     });
+
                     img.preset = null;
                     resolve(img);
                 },

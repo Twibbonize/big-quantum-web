@@ -146,6 +146,7 @@ const toggleDisplay = () => {
 
 const openInputPhoto = (e) => {
     e.preventDefault();
+    inputPhoto.value.value = null;
     inputPhoto.value.click();
 };
 
