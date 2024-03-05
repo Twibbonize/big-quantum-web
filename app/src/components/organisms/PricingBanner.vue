@@ -32,6 +32,21 @@ const supporterOptions = [
 
 <template>
     <div class="banner-pricing tp-rated-area" style="--tw-bg-opacity: .4;">
+        <div class="blob-container">
+            <div class="shape-blob"></div>
+            <div class="shape-blob one"></div>
+            <div class="shape-blob two"></div>
+            <div class="shape-blob three"></div>
+            <div class="shape-blob four"></div>
+            <div class="shape-blob five"></div>
+            <div class="shape-blob six"></div>
+            <img
+                class="shape-bg"
+                src="/src/assets/img/patterns/background-banner-creators.png"
+                alt=""
+            />
+        </div>
+
         <div ref="bgHero" class="bg relative sm:py-14" :class="{ bottom: scrollPosition > 300 }">
             <div class="text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
@@ -217,12 +232,11 @@ const supporterOptions = [
 }
 
 .banner-pricing {
-    @apply mt-[200px] sm:mt-[260px] mx-auto overflow-hidden relative;
+    @apply pt-[200px] sm:pt-[260px] mx-auto overflow-hidden relative;
     background: #202124;
 
     .bg {
         @apply max-w-[1100px] mx-auto;
-        background: #202124;
 
         &::before {
             @apply h-[300px] md:h-[586px] w-full fixed block top-0 left-0 z-[-1] scale-100 bg-cover bg-no-repeat;
@@ -383,5 +397,135 @@ const supporterOptions = [
         @apply self-end text-3xl font-bold py-[7px];
     }
   }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,900');
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	background:#1F2024;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+}
+
+.blob-container {
+    @apply absolute top-0 min-h-[100vh] h-full w-full overflow-hidden;
+	filter: blur(40px);
+}
+
+.shape-bg {
+    position: absolute;
+    width: 2479.506px;
+    height: 1708.919px;
+    top: 30%;
+    left: 0%;
+    z-index: -1;
+}
+
+.shape-blob {
+    background: rgba(22, 218, 193, 0.3);
+	height: 284px;
+	width: 495px;
+	border-radius: 50% 40% 30% 40%;
+  	animation: 
+		transform 18s ease-in-out infinite both alternate, movement_one 12s ease-in-out infinite both;
+	opacity:.7;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+    z-index: 0;
+}
+.shape-blob.one{
+	background: rgba(22, 218, 193, 0.3);
+	width: 684px;
+    height: 534px;
+	left: 70%;
+	top: 160px;
+	transform: rotate(-180deg);
+	animation: transform 8s ease-in-out infinite both alternate, movement_two 20s ease-in-out infinite both;
+}
+
+.shape-blob.two{
+	background: rgba(19, 201, 213, 0.3);
+	width: 781.523px;
+    height: 448.728px;
+	left: 8%;
+	top: 40%;
+	transform: rotate(-180deg);
+	animation: transform 10s ease-in-out infinite both alternate, movement_two 10s ease-in-out infinite both;
+}
+
+.shape-blob.three{
+	background: rgba(19, 201, 213, 0.3);
+	width: 504px;
+    height: 449px;
+	left: 80%;
+	top: 500px;
+	transform: rotate(-180deg);
+	animation: transform 7s ease-in-out infinite both alternate, movement_two 23s ease-in-out infinite both;
+}
+
+.shape-blob.four{
+	background: rgba(19, 201, 213, 0.2);
+	width: 470px;
+    height: 449px;
+	left: 350px;
+	top: 700px;
+	transform: rotate(-180deg);
+	animation: transform 17s ease-in-out infinite both alternate, movement_two 13s ease-in-out infinite both;
+}
+
+.shape-blob.five{
+	background: rgba(19, 201, 213, 0.16);
+	width: 781.523px;
+    height: 448.728px;
+	left: 10%;
+	top: 1000px;
+	transform: rotate(-180deg);
+	animation: transform 12s ease-in-out infinite both alternate, movement_two 18s ease-in-out infinite both;
+}
+
+.shape-blob.six{
+    background: rgba(22, 218, 193, 0.2);
+	width: 1171.424px;
+    height: 1071.231px;
+	left: -160px;
+	top: 1200px;
+	transform: rotate(-180deg);
+	animation: transform 5s ease-in-out infinite both alternate, movement_two 5s ease-in-out infinite both;
+}
+
+@keyframes transform
+{
+    0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 40% 70% 70%; } 
+   20% { border-radius: 37% 63% 51% 49% / 37% 35% 35% 63%; } 
+   40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 26%; } 
+   60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 73%; } 
+   80% { border-radius: 40% 60% 42% 58% / 51% 51% 49% 59%; } 
+}
+
+
+@keyframes movement_one
+{
+    0%,
+  100% { transform: none; }
+   50% { transform: translate(50%, 20%) rotateY(10deg) scale(1); }
+}
+
+@keyframes movement_two
+{
+    0%,
+  500% { transform: none; }
+   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.3);}
 }
 </style>
