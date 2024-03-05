@@ -424,8 +424,8 @@ body {
 
 .shape-bg {
     position: absolute;
-    width: 2479.506px;
-    height: 1708.919px;
+    width: 100vw;
+    height: 140vh;
     top: 30%;
     left: 0%;
     z-index: -1;
@@ -440,7 +440,7 @@ body {
 		transform 18s ease-in-out infinite both alternate, movement_one 12s ease-in-out infinite both;
 	opacity:.7;
 	position: absolute;
-	left: 30%;
+	left: 25%;
 	top: 20%;
     z-index: 0;
 }
