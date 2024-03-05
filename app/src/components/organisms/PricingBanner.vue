@@ -350,16 +350,20 @@ const supporterOptions = [
 
   .supporters {
     .bg {
-      @apply flex flex-col items-center p-12 pb-20;
-      background: linear-gradient(117deg, rgba(22, 218, 193, 0.80) 14.55%, rgba(22, 155, 154, 0.80) 100%), url(<path-to-image>), lightgray -144.115px 0px / 159.794% 99.468% no-repeat;
+        @apply flex flex-col items-center p-12 pb-20;
+        background: url('/assets/img/marketings/bg-supporters.jpg'), linear-gradient(117deg, rgba(22, 218, 193, 0.80) 14.55%, rgba(22, 155, 154, 0.80) 100%);
+        background-size: auto 100%, contain;
+        background-position: center, center;
     }
   }
 
   .creators {
     @apply text-white;
     .bg {
-      @apply flex flex-col items-center p-12 pb-20;
-      background: linear-gradient(117deg, #16DAC1 14.55%, #169B9A 100%);
+        @apply flex flex-col items-center p-12 pb-20;
+        background: url('/assets/img/marketings/bg-creators.png'), linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
+        background-size: 574px 500px, contain;
+        background-position: center, center;
     }
   }
 
@@ -371,7 +375,7 @@ const supporterOptions = [
     }
 
     .dollar {
-        @apply self-center text-[105px] font-bold leading-none;
+        @apply self-center text-[105px] font-bold leading-none tracking-tighter;
     }
 
     .sen {
