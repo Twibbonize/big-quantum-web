@@ -44,7 +44,7 @@ onUnmounted(() => {
     <LayoutMain>
         <PricingBanner/>
         <div ref="content"></div>
-        <PricingFAQ class="py-14 lg:py-18"/>
+        <PricingFAQ/>
     </LayoutMain>
 </template>
 

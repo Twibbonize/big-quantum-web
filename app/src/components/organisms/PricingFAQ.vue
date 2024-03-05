@@ -67,7 +67,7 @@ const changeActiveList = (i) => {
     @apply bg-white;
 
     .container {
-        @apply flex flex-col sm:flex-row gap-[60px] px-5 sm:px-0 py-20 sm:py-[100px];
+        @apply flex flex-col max-w-[1120px] sm:flex-row gap-[60px] px-5 sm:px-0 py-20 sm:py-[100px];
     }
 
     .title {
