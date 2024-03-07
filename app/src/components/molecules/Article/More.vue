@@ -1,10 +1,10 @@
 <script setup>
 defineProps({
     links: {
-        type: Array,
+        type: Array
     },
     title: {
-        type: String,
+        type: String
     }
 });
 </script>

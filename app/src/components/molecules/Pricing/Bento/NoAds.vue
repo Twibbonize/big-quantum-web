@@ -3,7 +3,9 @@
         <div class="flex flex-col justify-between">
             <video
                 class="w-full"
-                autoplay loop muted
+                autoplay
+                loop
+                muted
                 src="/assets/videos/pricing-no-ads.mp4"
             ></video>
             <div class="p-4">

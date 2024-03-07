@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted } from 'vue';
 import { useWindowSize } from '@vueuse/core';
-import QSlider from '@/components/atoms/QSlider.vue'
+import QSlider from '@/components/atoms/QSlider.vue';
 
 const coverflowImages = [
     '/assets/img/campaigns/usecases/coverflow-7.jpg',
@@ -17,17 +17,17 @@ const coverflowImages = [
     '/assets/img/campaigns/usecases/coverflow-3.jpg',
     '/assets/img/campaigns/usecases/coverflow-4.jpg',
     '/assets/img/campaigns/usecases/coverflow-5.jpg',
-    '/assets/img/campaigns/usecases/coverflow-6.jpg',
+    '/assets/img/campaigns/usecases/coverflow-6.jpg'
 ];
 
 const { width } = useWindowSize();
 
 const coverflowEffectOpts = computed(() => {
-    if (width >= 1280) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
-    if (width >= 1024) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
-    if (width >= 640) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false, };
-    return { rotate: 25, stretch: 40, depth: 150, slideShadow: false, };
-})
+    if (width >= 1280) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false };
+    if (width >= 1024) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false };
+    if (width >= 640) return { rotate: 22, stretch: 100, depth: 150, slideShadow: false };
+    return { rotate: 25, stretch: 40, depth: 150, slideShadow: false };
+});
 </script>
 
 <template>
@@ -36,7 +36,10 @@ const coverflowEffectOpts = computed(() => {
             <div class="flex flex-col justify-center items-center h-full">
                 <h1 class="title">Use Cases</h1>
                 <h2 class="subtitle">For Every Ocassions</h2>
-                <p class="description">Learn more how a diverse set of businesses, organizations, and individuals can maximize Twibbonize for their own use.</p>
+                <p class="description">
+                    Learn more how a diverse set of businesses, organizations, and individuals can
+                    maximize Twibbonize for their own use.
+                </p>
                 <div class="coverflow-slider mt-14 xl:mt-16 overflow-hidden">
                     <QSlider
                         direction="horizontal"
@@ -51,17 +54,13 @@ const coverflowEffectOpts = computed(() => {
                         :coverflow-effect-stretch="coverflowEffectOpts.stretch"
                         :coverflow-effect-depth="coverflowEffectOpts.depth"
                         :coverflow-effect-slide-shadows="coverflowEffectOpts.slideShadow"
-                        >
+                    >
                         <swiper-slide
                             v-for="(image, i) in coverflowImages"
                             :key="i"
                             class="banner-slide"
                         >
-                            <img
-                                :src="image"
-                                class="banner-image"
-                                alt="danone"
-                            />
+                            <img :src="image" class="banner-image" alt="danone" />
                         </swiper-slide>
                     </QSlider>
                 </div>
@@ -154,7 +153,8 @@ const coverflowEffectOpts = computed(() => {
         }
     }
 
-    swiper-slide.swiper-slide-next, swiper-slide.swiper-slide-prev {
+    swiper-slide.swiper-slide-next,
+    swiper-slide.swiper-slide-prev {
         img {
             filter: blur(1.5px);
         }

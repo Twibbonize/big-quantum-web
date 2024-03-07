@@ -41,12 +41,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-   <LayoutMain>
-        <TestimonialBanner/>
+    <LayoutMain>
+        <TestimonialBanner />
         <div ref="content"></div>
-        <TestimonialBento class="py-14 lg:py-18"/>
-   </LayoutMain>
+        <TestimonialBento class="py-14 lg:py-18" />
+    </LayoutMain>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
