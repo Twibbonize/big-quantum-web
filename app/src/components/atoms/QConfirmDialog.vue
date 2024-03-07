@@ -52,7 +52,7 @@ defineProps({
 
 <style lang="scss">
 .dialog {
-    z-index: 90;
+    z-index: 200;
     position: relative;
 
     .dialog__overlay {

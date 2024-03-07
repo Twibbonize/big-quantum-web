@@ -282,8 +282,8 @@ function handleClick(e) {
 
         &:hover {
             @include before {
-                height: 20rem;
-                width: 20rem;
+                height: 25rem;
+                width: 25rem;
             }
         }
     }

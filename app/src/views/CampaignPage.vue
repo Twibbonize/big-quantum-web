@@ -1,5 +1,6 @@
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import {
     breakpointsTailwind,
     useBreakpoints,
@@ -29,7 +30,6 @@ import CampaignCard from '@/components/molecules/CampaignCard.vue';
 
 import CollectionModal from '@/components/organisms/CollectionModal.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
-import TwibbonModal from '@/components/organisms/TwibbonModal.vue';
 
 import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
@@ -60,10 +60,13 @@ const campaignFeedsWrapper = ref(null);
 const inputPhoto = ref(null);
 
 const selectedFrame = ref(frames[0]);
+const selectedPhoto = ref(null);
 const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
 const mocks = [...mockCampaigns];
+
+const router = useRouter();
 
 const { open: openModal } = useModal();
 const { height: windowHeight } = useWindowSize();
@@ -154,26 +157,8 @@ const onInputPhotoChange = (event) => {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
-        openModal({
-            component: TwibbonModal,
-            props: {
-                photo: selectedFile,
-                frames: frames,
-                selectedFrameIdx: frames.indexOf(selectedFrame.value),
-                campaign: {
-                    name: 'Hanoi Art Book Fair 2025'
-                },
-                openInputPhoto
-            },
-            config: {
-                size: 'lg',
-                position: sm.value ? 'screen' : 'center',
-                transition: 'slide-up',
-                initialSheetSize: 'full',
-                static: true,
-                keyboard: false
-            }
-        });
+        selectedPhoto.value = selectedFile;
+        router.push({ name: 'campaign-support' });
     }
 };
 
@@ -305,6 +290,7 @@ onMounted(async () => {
     posts.value = [...publicPosts];
 });
 </script>
+
 <template>
     <LayoutMain>
         <div ref="campaignPage" class="page campaign" :style="campaignPageStyle">
@@ -381,7 +367,7 @@ onMounted(async () => {
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <span class="ml-1">Upload Your Photo</span>
+                                                <span class="ml-1">Choose Your Photo</span>
                                             </span>
                                         </QButton>
 
@@ -582,14 +568,20 @@ onMounted(async () => {
         </div>
 
         <!-- fullscreen mode -->
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component, route }">
             <transition name="fade">
-                <component
-                    :is="Component"
-                    :posts="posts"
-                    :displayType="displayType"
-                    @toggle-display="(newValue) => (displayType = newValue)"
-                />
+                <template v-if="route.name === 'campaign-support'">
+                    <component :is="Component" :frames="frames" :photo="selectedPhoto" />
+                </template>
+
+                <template v-else>
+                    <component
+                        :is="Component"
+                        :posts="posts"
+                        :displayType="displayType"
+                        @toggle-display="(newValue) => (displayType = newValue)"
+                    />
+                </template>
             </transition>
         </router-view>
 

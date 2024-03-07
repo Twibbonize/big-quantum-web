@@ -12,7 +12,9 @@ import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
 import LeaderboardPage from '@/views/LeaderboardPage.vue';
 import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
+import CampaignSupportPage from '@/views/CampaignSupportPage.vue';
 import PostPage from '@/views/PostPage.vue';
+import CreateCampaignPage from '@/views/CreateCampaignPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
 import TestimonialPage from '@/views/TestimonialPage.vue';
 import ArticlePage from '@/views/ArticlePage.vue';
@@ -30,7 +32,11 @@ const router = createRouter({
                 navbarSearch: true
             }
         },
-
+        {
+            path: '/create/:type',
+            name: 'create-campaign',
+            component: CreateCampaignPage
+        },
         {
             path: '/explore/:tab(campaign|collection|creator)?',
             name: 'explore',
@@ -109,6 +115,14 @@ const router = createRouter({
                     path: 'feeds',
                     name: 'campaign-feeds',
                     component: CampaignFeedsPage,
+                    meta: {
+                        transition: 'slide-up'
+                    }
+                },
+                {
+                    path: 'support',
+                    name: 'campaign-support',
+                    component: CampaignSupportPage,
                     meta: {
                         transition: 'slide-up'
                     }
