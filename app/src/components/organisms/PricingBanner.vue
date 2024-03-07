@@ -112,10 +112,10 @@ onMounted(() => {
                     <PricingBentoExtraFeatures/>
                 </PricingCardPremium>
             </div>
-            <div id="pricing-action" class="pricing-action-container">
+            <!-- <div id="pricing-action" class="pricing-action-container">
                 <PricingAction variant="black" link="/pricing/supporters"/>
                 <PricingAction variant="primary" link="/pricing/creators"/>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
