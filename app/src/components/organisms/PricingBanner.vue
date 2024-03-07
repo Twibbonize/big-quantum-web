@@ -8,6 +8,12 @@ import PricingBentoRemoveWatermarkCreators from '@/components/molecules/Pricing/
 import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Bento/ExtraFeatures.vue';
 import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeaturesLine.vue';
 
+import ScrollMagic from 'scrollmagic';
+import { onMounted } from 'vue';
+
+import 'animate.css';
+
+
 const creatorOptions = [
   {
     key: 'creator-monthly',
@@ -50,17 +56,27 @@ const creatorPrice = {
     decimal: 99,
     currency: '$',
 };
+
+onMounted(() => {
+    const controller = new ScrollMagic.Controller({ globalSceneOptions: {duration: 1000}, addIndicators: true });
+
+
+    new ScrollMagic.Scene({triggerElement: "#pricing-compare"})
+        .setClassToggle("#pricing-title", "opacity-100")// add class toggle
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+})
 </script>
 
 <template>
     <div class="banner-pricing">
         <PricingBlobBackground/>
         <div class="background relative sm:pb-24">
-            <div class="text flex flex-col justify-center items-center h-full">
+            <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
-            <div class="pricing-compare">
+            <div id="pricing-compare" class="pricing-compare">
                 <PricingCardPremium
                     premium-image="/assets/img/marketings/premium-black.svg"
                     premium-type-image="/assets/img/marketings/premium-supporter.svg"
