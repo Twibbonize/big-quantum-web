@@ -12,8 +12,8 @@ import ArticleShare from '@/components/molecules/Article/Share.vue';
 const route = useRoute();
 
 const articleType = computed(() => {
-    if (/(use-case)/ig.test(route.name)) return 'use-case';
-    if (/(testimonial)/ig.test(route.name)) return 'testimonial';
+    if (/(use-case)/gi.test(route.name)) return 'use-case';
+    if (/(testimonial)/gi.test(route.name)) return 'testimonial';
     return route.name;
 });
 
@@ -22,41 +22,41 @@ const moreLinks = computed(() => {
         return [
             {
                 title: 'How Twibbonize Becomes a Visual Marvel for Various Events',
-                link: '/use-cases/events',
+                link: '/use-cases/events'
             },
             {
                 title: 'How Twibbonize Innovates Government Communication in the Digital Age',
-                link: '/use-cases/government',
+                link: '/use-cases/government'
             },
             {
                 title: 'Twibbonize Elevate Personal Celebrations with Customized Digital Flair',
-                link: '/use-cases/personal',
+                link: '/use-cases/personal'
             },
             {
                 title: 'How Twibbonize Elevates Political Engagement with Visual Frames',
-                link: '/use-cases/political',
+                link: '/use-cases/political'
             },
             {
-                title: 'Empowering Social Causes Through Twibbonize\'s Visual Impact',
-                link: '/use-cases/social',
-            },
+                title: "Empowering Social Causes Through Twibbonize's Visual Impact",
+                link: '/use-cases/social'
+            }
         ];
     }
     if (articleType.value === 'testimonial') {
         return [
             {
                 title: 'How Danone Does Their Internal Giveaways Competition Using Twibbonize',
-                link: '/testimonials/danone',
+                link: '/testimonials/danone'
             },
             {
-                title: 'Acer\'s Practical Way In Utilizing Twibbonize',
-                link: '/testimonials/acer',
+                title: "Acer's Practical Way In Utilizing Twibbonize",
+                link: '/testimonials/acer'
             },
             {
                 title: 'Embracing The Convenience Of Twibbonize, Just Like AIESEC',
-                link: '/testimonials/aiesec',
-            },
-        ]
+                link: '/testimonials/aiesec'
+            }
+        ];
     }
     return null;
 });
@@ -75,7 +75,8 @@ const breadcrumbLinks = computed(() => {
     let links = [{ title: articleData.value.title }];
 
     if (articleType.value === 'use-case') links.unshift({ title: 'Use Case', link: '/use-cases' });
-    if (articleType.value === 'testimonial')  links.unshift({ title: 'Testimonial', link: '/testimonials' });
+    if (articleType.value === 'testimonial')
+        links.unshift({ title: 'Testimonial', link: '/testimonials' });
 
     return links;
 });
@@ -84,24 +85,26 @@ const breadcrumbLinks = computed(() => {
 <template>
     <LayoutMain>
         <div class="article-page">
-            <ArticleShare/>
+            <ArticleShare />
             <div class="article-container">
-                <QBreadcrumbs class="article-breadcrumbs" :links="breadcrumbLinks"/>
+                <QBreadcrumbs class="article-breadcrumbs" :links="breadcrumbLinks" />
             </div>
             <div class="article-container">
                 <article class="article-content">
-                    <ArticleCategory :title="articleData.category"/>
+                    <ArticleCategory :title="articleData.category" />
                     <ArticleTitle
                         :title="articleData.title"
                         :published-date="articleData.publishedDate"
                         :readtime="articleData.readtime"
                     />
-                    <ArticleBlock
-                        v-for="block in articleData.content"
-                        :block="block"
-                    />
+                    <ArticleBlock v-for="block in articleData.content" :block="block" />
                 </article>
-                <ArticleMore  v-if="moreLinks" class="article-more" title="More Use Cases" :links="filteredMoreLinks"/>
+                <ArticleMore
+                    v-if="moreLinks"
+                    class="article-more"
+                    title="More Use Cases"
+                    :links="filteredMoreLinks"
+                />
             </div>
         </div>
     </LayoutMain>

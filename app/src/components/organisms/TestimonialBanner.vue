@@ -18,7 +18,7 @@ const listLogos = [
     '/assets/img/logos/johnson-and-johnson-white.svg',
     '/assets/img/logos/loreal-white.svg',
     '/assets/img/logos/huawei-white.svg',
-    '/assets/img/logos/grab-white.svg',
+    '/assets/img/logos/grab-white.svg'
 ];
 
 const { width } = useWindowSize();
@@ -30,7 +30,10 @@ const { width } = useWindowSize();
             <div class="flex flex-col justify-center items-center h-full">
                 <h1 class="title">Testimonial</h1>
                 <h2 class="subtitle">Trusted by names you trusted</h2>
-                <p class="description">Read stories from companies and organizations who successfully utilized our platfrom for their campaign programs.</p>
+                <p class="description">
+                    Read stories from companies and organizations who successfully utilized our
+                    platfrom for their campaign programs.
+                </p>
                 <div class="logos">
                     <div class="scrim"></div>
                     <CampaignSlider

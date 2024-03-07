@@ -111,12 +111,12 @@ const testimonials = [
     {
         text: 'How Danone Does Their Internal Giveaway Competitions Using Twibbonize',
         image: '/assets/img/logos/danone-color.png',
-        url: '/testimonials/danone',
+        url: '/testimonials/danone'
     },
     {
         text: "Acer's Practical Way In Utilizing Twibbonize",
         image: '/assets/img/logos/acer-color.png',
-        url: '/testimonials/acer',
+        url: '/testimonials/acer'
     }
 ];
 </script>
@@ -133,7 +133,10 @@ const testimonials = [
         <div
             class="bento-container container max-container w-full grid grid-cols-1 sm:grid-cols-6 gap-6 mt-6 sm:mt-12 lg:mt-20"
         >
-            <div class="bento-1 sm:col-span-2 card py-5 cursor-pointer" @click="$router.push('/use-cases/corporate')">
+            <div
+                class="bento-1 sm:col-span-2 card py-5 cursor-pointer"
+                @click="$router.push('/use-cases/corporate')"
+            >
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Corporate</h6>
                     <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
@@ -153,7 +156,10 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-corporate.svg" alt="" />
             </div>
-            <div class="bento-2 sm:col-span-2 card py-5 cursor-pointer" @click="$router.push('/use-cases/education')">
+            <div
+                class="bento-2 sm:col-span-2 card py-5 cursor-pointer"
+                @click="$router.push('/use-cases/education')"
+            >
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Education</h6>
                     <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">
@@ -173,7 +179,10 @@ const testimonials = [
                 />
                 <img class="bg-pattern" src="/assets/img/background/bg-education.svg" alt="" />
             </div>
-            <div class="bento-3 sm:col-span-2 card py-5 cursor-pointer" @click="$router.push('/use-cases/events')">
+            <div
+                class="bento-3 sm:col-span-2 card py-5 cursor-pointer"
+                @click="$router.push('/use-cases/events')"
+            >
                 <div class="px-5">
                     <h6 class="text-white text-xs uppercase tracking-widest">Events</h6>
                     <h5 class="font-semibold text-white text-xl sm:text-base lg:text-2xl mt-2.5">

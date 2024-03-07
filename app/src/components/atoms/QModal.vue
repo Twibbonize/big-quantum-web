@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
 import { onClickOutside, onKeyStroke, useWindowSize } from '@vueuse/core';
@@ -14,7 +14,7 @@ const props = defineProps({
     },
     static: {
         type: Boolean,
-        default: true
+        default: false
     },
     position: {
         type: String,
@@ -40,12 +40,17 @@ const props = defineProps({
     transition: {
         type: String,
         default: 'fade'
+    },
+    initialSheetSize: {
+        type: String,
+        default: 'half',
+        validators: (value) => ['half', 'full'].includes(value)
     }
 });
 
 const emit = defineEmits(['close']);
-const dialogContentHeaderEl = ref(null);
-const dialogContentEl = ref(null);
+const modalContentHeaderEl = ref(null);
+const modalContentEl = ref(null);
 const isDragging = ref(false);
 const isFullyDragged = ref(false);
 const { width: windowWidth, height: windowHeight } = useWindowSize();
@@ -53,7 +58,7 @@ const { width: windowWidth, height: windowHeight } = useWindowSize();
 const upperLimitY = (56 / 100) * windowWidth.value;
 const initialHeight = windowHeight.value - (56 / 100) * windowWidth.value - 24;
 
-const { motionProperties } = useMotionProperties(dialogContentEl, {
+const { motionProperties } = useMotionProperties(modalContentEl, {
     cursor: 'default',
     x: 0,
     y: 0
@@ -65,16 +70,16 @@ const { set, stop } = useSpring(motionProperties, {
 });
 // const { push } = useMotionTransitions(motionProperties);
 
-const dialogClasses = computed(() => {
+const modalClasses = computed(() => {
     const { position, size, closeBtn, show } = props;
     return [
-        'dialog',
-        show && 'dialog--show',
-        `dialog--${position}`,
-        `dialog--${size}`,
-        closeBtn && 'dialog--has-close',
-        isDragging.value && 'dialog--dragging',
-        isFullyDragged.value && 'dialog--dragged'
+        'modal',
+        show && 'modal--show',
+        `modal--${position}`,
+        `modal--${size}`,
+        closeBtn && 'modal--has-close',
+        isDragging.value && 'modal--dragging',
+        isFullyDragged.value && 'modal--dragged'
     ];
 });
 
@@ -106,8 +111,6 @@ const dragHandler = ({ movement: [_x, y], dragging, tap, axis }) => {
     }
 
     if (!dragging) {
-        console.log('no dragging');
-
         // threshold for fully dragged
         if (y <= -(upperLimitY / 2)) {
             set({ x: 0, y: -upperLimitY, cursor: 'default' });
@@ -142,13 +145,13 @@ const dragHandler = ({ movement: [_x, y], dragging, tap, axis }) => {
 };
 
 useDrag(dragHandler, {
-    domTarget: dialogContentHeaderEl,
+    domTarget: modalContentHeaderEl,
     filterTaps: true,
     cursor: 'default'
 });
 
-onClickOutside(dialogContentEl, () => {
-    if (props.static && props.show) {
+onClickOutside(modalContentEl, () => {
+    if (!props.static && props.show) {
         handleClose();
     }
 });
@@ -165,6 +168,14 @@ watch(
         if (newValue) {
             document.body.style.overflow = 'hidden';
 
+            if (props.initialSheetSize === 'full' && props.position === 'bottom') {
+                set({ x: 0, y: -upperLimitY, cursor: 'default' });
+                isFullyDragged.value = true;
+            } else {
+                set({ x: 0, y: 0, cursor: 'default' });
+                isFullyDragged.value = false;
+            }
+
             // nextTick(() => {
             //     isFullyDragged.value = true;
             //     set({ x: 0, y: -upperLimitY, cursor: 'default' });
@@ -175,25 +186,35 @@ watch(
         }
     }
 );
+
+watch(
+    () => props.position,
+    (newValue) => {
+        if (newValue !== 'bottom') {
+            set({ x: 0, y: 0, cursor: 'default' });
+            isFullyDragged.value = false;
+        }
+    }
+);
 </script>
 
 <template>
-    <div :class="dialogClasses">
+    <div :class="modalClasses">
         <Transition name="fade">
-            <div v-show="show" class="dialog__overlay" />
+            <div v-show="show" class="modal__overlay" />
         </Transition>
 
         <Transition :name="transition">
-            <div v-show="show" class="dialog__wrapper">
-                <div class="dialog__close-wrapper">
-                    <button class="dialog__close-btn" @click="$emit('close')">
+            <div v-show="show" class="modal__wrapper">
+                <div class="modal__close-wrapper">
+                    <button class="modal__close-btn" @click="$emit('close')">
                         <i class="ri ri-close-line ri-lg"></i>
                     </button>
                 </div>
-                <div ref="dialogContentEl" class="dialog__content">
-                    <div ref="dialogContentHeaderEl" class="dialog__header">
-                        <div class="dialog__drag-handler">
-                            <span class="dialog__drag-handler__thumb"></span>
+                <div ref="modalContentEl" class="modal__content">
+                    <div ref="modalContentHeaderEl" class="modal__header">
+                        <div class="modal__drag-handler">
+                            <span class="modal__drag-handler__thumb"></span>
                         </div>
 
                         <div v-if="title" class="flex items-center flex-shrink-0 w-full">
@@ -202,7 +223,7 @@ watch(
                         </div>
                     </div>
 
-                    <div class="dialog__body">
+                    <div class="modal__body">
                         <slot :close="handleClose" :isDragging="isDragging"></slot>
                     </div>
                 </div>
@@ -212,65 +233,65 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.dialog {
+.modal {
     z-index: 66;
     position: fixed;
     @apply inset-0 pointer-events-none;
 
-    &.dialog--show {
+    &.modal--show {
         @apply pointer-events-auto;
     }
 
-    .dialog__overlay {
+    .modal__overlay {
         @apply absolute inset-0 bg-black/60;
         z-index: 67;
         pointer-events: none;
     }
 
-    .dialog__wrapper {
+    .modal__wrapper {
         @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-all duration-300;
         z-index: 68;
     }
 
-    &.dialog--md .dialog__wrapper {
+    &.modal--md .modal__wrapper {
         @apply max-w-md;
     }
 
-    &.dialog--lg .dialog__wrapper {
-        @apply max-w-xl;
-        // max-width: 540px;
+    &.modal--lg .modal__wrapper {
+        // @apply max-w-/;
+        max-width: 544px;
     }
 
-    &.dialog--xl .dialog__wrapper {
+    &.modal--xl .modal__wrapper {
         // @apply max-w-3xl;
         max-width: 52rem;
     }
 
-    &.dialog--screen .dialog__wrapper {
+    &.modal--screen .modal__wrapper {
         @apply px-0;
         max-width: unset;
         height: auto;
     }
 
-    &.dialog--screen .dialog__wrapper .dialog__content {
+    &.modal--screen .modal__wrapper .modal__content {
         border-radius: 0px;
         max-height: calc(100dvh);
         height: 100%;
     }
 
-    &.dialog--bottom .dialog__wrapper {
+    &.modal--bottom .modal__wrapper {
         @apply justify-end px-0 md:px-0 lg:px-0;
         bottom: 0;
         top: calc(56vw + 24px);
     }
 
-    &.dialog--bottom.dialog--dragging .dialog__wrapper,
-    &.dialog--bottom.dialog--dragged .dialog__wrapper {
+    &.modal--bottom.modal--dragging .modal__wrapper,
+    &.modal--bottom.modal--dragged .modal__wrapper {
         height: calc(100% - 24px);
         // background-color: white;
     }
 
-    &.dialog--bottom .dialog__wrapper .dialog__content {
+    &.modal--bottom .modal__wrapper .modal__content {
         @apply rounded-none rounded-tr-xl rounded-tl-xl;
         height: 100%;
         max-height: unset;
@@ -278,22 +299,22 @@ watch(
         // max-height: 95vh;
     }
 
-    &.dialog--bottom.dialog--dragging .dialog__body {
+    &.modal--bottom.modal--dragging .modal__body {
         overflow: hidden;
     }
 
-    .dialog__content {
+    .modal__content {
         @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
         z-index: 69;
         max-height: calc(100dvh - 24px);
         min-height: 360px;
     }
 
-    & .dialog__drag-handler {
-        @apply hidden items-center justify-center pt-4 pb-8;
+    & .modal__drag-handler {
+        @apply hidden items-center justify-center pt-4 pb-6;
     }
 
-    .dialog__drag-handler__thumb {
+    .modal__drag-handler__thumb {
         width: 48px;
         height: 4px;
         display: block;
@@ -301,29 +322,29 @@ watch(
         border-radius: 100px;
     }
 
-    &.dialog--bottom .dialog__content .dialog__drag-handler {
+    &.modal--bottom .modal__content .modal__drag-handler {
         @apply flex;
     }
 
-    // .dialog__header {
+    // .modal__header {
     //     @apply flex items-center flex-shrink-0 w-full;
     // }
 
-    .dialog__body {
+    .modal__body {
         position: relative;
         flex: 1 1 auto;
         overflow-y: auto;
     }
 
-    .dialog__close-wrapper {
+    .modal__close-wrapper {
         @apply hidden items-center w-full;
     }
 
-    &.dialog--has-close .dialog__close-wrapper {
+    &.modal--has-close .modal__close-wrapper {
         @apply flex;
     }
 
-    .dialog__close-btn {
+    .modal__close-btn {
         @apply rounded-full h-10 w-10 flex items-center justify-center text-white font-semibold bg-white/40 mt-8 mb-4 ml-4 transition-colors duration-200;
 
         &:hover {
@@ -332,7 +353,7 @@ watch(
     }
 }
 
-/* .dialog__panel__body {
+/* .modal__panel__body {
     @apply px-5;
 } */
 </style>

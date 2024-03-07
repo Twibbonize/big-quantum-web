@@ -13,7 +13,7 @@
 
     .line {
         @apply w-full;
-        border-bottom: 1px solid #DEE8E8;
+        border-bottom: 1px solid #dee8e8;
     }
 }
 </style>

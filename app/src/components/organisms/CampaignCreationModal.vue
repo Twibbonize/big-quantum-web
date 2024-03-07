@@ -7,7 +7,8 @@ import {
 } from '@headlessui/vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSlider from '@/components/atoms/QSlider.vue';
-import { watch } from 'vue';
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import { Form as VeeForm, useField, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
 import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
@@ -15,7 +16,10 @@ import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import { useModal } from '@/composables/modal';
 // import { useField } from "vee-validate";
 
+const selectedType = ref(null);
+
 const { update, close } = useModal();
+const router = useRouter();
 
 const frameGalleries = [
     '/assets/img/sample/frame-creation/1.png',
@@ -45,6 +49,11 @@ const sm = breakpoints.smallerOrEqual('sm');
 watch(sm, (newValue) => {
     update({ position: newValue ? 'screen' : 'center' });
 });
+
+const handleStartCreate = () => {
+    close();
+    router.push({ name: 'create-campaign', params: { type: selectedType.value } });
+};
 </script>
 
 <template>
@@ -70,7 +79,7 @@ watch(sm, (newValue) => {
                     </p>
                 </div>
 
-                <Field name="campaign_type" v-slot="{ field }">
+                <Field v-model="selectedType" name="campaign_type" v-slot="{ field }">
                     <RadioGroup v-bind="field">
                         <RadioGroupLabel class="sr-only">Campaign Type</RadioGroupLabel>
                         <div
@@ -137,7 +146,7 @@ watch(sm, (newValue) => {
                                     <div class="space-y-5">
                                         <img
                                             class="mx-auto w-20 h-20"
-                                            src="/assets/img/icons/frame.png"
+                                            src="/assets/img/icons/background.png"
                                             alt="frame"
                                         />
                                         <div class="space-y-1 text-center">
@@ -184,8 +193,7 @@ watch(sm, (newValue) => {
 
         <div class="creation__footer">
             <QButton variant="secondary" @click="close"> Cancel </QButton>
-
-            <QButton :enabled="meta.valid"> Get Started </QButton>
+            <QButton :enabled="meta.valid" @click="handleStartCreate"> Get Started </QButton>
         </div>
     </VeeForm>
 </template>

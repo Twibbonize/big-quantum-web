@@ -1,5 +1,6 @@
 <script setup>
 import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
 import QModal from '@/components/atoms/QModal.vue';
 
 const eventBus = inject('eventBus');
@@ -31,6 +32,13 @@ onBeforeUnmount(() => {
     eventBus.off('modal:open');
     eventBus.off('modal:update');
     eventBus.off('modal:close');
+});
+
+onBeforeRouteLeave(() => {
+    if (!!modalComponent.value) {
+        handleClose();
+        return false;
+    }
 });
 </script>
 
