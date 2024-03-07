@@ -18,7 +18,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .pricing-action {
-    @apply text-black absolute bottom-0 left-0 w-full bg-white flex flex-col items-center py-8 px-5 sm:px-12 gap-4;
+    @apply text-black bottom-0 left-0 w-full bg-white flex flex-col items-center py-8 px-5 sm:px-12 gap-4;
     box-shadow: 0px -4px 32px 0px rgba(27, 82, 78, 0.08);
 }
 </style>

@@ -7,6 +7,13 @@ import PricingBentoNoExtraFeatures from '@/components/molecules/Pricing/Bento/No
 import PricingBentoRemoveWatermarkCreators from '@/components/molecules/Pricing/Bento/RemoveWatermarkCreators.vue';
 import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Bento/ExtraFeatures.vue';
 import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeaturesLine.vue';
+import PricingAction from '@/components/molecules/Pricing/Action.vue';
+
+import ScrollMagic from 'scrollmagic';
+import { onMounted } from 'vue';
+
+import 'animate.css';
+
 
 const creatorOptions = [
   {
@@ -50,17 +57,29 @@ const creatorPrice = {
     decimal: 99,
     currency: '$',
 };
+
+onMounted(() => {
+    const controller = new ScrollMagic.Controller({ globalSceneOptions: {duration: 1000} });
+
+    new ScrollMagic.Scene({triggerElement: "#initial-page"})
+        .setClassToggle("#pricing-title", "animate__fadeInUp")// add class toggle
+        .addTo(controller);
+
+    new ScrollMagic.Scene({triggerElement: "#pricing-compare"})
+        .setClassToggle("#pricing-title", "animate__fadeOutUp")// add class toggle
+        .addTo(controller);
+})
 </script>
 
 <template>
-    <div class="banner-pricing">
+    <div id="initial-page" class="banner-pricing">
         <PricingBlobBackground/>
         <div class="background relative sm:pb-24">
-            <div class="text flex flex-col justify-center items-center h-full">
+            <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
-            <div class="pricing-compare">
+            <div id="pricing-compare" class="pricing-compare">
                 <PricingCardPremium
                     premium-image="/assets/img/marketings/premium-black.svg"
                     premium-type-image="/assets/img/marketings/premium-supporter.svg"
@@ -85,6 +104,7 @@ const creatorPrice = {
                     variant="primary"
                     class="card-creators"
                     link="/pricing/creators"
+                    :is-creator="true"
                 >
                     <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
@@ -92,6 +112,10 @@ const creatorPrice = {
                     <PricingBentoExtraFeatures/>
                 </PricingCardPremium>
             </div>
+            <!-- <div id="pricing-action" class="pricing-action-container">
+                <PricingAction variant="black" link="/pricing/supporters"/>
+                <PricingAction variant="primary" link="/pricing/creators"/>
+            </div> -->
         </div>
     </div>
 </template>
@@ -133,5 +157,9 @@ const creatorPrice = {
 
 .pricing-compare {
   @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
+}
+
+.pricing-action-container {
+    @apply fixed max-w-[1120px] mx-auto flex sm:gap-14 bottom-0 h-min w-full;
 }
 </style>
