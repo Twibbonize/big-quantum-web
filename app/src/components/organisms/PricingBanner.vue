@@ -7,6 +7,7 @@ import PricingBentoNoExtraFeatures from '@/components/molecules/Pricing/Bento/No
 import PricingBentoRemoveWatermarkCreators from '@/components/molecules/Pricing/Bento/RemoveWatermarkCreators.vue';
 import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Bento/ExtraFeatures.vue';
 import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeaturesLine.vue';
+import PricingAction from '@/components/molecules/Pricing/Action.vue';
 
 import ScrollMagic from 'scrollmagic';
 import { onMounted } from 'vue';
@@ -58,18 +59,20 @@ const creatorPrice = {
 };
 
 onMounted(() => {
-    const controller = new ScrollMagic.Controller({ globalSceneOptions: {duration: 1000}, addIndicators: true });
+    const controller = new ScrollMagic.Controller({ globalSceneOptions: {duration: 1000} });
 
+    new ScrollMagic.Scene({triggerElement: "#initial-page"})
+        .setClassToggle("#pricing-title", "animate__fadeInUp")// add class toggle
+        .addTo(controller);
 
     new ScrollMagic.Scene({triggerElement: "#pricing-compare"})
-        .setClassToggle("#pricing-title", "opacity-100")// add class toggle
-        .addIndicators() // add indicators (requires plugin)
+        .setClassToggle("#pricing-title", "animate__fadeOutUp")// add class toggle
         .addTo(controller);
 })
 </script>
 
 <template>
-    <div class="banner-pricing">
+    <div id="initial-page" class="banner-pricing">
         <PricingBlobBackground/>
         <div class="background relative sm:pb-24">
             <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
@@ -101,12 +104,17 @@ onMounted(() => {
                     variant="primary"
                     class="card-creators"
                     link="/pricing/creators"
+                    :is-creator="true"
                 >
                     <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
                     <PricingExtraFeaturesLine/>
                     <PricingBentoExtraFeatures/>
                 </PricingCardPremium>
+            </div>
+            <div id="pricing-action" class="pricing-action-container">
+                <PricingAction variant="black" link="/pricing/supporters"/>
+                <PricingAction variant="primary" link="/pricing/creators"/>
             </div>
         </div>
     </div>
@@ -149,5 +157,9 @@ onMounted(() => {
 
 .pricing-compare {
   @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
+}
+
+.pricing-action-container {
+    @apply fixed max-w-[1120px] mx-auto flex sm:gap-14 bottom-0 h-min w-full;
 }
 </style>
