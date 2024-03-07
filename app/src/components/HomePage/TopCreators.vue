@@ -143,7 +143,9 @@ onMounted(() => {
                         </RouterLink>
                     </div>
                     <div class="heading-section flex gap-4 items-center mt-6 sm:mt-0">
-                        <QSwitchThree class="sm:!w-[225px]" />
+                        <div class="bg-[#DEE8E8] rounded-[26px] !w-full sm:!w-[225px]">
+                            <QSwitchThree class="bg-[#DEE8E8] sm:!w-[225px]" />
+                        </div>
                         <RouterLink
                             v-if="width >= 640"
                             class="flex items-center color_black"

@@ -89,7 +89,7 @@ onMounted(() => {
                     }"
                     @click="setIndex(i)"
                 >
-                    <div class="relative overflow-hidden rounded-xl py-4 px-[1px]">
+                    <div class="relative overflow-hidden rounded-xl py-4 px-[1px] sm:px-4">
                         <div class="bg"></div>
                         <video class="video-mobile" muted autoplay loop :src="video"></video>
                         <div class="flex w-full">

@@ -15,6 +15,11 @@ import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
 import CampaignSupportPage from '@/views/CampaignSupportPage.vue';
 import PostPage from '@/views/PostPage.vue';
 import CreateCampaignPage from '@/views/CreateCampaignPage.vue';
+import UseCasePage from '@/views/UseCasePage.vue';
+import TestimonialPage from '@/views/TestimonialPage.vue';
+import ArticlePage from '@/views/ArticlePage.vue';
+import PricingPage from '@/views/PricingPage.vue';
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -150,7 +155,47 @@ const router = createRouter({
                 navbarSearch: false,
                 transition: 'slide-fade'
             }
-        }
+        },
+        {
+            path: '/use-cases',
+            name: 'usecases',
+            component: UseCasePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/use-cases/:uri',
+            name: 'use-cases-article',
+            component: ArticlePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/testimonials',
+            name: 'testimonials',
+            component: TestimonialPage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/testimonials/:uri',
+            name: 'testimonials-article',
+            component: ArticlePage,
+            meta: {
+                navbarSearch: true
+            }
+        },
+        {
+            path: '/pricing',
+            name: 'pricing',
+            component: PricingPage,
+            meta: {
+                navbarSearch: true
+            }
+        },
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
