@@ -261,7 +261,7 @@ export default class Handler {
     saveCanvasImage(
         option = {
             name: 'New Image',
-            format: 'png',
+            format: 'webp',
             quality: 1
         }
     ) {
@@ -274,17 +274,17 @@ export default class Handler {
 
         const dataUrl = this.canvas.toDataURL({
             ...option,
-            left,
-            top,
+            left: left + 1,
+            top: top + 1,
             width,
-            height,
+            height: height - 2,
             enableRetinaScaling: false
         });
 
         if (dataUrl) {
             const anchorEl = document.createElement('a');
             anchorEl.href = dataUrl;
-            anchorEl.download = `${option.name}.png`;
+            anchorEl.download = `${option.name}.webp`;
             document.body.appendChild(anchorEl);
             anchorEl.click();
             anchorEl.remove();
