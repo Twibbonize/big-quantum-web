@@ -42,11 +42,10 @@ onUnmounted(() => {
 
 <template>
     <LayoutMain>
-        <PricingBanner/>
+        <PricingBanner />
         <div ref="content"></div>
-        <PricingFAQ/>
+        <PricingFAQ />
     </LayoutMain>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -1,16 +1,16 @@
 <script setup>
 defineProps({
     links: {
-        type: Array,
+        type: Array
     }
 });
 </script>
 
 <template>
     <div class="breadcrumbs">
-        <template v-for="{ title, link }, i in links">
+        <template v-for="({ title, link }, i) in links">
             <i v-if="i > 0" class="ri-arrow-right-s-line"></i>
-            <a :href="link" :class="{ 'disabled': !Boolean(link) }">
+            <a :href="link" :class="{ disabled: !Boolean(link) }">
                 {{ title }}
             </a>
         </template>

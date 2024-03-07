@@ -9,6 +9,7 @@ import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QBadge from '@/components/atoms/QBadge.vue';
+import QBreadcrumbs from '@/components/atoms/QBreadcrumbs.vue';
 import QPagination from '@/components/molecules/QPagination.vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
@@ -20,6 +21,15 @@ const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore
 
 const isMobile = inject('isMobile');
 const currentPage = ref(1);
+const breadcrumbLinks = [
+    {
+        title: 'Profile',
+        link: '/profile'
+    },
+    {
+        title: 'Settings'
+    }
+];
 const tabs = [
     {
         title: 'Profile',
@@ -139,6 +149,9 @@ onMounted(() => {
         <div class="page border-b border-stroke">
             <div class="py-6 md:py-12">
                 <div class="container max-w-5xl px-5 2xl:px-0">
+                    <div class="mb-6">
+                        <QBreadcrumbs class="article-breadcrumbs" :links="breadcrumbLinks" />
+                    </div>
                     <QCard paddings="padless">
                         <div class="account">
                             <div class="account__wrapper">
@@ -164,7 +177,7 @@ onMounted(() => {
                                             class="flex items-center space-x-2 cursor-pointer"
                                             @click="showAbout = true"
                                         >
-                                            <span class="text-sm font-semibold">Upgrade</span>
+                                            <span class="font-semibold">Upgrade</span>
                                             <i class="ri-arrow-right-line font-semibold ri-xs"></i>
                                         </a>
                                     </div>
@@ -180,7 +193,7 @@ onMounted(() => {
                                     <div class="grid grid-cols-12 gap-4 md:gap-10">
                                         <div class="col-span-12 md:col-span-8 space-y-6">
                                             <div class="space-y-2">
-                                                <h3 class="text-lg font-black leading-none">
+                                                <h3 class="text-lg font-bold leading-none">
                                                     Your Profile
                                                 </h3>
                                                 <p class="text-content text-sm">
@@ -203,9 +216,7 @@ onMounted(() => {
                                                                 as="div"
                                                             >
                                                                 <div class="space-y-3">
-                                                                    <div
-                                                                        class="text-sm font-semibold"
-                                                                    >
+                                                                    <div class="font-semibold">
                                                                         Profile Image
                                                                     </div>
 
@@ -282,9 +293,7 @@ onMounted(() => {
                                                                 }"
                                                             >
                                                                 <div class="space-y-3">
-                                                                    <div
-                                                                        class="text-sm font-semibold"
-                                                                    >
+                                                                    <div class="font-semibold">
                                                                         Banner
                                                                     </div>
 
@@ -354,7 +363,7 @@ onMounted(() => {
                                                         <div class="space-y-3">
                                                             <label
                                                                 for="username"
-                                                                class="text-sm font-semibold"
+                                                                class="font-semibold"
                                                                 >Username</label
                                                             >
                                                             <QInputText
@@ -372,7 +381,7 @@ onMounted(() => {
                                                         <div class="space-y-3">
                                                             <label
                                                                 for="display_name"
-                                                                class="text-sm font-semibold"
+                                                                class="font-semibold"
                                                                 >Display Name</label
                                                             >
                                                             <QInputText
@@ -383,9 +392,7 @@ onMounted(() => {
                                                         </div>
 
                                                         <div class="space-y-3">
-                                                            <label
-                                                                for="bio"
-                                                                class="text-sm font-semibold"
+                                                            <label for="bio" class="font-semibold"
                                                                 >Bio</label
                                                             >
                                                             <QInputTextarea name="bio" />
@@ -394,7 +401,7 @@ onMounted(() => {
                                                         <div class="space-y-3">
                                                             <label
                                                                 for="website"
-                                                                class="text-sm font-semibold"
+                                                                class="font-semibold"
                                                                 >Website</label
                                                             >
                                                             <QInputText
@@ -429,7 +436,7 @@ onMounted(() => {
                                 <div class="mt-10">
                                     <div class="space-y-6">
                                         <div class="space-y-2">
-                                            <h3 class="text-lg font-black leading-none">
+                                            <h3 class="text-lg font-bold leading-none">
                                                 Current Plan
                                             </h3>
                                             <!-- <p class="text-content text-sm">
@@ -537,8 +544,7 @@ onMounted(() => {
                                                                     class="flex items-center space-x-2 cursor-pointer"
                                                                     @click="showAbout = true"
                                                                 >
-                                                                    <span
-                                                                        class="text-sm font-semibold"
+                                                                    <span class="font-semibold"
                                                                         >Upgrade</span
                                                                     >
                                                                     <i
@@ -555,7 +561,7 @@ onMounted(() => {
                                         <hr />
 
                                         <div class="space-y-2">
-                                            <h3 class="text-lg font-black leading-none">
+                                            <h3 class="text-lg font-bold leading-none">
                                                 Billing History
                                             </h3>
                                             <p class="text-content text-sm">
@@ -827,7 +833,7 @@ onMounted(() => {
                                             <div class="grid grid-cols-12 gap-6 md:gap-10">
                                                 <div class="col-span-12 md:col-span-9 space-y-6">
                                                     <div class="space-y-2">
-                                                        <h3 class="text-lg font-black leading-none">
+                                                        <h3 class="text-lg font-bold leading-none">
                                                             Update Email
                                                         </h3>
                                                     </div>
@@ -841,7 +847,7 @@ onMounted(() => {
                                                                     <div class="space-y-3">
                                                                         <label
                                                                             for="current_email"
-                                                                            class="text-sm font-semibold"
+                                                                            class="font-semibold"
                                                                         >
                                                                             Current Email
                                                                         </label>
@@ -854,7 +860,7 @@ onMounted(() => {
                                                                     <div class="space-y-3">
                                                                         <label
                                                                             for="new_email"
-                                                                            class="text-sm font-semibold"
+                                                                            class="font-semibold"
                                                                         >
                                                                             New Email
                                                                         </label>
@@ -891,7 +897,7 @@ onMounted(() => {
                                             <div class="grid grid-cols-12 gap-6 md:gap-10">
                                                 <div class="col-span-12 md:col-span-9 space-y-6">
                                                     <div class="space-y-2">
-                                                        <h3 class="text-lg font-black leading-none">
+                                                        <h3 class="text-lg font-bold leading-none">
                                                             Change Password
                                                         </h3>
                                                     </div>
@@ -902,7 +908,7 @@ onMounted(() => {
                                                                 <div class="space-y-3">
                                                                     <label
                                                                         for="old_password"
-                                                                        class="text-sm font-semibold"
+                                                                        class="font-semibold"
                                                                     >
                                                                         Old Password
                                                                     </label>
@@ -915,7 +921,7 @@ onMounted(() => {
                                                                 <div class="space-y-3">
                                                                     <label
                                                                         for="new_password"
-                                                                        class="text-sm font-semibold"
+                                                                        class="font-semibold"
                                                                     >
                                                                         New Password
                                                                     </label>
@@ -943,7 +949,7 @@ onMounted(() => {
                                         <hr />
 
                                         <div class="space-y-6">
-                                            <h3 class="text-lg font-black leading-none">
+                                            <h3 class="text-lg font-bold leading-none">
                                                 Social Media Connects
                                             </h3>
 
@@ -1042,7 +1048,7 @@ onMounted(() => {
 
                                         <div class="space-y-6">
                                             <div class="space-y-2">
-                                                <h3 class="text-lg font-black leading-none">
+                                                <h3 class="text-lg font-bold leading-none">
                                                     Verified Account
                                                 </h3>
                                                 <p class="text-sm text-content">
@@ -1083,7 +1089,7 @@ onMounted(() => {
                                         <div class="space-y-6">
                                             <div class="space-y-2">
                                                 <h3
-                                                    class="text-lg font-black leading-none text-red-500"
+                                                    class="text-lg font-bold leading-none text-red-500"
                                                 >
                                                     Delete Account?
                                                 </h3>
@@ -1108,7 +1114,7 @@ onMounted(() => {
                                     <div class="space-y-6">
                                         <div class="space-y-6">
                                             <div class="space-y-2">
-                                                <h3 class="text-lg font-black leading-none">
+                                                <h3 class="text-lg font-bold leading-none">
                                                     Notification Settings
                                                 </h3>
                                                 <p class="text-sm text-content">
@@ -1125,7 +1131,7 @@ onMounted(() => {
                                                             class="flex flex-col items-center space-y-2"
                                                         >
                                                             <i class="ri-mail-line ri-xl"></i>
-                                                            <span class="text-sm font-semibold"
+                                                            <span class="font-semibold text-sm"
                                                                 >Email</span
                                                             >
                                                         </div>
@@ -1136,7 +1142,7 @@ onMounted(() => {
                                                             class="flex flex-col items-center space-y-2"
                                                         >
                                                             <i class="ri-smartphone-line ri-xl"></i>
-                                                            <span class="text-sm font-semibold"
+                                                            <span class="font-semibold text-sm"
                                                                 >Push</span
                                                             >
                                                         </div>
@@ -1153,9 +1159,7 @@ onMounted(() => {
                                                         >
                                                             Campaign Milestone
                                                         </div>
-                                                        <div
-                                                            class="text-xs md:text-sm text-content"
-                                                        >
+                                                        <div class="text-sm text-content">
                                                             You'll be notified of every progress on
                                                             the campaign achievement.
                                                         </div>
@@ -1195,9 +1199,7 @@ onMounted(() => {
                                                         >
                                                             Comment Module
                                                         </div>
-                                                        <div
-                                                            class="text-xs md:text-sm text-content"
-                                                        >
+                                                        <div class="text-sm text-content">
                                                             Get notifications of supporter's comment
                                                             on a campaign page.
                                                         </div>
@@ -1225,9 +1227,7 @@ onMounted(() => {
                                                         >
                                                             Trending Campaign
                                                         </div>
-                                                        <div
-                                                            class="text-xs md:text-sm text-content"
-                                                        >
+                                                        <div class="text-sm text-content">
                                                             Get notifications about trending
                                                             campaigns in your region.
                                                         </div>
@@ -1267,9 +1267,7 @@ onMounted(() => {
                                                         >
                                                             What's New
                                                         </div>
-                                                        <div
-                                                            class="text-xs md:text-sm text-content"
-                                                        >
+                                                        <div class="text-sm text-content">
                                                             Get the latest update of our product on
                                                             the web and app versions
                                                         </div>
@@ -1309,9 +1307,7 @@ onMounted(() => {
                                                         >
                                                             Articles
                                                         </div>
-                                                        <div
-                                                            class="text-xs md:text-sm text-content"
-                                                        >
+                                                        <div class="text-sm text-content">
                                                             You'll receive our recommended articles
                                                         </div>
                                                     </div>
