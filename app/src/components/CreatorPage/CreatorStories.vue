@@ -2,7 +2,6 @@
 import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 
 import QOpenLink from '@/components/atoms/QOpenLink.vue';
-import QButton from '@/components/atoms/QButton.vue';
 import CampaignSlider from '@/components/molecules/CampaignSlider.vue';
 import QSlider from '@/components/atoms/QSlider.vue';
 

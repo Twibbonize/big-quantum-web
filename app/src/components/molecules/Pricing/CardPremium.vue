@@ -1,8 +1,10 @@
 <script setup>
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import PricingAction from '@/components/molecules/Pricing/Action.vue';
+import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
+
 import { ref } from 'vue';
 
 defineProps({
@@ -12,10 +14,9 @@ defineProps({
     options: Array,
     price: Object,
     variant: String,
-    link: String
+    link: String,
+    isCreator: Boolean,
 });
-
-const activeIndex = ref(0);
 </script>
 
 <template>
@@ -36,12 +37,10 @@ const activeIndex = ref(0);
                     class="mt-4 !w-[237px]"
                 />
             </div>
-            <PricingPrice
-                :currency="price.currency"
-                :number="price.number"
-                :decimal="price.decimal"
-                class="mt-4"
-            />
+            <div v-if="isCreator" class="absolute top-0 -mt-12">
+                <PricingBackgroundSlideContainer/>
+            </div>
+            <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
             <p>{{ `per ${options[0].duration}` }}</p>
         </div>
         <div class="content">
@@ -49,7 +48,7 @@ const activeIndex = ref(0);
                 <slot></slot>
             </div>
         </div>
-        <PricingAction :variant="variant" :link="link" />
+        <PricingAction class="absolute" :variant="variant" :link="link"/>
     </div>
 </template>
 
@@ -114,18 +113,18 @@ const activeIndex = ref(0);
             background-position: center, center;
         }
     }
-}
+    .background-slide-container {
+        @apply hidden;
+    }
+  }
 
 .card-creators {
     @apply text-white;
     &.card-premium {
         .background {
             @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
-            background: url('/assets/img/marketings/bg-creators.png'),
-                linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%);
-            background-size:
-                574px 500px,
-                contain;
+            background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
+            background-size: 574px 500px, contain;
             background-position: center, center;
         }
     }
