@@ -785,7 +785,7 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 .canvas-wrapper {
     @include xs {
-        max-height: 260px;
+        max-height: 350px;
     }
 
     max-height: 390px;
