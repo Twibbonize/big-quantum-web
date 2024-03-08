@@ -728,7 +728,7 @@ onBeforeUnmount(() => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span class="ml-2 font-bold">Choose Your Photo</span>
+                                        <span class="ml-2 font-semibold">Choose Your Photo</span>
                                     </span>
                                 </QButton>
                             </div>
@@ -848,7 +848,7 @@ onBeforeUnmount(() => {
     .support-page__main {
         position: relative;
         padding-bottom: v-bind(bodyPb);
-        @apply flex-grow overflow-y-auto;
+        @apply flex-grow overflow-y-auto flex flex-col;
     }
 
     .support-page__sheet {
