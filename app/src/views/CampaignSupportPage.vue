@@ -1,16 +1,9 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch, toRefs } from 'vue';
-import {
-    useResizeObserver,
-    breakpointsTailwind,
-    useBreakpoints,
-    useElementSize,
-    useScroll
-} from '@vueuse/core';
+import { computed, onBeforeUnmount, onMounted, ref, watch, toRefs } from 'vue';
+import { useResizeObserver, breakpointsTailwind, useBreakpoints, useElementSize, useScroll } from '@vueuse/core';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
-// import { useModal } from '@/composables/modal';
 import fabric from '@/libs/editor/fabric';
 import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
@@ -40,7 +33,7 @@ const props = defineProps({
 
 const contentEl = ref(null);
 const sheetEl = ref(null);
-const sheetContent = ref('action');
+const sheetContent = ref(null);
 const sheetFullyVisible = ref(false);
 const canvas = ref(null);
 const canvasInner = ref(null);
@@ -49,17 +42,10 @@ const activeObj = ref(null);
 const editState = ref('crop');
 const photoRotation = ref(0);
 const selectedFrame = ref(props.frames[props.selectedFrameIdx]);
-const removeWatermark = ref(false);
 
-// const { height: footerHeight } = useElementSize(modalFooter);
-// const { update, close } = useModal();
+
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
-
-// const modalBodyPaddingBottom = computed(() => {
-//     const additionalMargin = editState === 'crop' ? 24 : 8;
-//     return `${footerHeight.value + additionalMargin}px`;
-// });
 
 useResizeObserver(canvasInner, (entries) => {
     const wrapperEl = entries[0];
@@ -114,7 +100,7 @@ const dragHandler = ({ movement: [_x, y], dragging, tap, axis }) => {
         if (y > height.value * (40 / 100)) {
             set({ y: height.value - 143 });
 
-            sheetContent.value = 'action';
+            sheetContent.value = null;
             sheetFullyVisible.value = false;
             setTimeout(() => {
                 stop();
@@ -189,9 +175,7 @@ const modify = (changedKey, changedValue, target = null) => {
         const currentPreset = targetObj.preset;
         const preset = changedValue;
 
-        const mustResized =
-            Math.max(targetObj.width, targetObj.height) > fabric.textureSize &&
-            !targetObj.originalSrc;
+        const mustResized = Math.max(targetObj.width, targetObj.height) > fabric.textureSize && !targetObj.originalSrc;
 
         if (!currentPreset && mustResized) {
             editor.handler.resizeImage(targetObj).then((resizedImg) => {
@@ -399,8 +383,7 @@ const addWatermark = async () => {
 
     const { width, height } = editor.handler.canvas;
 
-    const positionX =
-        (width / 2 + (width / 2 + createdObj.getScaledWidth() / 2)) * additionalMultipler;
+    const positionX = (width / 2 + (width / 2 + createdObj.getScaledWidth() / 2)) * additionalMultipler;
     const positionY = (height * 2 + createdObj.getScaledHeight() / 2) * additionalMultipler;
 
     editor.handler.setObject({
@@ -411,15 +394,6 @@ const addWatermark = async () => {
     editor.handler.bringToFront(createdObj);
 };
 
-const toggleWatermark = (show) => {
-    const { editor } = canvas.value;
-    const opac = show ? 1 : 0;
-
-    const watermarkObj = editor.handler.findByName('watermark');
-    // editor.handler.remove(watermarkObj);
-    // console.log(watermarkObj.name);
-    modify('opacity', opac, watermarkObj);
-};
 
 const addText = () => {
     const obj = {
@@ -535,9 +509,6 @@ watch(selectedFrame, (newValue) => {
     handleInsertFrame(newValue);
 });
 
-watch(removeWatermark, (newValue) => {
-    toggleWatermark(!newValue);
-});
 
 onMounted(async () => {
     const { photo } = props;
@@ -563,191 +534,119 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="campaign-support">
-        <div class="campaign-support__backdrop"></div>
-        <div ref="contentEl" class="campaign-support__content">
-            <div
-                v-show="sheetFullyVisible"
-                class="campaign-support__overlay"
-                @click="closeSheet"
-            ></div>
-            <div
-                class="campaign-support__header container flex items-center justify-between px-4 py-3 border-b border-stroke"
-            >
+    <div class="support-page">
+
+        <!-- outer backdrop -->
+        <div class="support-page__backdrop"></div>
+        <!-- end of outer backdrop -->
+
+        <!-- actual support page -->
+        <div ref="contentEl" class="support-page__content">
+
+            <!-- inner backdrop -->
+            <div v-show="sheetFullyVisible" class="support-page__overlay" @click="closeSheet"></div>
+            <!-- end of inner backdrop -->
+
+
+            <!-- page header -->
+            <div class="support-page__header">
                 <QButton variant="subtle" square class="-ml-2" @click="showConfirmDiscard = true">
                     <i class="ri-close-line ri-2x font-light"></i>
                 </QButton>
-                <h1 class="text-lg md:text-xl font-semibold">Create Twibbon</h1>
-                <div class="w-10"></div>
             </div>
+            <!-- end of page header -->
 
-            <div class="campaign-support__body">
+            <!-- page main content -->
+            <div class="support-page__main">
+
+                <!-- canvas -->
                 <div class="canvas-wrapper">
                     <div ref="canvasInner" class="canvas-inner">
                         <QCanvas ref="canvas" v-bind="canvasListeners" />
                     </div>
                 </div>
+                <!-- end of canvas -->
 
                 <!-- crop state -->
                 <div v-if="editState === 'crop'" class="space-y-5">
+
+                    <!-- frame selector -->
                     <RadioGroup v-model="selectedFrame" as="template">
-                        <div class="frame-options">
-                            <RadioGroupOption
-                                v-for="(frame, i) in frames"
-                                :key="i"
-                                :value="frame"
-                                v-slot="{ checked }"
-                            >
-                                <div :class="['frame', checked && 'frame--checked']">
+                        <div class="frame-selector">
+                            <RadioGroupOption v-for="(frame, i) in frames" :key="i" :value="frame" v-slot="{ checked }">
+                                <div :class="['frame-selector__item', checked && 'frame-selector__item--checked']">
                                     <img :src="frame" :alt="i" />
                                 </div>
                             </RadioGroupOption>
                         </div>
                     </RadioGroup>
-                    <div class="campaign-support__tools">
-                        <RotateSlider
-                            v-model="photoRotation"
-                            @increate="rotatePhoto(45)"
-                            @decrease="rotatePhoto(-45)"
-                        />
-                        <div class="text-filter">
+                    <!-- end of frame-selector -->
+
+
+                    <!-- canvas tools  -->
+                    <div class="support-page__tools">
+
+                        <!-- rotate slider -->
+                        <RotateSlider v-model="photoRotation" @increate="rotatePhoto(45)" @decrease="rotatePhoto(-45)" />
+                        <!-- end of rotate slider -->
+
+                        <!-- text and presets -->
+                        <div class="text-presets">
+
+                            <!-- text modifier entry pointer -->
                             <QButton variant="neutral" block @click="editState = 'text'">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="25"
-                                    height="24"
-                                    viewBox="0 0 25 24"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M9.5 10V9H15.5V10"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M11.5 15H13.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M12.5 9V15"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <circle
-                                        cx="6"
-                                        cy="5.5"
-                                        r="1.75"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                    fill="none">
+                                    <path d="M9.5 10V9H15.5V10" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M11.5 15H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M12.5 9V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <circle cx="6" cy="5.5" r="1.75" fill="#16DAC1" stroke="currentColor"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M20.75 5.5C20.75 6.4665 19.9665 7.25 19 7.25C18.0335 7.25 17.25 6.4665 17.25 5.5C17.25 4.5335 18.0335 3.75 19 3.75C19.9665 3.75 20.75 4.5335 20.75 5.5Z"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <circle
-                                        cx="19"
-                                        cy="18.5"
-                                        r="1.75"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                        fill="#16DAC1" stroke="currentColor" stroke-width="1.5" />
+                                    <circle cx="19" cy="18.5" r="1.75" fill="#16DAC1" stroke="currentColor"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M7.75 18.5C7.75 19.4665 6.9665 20.25 6 20.25C5.0335 20.25 4.25 19.4665 4.25 18.5C4.25 17.5335 5.0335 16.75 6 16.75C6.9665 16.75 7.75 17.5335 7.75 18.5Z"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <path
-                                        d="M7.5 5.5L17.5 5.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <path
-                                        d="M7.5 18.5L17.5 18.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                        fill="#16DAC1" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M7.5 5.5L17.5 5.5" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M7.5 18.5L17.5 18.5" stroke="currentColor" stroke-width="1.5" />
                                     <path d="M6 7L6 17" stroke="currentColor" stroke-width="1.5" />
-                                    <path
-                                        d="M19 7L19 17"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                    <path d="M19 7L19 17" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                                 <span class="ml-1">Text</span>
                             </QButton>
+                            <!-- end of text modifier entry point -->
 
+
+                            <!-- preset modifier entry point -->
                             <QButton variant="neutral" block @click="editState = 'filter'">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="25"
-                                    height="24"
-                                    viewBox="0 0 25 24"
-                                    fill="none"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                    fill="none">
                                     <path
                                         d="M12.4993 21.0005C17.47 21.0005 21.4995 16.9709 21.4995 12.0002C21.4995 7.02955 17.47 3 12.4993 3C7.52857 3 3.49902 7.02955 3.49902 12.0002C3.49902 16.9709 7.52857 21.0005 12.4993 21.0005Z"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M14.5791 8.40039L19.7452 17.3466"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M10.4209 8.40039H20.7532"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M8.3418 12.0004L13.5079 3.0542"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M10.421 15.6003L5.25488 6.65405"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M14.5794 15.6001H4.24707"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M16.6583 12.0002L11.4922 20.9465"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke="currentColor" stroke-width="1.35004" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M14.5791 8.40039L19.7452 17.3466" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.4209 8.40039H20.7532" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.3418 12.0004L13.5079 3.0542" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.421 15.6003L5.25488 6.65405" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.5794 15.6001H4.24707" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M16.6583 12.0002L11.4922 20.9465" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span class="ml-1"> Filter </span>
                             </QButton>
+                            <!-- end of preset modifier entry point -->
                         </div>
                     </div>
                 </div>
@@ -755,11 +654,8 @@ onBeforeUnmount(() => {
 
                 <!-- text state -->
                 <div v-if="editState === 'text'" class="space-y-5">
-                    <TextModifier
-                        :editor="canvas.editor"
-                        :modify="modify"
-                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null"
-                    />
+                    <TextModifier :editor="canvas.editor" :modify="modify"
+                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null" />
                 </div>
                 <!-- end of text state -->
 
@@ -768,36 +664,21 @@ onBeforeUnmount(() => {
                 </div>
             </div>
 
-            <div
-                ref="sheetEl"
-                :class="[
-                    'campaign-support__sheet',
-                    sheetFullyVisible && 'campaign-support__sheet--full'
-                ]"
-            >
+            <div ref="sheetEl" :class="['support-page__sheet', sheetFullyVisible && 'support-page__sheet--full']">
                 <Transition name="delay-fade">
-                    <button
-                        v-show="!sheetFullyVisible"
-                        class="watermark-banner"
-                        @click="showPricingPlan"
-                    >
+                    <button v-show="!sheetFullyVisible && editState === 'crop'" class="watermark-banner"
+                        @click="showPricingPlan">
                         <div class="watermark-banner__copy">
-                            <img
-                                class="watermark-banner__icon"
-                                src="/assets/img/brandings/no-watermark.webp"
-                                alt="no-watermark"
-                            />
                             <div class="flex flex-col">
                                 <div class="watermark-banner__title">Remove Watermark For You</div>
-                                <span class="watermark-banner__desc"
-                                    >Upgrade to Premium start from
+                                <span class="watermark-banner__desc">Upgrade to Premium start from
                                     <span class="font-semibold">$2.99</span>/week
                                 </span>
                             </div>
                         </div>
 
                         <div class="watermark-banner__arrow">
-                            <i class="ri-arrow-right-s-line"></i>
+                            <QSwitchToggle id="remove_watermark" name="remove_watermark" />
                         </div>
                     </button>
                 </Transition>
@@ -815,37 +696,53 @@ onBeforeUnmount(() => {
                 </Transition>
 
                 <Transition name="slide-down">
-                    <div v-show="!sheetFullyVisible" class="campaign-support__actions">
+                    <div v-show="!sheetFullyVisible" class="support-page__actions">
                         <!-- footer for crop state -->
                         <div v-if="editState === 'crop'">
-                            <div class="flex items-center justify-between space-x-3 h-20 p-4">
-                                <QButton
-                                    variant="secondary"
-                                    size="auto"
-                                    circle
-                                    @click="openInputPhoto"
-                                >
+                            <div v-if="photo" class="flex items-center justify-between space-x-3 h-20 p-4">
+                                <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
                                     <i class="ri-camera-line ri-lg font-light"></i>
                                 </QButton>
-                                <QButton block @click="handleDownload"> Download </QButton>
+                                <QButton block @click="handleDownload">Download</QButton>
+                            </div>
+
+
+                            <div v-else class="flex items-center justify-between space-x-3 h-20 p-4">
+                                <QButton block @click="openInputPhoto">
+                                    <span class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20"
+                                            fill="none">
+                                            <g clip-path="url(#clip0_2061_6507)">
+                                                <path
+                                                    d="M19.6663 15.8333C19.6663 16.2754 19.4907 16.6993 19.1782 17.0118C18.8656 17.3244 18.4417 17.5 17.9997 17.5H2.99967C2.55765 17.5 2.13372 17.3244 1.82116 17.0118C1.5086 16.6993 1.33301 16.2754 1.33301 15.8333V6.66667C1.33301 6.22464 1.5086 5.80072 1.82116 5.48816C2.13372 5.17559 2.55765 5 2.99967 5H6.33301L7.99967 2.5H12.9997L14.6663 5H17.9997C18.4417 5 18.8656 5.17559 19.1782 5.48816C19.4907 5.80072 19.6663 6.22464 19.6663 6.66667V15.8333Z"
+                                                    stroke="#1B1B1B" stroke-width="1.66667" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path
+                                                    d="M10.5003 14.1669C12.3413 14.1669 13.8337 12.6745 13.8337 10.8336C13.8337 8.99263 12.3413 7.50024 10.5003 7.50024C8.65938 7.50024 7.16699 8.99263 7.16699 10.8336C7.16699 12.6745 8.65938 14.1669 10.5003 14.1669Z"
+                                                    stroke="#1B1B1B" stroke-width="1.66667" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2061_6507">
+                                                    <rect width="20" height="20" fill="white" transform="translate(0.5)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                        <span class="ml-2 font-bold">Choose Your Photo</span>
+                                    </span>
+                                </QButton>
                             </div>
                         </div>
 
                         <!-- footer for text state -->
-                        <div
-                            v-if="editState === 'text'"
-                            class="flex items-center px-4 py-3 border-t border-stroke bg-white"
-                        >
+                        <div v-if="editState === 'text'" class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="addText">
                                 <span>Add Text</span>
                             </QButton>
                             <QButton block @click="backToCropState"> Done </QButton>
                         </div>
 
-                        <div
-                            v-if="editState === 'filter'"
-                            class="flex items-center px-4 py-3 border-t border-stroke bg-white"
-                        >
+                        <div v-if="editState === 'filter'" class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="resetFilter">
                                 <i class="ri-refresh-line"></i>
                                 <span class="ml-2">Reset</span>
@@ -861,14 +758,11 @@ onBeforeUnmount(() => {
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmDiscard">
                 <div
-                    class="absolute top-0 left-1/2 w-20 h-20 rounded-full bg-red-500 text-white flex items-center justify-center text-4xl -mt-10 -translate-x-1/2"
-                >
+                    class="absolute top-0 left-1/2 w-20 h-20 rounded-full bg-red-500 text-white flex items-center justify-center text-4xl -mt-10 -translate-x-1/2">
                     <i class="ri-question-mark"></i>
                 </div>
 
-                <div
-                    class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center"
-                >
+                <div class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center">
                     <div class="flex flex-col text-center space-y-2">
                         <h3 class="font-semibold text-xl">Discard edits?</h3>
                         <p class="text-sm">
@@ -890,6 +784,10 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .canvas-wrapper {
+    @include xs {
+        max-height: 260px;
+    }
+
     max-height: 390px;
     display: flex;
     align-items: center;
@@ -914,19 +812,19 @@ onBeforeUnmount(() => {
     overflow: hidden;
 }
 
-.campaign-support {
+.support-page {
     @apply fixed top-0 left-0 flex flex-col;
     z-index: 100;
     overflow-y: auto;
     width: 100vw;
     height: 100dvh;
 
-    .campaign-support__backdrop {
+    .support-page__backdrop {
         @apply absolute inset-0 bg-black/60;
         pointer-events: none;
     }
 
-    .campaign-support__content {
+    .support-page__content {
         @apply bg-white relative flex flex-col overflow-hidden h-full w-full mx-auto;
         z-index: 101;
         max-width: 524px;
@@ -936,20 +834,24 @@ onBeforeUnmount(() => {
             max-height: 98vh;
         }
     }
-    .campaign-support__overlay {
+
+    .support-page__overlay {
         @apply absolute inset-0 bg-black/70;
         z-index: 102;
     }
 
-    .campaign-support__body {
-        position: relative;
-        padding-bottom: v-bind(bodyPb);
-        // padding-bottom: 100px;
-        @apply flex-grow overflow-y-auto;
-        // padding-bottom: v-bind(modalBodyPaddingBottom);
+
+    .support-page__header {
+        @apply container flex items-center justify-between px-4 py-3 border-b border-stroke;
     }
 
-    .campaign-support__sheet {
+    .support-page__main {
+        position: relative;
+        padding-bottom: v-bind(bodyPb);
+        @apply flex-grow overflow-y-auto;
+    }
+
+    .support-page__sheet {
         @apply w-full bg-white overflow-hidden absolute bottom-0 rounded-t-2xl overflow-y-auto;
         z-index: 104;
         box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
@@ -958,24 +860,24 @@ onBeforeUnmount(() => {
         transition: all 300ms linear;
         // top: 56vw;
         // transform: translateY(-90%);
-        min-height: 143px;
+        // min-height: 143px;
         max-height: 143px;
         // height: auto;
         height: fit-content;
 
-        &.campaign-support__sheet--full {
+        &.support-page__sheet--full {
             // top: 36vh;
             // height: 100%;
-            max-height: 90%;
+            max-height: 98%;
         }
     }
 
-    .campaign-support__actions {
+    .support-page__actions {
         @apply sticky bottom-0 w-full bg-white;
     }
 }
 
-.campaign-support__tools {
+.support-page__tools {
     @apply px-4 flex flex-col space-y-3;
 
     @include md_screen {
@@ -983,26 +885,28 @@ onBeforeUnmount(() => {
     }
 }
 
-.frame-options {
+.frame-selector {
     @apply flex items-center justify-center space-x-4 max-w-full px-4;
     @include no_scrollbar();
+
+    .frame-selector__item {
+        @apply h-12 w-12 rounded-lg p-1 border border-stroke bg-white transition-colors duration-200 cursor-pointer mt-4;
+
+        img {
+            @apply rounded;
+        }
+
+        @include md_screen {
+            @apply h-16 w-16;
+        }
+
+        &--checked {
+            @apply border-main bg-gray-200;
+        }
+    }
 }
 
-.frame {
-    @apply h-12 w-12 rounded-lg p-1 border border-stroke bg-white transition-colors duration-200 cursor-pointer mt-4;
 
-    img {
-        @apply rounded;
-    }
-
-    @include md_screen {
-        @apply h-16 w-16;
-    }
-
-    &--checked {
-        @apply border-main bg-gray-200;
-    }
-}
 
 .twibbon-tab {
     @apply flex items-center justify-center space-x-1 py-4 font-medium text-sm text-content flex-grow flex-shrink-0 w-0 border-b border-stroke transition-all duration-200;
@@ -1063,7 +967,7 @@ onBeforeUnmount(() => {
     }
 }
 
-.text-filter {
+.text-presets {
     @apply flex items-center space-x-3 flex-grow;
 }
 
@@ -1091,6 +995,10 @@ onBeforeUnmount(() => {
         font-weight: 600;
         text-align: left;
 
+        @include xs {
+            font-size: 13px;
+        }
+
         @include md_screen {
             font-size: 15px;
         }
@@ -1098,6 +1006,11 @@ onBeforeUnmount(() => {
 
     .watermark-banner__desc {
         font-size: 12px;
+        text-align: left;
+
+        @include xs {
+            font-size: 10px;
+        }
 
         @include md_screen {
             font-size: 13px;
