@@ -848,7 +848,7 @@ onBeforeUnmount(() => {
     .support-page__main {
         position: relative;
         padding-bottom: v-bind(bodyPb);
-        @apply flex-grow overflow-y-auto;
+        @apply flex-grow overflow-y-auto flex flex-col;
     }
 
     .support-page__sheet {

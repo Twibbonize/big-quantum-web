@@ -299,10 +299,10 @@ onMounted(async () => {
                         <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
-                                    <img
-                                        :src="selectedFrame"
-                                        class="campaign__frames__stage__image"
-                                    />
+                                    <router-link :to="{ name: 'campaign-support' }">
+                                        <img :src="selectedFrame" class="campaign__frames__stage__image" />
+                                    </router-link>
+                                   
                                 </div>
 
                                 <div class="campaign__frames__card">
