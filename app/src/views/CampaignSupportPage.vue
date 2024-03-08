@@ -31,6 +31,15 @@ const props = defineProps({
     }
 });
 
+
+const STEPS = {
+    'TWIBBON': 1,
+    'ADS': 2,
+    'POST': 3
+};
+
+const step = ref(STEPS.TWIBBON);
+
 const contentEl = ref(null);
 const sheetEl = ref(null);
 const sheetContent = ref(null);
@@ -442,6 +451,12 @@ const rotatePhoto = (degree) => {
     modify('rotate', adjustedNewRotation, target);
 };
 
+const resetFilter = () => {
+    const { editor } = canvas.value;
+    const photo = editor.handler.findByName('photo');
+    editor.handler.imageHandler.resetFilters(photo);
+};
+
 const canvasListeners = {
     onModified: (target) => {
         if (!target) return;
@@ -484,31 +499,24 @@ const backToCropState = () => {
     editor.handler.clearSelection();
 };
 
+
+const changeStep = (nextStep) => {
+    step.value = nextStep;
+};
+
 const handleDownload = async () => {
     const { editor } = canvas.value;
     editor.handler.saveCanvasImage();
-};
-
-const resetFilter = () => {
-    const { editor } = canvas.value;
-    const photo = editor.handler.findByName('photo');
-    editor.handler.imageHandler.resetFilters(photo);
 };
 
 watch(photoRotation, handleInputRange);
 
 watch(() => props.photo, handleInsertPhoto);
 
-// watch(sm, (newValue) => {
-//     update({
-//         position: newValue ? 'screen' : 'center'
-//     });
-// });
 
 watch(selectedFrame, (newValue) => {
     handleInsertFrame(newValue);
 });
-
 
 onMounted(async () => {
     const { photo } = props;
@@ -557,8 +565,9 @@ onBeforeUnmount(() => {
             <!-- end of page header -->
 
             <!-- page main content -->
-            <div class="support-page__main">
 
+
+            <div v-show="step === STEPS.TWIBBON" class="support-page__main">
                 <!-- canvas -->
                 <div class="canvas-wrapper">
                     <div ref="canvasInner" class="canvas-inner">
@@ -659,15 +668,25 @@ onBeforeUnmount(() => {
                 </div>
                 <!-- end of text state -->
 
+
+                <!-- filter state -->
                 <div v-if="editState === 'filter'" class="preset-modifier-wrapper">
                     <PresetModifier :editor="canvas.editor" :modify="modify" />
                 </div>
+                <!-- end of filter state -->
             </div>
 
+
+            <div v-show="step === STEPS.ADS" class="flex items-center justify-center md:p-2">
+                <img src="/assets/img/sample/sample-ad.jpg" alt="Ads">
+            </div>
+
+
+            <!-- page bottom sheet -->
             <div ref="sheetEl" :class="['support-page__sheet', sheetFullyVisible && 'support-page__sheet--full']">
                 <Transition name="delay-fade">
-                    <button v-show="!sheetFullyVisible && editState === 'crop'" class="watermark-banner"
-                        @click="showPricingPlan">
+                    <button v-show="!sheetFullyVisible && step === STEPS.TWIBBON && editState === 'crop'"
+                        class="watermark-banner" @click="showPricingPlan">
                         <div class="watermark-banner__copy">
                             <div class="flex flex-col">
                                 <div class="watermark-banner__title">Remove Watermark For You</div>
@@ -677,8 +696,26 @@ onBeforeUnmount(() => {
                             </div>
                         </div>
 
-                        <div class="watermark-banner__arrow">
+                        <div class="watermark-banner__cta">
                             <QSwitchToggle id="remove_watermark" name="remove_watermark" />
+                        </div>
+                    </button>
+                </Transition>
+
+
+                <Transition name="delay-fade">
+                    <button v-show="step === STEPS.ADS" class="watermark-banner" @click="showPricingPlan">
+                        <div class="watermark-banner__copy">
+                            <div class="flex flex-col">
+                                <div class="watermark-banner__title">Skip the Ads</div>
+                                <span class="watermark-banner__desc">Upgrade to Premium start from
+                                    <span class="font-semibold">$2.99</span>/week
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="watermark-banner__cta">
+                            <QButton variant="black" size="sm">Upgrade Now</QButton>
                         </div>
                     </button>
                 </Transition>
@@ -698,12 +735,12 @@ onBeforeUnmount(() => {
                 <Transition name="slide-down">
                     <div v-show="!sheetFullyVisible" class="support-page__actions">
                         <!-- footer for crop state -->
-                        <div v-if="editState === 'crop'">
+                        <div v-if="step === STEPS.TWIBBON && editState === 'crop'">
                             <div v-if="photo" class="flex items-center justify-between space-x-3 h-20 p-4">
                                 <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
                                     <i class="ri-camera-line ri-lg font-light"></i>
                                 </QButton>
-                                <QButton block @click="handleDownload">Download</QButton>
+                                <QButton block @click="() => changeStep(STEPS.ADS)">Next</QButton>
                             </div>
 
 
@@ -735,14 +772,16 @@ onBeforeUnmount(() => {
                         </div>
 
                         <!-- footer for text state -->
-                        <div v-if="editState === 'text'" class="flex items-center p-4 border-t border-stroke bg-white">
+                        <div v-if="step === STEPS.TWIBBON && editState === 'text'"
+                            class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="addText">
                                 <span>Add Text</span>
                             </QButton>
                             <QButton block @click="backToCropState"> Done </QButton>
                         </div>
 
-                        <div v-if="editState === 'filter'" class="flex items-center p-4 border-t border-stroke bg-white">
+                        <div v-if="step === STEPS.TWIBBON && editState === 'filter'"
+                            class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="resetFilter">
                                 <i class="ri-refresh-line"></i>
                                 <span class="ml-2">Reset</span>
@@ -750,9 +789,17 @@ onBeforeUnmount(() => {
 
                             <QButton block @click="backToCropState"> Done </QButton>
                         </div>
+
+
+                        <div v-if="step === STEPS.ADS" class="flex items-center p-4 border-t border-stroke bg-white">
+                            <button class="btn-progress">
+                                <span class="btn-progress__text">Processing</span>
+                            </button>
+                        </div>
                     </div>
                 </Transition>
             </div>
+            <!-- end of page bottom sheet -->
         </div>
 
         <Teleport to="body">
@@ -783,6 +830,83 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
+@keyframes progress {
+    0% {
+        content: 'Processing';
+        clip-path: inset(0% 100% 0% 0%);
+    }
+
+    10% {
+        content: 'Processing';
+        clip-path: inset(0% 90% 0% 0%);
+    }
+
+    20% {
+        content: 'Processing';
+        clip-path: inset(0% 80% 0% 0%);
+    }
+
+    30% {
+        content: 'Processing';
+        clip-path: inset(0% 70% 0% 0%);
+    }
+
+    40% {
+        content: 'Processing';
+        clip-path: inset(0% 60% 0% 0%);
+    }
+
+    50% {
+        content: 'Processing';
+        clip-path: inset(0% 50% 0% 0%);
+    }
+
+    60% {
+        content: 'Processing';
+        clip-path: inset(0% 40% 0% 0%);
+    }
+
+    70% {
+        content: 'Processing';
+        clip-path: inset(0% 30% 0% 0%);
+    }
+
+    80% {
+        content: 'Processing';
+        clip-path: inset(0% 20% 0% 0%);
+    }
+
+    90% {
+        content: 'Processing';
+        clip-path: inset(0% 10% 0% 0%);
+    }
+
+    100% {
+        clip-path: inset(0% 0% 0% 0%);
+        content: 'Download';
+    }
+}
+.btn-progress {
+    padding: 16px 20px;
+    border-radius: 100px;
+    @apply leading-none bg-gray-150 rounded-xl w-full font-semibold border border-transparent overflow-hidden;
+    display: block;
+
+    @include before {
+        @apply bg-main w-full h-full left-0 top-0 text-black flex items-center justify-center;
+        animation: progress 7s ease-in-out forwards;
+        z-index: 2;
+        content: 'Processing';
+        clip-path: inset(0% 100% 0% 0%);
+    }
+
+    .btn-progress__text {
+        @apply text-black/50;
+        position: relative;
+        z-index: 1;
+    }
+}
+
 .canvas-wrapper {
     @include xs {
         max-height: 350px;
@@ -1017,7 +1141,7 @@ onBeforeUnmount(() => {
         }
     }
 
-    .watermark-banner__arrow {
+    .watermark-banner__cta {
         @apply flex-shrink-0 ml-1;
         font-size: 24px;
     }
@@ -1027,5 +1151,4 @@ onBeforeUnmount(() => {
     @apply h-full py-4 flex items-center overflow-x-auto;
 
     @include no_scrollbar;
-}
-</style>
+}</style>
