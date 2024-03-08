@@ -728,7 +728,7 @@ onBeforeUnmount(() => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span class="ml-2 font-bold">Choose Your Photo</span>
+                                        <span class="ml-2 font-semibold">Choose Your Photo</span>
                                     </span>
                                 </QButton>
                             </div>
