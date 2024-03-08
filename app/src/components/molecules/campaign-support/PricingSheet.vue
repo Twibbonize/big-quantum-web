@@ -1,10 +1,31 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { RadioGroup, RadioGroupOption, RadioGroupLabel } from '@headlessui/vue';
 import QButton from '@/components/atoms/QButton.vue';
 
-const planDurations = ['weekly', 'monthly', 'yearly'];
-const selectedPlanDuration = ref('weekly');
+const planDurations = [
+    {
+        name: 'weekly',
+        price: 2.99,
+        per: 'week',
+    },
+    {
+        name: 'monthly',
+        price: 4.99,
+        per: 'month',
+    },
+    {
+        name: 'yearly',
+        price: 6.99,
+        per: 'year',
+    }
+];
+
+
+
+const selectedPlanDuration = ref(planDurations[0]);
+const pricePartsOfPlan = computed(() => selectedPlanDuration.value.price.toString().split('.'));
+
 
 defineProps({
     close: {
@@ -16,11 +37,8 @@ defineProps({
 <template>
     <div class="premium">
         <div class="space-y-4">
-            <img
-                src="/assets/img/brandings/premium-supporter.svg"
-                class="text-center mx-auto"
-                alt="Premium Supporter Logo"
-            />
+            <img src="/assets/img/brandings/premium-supporter.svg" class="text-center mx-auto"
+                alt="Premium Supporter Logo" />
             <p class="font-medium text-center">
                 For people who want more <br />
                 out of Twibbonize
@@ -30,20 +48,13 @@ defineProps({
         <div class="mt-6">
             <RadioGroup v-model="selectedPlanDuration">
                 <div class="premium__plan-duration">
-                    <RadioGroupOption
-                        as="template"
-                        v-for="duration in planDurations"
-                        :value="duration"
-                        v-slot="{ checked }"
-                    >
-                        <RadioGroupLabel
-                            :class="[
-                                'premium__plan-duration__item',
-                                checked && 'premium__plan-duration__item--checked'
-                            ]"
-                        >
-                            {{ duration }}</RadioGroupLabel
-                        >
+                    <RadioGroupOption as="template" v-for="duration in planDurations" :value="duration"
+                        v-slot="{ checked }">
+                        <RadioGroupLabel :class="[
+                            'premium__plan-duration__item',
+                            checked && 'premium__plan-duration__item--checked'
+                        ]">
+                            {{ duration.name }}</RadioGroupLabel>
                     </RadioGroupOption>
                 </div>
             </RadioGroup>
@@ -52,36 +63,20 @@ defineProps({
         <div class="flex flex-col items-center mt-6">
             <div class="premium__price">
                 <span class="premium__price-currency">$</span>
-                <span class="premium__price-lead">2</span>
-                <span class="premium__price-cent">.99</span>
+                <span class="premium__price-lead">{{ pricePartsOfPlan[0] }}</span>
+                <span class="premium__price-cent">.{{ pricePartsOfPlan[1] }}</span>
             </div>
-            <div class="premium__per-duration">per week</div>
+            <div class="premium__per-duration">per {{ selectedPlanDuration.per }}</div>
         </div>
 
         <div class="space-y-2 mt-8">
             <QButton block variant="black">
                 <span class="mr-2 font-bold">Purchase Now</span>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                >
-                    <path
-                        d="M1.98438 8H14.0243"
-                        stroke="white"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                    <path
-                        d="M8 2L14.02 8L8 14"
-                        stroke="white"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M1.98438 8H14.0243" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M8 2L14.02 8L8 14" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </QButton>
 
