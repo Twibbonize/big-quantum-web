@@ -95,11 +95,24 @@ const router = createRouter({
         },
         {
             path: '/profile',
-            name: 'own-profile',
-            component: OwnProfilePage,
-            meta: {
-                navbarSearch: true
-            }
+            children: [
+                {
+                    path: '',
+                    name: 'own-profile',
+                    component: OwnProfilePage,
+                    meta: {
+                        navbarSearch: true
+                    }
+                },
+                {
+                    path: 'settings',
+                    name: 'settings',
+                    component: PreferencesPage,
+                    meta: {
+                        navbarSearch: true
+                    }
+                }
+            ]
         },
         {
             path: '/hanoi-art',
@@ -137,14 +150,7 @@ const router = createRouter({
                 transition: 'slide-fade'
             }
         },
-        {
-            path: '/settings',
-            name: 'settings',
-            component: PreferencesPage,
-            meta: {
-                navbarSearch: true
-            }
-        },
+
         {
             path: '/p/:uri',
             name: 'post',

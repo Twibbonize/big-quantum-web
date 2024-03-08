@@ -82,7 +82,7 @@
 
 .slide-down-leave-active {
     transition-property: transform;
-    transition-duration: 300ms;
+    transition-duration: 100ms;
     transition-delay: 0ms;
     transition-timing-function: linear;
 }
@@ -101,9 +101,9 @@
 
 .delay-fade-leave-active {
     transition-property: opacity;
-    transition-duration: 0.3s;
-    transition-delay: 100ms;
-    transition-timing-function: ease-out;
+    transition-duration: 0.1s;
+    transition-delay: 0s;
+    transition-timing-function: linear;
 }
 
 .delay-fade-enter-from,

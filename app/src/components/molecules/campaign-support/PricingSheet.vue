@@ -49,7 +49,7 @@ defineProps({
             </RadioGroup>
         </div>
 
-        <div class="flex flex-col items-center mt-10">
+        <div class="flex flex-col items-center mt-6">
             <div class="premium__price">
                 <span class="premium__price-currency">$</span>
                 <span class="premium__price-lead">2</span>
@@ -58,7 +58,7 @@ defineProps({
             <div class="premium__per-duration">per week</div>
         </div>
 
-        <div class="space-y-3 mt-10">
+        <div class="space-y-2 mt-8">
             <QButton block variant="black">
                 <span class="mr-2 font-bold">Purchase Now</span>
                 <svg
@@ -100,7 +100,7 @@ defineProps({
     min-height: 466px;
     display: flex;
     flex-direction: column;
-    @apply pt-12 px-10 pb-6;
+    @apply pt-10 px-10 pb-3;
 
     .premium__plan-duration {
         @apply flex items-center bg-gray-100 p-1 rounded-full mx-auto;

@@ -16,11 +16,11 @@ const props = defineProps({
     // Field's own value
     checkedValue: {
         type: null,
-        required: true
+        default: true
     },
     uncheckedValue: {
         type: null,
-        default: undefined
+        default: false
     },
     rules: {
         default: undefined
@@ -67,7 +67,7 @@ function updateValue(e) {
 
 <style scoped lang="scss">
 .switch {
-    @apply cursor-pointer w-11 h-6 rounded-full block relative bg-light transition-colors duration-150;
+    @apply cursor-pointer w-11 h-6 rounded-full block relative bg-gray-300 transition-colors duration-150;
 
     &__toggle {
         position: absolute;
