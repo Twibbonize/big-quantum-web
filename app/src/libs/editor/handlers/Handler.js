@@ -293,8 +293,7 @@ export default class Handler {
         }
     }
 
-
-    export(option = { format: 'png', quality: 1}) {
+    export(option = { format: 'png', quality: 1 }) {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;

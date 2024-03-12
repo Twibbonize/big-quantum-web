@@ -7,25 +7,22 @@ const planDurations = [
     {
         name: 'weekly',
         price: 2.99,
-        per: 'week',
+        per: 'week'
     },
     {
         name: 'monthly',
         price: 4.99,
-        per: 'month',
+        per: 'month'
     },
     {
         name: 'yearly',
         price: 6.99,
-        per: 'year',
+        per: 'year'
     }
 ];
 
-
-
 const selectedPlanDuration = ref(planDurations[0]);
 const pricePartsOfPlan = computed(() => selectedPlanDuration.value.price.toString().split('.'));
-
 
 defineProps({
     close: {
@@ -37,8 +34,11 @@ defineProps({
 <template>
     <div class="premium">
         <div class="space-y-4">
-            <img src="/assets/img/brandings/premium-supporter.svg" class="text-center mx-auto"
-                alt="Premium Supporter Logo" />
+            <img
+                src="/assets/img/brandings/premium-supporter.svg"
+                class="text-center mx-auto"
+                alt="Premium Supporter Logo"
+            />
             <p class="font-medium text-center">
                 For people who want more <br />
                 out of Twibbonize
@@ -48,13 +48,20 @@ defineProps({
         <div class="mt-6">
             <RadioGroup v-model="selectedPlanDuration">
                 <div class="premium__plan-duration">
-                    <RadioGroupOption as="template" v-for="duration in planDurations" :value="duration"
-                        v-slot="{ checked }">
-                        <RadioGroupLabel :class="[
-                            'premium__plan-duration__item',
-                            checked && 'premium__plan-duration__item--checked'
-                        ]">
-                            {{ duration.name }}</RadioGroupLabel>
+                    <RadioGroupOption
+                        as="template"
+                        v-for="duration in planDurations"
+                        :value="duration"
+                        v-slot="{ checked }"
+                    >
+                        <RadioGroupLabel
+                            :class="[
+                                'premium__plan-duration__item',
+                                checked && 'premium__plan-duration__item--checked'
+                            ]"
+                        >
+                            {{ duration.name }}</RadioGroupLabel
+                        >
                     </RadioGroupOption>
                 </div>
             </RadioGroup>
@@ -72,11 +79,27 @@ defineProps({
         <div class="space-y-2 mt-8">
             <QButton block variant="black">
                 <span class="mr-2 font-bold">Purchase Now</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M1.98438 8H14.0243" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M8 2L14.02 8L8 14" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                >
+                    <path
+                        d="M1.98438 8H14.0243"
+                        stroke="white"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M8 2L14.02 8L8 14"
+                        stroke="white"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
                 </svg>
             </QButton>
 
