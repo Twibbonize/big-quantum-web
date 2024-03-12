@@ -79,7 +79,6 @@ const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
 
-
 const selectedFrameIdx = computed(() => frames.findIndex((fr) => fr === selectedFrame.value));
 
 const campaignContentStyle = computed(() => {
@@ -300,9 +299,11 @@ onMounted(async () => {
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
                                     <router-link :to="{ name: 'campaign-support' }">
-                                        <img :src="selectedFrame" class="campaign__frames__stage__image" />
+                                        <img
+                                            :src="selectedFrame"
+                                            class="campaign__frames__stage__image"
+                                        />
                                     </router-link>
-                                   
                                 </div>
 
                                 <div class="campaign__frames__card">
@@ -568,7 +569,13 @@ onMounted(async () => {
         <router-view v-slot="{ Component, route }">
             <transition name="fade">
                 <template v-if="route.name === 'campaign-support'">
-                    <component :is="Component" :frames="frames" :selectedFrameIdx="selectedFrameIdx" :photo="selectedPhoto" :openInputPhoto="openInputPhoto" />
+                    <component
+                        :is="Component"
+                        :frames="frames"
+                        :selectedFrameIdx="selectedFrameIdx"
+                        :photo="selectedPhoto"
+                        :openInputPhoto="openInputPhoto"
+                    />
                 </template>
 
                 <template v-else>
