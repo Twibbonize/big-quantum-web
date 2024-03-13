@@ -39,6 +39,17 @@ export const Variable = Mark.create({
                 () =>
                 ({ commands }) => {
                     return commands.unsetMark(this.name);
+                },
+            addVariable:
+                () =>
+                ({ commands, tr }) => {
+                    const { selection } = tr;
+
+                    if (selection.empty) {
+                        return commands.insertContent('<code>custom field</code> ');
+                    } else {
+                        return commands.toggleMark(this.name);
+                    }
                 }
         };
     },

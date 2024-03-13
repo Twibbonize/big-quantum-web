@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import QMockup from '@/components/atoms/QMockup.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
@@ -11,10 +11,22 @@ import FrameSelector from '@/components/molecules/FrameSelector.vue';
 const props = defineProps({
     frames: {
         type: Array
+    },
+    title: {
+        type: String,
+        default: ''
+    },
+    description: {
+        type: String,
+        default: ''
     }
 });
 
 const selectedFrame = ref(props.frames[0]);
+
+const computedDescription = computed(() => {
+    return props.description !== '' ? props.description : 'Campaign description';
+});
 
 watch(
     () => props.frames,
@@ -32,7 +44,7 @@ watch(
                     <div class="navbar__left">
                         <img
                             class="navbar__logo"
-                            src="/assets/img/logos/twibbonize-logo-white.svg"
+                            src="/assets/img/logos/twibbonize-logo-black.svg"
                         />
                     </div>
 
@@ -119,7 +131,9 @@ watch(
                             </div>
 
                             <div class="campaign__detail">
-                                <div class="campaign__detail__title">Hanoi Art Book Fair 2025</div>
+                                <div class="campaign__detail__title">
+                                    {{ title !== '' ? title : 'Campaign Title' }}
+                                </div>
 
                                 <div class="campaign__detail__creator">
                                     <QCreator
@@ -131,16 +145,12 @@ watch(
                                 </div>
 
                                 <p class="campaign__detail__description">
-                                    <QEllipsisText
-                                        text="Welcome to Hanoi Art Book Fair 2023. Our primary mission is to cultivate reading habits,
-                                increase art literacy worldwide and build a new generation of readers, by making books more
-                                affordable."
-                                    />
+                                    <QEllipsisText :text="computedDescription" />
                                 </p>
 
                                 <div class="campaign__detail__meta">
                                     <div class="campaign__detail__meta-wrapper">
-                                        <CampaignMeta title="Supporters" value="95.5K">
+                                        <CampaignMeta title="Supporters" value="-">
                                             <template #icon>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -162,7 +172,7 @@ watch(
                                         <CampaignMeta
                                             :iconClass="['ri', 'ri-time-line', 'ri-lg'].join(' ')"
                                             title="Created"
-                                            value="5 days ago"
+                                            value="-"
                                         />
                                     </div>
                                 </div>
@@ -199,7 +209,7 @@ watch(
         top: 0;
         z-index: 50;
         width: 100%;
-        background: transparent linear-gradient(180deg, #a1a1a1 0%, rgba(22, 218, 193, 0) 100%);
+        background: transparent;
         box-shadow: none;
         transition-property: color, background-color, border-color, text-decoration-color, fill,
             stroke;
@@ -257,8 +267,8 @@ watch(
         position: absolute !important;
 
         @include before() {
-            background-color: #e6e6e6;
-            // background: url('/assets/img/banners/hanoi.jpg');
+            // background-color: #e6e6e6;
+            background: url('/assets/img/banners/default.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -286,7 +296,7 @@ watch(
         .campaign__frames__stage {
             @apply z-10 relative bg-white p-1 flex items-center mx-auto rounded-xl;
             width: fit-content;
-            max-width: 120px;
+            max-width: 96px;
 
             .campaign__frames__stage__image {
                 @apply rounded-lg;
