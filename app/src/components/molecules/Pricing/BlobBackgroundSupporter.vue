@@ -1,31 +1,31 @@
 <template>
     <div class="blob-container">
-        <div class="shape-blob"></div>
-        <div class="shape-blob one"></div>
-        <div class="shape-blob two"></div>
+        <div class="shape-blob-s"></div>
+        <div class="shape-blob-s one"></div>
+        <div class="shape-blob-s two"></div>
     </div>
 </template>
 
 <style lang="scss">
 .blob-container {
-    @apply absolute top-0 min-h-[100vh] h-full w-full overflow-hidden;
+    @apply absolute top-0 min-h-[500px] h-full w-full overflow-hidden;
 	filter: blur(40px);
 }
 
-.shape-blob {
+.shape-blob-s {
     @apply absolute opacity-70 z-0 top-[10%];
-    background: rgba(22, 218, 193, 0.3);
-	height: 15px;
-	width: 25px;
+    background: rgba(22, 218, 193, 0.9);
+	height: 70px;
+	width: 80px;
 	border-radius: 50% 40% 30% 40%;
   	animation: transform 18s ease-in-out infinite both alternate, movementOne 12s ease-in-out infinite both;
 	left: 25%;
 
     &.one {
         @apply -rotate-180;
-        background: rgba(22, 218, 193, 0.3);
-        width: 35px;
-        height: 27px;
+        background: rgba(22, 218, 193, 0.9);
+        width: 90px;
+        height: 80px;
         left: 70%;
         top: 8vw;
         animation: transform 8s ease-in-out infinite both alternate, movementTwo 20s ease-in-out infinite both;
@@ -33,9 +33,9 @@
     
     &.two {
         @apply -rotate-180;
-        background: rgba(19, 201, 213, 0.3);
-        width: 40px;
-        height: 23px;
+        background: rgba(19, 201, 213, 0.9);
+        width: 100px;
+        height: 60px;
         left: 8%;
         top: 40%;
         animation: transform 10s ease-in-out infinite both alternate, movementTwo 10s ease-in-out infinite both;

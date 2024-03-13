@@ -25,18 +25,18 @@ defineProps({
 <template>
     <div class="card-premium">
         <div class="background card-header">
+            <div v-if="isCreator" class="absolute top-0 -mt-12 z-0">
+                <PricingBackgroundSlideContainer/>
+            </div>
+            <div v-else class="absolute top-0 w-full h-[500px] z-0">
+                <PricingBlobBackground/>
+            </div>
             <img class="premium" :src="premiumImage" alt="premium">
             <img class="premium-type" :src="premiumTypeImage" alt="supporter">
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree v-if="options.length === 3" :options="options" class="mt-4 !w-[270px]"/>
                 <QSwitchTwo v-if="options.length === 2" :options="options" class="mt-4 !w-[237px]"/>
-            </div>
-            <div v-if="isCreator" class="absolute top-0 -mt-12">
-                <PricingBackgroundSlideContainer/>
-            </div>
-            <div v-else class="absolute">
-                <PricingBlobBackground class="!h-[600px]"/>
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
             <p>{{ `per ${options[0].duration}` }}</p>
