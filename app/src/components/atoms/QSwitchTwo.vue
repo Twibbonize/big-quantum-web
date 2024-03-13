@@ -14,9 +14,9 @@ defineProps({
             {
                 text: 'Yearly',
                 key: 'yearly'
-            },
-        ],
-    },
+            }
+        ]
+    }
 });
 </script>
 
@@ -24,9 +24,13 @@ defineProps({
     <div class="switch-toggle-two__container">
         <div class="switch-toggle-two switch-3 switch-candy">
             <input :id="options[0].key" :name="name" type="radio" checked />
-            <label :for="options[0].key" onclick=""><span>{{ options[0].text  }}</span></label>
+            <label :for="options[0].key" onclick=""
+                ><span>{{ options[0].text }}</span></label
+            >
             <input :id="options[1].key" :name="name" type="radio" />
-            <label :for="options[1].key" onclick=""><span>{{ options[1].text }}</span></label>
+            <label :for="options[1].key" onclick=""
+                ><span>{{ options[1].text }}</span></label
+            >
             <a></a>
         </div>
     </div>
@@ -44,7 +48,7 @@ defineProps({
         border-radius: 26px;
         box-sizing: border-box;
         padding: 6px;
-        background-color: rgba(255, 255, 255, .4);
+        background-color: rgba(255, 255, 255, 0.4);
     }
 
     label {
@@ -170,11 +174,7 @@ defineProps({
 .switch-toggle-two label:nth-child(2):nth-last-child(4) ~ a {
     width: 50%;
 }
-.switch-toggle-two
-    label:nth-child(2):nth-last-child(4)
-    ~ input:checked:nth-child(3)
-    + label
-    ~ a {
+.switch-toggle-two label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ a {
     left: 50%;
 }
 

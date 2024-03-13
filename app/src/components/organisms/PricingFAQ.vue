@@ -2,34 +2,35 @@
 import { ref } from 'vue';
 
 const faqLists = [
-  {
-    question: 'Are the watermark-free and ad-free features only available to Twibbonize Premium account holders?',
-    answer: 'Watermark-free and ad-free are two exclusive features for Twibbonize Premium users. These features allow users to download twibbon without any watermark and enjoy the Twibbonize experience without disruptive ads'
-  },
-  {
-    question: 'How can we provide the free version of Twibbonize?',
-  },
-  {
-    question: 'What does “Ad-Free” mean for the Twibbonize Premium users?'
-  },
-  {
-    question: 'What can we customize in the campaign?'
-  },
-  {
-    question: 'What is private campaign?'
-  },
-  {
-    question: 'What kind of information do I get in Analytics?'
-  },
-  {
-    question: 'What are my payment options?',
-  },
-  {
-    question: 'Will I get an invoice?'
-  },
-  {
-    question: 'Where can I find help related to Twibbonize usage?'
-  }
+    {
+        question:
+            'Are the watermark-free and ad-free features only available to Twibbonize Premium account holders?',
+        answer: 'Watermark-free and ad-free are two exclusive features for Twibbonize Premium users. These features allow users to download twibbon without any watermark and enjoy the Twibbonize experience without disruptive ads'
+    },
+    {
+        question: 'How can we provide the free version of Twibbonize?'
+    },
+    {
+        question: 'What does “Ad-Free” mean for the Twibbonize Premium users?'
+    },
+    {
+        question: 'What can we customize in the campaign?'
+    },
+    {
+        question: 'What is private campaign?'
+    },
+    {
+        question: 'What kind of information do I get in Analytics?'
+    },
+    {
+        question: 'What are my payment options?'
+    },
+    {
+        question: 'Will I get an invoice?'
+    },
+    {
+        question: 'Where can I find help related to Twibbonize usage?'
+    }
 ];
 
 const activeList = ref(null);
@@ -37,7 +38,7 @@ const activeList = ref(null);
 const changeActiveList = (i) => {
     if (activeList.value === i) activeList.value = null;
     else activeList.value = i;
-}
+};
 </script>
 
 <template>
@@ -46,9 +47,9 @@ const changeActiveList = (i) => {
             <h2 class="title">Frequently asked questions</h2>
             <div class="content">
                 <div
-                    v-for="{ question, answer }, i in faqLists"
+                    v-for="({ question, answer }, i) in faqLists"
                     class="accordion cursor-pointer"
-                    :class="{ 'active': i === activeList, activeList }"
+                    :class="{ active: i === activeList, activeList }"
                     @click="changeActiveList(i)"
                 >
                     <div class="flex flex-col gap-2">
@@ -84,7 +85,7 @@ const changeActiveList = (i) => {
 
     .accordion {
         @apply flex gap-6 pb-7 justify-between items-start;
-        border-bottom: 1px solid #EAECF0;
+        border-bottom: 1px solid #eaecf0;
     }
 
     .answer {

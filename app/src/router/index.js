@@ -6,17 +6,19 @@ import TestPage from '@/views/TestPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import OwnProfilePage from '@/views/OwnProfilePage.vue';
 import CampaignPage from '@/views/CampaignPage.vue';
+import OwnCampaignPage from '@/views/OwnCampaignPage.vue';
 import PreferencesPage from '@/views/PreferencesPage.vue';
 import CollectionPage from '@/views/CollectionPage.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
 import LeaderboardPage from '@/views/LeaderboardPage.vue';
 import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
+import CampaignSupportPage from '@/views/CampaignSupportPage.vue';
 import PostPage from '@/views/PostPage.vue';
+import CreateCampaignPage from '@/views/CreateCampaignPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
 import TestimonialPage from '@/views/TestimonialPage.vue';
 import ArticlePage from '@/views/ArticlePage.vue';
 import PricingPage from '@/views/PricingPage.vue';
-
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,7 +31,11 @@ const router = createRouter({
                 navbarSearch: true
             }
         },
-
+        {
+            path: '/create/:type',
+            name: 'create-campaign',
+            component: CreateCampaignPage
+        },
         {
             path: '/explore/:tab(campaign|collection|creator)?',
             name: 'explore',
@@ -111,8 +117,25 @@ const router = createRouter({
                     meta: {
                         transition: 'slide-up'
                     }
+                },
+                {
+                    path: 'support',
+                    name: 'campaign-support',
+                    component: CampaignSupportPage,
+                    meta: {
+                        transition: 'slide-up'
+                    }
                 }
             ]
+        },
+        {
+            path: '/hanoi-art/admin',
+            name: 'own-campaign',
+            component: OwnCampaignPage,
+            meta: {
+                navbarSearch: true,
+                transition: 'slide-fade'
+            }
         },
         {
             path: '/settings',
@@ -171,7 +194,7 @@ const router = createRouter({
             meta: {
                 navbarSearch: true
             }
-        },
+        }
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top

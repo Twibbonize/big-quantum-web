@@ -1,14 +1,14 @@
 <script setup>
 defineProps({
     currency: {
-        default: '$',
+        default: '$'
     },
     number: {
-        type: Number,
+        type: Number
     },
     decimal: {
-        type: Number,
-    },
+        type: Number
+    }
 });
 </script>
 

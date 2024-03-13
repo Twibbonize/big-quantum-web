@@ -2,6 +2,10 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+    as: {
+        type: [String, Object],
+        default: 'button'
+    },
     variant: {
         type: String,
         default: 'primary',
@@ -28,7 +32,7 @@ const props = defineProps({
     size: {
         type: String,
         default: 'md',
-        validators: (value) => ['xs', 'sm', 'md', 'lg'].includes(value)
+        validators: (value) => ['xs', 'sm', 'md', 'lg', 'auto'].includes(value)
     },
     square: {
         type: Boolean,
@@ -64,13 +68,13 @@ const buttonClasses = computed(() => {
 
 function handleClick(e) {
     e.preventDefault();
-    emit('click');
+    emit('click', e);
 }
 </script>
 <template>
-    <button :class="buttonClasses" :disabled="!enabled" @click="handleClick">
+    <component :is="as" :class="buttonClasses" :disabled="!enabled" @click="handleClick">
         <slot></slot>
-    </button>
+    </component>
 </template>
 
 <style scoped lang="scss">
@@ -215,7 +219,7 @@ function handleClick(e) {
     }
 
     &--neutral {
-        @apply text-black bg-gray-200;
+        @apply text-black bg-gray-150;
 
         @include before {
             height: 0;
@@ -262,7 +266,30 @@ function handleClick(e) {
     }
 
     &--subtle {
-        @apply text-black bg-transparent;
+        @apply text-black bg-transparent border border-transparent;
+
+        @include before {
+            height: 0;
+            width: 0;
+            border-radius: 100%;
+            @apply bg-black;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s var(--transition-function);
+            opacity: 0.1;
+        }
+
+        &:hover {
+            @include before {
+                height: 25rem;
+                width: 25rem;
+            }
+        }
+    }
+
+    &--danger {
+        @apply text-red-50 bg-red-500 border border-transparent;
 
         @include before {
             height: 0;
@@ -282,27 +309,29 @@ function handleClick(e) {
                 width: 20rem;
             }
         }
-    }
 
-    &--danger {
-        @apply text-red-50 bg-red-500;
+        &.btn--outlined {
+            @apply text-red-500 bg-white border-red-500;
 
-        @include before {
-            height: 0;
-            width: 0;
-            border-radius: 100%;
-            @apply bg-black;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s var(--transition-function);
-            opacity: 0.1;
-        }
-
-        &:hover {
             @include before {
-                height: 20rem;
-                width: 20rem;
+                height: 0;
+                width: 0;
+                border-radius: 100%;
+                @apply bg-red-500;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s var(--transition-function);
+                opacity: 1;
+            }
+
+            &:hover {
+                @apply text-white;
+
+                @include before {
+                    height: 20rem;
+                    width: 20rem;
+                }
             }
         }
     }
@@ -354,6 +383,12 @@ function handleClick(e) {
     &.btn--lg.btn--square {
         height: 52px;
         width: 52px;
+    }
+
+    &.btn--auto.btn--circle {
+        width: auto;
+        height: 100%;
+        aspect-ratio: 1/1;
     }
 
     &--circle {

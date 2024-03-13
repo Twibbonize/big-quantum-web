@@ -43,6 +43,7 @@ module.exports = {
                 transparent: 'transparent',
                 gray: {
                     100: '#F4F4F4',
+                    150: '#F4F7F7',
                     200: '#E8E8E8',
                     300: '#D3D3D3',
                     400: '#8D8D8D'

@@ -72,64 +72,71 @@ const commentValidation = yupObject().shape({
 });
 </script>
 <template>
-    <div class="post-modal__header w-full">
-        <div
-            class="flex md:hidden items-center justify-between px-4 py-3 w-full border-b border-stroke"
-        >
-            <div class="w-10">
-                <a @click="close">
-                    <i class="ri-arrow-left-s-line ri-lg"></i>
-                </a>
-            </div>
-            <div class="text-sm font-semibold flex-grow flex-shrink-0 text-center">Post</div>
-            <div class="w-10"></div>
-        </div>
-
-        <div class="flex items-center justify-between px-4 py-3 w-full border-b border-stroke">
-            <div class="flex items-center space-x-1 flex-shrink-0">
-                <img class="w-8 h-8" :src="creator.avatar" alt="Universe Tech" />
-                <div class="flex flex-col">
-                    <div class="font-semibold leading-tight text-xs">
-                        {{ creator.name }}
-                    </div>
-                    <div class="text-xs text-content">@{{ creator.username }}</div>
-                </div>
-            </div>
-
-            <div class="flex items-center space-x-2">
-                <QPopover>
-                    <template #trigger>
-                        <span
-                            class="w-10 h-10 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
-                        >
-                            <i class="ri-more-line ri-lg"></i>
-                        </span>
-                    </template>
-
-                    <QPopoverMenu>
-                        <QPopoverMenuItem>
-                            <i class="ri-share-line ri-1x"></i>
-                            <span>Share</span>
-                        </QPopoverMenuItem>
-
-                        <QPopoverMenuItem>
-                            <div class="text-red-400 space-x-2">
-                                <i class="ri-flag-line ri-1x"></i>
-                                <span>Report</span>
-                            </div>
-                        </QPopoverMenuItem>
-                    </QPopoverMenu>
-                </QPopover>
-
-                <div class="hidden md:block">
-                    <QButton variant="subtle" size="sm" square @click="close">
-                        <i class="ri-close-line ri-lg"></i>
-                    </QButton>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="post-modal max-h-full flex flex-col">
+        <Teleport to=".modal__header">
+            <div class="post-modal__header w-full">
+                <div
+                    class="flex md:hidden items-center justify-between px-4 py-3 w-full border-b border-stroke"
+                >
+                    <div class="w-10">
+                        <a @click="close">
+                            <i class="ri-arrow-left-s-line ri-lg"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm font-semibold flex-grow flex-shrink-0 text-center">
+                        Post
+                    </div>
+                    <div class="w-10"></div>
+                </div>
+
+                <div
+                    class="flex items-center justify-between px-4 py-3 w-full border-b border-stroke"
+                >
+                    <div class="flex items-center space-x-1 flex-shrink-0">
+                        <img class="w-8 h-8" :src="creator.avatar" alt="Universe Tech" />
+                        <div class="flex flex-col">
+                            <div class="font-semibold leading-tight text-xs">
+                                {{ creator.name }}
+                            </div>
+                            <div class="text-xs text-content">@{{ creator.username }}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <QPopover>
+                            <template #trigger>
+                                <span
+                                    class="w-10 h-10 hover:bg-black/10 inline-flex items-center justify-center rounded-lg transition-colors"
+                                >
+                                    <i class="ri-more-line ri-lg"></i>
+                                </span>
+                            </template>
+
+                            <QPopoverMenu>
+                                <QPopoverMenuItem>
+                                    <i class="ri-share-line ri-1x"></i>
+                                    <span>Share</span>
+                                </QPopoverMenuItem>
+
+                                <QPopoverMenuItem>
+                                    <div class="text-red-400 space-x-2">
+                                        <i class="ri-flag-line ri-1x"></i>
+                                        <span>Report</span>
+                                    </div>
+                                </QPopoverMenuItem>
+                            </QPopoverMenu>
+                        </QPopover>
+
+                        <div class="hidden md:block">
+                            <QButton variant="subtle" size="sm" square @click="close">
+                                <i class="ri-close-line ri-lg"></i>
+                            </QButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Teleport>
+
         <div class="post-modal__upper">
             <div class="post-modal__image">
                 <img :src="image" alt="Universe Tech" />
@@ -172,6 +179,7 @@ const commentValidation = yupObject().shape({
                     </div>
                     <div ref="captionContainer" class="post-modal__caption">
                         <QEllipsisText
+                            v-if="caption"
                             :text="caption"
                             :lines="3"
                             :containerWidth="

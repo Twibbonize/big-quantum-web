@@ -25,6 +25,7 @@ defineProps({
 <template>
     <div class="card-premium">
         <div class="background card-header">
+<<<<<<< HEAD
             <div v-if="isCreator" class="absolute top-0 -mt-12 z-0">
                 <PricingBackgroundSlideContainer/>
             </div>
@@ -33,10 +34,22 @@ defineProps({
             </div>
             <img class="premium" :src="premiumImage" alt="premium">
             <img class="premium-type" :src="premiumTypeImage" alt="supporter">
+=======
+            <img class="premium" :src="premiumImage" alt="premium" />
+            <img class="premium-type" :src="premiumTypeImage" alt="supporter" />
+>>>>>>> dev
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
-                <QSwitchThree v-if="options.length === 3" :options="options" class="mt-4 !w-[270px]"/>
-                <QSwitchTwo v-if="options.length === 2" :options="options" class="mt-4 !w-[237px]"/>
+                <QSwitchThree
+                    v-if="options.length === 3"
+                    :options="options"
+                    class="mt-4 !w-[270px]"
+                />
+                <QSwitchTwo
+                    v-if="options.length === 2"
+                    :options="options"
+                    class="mt-4 !w-[237px]"
+                />
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
             <p>{{ `per ${options[0].duration}` }}</p>
@@ -52,7 +65,7 @@ defineProps({
 <style lang="scss">
 .card-premium {
     @apply sm:rounded-3xl bg-white w-full overflow-hidden relative border-none sm:border-[3px];
-    border-color: rgba(255, 255, 255, 0.20);
+    border-color: rgba(255, 255, 255, 0.2);
     border-style: solid;
 
     .card-header {
@@ -60,15 +73,15 @@ defineProps({
     }
 
     .premium {
-      @apply h-5;
+        @apply h-5;
     }
 
     .premium-type {
-      @apply h-20;
+        @apply h-20;
     }
 
     .premium-description {
-      @apply text-center text-base mt-2;
+        @apply text-center text-base mt-2;
     }
 
     .content {
@@ -81,7 +94,7 @@ defineProps({
 
     .bento {
         @apply rounded-3xl bg-white text-black w-full overflow-hidden;
-        border: 1px solid  #DEE8E8;
+        border: 1px solid #dee8e8;
         box-shadow: 0px 12px 24px 0px rgba(27, 82, 78, 0.04);
 
         .text-container {
@@ -97,13 +110,26 @@ defineProps({
 .card-supporters {
     &.card-premium {
         .background {
+<<<<<<< HEAD
             @apply flex flex-col items-center px-5 pt-10 sm:p-12;
             background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
             background-size: auto 100%, 940px 900px;
             background-position: center, 0px;
+=======
+            @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
+            background: url('/assets/img/marketings/bg-supporters.jpg'),
+                linear-gradient(
+                    117deg,
+                    rgba(22, 218, 193, 0.8) 14.55%,
+                    rgba(22, 155, 154, 0.8) 100%
+                );
+            background-size:
+                auto 100%,
+                contain;
+            background-position: center, center;
+>>>>>>> dev
         }
     }
-
     .background-slide-container {
         @apply hidden;
     }

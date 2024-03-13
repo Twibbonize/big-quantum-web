@@ -53,3 +53,60 @@
 .slide-up-leave-active {
     animation: slide-up 0.5s reverse ease-out;
 }
+
+.sheet-fade-enter-active {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-delay: 0ms;
+    transition-timing-function: ease-in-out;
+}
+
+.sheet-fade-leave-active {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-delay: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+.sheet-fade-enter-from,
+.sheet-fade-leave-to {
+    opacity: 0;
+}
+
+.slide-down-enter-active {
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-delay: 250ms;
+    transition-timing-function: linear;
+}
+
+.slide-down-leave-active {
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: linear;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+    transform: translateY(100%);
+}
+
+.delay-fade-enter-active {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-delay: 300ms;
+    transition-timing-function: ease-out;
+}
+
+.delay-fade-leave-active {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-delay: 100ms;
+    transition-timing-function: ease-out;
+}
+
+.delay-fade-enter-from,
+.delay-fade-leave-to {
+    opacity: 0;
+}

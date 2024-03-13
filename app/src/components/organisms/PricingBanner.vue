@@ -16,46 +16,46 @@ import 'animate.css';
 
 
 const creatorOptions = [
-  {
-    key: 'creator-monthly',
-    text: 'Monthly',
-    duration: 'month'
-  },
-  {
-    key: 'creator-yearly',
-    text: 'Yearly',
-    duration: 'year'
-  }
+    {
+        key: 'creator-monthly',
+        text: 'Monthly',
+        duration: 'month'
+    },
+    {
+        key: 'creator-yearly',
+        text: 'Yearly',
+        duration: 'year'
+    }
 ];
 
 const supporterOptions = [
-  {
-    key: 'supporter-weekly',
-    text: 'Weekly',
-    duration: 'week'
-  },
-  {
-    key: 'supporter-monthly',
-    text: 'Monthly',
-    duration: 'month'
-  },
-  {
-    key: 'supporter-yearly',
-    text: 'Yearly',
-    duration: 'year'
-  }
+    {
+        key: 'supporter-weekly',
+        text: 'Weekly',
+        duration: 'week'
+    },
+    {
+        key: 'supporter-monthly',
+        text: 'Monthly',
+        duration: 'month'
+    },
+    {
+        key: 'supporter-yearly',
+        text: 'Yearly',
+        duration: 'year'
+    }
 ];
 
 const supporterPrice = {
     number: 2,
     decimal: 99,
-    currency: '$',
+    currency: '$'
 };
 
 const creatorPrice = {
     number: 11,
     decimal: 99,
-    currency: '$',
+    currency: '$'
 };
 
 onMounted(() => {
@@ -107,6 +107,7 @@ onMounted(() => {
                     class="card-supporters"
                     link="/pricing/supporters"
                 >
+<<<<<<< HEAD
                     <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
                     <PricingExtraFeaturesLine/>
@@ -116,6 +117,12 @@ onMounted(() => {
                         variant="black"
                         link="/pricing/supporters"
                     />
+=======
+                    <PricingBentoRemoveWatermarkSupporters class="bento -mt-9" />
+                    <PricingBentoNoAds class="bento mt-5" />
+                    <PricingExtraFeaturesLine />
+                    <PricingBentoNoExtraFeatures class="bento" />
+>>>>>>> dev
                 </PricingCardPremium>
                 <PricingCardPremium
                     premium-image="/assets/img/marketings/premium-white.svg"
@@ -128,6 +135,7 @@ onMounted(() => {
                     link="/pricing/creators"
                     :is-creator="true"
                 >
+<<<<<<< HEAD
                     <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
                     <PricingExtraFeaturesLine/>
@@ -137,6 +145,12 @@ onMounted(() => {
                         variant="primary"
                         link="/pricing/creators"
                     />
+=======
+                    <PricingBentoRemoveWatermarkCreators class="bento -mt-9" />
+                    <PricingBentoNoAds class="bento mt-5" />
+                    <PricingExtraFeaturesLine />
+                    <PricingBentoExtraFeatures />
+>>>>>>> dev
                 </PricingCardPremium>
             </div>
             <div id="pricing-action-supporters"></div>
@@ -185,7 +199,7 @@ onMounted(() => {
 }
 
 .pricing-compare {
-  @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
+    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
 }
 
 .pricing-action-container {

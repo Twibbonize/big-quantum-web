@@ -3,14 +3,16 @@ import QButton from '@/components/atoms/QButton.vue';
 
 defineProps({
     variant: String,
-    link: String,
+    link: String
 });
 </script>
 
 <template>
     <div class="pricing-action">
         <QButton size="md" :variant="variant" class="w-full">
-            <span class="text-base gap-4 flex items-center">Purchase Now <i class="ri-arrow-right-line"></i></span>
+            <span class="text-base gap-4 flex items-center"
+                >Purchase Now <i class="ri-arrow-right-line"></i
+            ></span>
         </QButton>
         <router-link class="text-base" :to="link">Learn More</router-link>
     </div>

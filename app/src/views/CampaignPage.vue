@@ -1,6 +1,6 @@
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-
+import { useRouter } from 'vue-router';
 import {
     breakpointsTailwind,
     useBreakpoints,
@@ -10,7 +10,8 @@ import {
     useScroll,
     useDebounceFn,
     useMounted,
-    useElementSize
+    useElementSize,
+    computedAsync
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import { gsap } from 'gsap';
@@ -26,11 +27,13 @@ import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import PostWrapper from '@/components/molecules/PostWrapper.vue';
 import PostMockup from '@/components/molecules/PostMockup.vue';
 import CampaignCard from '@/components/molecules/CampaignCard.vue';
+
 import CollectionModal from '@/components/organisms/CollectionModal.vue';
 import ShareModal from '@/components/organisms/ShareModal.vue';
+
 import { useModal } from '@/composables/modal';
 import { publicPosts } from '@/mock/posts';
-import { publicCampaigns } from '@/mock/campaigns';
+import { publicCampaigns, mockCampaigns } from '@/mock/campaigns';
 import { useNavbarStore } from '@/stores/navbarStore';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -54,99 +57,29 @@ const campaignContent = ref(null);
 const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
+const inputPhoto = ref(null);
 
-const selectedFrames = ref(frames[0]);
+const selectedFrame = ref(frames[0]);
+const selectedPhoto = ref(null);
 const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
-const mocks = [
-    {
-        frame: frames[0],
-        photo: '/assets/img/sample/sample-person-1.jpg',
-        photoStyle: {
-            left: '14%',
-            top: '-10%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-2.jpg'
-    },
-    {
-        frame: frames[2],
-        photo: '/assets/img/sample/sample-person-3.jpg',
-        photoStyle: {
-            left: '0',
-            top: '20%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-4.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '6%',
-            transform: 'scale(1.1)'
-        }
-    },
-    {
-        frame: frames[0],
-        photo: '/assets/img/sample/sample-person-5.jpg',
-        photoStyle: {
-            left: '16%',
-            top: '-12%',
-            transform: 'scale(0.9)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-8.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '-0%',
-            transform: 'scale(0.9)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-10.jpg',
-        photoStyle: {
-            left: '0',
-            top: '10%',
-            transform: 'scale(1)'
-        }
-    },
-    {
-        frame: frames[1],
-        photo: '/assets/img/sample/sample-person-11.jpg',
-        photoStyle: {
-            left: '0',
-            top: '10%',
-            transform: 'scale(1)'
-        }
-    },
-    {
-        frame: frames[3],
-        photo: '/assets/img/sample/sample-person-12.jpg',
-        photoStyle: {
-            left: '-20%',
-            top: '-0%',
-            transform: 'scale(0.9)'
-        }
-    }
-];
+const mocks = [...mockCampaigns];
 
-const { open: modalOpen } = useModal();
-const breakpoints = useBreakpoints(breakpointsTailwind);
+const router = useRouter();
+
+const { open: openModal } = useModal();
 const { height: windowHeight } = useWindowSize();
+
 const campaignContentSize = useElementSize(campaignContent);
+
 const { y } = useWindowScroll();
 const isMounted = useMounted();
+
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
 
@@ -162,7 +95,7 @@ const campaignContentStyle = computed(() => {
     const { height: contentHeight } = campaignContentSize;
 
     const totalContentHeight = contentHeight.value;
-    const additionalSpace = 88 + 12 + 24;
+    const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
 
     if (!xl.value || windowHeight.value - additionalSpace > totalContentHeight) {
         return {
@@ -179,33 +112,58 @@ const campaignContentStyle = computed(() => {
     };
 });
 
-const itemsToAdd = 3;
+const campaignPageStyle = computedAsync(async () => {
+    if (!xl.value) {
+        return {
+            height: 'auto'
+        };
+    }
+    const scaleRegex = /scale\(([^)]+)\)/;
 
-const lazyLoad = () => {
-    if (isLoadingPost.value) return;
+    const match = scaleRegex.exec(campaignContentStyle.value.transform);
+    const scale = parseFloat(match[1]);
 
-    if (posts.value.length >= 21) {
-        return;
+    await nextTick();
+
+    const { height: contentHeight } = campaignContentSize;
+
+    const parsedScale = parseFloat(scale);
+
+    if (parsedScale === 1) {
+        return {
+            height: 'auto'
+        };
     }
 
-    isLoadingPost.value = true;
+    const additionalSpace = 88 + 36; // topY + padding-top + padding-bottom
 
-    setTimeout(() => {
-        posts.value = [
-            ...posts.value,
-            ...publicPosts.slice(posts.value.length, posts.value.length + itemsToAdd)
-        ];
-        isLoadingPost.value = false;
-    }, 1000);
-};
+    const targetHeight = contentHeight.value * parsedScale + additionalSpace;
+    return {
+        height: `${targetHeight}px`
+    };
+});
 
 const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
 };
 
+const openInputPhoto = (e) => {
+    e.preventDefault();
+    inputPhoto.value.value = null;
+    inputPhoto.value.click();
+};
+
+const onInputPhotoChange = (event) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+        selectedPhoto.value = selectedFile;
+        router.push({ name: 'campaign-support' });
+    }
+};
+
 const onClickShare = () => {
-    // const { url, thumbnail } = props;
-    modalOpen({
+    openModal({
         component: ShareModal,
         props: {
             link: 'twb.nz/hanoi-art-2025',
@@ -217,7 +175,7 @@ const onClickShare = () => {
 
 const onClickCollection = () => {
     // size="lg" :position="sm ? 'bottom' : 'center'"
-    modalOpen({
+    openModal({
         component: CollectionModal,
         props: {
             campaign: {
@@ -230,6 +188,7 @@ const onClickCollection = () => {
 };
 
 let autoScrollTween;
+
 const calcDuration = () => {
     const context = document.querySelector('.campaign-feeds__wrapper');
 
@@ -268,6 +227,17 @@ const initAutoScrollTween = () => {
     });
 };
 
+useResizeObserver(campaignMain, (entries) => {
+    const entry = entries[0];
+    const { height } = entry.contentRect;
+
+    if (!sm.value) {
+        campaignFeeds.value.style.height = `${height}px`;
+    } else {
+        campaignFeeds.value.style.height = 'fit-content';
+    }
+});
+
 watch(y, (newValue) => {
     if (newValue > 110) {
         setNavbarColor('white');
@@ -288,17 +258,6 @@ watch(y, (newValue) => {
         document.querySelector('.campaign__background').style.opacity = '0';
     } else {
         document.querySelector('.campaign__background').style.opacity = '100';
-    }
-});
-
-useResizeObserver(campaignMain, (entries) => {
-    const entry = entries[0];
-    const { height } = entry.contentRect;
-
-    if (!sm.value) {
-        campaignFeeds.value.style.height = `${height}px`;
-    } else {
-        campaignFeeds.value.style.height = 'fit-content';
     }
 });
 
@@ -331,29 +290,26 @@ onMounted(async () => {
     posts.value = [...publicPosts];
 });
 </script>
+
 <template>
     <LayoutMain>
-        <div ref="campaignPage" class="page campaign">
+        <div ref="campaignPage" class="page campaign" :style="campaignPageStyle">
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
-            <div
-                ref="campaignContent"
-                class="campaign__content container px-0 md:px-5 2xl:px-0"
-                :style="campaignContentStyle"
-            >
+            <div ref="campaignContent" class="campaign__content" :style="campaignContentStyle">
                 <div class="grid grid-cols-12 md:gap-6">
                     <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
                         <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
                                     <img
-                                        :src="selectedFrames"
+                                        :src="selectedFrame"
                                         class="campaign__frames__stage__image"
                                     />
                                 </div>
 
                                 <div class="campaign__frames__card">
-                                    <RadioGroup v-model="selectedFrames">
+                                    <RadioGroup v-model="selectedFrame">
                                         <div class="campaign__frames__options">
                                             <RadioGroupOption
                                                 v-for="(frame, i) in frames"
@@ -375,7 +331,7 @@ onMounted(async () => {
                                     </RadioGroup>
 
                                     <div class="campaign__frames__action">
-                                        <QButton :block="!sm">
+                                        <QButton :block="!sm" @click="openInputPhoto">
                                             <span class="flex items-center font-semibold">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -411,9 +367,19 @@ onMounted(async () => {
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <span class="ml-1">Upload Your Photo</span>
+                                                <span class="ml-1">Choose Your Photo</span>
                                             </span>
                                         </QButton>
+
+                                        <input
+                                            ref="inputPhoto"
+                                            type="file"
+                                            name="photo"
+                                            id="photo"
+                                            class="hidden"
+                                            @change="onInputPhotoChange"
+                                            accept="image/png, image/jpg, image/jpeg, image/webp"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -602,20 +568,25 @@ onMounted(async () => {
         </div>
 
         <!-- fullscreen mode -->
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component, route }">
             <transition name="fade">
-                <component
-                    :is="Component"
-                    :posts="posts"
-                    :displayType="displayType"
-                    @toggle-display="(newValue) => (displayType = newValue)"
-                />
+                <template v-if="route.name === 'campaign-support'">
+                    <component :is="Component" :frames="frames" :photo="selectedPhoto" />
+                </template>
+
+                <template v-else>
+                    <component
+                        :is="Component"
+                        :posts="posts"
+                        :displayType="displayType"
+                        @toggle-display="(newValue) => (displayType = newValue)"
+                    />
+                </template>
             </transition>
         </router-view>
 
         <div class="campaign-recommendations bg-gray-50 relative z-10">
             <div class="campaign-separator"></div>
-
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
                 <div class="campaign-recommendations__grid">
@@ -696,6 +667,7 @@ onMounted(async () => {
         z-index: 1;
         width: 100%;
         padding-top: 24px;
+        @apply container px-0 md:px-5 2xl:px-0;
 
         @include lg_screen {
             padding-top: 24px;
@@ -705,6 +677,58 @@ onMounted(async () => {
         @include xl_screen {
             padding-top: 12px;
             padding-bottom: 24px;
+        }
+    }
+
+    .campaign__analytic {
+        @apply relative z-50 container mx-auto px-0 md:px-5 2xl:px-0;
+
+        &-wrapper {
+            @apply bg-white px-6 flex flex-col pt-10 border-t;
+
+            @include lg_screen {
+                @apply flex-row items-center justify-between py-6 rounded-2xl;
+            }
+        }
+
+        &-stats {
+            @apply flex items-center justify-between w-full overflow-hidden;
+
+            @include lg_screen {
+                @apply w-fit;
+            }
+        }
+
+        &-stat {
+            @apply flex flex-col items-center border-r border-stroke flex-grow flex-shrink-0 w-0;
+
+            @include lg_screen {
+                @apply w-fit items-start px-10;
+            }
+
+            &:first-of-type {
+                @apply pl-0;
+            }
+
+            &:last-of-type {
+                @apply border-r-0;
+            }
+        }
+
+        &-detail {
+            @apply flex flex-col-reverse items-center mt-10 text-center;
+
+            @include lg_screen {
+                @apply flex-row mt-0;
+            }
+
+            &__note {
+                @apply text-sm text-content mt-3;
+
+                @include lg_screen {
+                    @apply mt-0 mr-3;
+                }
+            }
         }
     }
 
@@ -824,6 +848,10 @@ onMounted(async () => {
             }
         }
     }
+}
+
+.campaign-edit {
+    @apply fixed bottom-0 right-0 w-full z-50 py-5;
 }
 
 // campaign feeds

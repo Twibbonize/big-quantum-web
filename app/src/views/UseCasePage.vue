@@ -41,12 +41,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-   <LayoutMain>
-        <UsecaseBanner/>
+    <LayoutMain>
+        <UsecaseBanner />
         <div ref="content"></div>
-        <UsecaseBento class="py-14 lg:py-18"/>
-   </LayoutMain>
+        <UsecaseBento class="py-14 lg:py-18" />
+    </LayoutMain>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
