@@ -74,13 +74,13 @@ const vectorCreators = [
     gap: calc(0.2 *var(--base-size));
 	
 	.bg-creators-slide-track {
-		animation: scroll 40s linear infinite;
+		animation: scroll 80s linear infinite;
 		display: flex;
 		width: calc((1.2 * var(--base-size)) * 32);
 	}
 
     .bg-creators-slide-track.reverse {
-		animation: scrollReverse 40s linear infinite;
+		animation: scrollReverse 80s linear infinite;
 	}
 	
 	.bg-creators-slide {

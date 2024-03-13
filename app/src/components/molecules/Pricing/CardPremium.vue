@@ -46,7 +46,6 @@ defineProps({
                 <slot></slot>
             </div>
         </div>
-        <PricingAction class="absolute" :variant="variant" :link="link"/>
     </div>
 </template>
 
@@ -77,7 +76,7 @@ defineProps({
     }
 
     .bento-container {
-        @apply top-9 w-full pb-[182px] bg-transparent;
+        @apply top-9 w-full bg-transparent;
     }
 
     .bento {
@@ -98,7 +97,7 @@ defineProps({
 .card-supporters {
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
             background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
             background-size: auto 100%, 940px 900px;
             background-position: center, 0px;
@@ -114,7 +113,7 @@ defineProps({
     @apply text-white;
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
             background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
             background-size: 574px 500px, contain;
             background-position: center, center;
