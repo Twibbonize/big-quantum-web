@@ -1,5 +1,6 @@
 <script setup>
-import { useDropZone, useIntersectionObserver } from '@vueuse/core';
+import { useDropZone, useIntersectionObserver, useElementSize } from '@vueuse/core';
+import { computed, ref, watch } from 'vue';
 import {
     RadioGroup,
     RadioGroupOption,
@@ -16,7 +17,6 @@ import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QVisibilityOptions from '@/components/atoms/forms/QVisibilityOptions.vue';
 import CampaignMockupPhone from '@/components/organisms/CampaignMockupPhone.vue';
-import { onMounted, ref, watch } from 'vue';
 import { getTemplateList } from '@/apis';
 
 const dropzoneBox = ref(null);
@@ -67,6 +67,8 @@ const STEPS = {
 const currentStep = ref(STEPS.FRAMES);
 
 // forms
+const campaignTitle = ref('');
+const campaignDescription = ref('');
 const campaignCategory = ref(null);
 const campaignVisibility = ref('public');
 
@@ -107,6 +109,20 @@ watch(observerIsVisible, (newValue) => {
     }
 });
 
+// mockups
+const mockupWrapper = ref(null);
+const mockupEl = ref(null);
+const { height: mockupWrapperHeight } = useElementSize(mockupWrapper);
+const { height: mockupElHeight } = useElementSize(mockupEl);
+
+const mockupStyles = computed(() => {
+    const targetScale = mockupElHeight.value / mockupWrapperHeight.value;
+
+    return {
+        transform: `scale(${targetScale})`
+    };
+});
+
 // onMounted(() => {
 //     handleFetchTemplates();
 // });
@@ -130,8 +146,19 @@ watch(observerIsVisible, (newValue) => {
         <div class="create-campaign__main">
             <div class="grid grid-cols-2 h-full">
                 <!-- left -->
-                <div class="left-section">
-                    <div v-show="currentStep === STEPS.FRAMES">
+                <div v-show="currentStep === STEPS.FRAMES" class="left-section">
+                    <div class="actions-bar pl-20 pr-10 shadow-md sticky top-0 bg-white z-50">
+                        <div class="flex items-center justify-between py-4">
+                            <QButton variant="secondary">
+                                <span class="px-2">Cancel</span>
+                            </QButton>
+
+                            <QButton :enabled="files.length > 0" @click="currentStep = STEPS.FORM">
+                                <span class="px-2">Save Frames</span>
+                            </QButton>
+                        </div>
+                    </div>
+                    <div class="pl-20 pr-10 pt-14">
                         <div class="dropzone">
                             <input
                                 type="file"
@@ -447,254 +474,337 @@ watch(observerIsVisible, (newValue) => {
                             <div ref="observerEl" class="tpl__observer"></div>
                         </div>
                     </div>
+                </div>
 
-                    <div v-if="currentStep === STEPS.FORM">
-                        <div class="flex items-center justify-center">
-                            <CampaignMockupPhone :frames="files" />
-                        </div>
+                <div v-if="currentStep === STEPS.FORM" class="left-section">
+                    <div ref="mockupWrapper" class="flex items-center justify-center h-full w-full">
+                        <CampaignMockupPhone
+                            ref="mockupEl"
+                            :frames="files"
+                            :title="campaignTitle"
+                            :description="campaignDescription"
+                            :style="mockupStyles"
+                        />
                     </div>
                 </div>
 
-                <div class="right-section">
-                    <div :class="['card-box', currentStep !== STEPS.FORM && 'card-box--disabled']">
-                        <div class="card-box__header">
-                            <div class="card-box__icon">
-                                <i class="ri-list-unordered"></i>
+                <div
+                    :class="[
+                        'right-section',
+                        currentStep !== STEPS.FORM ? 'overflow-hidden' : 'overflow-y-auto'
+                    ]"
+                >
+                    <div
+                        v-show="currentStep === STEPS.FORM"
+                        class="actions-bar pr-20 pl-10 shadow-md sticky top-0 bg-white z-50"
+                    >
+                        <div class="flex items-center justify-between py-4">
+                            <QButton variant="secondary" @click="currentStep = STEPS.FRAMES">
+                                <span class="px-2">Back</span>
+                            </QButton>
+
+                            <div class="flex items-center">
+                                <span class="text-content text-xs mr-3">
+                                    <i class="ri-information-line"></i>
+                                    please fill in all the required campaign data below
+                                </span>
+
+                                <QButton
+                                    :enabled="files.length > 0"
+                                    @click="currentStep = STEPS.FORM"
+                                >
+                                    <span class="px-2">Publish</span>
+                                </QButton>
                             </div>
-                            <h3 class="card-box__title">Campaign Details</h3>
                         </div>
+                    </div>
 
-                        <div class="card-box__body">
-                            <div class="space-y-6">
-                                <div class="space-y-3">
-                                    <label for="title" class="font-bold"> Campaign Title </label>
-
-                                    <QInputText
-                                        id="title"
-                                        name="title"
-                                        placeholder="Can consist of numbers, alphabets, or special characters."
-                                    />
+                    <div class="pr-20 pl-10 pt-14 space-y-10">
+                        <div
+                            :class="[
+                                'card-box',
+                                currentStep !== STEPS.FORM && 'card-box--disabled'
+                            ]"
+                        >
+                            <div class="card-box__header">
+                                <div class="card-box__icon">
+                                    <i class="ri-list-unordered"></i>
                                 </div>
+                                <h3 class="card-box__title">Campaign Details</h3>
+                            </div>
 
-                                <div class="space-y-3">
-                                    <label for="description" class="font-bold"> Description </label>
+                            <div class="card-box__body">
+                                <div class="space-y-6">
+                                    <div class="space-y-3">
+                                        <label for="title" class="font-bold">
+                                            Campaign Title
+                                        </label>
 
-                                    <QInputTextarea
-                                        id="description"
-                                        name="description"
-                                        placeholder="Share details about your campaign to grab attention and garner support."
-                                        :maxLength="250"
-                                    />
-                                </div>
+                                        <QInputText
+                                            v-model="campaignTitle"
+                                            id="title"
+                                            name="title"
+                                            placeholder="Can consist of numbers, alphabets, or special characters."
+                                        />
+                                    </div>
 
-                                <div class="space-y-3">
-                                    <label for="link" class="font-bold"> Campaign Link </label>
+                                    <div class="space-y-3">
+                                        <label for="description" class="font-bold">
+                                            Description
+                                        </label>
 
-                                    <QInputText id="link" name="link" placeholder="campaign-link">
-                                        <template #prefix> twibbo.nz </template>
-                                    </QInputText>
-                                </div>
+                                        <QInputTextarea
+                                            v-model="campaignDescription"
+                                            id="description"
+                                            name="description"
+                                            placeholder="Share details about your campaign to grab attention and garner support."
+                                            :maxLength="250"
+                                        />
+                                    </div>
 
-                                <div class="space-y-3">
-                                    <label for="category" class="font-bold"
-                                        >Campaign Category</label
-                                    >
-                                    <Listbox v-model="campaignCategory" v-slot="{ open }">
-                                        <div class="relative category">
-                                            <ListboxButton
-                                                :class="[
-                                                    'category__button',
-                                                    open && 'category__button--open'
-                                                ]"
-                                            >
-                                                <span
-                                                    v-if="campaignCategory"
-                                                    class="category__value"
+                                    <div class="space-y-3">
+                                        <label for="link" class="font-bold"> Campaign Link </label>
+
+                                        <QInputText
+                                            id="link"
+                                            name="link"
+                                            placeholder="campaign-link"
+                                        >
+                                            <template #prefix> twibbo.nz </template>
+                                        </QInputText>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <label for="category" class="font-bold"
+                                            >Campaign Category</label
+                                        >
+                                        <Listbox v-model="campaignCategory" v-slot="{ open }">
+                                            <div class="relative category">
+                                                <ListboxButton
+                                                    :class="[
+                                                        'category__button',
+                                                        open && 'category__button--open'
+                                                    ]"
                                                 >
-                                                    {{ campaignCategory }}
-                                                </span>
+                                                    <span
+                                                        v-if="campaignCategory"
+                                                        class="category__value"
+                                                    >
+                                                        {{ campaignCategory }}
+                                                    </span>
 
-                                                <span v-else class="category__placeholder">
-                                                    Select Category
-                                                </span>
+                                                    <span v-else class="category__placeholder">
+                                                        Select Category
+                                                    </span>
 
-                                                <span class="category__arrow">
-                                                    <i class="ri-arrow-down-s-line ri-lg"></i>
-                                                </span>
-                                            </ListboxButton>
+                                                    <span class="category__arrow">
+                                                        <i class="ri-arrow-down-s-line ri-lg"></i>
+                                                    </span>
+                                                </ListboxButton>
 
-                                            <transition
-                                                leave-active-class="transition duration-100 ease-in"
-                                                leave-from-class="opacity-100"
-                                                leave-to-class="opacity-0"
-                                            >
-                                                <ListboxOptions class="category__options">
-                                                    <ListboxOption
-                                                        value="Decorative"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
+                                                <transition
+                                                    leave-active-class="transition duration-100 ease-in"
+                                                    leave-from-class="opacity-100"
+                                                    leave-to-class="opacity-0"
+                                                >
+                                                    <ListboxOptions class="category__options">
+                                                        <ListboxOption
+                                                            value="Decorative"
+                                                            v-slot="{ active, selected }"
                                                         >
-                                                            <i class="ri-collage-line"></i>
-                                                            <span class="ml-1"> Decorative </span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="Music"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
-                                                        >
-                                                            <i class="ri-music-2-line"></i>
-                                                            <span class="ml-1"> Music </span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="Socials"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
-                                                        >
-                                                            <i class="ri-empathize-line"></i>
-                                                            <span class="ml-1">Socials</span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="Sports"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
-                                                        >
-                                                            <i class="ri-bike-line"></i>
-                                                            <span class="ml-1">Sports</span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="National Day"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
-                                                        >
-                                                            <i class="ri-calendar-event-line"></i>
-                                                            <span class="ml-1">National Day</span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="Goverment & Politics"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
-                                                        >
-                                                            <i class="ri-government-line"></i>
-                                                            <span class="ml-1"
-                                                                >Goverment & Politics</span
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
                                                             >
-                                                        </div>
-                                                    </ListboxOption>
-                                                    <ListboxOption
-                                                        value="Celebrations"
-                                                        v-slot="{ active, selected }"
-                                                    >
-                                                        <div
-                                                            :class="[
-                                                                'category__option',
-                                                                selected &&
-                                                                    'category__option--selected',
-                                                                active && 'category__option--active'
-                                                            ]"
+                                                                <i class="ri-collage-line"></i>
+                                                                <span class="ml-1">
+                                                                    Decorative
+                                                                </span>
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="Music"
+                                                            v-slot="{ active, selected }"
                                                         >
-                                                            <i class="ri-bard-line"></i>
-                                                            <span class="ml-1"> Celebrations </span>
-                                                        </div>
-                                                    </ListboxOption>
-                                                </ListboxOptions>
-                                            </transition>
-                                        </div>
-                                    </Listbox>
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i class="ri-music-2-line"></i>
+                                                                <span class="ml-1"> Music </span>
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="Socials"
+                                                            v-slot="{ active, selected }"
+                                                        >
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i class="ri-empathize-line"></i>
+                                                                <span class="ml-1">Socials</span>
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="Sports"
+                                                            v-slot="{ active, selected }"
+                                                        >
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i class="ri-bike-line"></i>
+                                                                <span class="ml-1">Sports</span>
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="National Day"
+                                                            v-slot="{ active, selected }"
+                                                        >
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i
+                                                                    class="ri-calendar-event-line"
+                                                                ></i>
+                                                                <span class="ml-1"
+                                                                    >National Day</span
+                                                                >
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="Goverment & Politics"
+                                                            v-slot="{ active, selected }"
+                                                        >
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i class="ri-government-line"></i>
+                                                                <span class="ml-1"
+                                                                    >Goverment & Politics</span
+                                                                >
+                                                            </div>
+                                                        </ListboxOption>
+                                                        <ListboxOption
+                                                            value="Celebrations"
+                                                            v-slot="{ active, selected }"
+                                                        >
+                                                            <div
+                                                                :class="[
+                                                                    'category__option',
+                                                                    selected &&
+                                                                        'category__option--selected',
+                                                                    active &&
+                                                                        'category__option--active'
+                                                                ]"
+                                                            >
+                                                                <i class="ri-bard-line"></i>
+                                                                <span class="ml-1">
+                                                                    Celebrations
+                                                                </span>
+                                                            </div>
+                                                        </ListboxOption>
+                                                    </ListboxOptions>
+                                                </transition>
+                                            </div>
+                                        </Listbox>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div :class="['card-box', currentStep !== STEPS.FORM && 'card-box--disabled']">
-                        <div class="card-box__header">
-                            <div class="card-box__icon">
-                                <i class="ri-chat-quote-line"></i>
-                            </div>
-                            <h3 class="card-box__title">Caption Template</h3>
-                        </div>
-
-                        <div class="card-box__body">
-                            <div class="space-y-4">
-                                <div class="space-y-1">
-                                    <label for="" class="font-bold">Set a Template</label>
-                                    <p class="text-sm">
-                                        If others support your campaign without adding a caption,
-                                        this will be the caption.
-                                    </p>
+                        <div
+                            :class="[
+                                'card-box',
+                                currentStep !== STEPS.FORM && 'card-box--disabled'
+                            ]"
+                        >
+                            <div class="card-box__header">
+                                <div class="card-box__icon">
+                                    <i class="ri-chat-quote-line"></i>
                                 </div>
-                                <QInputCaption />
+                                <h3 class="card-box__title">Caption Template</h3>
+                            </div>
+
+                            <div class="card-box__body">
+                                <div class="space-y-4">
+                                    <div class="space-y-1">
+                                        <label for="" class="font-bold">Set a Template</label>
+                                        <p class="text-sm">
+                                            If others support your campaign without adding a
+                                            caption, this will be the caption.
+                                        </p>
+                                    </div>
+                                    <QInputCaption />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div :class="['card-box', currentStep !== STEPS.FORM && 'card-box--disabled']">
-                        <div class="card-box__header">
-                            <div class="card-box__icon">
-                                <i class="ri-palette-line"></i>
+                        <div
+                            :class="[
+                                'card-box',
+                                currentStep !== STEPS.FORM && 'card-box--disabled'
+                            ]"
+                        >
+                            <div class="card-box__header">
+                                <div class="card-box__icon">
+                                    <i class="ri-palette-line"></i>
+                                </div>
+                                <h3 class="card-box__title">Campaign Customization</h3>
                             </div>
-                            <h3 class="card-box__title">Campaign Customization</h3>
+
+                            <div class="card-box__body"></div>
                         </div>
 
-                        <div class="card-box__body"></div>
-                    </div>
-
-                    <div :class="['card-box', currentStep !== STEPS.FORM && 'card-box--disabled']">
-                        <div class="card-box__header">
-                            <div class="card-box__icon">
-                                <i class="ri-eye-line"></i>
+                        <div
+                            :class="[
+                                'card-box',
+                                currentStep !== STEPS.FORM && 'card-box--disabled'
+                            ]"
+                        >
+                            <div class="card-box__header">
+                                <div class="card-box__icon">
+                                    <i class="ri-eye-line"></i>
+                                </div>
+                                <h3 class="card-box__title">Campaign Visibility</h3>
                             </div>
-                            <h3 class="card-box__title">Campaign Visibility</h3>
-                        </div>
 
-                        <div class="card-box__body">
-                            <QVisibilityOptions v-model="campaignVisibility" />
+                            <div class="card-box__body">
+                                <QVisibilityOptions v-model="campaignVisibility" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -734,6 +844,10 @@ watch(observerIsVisible, (newValue) => {
 
     .create-campaign__footer {
         @apply border-t border-light fixed bottom-0 w-full bg-white z-50;
+
+        @include md_screen {
+            display: none;
+        }
     }
 }
 
@@ -783,25 +897,24 @@ watch(observerIsVisible, (newValue) => {
 }
 
 .left-section {
-    max-height: calc(100dvh - 164px);
-    @apply h-full border-r border-stroke pl-20 pr-10 pt-14 overflow-y-auto;
+    max-height: calc(100dvh - 84px);
+    @apply h-full border-r border-stroke overflow-y-auto;
 }
 
 .right-section {
-    @apply pr-20 pl-10 pt-14 space-y-10 overflow-y-auto;
-    max-height: calc(100dvh - 164px);
-
+    max-height: calc(100dvh - 84px);
     padding-bottom: 80px;
-    background-color: #fcfcfd;
+    background-color: #edf8f8;
 }
 
 .card-box {
     border-radius: 20px;
     box-shadow: 0px 12px 24px 0px rgba(27, 82, 78, 0.04);
-    @apply bg-white;
+    @apply bg-white transition-opacity duration-300;
 
     &.card-box--disabled {
-        @apply opacity-20 pointer-events-none;
+        @apply opacity-10 pointer-events-none;
+        user-select: none;
     }
 
     .card-box__header {
@@ -809,7 +922,8 @@ watch(observerIsVisible, (newValue) => {
     }
 
     .card-box__icon {
-        @apply h-10 w-10 flex items-center justify-center rounded-full bg-light mr-3;
+        @apply h-10 w-10 flex items-center justify-center rounded-full mr-3;
+        background-color: #edf8f8;
     }
 
     .card-box__title {

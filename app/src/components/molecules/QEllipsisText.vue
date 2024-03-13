@@ -45,6 +45,10 @@ const toggleTextLabel = computed(() => {
     return showFullText.value ? 'Read Less' : 'More';
 });
 
+const isNeedToggle = computed(() => {
+    return props.text.length > maxLength.value;
+});
+
 const calculateMaxLength = () => {
     const { lines } = props;
     const averageCharWidth = 8;
@@ -81,7 +85,8 @@ onMounted(() => {
         <span v-else class="collasipble-text__full">
             {{ text }}
         </span>
-        <a @click="toggleText">{{ toggleTextLabel }}</a>
+
+        <a v-if="isNeedToggle" @click="toggleText">{{ toggleTextLabel }}</a>
     </div>
 </template>
 
@@ -89,5 +94,10 @@ onMounted(() => {
 .collapsible-text {
     @apply prose prose-lg prose-a:cursor-pointer prose-a:ml-1 max-w-none text-black;
     font-size: v-bind(computedFontSize);
+
+    .collapsible-text__truncated {
+        max-width: 100%;
+        word-wrap: break-word;
+    }
 }
 </style>

@@ -17,7 +17,7 @@
         width: 320px;
         height: 568px;
         border-radius: 8px;
-        overflow: hidden;
+        overflow: auto;
     }
 }
 </style>

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",
+    "@tiptap/extension-bold": "^2.2.4",
     "@tiptap/extension-placeholder": "^2.2.4",
     "@tiptap/extension-text": "^2.2.4",
     "@tiptap/pm": "^2.2.4",
