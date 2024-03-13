@@ -68,6 +68,22 @@ onMounted(() => {
     new ScrollMagic.Scene({triggerElement: "#pricing-compare"})
         .setClassToggle("#pricing-title", "animate__fadeOutUp")// add class toggle
         .addTo(controller);
+
+    new ScrollMagic.Scene({
+            triggerElement: "#pricing-compare-supporters",
+            duration: '100%',											 // start a little later
+            triggerHook: 0.28,
+        })
+        .setClassToggle("#pricing-action", "show")// add class toggle
+        .addTo(controller);
+
+    // new ScrollMagic.Scene({
+    //         triggerElement: "#pricing-action-supporters",
+    //         offset: 300,
+    //         triggerHook: 1,
+    //     })
+    //     .setClassToggle("#pricing-action", "hide")// add class toggle
+    //     .addTo(controller);
 })
 </script>
 
@@ -81,6 +97,7 @@ onMounted(() => {
             </div>
             <div id="pricing-compare" class="pricing-compare">
                 <PricingCardPremium
+                    id="pricing-compare-supporters"
                     premium-image="/assets/img/marketings/premium-black.svg"
                     premium-type-image="/assets/img/marketings/premium-supporter.svg"
                     premium-description="For people who want more out of Twibbonize"
@@ -90,10 +107,22 @@ onMounted(() => {
                     class="card-supporters"
                     link="/pricing/supporters"
                 >
+<<<<<<< HEAD
+                    <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
+                    <PricingBentoNoAds class="bento mt-5"/>
+                    <PricingExtraFeaturesLine/>
+                    <PricingBentoNoExtraFeatures class="bento mb-[182px]"/>
+                    <PricingAction
+                        class="absolute"
+                        variant="black"
+                        link="/pricing/supporters"
+                    />
+=======
                     <PricingBentoRemoveWatermarkSupporters class="bento -mt-9" />
                     <PricingBentoNoAds class="bento mt-5" />
                     <PricingExtraFeaturesLine />
                     <PricingBentoNoExtraFeatures class="bento" />
+>>>>>>> dev
                 </PricingCardPremium>
                 <PricingCardPremium
                     premium-image="/assets/img/marketings/premium-white.svg"
@@ -106,16 +135,30 @@ onMounted(() => {
                     link="/pricing/creators"
                     :is-creator="true"
                 >
+<<<<<<< HEAD
+                    <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
+                    <PricingBentoNoAds class="bento mt-5"/>
+                    <PricingExtraFeaturesLine/>
+                    <PricingBentoExtraFeatures class="mb-[182px]"/>
+                    <PricingAction
+                        class="absolute"
+                        variant="primary"
+                        link="/pricing/creators"
+                    />
+=======
                     <PricingBentoRemoveWatermarkCreators class="bento -mt-9" />
                     <PricingBentoNoAds class="bento mt-5" />
                     <PricingExtraFeaturesLine />
                     <PricingBentoExtraFeatures />
+>>>>>>> dev
                 </PricingCardPremium>
             </div>
-            <!-- <div id="pricing-action" class="pricing-action-container">
+            <div id="pricing-action-supporters"></div>
+            <div id="pricing-action-creators"></div>
+            <div id="pricing-action" class="pricing-action-container">
                 <PricingAction variant="black" link="/pricing/supporters"/>
                 <PricingAction variant="primary" link="/pricing/creators"/>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -160,6 +203,15 @@ onMounted(() => {
 }
 
 .pricing-action-container {
-    @apply fixed max-w-[1120px] mx-auto flex sm:gap-14 bottom-0 h-min w-full;
+    @apply max-w-[1120px] mx-auto sm:gap-14 bottom-0 h-min w-full z-20 fixed;
+    display: none;
+
+    &.show {
+        display: flex !important;
+
+        &.hide {
+            display: none !important;
+        }
+    }
 }
 </style>
