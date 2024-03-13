@@ -107,7 +107,6 @@ onMounted(() => {
                     class="card-supporters"
                     link="/pricing/supporters"
                 >
-<<<<<<< HEAD
                     <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
                     <PricingExtraFeaturesLine/>
@@ -117,12 +116,6 @@ onMounted(() => {
                         variant="black"
                         link="/pricing/supporters"
                     />
-=======
-                    <PricingBentoRemoveWatermarkSupporters class="bento -mt-9" />
-                    <PricingBentoNoAds class="bento mt-5" />
-                    <PricingExtraFeaturesLine />
-                    <PricingBentoNoExtraFeatures class="bento" />
->>>>>>> dev
                 </PricingCardPremium>
                 <PricingCardPremium
                     premium-image="/assets/img/marketings/premium-white.svg"
@@ -135,7 +128,6 @@ onMounted(() => {
                     link="/pricing/creators"
                     :is-creator="true"
                 >
-<<<<<<< HEAD
                     <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
                     <PricingBentoNoAds class="bento mt-5"/>
                     <PricingExtraFeaturesLine/>
@@ -145,12 +137,6 @@ onMounted(() => {
                         variant="primary"
                         link="/pricing/creators"
                     />
-=======
-                    <PricingBentoRemoveWatermarkCreators class="bento -mt-9" />
-                    <PricingBentoNoAds class="bento mt-5" />
-                    <PricingExtraFeaturesLine />
-                    <PricingBentoExtraFeatures />
->>>>>>> dev
                 </PricingCardPremium>
             </div>
             <div id="pricing-action-supporters"></div>
