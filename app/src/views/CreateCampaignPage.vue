@@ -448,9 +448,9 @@ watch(observerIsVisible, (newValue) => {
                         </div>
                     </div>
 
-                    <div v-show="currentStep === STEPS.FORM">
+                    <div v-if="currentStep === STEPS.FORM">
                         <div class="flex items-center justify-center">
-                            <CampaignMockupPhone />
+                            <CampaignMockupPhone :frames="files" />
                         </div>
                     </div>
                 </div>
