@@ -5,6 +5,9 @@ import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/Back
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
 
+import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackgroundSupporter.vue';
+
+
 import { ref } from 'vue';
 
 defineProps({
@@ -31,6 +34,9 @@ defineProps({
             </div>
             <div v-if="isCreator" class="absolute top-0 -mt-12">
                 <PricingBackgroundSlideContainer/>
+            </div>
+            <div v-else class="absolute">
+                <PricingBlobBackground class="!h-[600px]"/>
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
             <p>{{ `per ${options[0].duration}` }}</p>
@@ -93,9 +99,9 @@ defineProps({
     &.card-premium {
         .background {
             @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
-            background: url('/assets/img/marketings/bg-supporters.jpg'), linear-gradient(117deg, rgba(22, 218, 193, 0.80) 14.55%, rgba(22, 155, 154, 0.80) 100%);
-            background-size: auto 100%, contain;
-            background-position: center, center;
+            background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
+            background-size: auto 100%, 940px 900px;
+            background-position: center, 0px;
         }
     }
 

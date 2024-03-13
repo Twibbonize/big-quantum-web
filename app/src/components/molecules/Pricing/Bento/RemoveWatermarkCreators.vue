@@ -29,7 +29,7 @@ const images = [
                 direction="horizontal"
                 :space-between="50"
                 :grab-cursor="false"
-                :speed="5000"
+                :speed="10000"
                 :centered-slides="false"
                 :loop="true"
                 slides-per-view="auto"
@@ -72,7 +72,7 @@ const images = [
 .campaign-creator-watermark {
     @apply absolute bottom-[4%] right-[4%] w-[50%];
     opacity:1;  
-    animation: flickerAnimation 1.5s infinite;
+    animation: flickerAnimation 3s infinite;
 }
 
 @keyframes flickerAnimation { /* flame pulses */
