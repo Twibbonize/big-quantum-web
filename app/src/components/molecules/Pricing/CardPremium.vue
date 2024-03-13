@@ -25,7 +25,6 @@ defineProps({
 <template>
     <div class="card-premium">
         <div class="background card-header">
-<<<<<<< HEAD
             <div v-if="isCreator" class="absolute top-0 -mt-12 z-0">
                 <PricingBackgroundSlideContainer/>
             </div>
@@ -34,10 +33,6 @@ defineProps({
             </div>
             <img class="premium" :src="premiumImage" alt="premium">
             <img class="premium-type" :src="premiumTypeImage" alt="supporter">
-=======
-            <img class="premium" :src="premiumImage" alt="premium" />
-            <img class="premium-type" :src="premiumTypeImage" alt="supporter" />
->>>>>>> dev
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree
@@ -110,24 +105,10 @@ defineProps({
 .card-supporters {
     &.card-premium {
         .background {
-<<<<<<< HEAD
             @apply flex flex-col items-center px-5 pt-10 sm:p-12;
             background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
             background-size: auto 100%, 940px 900px;
             background-position: center, 0px;
-=======
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12 sm:pb-20;
-            background: url('/assets/img/marketings/bg-supporters.jpg'),
-                linear-gradient(
-                    117deg,
-                    rgba(22, 218, 193, 0.8) 14.55%,
-                    rgba(22, 155, 154, 0.8) 100%
-                );
-            background-size:
-                auto 100%,
-                contain;
-            background-position: center, center;
->>>>>>> dev
         }
     }
     .background-slide-container {
