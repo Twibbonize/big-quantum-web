@@ -293,6 +293,27 @@ export default class Handler {
         }
     }
 
+    export(option = { format: 'png', quality: 1 }) {
+        return new Promise((resolve) => {
+            const drawArea = this.findByName('drawing-area');
+            const { left, top, width, height } = drawArea;
+            const center = this.canvas.getCenter();
+            this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+            this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
+
+            const dataUrl = this.canvas.toDataURL({
+                ...option,
+                left: left + 1,
+                top: top + 1,
+                width,
+                height: height - 2,
+                enableRetinaScaling: false
+            });
+
+            resolve(dataUrl);
+        });
+    }
+
     getCanvasImage = (option = { format: 'png', quality: 1 }, transparentBackground = false) => {
         return new Promise((resolve) => {
             const drawArea = this.canvas.getItemByName('drawing-area');
