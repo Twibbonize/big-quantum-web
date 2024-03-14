@@ -10,7 +10,7 @@ import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeatur
 import PricingAction from '@/components/molecules/Pricing/Action.vue';
 
 import ScrollMagic from 'scrollmagic';
-import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
+// import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
 import { onMounted } from 'vue';
 
 import 'animate.css';
@@ -74,7 +74,7 @@ onMounted(() => {
             triggerElement: "#pricing-compare-supporters",
             triggerHook: 0,
         })
-        .addIndicators()
+        // .addIndicators({ name: 'show supporters' })
         .setClassToggle("#pricing-action", "show-supporters")
         .addTo(controller);
 
@@ -82,7 +82,7 @@ onMounted(() => {
             triggerElement: "#pricing-action-supporters",
             triggerHook: 1,
         })
-        .addIndicators()
+        // .addIndicators({ name: 'hide supporters' })
         .setClassToggle("#pricing-action", "hide-supporters")
         .addTo(controller);
 
@@ -90,7 +90,7 @@ onMounted(() => {
             triggerElement: "#pricing-compare-creators",
             triggerHook: 0,
         })
-        .addIndicators({ name: 'show creators' })
+        // .addIndicators({ name: 'show creators' })
         .setClassToggle("#pricing-action", "show-creators")
         .addTo(controller);
 
@@ -98,7 +98,7 @@ onMounted(() => {
             triggerElement: "#pricing-action-creators",
             triggerHook: 1,
         })
-        .addIndicators({ name: 'hide creators' })
+        // .addIndicators({ name: 'hide creators' })
         .setClassToggle("#pricing-action", "hide-creators")
         .addTo(controller);
 })
