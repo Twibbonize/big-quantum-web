@@ -1,5 +1,5 @@
 <template>
-    <div class="feature grid grid-cols-2 grid-row-5 h-[320px] gap-3 p-3">
+    <div class="feature grid grid-cols-2 grid-row-5 h-[220px] lg:h-[320px] gap-3 sm:p-3">
         <div class="bento overflow-hidden row-span-3 p-2.5">
             <div class="flex flex-col">
                 <div>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="bento row-span-3 p-4 text-center">
-            <div class="flex flex-col justify-between">
+            <div class="flex flex-col h-full justify-between">
                 <div>
                     <p>Campaign</p>
                     <p class="font-bold">Customization</p>
