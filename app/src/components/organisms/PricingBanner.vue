@@ -10,6 +10,7 @@ import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeatur
 import PricingAction from '@/components/molecules/Pricing/Action.vue';
 
 import ScrollMagic from 'scrollmagic';
+// import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
 import { onMounted } from 'vue';
 
 import 'animate.css';
@@ -71,19 +72,35 @@ onMounted(() => {
 
     new ScrollMagic.Scene({
             triggerElement: "#pricing-compare-supporters",
-            duration: '100%',											 // start a little later
-            triggerHook: 0.28,
+            triggerHook: 0,
         })
-        .setClassToggle("#pricing-action", "show")// add class toggle
+        // .addIndicators({ name: 'show supporters' })
+        .setClassToggle("#pricing-action", "show-supporters")
         .addTo(controller);
 
-    // new ScrollMagic.Scene({
-    //         triggerElement: "#pricing-action-supporters",
-    //         offset: 300,
-    //         triggerHook: 1,
-    //     })
-    //     .setClassToggle("#pricing-action", "hide")// add class toggle
-    //     .addTo(controller);
+    new ScrollMagic.Scene({
+            triggerElement: "#pricing-action-supporters",
+            triggerHook: 1,
+        })
+        // .addIndicators({ name: 'hide supporters' })
+        .setClassToggle("#pricing-action", "hide-supporters")
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+            triggerElement: "#pricing-compare-creators",
+            triggerHook: 0,
+        })
+        // .addIndicators({ name: 'show creators' })
+        .setClassToggle("#pricing-action", "show-creators")
+        .addTo(controller);
+
+    new ScrollMagic.Scene({
+            triggerElement: "#pricing-action-creators",
+            triggerHook: 1,
+        })
+        // .addIndicators({ name: 'hide creators' })
+        .setClassToggle("#pricing-action", "hide-creators")
+        .addTo(controller);
 })
 </script>
 
@@ -96,54 +113,59 @@ onMounted(() => {
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
             <div id="pricing-compare" class="pricing-compare">
-                <PricingCardPremium
-                    id="pricing-compare-supporters"
-                    premium-image="/assets/img/marketings/premium-black.svg"
-                    premium-type-image="/assets/img/marketings/premium-supporter.svg"
-                    premium-description="For people who want more out of Twibbonize"
-                    :options="supporterOptions"
-                    :price="supporterPrice"
-                    variant="black"
-                    class="card-supporters"
-                    link="/pricing/supporters"
-                >
-                    <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
-                    <PricingBentoNoAds class="bento mt-5"/>
-                    <PricingExtraFeaturesLine/>
-                    <PricingBentoNoExtraFeatures class="bento mb-[182px]"/>
-                    <PricingAction
-                        class="absolute"
+                <div class="flex flex-col flex-1">
+                    <div id="pricing-compare-supporters"></div>
+                    <PricingCardPremium
+                        premium-image="/assets/img/marketings/premium-black.svg"
+                        premium-type-image="/assets/img/marketings/premium-supporter.svg"
+                        premium-description="For people who want more out of Twibbonize"
+                        :options="supporterOptions"
+                        :price="supporterPrice"
                         variant="black"
+                        class="card-supporters"
                         link="/pricing/supporters"
-                    />
-                </PricingCardPremium>
-                <PricingCardPremium
-                    premium-image="/assets/img/marketings/premium-white.svg"
-                    premium-type-image="/assets/img/marketings/premium-creator.svg"
-                    premium-description="For people who need the ultimate Twibbonize experience"
-                    :options="creatorOptions"
-                    :price="creatorPrice"
-                    variant="primary"
-                    class="card-creators"
-                    link="/pricing/creators"
-                    :is-creator="true"
-                >
-                    <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
-                    <PricingBentoNoAds class="bento mt-5"/>
-                    <PricingExtraFeaturesLine/>
-                    <PricingBentoExtraFeatures class="mb-[182px]"/>
-                    <PricingAction
-                        class="absolute"
+                    >
+                        <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
+                        <PricingBentoNoAds class="bento mt-5"/>
+                        <PricingExtraFeaturesLine/>
+                        <PricingBentoNoExtraFeatures class="bento mb-[182px]"/>
+                        <div id="pricing-action-supporters"></div>
+                        <PricingAction
+                            class="absolute"
+                            variant="black"
+                            link="/pricing/supporters"
+                        />
+                    </PricingCardPremium>
+                </div>
+                <div class="flex flex-col flex-1">
+                    <div id="pricing-compare-creators"></div>
+                    <PricingCardPremium
+                        premium-image="/assets/img/marketings/premium-white.svg"
+                        premium-type-image="/assets/img/marketings/premium-creator.svg"
+                        premium-description="For people who need the ultimate Twibbonize experience"
+                        :options="creatorOptions"
+                        :price="creatorPrice"
                         variant="primary"
+                        class="card-creators"
                         link="/pricing/creators"
-                    />
-                </PricingCardPremium>
+                        :is-creator="true"
+                    >
+                        <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
+                        <PricingBentoNoAds class="bento mt-5"/>
+                        <PricingExtraFeaturesLine/>
+                        <PricingBentoExtraFeatures class="mb-[182px]"/>
+                        <div id="pricing-action-creators"></div>
+                        <PricingAction
+                            class="absolute"
+                            variant="primary"
+                            link="/pricing/creators"
+                        />
+                    </PricingCardPremium>
+                </div>
             </div>
-            <div id="pricing-action-supporters"></div>
-            <div id="pricing-action-creators"></div>
             <div id="pricing-action" class="pricing-action-container">
-                <PricingAction variant="black" link="/pricing/supporters"/>
-                <PricingAction variant="primary" link="/pricing/creators"/>
+                <PricingAction class="action-supporters" variant="black" link="/pricing/supporters"/>
+                <PricingAction class="action-creators" variant="primary" link="/pricing/creators"/>
             </div>
         </div>
     </div>
@@ -192,11 +214,35 @@ onMounted(() => {
     @apply max-w-[1120px] mx-auto sm:gap-14 bottom-0 h-min w-full z-20 fixed;
     display: none;
 
-    &.show {
+    &.show-supporters {
         display: flex !important;
 
-        &.hide {
+        &.hide-supporters {
             display: none !important;
+        }
+
+        .action-supporters {
+            @apply flex;
+        }
+
+        .action-creators {
+            @apply hidden sm:flex;
+        }
+    }
+
+    &.show-creators {
+        display: flex !important;
+
+        &.hide-creators {
+            display: none !important;
+        }
+
+        .action-supporters {
+            @apply hidden sm:flex;
+        }
+
+        .action-creators {
+            @apply flex;
         }
     }
 }

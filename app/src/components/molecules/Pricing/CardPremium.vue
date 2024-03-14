@@ -1,14 +1,10 @@
 <script setup>
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
-import PricingAction from '@/components/molecules/Pricing/Action.vue';
 import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
 
 import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackgroundSupporter.vue';
-
-
-import { ref } from 'vue';
 
 defineProps({
     premiumImage: String,
