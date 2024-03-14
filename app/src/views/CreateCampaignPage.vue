@@ -17,6 +17,7 @@ import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QVisibilityOptions from '@/components/atoms/forms/QVisibilityOptions.vue';
 import CampaignMockupPhone from '@/components/organisms/CampaignMockupPhone.vue';
+import CampaignBackgroundSelection from '@/components/molecules/CampaignBackgroundSelection.vue';
 import { getTemplateList } from '@/apis';
 
 const dropzoneBox = ref(null);
@@ -71,6 +72,7 @@ const campaignTitle = ref('');
 const campaignDescription = ref('');
 const campaignCategory = ref(null);
 const campaignVisibility = ref('public');
+const campaignBackground = ref(1);
 
 // templates
 const templates = ref([]);
@@ -116,7 +118,7 @@ const { height: mockupWrapperHeight } = useElementSize(mockupWrapper);
 const { height: mockupElHeight } = useElementSize(mockupEl);
 
 const mockupStyles = computed(() => {
-    const targetScale = mockupElHeight.value / mockupWrapperHeight.value;
+    const targetScale = Math.min(1, mockupElHeight.value / mockupWrapperHeight.value);
 
     return {
         transform: `scale(${targetScale})`
@@ -166,6 +168,7 @@ const mockupStyles = computed(() => {
                                 class="hidden"
                                 name="frame_files"
                                 id="frame_files"
+                                multiple
                                 @change="handleInputFile"
                             />
                             <div
@@ -519,7 +522,7 @@ const mockupStyles = computed(() => {
                         </div>
                     </div>
 
-                    <div class="pr-20 pl-10 pt-14 space-y-10">
+                    <div class="pr-20 pl-10 pt-10 space-y-10">
                         <div
                             :class="[
                                 'card-box',
@@ -786,7 +789,20 @@ const mockupStyles = computed(() => {
                                 <h3 class="card-box__title">Campaign Customization</h3>
                             </div>
 
-                            <div class="card-box__body"></div>
+                            <div class="card-box__body">
+                                <div class="space-y-8">
+                                    <div
+                                        class="border border-light rounded-2xl flex items-center justify-center"
+                                    ></div>
+
+                                    <div
+                                        class="bg-turquoise p-5 rounded-2xl space-y-5 border border-light"
+                                    >
+                                        <h4 class="text-lg font-bold">Select Background</h4>
+                                        <CampaignBackgroundSelection v-model="campaignBackground" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div
