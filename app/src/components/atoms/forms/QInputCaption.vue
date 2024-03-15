@@ -5,24 +5,20 @@ import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import Bold from '@tiptap/extension-bold';
 import Variable from '@/libs/tiptap/extension-variable';
-import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
 import QButton from '@/components/atoms/QButton.vue';
+
+const props = defineProps({
+    modelValue: {
+        type: String,
+        default: ''
+    }
+});
+
+const emit = defineEmits(['update:modelValue']);
+
 const editor = ref(null);
-
 const addVariable = () => {
-    // const { from, to } = editor.value.state.selection;
-
-    // // Create a transaction to insert "bold text" with a bold style
-    // const transaction = editor.value.state.tr.insertText('bold text', from, to);
-    // transaction.addMark(from, to, editor.value.schema.marks.bold.create());
-
-    // // console.log(editor.value.schema.marks.variable.create)
-    // // Apply the transaction to the editor
-    // editor.value.view.dispatch(transaction);
-    // // editor.value.view.dispatch(boldTransaction);
-
-    // // Set the focus back to the editor
-    // editor.value.view.focus();
     editor.value.chain().focus().addVariable().run();
 };
 
@@ -33,9 +29,10 @@ onMounted(() => {
                 class: 'tiptap-editor'
             }
         },
-        content: `<p>
-            Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!    
-        </p>`,
+        content: props.modelValue,
+        onUpdate: () => {
+            emit('update:modelValue', editor.value.getHTML());
+        },
         extensions: [Document, Paragraph, Text, Variable, Bold]
     });
 });
@@ -43,6 +40,19 @@ onMounted(() => {
 onBeforeUnmount(() => {
     editor.value.destroy();
 });
+
+watch(
+    () => props.modelValue,
+    (newValue) => {
+        const isSame = editor.value.getHTML() === newValue;
+
+        if (isSame) {
+            return;
+        }
+
+        editor.value.commands.setContent(value, false);
+    }
+);
 </script>
 
 <template>

@@ -253,6 +253,10 @@ watch(
         z-index: 68;
     }
 
+    &.modal--sm .modal__wrapper {
+        max-width: 380px;
+    }
+
     &.modal--md .modal__wrapper {
         @apply max-w-md;
     }
