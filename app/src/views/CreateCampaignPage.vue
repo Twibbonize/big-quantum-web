@@ -204,7 +204,7 @@ const mockupStyles = computed(() => {
                                 </QButton>
                             </div>
                         </div>
-                        <div class="container px-5 xl:pl-20 xl:pr-10 pt-10 lg:pt-14">
+                        <div class="container px-5 xl:pl-20 xl:pr-10 pt-10 lg:pt-14 pb-10">
                             <div class="dropzone">
                                 <input
                                     type="file"
