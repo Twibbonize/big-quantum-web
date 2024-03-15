@@ -118,12 +118,13 @@ const categoryRadio = ref('decorative');
 
 const handleFetchTemplates = async () => {
     try {
+        const thumbnailBaseUrl = 'https://twb-template-dummy.s3.ap-southeast-1.amazonaws.com/template'
         const { data } = await getTemplateList({ page: page.value, numItems: 20 });
         templates.value = [
             ...templates.value,
             ...data.map(({ thumbnail, ...other }) => {
                 return {
-                    thumbnail: `${import.meta.env.VITE_TEMPLATE_THUMBNAIL_URL}/${thumbnail}`,
+                    thumbnail: `${thumbnailBaseUrl}/${thumbnail}`,
                     ...other
                 };
             })
