@@ -3,20 +3,20 @@ import QSlider from '@/components/atoms/QSlider.vue';
 
 const images = [
     {
-        image: '/assets/img/marketings/campaign-creators-1.jpg',
+        image: '/assets/img/marketings/campaign-creators-1.jpg'
     },
     {
-        image: '/assets/img/marketings/campaign-creators-2.jpg',
+        image: '/assets/img/marketings/campaign-creators-2.jpg'
     },
     {
-        image: '/assets/img/marketings/campaign-creators-3.jpg',
+        image: '/assets/img/marketings/campaign-creators-3.jpg'
     },
     {
-        image: '/assets/img/marketings/campaign-creators-4.jpg',
+        image: '/assets/img/marketings/campaign-creators-4.jpg'
     },
     {
-        image: '/assets/img/marketings/campaign-creators-5.jpg',
-    },
+        image: '/assets/img/marketings/campaign-creators-5.jpg'
+    }
 ];
 </script>
 
@@ -37,10 +37,13 @@ const images = [
                 :autoplay-delay="0"
                 :autoplay-disable-on-interaction="false"
                 :autoplay-reverse-direction="true"
-                >
+            >
                 <swiper-slide v-for="{ image } in images" class="campaign-creator-image-content">
                     <img class="campaign-creator-image" :src="image" alt="creators" />
-                    <img class="campaign-creator-watermark" src="/assets/img/campaigns/watermark.png"/>
+                    <img
+                        class="campaign-creator-watermark"
+                        src="/assets/img/campaigns/watermark.png"
+                    />
                 </swiper-slide>
             </QSlider>
         </div>
@@ -73,13 +76,20 @@ const images = [
 
 .campaign-creator-watermark {
     @apply absolute bottom-[4%] right-[4%] w-[50%];
-    opacity:1;  
+    opacity: 1;
     animation: flickerAnimation 3s infinite;
 }
 
-@keyframes flickerAnimation { /* flame pulses */
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+@keyframes flickerAnimation {
+    /* flame pulses */
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 </style>

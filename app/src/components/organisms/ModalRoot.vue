@@ -16,6 +16,7 @@ const handleClose = () => {
 
 onMounted(() => {
     eventBus.on('modal:open', ({ component, props, config }) => {
+        console.log('ashdasd');
         modalComponent.value = component;
         modalProps.value = props;
         modalCfg.value = config || {};

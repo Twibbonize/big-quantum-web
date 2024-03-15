@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 
 const props = defineProps({
     modelValue: {
-        type: Object
+        type: [Object, String, Number]
     },
     isRequiredUpgrade: {
         type: Boolean,
@@ -67,6 +67,13 @@ const backgrounds = [
 watch(innerValue, (newValue) => {
     // innerValue.value = newValue;
     emit('update:modelValue', newValue);
+
+    const findBg = backgrounds.find((bg) => bg.id === newValue);
+
+    if (findBg.premium && props.isRequiredUpgrade) {
+        innerValue.value = 1;
+        emit('upgrade');
+    }
 });
 </script>
 
@@ -109,7 +116,7 @@ watch(innerValue, (newValue) => {
 <style scoped lang="scss">
 .cb-selection {
     .cb-selection__grid {
-        @apply grid grid-cols-5 gap-3;
+        @apply grid grid-cols-2 md:grid-cols-5 xl:grid-cols-5 gap-3;
     }
 
     .cb-selection__upload {
@@ -118,6 +125,7 @@ watch(innerValue, (newValue) => {
         justify-content: center;
         border: 1px dashed #d5dcdc;
         border-radius: 12px;
+        aspect-ratio: 16/10;
 
         .cb-selection__upload-plus {
             height: 16px;
@@ -155,12 +163,21 @@ watch(innerValue, (newValue) => {
             transform: translate(-50%, -50%);
             width: 70px;
             height: 24px;
+            font-size: 11px;
             align-items: center;
             justify-content: center;
             border-radius: 100px;
             background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%), #fff;
             @apply text-white;
-            font-size: 11px;
+
+            @include xs {
+                width: 7em;
+                height: 2.4em;
+                font-size: 0.44em;
+            }
+
+            @include sm_screen {
+            }
         }
 
         &.cb-selection__option--premium img {
