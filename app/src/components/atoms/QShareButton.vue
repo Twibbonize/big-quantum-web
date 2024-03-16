@@ -64,7 +64,7 @@ function handleClick(e) {
             }
 
             .share__link__text {
-                @apply text-sm block flex-grow text-left font-medium;
+                @apply text-xs block flex-grow text-left font-medium;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;

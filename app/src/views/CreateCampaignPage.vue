@@ -26,6 +26,7 @@ import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QVisibilityOptions from '@/components/atoms/forms/QVisibilityOptions.vue';
 import CampaignMockupPhone from '@/components/organisms/CampaignMockupPhone.vue';
+import CampaignMockupDesktop from '@/components/organisms/CampaignMockupDesktop.vue';
 import CampaignBackgroundSelection from '@/components/molecules/CampaignBackgroundSelection.vue';
 import CreatorPremiumModal from '@/components/organisms/CreatorPremiumModal.vue';
 import CaptionPreview from '@/components/organisms/CaptionPreview.vue';
@@ -893,6 +894,15 @@ const mockupStyles = computed(() => {
 
                                     <div class="card-box__body">
                                         <div class="space-y-8">
+                                            <div
+                                                class="border border-light p-4 rounded-xl flex items-center justify-center"
+                                            >
+                                                <CampaignMockupDesktop
+                                                    :frames="files"
+                                                    :title="campaignTitle"
+                                                    :description="campaignDescription"
+                                                />
+                                            </div>
                                             <div
                                                 class="bg-turquoise p-4 rounded-2xl space-y-5 border border-light"
                                             >
