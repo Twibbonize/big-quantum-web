@@ -1,10 +1,14 @@
 <script setup>
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
-
 import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackgroundSupporter.vue';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('md');
 
 defineProps({
     premiumImage: String,
@@ -32,9 +36,10 @@ defineProps({
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree
+                    :size="sm ? 'sm' : ''"
                     :options="options"
                     :name="`card-premium-${isCreator ? 'creator' : 'supporter'}`"
-                    class="mt-4 sm:w-[210px] lg:w-[270px]"
+                    class="mt-4 w-[220px] lg:w-[270px]"
                 />
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
@@ -67,7 +72,7 @@ defineProps({
     }
 
     .premium-description {
-        @apply text-center text-base mt-2;
+        @apply text-center text-base mt-4 sm:h-20 lg:h-16;
     }
 
     .content {
@@ -90,6 +95,10 @@ defineProps({
         .text {
             @apply text-center text-xl sm:text-2xl;
         }
+    }
+
+    .bento-height {
+        @apply h-[240px] lg:h-[280px];
     }
 }
 

@@ -22,7 +22,10 @@ defineProps({
                 key: 'all'
             }
         ]
-    }
+    },
+    size: {
+        type: String,
+    },
 });
 
 const value = ref(0);
@@ -33,7 +36,7 @@ const setValue = (index) => {
 </script>
 
 <template>
-    <div class="switch-toggle__container">
+    <div class="switch-toggle__container" :class="size">
         <div class="switch-toggle switch-3 switch-candy">
             <template v-for="option,i in options">
                 <input :id="option.key" :name="name" type="radio" :checked="value === i" />
@@ -76,9 +79,11 @@ const setValue = (index) => {
     }
 }
 
-.switch-toggle.sm {
-    height: 28px;
-    border-radius: 20px;
+.sm {
+    .switch-toggle {
+        height: 28px;
+        border-radius: 20px;
+    }
 }
 
 .switch-toggle__container.sm {

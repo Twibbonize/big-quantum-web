@@ -9,11 +9,15 @@ import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Bento/Extr
 import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeaturesLine.vue';
 import PricingAction from '@/components/molecules/Pricing/Action.vue';
 
+import { onMounted, ref } from 'vue';
+import { useElementBounding } from '@vueuse/core';
+
 import ScrollMagic from 'scrollmagic';
 // import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
-import { onMounted } from 'vue';
-
 import 'animate.css';
+
+const pricingCompare = ref(null);
+const { width } = useElementBounding(pricingCompare);
 
 
 const creatorOptions = [
@@ -112,7 +116,7 @@ onMounted(() => {
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
-            <div id="pricing-compare" class="pricing-compare">
+            <div id="pricing-compare" ref="pricingCompare" class="pricing-compare">
                 <div class="flex flex-col flex-1">
                     <div id="pricing-compare-supporters"></div>
                     <PricingCardPremium
@@ -125,10 +129,10 @@ onMounted(() => {
                         class="card-supporters"
                         link="/pricing/supporters"
                     >
-                        <PricingBentoRemoveWatermarkSupporters class="bento -mt-9"/>
-                        <PricingBentoNoAds class="bento mt-5"/>
+                        <PricingBentoRemoveWatermarkSupporters class="bento bento-height -mt-9"/>
+                        <PricingBentoNoAds class="bento bento-height mt-5"/>
                         <PricingExtraFeaturesLine/>
-                        <PricingBentoNoExtraFeatures class="bento mb-[182px]"/>
+                        <PricingBentoNoExtraFeatures class="bento bento-height mb-[182px]"/>
                         <div id="pricing-action-supporters"></div>
                         <PricingAction
                             class="absolute"
@@ -150,10 +154,10 @@ onMounted(() => {
                         link="/pricing/creators"
                         :is-creator="true"
                     >
-                        <PricingBentoRemoveWatermarkCreators class="bento -mt-9"/>
-                        <PricingBentoNoAds class="bento mt-5"/>
+                        <PricingBentoRemoveWatermarkCreators class="bento bento-height -mt-9"/>
+                        <PricingBentoNoAds class="bento bento-height mt-5"/>
                         <PricingExtraFeaturesLine/>
-                        <PricingBentoExtraFeatures class="mb-[182px]"/>
+                        <PricingBentoExtraFeatures class="bento-height mb-[182px]"/>
                         <div id="pricing-action-creators"></div>
                         <PricingAction
                             class="absolute"
@@ -163,7 +167,7 @@ onMounted(() => {
                     </PricingCardPremium>
                 </div>
             </div>
-            <div id="pricing-action" class="pricing-action-container">
+            <div id="pricing-action" class="pricing-action-container" :style="{ width: `${width}px` }">
                 <PricingAction class="action-supporters" variant="black" link="/pricing/supporters"/>
                 <PricingAction class="action-creators" variant="primary" link="/pricing/creators"/>
             </div>
@@ -173,7 +177,7 @@ onMounted(() => {
 
 <style lang="scss">
 .banner-pricing {
-    @apply pt-[200px] sm:pt-[260px] mx-auto overflow-hidden relative;
+    @apply pt-40 sm:pt-[240px] mx-auto overflow-hidden relative;
     background: #202124;
 
     .background {
@@ -207,11 +211,11 @@ onMounted(() => {
 }
 
 .pricing-compare {
-    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-8 xl:gap-14 mt-48;
+    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-8 xl:gap-14 mt-32 sm:mt-48;
 }
 
 .pricing-action-container {
-    @apply max-w-[1120px] mx-auto sm:gap-14 bottom-0 h-min w-full z-20 fixed;
+    @apply max-w-[1120px] mx-auto sm:gap-8 xl:gap-14 bottom-0 h-min w-full z-20 fixed;
     display: none;
 
     &.show-supporters {
