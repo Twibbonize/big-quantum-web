@@ -68,15 +68,15 @@ const changeActiveList = (i) => {
     @apply bg-white;
 
     .container {
-        @apply flex flex-col max-w-[1120px] sm:flex-row gap-[60px] px-5 sm:px-0 py-20 sm:py-[100px];
+        @apply flex flex-col w-full xl:max-w-[1120px] sm:flex-row gap-[60px] px-5 sm:px-14 xl:px-0 py-20 sm:py-[100px];
     }
 
     .title {
-        @apply flex-1 text-5xl sm:text-[52px] md:text-[56px] lg:text-6xl font-bold leading-none;
+        @apply flex-1 text-5xl sm:text-[48px] xl:text-[56px] lg:text-6xl font-bold leading-none;
     }
 
     .content {
-        @apply flex flex-col flex-1 gap-6 sm:min-w-[416px];
+        @apply flex flex-col flex-1 gap-6 xl:min-w-[416px];
     }
 
     .question {

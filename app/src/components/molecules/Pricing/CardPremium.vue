@@ -32,14 +32,9 @@ defineProps({
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree
-                    v-if="options.length === 3"
                     :options="options"
-                    class="mt-4 !w-[270px]"
-                />
-                <QSwitchTwo
-                    v-if="options.length === 2"
-                    :options="options"
-                    class="mt-4 !w-[237px]"
+                    :name="`card-premium-${isCreator ? 'creator' : 'supporter'}`"
+                    class="mt-4 sm:w-[210px] lg:w-[270px]"
                 />
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
@@ -76,7 +71,7 @@ defineProps({
     }
 
     .content {
-        @apply bg-white mx-5 sm:mx-12 rounded-3xl;
+        @apply bg-white mx-5 lg:mx-12 rounded-3xl;
     }
 
     .bento-container {
@@ -101,7 +96,7 @@ defineProps({
 .card-supporters {
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
             background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
             background-size: auto 100%, 940px 900px;
             background-position: center, 0px;
@@ -116,7 +111,7 @@ defineProps({
     @apply text-white;
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
             background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
             background-size: 574px 500px, contain;
             background-position: center, center;

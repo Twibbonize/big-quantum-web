@@ -107,7 +107,7 @@ onMounted(() => {
 <template>
     <div id="initial-page" class="banner-pricing">
         <PricingBlobBackground/>
-        <div class="background relative sm:pb-24">
+        <div class="background relative sm:pb-24 sm:px-14">
             <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
@@ -207,7 +207,7 @@ onMounted(() => {
 }
 
 .pricing-compare {
-    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
+    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-8 xl:gap-14 mt-48;
 }
 
 .pricing-action-container {
