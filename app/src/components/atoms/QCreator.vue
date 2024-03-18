@@ -17,6 +17,10 @@ defineProps({
         type: String,
         validators: ['xs', 'sm', 'md', 'lg'],
         default: 'md'
+    },
+    clickable: {
+        type: Boolean,
+        default: true
     }
 });
 </script>
@@ -24,7 +28,7 @@ defineProps({
 <template>
     <div :class="['creator', `creator--${size}`]">
         <img :src="avatar" class="creator__avatar" />
-        <RouterLink :to="{ name: 'profile' }" class="creator__name">
+        <RouterLink :to="{ name: 'profile' }" :class="['creator__name', !clickable && 'disabled']">
             {{ name }}
         </RouterLink>
     </div>
@@ -74,5 +78,9 @@ defineProps({
             @apply text-lg font-medium;
         }
     }
+}
+
+.disabled {
+    pointer-events: none;
 }
 </style>

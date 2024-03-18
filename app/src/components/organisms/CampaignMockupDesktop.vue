@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
-import QMockup from '@/components/atoms/QMockup.vue';
+import { useParentElement, useElementSize, useResizeObserver } from '@vueuse/core';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
 import QShareButton from '@/components/atoms/QShareButton.vue';
@@ -11,7 +11,8 @@ import PostMockup from '@/components/molecules/PostMockup.vue';
 
 const props = defineProps({
     frames: {
-        type: Array
+        type: Array,
+        default: []
     },
     title: {
         type: String,
@@ -27,8 +28,9 @@ const props = defineProps({
     }
 });
 
-// ui states
 const selectedFrame = ref(props.frames[0]);
+
+// ui states
 const displayType = ref('grid');
 const mocks = computed(() => {
     if (!selectedFrame.value) return [];
@@ -54,6 +56,63 @@ const mocks = computed(() => {
     });
 });
 
+const toggleDisplay = () => {
+    displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
+};
+
+// scale
+const campaignEl = ref(null);
+const wrapperEl = ref(null);
+const campaignContent = ref(null);
+const campaignFeeds = ref(null);
+const campaignFeedsPanels = ref(null);
+const campaignFeedsWrapper = ref(null);
+const campaignMain = ref(null);
+
+// const { height: wrapperHeight } = useElementSize(wrapperEl);
+const campaignContentSize = useElementSize(campaignContent);
+
+const parentWrapperEl = useParentElement(wrapperEl);
+const { width: wrapperParentWidth, height: wrapperParentHeight } = useElementSize(parentWrapperEl);
+
+const mockupStyles = computed(() => {
+    const targetScale = Math.min(1, wrapperParentWidth.value / 1440);
+
+    return {
+        transform: `scale(${targetScale})`
+    };
+});
+
+const campaignContentStyle = computed(() => {
+    if (!campaignContent.value) {
+        return {
+            transform: `scale(1) translateY(0)`
+        };
+    }
+
+    const { height: contentHeight } = campaignContentSize;
+
+    const totalContentHeight = contentHeight.value;
+    const additionalSpace = 88 + 12 + 24; // topY + padding-top + padding-bottom
+
+    // console.log(totalContentHeight)
+
+    const targetScale = Math.min((824 - additionalSpace) / totalContentHeight, 1);
+    const targetHeight = totalContentHeight * targetScale;
+    const translateY = (totalContentHeight - targetHeight) / 2;
+
+    return {
+        transform: `scale(${targetScale}) translateY(${-translateY}px)`
+    };
+});
+
+useResizeObserver(campaignMain, (entries) => {
+    const entry = entries[0];
+    const { height } = entry.contentRect;
+
+    campaignFeeds.value.style.height = `${height}px`;
+});
+
 const computedDescription = computed(() => {
     return props.description !== '' ? props.description : 'Campaign description';
 });
@@ -65,63 +124,35 @@ const computedLink = computed(() => {
 watch(
     () => props.frames,
     (newValue) => {
+        console.log('change selected frames');
         selectedFrame.value = newValue[0];
-    }
+    },
+    { deep: true }
 );
 </script>
 
 <template>
-    <QMockup>
-        <div class="campaign">
-            <div class="navbar">
-                <div class="navbar__wrapper">
-                    <div class="navbar__left">
-                        <img
-                            class="navbar__logo"
-                            src="/assets/img/logos/twibbonize-logo-black.svg"
-                        />
-                    </div>
-
-                    <div class="navbar__right">
-                        <button class="navbar__search">
-                            <i class="ri-search-line"></i>
-                        </button>
-
-                        <button class="navbar__burger">
-                            <span class="navbar__burger__js">
-                                <i class="ri-menu-line"></i>
-                            </span>
-                            <span class="navbar__burger__avatar">
-                                <img src="/assets/img/avatars/default.svg" alt="avatar" />
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <div ref="wrapperEl" class="wrapper">
+        <div ref="campaignEl" class="campaign" :style="mockupStyles">
             <div class="campaign__background"></div>
-            <div class="campaign__content">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12">
-                        <div class="campaign__main">
+            <div class="campaign__linear"></div>
+            <div ref="campaignContent" class="campaign__content" :style="campaignContentStyle">
+                <div class="grid grid-cols-12 gap-6 mx-6">
+                    <div class="col-span-3">
+                        <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
-                                    <router-link :to="{ name: 'campaign-support' }">
-                                        <img
-                                            :src="selectedFrame"
-                                            class="campaign__frames__stage__image"
-                                        />
-                                    </router-link>
+                                    <img
+                                        :src="selectedFrame"
+                                        class="campaign__frames__stage__image"
+                                    />
                                 </div>
 
                                 <div class="campaign__frames__card">
-                                    <FrameSelector
-                                        v-model="selectedFrame"
-                                        :frames="frames"
-                                        size="sm"
-                                    />
+                                    <FrameSelector v-model="selectedFrame" :frames="frames" />
 
                                     <div class="campaign__frames__action">
-                                        <QButton>
+                                        <QButton block>
                                             <span class="flex items-center font-semibold">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -175,6 +206,7 @@ watch(
                                         username="hanoiart"
                                         avatar="/assets/img/sample/sampel-avatar-18.jpg"
                                         size="md"
+                                        :clickable="false"
                                     />
                                 </div>
 
@@ -225,20 +257,20 @@ watch(
                         </div>
                     </div>
 
-                    <div class="col-span-12 bg-transparent">
-                        <div class="campaign-feeds">
+                    <div class="col-span-9 bg-transparent">
+                        <div ref="campaignFeeds" class="campaign-feeds">
                             <div class="campaign-feeds__overlay">
                                 <div class="campaign-feeds__empty-copy">
-                                    <h4 class="text-lg font-bold">No Post Yet</h4>
-                                    <p class="text-content leading-tight text-xs mt-1">
+                                    <h4 class="text-2xl font-bold">No Post Yet</h4>
+                                    <p class="text-content leading-tight mt-2">
                                         Be the first to post your support here. Start with uploading
                                         your photo!
                                     </p>
                                 </div>
                             </div>
-
-                            <div class="campaign-feeds__panels">
+                            <div ref="campaignFeedsPanels" class="campaign-feeds__panels">
                                 <div
+                                    ref="campaignFeedsWrapper"
                                     :class="[
                                         'campaign-feeds__wrapper',
                                         'campaign-feeds__wrapper--mock',
@@ -258,7 +290,7 @@ watch(
                             </div>
 
                             <div class="campaign-feeds__control">
-                                <QButton circle variant="secondary">
+                                <QButton circle variant="neutral">
                                     <i
                                         :class="[
                                             displayType === 'grid'
@@ -270,7 +302,7 @@ watch(
                                     ></i>
                                 </QButton>
 
-                                <QButton circle variant="secondary">
+                                <QButton circle variant="neutral">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="20"
@@ -290,14 +322,26 @@ watch(
                 </div>
             </div>
         </div>
-    </QMockup>
+    </div>
 </template>
 
 <style scoped lang="scss">
+.wrapper {
+    width: 100%;
+    aspect-ratio: 16/10;
+    // max-height: 300px;
+    overflow: hidden;
+    @apply rounded;
+}
+
 .campaign {
     position: relative;
     z-index: 0;
     padding-top: 76px;
+    width: 1440px;
+    overflow: hidden;
+    transform-origin: left top;
+    aspect-ratio: 16/10;
 
     .navbar {
         position: absolute;
@@ -323,6 +367,7 @@ watch(
             padding-bottom: 18px;
             margin-right: auto;
             margin-left: auto;
+            @apply container;
         }
 
         .navbar__right {
@@ -358,29 +403,42 @@ watch(
         width: 100%;
         top: 0;
         left: 0;
-        height: 300px;
+        height: 244px;
         position: absolute !important;
 
         @include before() {
-            // background-color: #e6e6e6;
-            background: url('/assets/img/banners/default.jpg');
-            background-repeat: no-repeat;
+            background-image: url('/assets/img/banners/default.jpg');
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-attachment: scroll;
             background-size: cover;
             background-position: center;
-            background-attachment: scroll;
-            height: 300px;
-            width: 100%;
-            left: 0;
-            top: 0;
+            background-repeat: no-repeat;
         }
+    }
+
+    .campaign__linear {
+        background: linear-gradient(0deg, #fff 0%, #dee8e8 22%, rgba(255, 255, 255, 0) 100%);
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: block;
     }
 
     .campaign__content {
         position: relative;
         z-index: 1;
         width: 100%;
-        padding-top: 24px;
-        @apply container px-0;
+        padding-top: 12px;
+        padding-bottom: 24px;
+        // padding-left: 2em;
+        // padding-right: 2em;
+        @apply container;
     }
 
     .campaign__main {
@@ -389,9 +447,10 @@ watch(
 
     .campaign__frames {
         .campaign__frames__stage {
-            @apply z-10 relative bg-white p-1 flex items-center mx-auto rounded-xl;
+            @apply z-10 relative bg-white p-2 flex items-center mx-auto rounded-xl;
             width: fit-content;
-            max-width: 96px;
+            max-width: 94%;
+            box-shadow: 0px 3.972px 3.972px 0px rgba(0, 0, 0, 0.25);
 
             .campaign__frames__stage__image {
                 @apply rounded-lg;
@@ -400,7 +459,13 @@ watch(
         }
 
         .campaign__frames__card {
-            @apply px-2.5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4 w-full;
+            @apply px-2.5 rounded-3xl pt-12 pb-2.5 -mt-4 z-0 bg-white relative space-y-4;
+
+            @include before {
+                @apply w-full bg-light border border-white top-0 left-0 rounded-3xl;
+                box-shadow: 0px 5.064px 25.321px 0px rgba(162, 150, 150, 0.1);
+                height: 28px;
+            }
         }
 
         .campaign__frames__options {
@@ -426,29 +491,20 @@ watch(
     }
 
     .campaign__detail {
-        @apply relative px-4 sm:mx-0 pt-8 bg-white space-y-4 flex flex-col justify-center;
-        margin-top: -1px;
+        @apply relative mx-0 mt-3 p-4 rounded-xl shadow-sm bg-white space-y-4 flex flex-col justify-center;
         padding-bottom: 24px;
-        box-shadow: 0 19px 24px rgba(0, 0, 0, 0.15);
-
-        @include before {
-            height: 1px;
-            width: calc(100% - 32px);
-            left: 50%;
-            transform: translate(-50%, 0%);
-            @apply bg-stroke top-2;
-        }
+        // box-shadow: 0 19px 24px rgba(0, 0, 0, 0.15);
 
         .campaign__detail__title {
-            @apply text-lg lg:text-2xl font-bold text-ellipsis overflow-hidden truncate whitespace-nowrap leading-none text-center;
+            @apply text-2xl font-bold text-ellipsis overflow-hidden truncate whitespace-nowrap leading-none text-center md:text-left;
         }
 
         .campaign__detail__description {
-            @apply text-center;
+            @apply text-center md:text-left;
         }
 
         .campaign__detail__creator {
-            @apply flex items-center justify-center;
+            @apply flex items-center justify-center md:justify-start;
         }
 
         .campaign__detail__actions {
@@ -456,7 +512,11 @@ watch(
         }
 
         .campaign__detail__meta {
-            @apply flex items-center justify-center space-x-3 border-t border-transparent;
+            @apply flex items-center justify-center space-x-3 border-t border-transparent border-stroke pt-2.5;
+
+            .campaign__detail__meta-wrapper {
+                @apply flex-grow;
+            }
 
             .campaign__detail__meta-separator {
                 @apply bg-stroke;
@@ -469,9 +529,8 @@ watch(
     }
 }
 
-// campaign feeds
 .campaign-feeds {
-    @apply h-full w-full bg-white relative overflow-hidden;
+    @apply h-full w-full bg-white relative overflow-hidden rounded-3xl shadow-sm border-transparent;
 
     .campaign-feeds__overlay {
         position: absolute;
@@ -499,30 +558,7 @@ watch(
 
     .campaign-feeds__panels {
         @include no_scrollbar();
-
-        @include before {
-            height: 16px;
-            top: -24px;
-            left: 0;
-            display: block;
-            width: 100%;
-            background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 91%);
-            filter: blur(10px);
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        @include after {
-            height: 24px;
-            bottom: -24px;
-            left: 0px;
-            display: block;
-            width: 100%;
-            background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.1) 100%);
-            filter: blur(10px);
-            z-index: 10;
-            pointer-events: none;
-        }
+        @apply absolute left-0 top-0 h-full w-full overflow-y-auto p-2 overflow-scroll pb-16;
     }
 
     .campaign-feeds__wrapper {
@@ -532,30 +568,23 @@ watch(
         z-index: 0;
 
         @apply rounded-none;
+
+        @include md_screen {
+            padding-top: 0px;
+            @apply rounded-xl;
+        }
     }
 
     .campaign-feeds__grid {
-        @apply container grid grid-cols-3 gap-1 overflow-y-auto;
-        max-height: 420px;
+        @apply container grid grid-cols-3 gap-2.5 overflow-y-auto;
+        max-height: 100%;
         @include no_scrollbar();
+    }
 
-        // @include before {
-        //     height: 8px;
-        //     top: 0px;
-        //     left: 0;
-        //     display: block;
-        //     width: 100%;
-        //     @apply bg-stroke;
-        // }
-
-        // @include after {
-        //     height: 8px;
-        //     position: relative;
-        //     display: block;
-        //     width: 100%;
-        //     margin-top: -4px;
-        //     @apply bg-stroke col-span-3;
-        // }
+    .campaign-feeds__list {
+        @apply flex flex-col space-y-5 pt-4 overflow-y-auto;
+        max-height: 100%;
+        @include no_scrollbar();
     }
 
     .campaign-feeds__wrapper.campaign-feeds__wrapper--mock.campaign-feeds__grid,
@@ -568,7 +597,24 @@ watch(
     }
 
     .campaign-feeds__control {
-        @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-1;
+        @apply absolute w-full z-10 bottom-0 right-0 flex items-center justify-start pt-2 pb-2 pr-0 pl-2 bg-white space-x-2;
+    }
+
+    &.campaign-feeds--fullscreen {
+        @apply flex flex-col pt-0 mt-0 fixed top-0 left-0 bg-white z-50 rounded-none;
+
+        & .campaign-feeds__panels {
+            padding-top: 0px;
+            @apply flex-grow overflow-y-auto;
+
+            @include before() {
+                display: none;
+            }
+        }
+
+        & .campaign-feeds__grid {
+            @apply justify-center grid grid-cols-5 gap-5;
+        }
     }
 }
 </style>

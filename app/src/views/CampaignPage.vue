@@ -671,7 +671,11 @@ onMounted(async () => {
         z-index: 1;
         width: 100%;
         padding-top: 24px;
-        @apply container px-0 md:px-5 2xl:px-0;
+        @apply px-0 md:px-5 2xl:px-0;
+
+        @include md_screen {
+            @apply container;
+        }
 
         @include lg_screen {
             padding-top: 24px;

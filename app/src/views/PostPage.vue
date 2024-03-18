@@ -8,7 +8,6 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
-import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import LayoutBlank from '@/components/layouts/LayoutBlank.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
