@@ -1,10 +1,14 @@
 <script setup>
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
-
 import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackgroundSupporter.vue';
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('md');
 
 defineProps({
     premiumImage: String,
@@ -32,14 +36,10 @@ defineProps({
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree
-                    v-if="options.length === 3"
+                    :size="sm ? 'sm' : ''"
                     :options="options"
-                    class="mt-4 !w-[270px]"
-                />
-                <QSwitchTwo
-                    v-if="options.length === 2"
-                    :options="options"
-                    class="mt-4 !w-[237px]"
+                    :name="`card-premium-${isCreator ? 'creator' : 'supporter'}`"
+                    class="mt-4 w-[220px] lg:w-[270px]"
                 />
             </div>
             <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
@@ -72,11 +72,11 @@ defineProps({
     }
 
     .premium-description {
-        @apply text-center text-base mt-2;
+        @apply text-center text-base mt-4 sm:h-20 lg:h-16;
     }
 
     .content {
-        @apply bg-white mx-5 sm:mx-12 rounded-3xl;
+        @apply bg-white mx-5 lg:mx-12 rounded-3xl;
     }
 
     .bento-container {
@@ -96,12 +96,16 @@ defineProps({
             @apply text-center text-xl sm:text-2xl;
         }
     }
+
+    .bento-height {
+        @apply h-[240px] lg:h-[280px];
+    }
 }
 
 .card-supporters {
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
             background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
             background-size: auto 100%, 940px 900px;
             background-position: center, 0px;
@@ -116,7 +120,7 @@ defineProps({
     @apply text-white;
     &.card-premium {
         .background {
-            @apply flex flex-col items-center px-5 pt-10 sm:p-12;
+            @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
             background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
             background-size: 574px 500px, contain;
             background-position: center, center;
