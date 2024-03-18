@@ -109,8 +109,10 @@ function updateValue(e) {
     }
 
     .field__wrapper {
-        @apply w-full rounded-xl  flex items-center bg-gray-100 transition-colors ease-in;
+        @apply w-full rounded-xl flex items-center transition-colors ease-in;
+        background-color: #f6fafa;
         height: 52px;
+
         &:focus-within {
             @apply bg-white;
         }
@@ -124,13 +126,20 @@ function updateValue(e) {
         @apply bg-white;
     }
 
+    .field__prefix {
+        padding: 14px 12px 14px 14px;
+        font-size: 14px;
+        color: #667085;
+        @apply border-r border-stroke;
+    }
+
     &__prefix,
     &__suffix {
         @apply flex items-center justify-center h-full;
     }
 
     &__input {
-        @apply p-4 text-sm  block flex-grow bg-transparent;
+        @apply p-4 text-sm block flex-grow bg-transparent;
 
         &:focus {
             @apply outline-none;
@@ -141,6 +150,17 @@ function updateValue(e) {
         &:-webkit-autofill:focus {
             outline: none;
             -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+        }
+
+        &::placeholder {
+            color: #aaafb9;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        &::-ms-input-placeholder {
+            /* Edge 12 -18 */
+            color: #aaafb9;
         }
     }
 

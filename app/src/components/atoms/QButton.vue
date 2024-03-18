@@ -282,8 +282,13 @@ function handleClick(e) {
 
         &:hover {
             @include before {
-                height: 25rem;
-                width: 25rem;
+                height: 20rem;
+                width: 20rem;
+
+                @include md_screen {
+                    height: 30rem;
+                    width: 30rem;
+                }
             }
         }
     }

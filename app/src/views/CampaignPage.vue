@@ -58,32 +58,28 @@ const campaignFeeds = ref(null);
 const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
 const inputPhoto = ref(null);
-
 const selectedFrame = ref(frames[0]);
 const selectedPhoto = ref(null);
 const posts = ref([]);
 const isLoadingPost = ref(false);
 const displayType = ref('grid');
+
 const mocks = [...mockCampaigns];
 
 const router = useRouter();
-
 const { open: openModal } = useModal();
 const { height: windowHeight } = useWindowSize();
-
 const campaignContentSize = useElementSize(campaignContent);
-
 const { y } = useWindowScroll();
 const isMounted = useMounted();
-
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
-
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const xl = breakpoints.greaterOrEqual('xl');
-
 const { isScrolling, y: feedsScrollY } = useScroll(campaignFeedsWrapper);
+
+const selectedFrameIdx = computed(() => frames.findIndex((fr) => fr === selectedFrame.value));
 
 const campaignContentStyle = computed(() => {
     if (!campaignContent.value) {
@@ -302,10 +298,12 @@ onMounted(async () => {
                         <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
                                 <div class="campaign__frames__stage">
-                                    <img
-                                        :src="selectedFrame"
-                                        class="campaign__frames__stage__image"
-                                    />
+                                    <router-link :to="{ name: 'campaign-support' }">
+                                        <img
+                                            :src="selectedFrame"
+                                            class="campaign__frames__stage__image"
+                                        />
+                                    </router-link>
                                 </div>
 
                                 <div class="campaign__frames__card">
@@ -571,7 +569,13 @@ onMounted(async () => {
         <router-view v-slot="{ Component, route }">
             <transition name="fade">
                 <template v-if="route.name === 'campaign-support'">
-                    <component :is="Component" :frames="frames" :photo="selectedPhoto" />
+                    <component
+                        :is="Component"
+                        :frames="frames"
+                        :selectedFrameIdx="selectedFrameIdx"
+                        :photo="selectedPhoto"
+                        :openInputPhoto="openInputPhoto"
+                    />
                 </template>
 
                 <template v-else>
