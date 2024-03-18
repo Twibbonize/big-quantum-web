@@ -124,7 +124,7 @@ onMounted(() => {
                         :options="supporterOptions"
                         :price="supporterPrice"
                         variant="black"
-                        class="card-supporters"
+                        class="card-supporters rounded-3xl"
                         link="/pricing/supporters"
                     >
                         <PricingBentoRemoveWatermarkSupporters class="bento bento-height -mt-9"/>
@@ -148,7 +148,7 @@ onMounted(() => {
                         :options="creatorOptions"
                         :price="creatorPrice"
                         variant="primary"
-                        class="card-creators"
+                        class="card-creators rounded-3xl"
                         link="/pricing/creators"
                         :is-creator="true"
                     >
