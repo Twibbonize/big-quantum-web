@@ -13,25 +13,25 @@ const baseSize = computed(() => {
 const vectorCreators = [
     {
         image: '/assets/img/marketings/vector-creators-2.png',
-        isReverse: true,
+        isReverse: true
     },
     {
         image: '/assets/img/marketings/vector-creators-2.png',
-        isReverse: false,
+        isReverse: false
     },
     {
         image: '/assets/img/marketings/vector-creators-3.png',
-        isReverse: true,
+        isReverse: true
     },
     {
         image: '/assets/img/marketings/vector-creators-4.png',
-        isReverse: false,
+        isReverse: false
     },
 
     {
         image: '/assets/img/marketings/vector-creators-5.png',
-        isReverse: true,
-    },
+        isReverse: true
+    }
 ];
 </script>
 <template>
@@ -39,7 +39,7 @@ const vectorCreators = [
         <div
             v-for="{ image, isReverse } in vectorCreators"
             class="bg-creators-slide-track"
-            :class="{ 'reverse': isReverse }"
+            :class="{ reverse: isReverse }"
         >
             <div v-for="i in 32" class="bg-creators-slide" :id="i">
                 <img :src="image" class="bg-creators-image" alt="bg-creators" />
@@ -50,45 +50,46 @@ const vectorCreators = [
 
 <style lang="scss" scoped>
 @keyframes scroll {
-	0% {
+    0% {
         transform: translateX(0);
     }
-	100% { transform: translateX(calc(-100px * 16))}
+    100% {
+        transform: translateX(calc(-100px * 16));
+    }
 }
 
 @keyframes scrollReverse {
-	0% {
+    0% {
         transform: translateX(calc(-100px * 16));
     }
-	100% { transform: translateX(0)}
+    100% {
+        transform: translateX(0);
+    }
 }
-
 
 .bg-creators-slider {
     @apply flex flex-col;
-	height: calc(5.8 * var(--base-size));
-	margin: auto;
-	overflow:hidden;
-	position: relative;
-	width: 100%;
-    gap: calc(0.2 *var(--base-size));
-	
-	.bg-creators-slide-track {
-		animation: scroll 80s linear infinite;
-		display: flex;
-		width: calc((1.2 * var(--base-size)) * 32);
-	}
+    height: calc(5.8 * var(--base-size));
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    gap: calc(0.2 * var(--base-size));
+
+    .bg-creators-slide-track {
+        animation: scroll 80s linear infinite;
+        display: flex;
+        width: calc((1.2 * var(--base-size)) * 32);
+    }
 
     .bg-creators-slide-track.reverse {
-		animation: scrollReverse 80s linear infinite;
-	}
-	
-	.bg-creators-slide {
-		height: var(--base-size);
-		width: var(--base-size);
-        margin-right: calc(0.2 *var(--base-size));;
-	}
+        animation: scrollReverse 80s linear infinite;
+    }
+
+    .bg-creators-slide {
+        height: var(--base-size);
+        width: var(--base-size);
+        margin-right: calc(0.2 * var(--base-size));
+    }
 }
 </style>
-
-

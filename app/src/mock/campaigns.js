@@ -205,6 +205,13 @@ const ownCampaigns = [
     }
 ];
 
+const frames = [
+    '/assets/img/frames/hanoi-art-frame-1.png',
+    '/assets/img/frames/hanoi-art-frame-2.png',
+    '/assets/img/frames/hanoi-art-frame-3.png',
+    '/assets/img/frames/hanoi-art-frame-4.png'
+];
+
 const mockCampaigns = [
     {
         frame: frames[0],

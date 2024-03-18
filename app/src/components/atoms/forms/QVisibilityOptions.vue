@@ -14,10 +14,14 @@ const props = defineProps({
     },
     modelValue: {
         type: null
+    },
+    isRequiredUpgrade: {
+        type: Boolean,
+        default: true
     }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'upgrade']);
 
 const name = toRef(props, 'name', props.rules);
 
@@ -40,8 +44,8 @@ watch(value, updateValue);
                     <div class="visibility__copy">
                         <div class="visibility__context">
                             <span class="visibility__title">
-                                <i class="ri-global-line font-normal"></i>
-                                <span class="ml-1">Public</span>
+                                <i class="ri-global-line"></i>
+                                <span class="ml-1 font-bold">Public</span>
                             </span>
                         </div>
                         <p class="visibility__desc">
@@ -51,41 +55,54 @@ watch(value, updateValue);
                 </div>
             </RadioGroupOption>
 
-            <RadioGroupOption v-slot="{ checked }" value="unlisted">
-                <div :class="['visibility__option', checked && 'visibility__option--checked']">
-                    <div class="visibility__indicator"></div>
-                    <div class="visibility__copy">
-                        <div class="visibility__context">
-                            <span class="visibility__title">
-                                <i class="ri-lock-unlock-line font-normal"></i>
-                                <span class="ml-1">Unlisted</span>
-                            </span>
-                            <div class="visibility__badge">Upgrade</div>
+            <div class="visibility__trigger-upgrade" @click="emit('upgrade')">
+                <RadioGroupOption
+                    v-slot="{ checked }"
+                    value="unlisted"
+                    :disabled="isRequiredUpgrade"
+                >
+                    <div :class="['visibility__option', checked && 'visibility__option--checked']">
+                        <div class="visibility__indicator"></div>
+                        <div class="visibility__copy">
+                            <div class="visibility__context">
+                                <span class="visibility__title">
+                                    <i class="ri-lock-unlock-line"></i>
+                                    <span class="ml-1 font-bold">Unlisted</span>
+                                </span>
+                                <div class="visibility__badge">Upgrade</div>
+                            </div>
+                            <p class="visibility__desc">
+                                Your campaign can only be accessed through the campaign link
+                            </p>
                         </div>
-                        <p class="visibility__desc">
-                            Your campaign can only be accessed through the campaign link
-                        </p>
                     </div>
-                </div>
-            </RadioGroupOption>
+                </RadioGroupOption>
+            </div>
 
-            <RadioGroupOption v-slot="{ checked }" value="private">
-                <div :class="['visibility__option', checked && 'visibility__option--checked']">
-                    <div class="visibility__indicator"></div>
-                    <div class="visibility__copy">
-                        <div class="visibility__context">
-                            <span class="visibility__title">
-                                <i class="ri-lock-line"></i>
-                                <span class="ml-1">Private</span>
-                            </span>
-                            <div class="visibility__badge">Upgrade</div>
+            <div class="visibility__trigger-upgrade" @click="emit('upgrade')">
+                <RadioGroupOption
+                    v-slot="{ checked }"
+                    value="private"
+                    :disabled="isRequiredUpgrade"
+                >
+                    <div :class="['visibility__option', checked && 'visibility__option--checked']">
+                        <div class="visibility__indicator"></div>
+                        <div class="visibility__copy">
+                            <div class="visibility__context">
+                                <span class="visibility__title">
+                                    <i class="ri-lock-line"></i>
+                                    <span class="ml-1 font-bold">Private</span>
+                                </span>
+                                <div class="visibility__badge">Upgrade</div>
+                            </div>
+                            <p class="visibility__desc">
+                                Your campaign can only be accessed by people who have the access
+                                code
+                            </p>
                         </div>
-                        <p class="visibility__desc">
-                            Your campaign can only be accessed by people who have the access code
-                        </p>
                     </div>
-                </div>
-            </RadioGroupOption>
+                </RadioGroupOption>
+            </div>
         </div>
     </RadioGroup>
 </template>
@@ -124,7 +141,6 @@ watch(value, updateValue);
     }
 
     .visibility__title {
-        @apply font-bold;
         margin-right: 12px;
     }
 

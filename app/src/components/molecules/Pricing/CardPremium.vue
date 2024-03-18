@@ -18,7 +18,7 @@ defineProps({
     price: Object,
     variant: String,
     link: String,
-    isCreator: Boolean,
+    isCreator: Boolean
 });
 </script>
 
@@ -26,13 +26,13 @@ defineProps({
     <div class="card-premium">
         <div class="background card-header">
             <div v-if="isCreator" class="absolute top-0 -mt-12 z-0">
-                <PricingBackgroundSlideContainer/>
+                <PricingBackgroundSlideContainer />
             </div>
             <div v-else class="absolute top-0 w-full h-[500px] z-0">
-                <PricingBlobBackground/>
+                <PricingBlobBackground />
             </div>
-            <img class="premium" :src="premiumImage" alt="premium">
-            <img class="premium-type" :src="premiumTypeImage" alt="supporter">
+            <img class="premium" :src="premiumImage" alt="premium" />
+            <img class="premium-type" :src="premiumTypeImage" alt="supporter" />
             <p class="premium-description">{{ premiumDescription }}</p>
             <div class="text-black">
                 <QSwitchThree
@@ -42,7 +42,12 @@ defineProps({
                     class="mt-4 w-[220px] lg:w-[270px]"
                 />
             </div>
-            <PricingPrice :currency="price.currency" :number="price.number" :decimal="price.decimal" class="mt-4"/>
+            <PricingPrice
+                :currency="price.currency"
+                :number="price.number"
+                :decimal="price.decimal"
+                class="mt-4"
+            />
             <p>{{ `per ${options[0].duration}` }}</p>
         </div>
         <div class="content">
@@ -55,9 +60,7 @@ defineProps({
 
 <style lang="scss">
 .card-premium {
-    @apply sm:rounded-3xl bg-white w-full overflow-hidden relative border-none sm:border-[3px];
-    border-color: rgba(255, 255, 255, 0.2);
-    border-style: solid;
+    @apply bg-white w-full overflow-hidden relative;
 
     .card-header {
         @apply flex flex-col items-center px-5 pt-10 sm:p-12 pb-20;
@@ -114,7 +117,7 @@ defineProps({
     .background-slide-container {
         @apply hidden;
     }
-  }
+}
 
 .card-creators {
     @apply text-white;

@@ -18,8 +18,6 @@ import 'animate.css';
 
 const pricingCompare = ref(null);
 const { width } = useElementBounding(pricingCompare);
-
-
 const creatorOptions = [
     {
         key: 'creator-monthly',
@@ -64,48 +62,48 @@ const creatorPrice = {
 };
 
 onMounted(() => {
-    const controller = new ScrollMagic.Controller({ globalSceneOptions: {duration: 1000} });
+    const controller = new ScrollMagic.Controller({ globalSceneOptions: { duration: 1000 } });
 
-    new ScrollMagic.Scene({triggerElement: "#initial-page"})
-        .setClassToggle("#pricing-title", "animate__fadeInUp")// add class toggle
+    new ScrollMagic.Scene({ triggerElement: '#initial-page' })
+        .setClassToggle('#pricing-title', 'animate__fadeInUp') // add class toggle
         .addTo(controller);
 
-    new ScrollMagic.Scene({triggerElement: "#pricing-compare"})
-        .setClassToggle("#pricing-title", "animate__fadeOutUp")// add class toggle
+    new ScrollMagic.Scene({ triggerElement: '#pricing-compare' })
+        .setClassToggle('#pricing-title', 'animate__fadeOutUp') // add class toggle
         .addTo(controller);
 
     new ScrollMagic.Scene({
-            triggerElement: "#pricing-compare-supporters",
-            triggerHook: 0,
-        })
+        triggerElement: '#pricing-compare-supporters',
+        triggerHook: 0
+    })
         // .addIndicators({ name: 'show supporters' })
-        .setClassToggle("#pricing-action", "show-supporters")
+        .setClassToggle('#pricing-action', 'show-supporters')
         .addTo(controller);
 
     new ScrollMagic.Scene({
-            triggerElement: "#pricing-action-supporters",
-            triggerHook: 1,
-        })
+        triggerElement: '#pricing-action-supporters',
+        triggerHook: 1
+    })
         // .addIndicators({ name: 'hide supporters' })
-        .setClassToggle("#pricing-action", "hide-supporters")
+        .setClassToggle('#pricing-action', 'hide-supporters')
         .addTo(controller);
 
     new ScrollMagic.Scene({
-            triggerElement: "#pricing-compare-creators",
-            triggerHook: 0,
-        })
+        triggerElement: '#pricing-compare-creators',
+        triggerHook: 0
+    })
         // .addIndicators({ name: 'show creators' })
-        .setClassToggle("#pricing-action", "show-creators")
+        .setClassToggle('#pricing-action', 'show-creators')
         .addTo(controller);
 
     new ScrollMagic.Scene({
-            triggerElement: "#pricing-action-creators",
-            triggerHook: 1,
-        })
+        triggerElement: '#pricing-action-creators',
+        triggerHook: 1
+    })
         // .addIndicators({ name: 'hide creators' })
-        .setClassToggle("#pricing-action", "hide-creators")
+        .setClassToggle('#pricing-action', 'hide-creators')
         .addTo(controller);
-})
+});
 </script>
 
 <template>
