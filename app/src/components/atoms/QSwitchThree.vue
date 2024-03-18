@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue';
+
 defineProps({
     name: {
         type: String,
@@ -20,28 +22,28 @@ defineProps({
                 key: 'all'
             }
         ]
-    }
+    },
+    size: {
+        type: String,
+    },
 });
+
+const value = ref(0);
+
+const setValue = (index) => {
+    value.value = index;
+}
 </script>
 
 <template>
-    <div class="switch-toggle__container">
+    <div class="switch-toggle__container" :class="size">
         <div class="switch-toggle switch-3 switch-candy">
-            <input :id="options[0].key" :name="name" type="radio" checked />
-            <label :for="options[0].key" onclick=""
-                ><span>{{ options[0].text }}</span></label
-            >
-
-            <input :id="options[1].key" :name="name" type="radio" />
-            <label :for="options[1].key" onclick=""
-                ><span>{{ options[1].text }}</span></label
-            >
-
-            <input :id="options[2].key" :name="name" type="radio" />
-            <label :for="options[2].key" onclick=""
-                ><span>{{ options[2].text }}</span></label
-            >
-
+            <template v-for="option,i in options">
+                <input :id="option.key" :name="name" type="radio" :checked="value === i" />
+                <label :for="option.key" @click="setValue(i)"
+                    ><span>{{ option.text }}</span></label
+                >
+            </template>
             <a></a>
         </div>
     </div>
@@ -49,12 +51,10 @@ defineProps({
 
 <style lang="scss">
 .switch-toggle {
-    width: 100%;
     height: 40px;
     border-radius: 20px;
 
     &__container {
-        width: 100%;
         height: 52px;
         border-radius: 26px;
         box-sizing: border-box;
@@ -63,18 +63,10 @@ defineProps({
     }
 
     label {
-        text-indent: 0;
-        font-size: 14px;
-        border-radius: 20px;
-        background: transparent;
-        height: 40px !important;
+        @apply text-sm px-8 h-full justify-center items-center bg-transparent rounded-3xl;
         display: flex !important;
-        justify-content: center;
-        align-items: center;
         outline: none !important;
         border: none !important;
-        user-select: none;
-        border-radius: 20px;
 
         &::after {
             display: none;
@@ -85,6 +77,18 @@ defineProps({
         background: transparent !important;
         font-weight: 800 !important;
     }
+}
+
+.sm {
+    .switch-toggle {
+        height: 28px;
+        border-radius: 20px;
+    }
+}
+
+.switch-toggle__container.sm {
+    height: 36px;
+    padding: 4px;
 }
 
 .switch-toggle label:not(.disabled) {
@@ -200,22 +204,7 @@ defineProps({
     .switch-toggle {
         position: relative;
         display: block;
-        /* simulate default browser focus outlines on the switch,
- * when the inputs are focused.
- */
-        /* For callout panels in foundation
-*/
         padding: 0 !important;
-        /* 2 items
- */
-        /* 3 items
- */
-        /* 4 items
- */
-        /* 5 items
- */
-        /* 6 items
- */
     }
     .switch-toggle::after {
         clear: both;

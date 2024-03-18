@@ -9,12 +9,15 @@ import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Bento/Extr
 import PricingExtraFeaturesLine from '@/components/molecules/Pricing/ExtraFeaturesLine.vue';
 import PricingAction from '@/components/molecules/Pricing/Action.vue';
 
+import { onMounted, ref } from 'vue';
+import { useElementBounding } from '@vueuse/core';
+
 import ScrollMagic from 'scrollmagic';
 // import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
-import { onMounted } from 'vue';
-
 import 'animate.css';
 
+const pricingCompare = ref(null);
+const { width } = useElementBounding(pricingCompare);
 const creatorOptions = [
     {
         key: 'creator-monthly',
@@ -105,78 +108,66 @@ onMounted(() => {
 
 <template>
     <div id="initial-page" class="banner-pricing">
-        <PricingBlobBackground />
-        <div class="background relative sm:pb-24">
-            <div
-                id="pricing-title"
-                class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full"
-            >
+        <PricingBlobBackground/>
+        <div class="background relative sm:pb-24 sm:px-14">
+            <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
-            <div id="pricing-compare" class="pricing-compare">
+            <div id="pricing-compare" ref="pricingCompare" class="pricing-compare">
                 <div class="flex flex-col flex-1">
                     <div id="pricing-compare-supporters"></div>
-                    <div class="sm:rounded-3xl overflow-hidden">
-                        <PricingCardPremium
-                            premium-image="/assets/img/marketings/premium-black.svg"
-                            premium-type-image="/assets/img/marketings/premium-supporter.svg"
-                            premium-description="For people who want more out of Twibbonize"
-                            :options="supporterOptions"
-                            :price="supporterPrice"
+                    <PricingCardPremium
+                        premium-image="/assets/img/marketings/premium-black.svg"
+                        premium-type-image="/assets/img/marketings/premium-supporter.svg"
+                        premium-description="For people who want more out of Twibbonize"
+                        :options="supporterOptions"
+                        :price="supporterPrice"
+                        variant="black"
+                        class="card-supporters"
+                        link="/pricing/supporters"
+                    >
+                        <PricingBentoRemoveWatermarkSupporters class="bento bento-height -mt-9"/>
+                        <PricingBentoNoAds class="bento bento-height mt-5"/>
+                        <PricingExtraFeaturesLine/>
+                        <PricingBentoNoExtraFeatures class="bento bento-height mb-[182px]"/>
+                        <div id="pricing-action-supporters"></div>
+                        <PricingAction
+                            class="absolute"
                             variant="black"
-                            class="card-supporters"
                             link="/pricing/supporters"
-                        >
-                            <PricingBentoRemoveWatermarkSupporters class="bento -mt-9" />
-                            <PricingBentoNoAds class="bento mt-5" />
-                            <PricingExtraFeaturesLine />
-                            <PricingBentoNoExtraFeatures class="bento mb-[182px]" />
-                            <div id="pricing-action-supporters"></div>
-                            <PricingAction
-                                class="absolute"
-                                variant="black"
-                                link="/pricing/supporters"
-                            />
-                        </PricingCardPremium>
-                    </div>
+                        />
+                    </PricingCardPremium>
                 </div>
                 <div class="flex flex-col flex-1">
                     <div id="pricing-compare-creators"></div>
-
-                    <div class="sm:rounded-3xl overflow-hidden">
-                        <PricingCardPremium
-                            premium-image="/assets/img/marketings/premium-white.svg"
-                            premium-type-image="/assets/img/marketings/premium-creator.svg"
-                            premium-description="For people who need the ultimate Twibbonize experience"
-                            :options="creatorOptions"
-                            :price="creatorPrice"
+                    <PricingCardPremium
+                        premium-image="/assets/img/marketings/premium-white.svg"
+                        premium-type-image="/assets/img/marketings/premium-creator.svg"
+                        premium-description="For people who need the ultimate Twibbonize experience"
+                        :options="creatorOptions"
+                        :price="creatorPrice"
+                        variant="primary"
+                        class="card-creators"
+                        link="/pricing/creators"
+                        :is-creator="true"
+                    >
+                        <PricingBentoRemoveWatermarkCreators class="bento bento-height -mt-9"/>
+                        <PricingBentoNoAds class="bento bento-height mt-5"/>
+                        <PricingExtraFeaturesLine/>
+                        <PricingBentoExtraFeatures class="bento-height mb-[182px]"/>
+                        <div id="pricing-action-creators"></div>
+                        <PricingAction
+                            class="absolute"
                             variant="primary"
-                            class="card-creators"
                             link="/pricing/creators"
-                            :is-creator="true"
-                        >
-                            <PricingBentoRemoveWatermarkCreators class="bento -mt-9" />
-                            <PricingBentoNoAds class="bento mt-5" />
-                            <PricingExtraFeaturesLine />
-                            <PricingBentoExtraFeatures class="mb-[182px]" />
-                            <div id="pricing-action-creators"></div>
-                            <PricingAction
-                                class="absolute"
-                                variant="primary"
-                                link="/pricing/creators"
-                            />
-                        </PricingCardPremium>
-                    </div>
+                        />
+                    </PricingCardPremium>
                 </div>
             </div>
-            <div id="pricing-action" class="pricing-action-container">
-                <PricingAction
-                    class="action-supporters"
-                    variant="black"
-                    link="/pricing/supporters"
-                />
-                <PricingAction class="action-creators" variant="primary" link="/pricing/creators" />
+            <div id="pricing-action" class="pricing-action-container" :style="{ width: `${width}px` }">
+                <PricingAction class="action-supporters" variant="black" link="/pricing/supporters"/>
+                <PricingAction class="action-creators" variant="primary" link="/pricing/creators"/>
             </div>
         </div>
     </div>
@@ -184,7 +175,7 @@ onMounted(() => {
 
 <style lang="scss">
 .banner-pricing {
-    @apply pt-[200px] sm:pt-[260px] mx-auto overflow-hidden relative;
+    @apply pt-40 sm:pt-[240px] mx-auto overflow-hidden relative;
     background: #202124;
 
     .background {
@@ -218,11 +209,11 @@ onMounted(() => {
 }
 
 .pricing-compare {
-    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-14 mt-48;
+    @apply flex flex-col-reverse sm:flex-row w-full sm:gap-8 xl:gap-14 mt-32 sm:mt-48;
 }
 
 .pricing-action-container {
-    @apply max-w-[1120px] mx-auto sm:gap-14 bottom-0 h-min w-full z-20 fixed;
+    @apply max-w-[1120px] mx-auto sm:gap-8 xl:gap-14 bottom-0 h-min w-full z-20 fixed;
     display: none;
 
     &.show-supporters {
