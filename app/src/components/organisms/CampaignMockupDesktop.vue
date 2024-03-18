@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useParentElement, useElementSize, useResizeObserver } from '@vueuse/core';
 import QButton from '@/components/atoms/QButton.vue';
 import QCreator from '@/components/atoms/QCreator.vue';
@@ -9,13 +9,16 @@ import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import FrameSelector from '@/components/molecules/FrameSelector.vue';
 import PostMockup from '@/components/molecules/PostMockup.vue';
 
-import { mockCampaigns } from '@/mock/campaigns';
-
 const props = defineProps({
     frames: {
-        type: Array
+        type: Array,
+        default: []
     },
     title: {
+        type: String,
+        default: ''
+    },
+    link: {
         type: String,
         default: ''
     },
@@ -25,11 +28,33 @@ const props = defineProps({
     }
 });
 
-const selectedFrame = ref('/assets/img/frames/hanoi-art-frame-1.png');
+const selectedFrame = ref(props.frames[0]);
 
 // ui states
 const displayType = ref('grid');
-const mocks = [...mockCampaigns];
+const mocks = computed(() => {
+    if (!selectedFrame.value) return [];
+
+    const photos = [
+        '/assets/img/sample/sample-person-1.jpg',
+        '/assets/img/sample/sample-person-2.jpg',
+        '/assets/img/sample/sample-person-3.jpg',
+        '/assets/img/sample/sample-person-4.jpg',
+        '/assets/img/sample/sample-person-5.jpg',
+        '/assets/img/sample/sample-person-8.jpg',
+        '/assets/img/sample/sample-person-10.jpg',
+        '/assets/img/sample/sample-person-11.jpg',
+        '/assets/img/sample/sample-person-12.jpg'
+    ];
+
+    return photos.map(({ photo }) => {
+        // const photo = photos[Math.floor(Math.random() * photos.length)];
+        return {
+            photo,
+            frame: selectedFrame.value
+        };
+    });
+});
 
 const toggleDisplay = () => {
     displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
@@ -44,7 +69,7 @@ const campaignFeedsPanels = ref(null);
 const campaignFeedsWrapper = ref(null);
 const campaignMain = ref(null);
 
-const { height: wrapperHeight } = useElementSize(wrapperEl);
+// const { height: wrapperHeight } = useElementSize(wrapperEl);
 const campaignContentSize = useElementSize(campaignContent);
 
 const parentWrapperEl = useParentElement(wrapperEl);
@@ -92,11 +117,17 @@ const computedDescription = computed(() => {
     return props.description !== '' ? props.description : 'Campaign description';
 });
 
+const computedLink = computed(() => {
+    return props.link !== '' ? `twibbo.nz/${props.link}` : 'twibbo.nz/campaign-link';
+});
+
 watch(
     () => props.frames,
     (newValue) => {
+        console.log('change selected frames');
         selectedFrame.value = newValue[0];
-    }
+    },
+    { deep: true }
 );
 </script>
 
@@ -106,7 +137,7 @@ watch(
             <div class="campaign__background"></div>
             <div class="campaign__linear"></div>
             <div ref="campaignContent" class="campaign__content" :style="campaignContentStyle">
-                <div class="grid grid-cols-12 gap-6">
+                <div class="grid grid-cols-12 gap-6 mx-6">
                     <div class="col-span-3">
                         <div ref="campaignMain" class="campaign__main">
                             <div class="campaign__frames">
@@ -213,7 +244,7 @@ watch(
                                 </div>
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
-                                        <QShareButton link="twb.nz/hanoi-art-2025" />
+                                        <QShareButton :link="computedLink" />
                                     </div>
 
                                     <div class="flex-shrink-0">
@@ -310,6 +341,7 @@ watch(
     width: 1440px;
     overflow: hidden;
     transform-origin: left top;
+    aspect-ratio: 16/10;
 
     .navbar {
         position: absolute;
@@ -498,14 +530,7 @@ watch(
 }
 
 .campaign-feeds {
-    @apply h-full w-full bg-white relative overflow-hidden;
-
-    // opacity: 0;
-    @include md_screen {
-        @apply rounded-3xl shadow-sm border-transparent;
-        max-height: unset;
-        margin-top: 0px;
-    }
+    @apply h-full w-full bg-white relative overflow-hidden rounded-3xl shadow-sm border-transparent;
 
     .campaign-feeds__overlay {
         position: absolute;
@@ -533,36 +558,7 @@ watch(
 
     .campaign-feeds__panels {
         @include no_scrollbar();
-
-        @include sm {
-            @include before {
-                height: 16px;
-                top: -24px;
-                left: 0;
-                display: block;
-                width: 100%;
-                background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 91%);
-                filter: blur(10px);
-                z-index: 10;
-                pointer-events: none;
-            }
-
-            @include after {
-                height: 24px;
-                bottom: -24px;
-                left: 0px;
-                display: block;
-                width: 100%;
-                background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.1) 100%);
-                filter: blur(10px);
-                z-index: 10;
-                pointer-events: none;
-            }
-        }
-
-        @include md_screen {
-            @apply absolute left-0 top-0 h-full w-full overflow-y-auto p-2 overflow-scroll pb-16;
-        }
+        @apply absolute left-0 top-0 h-full w-full overflow-y-auto p-2 overflow-scroll pb-16;
     }
 
     .campaign-feeds__wrapper {

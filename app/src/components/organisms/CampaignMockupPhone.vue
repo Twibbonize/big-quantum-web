@@ -7,6 +7,7 @@ import QShareButton from '@/components/atoms/QShareButton.vue';
 import QEllipsisText from '@/components/molecules/QEllipsisText.vue';
 import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
 import FrameSelector from '@/components/molecules/FrameSelector.vue';
+import PostMockup from '@/components/molecules/PostMockup.vue';
 
 const props = defineProps({
     frames: {
@@ -16,16 +17,49 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    link: {
+        type: String,
+        default: ''
+    },
     description: {
         type: String,
         default: ''
     }
 });
 
+// ui states
 const selectedFrame = ref(props.frames[0]);
+const displayType = ref('grid');
+const mocks = computed(() => {
+    if (!selectedFrame.value) return [];
+
+    const photos = [
+        '/assets/img/sample/sample-person-1.jpg',
+        '/assets/img/sample/sample-person-2.jpg',
+        '/assets/img/sample/sample-person-3.jpg',
+        '/assets/img/sample/sample-person-4.jpg',
+        '/assets/img/sample/sample-person-5.jpg',
+        '/assets/img/sample/sample-person-8.jpg',
+        '/assets/img/sample/sample-person-10.jpg',
+        '/assets/img/sample/sample-person-11.jpg',
+        '/assets/img/sample/sample-person-12.jpg'
+    ];
+
+    return photos.map(({ photo }) => {
+        // const photo = photos[Math.floor(Math.random() * photos.length)];
+        return {
+            photo,
+            frame: selectedFrame.value
+        };
+    });
+});
 
 const computedDescription = computed(() => {
     return props.description !== '' ? props.description : 'Campaign description';
+});
+
+const computedLink = computed(() => {
+    return props.link !== '' ? `twibbo.nz/${props.link}` : 'twibbo.nz/campaign-link';
 });
 
 watch(
@@ -178,7 +212,7 @@ watch(
                                 </div>
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
-                                        <QShareButton link="twb.nz/hanoi-art-2025" />
+                                        <QShareButton :link="computedLink" />
                                     </div>
 
                                     <div class="flex-shrink-0">
@@ -191,7 +225,68 @@ watch(
                         </div>
                     </div>
 
-                    <div class="col-span-12"></div>
+                    <div class="col-span-12 bg-transparent">
+                        <div class="campaign-feeds">
+                            <div class="campaign-feeds__overlay">
+                                <div class="campaign-feeds__empty-copy">
+                                    <h4 class="text-lg font-bold">No Post Yet</h4>
+                                    <p class="text-content leading-tight text-xs mt-1">
+                                        Be the first to post your support here. Start with uploading
+                                        your photo!
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="campaign-feeds__panels">
+                                <div
+                                    :class="[
+                                        'campaign-feeds__wrapper',
+                                        'campaign-feeds__wrapper--mock',
+                                        displayType === 'grid'
+                                            ? 'campaign-feeds__grid'
+                                            : 'campaign-feeds__list'
+                                    ]"
+                                >
+                                    <PostMockup
+                                        v-for="(mock, i) in mocks"
+                                        :key="i"
+                                        v-bind="mock"
+                                        :display="displayType"
+                                        rounded
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="campaign-feeds__control">
+                                <QButton circle variant="secondary">
+                                    <i
+                                        :class="[
+                                            displayType === 'grid'
+                                                ? 'ri-list-unordered'
+                                                : 'ri-layout-grid-line',
+                                            'ri-lg',
+                                            'font-normal'
+                                        ]"
+                                    ></i>
+                                </QButton>
+
+                                <QButton circle variant="secondary">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M27 6V12C27 12.2652 26.8946 12.5196 26.7071 12.7071C26.5196 12.8946 26.2652 13 26 13C25.7348 13 25.4804 12.8946 25.2929 12.7071C25.1054 12.5196 25 12.2652 25 12V8.41375L18.7075 14.7075C18.5199 14.8951 18.2654 15.0006 18 15.0006C17.7346 15.0006 17.4801 14.8951 17.2925 14.7075C17.1049 14.5199 16.9994 14.2654 16.9994 14C16.9994 13.7346 17.1049 13.4801 17.2925 13.2925L23.5863 7H20C19.7348 7 19.4804 6.89464 19.2929 6.70711C19.1054 6.51957 19 6.26522 19 6C19 5.73478 19.1054 5.48043 19.2929 5.29289C19.4804 5.10536 19.7348 5 20 5H26C26.2652 5 26.5196 5.10536 26.7071 5.29289C26.8946 5.48043 27 5.73478 27 6ZM13.2925 17.2925L7 23.5863V20C7 19.7348 6.89464 19.4804 6.70711 19.2929C6.51957 19.1054 6.26522 19 6 19C5.73478 19 5.48043 19.1054 5.29289 19.2929C5.10536 19.4804 5 19.7348 5 20V26C5 26.2652 5.10536 26.5196 5.29289 26.7071C5.48043 26.8946 5.73478 27 6 27H12C12.2652 27 12.5196 26.8946 12.7071 26.7071C12.8946 26.5196 13 26.2652 13 26C13 25.7348 12.8946 25.4804 12.7071 25.2929C12.5196 25.1054 12.2652 25 12 25H8.41375L14.7075 18.7075C14.8951 18.5199 15.0006 18.2654 15.0006 18C15.0006 17.7346 14.8951 17.4801 14.7075 17.2925C14.5199 17.1049 14.2654 16.9994 14 16.9994C13.7346 16.9994 13.4801 17.1049 13.2925 17.2925Z"
+                                            fill="#1B1B1B"
+                                        />
+                                    </svg>
+                                </QButton>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -371,6 +466,109 @@ watch(
                 min-height: 100%;
             }
         }
+    }
+}
+
+// campaign feeds
+.campaign-feeds {
+    @apply h-full w-full bg-white relative overflow-hidden;
+
+    .campaign-feeds__overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 83.09%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .campaign-feeds__empty-copy {
+        @apply text-center max-w-sm;
+    }
+
+    .campaign-feeds__header {
+        @apply flex items-center justify-between w-full py-6 container;
+
+        .campaign-feeds__header__left {
+            @apply flex items-center;
+        }
+    }
+
+    .campaign-feeds__panels {
+        @include no_scrollbar();
+
+        @include before {
+            height: 16px;
+            top: -24px;
+            left: 0;
+            display: block;
+            width: 100%;
+            background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 91%);
+            filter: blur(10px);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @include after {
+            height: 24px;
+            bottom: -24px;
+            left: 0px;
+            display: block;
+            width: 100%;
+            background: linear-gradient(0deg, rgb(0 0 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+            filter: blur(10px);
+            z-index: 10;
+            pointer-events: none;
+        }
+    }
+
+    .campaign-feeds__wrapper {
+        // padding: 7px 0px;
+        padding-top: 8px;
+        position: relative;
+        z-index: 0;
+
+        @apply rounded-none;
+    }
+
+    .campaign-feeds__grid {
+        @apply container grid grid-cols-3 gap-1 overflow-y-auto;
+        max-height: 420px;
+        @include no_scrollbar();
+
+        // @include before {
+        //     height: 8px;
+        //     top: 0px;
+        //     left: 0;
+        //     display: block;
+        //     width: 100%;
+        //     @apply bg-stroke;
+        // }
+
+        // @include after {
+        //     height: 8px;
+        //     position: relative;
+        //     display: block;
+        //     width: 100%;
+        //     margin-top: -4px;
+        //     @apply bg-stroke col-span-3;
+        // }
+    }
+
+    .campaign-feeds__wrapper.campaign-feeds__wrapper--mock.campaign-feeds__grid,
+    .campaign-feeds__wrapper.campaign-feeds__wrapper--mock.campaign-feeds__list {
+        @apply overflow-y-hidden;
+    }
+
+    .campaign-feeds-all {
+        @apply container px-4 pt-6;
+    }
+
+    .campaign-feeds__control {
+        @apply absolute w-full z-10 top-0 right-0 flex items-center justify-end pt-6 pr-5 space-x-1;
     }
 }
 </style>

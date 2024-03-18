@@ -15,7 +15,7 @@
 
     .mockup__artboard {
         width: 320px;
-        height: 568px;
+        height: 620px;
         border-radius: 8px;
         overflow: auto;
     }

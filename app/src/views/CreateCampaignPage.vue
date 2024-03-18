@@ -97,6 +97,7 @@ const currentStep = ref(STEPS.FRAMES);
 // forms
 const campaignTitle = ref('');
 const campaignDescription = ref('');
+const campaignLink = ref('');
 const campaignCategory = ref(null);
 const campaignCaption = ref(
     "<p> Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!</p>"
@@ -514,6 +515,7 @@ const mockupStyles = computed(() => {
                                 ref="mockupEl"
                                 :frames="files"
                                 :title="campaignTitle"
+                                :link="campaignLink"
                                 :description="campaignDescription"
                                 :style="mockupStyles"
                             />
@@ -610,6 +612,7 @@ const mockupStyles = computed(() => {
                                                 </label>
 
                                                 <QInputText
+                                                    v-model="campaignLink"
                                                     id="link"
                                                     name="link"
                                                     placeholder="campaign-link"
@@ -900,9 +903,11 @@ const mockupStyles = computed(() => {
                                                 <CampaignMockupDesktop
                                                     :frames="files"
                                                     :title="campaignTitle"
+                                                    :link="campaignLink"
                                                     :description="campaignDescription"
                                                 />
                                             </div>
+
                                             <div
                                                 class="bg-turquoise p-4 rounded-2xl space-y-5 border border-light"
                                             >
