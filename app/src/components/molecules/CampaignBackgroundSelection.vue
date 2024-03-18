@@ -82,7 +82,7 @@ watch(innerValue, (newValue) => {
         <RadioGroup v-model="innerValue">
             <div class="cb-selection__grid">
                 <!-- upload button -->
-                <button class="cb-selection__upload">
+                <button class="cb-selection__upload" @click="emit('upgrade')">
                     <span class="cb-selection__upload-plus">
                         <i class="ri-add-line ri-xs"></i>
                     </span>
