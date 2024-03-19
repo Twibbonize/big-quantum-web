@@ -100,7 +100,7 @@ defineProps({
     }
 
     .bento-height {
-        @apply h-[240px] lg:h-[280px];
+        @apply h-[240px] lg:h-[300px];
     }
 }
 

@@ -1,6 +1,7 @@
 <script setup>
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
+import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
@@ -38,6 +39,8 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', doScroll);
 });
+
+const optionIndex = ref(0);
 
 const removeWatermarkLists = [
     {
@@ -167,6 +170,7 @@ const supporterPrice = {
                     <div class="price">
                         <div class="switch mt-4">
                             <QSwitchThree
+                                v-model="optionIndex"
                                 size="sm"
                                 :options="supporterOptions"
                                 :name="`price-supporter-${isCreator ? 'creator' : 'supporter'}`"
@@ -179,7 +183,11 @@ const supporterPrice = {
                             :decimal="supporterPrice.decimal"
                             class="mt-4"
                         />
-                        <p>{{ `per ${supporterOptions[0].duration}` }}</p>
+                        <p>{{ `per ${supporterOptions[optionIndex].duration}` }}</p>
+                        <QButton variant="black" class="gap-2 w-full mt-4">
+                            Purchase Now
+                            <i class="ri-arrow-right-line"></i>
+                        </QButton>
                     </div>
                 </div>
             </div>

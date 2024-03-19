@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-
 defineProps({
     name: {
         type: String,
@@ -26,12 +24,15 @@ defineProps({
     size: {
         type: String,
     },
+    modelValue: {
+        type: Number,
+    },
 });
 
-const value = ref(0);
+const emit = defineEmits(['update:modelValue'])
 
 const setValue = (index) => {
-    value.value = index;
+    emit('update:modelValue', index);
 }
 </script>
 
