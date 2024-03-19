@@ -47,7 +47,6 @@ export default class ZoomHandler {
             }
         }
 
-
         const center = this.handler.canvas.getCenter();
         this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         this.zoomToPoint(new fabric.Point(center.left, center.top), scaleX);

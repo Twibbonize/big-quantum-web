@@ -29,6 +29,7 @@ import CampaignMockupPhone from '@/components/organisms/CampaignMockupPhone.vue'
 import CampaignMockupDesktop from '@/components/organisms/CampaignMockupDesktop.vue';
 import CampaignBackgroundSelection from '@/components/molecules/CampaignBackgroundSelection.vue';
 import CreatorPremiumModal from '@/components/organisms/CreatorPremiumModal.vue';
+import CampaignThumbnailModal from '@/components/organisms/CampaignThumbnailModal.vue';
 import CaptionPreview from '@/components/organisms/CaptionPreview.vue';
 import { useModal } from '@/composables/modal';
 import { getTemplateList } from '@/apis';
@@ -94,31 +95,6 @@ const STEPS = {
 };
 const currentStep = ref(STEPS.FRAMES);
 
-// forms
-const campaignTitle = ref('');
-const campaignDescription = ref('');
-const campaignLink = ref('');
-const campaignCategory = ref(null);
-const campaignCaption = ref(
-    "<p> Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!</p>"
-);
-const campaignVisibility = ref('public');
-const campaignBackground = ref(1);
-
-const validationSchema = yupObject().shape({
-    title: yupString().required(),
-    link: yupString().required(),
-    category: yupString().required(),
-    visibility: yupString().required()
-});
-
-const onClickPremiumItem = () => {
-    openModal({
-        component: CreatorPremiumModal,
-        config: { size: 'sm', position: 'center' }
-    });
-};
-
 // templates
 const templates = ref([]);
 const page = ref(1);
@@ -158,6 +134,31 @@ watch(observerIsVisible, (newValue) => {
     }
 });
 
+// forms
+const campaignTitle = ref('');
+const campaignDescription = ref('');
+const campaignLink = ref('');
+const campaignCategory = ref(null);
+const campaignCaption = ref(
+    "<p> Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!</p>"
+);
+const campaignVisibility = ref('public');
+const campaignBackground = ref(1);
+
+const validationSchema = yupObject().shape({
+    title: yupString().required(),
+    link: yupString().required(),
+    category: yupString().required(),
+    visibility: yupString().required()
+});
+
+const onClickPremiumItem = () => {
+    openModal({
+        component: CreatorPremiumModal,
+        config: { size: 'sm', position: 'center' }
+    });
+};
+
 // mockups
 const mockupWrapper = ref(null);
 const mockupEl = ref(null);
@@ -171,6 +172,22 @@ const mockupStyles = computed(() => {
         transform: `scale(${targetScale})`
     };
 });
+
+// publish
+const onClickPublish = () => {
+    const modalComponent = CampaignThumbnailModal;
+    const modalProps = {
+        creator,
+        frame: files.value[0]
+    };
+    const config = {
+        position: 'bottom',
+        draggable: false,
+        scrollable: false,
+        transparent: true
+    };
+    openModal({ component: modalComponent, props: modalProps, config });
+};
 </script>
 
 <template>
@@ -555,7 +572,7 @@ const mockupStyles = computed(() => {
 
                                         <QButton
                                             :enabled="files.length > 0 && meta.valid"
-                                            @click="currentStep = STEPS.FORM"
+                                            @click="onClickPublish"
                                         >
                                             <span class="px-2">Publish</span>
                                         </QButton>
@@ -968,7 +985,7 @@ const mockupStyles = computed(() => {
                             <span class="px-2">Back</span>
                         </QButton>
 
-                        <QButton :enabled="files.length > 0" @click="currentStep = STEPS.FORM">
+                        <QButton :enabled="files.length > 0" @click="onClickPublish">
                             <span class="px-2">Publish</span>
                         </QButton>
                     </div>

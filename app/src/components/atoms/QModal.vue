@@ -37,6 +37,10 @@ const props = defineProps({
         type: Boolean,
         default: true
     },
+    transparent: {
+        type: Boolean,
+        default: false
+    },
     draggable: {
         type: Boolean,
         default: true
@@ -74,19 +78,20 @@ const { motionProperties } = useMotionProperties(modalContentEl, {
 const { set, stop } = useSpring(motionProperties, {
     stiffness: 200, // Adjust stiffness to control the bounce
     damping: 20, // Adjust damping to control the bounce
-    duration: 500 // Adjust duration to control the animation speed
+    duration: 300 // Adjust duration to control the animation speed
 });
 // const { push } = useMotionTransitions(motionProperties);
 
 const modalClasses = computed(() => {
-    const { closeBtn, draggable, position, scrollable, size, show } = props;
+    const { closeBtn, draggable, position, scrollable, size, show, transparent } = props;
     return [
         'modal',
         show && 'modal--show',
         `modal--${position}`,
         `modal--${size}`,
+        transparent && 'modal--transparent',
         scrollable && 'modal--scrollable',
-        (position === 'bottom' && draggable) && 'modal--draggable',
+        position === 'bottom' && draggable && 'modal--draggable',
         closeBtn && 'modal--has-close',
         isDragging.value && 'modal--dragging',
         isFullyDragged.value && 'modal--dragged'
@@ -98,11 +103,9 @@ const handleClose = () => {
 
     if (props.position === 'bottom') {
         set({ y: initialHeight }).then(() => {
-            emit('close');
             set({ x: 0, y: 0, cursor: 'default' });
+            emit('close');
         });
-
-
 
         // setTimeout(() => {
         //     set({ x: 0, y: 0, cursor: 'default' });
@@ -267,7 +270,6 @@ watch(
         @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-transform duration-200;
         z-index: 68;
     }
-    
 
     &.modal--sm .modal__wrapper {
         max-width: 380px;
@@ -299,8 +301,6 @@ watch(
         height: fit-content;
     }
 
-  
-
     &.modal--bottom .modal__wrapper {
         @apply justify-end px-0 md:px-0 lg:px-0 transition-transform;
         bottom: 0;
@@ -323,7 +323,7 @@ watch(
 
     &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
         height: 100%;
-    } 
+    }
 
     &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
         @apply rounded-tr-xl rounded-tl-xl;
@@ -338,6 +338,10 @@ watch(
         z-index: 69;
         max-height: calc(100dvh - 24px);
         min-height: 360px;
+    }
+
+    &.modal--transparent .modal__content {
+        @apply bg-transparent shadow-none rounded-none;
     }
 
     &.modal--scrollable .modal__content {

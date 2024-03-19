@@ -56,10 +56,6 @@ const mocks = computed(() => {
     });
 });
 
-const toggleDisplay = () => {
-    displayType.value = displayType.value === 'grid' ? 'list' : 'grid';
-};
-
 // scale
 const campaignEl = ref(null);
 const wrapperEl = ref(null);
@@ -73,7 +69,7 @@ const campaignMain = ref(null);
 const campaignContentSize = useElementSize(campaignContent);
 
 const parentWrapperEl = useParentElement(wrapperEl);
-const { width: wrapperParentWidth, height: wrapperParentHeight } = useElementSize(parentWrapperEl);
+const { width: wrapperParentWidth } = useElementSize(parentWrapperEl);
 
 const mockupStyles = computed(() => {
     const targetScale = Math.min(1, wrapperParentWidth.value / 1440);
@@ -124,7 +120,6 @@ const computedLink = computed(() => {
 watch(
     () => props.frames,
     (newValue) => {
-        console.log('change selected frames');
         selectedFrame.value = newValue[0];
     },
     { deep: true }
