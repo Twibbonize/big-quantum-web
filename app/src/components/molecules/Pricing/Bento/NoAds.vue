@@ -2,7 +2,7 @@
     <div class="flex">
         <div class="flex flex-col justify-between">
             <video
-                class="w-full"
+                class="max-h-[200px]"
                 autoplay
                 loop
                 muted
