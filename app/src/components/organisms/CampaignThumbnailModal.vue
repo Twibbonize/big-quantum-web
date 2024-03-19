@@ -251,7 +251,11 @@ onMounted(async () => {
 
     .thumbnail-modal__body {
         padding-top: 165px;
-        @apply bg-white shadow-card w-full rounded-xl;
+        @apply bg-white shadow-card w-full rounded-none;
+
+        @include md_screen {
+            @apply rounded-xl;
+        }
     }
 }
 
