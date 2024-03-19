@@ -36,8 +36,6 @@ export default class ZoomHandler {
         let scaleX = this.handler.canvas.getWidth() / drawArea.width;
         const scaleY = this.handler.canvas.getHeight() / drawArea.height;
 
-        const minimumPadding = this.handler.canvas.getWidth() <= 768 ? 8 : 48;
-
         if (drawArea.height >= drawArea.width) {
             scaleX = scaleY;
             if (this.handler.canvas.getWidth() < drawArea.width * scaleX) {
@@ -49,7 +47,6 @@ export default class ZoomHandler {
             }
         }
 
-        scaleX -= 2 * (minimumPadding / drawArea.width);
 
         const center = this.handler.canvas.getCenter();
         this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);

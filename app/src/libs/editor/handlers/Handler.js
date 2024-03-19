@@ -274,10 +274,10 @@ export default class Handler {
 
         const dataUrl = this.canvas.toDataURL({
             ...option,
-            left: left + 1,
-            top: top + 1,
+            left: left,
+            top: top,
             width,
-            height: height - 2,
+            height: height,
             enableRetinaScaling: false
         });
 
@@ -293,7 +293,7 @@ export default class Handler {
         }
     }
 
-    export(option = { format: 'png', quality: 1 }) {
+    export(option = { format: 'jpeg', quality: 1 }) {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
@@ -303,10 +303,10 @@ export default class Handler {
 
             const dataUrl = this.canvas.toDataURL({
                 ...option,
-                left: left + 1,
-                top: top + 1,
+                left,
+                top,
                 width,
-                height: height - 2,
+                height,
                 enableRetinaScaling: false
             });
 

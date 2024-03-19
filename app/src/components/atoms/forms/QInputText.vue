@@ -6,7 +6,7 @@ const props = defineProps({
     type: {
         type: String,
         default: 'text',
-        validators: (value) => ['text', 'email'].includes(value)
+        validators: (value) => ['text', 'email', 'search'].includes(value)
     },
     modelValue: {
         type: String
@@ -126,7 +126,7 @@ function updateValue(e) {
         @apply bg-white;
     }
 
-    .field__prefix {
+    &.field--text .field__prefix {
         padding: 14px 12px 14px 14px;
         font-size: 14px;
         color: #667085;
