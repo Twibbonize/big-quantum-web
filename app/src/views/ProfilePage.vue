@@ -467,6 +467,7 @@ onMounted(() => {
                                 <div class="filters">
                                     <div class="filters__search">
                                         <QInputText
+                                            type="search"
                                             name="search"
                                             size="sm"
                                             placeholder="Search Campaigns"
