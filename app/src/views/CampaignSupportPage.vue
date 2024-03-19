@@ -531,6 +531,15 @@ watch(step, async (newValue) => {
 
         setTimeout(() => {
             step.value = STEPS.POST;
+
+            if (twibbonResult.value) {
+                const anchorEl = document.createElement('a');
+                anchorEl.href = twibbonResult.value;
+                anchorEl.download = `twibbon-result.jpg`;
+                document.body.appendChild(anchorEl);
+                anchorEl.click();
+                anchorEl.remove();
+            }
         }, 7000);
     }
 
