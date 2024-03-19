@@ -172,6 +172,11 @@ const handleOpenCreateModal = () => {
         box-shadow: none;
     }
 
+    &--transparent-white {
+        background: transparent;
+        box-shadow: none;
+    }
+
     &__burger {
         @apply bg-white rounded-full flex items-center justify-center border border-stroke pl-2 pr-1;
         height: 40px;
