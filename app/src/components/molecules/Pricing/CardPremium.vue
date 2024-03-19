@@ -4,7 +4,6 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
-import QSwitchTwo from '@/components/atoms/QSwitchTwo.vue';
 import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackgroundSupporter.vue';
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
