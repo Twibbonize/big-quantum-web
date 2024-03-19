@@ -222,7 +222,7 @@ const onClickCollection = () => {
 
 <style scoped lang="scss">
 .campaign {
-    @apply transition-all duration-300 ease-in-out cursor-pointer space-y-3;
+    @apply transition-all duration-300 ease-in-out cursor-pointer space-y-2;
 
     &__thumbnail {
         @apply w-full aspect-square overflow-hidden relative;

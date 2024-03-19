@@ -90,6 +90,7 @@ onBeforeRouteLeave(() => {
                 <div class="collection-modal__filter">
                     <QInputText
                         v-model="query"
+                        type="search"
                         name="search"
                         size="sm"
                         placeholder="Search your Collections"

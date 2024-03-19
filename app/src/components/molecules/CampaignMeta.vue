@@ -8,12 +8,16 @@ defineProps({
     },
     value: {
         type: String
+    },
+    hideTitle: {
+        type: Boolean,
+        default: false
     }
 });
 </script>
 
 <template>
-    <div class="meta">
+    <div :class="['meta', hideTitle && 'meta--no-title']">
         <div class="meta__icon">
             <slot v-if="$slots.icon" name="icon"></slot>
             <i v-else :class="iconClass"></i>
@@ -27,7 +31,7 @@ defineProps({
 
 <style scoped lang="scss">
 .meta {
-    @apply flex items-center space-x-1;
+    @apply flex items-center;
 
     @include md_screen {
         @apply space-x-2;
@@ -40,22 +44,24 @@ defineProps({
 
     .meta__copy {
         @apply h-full;
+        margin-left: 6px;
     }
 
     .meta__title {
         @apply font-medium leading-none;
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+    &.meta--no-title .meta__title {
+        @apply hidden;
     }
 
     .meta__value {
-        @apply text-sm text-black/50 font-medium w-full;
+        @apply text-black/50 font-medium leading-none;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
-        @include sm {
-            @apply text-xs;
-        }
+        font-size: 14px;
     }
 }
 </style>
