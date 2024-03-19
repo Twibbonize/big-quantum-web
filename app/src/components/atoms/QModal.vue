@@ -37,6 +37,14 @@ const props = defineProps({
         type: Boolean,
         default: true
     },
+    draggable: {
+        type: Boolean,
+        default: true
+    },
+    scrollable: {
+        type: Boolean,
+        default: true
+    },
     transition: {
         type: String,
         default: 'fade'
@@ -71,12 +79,14 @@ const { set, stop } = useSpring(motionProperties, {
 // const { push } = useMotionTransitions(motionProperties);
 
 const modalClasses = computed(() => {
-    const { position, size, closeBtn, show } = props;
+    const { closeBtn, draggable, position, scrollable, size, show } = props;
     return [
         'modal',
         show && 'modal--show',
         `modal--${position}`,
         `modal--${size}`,
+        scrollable && 'modal--scrollable',
+        (position === 'bottom' && draggable) && 'modal--draggable',
         closeBtn && 'modal--has-close',
         isDragging.value && 'modal--dragging',
         isFullyDragged.value && 'modal--dragged'
@@ -87,15 +97,20 @@ const handleClose = () => {
     isDragging.value = false;
 
     if (props.position === 'bottom') {
-        set({ y: initialHeight });
-
-        setTimeout(() => {
+        set({ y: initialHeight }).then(() => {
             emit('close');
-        }, 300);
-
-        setTimeout(() => {
             set({ x: 0, y: 0, cursor: 'default' });
-        }, 500);
+        });
+
+
+
+        // setTimeout(() => {
+        //     set({ x: 0, y: 0, cursor: 'default' });
+        // }, 250);
+
+        // setTimeout(() => {
+        //     emit('close');
+        // }, 1000);
     } else {
         emit('close');
     }
@@ -249,9 +264,10 @@ watch(
     }
 
     .modal__wrapper {
-        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-all duration-300;
+        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-transform duration-200;
         z-index: 68;
     }
+    
 
     &.modal--sm .modal__wrapper {
         max-width: 380px;
@@ -280,11 +296,13 @@ watch(
     &.modal--screen .modal__wrapper .modal__content {
         border-radius: 0px;
         max-height: calc(100dvh);
-        height: 100%;
+        height: fit-content;
     }
 
+  
+
     &.modal--bottom .modal__wrapper {
-        @apply justify-end px-0 md:px-0 lg:px-0;
+        @apply justify-end px-0 md:px-0 lg:px-0 transition-transform;
         bottom: 0;
         top: calc(56vw + 24px);
     }
@@ -296,11 +314,19 @@ watch(
     }
 
     &.modal--bottom .modal__wrapper .modal__content {
-        @apply rounded-none rounded-tr-xl rounded-tl-xl;
-        height: 100%;
+        @apply rounded-none;
+        height: fit-content;
         max-height: unset;
         min-height: unset;
         // max-height: 95vh;
+    }
+
+    &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
+        height: 100%;
+    } 
+
+    &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
+        @apply rounded-tr-xl rounded-tl-xl;
     }
 
     &.modal--bottom.modal--dragging .modal__body {
@@ -308,10 +334,14 @@ watch(
     }
 
     .modal__content {
-        @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
+        @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full;
         z-index: 69;
         max-height: calc(100dvh - 24px);
         min-height: 360px;
+    }
+
+    &.modal--scrollable .modal__content {
+        @apply overflow-y-auto;
     }
 
     & .modal__drag-handler {
@@ -326,18 +356,17 @@ watch(
         border-radius: 100px;
     }
 
-    &.modal--bottom .modal__content .modal__drag-handler {
+    &.modal--bottom.modal--draggable .modal__content .modal__drag-handler {
         @apply flex;
     }
-
-    // .modal__header {
-    //     @apply flex items-center flex-shrink-0 w-full;
-    // }
 
     .modal__body {
         position: relative;
         flex: 1 1 auto;
-        overflow-y: auto;
+    }
+
+    &.modal--scrollable .modal__body {
+        @apply overflow-y-auto;
     }
 
     .modal__close-wrapper {
