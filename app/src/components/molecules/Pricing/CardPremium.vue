@@ -30,10 +30,10 @@ defineProps({
             <div v-else class="absolute top-0 w-full h-[500px] z-0">
                 <PricingBlobBackground />
             </div>
-            <img class="premium" :src="premiumImage" alt="premium" />
-            <img class="premium-type" :src="premiumTypeImage" alt="supporter" />
-            <p class="premium-description">{{ premiumDescription }}</p>
-            <div class="text-black">
+            <img class="premium z-10" :src="premiumImage" alt="premium" />
+            <img class="premium-type z-10" :src="premiumTypeImage" alt="supporter" />
+            <p class="premium-description z-10">{{ premiumDescription }}</p>
+            <div class="text-black z-10">
                 <QSwitchThree
                     :size="sm ? 'sm' : ''"
                     :options="options"
@@ -45,7 +45,7 @@ defineProps({
                 :currency="price.currency"
                 :number="price.number"
                 :decimal="price.decimal"
-                class="mt-4"
+                class="mt-4 z-10"
             />
             <p>{{ `per ${options[0].duration}` }}</p>
         </div>
@@ -62,7 +62,7 @@ defineProps({
     @apply bg-white w-full overflow-hidden relative;
 
     .card-header {
-        @apply flex flex-col items-center px-5 pt-10 sm:p-12 pb-20;
+        @apply flex flex-col items-center px-5 pt-10 sm:p-12 pb-20 relative;
     }
 
     .premium {

@@ -5,6 +5,7 @@ import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 
 import PricingSupporterHeader from '@/components/molecules/Pricing/Supporter/Header.vue';
+import PricingSupporterWatermark from '@/components/molecules/Pricing/Supporter/Watermark.vue';
 
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
@@ -44,21 +45,6 @@ onUnmounted(() => {
 });
 
 const optionIndex = ref(0);
-
-const removeWatermarkLists = [
-    {
-        image: '/assets/img/marketings/supporter-watermark-1.jpg',
-        text: 'As a free user, your Twibbon always features <strong>a watermark.</strong>',
-    },
-    {
-        image: '/assets/img/marketings/supporter-watermark-2.jpg',
-        text: '<strong>Premium Supporter</strong> removes the watermark for a cleaner image.',
-    },
-    {
-        image: '/assets/img/marketings/supporter-watermark-3.jpg',
-        text: 'Now you can <strong>support any campaign</strong> without watermark.',
-    }
-];
 
 const supporterFeatures = [
     {
@@ -111,28 +97,7 @@ const supporterPrice = {
                     ></video>
                 </div>
             </div>
-            <div class="remove-watermark">
-                <div class="remove-watermark-title">
-                    <div class="flex items-center">
-                        <h2 class="remove-watermark-title-text">Remove</h2>
-                        <img
-                            class="remove-watermark-title-logo"
-                            src="/assets/img/campaigns/watermark.png"
-                        />
-                    </div>
-                    <h2 class="remove-watermark-title-text">for <strong>your own account</strong></h2>
-                </div>
-                <div class="remove-watermark-container">
-                    <div v-for="{ image, text },i in removeWatermarkLists" class="card">
-                        <img :src="image" :alt="`remove-watermark-${i}`">
-                        <p v-html="text"></p>
-                    </div>
-                </div>
-                <div class="remove-watermark-link">
-                    <p>Looking to Remove Watermark for all of your campaign users? Try <router-link to="/pricing/creators">Premium Creator</router-link>.</p>
-                    
-                </div>
-            </div>
+            <PricingSupporterWatermark/>
             <div class="no-more-ads">
                 <h2 class="title">No More Annoying Ads</h2>
                 <p class="description">Enjoy uninterrupted experience with no ads on Twibbonize. Get ready to embrace a cleaner, more user-friendly version of Twibbonize.</p>
@@ -209,52 +174,6 @@ const supporterPrice = {
             }
             .video {
                 @apply w-full;
-            }
-        }
-
-        .remove-watermark {
-            @apply rounded-3xl pt-16 pb-12 mx-14 mt-[120px] flex flex-col items-center;
-            background: linear-gradient(162deg, #EFF7F7 7.87%, #CFECEB 87.63%);
-
-            .remove-watermark-container {
-                @apply max-w-[1100px] w-full mt-11 grid grid-cols-3 gap-6;
-
-                .card {
-                    @apply bg-white p-10 rounded-3xl flex flex-col gap-4;
-                    box-shadow: 0px 12px 24px 0px rgba(27, 82, 78, 0.04);
-
-                    img {
-                        @apply rounded-[24px];
-                    }
-
-                    p {
-                        @apply text-center;
-                    }
-                }
-            }
-
-            .remove-watermark-title {
-                @apply text-[54px] leading-tight;
-            }
-
-            .remove-watermark-logo {
-                @apply h-[54px];
-                filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.30));
-                backdrop-filter: blur(2.0569987297058105px);
-            }
-        }
-
-        .remove-watermark-link {
-            @apply rounded-3xl py-6 px-8 mt-12;
-            background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
-
-            p {
-                @apply text-white text-xl;
-            }
-
-            a {
-                @apply font-bold underline;
-                text-decoration-line: 1px;
             }
         }
 

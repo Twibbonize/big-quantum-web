@@ -52,11 +52,6 @@ onUnmounted(() => {
         <div class="banner-creators__ellipse"></div>
 
         <div ref="bgHero" class="bg relative py-14" :class="{ bottom: scrollPosition > 300 }">
-            <img
-                class="blob-bg"
-                src="/src/assets/img/patterns/background-banner-creators.png"
-                alt=""
-            />
             <div class="flex flex-wrap justify-center items-center">
                 <img
                     src="/assets/img/logos/twibbonize-creators.svg"
@@ -64,10 +59,10 @@ onUnmounted(() => {
                 />
             </div>
             <div ref="lottieScroll"></div>
-            <div class="container z-30 mt-4 mx-auto">
+            <div class="container mt-4 mx-auto">
                 <div class="row justify-center">
-                    <div class="col-xl-10">
-                        <div class="tp-rated-title-box text-center mb-14">
+                    <div class="col-xl-10 z-10">
+                        <div class="tp-rated-title-box text-center mb-14 z-20">
                             <h5 class="text-4xl sm:text-7xl font-bold text-white pb-4 px-5">
                                 <div class="flex justify-center items-center sm:-mb-5">
                                     <div class="flex relative -mb-2.5 sm:-mb-5 -ml-2 sm:-ml-8">
@@ -120,6 +115,11 @@ onUnmounted(() => {
                     />
                 </div>
             </div>
+            <img
+                class="blob-bg"
+                src="/src/assets/img/patterns/background-banner-creators.png"
+                alt=""
+            />
             <div>
                 <slot></slot>
             </div>
@@ -162,7 +162,7 @@ onUnmounted(() => {
     }
 
     .blob-bg {
-        @apply absolute pointer-events-none;
+        @apply absolute pointer-events-none z-0;
         bottom: -30%;
         left: 50%;
         transform: translateX(-50%);
@@ -199,7 +199,7 @@ onUnmounted(() => {
 @media screen and (min-width: 640px) {
     .banner-creators {
         .blob-bg {
-            @apply absolute pointer-events-none;
+            @apply absolute pointer-events-none z-0;
             bottom: -40%;
             left: 50%;
             transform: translateX(-50%);
