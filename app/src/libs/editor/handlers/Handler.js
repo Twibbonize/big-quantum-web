@@ -258,6 +258,32 @@ export default class Handler {
         }
     };
 
+    scaleTo = (property = 'Width', value, target) => {
+        if (!['Width', 'Height'].includes(property)) {
+            return;
+        }
+
+        const activeObject = target || this.canvas.getActiveObject();
+
+        if (!activeObject) {
+            return;
+        }
+
+        if (property === 'Width') {
+            target.scaleToWidth(value);
+        } else {
+            target.scaleToHeight(value);
+        }
+
+        this.canvas.requestRenderAll();
+
+        const { onModified } = this;
+
+        if (onModified) {
+            onModified(activeObject);
+        }
+    };
+
     saveCanvasImage(
         option = {
             name: 'New Image',
@@ -297,6 +323,9 @@ export default class Handler {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
+            // console.log();
+            const currentVPT = this.canvas.viewportTransform;
+
             const center = this.canvas.getCenter();
             this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
@@ -309,6 +338,8 @@ export default class Handler {
                 height,
                 enableRetinaScaling: false
             });
+
+            this.canvas.setViewportTransform(currentVPT);
 
             resolve(dataUrl);
         });
@@ -1051,12 +1082,11 @@ export default class Handler {
             if (firstObject.id === activeObject.id) {
                 return;
             }
-         
 
             if (!this.transactionHandler.active) {
                 this.transactionHandler.save('sendBackwards');
             }
-            
+
             this.canvas.sendBackwards(activeObject);
 
             const { onModified } = this;

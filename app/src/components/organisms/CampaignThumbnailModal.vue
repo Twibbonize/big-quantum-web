@@ -7,16 +7,23 @@ import {
     useWindowSize,
     useElementSize,
     useFileDialog,
-    useObjectUrl
+    useObjectUrl,
+    useElementVisibility
 } from '@vueuse/core';
-import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
+import {
+    RadioGroup,
+    RadioGroupOption,
+    TransitionRoot,
+    TransitionChild,
+    Dialog,
+    DialogPanel,
+    DialogTitle
+} from '@headlessui/vue';
 import Editor from '@/libs/editor';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
-import QCreator from '@/components/atoms/QCreator.vue';
-import CampaignMeta from '@/components/molecules/CampaignMeta.vue';
+import CampaignCardPreview from '@/components/molecules/CampaignCardPreview.vue';
 import { useModal } from '@/composables/modal';
-
 
 const props = defineProps({
     frame: {
@@ -41,8 +48,6 @@ const modalStyle = computed(() => {
         return {};
     }
 
-    // console.log(modalHeight.value, windowSize.value)
-
     const targetScale = Math.min(1, modalHeight.value / windowSize.value);
 
     return {
@@ -55,17 +60,34 @@ watch(sm, (newValue) => {
 });
 
 // canvas
+const cropperBody = ref(null);
+const cropperIsVisible = useElementVisibility(cropperBody);
 const canvasInner = ref(null);
 const canvasEl = ref(null);
 const editor = ref(null);
+const thumbnailObjectUrl = ref(null);
 
 useResizeObserver(canvasInner, (entries) => {
     const innerEl = entries[0];
-
+    console.log('here');
     const { width, height } = innerEl.contentRect;
     editor.value.handler.eventHandler.resize(width, height);
     editor.value.handler.zoomHandler.zoomToFit();
+
+    // console.log(editor.value.handler);
+    // console.log(editor.value.handler, width, height)
 });
+
+const canvasListeners = {
+    onAdd: async () => {
+        const { handler } = editor.value;
+        thumbnailObjectUrl.value = await handler.export();
+    },
+    onModified: async () => {
+        const { handler } = editor.value;
+        thumbnailObjectUrl.value = await handler.export();
+    }
+};
 
 const insertFrame = async () => {
     const { handler } = editor.value;
@@ -75,19 +97,20 @@ const insertFrame = async () => {
         type: 'image',
         opt: {
             name: 'frame',
-            hasControls: false,
-            hasBorders: false,
-            evented: false,
+            lockMovementX: true,
+            lockMovementY: true,
             selectable: false,
-            deleteable: false,
+            evented: false,
+            hasControls: false,
             originX: 'center',
             originY: 'center'
         }
     };
 
     const createdObj = await handler.add(obj, true);
-    createdObj.scaleToWidth(handler.canvas.getWidth());
+
     handler.moveToIndex(createdObj, 2, false);
+    handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
     handler.canvas.requestRenderAll();
 
     return createdObj;
@@ -97,7 +120,6 @@ const insertPhoto = async (src) => {
     const { handler } = editor.value;
 
     const existingPhoto = handler.findByName('photo');
-
 
     if (existingPhoto) {
         handler.remove(existingPhoto);
@@ -110,8 +132,8 @@ const insertPhoto = async (src) => {
             name: 'photo',
             hasControls: false,
             hasBorders: false,
-            evented: false,
-            selectable: false,
+            evented: true,
+            selectable: true,
             deleteable: true,
             originX: 'center',
             originY: 'center'
@@ -119,17 +141,17 @@ const insertPhoto = async (src) => {
     };
 
     const createdObj = await handler.add(obj, true);
-    createdObj.scaleToWidth(handler.canvas.getWidth());
     handler.moveToIndex(createdObj, 1, false);
-    handler.canvas.requestRenderAll();
+    handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
+
     return createdObj;
 };
 
 // photo selector
 const photos = ref([
-    '/assets/img/avatars/for-thumbnail/3.jpg',
+    '/assets/img/avatars/for-thumbnail/1.jpg',
     '/assets/img/avatars/for-thumbnail/2.jpg',
-    '/assets/img/avatars/for-thumbnail/1.jpg'
+    '/assets/img/avatars/for-thumbnail/3.jpg'
 ]);
 const photoIdx = ref(0);
 
@@ -139,7 +161,6 @@ const { open, reset, onChange } = useFileDialog({
     multiple: false
 });
 
-
 const uploadedFile = shallowRef(null);
 const uploadedDataURL = useObjectUrl(uploadedFile);
 
@@ -148,15 +169,13 @@ onChange((files) => {
         uploadedFile.value = files[0];
         photoIdx.value = 3; // choose the uploaded file
         return;
-    } 
+    }
 
     photoIdx.value = 2;
     uploadedFile.value = null;
 });
 
-
 watch(photoIdx, (newValue) => {
-
     // if is uploaded file
     if (newValue === 3) {
         insertPhoto(uploadedDataURL.value);
@@ -167,6 +186,15 @@ watch(photoIdx, (newValue) => {
 
     insertPhoto(newSrc);
 });
+
+const adjustModal = ref(false);
+
+// watch(adjustModal, () => {
+//     // const { width, height } = innerEl.contentRect;
+//     // console.log('here', width, height)
+//     editor.value.handler.eventHandler.resize(300, 300);
+//     editor.value.handler.zoomHandler.zoomToFit();
+// });
 
 onMounted(async () => {
     const keyEvent = {
@@ -188,48 +216,96 @@ onMounted(async () => {
     };
 
     editor.value = markRaw(
-        new Editor({ keyEvent, mouseEvent, el: canvasEl.value, width: 1080, height: 1080 })
+        new Editor({
+            keyEvent,
+            mouseEvent,
+            el: canvasEl.value,
+            width: 1080,
+            height: 1080,
+            ...canvasListeners
+        })
     );
 
     const photoSrc = photos.value[photoIdx.value];
     await insertPhoto(photoSrc);
-
     await insertFrame();
     // editor.value.handler.eventHandler.resize(200, 200);
 });
 </script>
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
-        <div class="preview">
-            <div class="preview__cvs-wrapper">
-                <div ref="canvasInner" class="preview__cvs-inner">
-                    <canvas ref="canvasEl" id="preview__canvas"></canvas>
+        <Teleport to="body">
+            <Dialog
+                :open="adjustModal"
+                as="div"
+                @close="adjustModal = false"
+                class="relative z-[9999]"
+                :unmount="false"
+            >
+                <Transition
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0"
+                    enter-to="opacity-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100"
+                    leave-to="opacity-0"
+                >
+                    <div class="fixed inset-0 bg-black/90" />
+                </Transition>
+
+                <div class="fixed inset-0 overflow-y-auto">
+                    <div class="flex min-h-full items-center justify-center p-4 text-center">
+                        <Transition
+                            enter="duration-300 ease-out"
+                            enter-from="opacity-0 scale-95"
+                            enter-to="opacity-100 scale-100"
+                            leave="duration-200 ease-in"
+                            leave-from="opacity-100 scale-100"
+                            leave-to="opacity-0 scale-95"
+                        >
+                            <DialogPanel class="cropper">
+                                <div class="cropper__header">
+                                    <DialogTitle
+                                        as="h3"
+                                        class="text-lg font-semibold leading-6 text-gray-900"
+                                    >
+                                        Adjust Thumbnail
+                                    </DialogTitle>
+                                </div>
+                                <div ref="cropperBody" class="cropper__body"></div>
+                                <div class="cropper__footer">
+                                    <QButton variant="primary" size="sm" @click="adjustModal = false" block>Done</QButton>
+                                </div>
+                            </DialogPanel>
+                        </Transition>
+                    </div>
+                </div>
+            </Dialog>
+        </Teleport>
+
+        <Teleport to=".cropper__body" :disabled="!cropperIsVisible">
+            <div class="cvs-wrapper">
+                <div ref="canvasInner" class="cvs-inner">
+                    <canvas ref="canvasEl" id="canvas"></canvas>
                 </div>
             </div>
+        </Teleport>
 
-            <div class="preview__campaign-detail">
-                <h3 class="preview__campaign-title">Hanoi Art Book Fair 2025</h3>
-
-                <QCreator v-bind="creator" :clickable="false" />
-            </div>
-
-            <div class="preview__campaign-meta">
-                <CampaignMeta title="Supporters" value="-">
-                    <template #icon>
-                        <svg xmlns="http://www.w3.org/2000/svg" :width="16" :height="16" viewBox="0 0 16 16" fill="none">
-                            <path
-                                d="M2.00016 14.6667C1.63197 14.6667 1.32913 14.3668 1.37459 14.0014C1.70207 11.3699 3.94663 9.33342 6.66683 9.33342C9.38705 9.33342 11.6316 11.3699 11.9591 14.0014C12.0045 14.3668 11.7017 14.6667 11.3335 14.6667C10.9653 14.6667 10.6727 14.366 10.612 14.0029C10.2958 12.1097 8.6498 10.6667 6.66683 10.6667C4.68386 10.6667 3.0379 12.1097 2.72167 14.0029C2.66101 14.366 2.36835 14.6667 2.00016 14.6667ZM6.66683 8.66675C4.45683 8.66675 2.66683 6.87675 2.66683 4.66675C2.66683 2.45675 4.45683 0.666748 6.66683 0.666748C8.87683 0.666748 10.6668 2.45675 10.6668 4.66675C10.6668 6.87675 8.87683 8.66675 6.66683 8.66675ZM6.66683 7.33342C8.14016 7.33342 9.3335 6.14008 9.3335 4.66675C9.3335 3.19341 8.14016 2.00008 6.66683 2.00008C5.1935 2.00008 4.00016 3.19341 4.00016 4.66675C4.00016 6.14008 5.1935 7.33342 6.66683 7.33342ZM11.9155 10.4104C12.0667 10.0744 12.4646 9.92134 12.7789 10.1136C14.132 10.9411 15.0876 12.3549 15.2924 14.0016C15.3379 14.367 15.035 14.6667 14.6668 14.6667C14.2986 14.6667 14.006 14.3661 13.9453 14.003C13.7604 12.8955 13.1203 11.942 12.224 11.3414C11.9182 11.1365 11.7644 10.7461 11.9155 10.4104ZM11.5191 3.01714C11.632 2.62181 12.069 2.40958 12.4078 2.6424C13.3697 3.30317 14.0002 4.41099 14.0002 5.66675C14.0002 7.3214 12.9055 8.71921 11.4005 9.17589C11.0158 9.29264 10.6668 8.97201 10.6668 8.5699C10.6668 8.2294 10.9234 7.95066 11.2373 7.81875C12.0773 7.46576 12.6668 6.63541 12.6668 5.66675C12.6668 4.95265 12.3464 4.31371 11.8415 3.88579C11.5871 3.67024 11.4275 3.33772 11.5191 3.01714Z"
-                                fill="currentColor" />
-                        </svg>
-                    </template>
-                </CampaignMeta>
-                <CampaignMeta :iconClass="['ri', 'ri-time-line'].join(' ')" title="Created" value="-" />
-            </div>
+        <div class="preview-wrapper">
+            <CampaignCardPreview
+                v-if="thumbnailObjectUrl"
+                title="Hanoi Art Book Fair 2025"
+                :creator="creator"
+                :thumbnail="thumbnailObjectUrl"
+                link="twibbo.nz/hanoi-art-2025"
+            />
         </div>
+
         <div class="thumbnail-modal__body">
             <div class="px-10">
                 <div class="flex justify-center mt-4">
-                    <QButton variant="secondary" size="sm">
+                    <QButton variant="secondary" size="sm" @click="adjustModal = true">
                         <div class="flex px-1 py-0.5">
                             <i class="ri-crop-line"></i>
                             <span class="ml-2 font-normal">Adjust Thumbnail</span>
@@ -244,29 +320,58 @@ onMounted(async () => {
 
                 <RadioGroup v-model="photoIdx">
                     <div class="photo-selector pb-2">
-                        <RadioGroupOption as="template" v-for="(photo, i) in photos" :key="i" :value="i"
-                            v-slot="{ checked, active }">
-                            <div :class="[
-                                'photo-selector__item',
-                                (checked || active) && 'photo-selector__item--checked'
-                            ]">
-                                <img :src="photo" :alt="`photo ${i}`" class="photo-selector__item-img" />
+                        <RadioGroupOption
+                            as="template"
+                            v-for="(photo, i) in photos"
+                            :key="i"
+                            :value="i"
+                            v-slot="{ checked, active }"
+                        >
+                            <div
+                                :class="[
+                                    'photo-selector__item',
+                                    (checked || active) && 'photo-selector__item--checked'
+                                ]"
+                            >
+                                <img
+                                    :src="photo"
+                                    :alt="`photo ${i}`"
+                                    class="photo-selector__item-img"
+                                />
                             </div>
                         </RadioGroupOption>
 
-                        <RadioGroupOption v-if="uploadedDataURL" as="template" :value="3" v-slot="{ checked }">
-                            <div :class="[ 'photo-selector__item', checked && 'photo-selector__item--checked']">
+                        <RadioGroupOption
+                            v-if="uploadedDataURL"
+                            as="template"
+                            :value="3"
+                            v-slot="{ checked }"
+                        >
+                            <div
+                                :class="[
+                                    'photo-selector__item',
+                                    checked && 'photo-selector__item--checked'
+                                ]"
+                            >
                                 <button class="photo-selector__item-remove" @click="reset">
                                     <span class="ri-delete-bin-line"></span>
                                 </button>
-                                <img :src="uploadedDataURL" alt="uploaded photo" class="photo-selector__item-img" />
+                                <img
+                                    :src="uploadedDataURL"
+                                    alt="uploaded photo"
+                                    class="photo-selector__item-img"
+                                />
                             </div>
                         </RadioGroupOption>
 
-                        <button v-if="!uploadedDataURL" class="photo-selector__upload" @click="open">
+                        <button
+                            v-if="!uploadedDataURL"
+                            class="photo-selector__upload"
+                            @click="open"
+                        >
                             <div class="photo-selector__upload-inner">
                                 <i class="ri-upload-line"></i>
-                                <span class="text-xs ml-1 font-semibold">Upload</span>
+                                <span class="text-xs font-semibold">Upload</span>
                             </div>
                         </button>
                     </div>
@@ -274,7 +379,7 @@ onMounted(async () => {
 
                 <div class="flex flex-col pt-2 pb-4 space-y-2">
                     <QButton variant="primary" block>Publish Now</QButton>
-                    <QButton variant="subtle" block>Go Back</QButton>
+                    <QButton variant="subtle" block @click="close">Go Back</QButton>
                 </div>
             </div>
         </div>
@@ -296,45 +401,58 @@ onMounted(async () => {
     }
 }
 
-.preview {
-    max-width: 220px;
-    padding: 10px 10px 12px;
-    margin: 0 auto;
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+.cropper {
+    @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all;
+
+    .cropper__header {
+        @apply flex items-center justify-between p-6;
+    }
+
+    .cropper__body {
+        @apply bg-black flex flex-col items-center justify-center;
+
+        .cvs-wrapper {
+            visibility: visible;
+            pointer-events: unset;
+            position: relative;
+            left: unset;
+            // max-height: 300px;
+        }
+    }
+
+    .cropper__footer {
+        @apply flex items-center justify-end p-6;
+    }
+}
+
+// canvas
+
+.cvs-wrapper {
+    // display: none;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 300px;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: -30000px;
+    // height: 100%;
+}
+
+.cvs-inner {
+    aspect-ratio: 1/1;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.preview-wrapper {
     margin-top: -165px;
     transform: translateY(50%);
-    @apply bg-white;
-
-    .preview__cvs-wrapper {
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    .preview__cvs-inner {
-        max-width: 200px;
-        max-height: 200px;
-        height: 100%;
-        width: 100%;
-    }
-
-    // preview campaign details
-    .preview__campaign-detail {
-        @apply space-y-1;
-        margin: 10px 0 8px;
-    }
-
-    .preview__campaign-title {
-        @apply text-lg font-bold w-full;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    // preview campaign meta
-    .preview__campaign-meta {
-        @apply border-t border-black/10 flex items-center space-x-3 pt-2;
-    }
 }
 
 // photo selector
@@ -361,7 +479,6 @@ onMounted(async () => {
             max-height: 100%;
             border-radius: 6px;
         }
-
 
         .photo-selector__item-remove {
             position: absolute;

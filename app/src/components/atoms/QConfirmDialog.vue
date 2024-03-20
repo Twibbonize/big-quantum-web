@@ -10,7 +10,6 @@ defineProps({
     }
 });
 
-
 defineEmits(['close']);
 </script>
 
