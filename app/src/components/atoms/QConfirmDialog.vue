@@ -7,16 +7,16 @@ defineProps({
     },
     confirm: {
         type: Function
-    },
-    onClose: {
-        type: Function
     }
 });
+
+
+defineEmits(['close']);
 </script>
 
 <template>
     <TransitionRoot appear :show="show" as="template">
-        <Dialog as="div" @close="onClose" class="dialog">
+        <Dialog as="div" @close="$emit('close')" class="dialog">
             <TransitionChild
                 as="template"
                 enter="duration-300 ease-out"
