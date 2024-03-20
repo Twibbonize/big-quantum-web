@@ -24,6 +24,7 @@ import QInputText from '@/components/atoms/forms/QInputText.vue';
 import QInputTextarea from '@/components/atoms/forms/QInputTextarea.vue';
 import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
+import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
 import QVisibilityOptions from '@/components/atoms/forms/QVisibilityOptions.vue';
 import CampaignMockupPhone from '@/components/organisms/CampaignMockupPhone.vue';
 import CampaignMockupDesktop from '@/components/organisms/CampaignMockupDesktop.vue';
@@ -37,7 +38,7 @@ import { getTemplateList } from '@/apis';
 const dropzoneBox = ref(null);
 const files = ref([]);
 
-const { open: openModal } = useModal();
+const { open: openModal, close: closeModal } = useModal();
 
 const { isOverDropZone } = useDropZone(dropzoneBox, {
     onDrop: (droppedFiles) => {
@@ -75,6 +76,11 @@ const handleInputFile = (e) => {
         }
     }
 };
+
+
+// cancel 
+const showConfirmCancel = ref(false);
+
 
 // breakpoints
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -192,12 +198,41 @@ const onClickPublish = () => {
 
 <template>
     <LayoutBlank>
+        <Teleport to="body">
+            <QConfirmDialog :show="showConfirmCancel" @close="showConfirmCancel = false">
+                <div class="confirm">
+                    <div class="confirm__question-mark">
+                        <i class="ri-question-mark"></i>
+                    </div>
+
+                    <div class="confirm__body">
+                        <div class="flex flex-col text-center space-y-2">
+                            <h3 class="font-semibold text-xl">Are you sure?</h3>
+                            <p class="text-sm">
+                                If you leave this page, all unsaved changes will be lost
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-center space-y-2 mt-6 w-full">
+                            <QButton variant="primary" @click="$router.push({ name: 'home' })" block>
+                                Yes, Leave this Page
+                            </QButton>
+                            <QButton variant="subtle" @click="showConfirmCancel = false" block>
+                                No, Stay on this Page
+                            </QButton>
+                        </div>
+                    </div>
+                </div>
+
+            </QConfirmDialog>
+        </Teleport>
+
         <VeeForm :validation-schema="validationSchema" v-slot="{ meta }" class="create-campaign">
             <div class="create-campaign__header">
                 <div class="px-5 xl:px-20">
                     <div class="flex items-center justify-between py-4">
                         <img src="/assets/img/logos/twibbonize-logo.svg" alt="Twibbonize" />
-                        <QButton variant="subtle" size="lg" circle>
+                        <QButton variant="subtle" size="lg" circle @click="showConfirmCancel = true">
                             <span class="font-light flex items-center justify-center">
                                 <i class="ri-close-line ri-2x"></i>
                             </span>
@@ -212,7 +247,7 @@ const onClickPublish = () => {
                     <div v-show="currentStep === STEPS.FRAMES" :class="['left-section', 'col-span-2', 'xl:col-span-1']">
                         <div class="actions-bar shadow-md sticky top-0 bg-white z-50">
                             <div class="flex items-center justify-between py-4 container px-5 xl:pl-20 xl:pr-10">
-                                <QButton variant="secondary">
+                                <QButton variant="secondary" @click="showConfirmCancel = true">
                                     <span class="px-2">Cancel</span>
                                 </QButton>
 
@@ -721,7 +756,7 @@ const onClickPublish = () => {
             <div class="create-campaign__footer">
                 <div v-show="currentStep === STEPS.FRAMES" class="px-5 xl:px-20">
                     <div class="flex items-center justify-between py-4">
-                        <QButton variant="secondary">
+                        <QButton variant="secondary" @click="showConfirmCancel = true">
                             <span class="px-2">Cancel</span>
                         </QButton>
 
@@ -767,6 +802,18 @@ const onClickPublish = () => {
         @include xl_screen {
             display: none;
         }
+    }
+}
+
+// confirm dialog
+.confirm {
+
+    .confirm__question-mark {
+        @apply absolute top-0 left-1/2 w-20 h-20 rounded-full bg-light text-black flex items-center justify-center text-4xl -mt-10 -translate-x-1/2;
+    }
+
+    .confirm__body {
+        @apply pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center;
     }
 }
 
