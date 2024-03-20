@@ -275,7 +275,6 @@ export default class Handler {
             target.scaleToHeight(value);
         }
 
-        
         this.canvas.requestRenderAll();
 
         const { onModified } = this;
@@ -324,6 +323,9 @@ export default class Handler {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
+            // console.log();
+            const currentVPT = this.canvas.viewportTransform;
+
             const center = this.canvas.getCenter();
             this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
@@ -336,6 +338,8 @@ export default class Handler {
                 height,
                 enableRetinaScaling: false
             });
+
+            this.canvas.setViewportTransform(currentVPT);
 
             resolve(dataUrl);
         });
