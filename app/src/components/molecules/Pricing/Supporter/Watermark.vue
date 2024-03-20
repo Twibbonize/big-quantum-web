@@ -49,7 +49,7 @@ const removeWatermarkLists = [
     background: linear-gradient(162deg, #EFF7F7 7.87%, #CFECEB 87.63%);
 
     .remove-watermark-container {
-        @apply max-w-[1100px] w-full mt-11 grid grid-cols-3 gap-6;
+        @apply max-w-[1100px] w-full mt-11 grid grid-cols-3 gap-6 z-10;
 
         .card {
             @apply bg-white p-10 rounded-3xl flex flex-col gap-4;

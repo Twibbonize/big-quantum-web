@@ -1,11 +1,9 @@
 <script setup>
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
-import PricingPrice from '@/components/molecules/Pricing/Price.vue';
-import QButton from '@/components/atoms/QButton.vue';
-import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 
 import PricingSupporterHeader from '@/components/molecules/Pricing/Supporter/Header.vue';
 import PricingSupporterWatermark from '@/components/molecules/Pricing/Supporter/Watermark.vue';
+import PricingSupporterPrice from '@/components/molecules/Pricing/Supporter/Price.vue';
 
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
@@ -26,7 +24,7 @@ const doScroll = () => {
     } else {
         setNavbarColor('transparent-white');
         setShadow(false);
-        setLogoVariant('white');
+        setLogoVariant('black');
         setCtaVariant('accent');
     }
 };
@@ -36,48 +34,13 @@ onMounted(() => {
 
     setNavbarColor('transparent-white');
     setShadow(false);
-    setLogoVariant('white');
+    setLogoVariant('black');
     setCtaVariant('accent');
 });
 
 onUnmounted(() => {
     window.removeEventListener('scroll', doScroll);
 });
-
-const optionIndex = ref(0);
-
-const supporterFeatures = [
-    {
-        text: 'Remove watermark for your own account',
-    },
-    {
-        text: 'Use Twibbonize without Ads',
-    },
-];
-
-const supporterOptions = [
-    {
-        key: 'supporter-weekly',
-        text: 'Weekly',
-        duration: 'week'
-    },
-    {
-        key: 'supporter-monthly',
-        text: 'Monthly',
-        duration: 'month'
-    },
-    {
-        key: 'supporter-yearly',
-        text: 'Yearly',
-        duration: 'year'
-    }
-];
-
-const supporterPrice = {
-    number: 2,
-    decimal: 99,
-    currency: '$'
-};
 </script>
 
 <template>
@@ -110,48 +73,7 @@ const supporterPrice = {
                     ></video>
                 </div>
             </div>
-            <div class="pricing-supporter-price">
-                <h2 class="title">The top-notch plan we’ve ever launched</h2>
-                <p class="description">Considering all the conveniences, it’s worth it.</p>
-                <div class="bento">
-                    <div class="detail">
-                        <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="premium">
-                        <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
-                        <div
-                            v-for="({ text }, i) in supporterFeatures"
-                            :key="`${title}-feature-${i}`"
-                            class="flex items-center mt-5"
-                        >
-                            <div class="icon-container">
-                                <i class="ri-check-line"></i>
-                            </div>
-                            <p>{{ text }}</p>
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="switch mt-4">
-                            <QSwitchThree
-                                v-model="optionIndex"
-                                size="sm"
-                                :options="supporterOptions"
-                                :name="`price-supporter-${isCreator ? 'creator' : 'supporter'}`"
-                                class="w-[220px] lg:w-[270px]"
-                            />
-                        </div>
-                        <PricingPrice
-                            :currency="supporterPrice.currency"
-                            :number="supporterPrice.number"
-                            :decimal="supporterPrice.decimal"
-                            class="mt-4"
-                        />
-                        <p>{{ `per ${supporterOptions[optionIndex].duration}` }}</p>
-                        <QButton variant="black" class="gap-2 w-full mt-4">
-                            Purchase Now
-                            <i class="ri-arrow-right-line"></i>
-                        </QButton>
-                    </div>
-                </div>
-            </div>
+            <PricingSupporterPrice/>
         </div>
         <div ref="content"></div>
     </LayoutMain>
@@ -179,6 +101,7 @@ const supporterPrice = {
 
         .no-more-ads{
             @apply flex flex-col max-w-[1100px] w-full mx-auto my-24;
+
             .title {
                 @apply text-5xl font-bold text-center;
             }
@@ -190,51 +113,6 @@ const supporterPrice = {
             .bento {
                 @apply pt-10 mt-16 h-[500px] flex justify-center bg-white rounded-[32px];
                 box-shadow: 0px 12px 80px 0px rgba(27, 82, 78, 0.11);
-            }
-        }
-
-        .pricing-supporter-price {
-            @apply flex flex-col max-w-[1100px] w-full mx-auto my-24;
-
-            .title {
-                @apply text-5xl font-bold text-center;
-            }
-
-            .description {
-                @apply text-2xl leading-tight text-gray-500 text-center mt-5;
-            }
-
-            .bento {
-                @apply p-20 bg-white rounded-[32px] flex justify-between;
-                border-top: 2px solid rgba(255, 255, 255, 0.40);
-                border-bottom: 2px solid rgba(255, 255, 255, 0.40);
-
-                .detail {
-                    .premium-title {
-                        @apply h-9 mx-auto;
-                    }
-                    .supporter-title {
-                        @apply h-32 mx-auto;
-                    }
-                    .icon-container {
-                        @apply w-8 h-8 rounded-2xl flex justify-center items-center mr-2;
-                        background: rgba(27, 27, 27, 0.10);
-
-                        i {
-                            @apply text-xl;
-                        }
-                    }
-                }
-
-                .price {
-                    @apply flex flex-col items-center justify-center;
-
-                    .switch {
-                        @apply text-black rounded-3xl;
-                        background: rgba(222, 232, 232, 0.50);
-                        box-shadow: 0px 0px 17.345px 0px rgba(157, 170, 170, 0.08) inset;
-                    }
-                }
             }
         }
     }
