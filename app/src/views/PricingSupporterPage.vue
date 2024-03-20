@@ -3,6 +3,9 @@ import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
+
+import PricingSupporterHeader from '@/components/molecules/Pricing/Supporter/Header.vue';
+
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
 
@@ -94,14 +97,7 @@ const supporterPrice = {
 <template>
     <LayoutMain>
         <div class="pricing-supporter-header">
-            <div class="background-container">
-                <img src="/assets/img/marketings/bg-pricing-supporter.png" alt="bg">
-                <div class="title-container">
-                    <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="supporter">
-                    <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
-                </div>
-                <div class="background-blank"></div>
-            </div>
+            <PricingSupporterHeader/>
             <div class="video-illustration">
                 <h2 class="title">Do you like supporting  <br> different campaigns?</h2>
                 <p class="subtitle">Then Premium Supporter is the right plan for you.</p>
@@ -198,28 +194,6 @@ const supporterPrice = {
 
 <style lang="scss">
     .pricing-supporter-header {
-        .background-container {
-            @apply w-full relative h-full;
-            background: wheat;
-
-            .title-container {
-                @apply top-[200px] absolute w-full flex flex-col z-20;
-    
-                .premium-title {
-                    @apply lg:h-16;
-                }
-        
-                .supporter-title {
-                    @apply w-full mt-10 px-20;
-                }
-            }
-    
-    
-            .background-blank {
-                @apply bg-white absolute bottom-0 h-2/6 w-full;
-            }
-        }
-
         .video-illustration {
             @apply flex flex-col w-full items-center;
 
