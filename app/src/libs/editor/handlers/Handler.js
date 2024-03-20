@@ -1051,20 +1051,16 @@ export default class Handler {
             if (firstObject.id === activeObject.id) {
                 return;
             }
-
-            const photos = this.objects.filter((object) => object.type === 'Photo');
-            const currentZIndex = this.canvas.getObjects().indexOf(activeObject);
-
-            // prevent object send backward behind participant photos
-            if (currentZIndex - 1 === photos.length) {
-                return;
-            }
+         
 
             if (!this.transactionHandler.active) {
                 this.transactionHandler.save('sendBackwards');
             }
+            
             this.canvas.sendBackwards(activeObject);
+
             const { onModified } = this;
+
             if (onModified) {
                 onModified(activeObject);
             }
