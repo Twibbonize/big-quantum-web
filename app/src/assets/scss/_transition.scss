@@ -54,6 +54,15 @@
     animation: slide-up 0.5s reverse ease-out;
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .sheet-fade-enter-active {
     transition-property: opacity;
     transition-duration: 0.3s;
