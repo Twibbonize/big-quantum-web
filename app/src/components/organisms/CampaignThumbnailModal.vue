@@ -67,23 +67,16 @@ const canvasEl = ref(null);
 const editor = ref(null);
 const thumbnailObjectUrl = ref(null);
 
-useResizeObserver(canvasInner, (entries) => {
-    const innerEl = entries[0];
-    console.log('here');
-    const { width, height } = innerEl.contentRect;
-    editor.value.handler.eventHandler.resize(width, height);
-    editor.value.handler.zoomHandler.zoomToFit();
-
-    // console.log(editor.value.handler);
-    // console.log(editor.value.handler, width, height)
-});
-
 const canvasListeners = {
     onAdd: async () => {
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
     },
     onModified: async () => {
+        const { handler } = editor.value;
+        thumbnailObjectUrl.value = await handler.export();
+    },
+    onTransaction: async () => {
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
     }
@@ -99,6 +92,7 @@ const insertFrame = async () => {
             name: 'frame',
             lockMovementX: true,
             lockMovementY: true,
+            locked: true,
             selectable: false,
             evented: false,
             hasControls: false,
@@ -147,6 +141,16 @@ const insertPhoto = async (src) => {
     return createdObj;
 };
 
+useResizeObserver(canvasInner, (entries) => {
+    const innerEl = entries[0];
+    const { width, height } = innerEl.contentRect;
+    editor.value.handler.eventHandler.resize(width, height);
+    editor.value.handler.zoomHandler.zoomToFit();
+
+    // console.log(editor.value.handler);
+    // console.log(editor.value.handler, width, height)
+});
+
 // photo selector
 const photos = ref([
     '/assets/img/avatars/for-thumbnail/1.jpg',
@@ -189,12 +193,31 @@ watch(photoIdx, (newValue) => {
 
 const adjustModal = ref(false);
 
-// watch(adjustModal, () => {
-//     // const { width, height } = innerEl.contentRect;
-//     // console.log('here', width, height)
-//     editor.value.handler.eventHandler.resize(300, 300);
-//     editor.value.handler.zoomHandler.zoomToFit();
-// });
+const saveAdjustChanges = () => {
+    const { handler } = editor.value;
+
+    handler.transactionHandler.save('checkpoint');
+    adjustModal.value = false;
+};
+
+const discardAdjustChanges = () => {
+    const { handler } = editor.value;
+    handler.transactionHandler.undo();
+    adjustModal.value = false;
+}
+
+watch(adjustModal, (newValue) => {
+    // handle transaction here
+    const { handler } = editor.value;
+
+    if (newValue) {
+        handler.transactionHandler.save('checkpoint');
+        handler.transactionHandler.deactivate();
+        return;
+    } 
+
+    handler.transactionHandler.activate();
+});
 
 onMounted(async () => {
     const keyEvent = {
@@ -266,16 +289,14 @@ onMounted(async () => {
                         >
                             <DialogPanel class="cropper">
                                 <div class="cropper__header">
-                                    <DialogTitle
-                                        as="h3"
-                                        class="text-lg font-semibold leading-6 text-gray-900"
-                                    >
+                                    <DialogTitle as="h3" class="text-lg font-semibold leading-6 text-gray-900">
                                         Adjust Thumbnail
                                     </DialogTitle>
                                 </div>
                                 <div ref="cropperBody" class="cropper__body"></div>
                                 <div class="cropper__footer">
-                                    <QButton variant="primary" size="sm" @click="adjustModal = false" block>Done</QButton>
+                                    <QButton variant="secondary" size="sm" @click="discardAdjustChanges">Cancel</QButton>
+                                    <QButton variant="primary" size="sm" @click="saveAdjustChanges">Done</QButton>
                                 </div>
                             </DialogPanel>
                         </Transition>
@@ -421,7 +442,7 @@ onMounted(async () => {
     }
 
     .cropper__footer {
-        @apply flex items-center justify-end p-6;
+        @apply flex items-center justify-between p-6;
     }
 }
 

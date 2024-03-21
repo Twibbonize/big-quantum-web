@@ -22,6 +22,9 @@ export default class Handler {
             'id',
             'name',
             'locked',
+            'lockMovementX',
+            'lockMovementY',
+            'deleteable',
             'preset',
             'parentType',
             'shadowEffect',
@@ -277,7 +280,12 @@ export default class Handler {
 
         this.canvas.requestRenderAll();
 
+        if (!this.transactionHandler.active) {
+            this.transactionHandler.save('modified:scale}');
+        }
+
         const { onModified } = this;
+        
 
         if (onModified) {
             onModified(activeObject);
@@ -323,7 +331,7 @@ export default class Handler {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
-            // console.log();
+            
             const currentVPT = this.canvas.viewportTransform;
 
             const center = this.canvas.getCenter();
@@ -362,7 +370,6 @@ export default class Handler {
                     });
                 }
 
-                console.log(cloned.filters);
 
                 const dataUrl = cloned.toDataURL({
                     ...option,
@@ -432,7 +439,7 @@ export default class Handler {
             this.canvas.add(createdObj);
         }
 
-        const drawArea = this.canvas.getItemByName('drawing-area');
+        // const drawArea = this.canvas.getItemByName('drawing-area');
         // make sure created object not too big
         // if (Math.max(createdObj.width, createdObj.height) > drawArea.width) {
         //     const objectScaleWidth = (80 / 100) * drawArea.width;
@@ -1119,9 +1126,9 @@ export default class Handler {
         if (target) {
             this.canvas.moveTo(target, targetIndex);
 
-            // if (!this.transactionHandler.active) {
-            //     this.transactionHandler.save('moveToIndex');
-            // }
+            if (!this.transactionHandler.active) {
+                this.transactionHandler.save('moveToIndex');
+            }
 
             const { onModified } = this;
 
@@ -1225,7 +1232,6 @@ export default class Handler {
                 if (enlivenObjects.length > 1) {
                     const group = new fabric.Group([]);
 
-                    // console.log(group)
 
                     enlivenObjects.forEach((obj) => {
                         group.addWithUpdate(obj);
