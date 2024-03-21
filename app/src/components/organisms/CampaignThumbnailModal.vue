@@ -1,5 +1,7 @@
 <script setup>
-import { computed, markRaw, onMounted, ref, watch, shallowRef, onBeforeUnmount } from 'vue';
+import { computed, markRaw, onMounted, ref, watch, shallowRef } from 'vue';
+
+
 import {
     useResizeObserver,
     useBreakpoints,
@@ -10,15 +12,18 @@ import {
     useObjectUrl,
     useElementVisibility,
     useDebounceFn,
-computedWithControl
+    useVibrate
 } from '@vueuse/core';
 import {
     RadioGroup,
     RadioGroupOption,
     Dialog,
     DialogPanel,
-    DialogTitle
+    DialogTitle,
+    DialogBackdrop
 } from '@headlessui/vue';
+// import { tsParticles } from "@tsparticles/engine";
+import { confetti } from '@tsparticles/confetti'
 import Editor from '@/libs/editor';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
@@ -86,7 +91,7 @@ const onMouseWheel = (opt) => {
     if (photo) {
         const delta = -e.deltaY;
         const scalingFactor = 0.003; // Adjust this value to control the scaling sensitivity
-        
+
         const newScaleX = scaleX + delta * scalingFactor;
         const newScaleY = scaleY + delta * scalingFactor;
 
@@ -145,8 +150,6 @@ watch(rotation, (newValue) => {
 
 const canvasListeners = {
     onModified: useDebounceFn(async (target) => {
-        console.log('on modified')
-
         const { handler } = editor.value;
         const { propertiesToInclude } = handler;
         const properties = target.toObject(propertiesToInclude);
@@ -162,8 +165,6 @@ const canvasListeners = {
         thumbnailObjectUrl.value = await handler.export();
     }, 300),
     onTransaction: async () => {
-        console.log('on transaction')
-
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
     }
@@ -300,6 +301,167 @@ watch(adjustModal, (newValue) => {
     handler.transactionHandler.activate();
 });
 
+// ui state
+const { vibrate, stop, isSupported } = useVibrate({ pattern: [300, 100, 300] })
+
+// Start the vibration, it will automatically stop when the pattern is complete:
+const isLoading = ref(false);
+
+watch(isLoading, (newValue) => {
+
+    if (newValue) {
+        setTimeout(() => {
+            isLoading.value = false;
+            
+            if (isSupported) {
+                vibrate()
+            }
+
+            confetti("tsparticles",{
+                "fullScreen": {
+                    "zIndex": 99999
+                },
+                zIndex: 99990,
+                "emitters": [
+                    {
+                        "position": {
+                            "x": 0,
+                            "y": 30
+                        },
+                        "rate": {
+                            "quantity": 5,
+                            "delay": 0.15
+                        },
+                        "particles": {
+                            "move": {
+                                "direction": "top-right",
+                                "outModes": {
+                                    "top": "none",
+                                    "left": "none",
+                                    "default": "destroy"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "position": {
+                            "x": 100,
+                            "y": 30
+                        },
+                        "rate": {
+                            "quantity": 5,
+                            "delay": 0.15
+                        },
+                        "particles": {
+                            "move": {
+                                "direction": "top-left",
+                                "outModes": {
+                                    "top": "none",
+                                    "right": "none",
+                                    "default": "destroy"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "particles": {
+                    "color": {
+                        "value": [
+                            "#ffffff",
+                            "#FF0000"
+                        ]
+                    },
+                    "move": {
+                        "decay": 0.05,
+                        "direction": "top",
+                        "enable": true,
+                        "gravity": {
+                            "enable": true
+                        },
+                        "outModes": {
+                            "top": "none",
+                            "default": "destroy"
+                        },
+                        "speed": {
+                            "min": 10,
+                            "max": 50
+                        }
+                    },
+                    "number": {
+                        "value": 0
+                    },
+                    "opacity": {
+                        "value": 1
+                    },
+                    "rotate": {
+                        "value": {
+                            "min": 0,
+                            "max": 360
+                        },
+                        "direction": "random",
+                        "animation": {
+                            "enable": true,
+                            "speed": 30
+                        }
+                    },
+                    "tilt": {
+                        "direction": "random",
+                        "enable": true,
+                        "value": {
+                            "min": 0,
+                            "max": 360
+                        },
+                        "animation": {
+                            "enable": true,
+                            "speed": 30
+                        }
+                    },
+                    "size": {
+                        "value": {
+                            "min": 0,
+                            "max": 2
+                        },
+                        "animation": {
+                            "enable": true,
+                            "startValue": "min",
+                            "count": 1,
+                            "speed": 16,
+                            "sync": true
+                        }
+                    },
+                    "roll": {
+                        "darken": {
+                            "enable": true,
+                            "value": 25
+                        },
+                        "enable": true,
+                        "speed": {
+                            "min": 5,
+                            "max": 15
+                        }
+                    },
+                    "wobble": {
+                        "distance": 30,
+                        "enable": true,
+                        "speed": {
+                            "min": -7,
+                            "max": 7
+                        }
+                    },
+                    "shape": {
+                        "type": [
+                            "circle",
+                            "square"
+                        ],
+                        "options": {}
+                    }
+                }
+            }
+            );
+        }, 3000)
+    }
+})
+
 onMounted(async () => {
     const keyEvent = {
         move: false,
@@ -344,7 +506,7 @@ onMounted(async () => {
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
         <Teleport to="body">
-            <Dialog :open="adjustModal" as="div" @close="discardAdjustChanges" class="relative z-[9999]" :unmount="false">
+            <Dialog :open="adjustModal" as="div" @close="discardAdjustChanges" class="relative z-[300]" :unmount="false">
                 <Transition as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
                     leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
                     <div class="fixed inset-0 bg-black/90" />
@@ -361,7 +523,7 @@ onMounted(async () => {
                                         Adjust Thumbnail
                                     </DialogTitle>
 
-                                    <QButton variant="subtle" circle size="sm">
+                                    <QButton variant="subtle" circle size="sm" @click="discardAdjustChanges">
                                         <i class="ri ri-close-line ri-lg"></i>
                                     </QButton>
                                 </div>
@@ -396,6 +558,11 @@ onMounted(async () => {
             </Dialog>
         </Teleport>
 
+        <Teleport to="body">
+            <div id="tsparticles"></div>
+        </Teleport>
+
+
         <Teleport to=".cropper__canvas" :disabled="!cropperIsVisible">
             <div class="cvs-wrapper">
                 <div ref="canvasInner" class="cvs-inner">
@@ -412,7 +579,7 @@ onMounted(async () => {
         <div class="thumbnail-modal__body">
             <div class="px-10">
                 <div class="flex justify-center mt-4">
-                    <QButton variant="secondary" size="sm" @click="adjustModal = true">
+                    <QButton variant="secondary" size="sm" @click="adjustModal = true" :enabled="!isLoading">
                         <div class="flex px-1 py-0.5">
                             <i class="ri-crop-line"></i>
                             <span class="ml-2 font-normal">Adjust Thumbnail</span>
@@ -425,13 +592,14 @@ onMounted(async () => {
                     </QSeparator>
                 </div>
 
-                <RadioGroup v-model="photoIdx">
+                <RadioGroup v-model="photoIdx" :disabled="isLoading">
                     <div class="photo-selector pb-2">
                         <RadioGroupOption as="template" v-for="(photo, i) in photos" :key="i" :value="i"
-                            v-slot="{ checked, active }">
+                            v-slot="{ checked, active, disabled }">
                             <div :class="[
                                 'photo-selector__item',
-                                (checked || active) && 'photo-selector__item--checked'
+                                (checked || active) && 'photo-selector__item--checked',
+                                disabled && 'disabled'
                             ]">
                                 <img :src="photo" :alt="`photo ${i}`" class="photo-selector__item-img" />
                             </div>
@@ -449,7 +617,7 @@ onMounted(async () => {
                             </div>
                         </RadioGroupOption>
 
-                        <button v-if="!uploadedDataURL" class="photo-selector__upload" @click="open">
+                        <button v-if="!uploadedDataURL" class="photo-selector__upload" @click="open" :disabled="isLoading">
                             <div class="photo-selector__upload-inner">
                                 <i class="ri-upload-line"></i>
                                 <span class="text-xs font-semibold">Upload</span>
@@ -459,8 +627,12 @@ onMounted(async () => {
                 </RadioGroup>
 
                 <div class="flex flex-col pt-2 pb-4 space-y-2">
-                    <QButton variant="primary" block>Publish Now</QButton>
-                    <QButton variant="subtle" block @click="close">Go Back</QButton>
+                    <QButton variant="primary" block :enabled="!isLoading" :loading="isLoading" @click="isLoading = true">
+                        <span class="h-5 flex items-center">
+                            Publish Now
+                        </span>
+                    </QButton>
+                    <QButton variant="subtle" block @click="close" :enabled="!isLoading">Go Back</QButton>
                 </div>
             </div>
         </div>
@@ -468,6 +640,11 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
+
+#tsparticles {
+    position: relative;
+    z-index: 9999;
+}
 .thumbnail-modal {
     transform-origin: center top;
     max-width: 412px;
@@ -562,6 +739,10 @@ onMounted(async () => {
             @apply border-black;
         }
 
+        &.disabled {
+            @apply opacity-30;
+        }
+
         img.photo-selector__item-img {
             width: 100%;
             height: 100%;
@@ -599,6 +780,10 @@ onMounted(async () => {
             border-radius: 6px;
             height: 100%;
             width: 100%;
+        }
+
+        &[disabled] {
+            @apply opacity-40 pointer-events-none;
         }
     }
 }
