@@ -361,7 +361,7 @@ onMounted(async () => {
                                         Adjust Thumbnail
                                     </DialogTitle>
 
-                                    <QButton variant="subtle" circle size="sm">
+                                    <QButton variant="subtle" circle size="sm" @click="discardAdjustChanges">
                                         <i class="ri ri-close-line ri-lg"></i>
                                     </QButton>
                                 </div>
