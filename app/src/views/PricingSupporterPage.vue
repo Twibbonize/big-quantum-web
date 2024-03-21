@@ -52,7 +52,7 @@ onUnmounted(() => {
                 <p class="subtitle">Then Premium Supporter is the right plan for you.</p>
                 <div class="video-container">
                     <video
-                        class="w-full"
+                        class="video-content"
                         autoplay
                         loop
                         muted
@@ -66,6 +66,7 @@ onUnmounted(() => {
                 <p class="description">Enjoy uninterrupted experience with no ads on Twibbonize. Get ready to embrace a cleaner, more user-friendly version of Twibbonize.</p>
                 <div class="bento">
                     <video
+                        class="no-more-ads-video"
                         autoplay
                         loop
                         muted
@@ -82,38 +83,46 @@ onUnmounted(() => {
 <style lang="scss">
     .pricing-supporter-header {
         .video-illustration {
-            @apply flex flex-col w-full items-center;
+            @apply flex flex-col w-full items-center mt-20;
 
             .video-container {
-                @apply mt-14;
+                @apply relative mt-14 h-[220px] lg:h-[600px] w-full overflow-hidden;
+
+                .video-content {
+                    @apply h-full max-w-none absolute top-1/2 left-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+                }
             }
 
             .title {
-                @apply font-bold text-[64px] text-center leading-tight;
+                @apply font-bold text-2xl sm:text-[40px] lg:text-[64px] text-center leading-tight;
             }
             .subtitle {
-                @apply font-medium text-2xl text-[#667085] mt-6;
+                @apply font-medium text-base text-center sm:text-2xl text-[#667085] mt-6 px-5 lg:px-0;
             }
             .video {
                 @apply w-full;
             }
         }
 
-        .no-more-ads{
-            @apply flex flex-col max-w-[1100px] w-full mx-auto my-24;
+        .no-more-ads {
+            @apply flex flex-col max-w-[1100px] w-full mx-auto my-24 mb-14 lg:my-24 px-5 sm:px-14 lg:px-0;
 
             .title {
-                @apply text-5xl font-bold text-center;
+                @apply text-3xl sm:text-[40px] lg:text-5xl font-bold text-center;
             }
 
             .description {
-                @apply text-2xl leading-tight text-gray-500 text-center mt-5;
+                @apply text-base lg:text-2xl leading-tight text-gray-500 text-center mt-5;
             }
 
             .bento {
-                @apply pt-10 mt-16 h-[500px] flex justify-center bg-white rounded-[32px];
+                @apply relative pt-10 mt-14 w-full lg:mt-16 h-[240px] sm:h-[500px] flex justify-center bg-white rounded-2xl overflow-hidden;
                 box-shadow: 0px 12px 80px 0px rgba(27, 82, 78, 0.11);
             }
+        }
+
+        .no-more-ads-video {
+            @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full max-w-none pt-[5%];
         }
     }
 </style>

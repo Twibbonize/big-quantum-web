@@ -1,3 +1,12 @@
+<script setup>
+import { ref } from 'vue';
+import { useElementSize } from '@vueuse/core';
+
+const supporterTitle = ref(null);
+
+const { height } = useElementSize(supporterTitle);
+</script>
+
 <template>
     <div class="supporter-background-container">
         <img class="pattern" src="/assets/img/marketings/bg-pricing-supporter.png" alt="bg">
@@ -5,15 +14,15 @@
         <div class="shape-blob"></div>
         <div class="title-container">
             <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="supporter">
-            <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
+            <img ref="supporterTitle" class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
         </div>
-        <div class="background-blank"></div>
+        <div class="background-blank" :style="{ height: `${height/2}px` }"></div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .supporter-background-container {
-    @apply relative w-full h-full overflow-hidden aspect-video;
+    @apply relative w-full h-full overflow-hidden lg:aspect-video;
 
     .pattern {
         @apply absolute w-full;
@@ -22,16 +31,14 @@
 
     .overlay {
         @apply absolute h-[1200px] w-[1260px] top-0 rotate-45 -translate-x-2/3 -translate-y-1/2 opacity-50;
-        filter: blur(29.675495147705078px) hue-rotate(40deg);
+        filter: blur(29px) hue-rotate(40deg);
         z-index: 1;
     }
 
     .shape-blob {
-        @apply absolute opacity-70 z-0 top-[10%];
+        @apply absolute opacity-70 z-0 top-[10%] h-[300px] w-[400px] lg:h-[900px] lg:w-[1000px];
         background: #46C3BD;
-        filter: blur(77.16836547851562px);
-        height: 900px;
-        width: 1000px;
+        filter: blur(77px);
         border-radius: 50% 40% 30% 40%;
         animation:
             transform 18s ease-in-out infinite both alternate,
@@ -40,20 +47,20 @@
     }
 
     .title-container {
-        @apply top-[200px] absolute w-full flex flex-col z-20;
+        @apply mt-[200px] w-full flex flex-col z-20;
 
         .premium-title {
-            @apply lg:h-16;
+            @apply h-3 sm:h-5 md:h-8 lg:h-16 z-20;
         }
 
         .supporter-title {
-            @apply w-full mt-10 px-20;
+            @apply w-full mt-2 sm:mt-4 md:mt-6 lg:mt-9 px-5 sm:px-14 lg:px-20 z-20;
         }
     }
 
 
     .background-blank {
-        @apply bg-white absolute bottom-0 h-2/6 w-full;
+        @apply bg-white absolute bottom-0 w-full;
         z-index: 3;
     }
 

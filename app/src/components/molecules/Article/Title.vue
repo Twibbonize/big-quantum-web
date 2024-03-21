@@ -47,7 +47,7 @@ const formattedReadtime = computed(() => {
     @apply flex flex-col;
 
     .title {
-        @apply text-3xl lg:text-5xl font-bold text-black mt-5;
+        @apply text-3xl sm:text-[40px] lg:text-5xl font-bold text-black mt-5;
         letter-spacing: -0.96px;
     }
 
