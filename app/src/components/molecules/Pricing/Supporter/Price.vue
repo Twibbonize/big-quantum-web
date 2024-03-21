@@ -55,10 +55,12 @@ const supporterFeatures = [
                     :key="`${title}-feature-${i}`"
                     class="flex items-center mt-5"
                 >
-                    <div class="icon-container">
-                        <i class="ri-check-line"></i>
+                    <div>
+                        <div class="icon-container">
+                            <i class="ri-check-line"></i>
+                        </div>
                     </div>
-                    <p>{{ text }}</p>
+                    <p class="text-base">{{ text }}</p>
                 </div>
             </div>
             <div class="price">
@@ -93,10 +95,10 @@ const supporterFeatures = [
 
 <style lang="scss">
 .pricing-supporter-price {
-    @apply flex flex-col max-w-[1100px] w-full mx-auto my-24 relative overflow-hidden;
+    @apply flex flex-col max-w-[1100px] w-full mx-auto my-24 relative overflow-hidden px-5 sm:px-14 lg:px-0;
 
     .pattern {
-        @apply w-full absolute top-0 left-0 z-[2];
+        @apply h-full w-auto lg:h-auto lg:w-full absolute top-0 left-0 z-[2];
     }
 
     .overlay {
@@ -106,33 +108,31 @@ const supporterFeatures = [
     }
 
     .shape-blob {
-        @apply absolute opacity-70 z-0 top-[10%];
+        @apply absolute z-[1] lg:opacity-70 top-1/2 -left-1/4 sm:left-1/4 sm:top-[10%] h-[300px] w-[400px] sm:h-[450px] sm:w-[500px] lg:h-[900px] lg:w-[1000px];
         background: #46C3BD;
         filter: blur(77.16836547851562px);
-        height: 900px;
-        width: 1000px;
         border-radius: 50% 40% 30% 40%;
         animation:
             transform 18s ease-in-out infinite both alternate,
             movementOne 12s ease-in-out infinite both;
-        left: 25%;
 
         &.two {
+            @apply z-0 opacity-100;
             background: #F1FFFE;
             top: 0;
         }
     }
 
     .title {
-        @apply text-5xl font-bold text-center;
+        @apply text-3xl sm:text-[40px] lg:text-5xl font-bold text-center;
     }
 
     .description {
-        @apply text-2xl leading-tight text-gray-500 text-center mt-5;
+        @apply text-base lg:text-2xl leading-tight text-gray-500 text-center mt-5;
     }
 
     .bento {
-        @apply p-20 bg-white rounded-[32px] flex justify-between relative overflow-hidden mt-20;
+        @apply p-10 pb-32 sm:px-10 sm:py-14 lg:p-20 bg-white rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
         border-top: 2px solid rgba(255, 255, 255, 0.40);
         border-bottom: 2px solid rgba(255, 255, 255, 0.40);
 
@@ -140,17 +140,17 @@ const supporterFeatures = [
             @apply z-10;
 
             .premium-title {
-                @apply h-9 mx-auto;
+                @apply h-6 lg:h-9 mx-auto;
             }
             .supporter-title {
-                @apply h-32 mx-auto;
+                @apply w-full lg:w-auto lg:h-32 mx-auto;
             }
             .icon-container {
-                @apply w-8 h-8 rounded-2xl flex justify-center items-center mr-2;
+                @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2;
                 background: rgba(27, 27, 27, 0.10);
 
                 i {
-                    @apply text-xl;
+                    @apply text-base lg:text-xl;
                 }
             }
         }

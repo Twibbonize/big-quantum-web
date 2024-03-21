@@ -21,10 +21,10 @@ const removeWatermarkLists = [
         <div class="shape-blob one"></div>
         <div class="shape-blob two"></div>
         <div class="remove-watermark-title">
-            <div class="flex items-center">
+            <div class="flex items-center gap-1">
                 <h2 class="remove-watermark-title-text">Remove</h2>
                 <img
-                    class="remove-watermark-title-logo"
+                    class="remove-watermark-logo"
                     src="/assets/img/campaigns/watermark.png"
                 />
             </div>
@@ -45,14 +45,14 @@ const removeWatermarkLists = [
 
 <style lang="scss" scoped>
 .remove-watermark {
-    @apply rounded-3xl pt-16 pb-12 mx-14 mt-[120px] flex flex-col items-center relative overflow-hidden aspect-video;
+    @apply lg:rounded-3xl py-14 lg:pt-16 lg:pb-12 sm:px-14 lg:mx-14 mt-[100px] lg:mt-[120px] flex flex-col items-center relative overflow-hidden;
     background: linear-gradient(162deg, #EFF7F7 7.87%, #CFECEB 87.63%);
 
     .remove-watermark-container {
-        @apply max-w-[1100px] w-full mt-11 grid grid-cols-3 gap-6 z-10;
+        @apply max-w-[1100px] w-full mt-11 grid grid-cols-1 sm:grid-cols-3 gap-6 z-10 px-5 sm:px-0;
 
         .card {
-            @apply bg-white p-10 rounded-3xl flex flex-col gap-4;
+            @apply bg-white p-5 pb-10 lg:p-10 rounded-3xl flex flex-col gap-4;
             box-shadow: 0px 12px 24px 0px rgba(27, 82, 78, 0.04);
 
             img {
@@ -60,23 +60,27 @@ const removeWatermarkLists = [
             }
 
             p {
-                @apply text-center;
+                @apply text-sm lg:text-base text-center;
             }
         }
     }
 
     .remove-watermark-title {
-        @apply text-[54px] leading-tight z-10;
+        @apply flex flex-col items-center;
+    }
+
+    .remove-watermark-title-text {
+        @apply text-[32px] lg:text-[54px] text-center leading-tight z-10;
     }
 
     .remove-watermark-logo {
-        @apply h-[54px];
+        @apply h-[32px] lg:h-[54px];
         filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.30));
         backdrop-filter: blur(2.0569987297058105px);
     }
 
     .overlay {
-        @apply absolute h-[1200px] w-[1260px] bottom-0 right-0 rotate-45 opacity-50;
+        @apply absolute h-[300px] w-[350px] lg:h-[1200px] lg:w-[1260px] bottom-0 right-0 rotate-45 opacity-50;
         filter: blur(29.675495147705078px) hue-rotate(40deg);
         z-index: 1;
     }
@@ -84,7 +88,7 @@ const removeWatermarkLists = [
     .shape-blob {
         @apply absolute opacity-70 z-0;
         background: #46C3BD;
-        filter: blur(77.16836547851562px);
+        filter: blur(77px);
         height: 900px;
         width: 1000px;
         border-radius: 50% 40% 30% 40%;
@@ -103,11 +107,11 @@ const removeWatermarkLists = [
 }
 
 .remove-watermark-link {
-    @apply rounded-3xl py-6 px-8 mt-12 z-10;
+    @apply rounded-3xl py-3 lg:py-6 px-5 lg:px-8 mt-10 lg:mt-12 z-10 m-5 sm:mx-0;
     background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
 
     p {
-        @apply text-white text-xl;
+        @apply text-white text-center text-sm lg:text-xl;
     }
 
     a {
