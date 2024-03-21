@@ -1,5 +1,5 @@
 <script setup>
-import { computed, markRaw, onMounted, ref, watch, shallowRef } from 'vue';
+import { computed, markRaw, onMounted, ref, watch, shallowRef, onBeforeUnmount } from 'vue';
 import {
     useResizeObserver,
     useBreakpoints,
@@ -8,13 +8,13 @@ import {
     useElementSize,
     useFileDialog,
     useObjectUrl,
-    useElementVisibility
+    useElementVisibility,
+    useDebounceFn,
+computedWithControl
 } from '@vueuse/core';
 import {
     RadioGroup,
     RadioGroupOption,
-    TransitionRoot,
-    TransitionChild,
     Dialog,
     DialogPanel,
     DialogTitle
@@ -22,6 +22,7 @@ import {
 import Editor from '@/libs/editor';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
+import RangeSlider from '@/components/molecules/ThumbnailModal/RangeSlider.vue';
 import CampaignCardPreview from '@/components/molecules/CampaignCardPreview.vue';
 import { useModal } from '@/composables/modal';
 
@@ -59,7 +60,7 @@ watch(sm, (newValue) => {
     update({ position: newValue ? 'bottom' : 'center' });
 });
 
-// canvas
+// cropper canvas
 const cropperBody = ref(null);
 const cropperIsVisible = useElementVisibility(cropperBody);
 const canvasInner = ref(null);
@@ -67,15 +68,102 @@ const canvasEl = ref(null);
 const editor = ref(null);
 const thumbnailObjectUrl = ref(null);
 
+const minScale = ref({ scaleX: 1, scaleY: 1 });
+const zoom = ref(1);
+const rotation = ref(0);
+
+const onMouseWheel = (opt) => {
+    const e = opt.e;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { handler } = editor.value;
+    const photo = handler.findByName('photo');
+
+    const { scaleX, scaleY } = photo.getObjectScaling();
+
+    if (photo) {
+        const delta = -e.deltaY;
+        const scalingFactor = 0.003; // Adjust this value to control the scaling sensitivity
+        
+        const newScaleX = scaleX + delta * scalingFactor;
+        const newScaleY = scaleY + delta * scalingFactor;
+
+        const minSc = 1;
+        const maxSc = 5;
+
+        const newScale = Math.min(Math.max(newScaleX, minSc), maxSc)
+        modify('scale', newScale, photo)
+    }
+};
+
+const modify = (changedKey, changedValue, target = null) => {
+    const { handler } = editor.value;
+
+    const targetObj = (target && handler.find(target)) || handler.canvas.getActiveObject();
+
+    if (targetObj.name !== 'photo') {
+        return;
+    }
+
+    if (changedKey === 'rotate') {
+        handler.setObject({ rotate: changedValue }, targetObj);
+        return;
+    }
+
+    if (changedKey === 'scale') {
+        handler.setObject({ scaleX: parseFloat(changedValue), scaleY: parseFloat(changedValue) }, targetObj);
+        return;
+    }
+
+    handler.set(changedKey, changedValue, targetObj);
+    targetObj.value[changedKey] = changedValue;
+};
+
+
+watch(zoom, (newValue) => {
+    const { handler } = editor.value;
+    const photoObj = handler.findByName('photo');
+
+    // const currentScale =
+    // let { scaleX, scaleY } = minScale.value;
+
+    // scaleX = scaleX * newValue;
+    // scaleY = scaleY * newValue;
+
+    modify('scale', newValue, photoObj);
+});
+
+
+watch(rotation, (newValue) => {
+    const { handler } = editor.value;
+    const photoObj = handler.findByName('photo');
+
+    modify('rotate', newValue, photoObj);
+});
+
 const canvasListeners = {
     onAdd: async () => {
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
     },
-    onModified: async () => {
+    onModified: useDebounceFn(async (target) => {
         const { handler } = editor.value;
+        const { propertiesToInclude } = handler;
+        const properties = target.toObject(propertiesToInclude);
+        const { name, angle } = properties;
+
+        const { scaleX } = target.getObjectScaling();
+
+        if (name === 'photo') {
+            zoom.value = scaleX;
+            rotation.value = angle;
+            return;
+        }
+
         thumbnailObjectUrl.value = await handler.export();
-    },
+    }, 300),
     onTransaction: async () => {
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
@@ -136,7 +224,7 @@ const insertPhoto = async (src) => {
 
     const createdObj = await handler.add(obj, true);
     handler.moveToIndex(createdObj, 1, false);
-    handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
+    minScale.value = handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
 
     return createdObj;
 };
@@ -146,9 +234,6 @@ useResizeObserver(canvasInner, (entries) => {
     const { width, height } = innerEl.contentRect;
     editor.value.handler.eventHandler.resize(width, height);
     editor.value.handler.zoomHandler.zoomToFit();
-
-    // console.log(editor.value.handler);
-    // console.log(editor.value.handler, width, height)
 });
 
 // photo selector
@@ -214,7 +299,7 @@ watch(adjustModal, (newValue) => {
         handler.transactionHandler.save('checkpoint');
         handler.transactionHandler.deactivate();
         return;
-    } 
+    }
 
     handler.transactionHandler.activate();
 });
@@ -249,6 +334,11 @@ onMounted(async () => {
         })
     );
 
+    const { canvas } = editor.value.handler;
+    canvas.on({
+        'mouse:wheel': onMouseWheel
+    });
+
     const photoSrc = photos.value[photoIdx.value];
     await insertPhoto(photoSrc);
     await insertFrame();
@@ -258,45 +348,50 @@ onMounted(async () => {
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
         <Teleport to="body">
-            <Dialog
-                :open="adjustModal"
-                as="div"
-                @close="adjustModal = false"
-                class="relative z-[9999]"
-                :unmount="false"
-            >
-                <Transition
-                    as="template"
-                    enter="duration-300 ease-out"
-                    enter-from="opacity-0"
-                    enter-to="opacity-100"
-                    leave="duration-200 ease-in"
-                    leave-from="opacity-100"
-                    leave-to="opacity-0"
-                >
+            <Dialog :open="adjustModal" as="div" @close="adjustModal = false" class="relative z-[9999]" :unmount="false">
+                <Transition as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
+                    leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
                     <div class="fixed inset-0 bg-black/90" />
                 </Transition>
 
                 <div class="fixed inset-0 overflow-y-auto">
-                    <div class="flex min-h-full items-center justify-center p-4 text-center">
-                        <Transition
-                            enter="duration-300 ease-out"
-                            enter-from="opacity-0 scale-95"
-                            enter-to="opacity-100 scale-100"
-                            leave="duration-200 ease-in"
-                            leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95"
-                        >
+                    <div class="flex min-h-full items-center justify-center p-2 md:p-4 text-center">
+                        <Transition enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
+                            enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
+                            leave-to="opacity-0 scale-95">
                             <DialogPanel class="cropper">
                                 <div class="cropper__header">
                                     <DialogTitle as="h3" class="text-lg font-semibold leading-6 text-gray-900">
                                         Adjust Thumbnail
                                     </DialogTitle>
+
+                                    <QButton circle variant="subtle" size="lg">
+                                        <i class="ri-close-line ri-2x font-normal"></i>
+                                    </QButton>
                                 </div>
-                                <div ref="cropperBody" class="cropper__body"></div>
+                                <div ref="cropperBody" class="cropper__body">
+                                    <div class="cropper__canvas"></div>
+                                    <div class="cropper__controls space-x-5">
+                                        <div class="space-y-3 flex-grow">
+                                            <label for="zoom" class="font-semibold">Zoom</label>
+                                            <RangeSlider v-model="zoom" :min="1" :max="5" :step="0.1" />
+                                        </div>
+
+                                        <div class="space-y-3 flex-grow hidden md:block">
+                                            <label for="rotate" class="font-semibold">Rotate</label>
+                                            <RangeSlider v-model="rotation" :min="-180" :max="180" :step="1" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="cropper__footer">
-                                    <QButton variant="secondary" size="sm" @click="discardAdjustChanges">Cancel</QButton>
-                                    <QButton variant="primary" size="sm" @click="saveAdjustChanges">Done</QButton>
+                                    <QButton variant="secondary" size="sm" @click="discardAdjustChanges">
+                                        <span class="px-2 py-1">Cancel</span>
+                                    </QButton>
+                                    <QButton variant="primary" size="sm" @click="saveAdjustChanges">
+                                        <span class="px-2 py-1">
+                                            Done
+                                        </span>
+                                    </QButton>
                                 </div>
                             </DialogPanel>
                         </Transition>
@@ -305,7 +400,7 @@ onMounted(async () => {
             </Dialog>
         </Teleport>
 
-        <Teleport to=".cropper__body" :disabled="!cropperIsVisible">
+        <Teleport to=".cropper__canvas" :disabled="!cropperIsVisible">
             <div class="cvs-wrapper">
                 <div ref="canvasInner" class="cvs-inner">
                     <canvas ref="canvasEl" id="canvas"></canvas>
@@ -314,13 +409,8 @@ onMounted(async () => {
         </Teleport>
 
         <div class="preview-wrapper">
-            <CampaignCardPreview
-                v-if="thumbnailObjectUrl"
-                title="Hanoi Art Book Fair 2025"
-                :creator="creator"
-                :thumbnail="thumbnailObjectUrl"
-                link="twibbo.nz/hanoi-art-2025"
-            />
+            <CampaignCardPreview v-if="thumbnailObjectUrl" title="Hanoi Art Book Fair 2025" :creator="creator"
+                :thumbnail="thumbnailObjectUrl" link="twibbo.nz/hanoi-art-2025" />
         </div>
 
         <div class="thumbnail-modal__body">
@@ -341,55 +431,29 @@ onMounted(async () => {
 
                 <RadioGroup v-model="photoIdx">
                     <div class="photo-selector pb-2">
-                        <RadioGroupOption
-                            as="template"
-                            v-for="(photo, i) in photos"
-                            :key="i"
-                            :value="i"
-                            v-slot="{ checked, active }"
-                        >
-                            <div
-                                :class="[
-                                    'photo-selector__item',
-                                    (checked || active) && 'photo-selector__item--checked'
-                                ]"
-                            >
-                                <img
-                                    :src="photo"
-                                    :alt="`photo ${i}`"
-                                    class="photo-selector__item-img"
-                                />
+                        <RadioGroupOption as="template" v-for="(photo, i) in photos" :key="i" :value="i"
+                            v-slot="{ checked, active }">
+                            <div :class="[
+                                'photo-selector__item',
+                                (checked || active) && 'photo-selector__item--checked'
+                            ]">
+                                <img :src="photo" :alt="`photo ${i}`" class="photo-selector__item-img" />
                             </div>
                         </RadioGroupOption>
 
-                        <RadioGroupOption
-                            v-if="uploadedDataURL"
-                            as="template"
-                            :value="3"
-                            v-slot="{ checked }"
-                        >
-                            <div
-                                :class="[
-                                    'photo-selector__item',
-                                    checked && 'photo-selector__item--checked'
-                                ]"
-                            >
+                        <RadioGroupOption v-if="uploadedDataURL" as="template" :value="3" v-slot="{ checked }">
+                            <div :class="[
+                                'photo-selector__item',
+                                checked && 'photo-selector__item--checked'
+                            ]">
                                 <button class="photo-selector__item-remove" @click="reset">
                                     <span class="ri-delete-bin-line"></span>
                                 </button>
-                                <img
-                                    :src="uploadedDataURL"
-                                    alt="uploaded photo"
-                                    class="photo-selector__item-img"
-                                />
+                                <img :src="uploadedDataURL" alt="uploaded photo" class="photo-selector__item-img" />
                             </div>
                         </RadioGroupOption>
 
-                        <button
-                            v-if="!uploadedDataURL"
-                            class="photo-selector__upload"
-                            @click="open"
-                        >
+                        <button v-if="!uploadedDataURL" class="photo-selector__upload" @click="open">
                             <div class="photo-selector__upload-inner">
                                 <i class="ri-upload-line"></i>
                                 <span class="text-xs font-semibold">Upload</span>
@@ -423,14 +487,23 @@ onMounted(async () => {
 }
 
 .cropper {
-    @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all;
+    @apply w-full transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all;
+    max-width: 744px;
 
     .cropper__header {
-        @apply flex items-center justify-between p-6;
+        @apply flex items-center justify-between px-6 py-4;
     }
 
     .cropper__body {
-        @apply bg-black flex flex-col items-center justify-center;
+        @apply flex flex-col items-center justify-center;
+
+        .cropper__canvas {
+            @apply w-full;
+        }
+
+        .cropper__controls {
+            @apply flex items-center px-6 py-4 w-full;
+        }
 
         .cvs-wrapper {
             visibility: visible;
@@ -442,7 +515,7 @@ onMounted(async () => {
     }
 
     .cropper__footer {
-        @apply flex items-center justify-between p-6;
+        @apply flex items-center justify-between px-6 py-4 border-t border-light;
     }
 }
 
@@ -450,10 +523,9 @@ onMounted(async () => {
 
 .cvs-wrapper {
     // display: none;
+    @apply bg-black w-full h-full;
     visibility: hidden;
     pointer-events: none;
-    max-height: 300px;
-    max-width: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -464,8 +536,8 @@ onMounted(async () => {
 
 .cvs-inner {
     aspect-ratio: 1/1;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 390px;
+    max-height: 390px;
     position: relative;
     z-index: 0;
     overflow: hidden;

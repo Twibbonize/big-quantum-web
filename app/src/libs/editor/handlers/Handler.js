@@ -286,10 +286,11 @@ export default class Handler {
 
         const { onModified } = this;
         
-
         if (onModified) {
             onModified(activeObject);
         }
+
+        return activeObject.getObjectScaling();
     };
 
     saveCanvasImage(
@@ -331,7 +332,7 @@ export default class Handler {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
-            
+
             const currentVPT = this.canvas.viewportTransform;
 
             const center = this.canvas.getCenter();

@@ -1,12 +1,6 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch, toRefs } from 'vue';
-import {
-    useResizeObserver,
-    breakpointsTailwind,
-    useBreakpoints,
-    useElementSize,
-    useScroll
-} from '@vueuse/core';
+import { useResizeObserver, breakpointsTailwind, useBreakpoints, useElementSize, useScroll } from '@vueuse/core';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
@@ -1196,65 +1190,6 @@ onBeforeUnmount(() => {
 
         &--checked {
             @apply border-main bg-gray-200;
-        }
-    }
-}
-
-.twibbon-tab {
-    @apply flex items-center justify-center space-x-1 py-4 font-medium text-sm text-content flex-grow flex-shrink-0 w-0 border-b border-stroke transition-all duration-200;
-    height: 48px;
-
-    &.twibbon-tab--selected {
-        @apply text-black border-black;
-    }
-}
-
-.rotate-slider {
-    @apply flex items-center space-x-4 p-3 bg-gray-150 rounded-xl relative;
-
-    @include before {
-        width: 6px;
-        height: 10px;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(22, 218, 193, 0.2);
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-    }
-
-    @include after {
-        width: 6px;
-        height: 10px;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(22, 218, 193, 0.2);
-        border-top-right-radius: 8px;
-        border-top-left-radius: 8px;
-    }
-
-    .rotate-slider__input {
-        @apply flex-grow;
-        -webkit-appearance: none;
-        height: 8px;
-        border-radius: 100px;
-        background: rgba(22, 218, 193, 0.2);
-
-        &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 6px;
-            height: 8px;
-            background: #16dac1;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        &::-webkit-slider-runnable-track {
-            height: 8px;
-            border-radius: 100px;
-            background: rgba(22, 218, 193, 0.2);
         }
     }
 }
