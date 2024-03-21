@@ -144,11 +144,9 @@ watch(rotation, (newValue) => {
 });
 
 const canvasListeners = {
-    onAdd: async () => {
-        const { handler } = editor.value;
-        thumbnailObjectUrl.value = await handler.export();
-    },
     onModified: useDebounceFn(async (target) => {
+        console.log('on modified')
+
         const { handler } = editor.value;
         const { propertiesToInclude } = handler;
         const properties = target.toObject(propertiesToInclude);
@@ -159,12 +157,13 @@ const canvasListeners = {
         if (name === 'photo') {
             zoom.value = scaleX;
             rotation.value = angle;
-            return;
         }
 
         thumbnailObjectUrl.value = await handler.export();
     }, 300),
     onTransaction: async () => {
+        console.log('on transaction')
+
         const { handler } = editor.value;
         thumbnailObjectUrl.value = await handler.export();
     }
@@ -190,7 +189,6 @@ const insertFrame = async () => {
     };
 
     const createdObj = await handler.add(obj, true);
-
     handler.moveToIndex(createdObj, 2, false);
     handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
     handler.canvas.requestRenderAll();
@@ -225,7 +223,6 @@ const insertPhoto = async (src) => {
     const createdObj = await handler.add(obj, true);
     handler.moveToIndex(createdObj, 1, false);
     minScale.value = handler.scaleTo('Width', handler.canvas.getWidth(), createdObj);
-
     return createdObj;
 };
 
@@ -280,7 +277,6 @@ const adjustModal = ref(false);
 
 const saveAdjustChanges = () => {
     const { handler } = editor.value;
-
     handler.transactionHandler.save('checkpoint');
     adjustModal.value = false;
 };
@@ -348,7 +344,7 @@ onMounted(async () => {
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
         <Teleport to="body">
-            <Dialog :open="adjustModal" as="div" @close="adjustModal = false" class="relative z-[9999]" :unmount="false">
+            <Dialog :open="adjustModal" as="div" @close="discardAdjustChanges" class="relative z-[9999]" :unmount="false">
                 <Transition as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
                     leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
                     <div class="fixed inset-0 bg-black/90" />
@@ -361,12 +357,12 @@ onMounted(async () => {
                             leave-to="opacity-0 scale-95">
                             <DialogPanel class="cropper">
                                 <div class="cropper__header">
-                                    <DialogTitle as="h3" class="text-lg font-semibold leading-6 text-gray-900">
+                                    <DialogTitle as="h3" class="text-base md:text-lg font-semibold leading-6 text-gray-900">
                                         Adjust Thumbnail
                                     </DialogTitle>
 
-                                    <QButton circle variant="subtle" size="lg">
-                                        <i class="ri-close-line ri-2x font-normal"></i>
+                                    <QButton variant="subtle" circle size="sm">
+                                        <i class="ri ri-close-line ri-lg"></i>
                                     </QButton>
                                 </div>
                                 <div ref="cropperBody" class="cropper__body">
@@ -385,10 +381,10 @@ onMounted(async () => {
                                 </div>
                                 <div class="cropper__footer">
                                     <QButton variant="secondary" size="sm" @click="discardAdjustChanges">
-                                        <span class="px-2 py-1">Cancel</span>
+                                        <span class="px-2">Cancel</span>
                                     </QButton>
                                     <QButton variant="primary" size="sm" @click="saveAdjustChanges">
-                                        <span class="px-2 py-1">
+                                        <span class="px-2">
                                             Done
                                         </span>
                                     </QButton>
@@ -491,7 +487,7 @@ onMounted(async () => {
     max-width: 744px;
 
     .cropper__header {
-        @apply flex items-center justify-between px-6 py-4;
+        @apply flex items-center justify-between px-4 md:px-6 py-4;
     }
 
     .cropper__body {
@@ -502,7 +498,7 @@ onMounted(async () => {
         }
 
         .cropper__controls {
-            @apply flex items-center px-6 py-4 w-full;
+            @apply flex items-center px-4 md:px-6 py-4 w-full;
         }
 
         .cvs-wrapper {
@@ -515,7 +511,7 @@ onMounted(async () => {
     }
 
     .cropper__footer {
-        @apply flex items-center justify-between px-6 py-4 border-t border-light;
+        @apply flex items-center justify-between px-4 md:px-6 py-4 border-t border-light;
     }
 }
 
@@ -523,7 +519,7 @@ onMounted(async () => {
 
 .cvs-wrapper {
     // display: none;
-    @apply bg-black w-full h-full;
+    @apply bg-black w-full h-full px-4 md:px-6;
     visibility: hidden;
     pointer-events: none;
     display: flex;
