@@ -45,7 +45,7 @@ const removeWatermarkLists = [
 
 <style lang="scss" scoped>
 .remove-watermark {
-    @apply rounded-3xl pt-16 pb-12 mx-14 mt-[120px] flex flex-col items-center relative overflow-hidden aspect-video;
+    @apply rounded-3xl pt-16 pb-12 mx-14 mt-[120px] flex flex-col items-center relative overflow-hidden;
     background: linear-gradient(162deg, #EFF7F7 7.87%, #CFECEB 87.63%);
 
     .remove-watermark-container {
