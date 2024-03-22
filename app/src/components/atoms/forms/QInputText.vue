@@ -139,7 +139,7 @@ function updateValue(e) {
     }
 
     &__input {
-        @apply p-4 text-sm block flex-grow bg-transparent;
+        @apply p-4 text-sm block flex-grow bg-transparent w-0 overflow-auto;
 
         &:focus {
             @apply outline-none;

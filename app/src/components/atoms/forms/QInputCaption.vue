@@ -102,7 +102,7 @@ watch(
 
 <style lang="scss">
 .tiptap-editor {
-    @apply text-sm;
+    @apply text-sm leading-normal;
 
     &:focus-visible {
         border: none;
@@ -116,8 +116,8 @@ watch(
 }
 
 .tiptap-editor code {
-    padding: 3px 6px;
+    padding: 1px 6px;
     border-radius: 4px;
-    @apply border border-stroke;
+    @apply border border-stroke inline-block;
 }
 </style>

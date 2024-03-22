@@ -156,6 +156,10 @@ const thumbnail = computed(() => {
 
     .share-modal__close {
         @apply absolute right-5 top-5;
+
+        @include xs {
+            @apply right-3 top-2;
+        }
     }
 
     .share-modal__body {

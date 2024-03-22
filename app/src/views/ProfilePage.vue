@@ -304,7 +304,7 @@ onMounted(() => {
                         />
                     </div>
                     <div class="profile__detail-wrapper">
-                        <div class="container px-5 xl:px-0">
+                        <div class="container px-4 xl:px-0">
                             <div
                                 class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
                             >
@@ -489,7 +489,9 @@ onMounted(() => {
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
+                                <div
+                                    class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-6 md:mt-10"
+                                >
                                     <campaign-card
                                         v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
@@ -631,7 +633,7 @@ onMounted(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 xl:px-0;
+        @apply container px-4 xl:px-0;
 
         .profile__avatar__img {
             height: 72px;
