@@ -1,6 +1,7 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useToast } from 'vue-toast-notification';
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import QCollectionThumbnail from '@/components/atoms/QCollectionThumbnail.vue';
@@ -18,8 +19,15 @@ const props = defineProps({
     }
 });
 
-const { close } = useModal();
+const { close, update } = useModal();
 const toast = useToast();
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smallerOrEqual('sm');
+
+watch(sm, (newValue) => {
+    update({ position: newValue ? 'bottom' : 'center' });
+});
 
 const onClickCopyURL = () => {
     const textToCopy = document.querySelector('.share-modal__copy-url');

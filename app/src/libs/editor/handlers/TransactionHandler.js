@@ -34,7 +34,8 @@ export default class TransactionHandler {
                 });
             }
 
-            const { objects, width, height } = canvasJSON || this.handler.canvas.toJSON(this.handler.propertiesToInclude);
+            const { objects, width, height } =
+                canvasJSON || this.handler.canvas.toJSON(this.handler.propertiesToInclude);
 
             this.state = {
                 width,
@@ -114,7 +115,6 @@ export default class TransactionHandler {
                             crossOrigin: 'anonymous'
                         });
                     }
-
 
                     const systemFonts = ['Rubik', 'Plus Jakarta Sans', 'Arial', 'Times New Roman'];
                     if (obj.type === 'textbox' && !systemFonts.includes(obj.fontFamily)) {

@@ -4,8 +4,10 @@ import {
     useIntersectionObserver,
     useElementSize,
     useBreakpoints,
-    breakpointsTailwind
+    breakpointsTailwind,
+    useVibrate
 } from '@vueuse/core';
+import { useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
 import {
     RadioGroup,
@@ -18,6 +20,8 @@ import {
 } from '@headlessui/vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
+import { useToast } from 'vue-toast-notification';
+import { confetti } from '@tsparticles/confetti';
 import LayoutBlank from '@/components/layouts/LayoutBlank.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
@@ -31,6 +35,7 @@ import CampaignMockupDesktop from '@/components/organisms/CampaignMockupDesktop.
 import CampaignBackgroundSelection from '@/components/molecules/CampaignBackgroundSelection.vue';
 import CreatorPremiumModal from '@/components/organisms/CreatorPremiumModal.vue';
 import CampaignThumbnailModal from '@/components/organisms/CampaignThumbnailModal.vue';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 import CaptionPreview from '@/components/organisms/CaptionPreview.vue';
 import { useModal } from '@/composables/modal';
 import { getTemplateList } from '@/apis';
@@ -178,11 +183,196 @@ const mockupStyles = computed(() => {
 });
 
 // publish
+const router = useRouter();
+const toast = useToast();
+const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] });
+const isLoading = ref(false);
+
+// for submit form and show share modal
+const openShareCampaign = (thumbnail) => {
+    const modalComponent = ShareModal;
+    const modalProps = {
+        link: `twibbo.nz/${campaignLink.value}`,
+        payload: { thumbnail },
+        type: 'campaign'
+    };
+
+    const config = {
+        position: sm.value ? 'bottom' : 'center',
+        draggable: false,
+        transparent: false,
+        premiumBanner: true,
+        onAfterClose: () => {
+            router.push({ name: 'campaign' });
+        }
+    };
+
+    openModal({ component: modalComponent, props: modalProps, config });
+};
+
+const handlePublish = (thumbnail) => {
+    isLoading.value = true;
+
+    setTimeout(() => {
+        isLoading.value = false;
+
+        if (isSupported) {
+            vibrate();
+        }
+
+        confetti('tsparticles', {
+            fullScreen: {
+                zIndex: 99999
+            },
+            zIndex: 99990,
+            emitters: [
+                {
+                    position: {
+                        x: 0,
+                        y: 30
+                    },
+                    rate: {
+                        quantity: 5,
+                        delay: 0.15
+                    },
+                    particles: {
+                        move: {
+                            direction: 'top-right',
+                            outModes: {
+                                top: 'none',
+                                left: 'none',
+                                default: 'destroy'
+                            }
+                        }
+                    }
+                },
+                {
+                    position: {
+                        x: 100,
+                        y: 30
+                    },
+                    rate: {
+                        quantity: 5,
+                        delay: 0.15
+                    },
+                    particles: {
+                        move: {
+                            direction: 'top-left',
+                            outModes: {
+                                top: 'none',
+                                right: 'none',
+                                default: 'destroy'
+                            }
+                        }
+                    }
+                }
+            ],
+            particles: {
+                color: {
+                    value: ['#ffffff', '#FF0000']
+                },
+                move: {
+                    decay: 0.05,
+                    direction: 'top',
+                    enable: true,
+                    gravity: {
+                        enable: true
+                    },
+                    outModes: {
+                        top: 'none',
+                        default: 'destroy'
+                    },
+                    speed: {
+                        min: 10,
+                        max: 50
+                    }
+                },
+                number: {
+                    value: 0
+                },
+                opacity: {
+                    value: 1
+                },
+                rotate: {
+                    value: {
+                        min: 0,
+                        max: 360
+                    },
+                    direction: 'random',
+                    animation: {
+                        enable: true,
+                        speed: 30
+                    }
+                },
+                tilt: {
+                    direction: 'random',
+                    enable: true,
+                    value: {
+                        min: 0,
+                        max: 360
+                    },
+                    animation: {
+                        enable: true,
+                        speed: 30
+                    }
+                },
+                size: {
+                    value: {
+                        min: 0,
+                        max: 2
+                    },
+                    animation: {
+                        enable: true,
+                        startValue: 'min',
+                        count: 1,
+                        speed: 16,
+                        sync: true
+                    }
+                },
+                roll: {
+                    darken: {
+                        enable: true,
+                        value: 25
+                    },
+                    enable: true,
+                    speed: {
+                        min: 5,
+                        max: 15
+                    }
+                },
+                wobble: {
+                    distance: 30,
+                    enable: true,
+                    speed: {
+                        min: -7,
+                        max: 7
+                    }
+                },
+                shape: {
+                    type: ['circle', 'square'],
+                    options: {}
+                }
+            }
+        });
+
+        openShareCampaign(thumbnail);
+
+        toast.open({
+            type: 'success',
+            message: 'Campaign Successfully Created',
+            position: 'top'
+        });
+    }, 2500);
+};
+
+// on click publish button in the page
 const onClickPublish = () => {
     const modalComponent = CampaignThumbnailModal;
     const modalProps = {
         creator,
-        frame: files.value[0]
+        handlePublish,
+        frame: files.value[0],
+        loading: isLoading
     };
     const config = {
         position: sm.value ? 'bottom' : 'center',
@@ -197,6 +387,8 @@ const onClickPublish = () => {
 
 <template>
     <LayoutBlank>
+        <div id="tsparticles"></div>
+
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmCancel" @close="showConfirmCancel = false">
                 <div class="confirm">
@@ -1008,6 +1200,10 @@ const onClickPublish = () => {
 </template>
 
 <style scoped lang="scss">
+#tsparticles {
+    position: relative;
+    z-index: 9999;
+}
 .create-campaign {
     height: 100dvh;
     position: relative;

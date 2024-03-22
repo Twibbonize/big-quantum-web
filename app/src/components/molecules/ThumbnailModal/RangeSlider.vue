@@ -3,10 +3,10 @@ import { ref, watch } from 'vue';
 
 const props = defineProps({
     step: {
-        type: Number,
+        type: Number
     },
     max: {
-        type: Number,
+        type: Number
     },
     min: {
         type: Number
@@ -66,7 +66,6 @@ watch(
         height: 16px;
         width: 16px;
     }
-    
 
     .range-slider__input {
         @apply flex-grow;
@@ -81,7 +80,7 @@ watch(
             height: 16px;
             border-radius: 100%;
             cursor: pointer;
-            border: 1px solid #16DAC1;
+            border: 1px solid #16dac1;
             @apply bg-white;
             background-clip: content-box;
             transform: translateY(-4px);
@@ -90,7 +89,7 @@ watch(
         &::-webkit-slider-runnable-track {
             height: 6px;
             border-radius: 2.5px;
-            background-color: #EAECF0;
+            background-color: #eaecf0;
         }
     }
 }

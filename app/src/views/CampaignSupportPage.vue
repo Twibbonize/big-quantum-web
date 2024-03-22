@@ -1,6 +1,12 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch, toRefs } from 'vue';
-import { useResizeObserver, breakpointsTailwind, useBreakpoints, useElementSize, useScroll } from '@vueuse/core';
+import {
+    useResizeObserver,
+    breakpointsTailwind,
+    useBreakpoints,
+    useElementSize,
+    useScroll
+} from '@vueuse/core';
 import { useMotionProperties, useSpring } from '@vueuse/motion';
 import { useDrag } from '@vueuse/gesture';
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
