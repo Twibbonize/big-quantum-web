@@ -423,20 +423,22 @@ const onClickPublish = () => {
 
         <VeeForm :validation-schema="validationSchema" v-slot="{ meta }" class="create-campaign">
             <div class="create-campaign__header">
-                <div class="px-5 xl:px-20">
-                    <div class="flex items-center justify-between py-4">
-                        <img src="/assets/img/logos/twibbonize-logo.svg" alt="Twibbonize" />
-                        <QButton
-                            variant="subtle"
-                            size="lg"
-                            circle
-                            @click="showConfirmCancel = true"
-                        >
-                            <span class="font-light flex items-center justify-center">
-                                <i class="ri-close-line ri-2x"></i>
-                            </span>
-                        </QButton>
-                    </div>
+                <div class="create-campaign__header-wrapper">
+                    <img
+                        class="create-campaign__logo"
+                        src="/assets/img/logos/twibbonize-logo.svg"
+                        alt="Twibbonize"
+                    />
+                    <QButton
+                        variant="subtle"
+                        :size="sm ? 'sm' : 'lg'"
+                        circle
+                        @click="showConfirmCancel = true"
+                    >
+                        <span class="font-light flex items-center justify-center">
+                            <i :class="['ri-close-line', sm ? 'ri-lg' : 'ri-2x']"></i>
+                        </span>
+                    </QButton>
                 </div>
             </div>
 
@@ -463,7 +465,7 @@ const onClickPublish = () => {
                                 </QButton>
                             </div>
                         </div>
-                        <div class="container px-5 xl:pl-20 xl:pr-10 pt-10 lg:pt-14 pb-10">
+                        <div class="left-section__wrapper">
                             <div class="dropzone">
                                 <input
                                     type="file"
@@ -492,9 +494,7 @@ const onClickPublish = () => {
                                                 class="w-14 h-14 md:w-16 md:h-16 mb-4 mx-auto"
                                                 alt="upload"
                                             />
-                                            <h3
-                                                class="text-base lg:text-lg font-bold mb-2 text-center"
-                                            >
+                                            <h3 class="dropzone__title">
                                                 Drag your own frame design here
                                             </h3>
                                             <ul class="flex flex-col items-center space-y-1">
@@ -517,11 +517,10 @@ const onClickPublish = () => {
                                             </ul>
                                         </label>
 
-                                        <div v-else class="flex items-center space-x-4 p-6">
-                                            <div v-for="file in files" class="dropzone__file">
-                                                <img :src="file" />
-                                            </div>
-
+                                        <div
+                                            v-else
+                                            class="flex items-center space-x-4 p-6 overflow-x-auto w-[99%]"
+                                        >
                                             <label for="frame_files" class="dropzone__file--add">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -538,6 +537,10 @@ const onClickPublish = () => {
 
                                                 <span class="font-medium mt-1">Upload</span>
                                             </label>
+
+                                            <div v-for="file in files" class="dropzone__file">
+                                                <img :src="file" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -622,7 +625,7 @@ const onClickPublish = () => {
                                                     >
                                                         <div
                                                             v-show="active"
-                                                            class="absolute top-0 mt-10 right-0 z-10 w-72 transform px-4 sm:px-0 lg:max-w-3xl"
+                                                            class="absolute top-0 mt-10 left-0 -translate-x-1/2 z-10 w-48 transform px-4 sm:px-0 lg:max-w-3xl"
                                                         >
                                                             <div
                                                                 class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 bg-white"
@@ -646,7 +649,7 @@ const onClickPublish = () => {
                                                                                     class="ri-empathize-line"
                                                                                 ></i>
                                                                                 <span
-                                                                                    class="font-semibold text-sm"
+                                                                                    class="tpl__more-category__name"
                                                                                     >Socials</span
                                                                                 >
                                                                             </RadioGroupLabel>
@@ -667,7 +670,7 @@ const onClickPublish = () => {
                                                                                     class="ri-bike-line"
                                                                                 ></i>
                                                                                 <span
-                                                                                    class="font-semibold text-sm"
+                                                                                    class="tpl__more-category__name"
                                                                                     >Sports</span
                                                                                 >
                                                                             </RadioGroupLabel>
@@ -688,7 +691,7 @@ const onClickPublish = () => {
                                                                                     class="ri-calendar-event-line"
                                                                                 ></i>
                                                                                 <span
-                                                                                    class="font-semibold text-sm"
+                                                                                    class="tpl__more-category__name"
                                                                                     >National
                                                                                     Day</span
                                                                                 >
@@ -710,7 +713,7 @@ const onClickPublish = () => {
                                                                                     class="ri-government-line"
                                                                                 ></i>
                                                                                 <span
-                                                                                    class="font-semibold text-sm"
+                                                                                    class="tpl__more-category__name"
                                                                                     >Goverment &
                                                                                     Politics</span
                                                                                 >
@@ -732,7 +735,7 @@ const onClickPublish = () => {
                                                                                     class="ri-bard-line"
                                                                                 ></i>
                                                                                 <span
-                                                                                    class="font-semibold text-sm"
+                                                                                    class="tpl__more-category__name"
                                                                                     >Celebrations</span
                                                                                 >
                                                                             </RadioGroupLabel>
@@ -810,7 +813,7 @@ const onClickPublish = () => {
                             </div>
                         </div>
 
-                        <div class="container px-5 xl:pr-20 xl:pl-10 pt-10 space-y-10">
+                        <div class="right-section__wrapper">
                             <div
                                 :class="[
                                     'card-box',
@@ -827,7 +830,7 @@ const onClickPublish = () => {
                                 <div class="card-box__body">
                                     <div class="space-y-6">
                                         <div class="space-y-3">
-                                            <label for="title" class="font-bold">
+                                            <label for="title" class="form-label">
                                                 Campaign Title
                                             </label>
 
@@ -840,7 +843,7 @@ const onClickPublish = () => {
                                         </div>
 
                                         <div class="space-y-3">
-                                            <label for="description" class="font-bold">
+                                            <label for="description" class="form-label">
                                                 Description
                                             </label>
 
@@ -854,7 +857,7 @@ const onClickPublish = () => {
                                         </div>
 
                                         <div class="space-y-3">
-                                            <label for="link" class="font-bold">
+                                            <label for="link" class="form-label">
                                                 Campaign Link
                                             </label>
 
@@ -869,7 +872,7 @@ const onClickPublish = () => {
                                         </div>
 
                                         <div class="space-y-3">
-                                            <label for="category" class="font-bold"
+                                            <label for="category" class="form-label"
                                                 >Campaign Category</label
                                             >
                                             <Field
@@ -1090,10 +1093,10 @@ const onClickPublish = () => {
                                         />
                                         <div class="space-y-4">
                                             <div class="space-y-1">
-                                                <label for="" class="font-bold"
+                                                <label for="" class="form-label"
                                                     >Set a Template</label
                                                 >
-                                                <p class="text-sm">
+                                                <p class="form-desc">
                                                     If others support your campaign without adding a
                                                     caption, this will be the caption.
                                                 </p>
@@ -1133,7 +1136,9 @@ const onClickPublish = () => {
                                         <div
                                             class="bg-turquoise p-4 rounded-2xl space-y-5 border border-light"
                                         >
-                                            <h4 class="text-lg font-bold">Select Background</h4>
+                                            <h4 class="text-base font-bold md:text-lg">
+                                                Select Background
+                                            </h4>
                                             <CampaignBackgroundSelection
                                                 v-model="campaignBackground"
                                                 @upgrade="onClickPremiumItem"
@@ -1171,25 +1176,33 @@ const onClickPublish = () => {
             </div>
 
             <div class="create-campaign__footer">
-                <div v-show="currentStep === STEPS.FRAMES" class="px-5 xl:px-20">
+                <div v-show="currentStep === STEPS.FRAMES" class="create-campaign__footer-wrapper">
                     <div class="flex items-center justify-between py-4">
-                        <QButton variant="secondary" @click="showConfirmCancel = true">
+                        <QButton variant="secondary" @click="showConfirmCancel = true" size="sm">
                             <span class="px-2">Cancel</span>
                         </QButton>
 
-                        <QButton :enabled="files.length > 0" @click="currentStep = STEPS.FORM">
+                        <QButton
+                            :enabled="files.length > 0"
+                            @click="currentStep = STEPS.FORM"
+                            size="sm"
+                        >
                             <span class="px-2">Next</span>
                         </QButton>
                     </div>
                 </div>
 
-                <div v-show="currentStep === STEPS.FORM" class="px-5 xl:px-20">
+                <div v-show="currentStep === STEPS.FORM" class="create-campaign__footer-wrapper">
                     <div class="flex items-center justify-between py-4">
-                        <QButton variant="secondary" @click="currentStep = STEPS.FRAMES">
+                        <QButton variant="secondary" @click="currentStep = STEPS.FRAMES" size="sm">
                             <span class="px-2">Back</span>
                         </QButton>
 
-                        <QButton :enabled="files.length > 0 && meta.valid" @click="onClickPublish">
+                        <QButton
+                            :enabled="files.length > 0 && meta.valid"
+                            @click="onClickPublish"
+                            size="sm"
+                        >
                             <span class="px-2">Publish</span>
                         </QButton>
                     </div>
@@ -1212,9 +1225,29 @@ const onClickPublish = () => {
         @apply border-b border-light fixed top-0 w-full bg-white z-50;
     }
 
+    .create-campaign__header-wrapper {
+        @apply px-5 xl:px-20 flex items-center justify-between py-4;
+
+        @include xs {
+            @apply px-4;
+        }
+    }
+
+    .create-campaign__logo {
+        height: 24px;
+
+        @include md_screen {
+            height: 32px;
+        }
+    }
+
     .create-campaign__main {
-        padding-top: 85px;
+        padding-top: 65px;
         @apply h-full;
+
+        @include md_screen {
+            padding-top: 85px;
+        }
     }
 
     .create-campaign__footer {
@@ -1222,6 +1255,14 @@ const onClickPublish = () => {
 
         @include xl_screen {
             display: none;
+        }
+
+        .create-campaign__footer-wrapper {
+            @apply px-5 xl:px-20;
+
+            @include xs {
+                @apply px-4;
+            }
         }
     }
 }
@@ -1251,6 +1292,14 @@ const onClickPublish = () => {
 
     .dropzone__empty-state {
         @apply p-10 flex flex-col items-center justify-center w-full h-full cursor-pointer;
+
+        .dropzone__title {
+            @apply text-base lg:text-lg font-bold mb-2 text-center;
+
+            @include xs {
+                @apply text-sm;
+            }
+        }
     }
 
     .dropzone__file {
@@ -1260,6 +1309,7 @@ const onClickPublish = () => {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
         @apply bg-gray-150 rounded-lg overflow-hidden;
 
         img {
@@ -1271,7 +1321,7 @@ const onClickPublish = () => {
     .dropzone__file--add {
         width: 80px;
         height: 80px;
-        @apply flex flex-col items-center justify-center transition-colors cursor-pointer;
+        @apply flex flex-col items-center justify-center transition-colors cursor-pointer flex-shrink-0;
         border: 1px dashed #d0d5dd;
         border-radius: 8px;
         font-size: 14px;
@@ -1285,12 +1335,28 @@ const onClickPublish = () => {
 .left-section {
     max-height: calc(100dvh - 84px);
     @apply h-full border-r border-stroke overflow-y-auto;
+
+    .left-section__wrapper {
+        @apply container px-5 xl:pl-20 xl:pr-10 pt-5 lg:pt-14 pb-10;
+
+        @include xs {
+            @apply px-4;
+        }
+    }
 }
 
 .right-section {
     max-height: calc(100dvh - 84px);
     padding-bottom: 80px;
     background-color: #edf8f8;
+
+    .right-section__wrapper {
+        @apply container px-5 xl:pr-20 xl:pl-10 pt-5 space-y-10;
+
+        @include xs {
+            @apply px-4;
+        }
+    }
 }
 
 .actions-bar {
@@ -1309,19 +1375,38 @@ const onClickPublish = () => {
 
     .card-box__header {
         @apply flex items-center p-6 border-b border-stroke;
+
+        @include xs {
+            @apply p-4;
+        }
     }
 
     .card-box__icon {
-        @apply h-10 w-10 flex items-center justify-center rounded-full mr-3;
+        @apply h-10 w-10 flex items-center justify-center rounded-full mr-3 flex-shrink-0;
         background-color: #edf8f8;
+
+        @include xs {
+            @apply h-8 w-8  mr-2;
+        }
     }
 
     .card-box__title {
-        @apply font-bold text-xl;
+        @apply font-bold text-xl w-0 flex-grow;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include xs {
+            @apply text-base;
+        }
     }
 
     .card-box__body {
         @apply p-6;
+
+        @include xs {
+            @apply p-4;
+        }
     }
 }
 
@@ -1348,16 +1433,28 @@ const onClickPublish = () => {
         .tpl__search__icon {
             @apply text-content text-lg h-full flex items-center justify-center;
             padding: 0px 8px 0px 14px;
+
+            @include xs {
+                @apply text-sm;
+            }
         }
 
         .tpl__search__input {
             @apply text-sm flex-grow h-full focus:outline-none;
             padding: 10px 14px 10px 0px;
+
+            @include xs {
+                @apply text-xs;
+            }
         }
     }
 
     .tpl__grid {
         @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+
+        @include xs {
+            @apply gap-4;
+        }
     }
 
     .tpl__item {
@@ -1375,7 +1472,7 @@ const onClickPublish = () => {
     }
 
     .tpl__category {
-        @apply flex items-center justify-center space-x-1 text-content rounded-full cursor-pointer transition-colors flex-grow relative;
+        @apply flex items-center justify-center text-content rounded-full cursor-pointer transition-colors flex-grow relative;
         padding: 6px 16px;
         flex: 1 1 0;
         width: 0;
@@ -1395,7 +1492,11 @@ const onClickPublish = () => {
 
         .tpl__category__name {
             color: currentColor;
-            @apply font-medium text-sm;
+            @apply font-medium text-sm ml-0 sm:ml-1;
+
+            @include xs {
+                font-size: 12px;
+            }
         }
     }
 
@@ -1404,6 +1505,14 @@ const onClickPublish = () => {
 
         &.tpl__more-category--checked {
             @apply bg-gray-150 text-black;
+        }
+
+        .tpl__more-category__name {
+            @apply font-semibold text-sm;
+
+            @include xs {
+                @apply text-xs;
+            }
         }
     }
 }
@@ -1414,7 +1523,8 @@ const onClickPublish = () => {
         @apply relative w-full rounded-xl flex items-center transition-all ease-in text-sm border border-stroke;
         background-color: #f6fafa;
         height: 52px;
-        min-width: 260px;
+        // min-width: 260px;
+        max-width: 100%;
 
         &.category__button--open {
             @apply bg-white outline outline-offset-2 outline-main-darker;
@@ -1454,6 +1564,22 @@ const onClickPublish = () => {
                 @apply bg-gray-100;
             }
         }
+    }
+}
+
+.form-label {
+    @apply font-bold;
+
+    @include xs {
+        @apply text-sm;
+    }
+}
+
+.form-desc {
+    @apply text-sm;
+
+    @include xs {
+        font-size: 13px;
     }
 }
 </style>

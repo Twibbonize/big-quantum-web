@@ -325,6 +325,9 @@ watch(
     &.modal--bottom .modal__wrapper {
         @apply justify-end px-0 md:px-0 lg:px-0 transition-transform;
         bottom: 0;
+    }
+
+    &.modal--bottom.modal--draggable {
         top: calc(56vw + 24px);
     }
 
@@ -415,14 +418,19 @@ watch(
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        @apply flex items-center p-6;
+        @apply flex px-5 py-4;
 
         @include md_screen {
-            @apply rounded-xl mt-6;
+            @apply rounded-xl mt-6 px-6 py-6;
         }
 
         .modal__premium-logo {
             max-height: 56px;
+            margin-top: 4px;
+
+            @include xs {
+                max-height: 48px;
+            }
 
             @include md_screen {
                 max-height: 36px;
@@ -437,11 +445,19 @@ watch(
             @apply text-white;
             font-size: 15px;
             line-height: 125%;
+
+            @include xs {
+                font-size: 13px;
+            }
         }
 
         .modal__premium-cta {
             @apply h-9 rounded-full text-white font-semibold flex items-center justify-center px-4 flex-shrink-0;
             background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%), #fff;
+
+            @include xs {
+                font-size: 12px;
+            }
         }
     }
 }

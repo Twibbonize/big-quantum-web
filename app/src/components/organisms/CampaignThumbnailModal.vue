@@ -450,7 +450,7 @@ onMounted(async () => {
         </div>
 
         <div class="thumbnail-modal__body">
-            <div class="px-10">
+            <div class="px-4 md:px-10">
                 <div class="flex justify-center mt-4">
                     <QButton
                         variant="secondary"
@@ -464,9 +464,9 @@ onMounted(async () => {
                         </div>
                     </QButton>
                 </div>
-                <div class="my-6">
+                <div class="my-4 sm:my-6">
                     <QSeparator alignment="center">
-                        <span class="tracking-widest"> SELECT COVER </span>
+                        <span class="select-cover tracking-widest"> SELECT COVER </span>
                     </QSeparator>
                 </div>
 
@@ -538,12 +538,13 @@ onMounted(async () => {
                         :enabled="!loading"
                         :loading="loading"
                         @click="() => handlePublish(thumbnailObjectUrl)"
+                        size="md"
                     >
-                        <span class="h-5 flex items-center"> Publish Now </span>
+                        <span class="flex items-center"> Publish Now </span>
                     </QButton>
                     <QButton variant="subtle" block @click="close" :enabled="!loading"
-                        >Go Back</QButton
-                    >
+                        >Go Back
+                    </QButton>
                 </div>
             </div>
         </div>
@@ -558,6 +559,10 @@ onMounted(async () => {
     .thumbnail-modal__body {
         padding-top: 165px;
         @apply bg-white shadow-card w-full rounded-none;
+
+        @include xs {
+            padding-top: 150px;
+        }
 
         @include md_screen {
             @apply rounded-xl;
@@ -630,16 +635,21 @@ onMounted(async () => {
 // photo selector
 
 .photo-selector {
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between space-x-1;
 
     .photo-selector__item {
-        @apply bg-white transition-colors;
+        @apply bg-white transition-colors aspect-square;
         height: 80px;
         width: 80px;
         border: 2px solid transparent;
         border-radius: 8px;
         padding: 4px;
         position: relative;
+
+        @include xs {
+            width: auto;
+            height: auto;
+        }
 
         &.photo-selector__item--checked {
             @apply border-black;
@@ -672,8 +682,14 @@ onMounted(async () => {
     .photo-selector__upload {
         height: 80px;
         width: 80px;
-        padding: 4px;
-        border: 2px solid transparent;
+        // border: 2px solid transparent;
+        // padding: 4px;x/
+        @apply aspect-square;
+
+        @include xs {
+            width: 100%;
+            height: 100%;
+        }
 
         .photo-selector__upload-inner {
             display: flex;
@@ -691,6 +707,12 @@ onMounted(async () => {
         &[disabled] {
             @apply opacity-40 pointer-events-none;
         }
+    }
+}
+
+.select-cover {
+    @include xs {
+        @apply text-xs;
     }
 }
 </style>

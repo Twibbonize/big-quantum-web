@@ -125,6 +125,12 @@ watch(value, updateValue);
         border-radius: 100%;
         @apply flex items-center justify-center border border-main flex-shrink-0;
         margin-right: 12px;
+
+        @include xs {
+            height: 16px;
+            width: 16px;
+            margin-top: 4px;
+        }
     }
 
     .visibility__option.visibility__option--checked .visibility__indicator {
@@ -133,6 +139,11 @@ watch(value, updateValue);
             width: 18px;
             border-radius: 100%;
             @apply bg-main;
+
+            @include xs {
+                height: 10px;
+                width: 10px;
+            }
         }
     }
 
@@ -141,19 +152,23 @@ watch(value, updateValue);
     }
 
     .visibility__title {
-        margin-right: 12px;
+        margin-right: 8px;
     }
 
     .visibility__desc {
         color: #667085;
         margin-top: 8px;
+
+        @include xs {
+            @apply text-sm;
+        }
     }
 
     .visibility__badge {
-        @apply rounded-full text-white flex items-center justify-center;
-        width: 70px;
+        @apply rounded-full text-white flex items-center justify-center px-2;
+        width: fit-content;
         height: 24px;
-        font-size: 12px;
+        font-size: 0.6rem;
         font-weight: 500;
         background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%), #fff;
     }

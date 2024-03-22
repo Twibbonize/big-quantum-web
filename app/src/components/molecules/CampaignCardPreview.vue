@@ -65,6 +65,10 @@ defineProps({
     border-radius: 20px;
     @apply bg-white;
 
+    @include xs {
+        max-width: 180px;
+    }
+
     .preview__thumbnail-wrapper {
         border-radius: 12px;
         overflow: hidden;
@@ -75,6 +79,11 @@ defineProps({
         max-height: 200px;
         height: 100%;
         width: 100%;
+
+        @include xs {
+            max-width: 160px;
+            max-height: 160px;
+        }
 
         img {
             pointer-events: none;
