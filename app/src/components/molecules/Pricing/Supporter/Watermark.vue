@@ -1,4 +1,9 @@
 <script setup>
+import { onMounted, ref } from 'vue';
+import ScrollMagic from 'scrollmagic';
+// import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
+import 'animate.css';
+
 const removeWatermarkLists = [
     {
         image: '/assets/img/marketings/supporter-watermark-1.jpg',
@@ -13,20 +18,41 @@ const removeWatermarkLists = [
         text: 'Now you can <strong>support any campaign</strong> without watermark.',
     }
 ];
+
+onMounted(() => {
+    const controller = new ScrollMagic.Controller({ globalSceneOptions: { duration: 1000 } });
+
+    new ScrollMagic.Scene({ triggerElement: '#remove-watermark-container' })
+        .setClassToggle('#watermark-logo', 'animate__fadeOutUp') // add class toggle
+        .addTo(controller);
+
+    new ScrollMagic.Scene({ triggerElement: '#remove-watermark-container' })
+        .setClassToggle('#watermark-text', 'animate__fadeInUp') // add class toggle
+        .addTo(controller);
+})
 </script>
 
 <template>
-    <div class="remove-watermark">
+    <div id="remove-watermark-container" class="remove-watermark">
         <img class="overlay" src="/src/assets/img/patterns/background-banner-creators.png" alt="bg">
         <div class="shape-blob one"></div>
         <div class="shape-blob two"></div>
         <div class="remove-watermark-title">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <h2 class="remove-watermark-title-text">Remove</h2>
-                <img
-                    class="remove-watermark-logo"
-                    src="/assets/img/campaigns/watermark.png"
-                />
+                <div class="relative">
+                    <img
+                        id="watermark-logo"
+                        class="animate__animated animate__slow remove-watermark-logo"
+                        src="/assets/img/campaigns/watermark.png"
+                    />
+                    <h2
+                        id="watermark-text"
+                        class="animate__animated animate__delay-1s remove-watermark-title-text opacity-0"
+                    >
+                        Watermark
+                    </h2>
+                </div>
             </div>
             <h2 class="remove-watermark-title-text">for <strong>your own account</strong></h2>
         </div>
@@ -74,7 +100,7 @@ const removeWatermarkLists = [
     }
 
     .remove-watermark-logo {
-        @apply h-[32px] lg:h-[54px];
+        @apply h-[32px] lg:h-[54px] absolute top-1/2 -translate-y-1/2;
         filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.30));
         backdrop-filter: blur(2.0569987297058105px);
     }
