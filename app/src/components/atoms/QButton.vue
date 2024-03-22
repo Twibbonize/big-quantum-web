@@ -91,7 +91,7 @@ function handleClick(e) {
     .btn__loader {
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        border: 2.5px solid #16DAC1;
+        border: 2.5px solid #16dac1;
         border-top: 2.5px solid transparent;
         width: 20px;
         height: 20px;

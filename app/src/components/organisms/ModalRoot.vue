@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue';
+import { inject, onBeforeUnmount, onMounted, ref } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import QModal from '@/components/atoms/QModal.vue';
 
@@ -9,9 +9,15 @@ const modalProps = ref(null);
 const modalCfg = ref(null);
 
 const handleClose = () => {
+    const { onAfterClose } = modalCfg.value;
+
     modalComponent.value = null;
     modalProps.value = null;
     modalCfg.value = null;
+
+    if (onAfterClose) {
+        onAfterClose();
+    }
 };
 
 onMounted(() => {

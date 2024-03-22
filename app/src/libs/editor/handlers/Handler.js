@@ -285,7 +285,7 @@ export default class Handler {
         }
 
         const { onModified } = this;
-        
+
         if (onModified) {
             onModified(activeObject);
         }
@@ -370,7 +370,6 @@ export default class Handler {
                         fill: 'transparent'
                     });
                 }
-
 
                 const dataUrl = cloned.toDataURL({
                     ...option,
@@ -1232,7 +1231,6 @@ export default class Handler {
             fabric.util.enlivenObjects(objects, (enlivenObjects) => {
                 if (enlivenObjects.length > 1) {
                     const group = new fabric.Group([]);
-
 
                     enlivenObjects.forEach((obj) => {
                         group.addWithUpdate(obj);

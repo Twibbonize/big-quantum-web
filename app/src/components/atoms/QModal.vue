@@ -57,6 +57,10 @@ const props = defineProps({
         type: String,
         default: 'half',
         validators: (value) => ['half', 'full'].includes(value)
+    },
+    premiumBanner: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -101,7 +105,7 @@ const modalClasses = computed(() => {
 const handleClose = () => {
     isDragging.value = false;
 
-    if (props.position === 'bottom') {
+    if (props.position === 'bottom' && props.draggable) {
         set({ y: initialHeight }).then(() => {
             set({ x: 0, y: 0, cursor: 'default' });
             emit('close');
@@ -168,8 +172,12 @@ useDrag(dragHandler, {
     cursor: 'default'
 });
 
-onClickOutside(modalContentEl, () => {
-    if (!props.static && props.show) {
+onClickOutside(modalContentEl, (event) => {
+    if (!props.show) {
+        return;
+    }
+
+    if (!props.static) {
         handleClose();
     }
 });
@@ -219,7 +227,7 @@ watch(
 <template>
     <div :class="modalClasses">
         <Transition name="fade">
-            <div v-show="show" class="modal__overlay" />
+            <div v-show="show" class="modal__overlay"></div>
         </Transition>
 
         <Transition :name="transition">
@@ -229,6 +237,7 @@ watch(
                         <i class="ri ri-close-line ri-lg"></i>
                     </button>
                 </div>
+
                 <div ref="modalContentEl" class="modal__content">
                     <div ref="modalContentHeaderEl" class="modal__header">
                         <div class="modal__drag-handler">
@@ -243,6 +252,18 @@ watch(
 
                     <div class="modal__body">
                         <slot :close="handleClose" :isDragging="isDragging"></slot>
+                    </div>
+                </div>
+
+                <!-- marketing -->
+                <div v-if="premiumBanner" class="modal__premium-banner">
+                    <img src="/assets/img/logos/premium-creator.svg" class="modal__premium-logo" />
+
+                    <div class="modal__premium-content">
+                        <p class="modal__premium-copy">
+                            Looking to remove the watermark for all of your user?
+                        </p>
+                        <button class="modal__premium-cta">Upgrade Now</button>
                     </div>
                 </div>
             </div>
@@ -386,6 +407,41 @@ watch(
 
         &:hover {
             @apply bg-black/50 text-white;
+        }
+    }
+
+    .modal__premium-banner {
+        background: url('/assets/img/patterns/background-creators-2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        @apply flex items-center p-6;
+
+        @include md_screen {
+            @apply rounded-xl mt-6;
+        }
+
+        .modal__premium-logo {
+            max-height: 56px;
+
+            @include md_screen {
+                max-height: 36px;
+            }
+        }
+
+        .modal__premium-content {
+            @apply flex flex-col sm:flex-row justify-start items-start sm:items-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-2 ml-5;
+        }
+
+        .modal__premium-copy {
+            @apply text-white;
+            font-size: 15px;
+            line-height: 125%;
+        }
+
+        .modal__premium-cta {
+            @apply h-9 rounded-full text-white font-semibold flex items-center justify-center px-4 flex-shrink-0;
+            background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%), #fff;
         }
     }
 }

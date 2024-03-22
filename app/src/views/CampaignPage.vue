@@ -161,6 +161,11 @@ const onInputPhotoChange = (event) => {
 const onClickShare = () => {
     openModal({
         component: ShareModal,
+        config: {
+            position: sm.value ? 'bottom' : 'center',
+            draggable: false,
+            transition: 'fade'
+        },
         props: {
             link: 'twb.nz/hanoi-art-2025',
             payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },

@@ -1,7 +1,6 @@
 <script setup>
 import { computed, markRaw, onMounted, ref, watch, shallowRef } from 'vue';
 
-
 import {
     useResizeObserver,
     useBreakpoints,
@@ -11,19 +10,9 @@ import {
     useFileDialog,
     useObjectUrl,
     useElementVisibility,
-    useDebounceFn,
-    useVibrate
+    useDebounceFn
 } from '@vueuse/core';
-import {
-    RadioGroup,
-    RadioGroupOption,
-    Dialog,
-    DialogPanel,
-    DialogTitle,
-    DialogBackdrop
-} from '@headlessui/vue';
-// import { tsParticles } from "@tsparticles/engine";
-import { confetti } from '@tsparticles/confetti'
+import { RadioGroup, RadioGroupOption, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
 import Editor from '@/libs/editor';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
@@ -39,6 +28,12 @@ const props = defineProps({
     creator: {
         type: Object,
         required: true
+    },
+    loading: {
+        type: Boolean
+    },
+    handlePublish: {
+        type: Function
     }
 });
 
@@ -98,8 +93,8 @@ const onMouseWheel = (opt) => {
         const minSc = 1;
         const maxSc = 5;
 
-        const newScale = Math.min(Math.max(newScaleX, minSc), maxSc)
-        modify('scale', newScale, photo)
+        const newScale = Math.min(Math.max(newScaleX, minSc), maxSc);
+        modify('scale', newScale, photo);
     }
 };
 
@@ -118,14 +113,16 @@ const modify = (changedKey, changedValue, target = null) => {
     }
 
     if (changedKey === 'scale') {
-        handler.setObject({ scaleX: parseFloat(changedValue), scaleY: parseFloat(changedValue) }, targetObj);
+        handler.setObject(
+            { scaleX: parseFloat(changedValue), scaleY: parseFloat(changedValue) },
+            targetObj
+        );
         return;
     }
 
     handler.set(changedKey, changedValue, targetObj);
     targetObj.value[changedKey] = changedValue;
 };
-
 
 watch(zoom, (newValue) => {
     const { handler } = editor.value;
@@ -139,7 +136,6 @@ watch(zoom, (newValue) => {
 
     modify('scale', newValue, photoObj);
 });
-
 
 watch(rotation, (newValue) => {
     const { handler } = editor.value;
@@ -286,7 +282,7 @@ const discardAdjustChanges = () => {
     const { handler } = editor.value;
     handler.transactionHandler.undo();
     adjustModal.value = false;
-}
+};
 
 watch(adjustModal, (newValue) => {
     // handle transaction here
@@ -300,167 +296,6 @@ watch(adjustModal, (newValue) => {
 
     handler.transactionHandler.activate();
 });
-
-// ui state
-const { vibrate, stop, isSupported } = useVibrate({ pattern: [300, 100, 300] })
-
-// Start the vibration, it will automatically stop when the pattern is complete:
-const isLoading = ref(false);
-
-watch(isLoading, (newValue) => {
-
-    if (newValue) {
-        setTimeout(() => {
-            isLoading.value = false;
-            
-            if (isSupported) {
-                vibrate()
-            }
-
-            confetti("tsparticles",{
-                "fullScreen": {
-                    "zIndex": 99999
-                },
-                zIndex: 99990,
-                "emitters": [
-                    {
-                        "position": {
-                            "x": 0,
-                            "y": 30
-                        },
-                        "rate": {
-                            "quantity": 5,
-                            "delay": 0.15
-                        },
-                        "particles": {
-                            "move": {
-                                "direction": "top-right",
-                                "outModes": {
-                                    "top": "none",
-                                    "left": "none",
-                                    "default": "destroy"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "position": {
-                            "x": 100,
-                            "y": 30
-                        },
-                        "rate": {
-                            "quantity": 5,
-                            "delay": 0.15
-                        },
-                        "particles": {
-                            "move": {
-                                "direction": "top-left",
-                                "outModes": {
-                                    "top": "none",
-                                    "right": "none",
-                                    "default": "destroy"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "particles": {
-                    "color": {
-                        "value": [
-                            "#ffffff",
-                            "#FF0000"
-                        ]
-                    },
-                    "move": {
-                        "decay": 0.05,
-                        "direction": "top",
-                        "enable": true,
-                        "gravity": {
-                            "enable": true
-                        },
-                        "outModes": {
-                            "top": "none",
-                            "default": "destroy"
-                        },
-                        "speed": {
-                            "min": 10,
-                            "max": 50
-                        }
-                    },
-                    "number": {
-                        "value": 0
-                    },
-                    "opacity": {
-                        "value": 1
-                    },
-                    "rotate": {
-                        "value": {
-                            "min": 0,
-                            "max": 360
-                        },
-                        "direction": "random",
-                        "animation": {
-                            "enable": true,
-                            "speed": 30
-                        }
-                    },
-                    "tilt": {
-                        "direction": "random",
-                        "enable": true,
-                        "value": {
-                            "min": 0,
-                            "max": 360
-                        },
-                        "animation": {
-                            "enable": true,
-                            "speed": 30
-                        }
-                    },
-                    "size": {
-                        "value": {
-                            "min": 0,
-                            "max": 2
-                        },
-                        "animation": {
-                            "enable": true,
-                            "startValue": "min",
-                            "count": 1,
-                            "speed": 16,
-                            "sync": true
-                        }
-                    },
-                    "roll": {
-                        "darken": {
-                            "enable": true,
-                            "value": 25
-                        },
-                        "enable": true,
-                        "speed": {
-                            "min": 5,
-                            "max": 15
-                        }
-                    },
-                    "wobble": {
-                        "distance": 30,
-                        "enable": true,
-                        "speed": {
-                            "min": -7,
-                            "max": 7
-                        }
-                    },
-                    "shape": {
-                        "type": [
-                            "circle",
-                            "square"
-                        ],
-                        "options": {}
-                    }
-                }
-            }
-            );
-        }, 3000)
-    }
-})
 
 onMounted(async () => {
     const keyEvent = {
@@ -506,24 +341,50 @@ onMounted(async () => {
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
         <Teleport to="body">
-            <Dialog :open="adjustModal" as="div" @close="discardAdjustChanges" class="relative z-[300]" :unmount="false">
-                <Transition as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
-                    leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
+            <Dialog
+                :open="adjustModal"
+                as="div"
+                @close="discardAdjustChanges"
+                class="relative z-[300]"
+                :unmount="false"
+            >
+                <Transition
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0"
+                    enter-to="opacity-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100"
+                    leave-to="opacity-0"
+                >
                     <div class="fixed inset-0 bg-black/90" />
                 </Transition>
 
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-2 md:p-4 text-center">
-                        <Transition enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
-                            enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95">
+                        <Transition
+                            enter="duration-300 ease-out"
+                            enter-from="opacity-0 scale-95"
+                            enter-to="opacity-100 scale-100"
+                            leave="duration-200 ease-in"
+                            leave-from="opacity-100 scale-100"
+                            leave-to="opacity-0 scale-95"
+                        >
                             <DialogPanel class="cropper">
                                 <div class="cropper__header">
-                                    <DialogTitle as="h3" class="text-base md:text-lg font-semibold leading-6 text-gray-900">
+                                    <DialogTitle
+                                        as="h3"
+                                        class="text-base md:text-lg font-semibold leading-6 text-gray-900"
+                                    >
                                         Adjust Thumbnail
                                     </DialogTitle>
 
-                                    <QButton variant="subtle" circle size="sm" @click="discardAdjustChanges">
+                                    <QButton
+                                        variant="subtle"
+                                        circle
+                                        size="sm"
+                                        @click="discardAdjustChanges"
+                                    >
                                         <i class="ri ri-close-line ri-lg"></i>
                                     </QButton>
                                 </div>
@@ -532,23 +393,35 @@ onMounted(async () => {
                                     <div class="cropper__controls space-x-5">
                                         <div class="space-y-3 flex-grow">
                                             <label for="zoom" class="font-semibold">Zoom</label>
-                                            <RangeSlider v-model="zoom" :min="1" :max="5" :step="0.1" />
+                                            <RangeSlider
+                                                v-model="zoom"
+                                                :min="1"
+                                                :max="5"
+                                                :step="0.1"
+                                            />
                                         </div>
 
                                         <div class="space-y-3 flex-grow hidden md:block">
                                             <label for="rotate" class="font-semibold">Rotate</label>
-                                            <RangeSlider v-model="rotation" :min="-180" :max="180" :step="1" />
+                                            <RangeSlider
+                                                v-model="rotation"
+                                                :min="-180"
+                                                :max="180"
+                                                :step="1"
+                                            />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="cropper__footer">
-                                    <QButton variant="secondary" size="sm" @click="discardAdjustChanges">
+                                    <QButton
+                                        variant="secondary"
+                                        size="sm"
+                                        @click="discardAdjustChanges"
+                                    >
                                         <span class="px-2">Cancel</span>
                                     </QButton>
                                     <QButton variant="primary" size="sm" @click="saveAdjustChanges">
-                                        <span class="px-2">
-                                            Done
-                                        </span>
+                                        <span class="px-2"> Done </span>
                                     </QButton>
                                 </div>
                             </DialogPanel>
@@ -557,11 +430,6 @@ onMounted(async () => {
                 </div>
             </Dialog>
         </Teleport>
-
-        <Teleport to="body">
-            <div id="tsparticles"></div>
-        </Teleport>
-
 
         <Teleport to=".cropper__canvas" :disabled="!cropperIsVisible">
             <div class="cvs-wrapper">
@@ -572,14 +440,24 @@ onMounted(async () => {
         </Teleport>
 
         <div class="preview-wrapper">
-            <CampaignCardPreview v-if="thumbnailObjectUrl" title="Hanoi Art Book Fair 2025" :creator="creator"
-                :thumbnail="thumbnailObjectUrl" link="twibbo.nz/hanoi-art-2025" />
+            <CampaignCardPreview
+                v-if="thumbnailObjectUrl"
+                title="Hanoi Art Book Fair 2025"
+                :creator="creator"
+                :thumbnail="thumbnailObjectUrl"
+                link="twibbo.nz/hanoi-art-2025"
+            />
         </div>
 
         <div class="thumbnail-modal__body">
             <div class="px-10">
                 <div class="flex justify-center mt-4">
-                    <QButton variant="secondary" size="sm" @click="adjustModal = true" :enabled="!isLoading">
+                    <QButton
+                        variant="secondary"
+                        size="sm"
+                        @click="adjustModal = true"
+                        :enabled="!loading"
+                    >
                         <div class="flex px-1 py-0.5">
                             <i class="ri-crop-line"></i>
                             <span class="ml-2 font-normal">Adjust Thumbnail</span>
@@ -592,32 +470,59 @@ onMounted(async () => {
                     </QSeparator>
                 </div>
 
-                <RadioGroup v-model="photoIdx" :disabled="isLoading">
+                <RadioGroup v-model="photoIdx" :disabled="loading">
                     <div class="photo-selector pb-2">
-                        <RadioGroupOption as="template" v-for="(photo, i) in photos" :key="i" :value="i"
-                            v-slot="{ checked, active, disabled }">
-                            <div :class="[
-                                'photo-selector__item',
-                                (checked || active) && 'photo-selector__item--checked',
-                                disabled && 'disabled'
-                            ]">
-                                <img :src="photo" :alt="`photo ${i}`" class="photo-selector__item-img" />
+                        <RadioGroupOption
+                            as="template"
+                            v-for="(photo, i) in photos"
+                            :key="i"
+                            :value="i"
+                            v-slot="{ checked, active, disabled }"
+                        >
+                            <div
+                                :class="[
+                                    'photo-selector__item',
+                                    (checked || active) && 'photo-selector__item--checked',
+                                    disabled && 'disabled'
+                                ]"
+                            >
+                                <img
+                                    :src="photo"
+                                    :alt="`photo ${i}`"
+                                    class="photo-selector__item-img"
+                                />
                             </div>
                         </RadioGroupOption>
 
-                        <RadioGroupOption v-if="uploadedDataURL" as="template" :value="3" v-slot="{ checked }">
-                            <div :class="[
-                                'photo-selector__item',
-                                checked && 'photo-selector__item--checked'
-                            ]">
+                        <RadioGroupOption
+                            v-if="uploadedDataURL"
+                            as="template"
+                            :value="3"
+                            v-slot="{ checked }"
+                        >
+                            <div
+                                :class="[
+                                    'photo-selector__item',
+                                    checked && 'photo-selector__item--checked'
+                                ]"
+                            >
                                 <button class="photo-selector__item-remove" @click="reset">
                                     <span class="ri-delete-bin-line"></span>
                                 </button>
-                                <img :src="uploadedDataURL" alt="uploaded photo" class="photo-selector__item-img" />
+                                <img
+                                    :src="uploadedDataURL"
+                                    alt="uploaded photo"
+                                    class="photo-selector__item-img"
+                                />
                             </div>
                         </RadioGroupOption>
 
-                        <button v-if="!uploadedDataURL" class="photo-selector__upload" @click="open" :disabled="isLoading">
+                        <button
+                            v-if="!uploadedDataURL"
+                            class="photo-selector__upload"
+                            @click="open"
+                            :disabled="loading"
+                        >
                             <div class="photo-selector__upload-inner">
                                 <i class="ri-upload-line"></i>
                                 <span class="text-xs font-semibold">Upload</span>
@@ -627,12 +532,18 @@ onMounted(async () => {
                 </RadioGroup>
 
                 <div class="flex flex-col pt-2 pb-4 space-y-2">
-                    <QButton variant="primary" block :enabled="!isLoading" :loading="isLoading" @click="isLoading = true">
-                        <span class="h-5 flex items-center">
-                            Publish Now
-                        </span>
+                    <QButton
+                        variant="primary"
+                        block
+                        :enabled="!loading"
+                        :loading="loading"
+                        @click="() => handlePublish(thumbnailObjectUrl)"
+                    >
+                        <span class="h-5 flex items-center"> Publish Now </span>
                     </QButton>
-                    <QButton variant="subtle" block @click="close" :enabled="!isLoading">Go Back</QButton>
+                    <QButton variant="subtle" block @click="close" :enabled="!loading"
+                        >Go Back</QButton
+                    >
                 </div>
             </div>
         </div>
@@ -640,11 +551,6 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-
-#tsparticles {
-    position: relative;
-    z-index: 9999;
-}
 .thumbnail-modal {
     transform-origin: center top;
     max-width: 412px;
