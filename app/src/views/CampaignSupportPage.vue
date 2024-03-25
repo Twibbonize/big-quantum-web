@@ -632,13 +632,19 @@ onBeforeUnmount(() => {
                             v-model="photoRotation"
                             @increate="rotatePhoto(45)"
                             @decrease="rotatePhoto(-45)"
+                            :enabled="photo"
                         />
                         <!-- end of rotate slider -->
 
                         <!-- text and presets -->
                         <div class="text-presets">
                             <!-- text modifier entry pointer -->
-                            <QButton variant="neutral" block @click="editState = 'text'">
+                            <QButton
+                                variant="neutral"
+                                block
+                                @click="editState = 'text'"
+                                :enabled="photo"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="25"
@@ -717,7 +723,12 @@ onBeforeUnmount(() => {
                             <!-- end of text modifier entry point -->
 
                             <!-- preset modifier entry point -->
-                            <QButton variant="neutral" block @click="editState = 'filter'">
+                            <QButton
+                                variant="neutral"
+                                block
+                                @click="editState = 'filter'"
+                                :enabled="photo"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="25"
@@ -1149,14 +1160,15 @@ onBeforeUnmount(() => {
         position: relative;
         padding-bottom: v-bind(bodyPb);
         @apply flex-grow overflow-y-auto flex flex-col;
+        background-color: #fafbfb;
     }
 
     .support-page__sheet {
         @apply w-full bg-white overflow-hidden absolute bottom-0 rounded-t-2xl overflow-y-auto;
         z-index: 104;
-        box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
-        -webkit-box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
-        -moz-box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
+        box-shadow: 0px 3px 8px 1px rgb(183, 183, 183);
+        -webkit-box-shadow: 0px 3px 8px 1px rgba(183, 183, 183, 1);
+        -moz-box-shadow: 0px 3px 8px 1px rgba(183, 183, 183, 1);
         transition: all 300ms linear;
         max-height: 146px;
         height: fit-content;

@@ -122,7 +122,8 @@ const categoryRadio = ref('decorative');
 
 const handleFetchTemplates = async () => {
     try {
-        const thumbnailBaseUrl = 'https://twb-template-dummy.s3.ap-southeast-1.amazonaws.com/template';
+        const thumbnailBaseUrl =
+            'https://twb-template-dummy.s3.ap-southeast-1.amazonaws.com/template';
         const { data } = await getTemplateList({ page: page.value, numItems: 20 });
         templates.value = [
             ...templates.value,
@@ -227,95 +228,95 @@ const handlePublish = (thumbnail) => {
             vibrate();
         }
 
-        confetti('tsparticles',{
+        confetti('tsparticles', {
             fullScreen: {
                 zIndex: 99999
             },
             zIndex: 999999,
             color: {
-                    value: ['#ffffff', '#FF0000']
+                value: ['#ffffff', '#FF0000']
+            },
+            move: {
+                decay: 0.05,
+                direction: 'top',
+                enable: true,
+                gravity: {
+                    enable: true
                 },
-                move: {
-                    decay: 0.05,
-                    direction: 'top',
-                    enable: true,
-                    gravity: {
-                        enable: true
-                    },
-                    outModes: {
-                        top: 'none',
-                        default: 'destroy'
-                    },
-                    speed: {
-                        min: 10,
-                        max: 50
-                    }
+                outModes: {
+                    top: 'none',
+                    default: 'destroy'
                 },
-                number: {
-                    value: 0
-                },
-                opacity: {
-                    value: 1
-                },
-                rotate: {
-                    value: {
-                        min: 0,
-                        max: 360
-                    },
-                    direction: 'random',
-                    animation: {
-                        enable: true,
-                        speed: 30
-                    }
-                },
-                tilt: {
-                    direction: 'random',
-                    enable: true,
-                    value: {
-                        min: 0,
-                        max: 360
-                    },
-                    animation: {
-                        enable: true,
-                        speed: 30
-                    }
-                },
-                size: {
-                    value: {
-                        min: 0,
-                        max: 2
-                    },
-                    animation: {
-                        enable: true,
-                        startValue: 'min',
-                        count: 1,
-                        speed: 16,
-                        sync: true
-                    }
-                },
-                roll: {
-                    darken: {
-                        enable: true,
-                        value: 25
-                    },
-                    enable: true,
-                    speed: {
-                        min: 5,
-                        max: 15
-                    }
-                },
-                wobble: {
-                    distance: 30,
-                    enable: true,
-                    speed: {
-                        min: -7,
-                        max: 7
-                    }
-                },
-                shape: {
-                    type: ['circle', 'square'],
-                    options: {}
+                speed: {
+                    min: 10,
+                    max: 50
                 }
+            },
+            number: {
+                value: 0
+            },
+            opacity: {
+                value: 1
+            },
+            rotate: {
+                value: {
+                    min: 0,
+                    max: 360
+                },
+                direction: 'random',
+                animation: {
+                    enable: true,
+                    speed: 30
+                }
+            },
+            tilt: {
+                direction: 'random',
+                enable: true,
+                value: {
+                    min: 0,
+                    max: 360
+                },
+                animation: {
+                    enable: true,
+                    speed: 30
+                }
+            },
+            size: {
+                value: {
+                    min: 0,
+                    max: 2
+                },
+                animation: {
+                    enable: true,
+                    startValue: 'min',
+                    count: 1,
+                    speed: 16,
+                    sync: true
+                }
+            },
+            roll: {
+                darken: {
+                    enable: true,
+                    value: 25
+                },
+                enable: true,
+                speed: {
+                    min: 5,
+                    max: 15
+                }
+            },
+            wobble: {
+                distance: 30,
+                enable: true,
+                speed: {
+                    min: -7,
+                    max: 7
+                }
+            },
+            shape: {
+                type: ['circle', 'square'],
+                options: {}
+            }
         });
 
         openShareCampaign(thumbnail);
@@ -350,11 +351,10 @@ const onClickPublish = () => {
 
 <template>
     <LayoutBlank>
-
         <Teleport to="body">
             <div id="tsparticles"></div>
         </Teleport>
-        
+
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmCancel" @close="showConfirmCancel = false">
                 <div class="confirm">
@@ -1464,14 +1464,11 @@ const onClickPublish = () => {
             max-width: 100%;
         }
 
-
         &.tpl__item--add {
             @apply bg-white flex-col text-xs border-dashed;
 
-
             span {
                 @apply font-medium text-sm mt-2;
-
 
                 @include xs {
                     @apply text-xs;
