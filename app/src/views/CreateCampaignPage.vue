@@ -4,11 +4,9 @@ import {
     useIntersectionObserver,
     useElementSize,
     useBreakpoints,
-    breakpointsTailwind,
-    useVibrate
+    breakpointsTailwind
 } from '@vueuse/core';
 import { useSortable } from '@vueuse/integrations/useSortable';
-import { useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
 import {
     RadioGroup,
@@ -21,8 +19,6 @@ import {
 } from '@headlessui/vue';
 import { Form as VeeForm, Field } from 'vee-validate';
 import { string as yupString, object as yupObject } from 'yup';
-import { useToast } from 'vue-toast-notification';
-import { confetti } from '@tsparticles/confetti';
 import LayoutBlank from '@/components/layouts/LayoutBlank.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QInputText from '@/components/atoms/forms/QInputText.vue';
@@ -36,7 +32,6 @@ import CampaignMockupDesktop from '@/components/organisms/CampaignMockupDesktop.
 import CampaignBackgroundSelection from '@/components/molecules/CampaignBackgroundSelection.vue';
 import CreatorPremiumModal from '@/components/organisms/CreatorPremiumModal.vue';
 import CampaignThumbnailModal from '@/components/organisms/CampaignThumbnailModal.vue';
-import ShareModal from '@/components/organisms/ShareModal.vue';
 import CaptionPreview from '@/components/organisms/CaptionPreview.vue';
 import { useModal } from '@/composables/modal';
 import { getTemplateList } from '@/apis';
@@ -45,7 +40,7 @@ const dropzoneBox = ref(null);
 const dropzoneSortable = ref(null);
 const files = ref([]);
 
-const { open: openModal, close: closeModal } = useModal();
+const { open: openModal } = useModal();
 
 const { isOverDropZone } = useDropZone(dropzoneBox, {
     onDrop: (droppedFiles) => {
@@ -190,154 +185,26 @@ const mockupStyles = computed(() => {
     };
 });
 
-// publish
-const router = useRouter();
-const toast = useToast();
-const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] });
-const isLoading = ref(false);
-
-// for submit form and show share modal
-const openShareCampaign = (thumbnail) => {
-    const modalComponent = ShareModal;
-    const modalProps = {
-        link: `twibbo.nz/${campaignLink.value}`,
-        payload: { thumbnail },
-        type: 'campaign'
-    };
-
-    const config = {
-        position: sm.value ? 'bottom' : 'center',
-        draggable: false,
-        transparent: false,
-        premiumBanner: true,
-        onAfterClose: () => {
-            router.push({ name: 'campaign' });
-        }
-    };
-
-    openModal({ component: modalComponent, props: modalProps, config });
-};
-
-const handlePublish = (thumbnail) => {
-    isLoading.value = true;
-
-    setTimeout(() => {
-        isLoading.value = false;
-
-        if (isSupported) {
-            vibrate();
-        }
-
-        confetti('tsparticles', {
-            fullScreen: {
-                zIndex: 99999
-            },
-            zIndex: 999999,
-            color: {
-                value: ['#ffffff', '#FF0000']
-            },
-            move: {
-                decay: 0.05,
-                direction: 'top',
-                enable: true,
-                gravity: {
-                    enable: true
-                },
-                outModes: {
-                    top: 'none',
-                    default: 'destroy'
-                },
-                speed: {
-                    min: 10,
-                    max: 50
-                }
-            },
-            number: {
-                value: 0
-            },
-            opacity: {
-                value: 1
-            },
-            rotate: {
-                value: {
-                    min: 0,
-                    max: 360
-                },
-                direction: 'random',
-                animation: {
-                    enable: true,
-                    speed: 30
-                }
-            },
-            tilt: {
-                direction: 'random',
-                enable: true,
-                value: {
-                    min: 0,
-                    max: 360
-                },
-                animation: {
-                    enable: true,
-                    speed: 30
-                }
-            },
-            size: {
-                value: {
-                    min: 0,
-                    max: 2
-                },
-                animation: {
-                    enable: true,
-                    startValue: 'min',
-                    count: 1,
-                    speed: 16,
-                    sync: true
-                }
-            },
-            roll: {
-                darken: {
-                    enable: true,
-                    value: 25
-                },
-                enable: true,
-                speed: {
-                    min: 5,
-                    max: 15
-                }
-            },
-            wobble: {
-                distance: 30,
-                enable: true,
-                speed: {
-                    min: -7,
-                    max: 7
-                }
-            },
-            shape: {
-                type: ['circle', 'square'],
-                options: {}
-            }
-        });
-
-        openShareCampaign(thumbnail);
-
-        toast.open({
-            type: 'success',
-            message: 'Campaign Successfully Created',
-            position: 'top'
-        });
-    }, 2500);
-};
-
 // on click publish button in the page
 const onClickPublish = () => {
     const modalComponent = CampaignThumbnailModal;
+
+    const forms = {
+        link: campaignLink.value,
+        title: campaignTitle.value,
+        description: campaignDescription.value,
+        category: campaignCategory.value,
+        visibility: campaignVisibility.value,
+        background: campaignBackground.value,
+        caption: campaignCaption.value
+    };
+
     const modalProps = {
         creator,
-        handlePublish,
-        frame: files.value[0],
-        loading: isLoading
+        forms,
+        frame: files.value[0]
     };
+
     const config = {
         position: sm.value ? 'bottom' : 'center',
         draggable: false,
@@ -345,16 +212,13 @@ const onClickPublish = () => {
         transparent: true,
         static: true
     };
+
     openModal({ component: modalComponent, props: modalProps, config });
 };
 </script>
 
 <template>
     <LayoutBlank>
-        <Teleport to="body">
-            <div id="tsparticles"></div>
-        </Teleport>
-
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmCancel" @close="showConfirmCancel = false">
                 <div class="confirm">
@@ -1198,11 +1062,6 @@ const onClickPublish = () => {
 </template>
 
 <style scoped lang="scss">
-#tsparticles {
-    position: relative;
-    z-index: 9999;
-}
-
 .create-campaign {
     height: 100dvh;
     position: relative;
