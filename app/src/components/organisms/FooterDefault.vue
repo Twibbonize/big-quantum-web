@@ -18,7 +18,7 @@ const discoverLinks = [
     },
     {
         text: 'Pricing',
-        url: '/creators',
+        url: '/pricing',
         isInAppPage: true
     },
     {
