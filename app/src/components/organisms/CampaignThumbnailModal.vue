@@ -30,12 +30,14 @@ const props = defineProps({
         required: true
     },
     loading: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     handlePublish: {
         type: Function
     }
 });
+
 
 // responsiveness of the modal
 const { update, close } = useModal();
@@ -525,7 +527,7 @@ onMounted(async () => {
                         >
                             <div class="photo-selector__upload-inner">
                                 <i class="ri-upload-line"></i>
-                                <span class="text-xs font-semibold">Upload</span>
+                                <span>Upload</span>
                             </div>
                         </button>
                     </div>
@@ -540,10 +542,10 @@ onMounted(async () => {
                         @click="() => handlePublish(thumbnailObjectUrl)"
                         size="md"
                     >
-                        <span class="flex items-center"> Publish Now </span>
+                        <span class="flex items-center h-5"> Publish Now </span>
                     </QButton>
-                    <QButton variant="subtle" block @click="close" :enabled="!loading"
-                        >Go Back
+                    <QButton variant="subtle" block @click="close" :enabled="!loading">
+                        Go Back
                     </QButton>
                 </div>
             </div>
@@ -635,7 +637,7 @@ onMounted(async () => {
 // photo selector
 
 .photo-selector {
-    @apply flex items-center justify-between space-x-1;
+    @apply flex items-center justify-center space-x-1;
 
     .photo-selector__item {
         @apply bg-white transition-colors aspect-square;
@@ -682,13 +684,13 @@ onMounted(async () => {
     .photo-selector__upload {
         height: 80px;
         width: 80px;
-        // border: 2px solid transparent;
-        // padding: 4px;x/
+        border: 2px solid transparent;
+        padding: 4px;
         @apply aspect-square;
 
         @include xs {
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: auto;
         }
 
         .photo-selector__upload-inner {
@@ -698,10 +700,18 @@ onMounted(async () => {
             flex-direction: column;
             border: 1px dashed #d5dcdc;
             background-color: rgba(22, 218, 193, 0.04);
-
+            padding: 7px;
             border-radius: 6px;
             height: 100%;
             width: 100%;
+            font-size: 12px;
+            @apply font-semibold;
+
+            @include xs {
+                span {
+                    font-size: 10px;
+                }
+            }
         }
 
         &[disabled] {

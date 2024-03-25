@@ -111,8 +111,6 @@ function setProgress(activeIndex) {
 onMounted(() => {
     const swiperCreators = document.getElementById('swiperCreators');
 
-    console.log(swiperCreators);
-
     if (swiperCreators) {
         swiperCreators.addEventListener('swiperslidechange', (event) => {
             const [swiper] = event.detail;

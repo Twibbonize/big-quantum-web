@@ -7,6 +7,7 @@ import {
     breakpointsTailwind,
     useVibrate
 } from '@vueuse/core';
+import { useSortable } from '@vueuse/integrations/useSortable';
 import { useRouter } from 'vue-router';
 import { computed, ref, watch } from 'vue';
 import {
@@ -41,6 +42,7 @@ import { useModal } from '@/composables/modal';
 import { getTemplateList } from '@/apis';
 
 const dropzoneBox = ref(null);
+const dropzoneSortable = ref(null);
 const files = ref([]);
 
 const { open: openModal, close: closeModal } = useModal();
@@ -66,6 +68,8 @@ const { isOverDropZone } = useDropZone(dropzoneBox, {
     dataTypes: ['image/png']
 });
 
+useSortable(dropzoneSortable, files);
+
 const handleInputFile = (e) => {
     const targetFiles = e.target.files;
     if (targetFiles && targetFiles.length > 0) {
@@ -80,6 +84,10 @@ const handleInputFile = (e) => {
             reader.readAsDataURL(targetFiles[i]);
         }
     }
+};
+
+const handleRemoveFile = (idx) => {
+    files.value.splice(idx, 1);
 };
 
 // cancel
@@ -114,8 +122,7 @@ const categoryRadio = ref('decorative');
 
 const handleFetchTemplates = async () => {
     try {
-        const thumbnailBaseUrl =
-            'https://twb-template-dummy.s3.ap-southeast-1.amazonaws.com/template';
+        const thumbnailBaseUrl = 'https://twb-template-dummy.s3.ap-southeast-1.amazonaws.com/template';
         const { data } = await getTemplateList({ page: page.value, numItems: 20 });
         templates.value = [
             ...templates.value,
@@ -220,55 +227,12 @@ const handlePublish = (thumbnail) => {
             vibrate();
         }
 
-        confetti('tsparticles', {
+        confetti('tsparticles',{
             fullScreen: {
                 zIndex: 99999
             },
-            zIndex: 99990,
-            emitters: [
-                {
-                    position: {
-                        x: 0,
-                        y: 30
-                    },
-                    rate: {
-                        quantity: 5,
-                        delay: 0.15
-                    },
-                    particles: {
-                        move: {
-                            direction: 'top-right',
-                            outModes: {
-                                top: 'none',
-                                left: 'none',
-                                default: 'destroy'
-                            }
-                        }
-                    }
-                },
-                {
-                    position: {
-                        x: 100,
-                        y: 30
-                    },
-                    rate: {
-                        quantity: 5,
-                        delay: 0.15
-                    },
-                    particles: {
-                        move: {
-                            direction: 'top-left',
-                            outModes: {
-                                top: 'none',
-                                right: 'none',
-                                default: 'destroy'
-                            }
-                        }
-                    }
-                }
-            ],
-            particles: {
-                color: {
+            zIndex: 999999,
+            color: {
                     value: ['#ffffff', '#FF0000']
                 },
                 move: {
@@ -352,7 +316,6 @@ const handlePublish = (thumbnail) => {
                     type: ['circle', 'square'],
                     options: {}
                 }
-            }
         });
 
         openShareCampaign(thumbnail);
@@ -387,8 +350,11 @@ const onClickPublish = () => {
 
 <template>
     <LayoutBlank>
-        <div id="tsparticles"></div>
 
+        <Teleport to="body">
+            <div id="tsparticles"></div>
+        </Teleport>
+        
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmCancel" @close="showConfirmCancel = false">
                 <div class="confirm">
@@ -518,7 +484,7 @@ const onClickPublish = () => {
                                         </label>
 
                                         <div
-                                            v-else
+                                            v-show="files.length"
                                             class="flex items-center space-x-4 p-6 overflow-x-auto w-[99%]"
                                         >
                                             <label for="frame_files" class="dropzone__file--add">
@@ -538,8 +504,23 @@ const onClickPublish = () => {
                                                 <span class="font-medium mt-1">Upload</span>
                                             </label>
 
-                                            <div v-for="file in files" class="dropzone__file">
-                                                <img :src="file" />
+                                            <div
+                                                ref="dropzoneSortable"
+                                                class="flex items-center space-x-4"
+                                            >
+                                                <div
+                                                    v-for="(file, i) in files"
+                                                    :key="file"
+                                                    class="dropzone__file"
+                                                >
+                                                    <button
+                                                        class="dropzone__file-remove"
+                                                        @click="handleRemoveFile(i)"
+                                                    >
+                                                        <i class="ri-delete-bin-line"></i>
+                                                    </button>
+                                                    <img :src="file" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -751,6 +732,10 @@ const onClickPublish = () => {
                                     </RadioGroup>
                                 </div>
                                 <div class="tpl__grid">
+                                    <div class="tpl__item tpl__item--add">
+                                        <i class="ri-add-box-line ri-2x"></i>
+                                        <span>Start from Blank</span>
+                                    </div>
                                     <div v-for="template in templates" class="tpl__item">
                                         <img :src="template.thumbnail" :alt="template.title" />
                                     </div>
@@ -1217,6 +1202,7 @@ const onClickPublish = () => {
     position: relative;
     z-index: 9999;
 }
+
 .create-campaign {
     height: 100dvh;
     position: relative;
@@ -1310,11 +1296,24 @@ const onClickPublish = () => {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        @apply bg-gray-150 rounded-lg overflow-hidden;
+        @apply bg-gray-150 rounded-lg relative;
 
         img {
             max-height: 100%;
             max-width: 100%;
+            @apply rounded-lg;
+        }
+
+        .dropzone__file-remove {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            z-index: 10;
+            transform: translate(35%, -35%);
+            font-size: 12px;
+            @apply bg-red-600 hover:bg-red-500 text-red-50 border border-red-50 rounded-full;
         }
     }
 
@@ -1386,7 +1385,7 @@ const onClickPublish = () => {
         background-color: #edf8f8;
 
         @include xs {
-            @apply h-8 w-8  mr-2;
+            @apply h-8 w-8 mr-2;
         }
     }
 
@@ -1463,6 +1462,21 @@ const onClickPublish = () => {
         img {
             max-height: 100%;
             max-width: 100%;
+        }
+
+
+        &.tpl__item--add {
+            @apply bg-white flex-col text-xs border-dashed;
+
+
+            span {
+                @apply font-medium text-sm mt-2;
+
+
+                @include xs {
+                    @apply text-xs;
+                }
+            }
         }
     }
 

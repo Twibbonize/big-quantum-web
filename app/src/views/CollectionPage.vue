@@ -104,9 +104,7 @@ onMounted(() => {
     <LayoutMain>
         <div class="page collection">
             <div class="collection__upper">
-                <div
-                    class="container px-5 lg:px-0 flex flex-col md:flex-row justify-center border-b border-stroke pb-6 md:pb-10"
-                >
+                <div class="container px-5 lg:px-0 flex flex-col md:flex-row justify-center border-b border-stroke pb-6 md:pb-10">
                     <div class="space-y-6">
                         <div class="space-y-3">
                             <div class="collection__creator flex items-center justify-center">
@@ -150,9 +148,7 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <div
-                            class="flex items-center justify-center space-x-2 w-full max-w-sm mx-auto"
-                        >
+                        <div class="flex items-center justify-center space-x-2 w-full max-w-sm mx-auto">
                             <div class="flex-grow">
                                 <QShareButton
                                     link="twb.nz/c/happy-birthday"
