@@ -1,6 +1,7 @@
 <script setup>
 import { computed, markRaw, onMounted, ref, watch, shallowRef } from 'vue';
-
+import { useRouter } from 'vue-router';
+import { useToast } from 'vue-toast-notification';
 import {
     useResizeObserver,
     useBreakpoints,
@@ -10,14 +11,17 @@ import {
     useFileDialog,
     useObjectUrl,
     useElementVisibility,
-    useDebounceFn
+    useDebounceFn,
+    useVibrate
 } from '@vueuse/core';
 import { RadioGroup, RadioGroupOption, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
+import { confetti } from '@tsparticles/confetti';
 import Editor from '@/libs/editor';
 import QButton from '@/components/atoms/QButton.vue';
 import QSeparator from '@/components/atoms/QSeparator.vue';
 import RangeSlider from '@/components/molecules/ThumbnailModal/RangeSlider.vue';
 import CampaignCardPreview from '@/components/molecules/CampaignCardPreview.vue';
+import ShareModal from '@/components/organisms/ShareModal.vue';
 import { useModal } from '@/composables/modal';
 
 const props = defineProps({
@@ -29,17 +33,156 @@ const props = defineProps({
         type: Object,
         required: true
     },
-    loading: {
-        type: Boolean,
-        default: false
-    },
-    handlePublish: {
-        type: Function
+    forms: {
+        type: Object
     }
 });
 
+const { open: openModal, update, close } = useModal();
+
+// publish campaign
+const loading = ref(false);
+const router = useRouter();
+const toast = useToast();
+const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] });
+
+const openShareCampaign = (thumbnail) => {
+    const modalComponent = ShareModal;
+
+    const { link } = props.forms;
+
+    const modalProps = {
+        link: `twibbo.nz/${link}`,
+        payload: { thumbnail },
+        type: 'campaign'
+    };
+
+    const config = {
+        position: sm.value ? 'bottom' : 'center',
+        draggable: false,
+        transparent: false,
+        premiumBanner: true,
+        onAfterClose: () => {
+            router.push({ name: 'campaign' });
+        }
+    };
+
+    openModal({ component: modalComponent, props: modalProps, config });
+};
+
+const handlePublish = () => {
+    loading.value = true;
+
+    // simulate when the form is submitted
+    setTimeout(() => {
+        loading.value = false;
+
+        if (isSupported) {
+            vibrate();
+        }
+
+        confetti('tsparticles', {
+            fullScreen: {
+                zIndex: 99999
+            },
+            zIndex: 999999,
+            color: {
+                value: ['#ffffff', '#FF0000']
+            },
+            move: {
+                decay: 0.05,
+                direction: 'top',
+                enable: true,
+                gravity: {
+                    enable: true
+                },
+                outModes: {
+                    top: 'none',
+                    default: 'destroy'
+                },
+                speed: {
+                    min: 10,
+                    max: 50
+                }
+            },
+            number: {
+                value: 0
+            },
+            opacity: {
+                value: 1
+            },
+            rotate: {
+                value: {
+                    min: 0,
+                    max: 360
+                },
+                direction: 'random',
+                animation: {
+                    enable: true,
+                    speed: 30
+                }
+            },
+            tilt: {
+                direction: 'random',
+                enable: true,
+                value: {
+                    min: 0,
+                    max: 360
+                },
+                animation: {
+                    enable: true,
+                    speed: 30
+                }
+            },
+            size: {
+                value: {
+                    min: 0,
+                    max: 2
+                },
+                animation: {
+                    enable: true,
+                    startValue: 'min',
+                    count: 1,
+                    speed: 16,
+                    sync: true
+                }
+            },
+            roll: {
+                darken: {
+                    enable: true,
+                    value: 25
+                },
+                enable: true,
+                speed: {
+                    min: 5,
+                    max: 15
+                }
+            },
+            wobble: {
+                distance: 30,
+                enable: true,
+                speed: {
+                    min: -7,
+                    max: 7
+                }
+            },
+            shape: {
+                type: ['circle', 'square'],
+                options: {}
+            }
+        });
+
+        openShareCampaign(thumbnailObjectUrl);
+
+        toast.open({
+            type: 'success',
+            message: 'Campaign Successfully Created',
+            position: 'bottom'
+        });
+    }, 3000);
+};
+
 // responsiveness of the modal
-const { update, close } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
 const modalEl = ref(null);
@@ -341,6 +484,10 @@ onMounted(async () => {
 </script>
 <template>
     <div ref="modalEl" class="thumbnail-modal" :style="modalStyle">
+        <Teleport to="body">
+            <div id="tsparticles"></div>
+        </Teleport>
+
         <Teleport to="body">
             <Dialog
                 :open="adjustModal"
@@ -723,5 +870,12 @@ onMounted(async () => {
     @include xs {
         @apply text-xs;
     }
+}
+</style>
+
+<style>
+#tsparticles {
+    position: relative;
+    z-index: 9999;
 }
 </style>

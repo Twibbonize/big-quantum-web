@@ -100,7 +100,7 @@ watch(
     { deep: true }
 );
 
-const fontColor = computed(() => props.activeObject && props.activeObject.fill || '#000');
+const fontColor = computed(() => (props.activeObject && props.activeObject.fill) || '#000');
 
 function getRelativeLuminance(color) {
     const rgb = [
