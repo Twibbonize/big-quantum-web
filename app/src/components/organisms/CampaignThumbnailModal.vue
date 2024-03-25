@@ -38,7 +38,6 @@ const props = defineProps({
     }
 });
 
-
 // responsiveness of the modal
 const { update, close } = useModal();
 const breakpoints = useBreakpoints(breakpointsTailwind);
