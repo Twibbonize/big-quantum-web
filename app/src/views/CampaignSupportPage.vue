@@ -15,6 +15,7 @@ import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
 import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
 import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
+import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import RotateSlider from '@/components/molecules/TwibbonModal/RotateSlider.vue';
 import TextModifier from '@/components/molecules/TwibbonModal/TextModifier.vue';
 import PresetModifier from '@/components/molecules/TwibbonModal/PresetModifier.vue';
@@ -57,6 +58,9 @@ const activeObj = ref(null);
 const editState = ref('crop');
 const photoRotation = ref(0);
 const selectedFrame = ref(props.frames[props.selectedFrameIdx]);
+const campaignCaption = ref(
+    "<p> Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!</p>"
+);
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
@@ -515,6 +519,8 @@ const handleDownload = async () => {
     editor.handler.saveCanvasImage();
 };
 
+
+
 watch(photoRotation, handleInputRange);
 
 watch(() => props.photo, handleInsertPhoto);
@@ -606,18 +612,11 @@ onBeforeUnmount(() => {
                     <!-- frame selector -->
                     <RadioGroup v-model="selectedFrame" as="template">
                         <div class="frame-selector">
-                            <RadioGroupOption
-                                v-for="(frame, i) in frames"
-                                :key="i"
-                                :value="frame"
-                                v-slot="{ checked }"
-                            >
-                                <div
-                                    :class="[
-                                        'frame-selector__item',
-                                        checked && 'frame-selector__item--checked'
-                                    ]"
-                                >
+                            <RadioGroupOption v-for="(frame, i) in frames" :key="i" :value="frame" v-slot="{ checked }">
+                                <div :class="[
+                                    'frame-selector__item',
+                                    checked && 'frame-selector__item--checked'
+                                ]">
                                     <img :src="frame" :alt="i" />
                                 </div>
                             </RadioGroupOption>
@@ -628,163 +627,61 @@ onBeforeUnmount(() => {
                     <!-- canvas tools  -->
                     <div class="support-page__tools">
                         <!-- rotate slider -->
-                        <RotateSlider
-                            v-model="photoRotation"
-                            @increate="rotatePhoto(45)"
-                            @decrease="rotatePhoto(-45)"
-                            :enabled="!!photo"
-                        />
+                        <RotateSlider v-model="photoRotation" @increate="rotatePhoto(45)" @decrease="rotatePhoto(-45)"
+                            :enabled="!!photo" />
                         <!-- end of rotate slider -->
 
                         <!-- text and presets -->
                         <div class="text-presets">
                             <!-- text modifier entry pointer -->
-                            <QButton
-                                variant="neutral"
-                                block
-                                @click="editState = 'text'"
-                                :enabled="!!photo"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="25"
-                                    height="24"
-                                    viewBox="0 0 25 24"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M9.5 10V9H15.5V10"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M11.5 15H13.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M12.5 9V15"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <circle
-                                        cx="6"
-                                        cy="5.5"
-                                        r="1.75"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                            <QButton variant="neutral" block @click="editState = 'text'" :enabled="!!photo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                    fill="none">
+                                    <path d="M9.5 10V9H15.5V10" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M11.5 15H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M12.5 9V15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <circle cx="6" cy="5.5" r="1.75" fill="#16DAC1" stroke="currentColor"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M20.75 5.5C20.75 6.4665 19.9665 7.25 19 7.25C18.0335 7.25 17.25 6.4665 17.25 5.5C17.25 4.5335 18.0335 3.75 19 3.75C19.9665 3.75 20.75 4.5335 20.75 5.5Z"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <circle
-                                        cx="19"
-                                        cy="18.5"
-                                        r="1.75"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                        fill="#16DAC1" stroke="currentColor" stroke-width="1.5" />
+                                    <circle cx="19" cy="18.5" r="1.75" fill="#16DAC1" stroke="currentColor"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M7.75 18.5C7.75 19.4665 6.9665 20.25 6 20.25C5.0335 20.25 4.25 19.4665 4.25 18.5C4.25 17.5335 5.0335 16.75 6 16.75C6.9665 16.75 7.75 17.5335 7.75 18.5Z"
-                                        fill="#16DAC1"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <path
-                                        d="M7.5 5.5L17.5 5.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
-                                    <path
-                                        d="M7.5 18.5L17.5 18.5"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                        fill="#16DAC1" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M7.5 5.5L17.5 5.5" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M7.5 18.5L17.5 18.5" stroke="currentColor" stroke-width="1.5" />
                                     <path d="M6 7L6 17" stroke="currentColor" stroke-width="1.5" />
-                                    <path
-                                        d="M19 7L19 17"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    />
+                                    <path d="M19 7L19 17" stroke="currentColor" stroke-width="1.5" />
                                 </svg>
                                 <span class="ml-1">Text</span>
                             </QButton>
                             <!-- end of text modifier entry point -->
 
                             <!-- preset modifier entry point -->
-                            <QButton
-                                variant="neutral"
-                                block
-                                @click="editState = 'filter'"
-                                :enabled="!!photo"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="25"
-                                    height="24"
-                                    viewBox="0 0 25 24"
-                                    fill="none"
-                                >
+                            <QButton variant="neutral" block @click="editState = 'filter'" :enabled="!!photo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                                    fill="none">
                                     <path
                                         d="M12.4993 21.0005C17.47 21.0005 21.4995 16.9709 21.4995 12.0002C21.4995 7.02955 17.47 3 12.4993 3C7.52857 3 3.49902 7.02955 3.49902 12.0002C3.49902 16.9709 7.52857 21.0005 12.4993 21.0005Z"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M14.5791 8.40039L19.7452 17.3466"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M10.4209 8.40039H20.7532"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M8.3418 12.0004L13.5079 3.0542"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M10.421 15.6003L5.25488 6.65405"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M14.5794 15.6001H4.24707"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                    <path
-                                        d="M16.6583 12.0002L11.4922 20.9465"
-                                        stroke="currentColor"
-                                        stroke-width="1.35004"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke="currentColor" stroke-width="1.35004" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M14.5791 8.40039L19.7452 17.3466" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.4209 8.40039H20.7532" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.3418 12.0004L13.5079 3.0542" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.421 15.6003L5.25488 6.65405" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.5794 15.6001H4.24707" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M16.6583 12.0002L11.4922 20.9465" stroke="currentColor" stroke-width="1.35004"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span class="ml-1"> Filter </span>
                             </QButton>
@@ -796,11 +693,8 @@ onBeforeUnmount(() => {
 
                 <!-- text state -->
                 <div v-if="editState === 'text'" class="space-y-5">
-                    <TextModifier
-                        :editor="canvas.editor"
-                        :modify="modify"
-                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null"
-                    />
+                    <TextModifier :editor="canvas.editor" :modify="modify"
+                        :activeObject="activeObj && activeObj.type === 'textbox' ? activeObj : null" />
                 </div>
                 <!-- end of text state -->
 
@@ -811,32 +705,48 @@ onBeforeUnmount(() => {
                 <!-- end of filter state -->
             </div>
 
-            <div v-if="step === STEPS.ADS" class="p-4 bg-[#E0F8F5] h-full">
+            <div v-if="step === STEPS.ADS" class="p-4 bg-[#E0F8F5] h-full flex flex-col items-center justify-center">
                 <img src="/assets/img/sample/sample-ad.jpg" alt="Ads" />
             </div>
 
-            <div v-if="step === STEPS.POST" class="p-4">
-                <img :src="twibbonResult" alt="Twibbon" />
+            <div v-if="step === STEPS.POST" class="support-page__main">
+                <div class="result-post">
+                    <img :src="twibbonResult" alt="Twibbon" />
+                </div>
+
+                <div class="flex items-center justify-center -translate-y-1/2">
+                    <div class="share-post">
+
+                        <button class="share-post__btn">
+                            <i class="ri-share-line"></i>
+                            <span class="ml-2">Share</span>
+                        </button>
+
+                        <div class="share-post__separator"></div>
+
+                        <button class="share-post__btn" @click="handleDownload">
+                            <i class="ri-download-2-line"></i>
+                            <span class="ml-2">Re-Download</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="px-4">
+                    <QInputCaption v-model="campaignCaption" mode="support" />
+                </div>
+
             </div>
 
             <!-- page bottom sheet -->
-            <div
-                ref="sheetEl"
-                :class="['support-page__sheet', sheetFullyVisible && 'support-page__sheet--full']"
-            >
+            <div ref="sheetEl" :class="['support-page__sheet', sheetFullyVisible && 'support-page__sheet--full']">
                 <Transition name="delay-fade">
-                    <button
-                        v-show="
-                            !sheetFullyVisible && step === STEPS.TWIBBON && editState === 'crop'
-                        "
-                        class="watermark-banner"
-                        @click="showPricingPlan"
-                    >
+                    <button v-show="!sheetFullyVisible && step === STEPS.TWIBBON && editState === 'crop'
+                        " class="watermark-banner" @click="showPricingPlan">
                         <div class="watermark-banner__copy">
                             <div class="flex flex-col">
                                 <div class="watermark-banner__title">Remove Watermark For You</div>
-                                <span class="watermark-banner__desc"
-                                    >Upgrade to Premium start from
+                                <span class="watermark-banner__desc">Upgrade to Premium start from
                                     <span class="font-semibold">$2.99</span>/week
                                 </span>
                             </div>
@@ -849,11 +759,8 @@ onBeforeUnmount(() => {
                 </Transition>
 
                 <Transition name="delay-fade">
-                    <button
-                        v-show="!sheetFullyVisible && step === STEPS.ADS"
-                        class="watermark-banner"
-                        @click="showPricingPlan"
-                    >
+                    <button v-show="!sheetFullyVisible && step === STEPS.ADS" class="watermark-banner"
+                        @click="showPricingPlan">
                         <div class="watermark-banner__copy">
                             <div class="flex flex-col">
                                 <p class="text-left font-medium text-sm">
@@ -883,64 +790,34 @@ onBeforeUnmount(() => {
                 </Transition>
 
                 <Transition name="slide-down">
-                    <div
-                        v-show="step === STEPS.TWIBBON && !sheetFullyVisible"
-                        class="support-page__actions"
-                    >
+                    <div v-show="step === STEPS.TWIBBON && !sheetFullyVisible" class="support-page__actions">
                         <!-- footer for crop state -->
                         <div v-if="editState === 'crop'">
-                            <div
-                                v-if="photo"
-                                class="flex items-center justify-between space-x-3 h-20 p-4"
-                            >
-                                <QButton
-                                    variant="secondary"
-                                    size="auto"
-                                    circle
-                                    @click="openInputPhoto"
-                                >
+                            <div v-if="photo" class="flex items-center justify-between space-x-3 h-20 p-4">
+                                <QButton variant="secondary" size="auto" circle @click="openInputPhoto">
                                     <i class="ri-camera-line ri-lg font-light"></i>
                                 </QButton>
                                 <QButton block @click="() => changeStep(STEPS.ADS)">Next</QButton>
                             </div>
 
-                            <div
-                                v-else
-                                class="flex items-center justify-between space-x-3 h-20 p-4"
-                            >
+                            <div v-else class="flex items-center justify-between space-x-3 h-20 p-4">
                                 <QButton block @click="openInputPhoto">
                                     <span class="flex items-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="21"
-                                            height="20"
-                                            viewBox="0 0 21 20"
-                                            fill="none"
-                                        >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20"
+                                            fill="none">
                                             <g clip-path="url(#clip0_2061_6507)">
                                                 <path
                                                     d="M19.6663 15.8333C19.6663 16.2754 19.4907 16.6993 19.1782 17.0118C18.8656 17.3244 18.4417 17.5 17.9997 17.5H2.99967C2.55765 17.5 2.13372 17.3244 1.82116 17.0118C1.5086 16.6993 1.33301 16.2754 1.33301 15.8333V6.66667C1.33301 6.22464 1.5086 5.80072 1.82116 5.48816C2.13372 5.17559 2.55765 5 2.99967 5H6.33301L7.99967 2.5H12.9997L14.6663 5H17.9997C18.4417 5 18.8656 5.17559 19.1782 5.48816C19.4907 5.80072 19.6663 6.22464 19.6663 6.66667V15.8333Z"
-                                                    stroke="#1B1B1B"
-                                                    stroke-width="1.66667"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
+                                                    stroke="#1B1B1B" stroke-width="1.66667" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                                 <path
                                                     d="M10.5003 14.1669C12.3413 14.1669 13.8337 12.6745 13.8337 10.8336C13.8337 8.99263 12.3413 7.50024 10.5003 7.50024C8.65938 7.50024 7.16699 8.99263 7.16699 10.8336C7.16699 12.6745 8.65938 14.1669 10.5003 14.1669Z"
-                                                    stroke="#1B1B1B"
-                                                    stroke-width="1.66667"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
+                                                    stroke="#1B1B1B" stroke-width="1.66667" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
                                             </g>
                                             <defs>
                                                 <clipPath id="clip0_2061_6507">
-                                                    <rect
-                                                        width="20"
-                                                        height="20"
-                                                        fill="white"
-                                                        transform="translate(0.5)"
-                                                    />
+                                                    <rect width="20" height="20" fill="white" transform="translate(0.5)" />
                                                 </clipPath>
                                             </defs>
                                         </svg>
@@ -951,20 +828,14 @@ onBeforeUnmount(() => {
                         </div>
 
                         <!-- footer for text state -->
-                        <div
-                            v-if="editState === 'text'"
-                            class="flex items-center p-4 border-t border-stroke bg-white"
-                        >
+                        <div v-if="editState === 'text'" class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="addText">
                                 <span>Add Text</span>
                             </QButton>
                             <QButton block @click="backToCropState"> Done </QButton>
                         </div>
 
-                        <div
-                            v-if="editState === 'filter'"
-                            class="flex items-center p-4 border-t border-stroke bg-white"
-                        >
+                        <div v-if="editState === 'filter'" class="flex items-center p-4 border-t border-stroke bg-white">
                             <QButton variant="secondary" block class="mr-2" @click="resetFilter">
                                 <i class="ri-refresh-line"></i>
                                 <span class="ml-2">Reset</span>
@@ -975,29 +846,38 @@ onBeforeUnmount(() => {
                     </div>
                 </Transition>
 
-                <div
-                    v-if="step === STEPS.ADS"
-                    :class="['ads-progress', sheetFullyVisible && 'ads-progress--hide']"
-                >
+                <div v-if="step === STEPS.ADS" :class="['ads-progress', sheetFullyVisible && 'ads-progress--hide']">
                     <div class="ads-progress-loading">
                         <span class="ads-progress-loading__text">Processing Your Photo</span>
                     </div>
                 </div>
+
+                <Transition name="slide-down">
+                    <div v-show="step === STEPS.POST" class="support-page__actions">
+                        <div class="flex items-center p-4 border-t border-stroke bg-white">
+                            <QButton variant="secondary" block class="mr-2">
+                                <i class="ri-refresh-line"></i>
+                                <span class="ml-2">Start Over</span>
+                            </QButton>
+
+                            <QButton block>
+                                <i class="ri-upload-line"></i>
+                                <span class="ml-2">Post</span>
+                            </QButton>
+                        </div>
+                    </div>
+                </Transition>
             </div>
-            <!-- end of page bottom sheet -->
         </div>
 
         <Teleport to="body">
             <QConfirmDialog :show="showConfirmDiscard">
                 <div
-                    class="absolute top-0 left-1/2 w-20 h-20 rounded-full bg-red-500 text-white flex items-center justify-center text-4xl -mt-10 -translate-x-1/2"
-                >
+                    class="absolute top-0 left-1/2 w-20 h-20 rounded-full bg-red-500 text-white flex items-center justify-center text-4xl -mt-10 -translate-x-1/2">
                     <i class="ri-question-mark"></i>
                 </div>
 
-                <div
-                    class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center"
-                >
+                <div class="confirm__body pt-14 pb-6 px-5 flex flex-col items-center justify-center text-center">
                     <div class="flex flex-col text-center space-y-2">
                         <h3 class="font-semibold text-xl">Discard edits?</h3>
                         <p class="text-sm">
@@ -1270,7 +1150,41 @@ onBeforeUnmount(() => {
 
 .preset-modifier-wrapper {
     @apply h-full py-4 flex items-center overflow-x-auto;
-
     @include no_scrollbar;
+}
+
+
+.result-post {
+    @apply flex items-center justify-center bg-gray-150 pt-6 px-6 pb-14;
+
+    img {
+        @apply rounded;
+        max-height: 326px;
+    }
+}
+
+.share-post {
+    @apply bg-white shadow rounded-full inline-flex items-center justify-center;
+
+    .share-post__separator {
+        height: 24px;
+        width: 1px;
+        background-color: #DEE8E8;
+
+        @apply mx-2;
+    }
+
+    .share-post__btn {
+        @apply p-4 font-semibold;
+
+
+        &:first-of-type {
+            @apply pl-8;
+        }
+
+        &:last-of-type {
+            @apply pr-8;
+        }
+    }
 }
 </style>
