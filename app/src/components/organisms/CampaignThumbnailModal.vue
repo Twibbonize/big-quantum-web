@@ -106,7 +106,7 @@ const handlePublish = () => {
                 }
             },
             number: {
-                value: 0
+                value: 50 // Adjusted value, can be adjusted as needed
             },
             opacity: {
                 value: 1
