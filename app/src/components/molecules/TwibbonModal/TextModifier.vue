@@ -93,14 +93,14 @@ watch(sRGBHex, (newValue) => {
 });
 
 watch(
-    () => props.activeObject.fill,
+    () => props.activeObject && props.activeObject.fill,
     (newValue) => {
         sipColor.value = compareContrastWithBlackAndWhite(newValue);
     },
     { deep: true }
 );
 
-const fontColor = computed(() => props.activeObject.fill);
+const fontColor = computed(() => props.activeObject && props.activeObject.fill || '#000');
 
 function getRelativeLuminance(color) {
     const rgb = [

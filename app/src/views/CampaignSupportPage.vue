@@ -632,7 +632,7 @@ onBeforeUnmount(() => {
                             v-model="photoRotation"
                             @increate="rotatePhoto(45)"
                             @decrease="rotatePhoto(-45)"
-                            :enabled="photo"
+                            :enabled="!!photo"
                         />
                         <!-- end of rotate slider -->
 
@@ -643,7 +643,7 @@ onBeforeUnmount(() => {
                                 variant="neutral"
                                 block
                                 @click="editState = 'text'"
-                                :enabled="photo"
+                                :enabled="!!photo"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -727,7 +727,7 @@ onBeforeUnmount(() => {
                                 variant="neutral"
                                 block
                                 @click="editState = 'filter'"
-                                :enabled="photo"
+                                :enabled="!!photo"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
