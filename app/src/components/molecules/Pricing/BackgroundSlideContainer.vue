@@ -4,7 +4,15 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
+const props = defineProps({ size: String });
+
 const baseSize = computed(() => {
+    if (props.size === 'lg') {
+        if (breakpoints.greater('lg')) return 200;
+        if (breakpoints.greater('sm')) return 168;
+        return 144;
+    }
+
     if (breakpoints.greater('lg')) return 100;
     if (breakpoints.greater('sm')) return 84;
     return 72;
@@ -12,7 +20,7 @@ const baseSize = computed(() => {
 
 const vectorCreators = [
     {
-        image: '/assets/img/marketings/vector-creators-2.png',
+        image: '/assets/img/marketings/vector-creators-1.png',
         isReverse: true
     },
     {
@@ -90,6 +98,10 @@ const vectorCreators = [
         height: var(--base-size);
         width: var(--base-size);
         margin-right: calc(0.2 * var(--base-size));
+    }
+
+    .bg-creators-image {
+        @apply w-full h-full;
     }
 }
 </style>

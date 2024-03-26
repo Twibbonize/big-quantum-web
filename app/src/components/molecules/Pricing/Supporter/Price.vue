@@ -48,12 +48,14 @@ const supporterFeatures = [
         <p class="description">Considering all the conveniences, it’s worth it.</p>
         <div class="bento">
             <div class="detail">
-                <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="premium">
-                <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
+                <div class="flex flex-col items-center w-fit">
+                    <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="premium">
+                    <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
+                </div>
                 <div
                     v-for="({ text }, i) in supporterFeatures"
                     :key="`${title}-feature-${i}`"
-                    class="flex items-center mt-5"
+                    class="flex items-center mt-5 sm:mt-9"
                 >
                     <div>
                         <div class="icon-container">
@@ -140,10 +142,10 @@ const supporterFeatures = [
             @apply z-10;
 
             .premium-title {
-                @apply h-6 lg:h-9 mx-auto;
+                @apply h-6 lg:h-9;
             }
             .supporter-title {
-                @apply w-full lg:w-auto lg:h-32 mx-auto;
+                @apply w-full lg:w-auto lg:h-32;
             }
             .icon-container {
                 @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2;

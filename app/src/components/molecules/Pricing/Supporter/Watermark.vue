@@ -100,7 +100,7 @@ onMounted(() => {
     }
 
     .remove-watermark-logo {
-        @apply h-[32px] lg:h-[54px] absolute top-1/2 -translate-y-1/2;
+        @apply w-full absolute top-1/2 -translate-y-1/2;
         filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.30));
         backdrop-filter: blur(2.0569987297058105px);
     }
