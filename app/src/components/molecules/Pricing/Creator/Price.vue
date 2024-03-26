@@ -71,7 +71,7 @@ const creatorFeatures = [
                         v-model="optionIndex"
                         size="sm"
                         :options="creatorOptions"
-                        :name="`price-creator-${isCreator ? 'creator' : 'creator'}`"
+                        name="price-creator-marketing"
                         class="w-[220px] lg:w-[270px]"
                     />
                 </div>
