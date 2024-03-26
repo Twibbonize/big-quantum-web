@@ -40,7 +40,7 @@ const setValue = (index) => {
     <div class="switch-toggle__container" :class="size">
         <div class="switch-toggle switch-3 switch-candy">
             <template v-for="option,i in options">
-                <input :id="option.key" :name="name" type="radio" :checked="value === i" />
+                <input :id="option.key" :name="name" type="radio" :checked="modelValue === i" />
                 <label :for="option.key" @click="setValue(i)"
                     ><span>{{ option.text }}</span></label
                 >
