@@ -2,58 +2,60 @@
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
 import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
+import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
+
 
 import { ref } from 'vue';
 
 const optionIndex = ref(0);
 
-const supporterOptions = [
+const creatorOptions = [
     {
-        key: 'supporter-weekly',
-        text: 'Weekly',
-        duration: 'week'
-    },
-    {
-        key: 'supporter-monthly',
+        key: 'creator-monthly',
         text: 'Monthly',
         duration: 'month'
     },
     {
-        key: 'supporter-yearly',
+        key: 'creator-yearly',
         text: 'Yearly',
         duration: 'year'
     }
 ];
 
-const supporterPrice = {
-    number: 2,
+const creatorPrice = {
+    number: 11,
     decimal: 99,
     currency: '$'
 };
 
 
-const supporterFeatures = [
+const creatorFeatures = [
     {
-        text: 'Remove watermark for your own account',
+        text: 'Remove watermark for all of your campaign users',
     },
     {
         text: 'Use Twibbonize without Ads',
     },
+    {
+        text: 'Exclusive Features for your Campaign'
+    }
 ];
 </script>
 
 <template>
-    <div class="pricing-supporter-price">
+    <div class="pricing-creator-price">
         <h2 class="title">The top-notch plan we’ve ever launched</h2>
         <p class="description">Considering all the conveniences, it’s worth it.</p>
         <div class="bento">
             <div class="detail">
-                <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="premium">
-                <img class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
+                <div class="flex flex-col items-center w-fit">
+                    <img class="premium-title" src="/assets/img/marketings/premium-white.svg" alt="premium">
+                    <img class="creator-title" src="/assets/img/marketings/premium-creator.svg" alt="creator">
+                </div>
                 <div
-                    v-for="({ text }, i) in supporterFeatures"
+                    v-for="({ text }, i) in creatorFeatures"
                     :key="`${title}-feature-${i}`"
-                    class="flex items-center mt-5"
+                    class="flex items-center mt-5 sm:mt-9 text-white"
                 >
                     <div>
                         <div class="icon-container">
@@ -68,33 +70,32 @@ const supporterFeatures = [
                     <QSwitchThree
                         v-model="optionIndex"
                         size="sm"
-                        :options="supporterOptions"
-                        :name="`price-supporter-${isCreator ? 'creator' : 'supporter'}`"
+                        :options="creatorOptions"
+                        :name="`price-creator-${isCreator ? 'creator' : 'creator'}`"
                         class="w-[220px] lg:w-[270px]"
                     />
                 </div>
                 <PricingPrice
-                    :currency="supporterPrice.currency"
-                    :number="supporterPrice.number"
-                    :decimal="supporterPrice.decimal"
-                    class="mt-4"
+                    :currency="creatorPrice.currency"
+                    :number="creatorPrice.number"
+                    :decimal="creatorPrice.decimal"
+                    class="text-white mt-4"
                 />
-                <p>{{ `per ${supporterOptions[optionIndex].duration}` }}</p>
-                <QButton variant="black" class="gap-2 w-full mt-4">
+                <p class="text-white">{{ `per ${creatorOptions[optionIndex].duration}` }}</p>
+                <QButton variant="white" class="gap-2 w-full mt-4">
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
             </div>
-            <img class="pattern" src="/assets/img/marketings/bg-pricing-supporter.png" alt="bg">
-            <img class="overlay" src="/src/assets/img/patterns/background-banner-creators.png" alt="bg">
-            <div class="shape-blob"></div>
-            <div class="shape-blob two"></div>
+        </div>
+        <div class="absolute top-0 -mt-32 z-0">
+            <PricingBackgroundSlideContainer size="lg"/>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-.pricing-supporter-price {
+.pricing-creator-price {
     @apply flex flex-col max-w-[1100px] w-full mx-auto my-24 relative overflow-hidden px-5 sm:px-14 lg:px-0;
 
     .pattern {
@@ -132,22 +133,23 @@ const supporterFeatures = [
     }
 
     .bento {
-        @apply p-10 pb-32 sm:px-10 sm:py-14 lg:p-20 bg-white rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
+        @apply p-10 pb-32 sm:px-10 sm:py-14 lg:p-20 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
         border-top: 2px solid rgba(255, 255, 255, 0.40);
         border-bottom: 2px solid rgba(255, 255, 255, 0.40);
+        background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
 
         .detail {
             @apply z-10;
 
             .premium-title {
-                @apply h-6 lg:h-9 mx-auto;
+                @apply h-6 lg:h-9;
             }
-            .supporter-title {
-                @apply w-full lg:w-auto lg:h-32 mx-auto;
+            .creator-title {
+                @apply w-full lg:w-auto lg:h-32;
             }
             .icon-container {
                 @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2;
-                background: rgba(27, 27, 27, 0.10);
+                background: rgba(255,255,255, 0.10);
 
                 i {
                     @apply text-base lg:text-xl;
