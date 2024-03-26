@@ -61,10 +61,6 @@ onMounted(() => {
                 <p v-html="text"></p>
             </div>
         </div>
-        <div class="remove-watermark-link">
-            <p>Looking to Remove Watermark for all of your campaign users? Try <router-link to="/pricing/creators">Premium Creator</router-link>.</p>
-            
-        </div>
     </div>
 </template>
 
@@ -129,20 +125,6 @@ onMounted(() => {
         .two {
             @apply bottom-0 right-0
         }
-    }
-}
-
-.remove-watermark-link {
-    @apply rounded-3xl py-3 lg:py-6 px-5 lg:px-8 mt-10 lg:mt-12 z-10 m-5 sm:mx-0;
-    background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
-
-    p {
-        @apply text-white text-center text-sm lg:text-xl;
-    }
-
-    a {
-        @apply font-bold underline;
-        text-decoration-line: 1px;
     }
 }
 </style>

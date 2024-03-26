@@ -49,7 +49,7 @@ onUnmounted(() => {
         <div class="pricing-creator-header">
             <PricingCreatorHeader/>
             <div class="video-illustration">
-                <h2 class="title">Looking for a full campaigning <br> experience in Twibbonize?</h2>
+                <h2 class="title">Looking for a full campaigning experience in Twibbonize?</h2>
                 <p class="subtitle">Then Premium Creator is the right plan for you.</p>
                 <div class="video-container">
                     <video
@@ -100,10 +100,10 @@ onUnmounted(() => {
             }
 
             .title {
-                @apply font-bold text-2xl sm:text-[40px] lg:text-[64px] text-center leading-tight;
+                @apply font-bold text-2xl sm:text-[40px] lg:text-[64px] text-center leading-tight mx-5 sm:mx-14 lg:mx-20;
             }
             .subtitle {
-                @apply font-medium text-base text-center sm:text-2xl text-[#667085] mt-6 px-5 lg:px-0;
+                @apply font-medium text-base text-center sm:text-2xl text-[#667085] mt-6 mx-5 sm:mx-14 lg:mx-20;
             }
             .video {
                 @apply w-full;
@@ -139,7 +139,7 @@ onUnmounted(() => {
             }
 
             .bento-container {
-                @apply relative pt-10 mt-14 w-full lg:mt-16 overflow-hidden;
+                @apply relative mt-14 w-full lg:mt-16 overflow-hidden;
                 height: auto !important;
             }
         }
