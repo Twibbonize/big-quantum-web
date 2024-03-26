@@ -71,7 +71,7 @@ const creatorFeatures = [
                         v-model="optionIndex"
                         size="sm"
                         :options="creatorOptions"
-                        :name="`price-creator-${isCreator ? 'creator' : 'creator'}`"
+                        name="price-creator-marketing"
                         class="w-[220px] lg:w-[270px]"
                     />
                 </div>
@@ -133,7 +133,7 @@ const creatorFeatures = [
     }
 
     .bento {
-        @apply p-10 pb-32 sm:px-10 sm:py-14 lg:p-20 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
+        @apply p-10 sm:px-10 sm:py-14 lg:p-20 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
         border-top: 2px solid rgba(255, 255, 255, 0.40);
         border-bottom: 2px solid rgba(255, 255, 255, 0.40);
         background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);

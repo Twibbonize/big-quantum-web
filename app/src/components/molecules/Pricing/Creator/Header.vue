@@ -36,7 +36,7 @@ const { height } = useElementSize(creatorTitle);
         @apply mt-[200px] w-full flex flex-col z-10;
 
         .premium-title {
-            @apply h-3 sm:h-5 md:h-8 lg:h-16 z-20;
+            @apply h-8 md:h-12 lg:h-16 z-20;
         }
 
         .creator-title {

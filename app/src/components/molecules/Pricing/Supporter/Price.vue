@@ -134,7 +134,7 @@ const supporterFeatures = [
     }
 
     .bento {
-        @apply p-10 pb-32 sm:px-10 sm:py-14 lg:p-20 bg-white rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
+        @apply p-10 sm:px-10 sm:py-14 lg:p-20 bg-white rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
         border-top: 2px solid rgba(255, 255, 255, 0.40);
         border-bottom: 2px solid rgba(255, 255, 255, 0.40);
 
