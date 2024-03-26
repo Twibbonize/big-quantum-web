@@ -4,6 +4,7 @@ import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import PricingCreatorHeader from '@/components/molecules/Pricing/Creator/Header.vue';
 import PricingCreatorWatermark from '@/components/molecules/Pricing/Creator/Watermark.vue';
 import PricingCreatorPrice from '@/components/molecules/Pricing/Creator/Price.vue';
+import PricingBentoExtraFeatures from '@/components/molecules/Pricing/Creator/ExtraFeatures.vue';
 
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
@@ -22,7 +23,7 @@ const doScroll = () => {
         setLogoVariant('main');
         setCtaVariant('accent');
     } else {
-        setNavbarColor('transparent');
+        setNavbarColor('transparent-white');
         setShadow(false);
         setLogoVariant('white');
         setCtaVariant('accent');
@@ -32,7 +33,7 @@ const doScroll = () => {
 onMounted(() => {
     window.addEventListener('scroll', doScroll);
 
-    setNavbarColor('transparent');
+    setNavbarColor('transparent-white');
     setShadow(false);
     setLogoVariant('white');
     setCtaVariant('accent');
@@ -48,7 +49,7 @@ onUnmounted(() => {
         <div class="pricing-creator-header">
             <PricingCreatorHeader/>
             <div class="video-illustration">
-                <h2 class="title">Do you like supporting  <br> different campaigns?</h2>
+                <h2 class="title">Looking for a full campaigning <br> experience in Twibbonize?</h2>
                 <p class="subtitle">Then Premium Creator is the right plan for you.</p>
                 <div class="video-container">
                     <video
@@ -70,9 +71,14 @@ onUnmounted(() => {
                         autoplay
                         loop
                         muted
-                        src="/assets/videos/pricing-no-ads.mp4"
+                        src="/assets/videos/pricing-no-ads-hd.mp4"
                     ></video>
                 </div>
+            </div>
+            <div class="extra-features">
+                <h2 class="title">Equipping you with the right tools</h2>
+                <p class="description">Scale up your campaign with our exclusive features.</p>
+                <PricingBentoExtraFeatures class="bento-container"/>
             </div>
             <PricingCreatorPrice/>
         </div>
@@ -118,6 +124,23 @@ onUnmounted(() => {
             .bento {
                 @apply relative pt-10 mt-14 w-full lg:mt-16 h-[240px] sm:h-[500px] flex justify-center bg-white rounded-2xl overflow-hidden;
                 box-shadow: 0px 12px 80px 0px rgba(27, 82, 78, 0.11);
+            }
+        }
+
+        .extra-features {
+            @apply flex flex-col max-w-[1100px] w-full mx-auto my-24 mb-14 lg:my-24 px-5 sm:px-14 lg:px-0;
+
+            .title {
+                @apply text-3xl sm:text-[40px] lg:text-5xl font-bold text-center;
+            }
+
+            .description {
+                @apply text-base lg:text-2xl leading-tight text-gray-500 text-center mt-5;
+            }
+
+            .bento-container {
+                @apply relative pt-10 mt-14 w-full lg:mt-16 overflow-hidden;
+                height: auto !important;
             }
         }
 

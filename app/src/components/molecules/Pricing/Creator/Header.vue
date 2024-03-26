@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useElementSize } from '@vueuse/core';
 
+import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
+
 const creatorTitle = ref(null);
 
 const { height } = useElementSize(creatorTitle);
@@ -9,21 +11,29 @@ const { height } = useElementSize(creatorTitle);
 
 <template>
     <div class="creator-background-container">
+        <div class="absolute top-0 -mt-12 z-0">
+            <PricingBackgroundSlideContainer size="lg"/>
+        </div>
         <div class="title-container">
-            <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="creator">
+            <img class="premium-title" src="/assets/img/marketings/premium-white.svg" alt="creator">
             <img ref="creatorTitle" class="creator-title" src="/assets/img/marketings/premium-creator.svg" alt="creator">
         </div>
-        <div class="background-blank" :style="{ height: `${height/2}px` }"></div>
+        
+        <div class="background-blank" :style="{ height: `${height/2}px` }">
+            <div class="relative h-full mx-5 sm:mx-14 lg:mx-20 overflow-hidden">
+                <div class="text-mask"></div>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .creator-background-container {
-    @apply relative w-full h-full overflow-hidden lg:aspect-video;
+    @apply relative w-full h-full overflow-hidden;
     background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
 
     .title-container {
-        @apply mt-[200px] w-full flex flex-col z-20;
+        @apply mt-[200px] w-full flex flex-col z-10;
 
         .premium-title {
             @apply h-3 sm:h-5 md:h-8 lg:h-16 z-20;
@@ -34,10 +44,21 @@ const { height } = useElementSize(creatorTitle);
         }
     }
 
+    .text-mask {
+        @apply absolute top-0 w-full h-full;
+        background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
+        mask-image: url('/assets/img/marketings/premium-creator.svg');
+        mask-position: bottom;
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        mask-mode: alpha;
+    }
+
 
     .background-blank {
         @apply bg-white absolute bottom-0 w-full;
-        z-index: 3;
+        border: 1px solid #FFFFFF;
+        z-index: 20;
     }
 
     @keyframes transform {

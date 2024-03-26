@@ -268,6 +268,14 @@ function handleClick(e) {
         }
     }
 
+    &--white {
+        @apply text-black bg-white;
+
+        &:hover {
+            @apply bg-black/80;
+        }
+    }
+
     &--link {
         @apply text-black bg-transparent;
 
