@@ -86,7 +86,7 @@ onUnmounted(() => {
     </LayoutMain>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .pricing-supporter-header {
     .video-illustration {
         @apply flex flex-col w-full items-center mt-20;
@@ -95,7 +95,7 @@ onUnmounted(() => {
             @apply relative mt-14 h-[220px] lg:h-[600px] w-full overflow-hidden;
 
             .video-content {
-                @apply h-full max-w-none absolute top-1/2 left-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+                @apply h-full max-w-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
             }
         }
 
