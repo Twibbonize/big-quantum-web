@@ -5,7 +5,6 @@ module.exports = {
         './index.html',
         './src/**/*.{vue,js,ts,jsx,tsx}'
     ],
-    darkMode: false,
     theme: {
         fontFamily: {
             sans: ['Manrope', 'sans-serif'],

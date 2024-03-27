@@ -9,14 +9,27 @@ const { height } = useElementSize(supporterTitle);
 
 <template>
     <div class="supporter-background-container">
-        <img class="pattern" src="/assets/img/marketings/bg-pricing-supporter.png" alt="bg">
-        <img class="overlay" src="/src/assets/img/patterns/background-banner-creators.png" alt="bg">
+        <img class="pattern" src="/assets/img/marketings/bg-pricing-supporter.png" alt="bg" />
+        <img
+            class="overlay"
+            src="/src/assets/img/patterns/background-banner-creators.png"
+            alt="bg"
+        />
         <div class="shape-blob"></div>
         <div class="title-container">
-            <img class="premium-title" src="/assets/img/marketings/premium-black.svg" alt="supporter">
-            <img ref="supporterTitle" class="supporter-title" src="/assets/img/marketings/premium-supporter.svg" alt="supporter">
+            <img
+                class="premium-title"
+                src="/assets/img/marketings/premium-black.svg"
+                alt="supporter"
+            />
+            <img
+                ref="supporterTitle"
+                class="supporter-title"
+                src="/assets/img/marketings/premium-supporter.svg"
+                alt="supporter"
+            />
         </div>
-        <div class="background-blank" :style="{ height: `${height/2}px` }"></div>
+        <div class="background-blank" :style="{ height: `${height / 2}px` }"></div>
     </div>
 </template>
 
@@ -37,7 +50,7 @@ const { height } = useElementSize(supporterTitle);
 
     .shape-blob {
         @apply absolute opacity-70 z-0 top-[10%] h-[300px] w-[400px] lg:h-[900px] lg:w-[1000px];
-        background: #46C3BD;
+        background: #46c3bd;
         filter: blur(77px);
         border-radius: 50% 40% 30% 40%;
         animation:
@@ -57,7 +70,6 @@ const { height } = useElementSize(supporterTitle);
             @apply w-full mt-2 sm:mt-4 md:mt-6 lg:mt-9 px-5 sm:px-14 lg:px-20 z-20;
         }
     }
-
 
     .background-blank {
         @apply bg-white absolute bottom-0 w-full;

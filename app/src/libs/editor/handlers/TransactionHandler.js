@@ -116,15 +116,6 @@ export default class TransactionHandler {
                         });
                     }
 
-                    if (obj.locked) {
-                        obj.set({
-                            lockMovementX: true,
-                            lockMovementY: true,
-                            hasControls: false,
-                            hoverCursor: 'pointer'
-                        });
-                    }
-
                     const systemFonts = ['Rubik', 'Plus Jakarta Sans', 'Arial', 'Times New Roman'];
                     if (obj.type === 'textbox' && !systemFonts.includes(obj.fontFamily)) {
                         const font = obj.fontFamily;
@@ -174,7 +165,7 @@ export default class TransactionHandler {
         );
     };
 
-    activateTransaction = () => {
+    activate = () => {
         this.active = false;
 
         if (this.modified) {
@@ -183,7 +174,7 @@ export default class TransactionHandler {
         }
     };
 
-    deactivateTransaction = () => {
+    deactivate = () => {
         this.active = true;
     };
 

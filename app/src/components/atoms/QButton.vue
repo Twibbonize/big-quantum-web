@@ -49,12 +49,16 @@ const props = defineProps({
     enabled: {
         type: Boolean,
         default: true
+    },
+    loading: {
+        type: Boolean,
+        default: false
     }
 });
 const emit = defineEmits(['click']);
 
 const buttonClasses = computed(() => {
-    const { size, variant, circle, square, block, outlined } = props;
+    const { size, variant, circle, square, block, outlined, loading } = props;
     return [
         'btn',
         `btn--${size}`,
@@ -62,7 +66,8 @@ const buttonClasses = computed(() => {
         outlined && 'btn--outlined',
         square && !circle && 'btn--square',
         circle && !block && !square && 'btn--circle',
-        block && 'btn--block'
+        block && 'btn--block',
+        loading && 'btn--loading'
     ];
 });
 
@@ -72,15 +77,25 @@ function handleClick(e) {
 }
 </script>
 <template>
-    <component :is="as" :class="buttonClasses" :disabled="!enabled" @click="handleClick">
-        <slot></slot>
-    </component>
+    <button :class="buttonClasses" :disabled="!enabled" @click="handleClick">
+        <slot v-if="!loading"></slot>
+        <span v-else class="btn__loader"></span>
+    </button>
 </template>
 
 <style scoped lang="scss">
 .btn {
     @apply font-semibold text-sm flex items-center justify-center relative overflow-hidden transition-colors duration-200;
     border-radius: 100px;
+
+    .btn__loader {
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        border: 2.5px solid #16dac1;
+        border-top: 2.5px solid transparent;
+        width: 20px;
+        height: 20px;
+    }
 
     // sizes
     &--xs {
@@ -107,7 +122,7 @@ function handleClick(e) {
     }
 
     &:disabled {
-        @apply opacity-60 cursor-default bg-light;
+        @apply text-black/30 cursor-default bg-gray-100;
 
         &:hover {
             @include before {
@@ -169,6 +184,10 @@ function handleClick(e) {
                 height: 20rem;
                 width: 100%;
             }
+        }
+
+        &:disabled {
+            @apply cursor-default border-transparent;
         }
     }
 
@@ -298,6 +317,10 @@ function handleClick(e) {
                     width: 30rem;
                 }
             }
+        }
+
+        &:disabled {
+            @apply cursor-default bg-transparent;
         }
     }
 

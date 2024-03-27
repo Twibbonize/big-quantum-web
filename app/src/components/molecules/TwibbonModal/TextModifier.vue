@@ -1,17 +1,12 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
 import { useEyeDropper } from '@vueuse/core';
-import {
-    Listbox,
-    ListboxOptions,
-    ListboxOption,
-    ListboxButton,
-    Popover,
-    PopoverButton,
-    PopoverPanel
-} from '@headlessui/vue';
+import { Listbox, ListboxOptions, ListboxOption, ListboxButton } from '@headlessui/vue';
 import WebFont from 'webfontloader';
+import QButton from '@/components/atoms/QButton.vue';
 import { BASIC_COLORS } from '@/libs/editor/constants/colors';
+import Swiper from 'swiper';
+import { Pagination } from 'swiper/modules';
 
 // import fabric from '@/libs/editor/fabric';
 
@@ -28,6 +23,8 @@ const props = defineProps({
         type: Object
     }
 });
+
+const display = ref('main'); //main or pallete
 
 const fonts = [
     {
@@ -85,6 +82,7 @@ const fonts = [
 ];
 
 // const fontSize = ref(42);
+
 const { isSupported, open, sRGBHex } = useEyeDropper();
 const sipColor = ref('#000');
 
@@ -93,6 +91,16 @@ watch(sRGBHex, (newValue) => {
     sipColor.value = compareContrastWithBlackAndWhite(newValue);
     modify('fill', newValue, activeObject);
 });
+
+watch(
+    () => props.activeObject && props.activeObject.fill,
+    (newValue) => {
+        sipColor.value = compareContrastWithBlackAndWhite(newValue);
+    },
+    { deep: true }
+);
+
+const fontColor = computed(() => (props.activeObject && props.activeObject.fill) || '#000');
 
 function getRelativeLuminance(color) {
     const rgb = [
@@ -163,9 +171,11 @@ const isBold = computed(() => {
 
 const toggleBold = () => {
     const { activeObject, modify } = props;
+
     if (!activeObject || activeObject.type !== 'textbox') {
         return;
     }
+
     const fontWeight = activeObject.fontWeight === 'normal' ? false : true;
     modify('fontWeight', fontWeight);
 };
@@ -177,9 +187,11 @@ const isItalic = computed(() => {
 
 const toggleItalic = () => {
     const { activeObject, modify } = props;
+
     if (!activeObject || activeObject.type !== 'textbox') {
         return;
     }
+
     const nextStyle = !(activeObject.fontStyle === 'normal');
     modify('fontStyle', nextStyle);
 };
@@ -191,9 +203,11 @@ const isUnderline = computed(() => {
 
 const toggleUnderline = () => {
     const { activeObject, modify } = props;
+
     if (!activeObject || activeObject.type !== 'textbox') {
         return;
     }
+
     const nextStyle = !activeObject.underline;
     modify('underline', nextStyle);
 };
@@ -205,11 +219,10 @@ const isStrikethrough = computed(() => {
 
 const toggleStrikethrough = () => {
     const { activeObject, modify } = props;
+
     if (!activeObject || activeObject.type !== 'textbox') {
         return;
     }
-
-    console.log(activeObject.linethrough);
 
     const nextStyle = !activeObject.linethrough;
     modify('linethrough', nextStyle);
@@ -223,200 +236,195 @@ onMounted(() => {
             families: googleFonts
         }
     });
+
+    new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: false,
+        slidesPerView: 'auto',
+        slidesPerGroup: 4,
+        spaceBetween: 8,
+        modules: [Pagination],
+        pagination: {
+            el: '.swiper-pagination',
+            enabled: true
+        }
+    });
 });
 </script>
 
 <template>
-    <div class="space-y-3">
-        <div
-            class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3 px-4 pt-4"
-        >
-            <Listbox v-model="fontFamily" :disabled="!activeObject" v-slot="{ disabled }">
-                <div :class="['font-selector', disabled && 'font-selector--disabled']">
-                    <div class="font-selector__toggle">
-                        <button
-                            @click="fontFamily = Math.max(fontFamily - 1, 0)"
-                            class="font-selector__arrow"
+    <div>
+        <div v-show="display === 'main'" class="space-y-3">
+            <div
+                class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3 px-4 pt-4"
+            >
+                <Listbox v-model="fontFamily" :disabled="!activeObject" v-slot="{ disabled }">
+                    <div :class="['font-selector', disabled && 'font-selector--disabled']">
+                        <div
+                            class="font-selector__toggle"
+                            :style="{ fontFamily: fonts[fontFamily].family }"
                         >
-                            <i class="ri-arrow-left-s-line ri-lg"></i>
+                            <button
+                                @click="fontFamily = Math.max(fontFamily - 1, 0)"
+                                class="font-selector__arrow"
+                            >
+                                <i class="ri-arrow-left-s-line ri-lg"></i>
+                            </button>
+                            <ListboxButton class="flex-grow">
+                                <span
+                                    class="text-lg leading-none"
+                                    :style="{ fontFamily: fontFamily, fontWeight: 'normal' }"
+                                    >{{ fonts[fontFamily].family }}
+                                </span>
+                            </ListboxButton>
+                            <button
+                                @click="fontFamily = Math.min(fontFamily + 1, 13)"
+                                class="font-selector__arrow"
+                            >
+                                <i class="ri-arrow-right-s-line ri-lg"></i>
+                            </button>
+                        </div>
+
+                        <transition
+                            leave-active-class="transition duration-100 ease-in"
+                            leave-from-class="opacity-100"
+                            leave-to-class="opacity-0"
+                        >
+                            <ListboxOptions
+                                class="absolute mt-2 max-h-32 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-stroke focus:outline-none z-[101]"
+                            >
+                                <ListboxOption
+                                    v-for="(font, i) in fonts"
+                                    :value="i"
+                                    :key="i"
+                                    v-slot="{ active, selected }"
+                                >
+                                    <li
+                                        :class="[
+                                            'font-selector__option',
+                                            active && 'font-selector__option--active',
+                                            selected && 'font-selector__option--selected'
+                                        ]"
+                                        :style="{ fontFamily: font.family, fontWeight: 'normal' }"
+                                    >
+                                        {{ font.family }}
+                                    </li>
+                                </ListboxOption>
+                            </ListboxOptions>
+                        </transition>
+                    </div>
+                </Listbox>
+            </div>
+
+            <div
+                :class="[
+                    'px-4',
+                    'flex',
+                    'items-center',
+                    !activeObject && 'opacity-40',
+                    'flex-wrap',
+                    'relative'
+                ]"
+            >
+                <div class="font-size">
+                    <input
+                        v-model="fontSize"
+                        type="number"
+                        class="font-size__input"
+                        :disabled="!activeObject"
+                    />
+                    <div class="font-size__arrows">
+                        <button class="font-size__increase" @click="fontSize = fontSize + 1">
+                            <i class="ri-arrow-up-s-fill"></i>
                         </button>
-                        <ListboxButton class="flex-grow">
-                            <span
-                                class="text-lg"
-                                :style="{ fontFamily: fontFamily, fontWeight: 'normal' }"
-                                >{{ fonts[fontFamily].family }}
-                            </span>
-                        </ListboxButton>
                         <button
-                            @click="fontFamily = Math.min(fontFamily + 1, 13)"
-                            class="font-selector__arrow"
+                            class="font-size__decrease"
+                            @click="fontSize = Math.max(6, fontSize - 1)"
                         >
-                            <i class="ri-arrow-right-s-line ri-lg"></i>
+                            <i class="ri-arrow-down-s-fill"></i>
                         </button>
                     </div>
-
-                    <transition
-                        leave-active-class="transition duration-100 ease-in"
-                        leave-from-class="opacity-100"
-                        leave-to-class="opacity-0"
-                    >
-                        <ListboxOptions
-                            class="absolute mt-2 max-h-32 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-stroke focus:outline-none z-[101]"
-                        >
-                            <ListboxOption
-                                v-for="(font, i) in fonts"
-                                :value="i"
-                                :key="i"
-                                v-slot="{ active, selected }"
-                            >
-                                <li
-                                    :class="[
-                                        'font-selector__option',
-                                        active && 'font-selector__option--active',
-                                        selected && 'font-selector__option--selected'
-                                    ]"
-                                    :style="{ fontFamily: font.family, fontWeight: 'normal' }"
-                                >
-                                    {{ font.family }}
-                                </li>
-                            </ListboxOption>
-                        </ListboxOptions>
-                    </transition>
                 </div>
-            </Listbox>
-        </div>
 
-        <div
-            :class="[
-                'px-4',
-                'flex',
-                'items-center',
-                !activeObject && 'opacity-40',
-                'flex-wrap',
-                'relative'
-            ]"
-        >
-            <div class="font-size">
-                <input
-                    v-model="fontSize"
-                    type="number"
-                    class="font-size__input"
-                    :disabled="!activeObject"
-                />
-                <div class="font-size__arrows">
-                    <button class="font-size__increase" @click="fontSize = fontSize + 1">
-                        <i class="ri-arrow-up-s-fill"></i>
-                    </button>
+                <div class="font-toolbar">
                     <button
-                        class="font-size__decrease"
-                        @click="fontSize = Math.max(6, fontSize - 1)"
+                        :class="['btn-toggle', isBold && 'btn-toggle--active']"
+                        :disabled="!activeObject"
+                        @click="toggleBold"
                     >
-                        <i class="ri-arrow-down-s-fill"></i>
+                        <i class="ri-bold font-semibold"></i>
+                    </button>
+
+                    <button
+                        :class="['btn-toggle', isItalic && 'btn-toggle--active']"
+                        :disabled="!activeObject"
+                        @click="toggleItalic"
+                    >
+                        <i class="ri-italic"></i>
+                    </button>
+
+                    <button
+                        :class="['btn-toggle', isUnderline && 'btn-toggle--active']"
+                        :disabled="!activeObject"
+                        @click="toggleUnderline"
+                    >
+                        <i class="ri-underline"></i>
+                    </button>
+
+                    <button
+                        :class="['btn-toggle', isStrikethrough && 'btn-toggle--active']"
+                        :disabled="!activeObject"
+                        @click="toggleStrikethrough"
+                    >
+                        <i class="ri-strikethrough"></i>
                     </button>
                 </div>
-            </div>
 
-            <div class="font-toolbar">
-                <button
-                    :class="['btn-toggle', isBold && 'btn-toggle--active']"
-                    :disabled="!activeObject"
-                    @click="toggleBold"
-                >
-                    <i class="ri-bold font-semibold"></i>
-                </button>
-
-                <button
-                    :class="['btn-toggle', isItalic && 'btn-toggle--active']"
-                    :disabled="!activeObject"
-                    @click="toggleItalic"
-                >
-                    <i class="ri-italic"></i>
-                </button>
-
-                <button
-                    :class="['btn-toggle', isUnderline && 'btn-toggle--active']"
-                    :disabled="!activeObject"
-                    @click="toggleUnderline"
-                >
-                    <i class="ri-underline"></i>
-                </button>
-
-                <button
-                    :class="['btn-toggle', isStrikethrough && 'btn-toggle--active']"
-                    :disabled="!activeObject"
-                    @click="toggleStrikethrough"
-                >
-                    <i class="ri-strikethrough"></i>
-                </button>
-            </div>
-
-            <Popover class="flex-grow">
                 <div class="color-selector">
-                    <PopoverButton class="h-full flex-grow">
-                        <div class="color-selector__toggle">
-                            <div class="color-selector__preview bg-black"></div>
-                            <div class="color-selector__arrows">
-                                <i class="ri ri-arrow-down-s-line"></i>
-                            </div>
+                    <button class="color-selector__toggle" @click="display = 'pallete'">
+                        <div
+                            class="color-selector__preview"
+                            :style="{ backgroundColor: fontColor }"
+                        ></div>
+                        <div class="color-selector__arrows">
+                            <i class="ri ri-arrow-down-s-line"></i>
                         </div>
-                    </PopoverButton>
-
-                    <transition
-                        enter-active-class="transition duration-200 ease-out"
-                        enter-from-class="translate-y-1 opacity-0"
-                        enter-to-class="translate-y-0 opacity-100"
-                        leave-active-class="transition duration-150 ease-in"
-                        leave-from-class="translate-y-0 opacity-100"
-                        leave-to-class="translate-y-1 opacity-0"
-                    >
-                        <PopoverPanel
-                            class="absolute left-0 top-0 translate-y-12 z-[9999] transform w-full px-4"
-                        >
-                            <div class="rounded-lg shadow ring-1 ring-black/5 p-2 bg-white">
-                                <div class="relative grid grid-cols-7 gap-x-4 gap-y-2">
-                                    <div v-for="color in BASIC_COLORS" class="flex justify-center">
-                                        <button
-                                            class="w-full h-auto aspect-square rounded-full flex-shrink-0 border border-stroke"
-                                            :style="{ backgroundColor: color }"
-                                            @click="modify('fill', color, activeObject)"
-                                        ></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </PopoverPanel>
-                    </transition>
+                    </button>
 
                     <button
                         v-if="isSupported"
                         class="color-selector__eyedropper"
-                        :style="{ backgroundColor: sRGBHex, color: sipColor }"
+                        :style="{ backgroundColor: fontColor, color: sipColor }"
                         @click="open"
                     >
                         <i class="ri-sip-line"></i>
                     </button>
                 </div>
-            </Popover>
+            </div>
         </div>
 
-        <!-- <div id="color-selector" class="swiper h-16">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div
-                        class="flex items-center justify-center h-full w-full bg-gray-150 border border-stroke rounded-full">
-                        <i class="ri-sip-line"></i>
-                    </div>
+        <div v-show="display === 'pallete'" class="space-y-3">
+            <div class="px-4 pt-3">
+                <QButton variant="secondary" size="sm" @click="display = 'main'">
+                    <i class="ri-arrow-left-line"></i>
+                    <span class="ml-1">Back</span>
+                </QButton>
+            </div>
 
-                </div>
-                <template v-for="color in BASIC_COLORS" :key="color">
-                    <div class="swiper-slide w-8 h-8">
-                        <div class="w-8 h-8 rounded-full flex-shrink-0 border border-stroke"
-                            :style="{ backgroundColor: color }">
-                        </div>
+            <div class="swiper swiper-pallete">
+                <div class="swiper-wrapper">
+                    <div v-for="color in BASIC_COLORS" :key="color" class="swiper-slide">
+                        <button
+                            class="color-pallete"
+                            :style="{ backgroundColor: color }"
+                            @click="modify('fill', color, activeObject)"
+                        ></button>
                     </div>
-                </template>
-</div>
-<div class="swiper-pagination"></div>
-</div> -->
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -611,19 +619,34 @@ onMounted(() => {
     }
 }
 
+.color-pallete {
+    @apply w-12 h-12 rounded-full block border border-light;
+}
+
 .swiper-slide {
-    @apply w-8 h-8;
+    max-width: 48px;
 
     &:first-of-type {
-        @apply ml-4;
-    }
-
-    &:not(:last-of-type) {
-        margin-right: 8px;
+        margin-left: 16px;
     }
 
     &:last-of-type {
-        @apply mr-8;
+        margin-right: 16px;
+    }
+}
+</style>
+
+<style lang="scss">
+.swiper-pallete .swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+
+    .swiper-pagination-bullet {
+        background-color: #d9d9d9;
+
+        &.swiper-pagination-bullet-active {
+            background-color: #1b1b1b;
+        }
     }
 }
 </style>

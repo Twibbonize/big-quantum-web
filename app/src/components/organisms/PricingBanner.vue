@@ -108,9 +108,12 @@ onMounted(() => {
 
 <template>
     <div id="initial-page" class="banner-pricing">
-        <PricingBlobBackground/>
+        <PricingBlobBackground />
         <div class="background relative sm:pb-24 sm:px-14">
-            <div id="pricing-title" class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full">
+            <div
+                id="pricing-title"
+                class="animate__animated opacity-0 text flex flex-col justify-center items-center h-full"
+            >
                 <h1 class="title">Pricing</h1>
                 <h2 class="subtitle">Find the right Premium plan for your need</h2>
             </div>
@@ -127,10 +130,10 @@ onMounted(() => {
                         class="card-supporters sm:rounded-3xl"
                         link="/pricing/supporters"
                     >
-                        <PricingBentoRemoveWatermarkSupporters class="bento bento-height -mt-9"/>
-                        <PricingBentoNoAds class="bento bento-height mt-5"/>
-                        <PricingExtraFeaturesLine/>
-                        <PricingBentoNoExtraFeatures class="bento bento-height mb-[182px]"/>
+                        <PricingBentoRemoveWatermarkSupporters class="bento bento-height -mt-9" />
+                        <PricingBentoNoAds class="bento bento-height mt-5" />
+                        <PricingExtraFeaturesLine />
+                        <PricingBentoNoExtraFeatures class="bento bento-height mb-[182px]" />
                         <div id="pricing-action-supporters"></div>
                         <PricingAction
                             class="absolute"
@@ -154,10 +157,10 @@ onMounted(() => {
                         link="/pricing/creators"
                         :is-creator="true"
                     >
-                        <PricingBentoRemoveWatermarkCreators class="bento bento-height -mt-9"/>
-                        <PricingBentoNoAds class="bento bento-height mt-5"/>
-                        <PricingExtraFeaturesLine/>
-                        <PricingBentoExtraFeatures class="bento-height mb-[182px]"/>
+                        <PricingBentoRemoveWatermarkCreators class="bento bento-height -mt-9" />
+                        <PricingBentoNoAds class="bento bento-height mt-5" />
+                        <PricingExtraFeaturesLine />
+                        <PricingBentoExtraFeatures class="bento-height mb-[182px]" />
                         <div id="pricing-action-creators"></div>
                         <PricingAction
                             class="absolute"

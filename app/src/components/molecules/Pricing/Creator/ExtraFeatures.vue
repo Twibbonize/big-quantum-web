@@ -1,5 +1,7 @@
 <template>
-    <div class="extra-feature-creator grid grid-cols-1 sm:grid-cols-2 grid-rows-10 sm:grid-rows-5 gap-3 sm:p-3">
+    <div
+        class="extra-feature-creator grid grid-cols-1 sm:grid-cols-2 grid-rows-10 sm:grid-rows-5 gap-3 sm:p-3"
+    >
         <div class="bento overflow-hidden row-span-3 py-5 sm:py-10">
             <div class="flex flex-col h-full">
                 <div class="px-5 sm:px-10">
@@ -20,7 +22,11 @@
         <div class="bento row-span-2">
             <div class="flex items-center justify-between w-full">
                 <div class="relative h-[300px] xl:h-fit w-40 sm:pt-10">
-                    <img class="absolute xl:static max-w-none w-[240px] -right-1/4 bottom-0" src="/assets/img/marketings/campaign-private.png" alt="private" />
+                    <img
+                        class="absolute xl:static max-w-none w-[240px] -right-1/4 bottom-0"
+                        src="/assets/img/marketings/campaign-private.png"
+                        alt="private"
+                    />
                 </div>
                 <div class="my-20 pr-5 sm:pr-10">
                     <p class="extra-feature-creator__title"><strong>Private</strong></p>
@@ -57,7 +63,9 @@
                     />
                 </div>
                 <div class="z-10">
-                    <p class="extra-feature-creator__title z-10"><strong>Multiple Frames</strong></p>
+                    <p class="extra-feature-creator__title z-10">
+                        <strong>Multiple Frames</strong>
+                    </p>
                     <p class="extra-feature-creator__title">per campaign</p>
                     <p class="mt-2">Unleash creativity in versatility</p>
                 </div>
@@ -75,7 +83,7 @@
 
     .bento {
         @apply rounded-[32px] overflow-hidden;
-        border: 1.5px solid var(--Light, #DEE8E8);
+        border: 1.5px solid var(--Light, #dee8e8);
     }
 }
 </style>

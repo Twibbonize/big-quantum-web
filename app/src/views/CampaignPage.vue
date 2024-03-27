@@ -13,7 +13,13 @@ import {
     useElementSize,
     computedAsync
 } from '@vueuse/core';
-import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
+import {
+    RadioGroup,
+    RadioGroupOption,
+    Popover,
+    PopoverButton,
+    PopoverPanel
+} from '@headlessui/vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/all';
@@ -161,8 +167,13 @@ const onInputPhotoChange = (event) => {
 const onClickShare = () => {
     openModal({
         component: ShareModal,
+        config: {
+            position: sm.value ? 'bottom' : 'center',
+            draggable: false,
+            transition: 'fade'
+        },
         props: {
-            link: 'twb.nz/hanoi-art-2025',
+            link: 'twibbo.nz/hanoi-art-2025',
             payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
             type: 'campaign'
         }
@@ -307,6 +318,44 @@ onMounted(async () => {
                                 </div>
 
                                 <div class="campaign__frames__card">
+                                    <div class="md:hidden absolute right-5 top-2">
+                                        <Popover class="relative" v-slot="{ open }">
+                                            <QButton variant="secondary" square size="sm">
+                                                <PopoverButton
+                                                    as="span"
+                                                    class="h-full w-full flex items-center justify-center"
+                                                >
+                                                    <i class="ri-more-2-line"></i>
+                                                </PopoverButton>
+                                            </QButton>
+
+                                            <transition
+                                                enter-active-class="transition duration-200 ease-out"
+                                                enter-from-class="translate-y-1 opacity-0"
+                                                enter-to-class="translate-y-0 opacity-100"
+                                                leave-active-class="transition duration-150 ease-in"
+                                                leave-from-class="translate-y-0 opacity-100"
+                                                leave-to-class="translate-y-1 opacity-0"
+                                            >
+                                                <PopoverPanel
+                                                    class="absolute right-0 top-auto mt-2 z-10 bg-white shadow rounded-lg overflow-hidden min-w-[180px]"
+                                                >
+                                                    <div class="p-1">
+                                                        <ul class="menu">
+                                                            <li class="menu__item">
+                                                                <a class="menu__link">
+                                                                    <i
+                                                                        class="ri-flag-line ri-1x"
+                                                                    ></i>
+                                                                    <span>Report Campaign</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </PopoverPanel>
+                                            </transition>
+                                        </Popover>
+                                    </div>
                                     <RadioGroup v-model="selectedFrame">
                                         <div class="campaign__frames__options">
                                             <RadioGroupOption
@@ -435,7 +484,7 @@ onMounted(async () => {
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
                                         <QShareButton
-                                            link="twb.nz/hanoi-art-2025"
+                                            link="twibbo.nz/hanoi-art-2025"
                                             @click="onClickShare"
                                         />
                                     </div>
@@ -550,7 +599,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div v-if="sm" class="pt-8 px-4">
+                        <div v-if="sm" class="pt-8 px-5">
                             <QButton
                                 variant="secondary"
                                 size="sm"
@@ -590,7 +639,38 @@ onMounted(async () => {
         </router-view>
 
         <div class="campaign-recommendations bg-gray-50 relative z-10">
-            <div class="campaign-separator"></div>
+            <div class="campaign-separator">
+                <div
+                    class="hidden md:flex flex-col items-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3"
+                >
+                    <div class="flex relative space-x-3">
+                        <button
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                        >
+                            <i class="ri-flag-line"></i>
+                            <span class="ml-1">Report Campaign</span>
+                        </button>
+                        <a
+                            href="https://help.twibbonize.com/hc/en-us"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Help</a
+                        >
+                    </div>
+
+                    <div class="flex space-x-3">
+                        <a
+                            href="https://about.twibbonize.com/terms"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Terms</a
+                        >
+                        <a
+                            href="https://about.twibbonize.com/privacy-policy/"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Privacy Policy</a
+                        >
+                    </div>
+                </div>
+            </div>
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
                 <div class="campaign-recommendations__grid">
@@ -763,7 +843,7 @@ onMounted(async () => {
         }
 
         .campaign__frames__card {
-            @apply px-2.5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
+            @apply px-5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
 
             @include md_screen {
                 @apply rounded-3xl pt-12 -mt-4;
@@ -782,10 +862,14 @@ onMounted(async () => {
         }
 
         .campaign__frames__option {
-            @apply h-10 w-10 rounded-lg p-2 border border-stroke bg-white transition-colors duration-200 cursor-pointer;
+            @apply h-10 w-10 rounded-lg p-1 border border-stroke bg-white transition-colors duration-200 cursor-pointer;
 
             @include md_screen {
-                @apply h-14 w-14;
+                @apply h-14 w-14 p-2;
+            }
+
+            img {
+                @apply rounded;
             }
 
             &--checked {
@@ -1013,10 +1097,11 @@ onMounted(async () => {
 .campaign-separator {
     height: 40px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
-    @apply bg-white mb-16;
+    @apply bg-white mb-16 flex items-center justify-center;
 
     @include md_screen {
         height: 88px;
+        @apply border-none;
     }
 }
 
@@ -1026,6 +1111,18 @@ onMounted(async () => {
 
         @include xs {
             @apply gap-3;
+        }
+    }
+}
+
+.menu {
+    @apply flex flex-col space-y-1 w-full;
+
+    .menu__link {
+        @apply p-2 flex items-center space-x-2 text-sm rounded transition-colors font-medium duration-200 cursor-pointer;
+
+        &:hover {
+            @apply bg-black/10;
         }
     }
 }

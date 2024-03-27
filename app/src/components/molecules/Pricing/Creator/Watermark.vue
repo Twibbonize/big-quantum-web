@@ -7,15 +7,15 @@ import 'animate.css';
 const removeWatermarkLists = [
     {
         image: '/assets/img/marketings/creator-watermark-1.jpg',
-        text: 'As a free user, your Twibbon always features <strong>a watermark.</strong>',
+        text: 'As a free user, your Twibbon always features <strong>a watermark.</strong>'
     },
     {
         image: '/assets/img/marketings/creator-watermark-2.jpg',
-        text: '<strong>Premium Supporter</strong> removes the watermark for a cleaner image.',
+        text: '<strong>Premium Supporter</strong> removes the watermark for a cleaner image.'
     },
     {
         image: '/assets/img/marketings/creator-watermark-3.jpg',
-        text: 'Now you can <strong>support any campaign</strong> without watermark.',
+        text: 'Now you can <strong>support any campaign</strong> without watermark.'
     }
 ];
 
@@ -29,7 +29,7 @@ onMounted(() => {
     new ScrollMagic.Scene({ triggerElement: '#remove-watermark-container' })
         .setClassToggle('#watermark-text', 'animate__fadeInUp') // add class toggle
         .addTo(controller);
-})
+});
 </script>
 
 <template>
@@ -56,8 +56,8 @@ onMounted(() => {
             <h2 class="remove-watermark-title-text">for <strong>you & your audience</strong></h2>
         </div>
         <div class="remove-watermark-container">
-            <div v-for="{ image, text },i in removeWatermarkLists" class="card">
-                <img :src="image" :alt="`remove-watermark-${i}`">
+            <div v-for="({ image, text }, i) in removeWatermarkLists" class="card">
+                <img :src="image" :alt="`remove-watermark-${i}`" />
                 <p v-html="text"></p>
             </div>
         </div>
@@ -67,14 +67,14 @@ onMounted(() => {
 <style lang="scss" scoped>
 .remove-watermark {
     @apply lg:rounded-3xl py-14 lg:pt-16 lg:pb-12 sm:px-14 lg:mx-14 mt-[100px] lg:mt-[120px] flex flex-col items-center relative overflow-hidden;
-    background: linear-gradient(262deg, #27B4A3 3.54%, #136258 100%);
+    background: linear-gradient(262deg, #27b4a3 3.54%, #136258 100%);
 
     .remove-watermark-container {
         @apply max-w-[1100px] w-full mt-11 grid grid-cols-1 sm:grid-cols-3 gap-6 z-10 px-5 sm:px-0;
 
         .card {
             @apply p-5 pb-10 lg:p-10 rounded-3xl flex flex-col gap-4;
-            background: #75C1B8;
+            background: #75c1b8;
             box-shadow: 0px 12px 24px 0px rgba(27, 82, 78, 0.04);
 
             img {
@@ -97,7 +97,7 @@ onMounted(() => {
 
     .remove-watermark-logo {
         @apply w-full absolute top-1/2 -translate-y-1/2;
-        filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.30));
+        filter: drop-shadow(0px 3.291px 8.228px rgba(0, 0, 0, 0.3));
         backdrop-filter: blur(2.0569987297058105px);
     }
 
@@ -109,7 +109,7 @@ onMounted(() => {
 
     .shape-blob {
         @apply absolute opacity-50 z-0;
-        background: #BDDDD9;
+        background: #bdddd9;
         filter: blur(120px);
         height: 900px;
         width: 1000px;
@@ -123,7 +123,7 @@ onMounted(() => {
         }
 
         .two {
-            @apply bottom-0 right-0
+            @apply bottom-0 right-0;
         }
     }
 }

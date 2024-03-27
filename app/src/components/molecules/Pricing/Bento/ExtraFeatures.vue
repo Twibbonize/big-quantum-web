@@ -1,5 +1,7 @@
 <template>
-    <div class="feature grid grid-cols-2 grid-row-5 h-[220px] sm:h-[300px] lg:h-[320px] gap-3 sm:p-3">
+    <div
+        class="feature grid grid-cols-2 grid-row-5 h-[220px] sm:h-[300px] lg:h-[320px] gap-3 sm:p-3"
+    >
         <div class="bento overflow-hidden row-span-3 p-2.5">
             <div class="flex flex-col">
                 <div>

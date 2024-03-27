@@ -37,6 +37,18 @@ const props = defineProps({
         type: Boolean,
         default: true
     },
+    transparent: {
+        type: Boolean,
+        default: false
+    },
+    draggable: {
+        type: Boolean,
+        default: true
+    },
+    scrollable: {
+        type: Boolean,
+        default: true
+    },
     transition: {
         type: String,
         default: 'fade'
@@ -45,6 +57,10 @@ const props = defineProps({
         type: String,
         default: 'half',
         validators: (value) => ['half', 'full'].includes(value)
+    },
+    premiumBanner: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -66,17 +82,20 @@ const { motionProperties } = useMotionProperties(modalContentEl, {
 const { set, stop } = useSpring(motionProperties, {
     stiffness: 200, // Adjust stiffness to control the bounce
     damping: 20, // Adjust damping to control the bounce
-    duration: 500 // Adjust duration to control the animation speed
+    duration: 300 // Adjust duration to control the animation speed
 });
 // const { push } = useMotionTransitions(motionProperties);
 
 const modalClasses = computed(() => {
-    const { position, size, closeBtn, show } = props;
+    const { closeBtn, draggable, position, scrollable, size, show, transparent } = props;
     return [
         'modal',
         show && 'modal--show',
         `modal--${position}`,
         `modal--${size}`,
+        transparent && 'modal--transparent',
+        scrollable && 'modal--scrollable',
+        position === 'bottom' && draggable && 'modal--draggable',
         closeBtn && 'modal--has-close',
         isDragging.value && 'modal--dragging',
         isFullyDragged.value && 'modal--dragged'
@@ -86,16 +105,19 @@ const modalClasses = computed(() => {
 const handleClose = () => {
     isDragging.value = false;
 
-    if (props.position === 'bottom') {
-        set({ y: initialHeight });
-
-        setTimeout(() => {
-            emit('close');
-        }, 300);
-
-        setTimeout(() => {
+    if (props.position === 'bottom' && props.draggable) {
+        set({ y: initialHeight }).then(() => {
             set({ x: 0, y: 0, cursor: 'default' });
-        }, 500);
+            emit('close');
+        });
+
+        // setTimeout(() => {
+        //     set({ x: 0, y: 0, cursor: 'default' });
+        // }, 250);
+
+        // setTimeout(() => {
+        //     emit('close');
+        // }, 1000);
     } else {
         emit('close');
     }
@@ -150,8 +172,12 @@ useDrag(dragHandler, {
     cursor: 'default'
 });
 
-onClickOutside(modalContentEl, () => {
-    if (!props.static && props.show) {
+onClickOutside(modalContentEl, (event) => {
+    if (!props.show) {
+        return;
+    }
+
+    if (!props.static) {
         handleClose();
     }
 });
@@ -201,7 +227,7 @@ watch(
 <template>
     <div :class="modalClasses">
         <Transition name="fade">
-            <div v-show="show" class="modal__overlay" />
+            <div v-show="show" class="modal__overlay"></div>
         </Transition>
 
         <Transition :name="transition">
@@ -211,6 +237,7 @@ watch(
                         <i class="ri ri-close-line ri-lg"></i>
                     </button>
                 </div>
+
                 <div ref="modalContentEl" class="modal__content">
                     <div ref="modalContentHeaderEl" class="modal__header">
                         <div class="modal__drag-handler">
@@ -225,6 +252,18 @@ watch(
 
                     <div class="modal__body">
                         <slot :close="handleClose" :isDragging="isDragging"></slot>
+                    </div>
+                </div>
+
+                <!-- marketing -->
+                <div v-if="premiumBanner" class="modal__premium-banner">
+                    <img src="/assets/img/logos/premium-creator.svg" class="modal__premium-logo" />
+
+                    <div class="modal__premium-content">
+                        <p class="modal__premium-copy">
+                            Looking to remove the watermark for all of your user?
+                        </p>
+                        <button class="modal__premium-cta">Upgrade Now</button>
                     </div>
                 </div>
             </div>
@@ -249,7 +288,7 @@ watch(
     }
 
     .modal__wrapper {
-        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-all duration-300;
+        @apply absolute inset-0 w-full flex flex-col items-center justify-center container px-2 md:px-4 lg:px-0 transition-transform duration-200;
         z-index: 68;
     }
 
@@ -280,12 +319,15 @@ watch(
     &.modal--screen .modal__wrapper .modal__content {
         border-radius: 0px;
         max-height: calc(100dvh);
-        height: 100%;
+        height: fit-content;
     }
 
     &.modal--bottom .modal__wrapper {
-        @apply justify-end px-0 md:px-0 lg:px-0;
+        @apply justify-end px-0 md:px-0 lg:px-0 transition-transform;
         bottom: 0;
+    }
+
+    &.modal--bottom.modal--draggable {
         top: calc(56vw + 24px);
     }
 
@@ -296,11 +338,19 @@ watch(
     }
 
     &.modal--bottom .modal__wrapper .modal__content {
-        @apply rounded-none rounded-tr-xl rounded-tl-xl;
-        height: 100%;
+        @apply rounded-none;
+        height: fit-content;
         max-height: unset;
         min-height: unset;
         // max-height: 95vh;
+    }
+
+    &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
+        height: 100%;
+    }
+
+    &.modal--bottom.modal--draggable .modal__wrapper .modal__content {
+        @apply rounded-tr-xl rounded-tl-xl;
     }
 
     &.modal--bottom.modal--dragging .modal__body {
@@ -308,10 +358,18 @@ watch(
     }
 
     .modal__content {
-        @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full overflow-y-auto;
+        @apply relative bg-white shadow-card w-full rounded-xl text-left flex flex-col max-h-full;
         z-index: 69;
         max-height: calc(100dvh - 24px);
         min-height: 360px;
+    }
+
+    &.modal--transparent .modal__content {
+        @apply bg-transparent shadow-none rounded-none;
+    }
+
+    &.modal--scrollable .modal__content {
+        @apply overflow-y-auto;
     }
 
     & .modal__drag-handler {
@@ -326,18 +384,17 @@ watch(
         border-radius: 100px;
     }
 
-    &.modal--bottom .modal__content .modal__drag-handler {
+    &.modal--bottom.modal--draggable .modal__content .modal__drag-handler {
         @apply flex;
     }
-
-    // .modal__header {
-    //     @apply flex items-center flex-shrink-0 w-full;
-    // }
 
     .modal__body {
         position: relative;
         flex: 1 1 auto;
-        overflow-y: auto;
+    }
+
+    &.modal--scrollable .modal__body {
+        @apply overflow-y-auto;
     }
 
     .modal__close-wrapper {
@@ -353,6 +410,54 @@ watch(
 
         &:hover {
             @apply bg-black/50 text-white;
+        }
+    }
+
+    .modal__premium-banner {
+        background: url('/assets/img/patterns/background-creators-2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        @apply flex px-5 py-4;
+
+        @include md_screen {
+            @apply rounded-xl mt-6 px-6 py-6;
+        }
+
+        .modal__premium-logo {
+            max-height: 56px;
+            margin-top: 4px;
+
+            @include xs {
+                max-height: 48px;
+            }
+
+            @include md_screen {
+                max-height: 36px;
+            }
+        }
+
+        .modal__premium-content {
+            @apply flex flex-col sm:flex-row justify-start items-start sm:items-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-2 ml-5;
+        }
+
+        .modal__premium-copy {
+            @apply text-white;
+            font-size: 15px;
+            line-height: 125%;
+
+            @include xs {
+                font-size: 13px;
+            }
+        }
+
+        .modal__premium-cta {
+            @apply h-9 rounded-full text-white font-semibold flex items-center justify-center px-4 flex-shrink-0;
+            background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%), #fff;
+
+            @include xs {
+                font-size: 12px;
+            }
         }
     }
 }

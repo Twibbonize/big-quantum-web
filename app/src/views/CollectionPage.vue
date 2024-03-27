@@ -85,7 +85,7 @@ const onClickShare = () => {
     open({
         component: ShareModal,
         props: {
-            link: 'twb.nz/c/happy-birthday',
+            link: 'twibbo.nz/c/happy-birthday',
             payload: { thumbnails, name: '🥳 Happy Birthday!' },
             type: 'collection'
         }
@@ -155,7 +155,7 @@ onMounted(() => {
                         >
                             <div class="flex-grow">
                                 <QShareButton
-                                    link="twb.nz/c/happy-birthday"
+                                    link="twibbo.nz/c/happy-birthday"
                                     @click="onClickShare"
                                 />
                             </div>

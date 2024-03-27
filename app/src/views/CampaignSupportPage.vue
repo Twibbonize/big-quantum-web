@@ -15,6 +15,7 @@ import QButton from '@/components/atoms/QButton.vue';
 import QCanvas from '@/components/atoms/QCanvas.vue';
 import QConfirmDialog from '@/components/atoms/QConfirmDialog.vue';
 import QSwitchToggle from '@/components/atoms/forms/QSwitchToggle.vue';
+import QInputCaption from '@/components/atoms/forms/QInputCaption.vue';
 import RotateSlider from '@/components/molecules/TwibbonModal/RotateSlider.vue';
 import TextModifier from '@/components/molecules/TwibbonModal/TextModifier.vue';
 import PresetModifier from '@/components/molecules/TwibbonModal/PresetModifier.vue';
@@ -57,6 +58,9 @@ const activeObj = ref(null);
 const editState = ref('crop');
 const photoRotation = ref(0);
 const selectedFrame = ref(props.frames[props.selectedFrameIdx]);
+const campaignCaption = ref(
+    "<p> Hi, My name is  <code>Your Name</code> , and I am all in to support this campaign. Let's gather and make a real impact with this campaign together!</p>"
+);
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('sm');
@@ -531,6 +535,15 @@ watch(step, async (newValue) => {
 
         setTimeout(() => {
             step.value = STEPS.POST;
+
+            if (twibbonResult.value) {
+                const anchorEl = document.createElement('a');
+                anchorEl.href = twibbonResult.value;
+                anchorEl.download = `twibbon-result.jpg`;
+                document.body.appendChild(anchorEl);
+                anchorEl.click();
+                anchorEl.remove();
+            }
         }, 7000);
     }
 
@@ -623,13 +636,19 @@ onBeforeUnmount(() => {
                             v-model="photoRotation"
                             @increate="rotatePhoto(45)"
                             @decrease="rotatePhoto(-45)"
+                            :enabled="!!photo"
                         />
                         <!-- end of rotate slider -->
 
                         <!-- text and presets -->
                         <div class="text-presets">
                             <!-- text modifier entry pointer -->
-                            <QButton variant="neutral" block @click="editState = 'text'">
+                            <QButton
+                                variant="neutral"
+                                block
+                                @click="editState = 'text'"
+                                :enabled="!!photo"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="25"
@@ -708,7 +727,12 @@ onBeforeUnmount(() => {
                             <!-- end of text modifier entry point -->
 
                             <!-- preset modifier entry point -->
-                            <QButton variant="neutral" block @click="editState = 'filter'">
+                            <QButton
+                                variant="neutral"
+                                block
+                                @click="editState = 'filter'"
+                                :enabled="!!photo"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="25"
@@ -791,12 +815,37 @@ onBeforeUnmount(() => {
                 <!-- end of filter state -->
             </div>
 
-            <div v-if="step === STEPS.ADS" class="p-4 bg-[#E0F8F5] h-full">
+            <div
+                v-if="step === STEPS.ADS"
+                class="p-4 bg-[#E0F8F5] h-full flex flex-col justify-center"
+            >
                 <img src="/assets/img/sample/sample-ad.jpg" alt="Ads" />
             </div>
 
-            <div v-if="step === STEPS.POST" class="p-4">
-                <img :src="twibbonResult" alt="Twibbon" />
+            <div v-if="step === STEPS.POST" class="support-page__main">
+                <div class="result-post">
+                    <img :src="twibbonResult" alt="Twibbon" />
+                </div>
+
+                <div class="flex items-center justify-center -translate-y-1/2">
+                    <div class="share-post">
+                        <button class="share-post__btn">
+                            <i class="ri-share-line"></i>
+                            <span class="ml-2">Share</span>
+                        </button>
+
+                        <div class="share-post__separator"></div>
+
+                        <button class="share-post__btn" @click="handleDownload">
+                            <i class="ri-download-2-line"></i>
+                            <span class="ml-2">Re-Download</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="px-4">
+                    <QInputCaption v-model="campaignCaption" mode="support" />
+                </div>
             </div>
 
             <!-- page bottom sheet -->
@@ -963,8 +1012,23 @@ onBeforeUnmount(() => {
                         <span class="ads-progress-loading__text">Processing Your Photo</span>
                     </div>
                 </div>
+
+                <Transition name="slide-down">
+                    <div v-show="step === STEPS.POST" class="support-page__actions">
+                        <div class="flex items-center p-4 border-t border-stroke bg-white">
+                            <QButton variant="secondary" block class="mr-2">
+                                <i class="ri-refresh-line"></i>
+                                <span class="ml-2">Start Over</span>
+                            </QButton>
+
+                            <QButton block>
+                                <i class="ri-upload-line"></i>
+                                <span class="ml-2">Post</span>
+                            </QButton>
+                        </div>
+                    </div>
+                </Transition>
             </div>
-            <!-- end of page bottom sheet -->
         </div>
 
         <Teleport to="body">
@@ -1140,14 +1204,15 @@ onBeforeUnmount(() => {
         position: relative;
         padding-bottom: v-bind(bodyPb);
         @apply flex-grow overflow-y-auto flex flex-col;
+        background-color: #fafbfb;
     }
 
     .support-page__sheet {
         @apply w-full bg-white overflow-hidden absolute bottom-0 rounded-t-2xl overflow-y-auto;
         z-index: 104;
-        box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
-        -webkit-box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
-        -moz-box-shadow: 0px 3px 8px 1px rgba(163, 163, 163, 1);
+        box-shadow: 0px 3px 8px 1px rgb(183, 183, 183);
+        -webkit-box-shadow: 0px 3px 8px 1px rgba(183, 183, 183, 1);
+        -moz-box-shadow: 0px 3px 8px 1px rgba(183, 183, 183, 1);
         transition: all 300ms linear;
         max-height: 146px;
         height: fit-content;
@@ -1187,65 +1252,6 @@ onBeforeUnmount(() => {
 
         &--checked {
             @apply border-main bg-gray-200;
-        }
-    }
-}
-
-.twibbon-tab {
-    @apply flex items-center justify-center space-x-1 py-4 font-medium text-sm text-content flex-grow flex-shrink-0 w-0 border-b border-stroke transition-all duration-200;
-    height: 48px;
-
-    &.twibbon-tab--selected {
-        @apply text-black border-black;
-    }
-}
-
-.rotate-slider {
-    @apply flex items-center space-x-4 p-3 bg-gray-150 rounded-xl relative;
-
-    @include before {
-        width: 6px;
-        height: 10px;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(22, 218, 193, 0.2);
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-    }
-
-    @include after {
-        width: 6px;
-        height: 10px;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(22, 218, 193, 0.2);
-        border-top-right-radius: 8px;
-        border-top-left-radius: 8px;
-    }
-
-    .rotate-slider__input {
-        @apply flex-grow;
-        -webkit-appearance: none;
-        height: 8px;
-        border-radius: 100px;
-        background: rgba(22, 218, 193, 0.2);
-
-        &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 6px;
-            height: 8px;
-            background: #16dac1;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        &::-webkit-slider-runnable-track {
-            height: 8px;
-            border-radius: 100px;
-            background: rgba(22, 218, 193, 0.2);
         }
     }
 }
@@ -1308,7 +1314,44 @@ onBeforeUnmount(() => {
 
 .preset-modifier-wrapper {
     @apply h-full py-4 flex items-center overflow-x-auto;
-
     @include no_scrollbar;
+}
+
+.result-post {
+    @apply flex items-center justify-center bg-gray-150 pt-6 px-6 pb-14;
+
+    img {
+        @apply rounded;
+        max-height: 326px;
+    }
+}
+
+.share-post {
+    @apply bg-white rounded-full inline-flex items-center justify-center;
+    box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.06);
+
+    .share-post__separator {
+        height: 24px;
+        width: 1px;
+        background-color: #dee8e8;
+
+        @apply mx-2;
+    }
+
+    .share-post__btn {
+        @apply p-4 font-semibold;
+
+        &:first-of-type {
+            @apply pl-8;
+        }
+
+        &:last-of-type {
+            @apply pr-8;
+        }
+
+        &:hover {
+            @apply text-main;
+        }
+    }
 }
 </style>

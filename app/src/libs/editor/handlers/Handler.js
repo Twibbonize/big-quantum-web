@@ -22,6 +22,9 @@ export default class Handler {
             'id',
             'name',
             'locked',
+            'lockMovementX',
+            'lockMovementY',
+            'deleteable',
             'preset',
             'parentType',
             'shadowEffect',
@@ -258,6 +261,38 @@ export default class Handler {
         }
     };
 
+    scaleTo = (property = 'Width', value, target) => {
+        if (!['Width', 'Height'].includes(property)) {
+            return;
+        }
+
+        const activeObject = target || this.canvas.getActiveObject();
+
+        if (!activeObject) {
+            return;
+        }
+
+        if (property === 'Width') {
+            target.scaleToWidth(value);
+        } else {
+            target.scaleToHeight(value);
+        }
+
+        this.canvas.requestRenderAll();
+
+        if (!this.transactionHandler.active) {
+            this.transactionHandler.save('modified:scale}');
+        }
+
+        const { onModified } = this;
+
+        if (onModified) {
+            onModified(activeObject);
+        }
+
+        return activeObject.getObjectScaling();
+    };
+
     saveCanvasImage(
         option = {
             name: 'New Image',
@@ -274,10 +309,10 @@ export default class Handler {
 
         const dataUrl = this.canvas.toDataURL({
             ...option,
-            left: left + 1,
-            top: top + 1,
+            left: left,
+            top: top,
             width,
-            height: height - 2,
+            height: height,
             enableRetinaScaling: false
         });
 
@@ -293,22 +328,27 @@ export default class Handler {
         }
     }
 
-    export(option = { format: 'png', quality: 1 }) {
+    export(option = { format: 'jpeg', quality: 1 }) {
         return new Promise((resolve) => {
             const drawArea = this.findByName('drawing-area');
             const { left, top, width, height } = drawArea;
+
+            const currentVPT = this.canvas.viewportTransform;
+
             const center = this.canvas.getCenter();
             this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
             this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
 
             const dataUrl = this.canvas.toDataURL({
                 ...option,
-                left: left + 1,
-                top: top + 1,
+                left,
+                top,
                 width,
-                height: height - 2,
+                height,
                 enableRetinaScaling: false
             });
+
+            this.canvas.setViewportTransform(currentVPT);
 
             resolve(dataUrl);
         });
@@ -330,8 +370,6 @@ export default class Handler {
                         fill: 'transparent'
                     });
                 }
-
-                console.log(cloned.filters);
 
                 const dataUrl = cloned.toDataURL({
                     ...option,
@@ -401,7 +439,7 @@ export default class Handler {
             this.canvas.add(createdObj);
         }
 
-        const drawArea = this.canvas.getItemByName('drawing-area');
+        // const drawArea = this.canvas.getItemByName('drawing-area');
         // make sure created object not too big
         // if (Math.max(createdObj.width, createdObj.height) > drawArea.width) {
         //     const objectScaleWidth = (80 / 100) * drawArea.width;
@@ -1052,19 +1090,14 @@ export default class Handler {
                 return;
             }
 
-            const photos = this.objects.filter((object) => object.type === 'Photo');
-            const currentZIndex = this.canvas.getObjects().indexOf(activeObject);
-
-            // prevent object send backward behind participant photos
-            if (currentZIndex - 1 === photos.length) {
-                return;
-            }
-
             if (!this.transactionHandler.active) {
                 this.transactionHandler.save('sendBackwards');
             }
+
             this.canvas.sendBackwards(activeObject);
+
             const { onModified } = this;
+
             if (onModified) {
                 onModified(activeObject);
             }
@@ -1093,9 +1126,9 @@ export default class Handler {
         if (target) {
             this.canvas.moveTo(target, targetIndex);
 
-            // if (!this.transactionHandler.active) {
-            //     this.transactionHandler.save('moveToIndex');
-            // }
+            if (!this.transactionHandler.active) {
+                this.transactionHandler.save('moveToIndex');
+            }
 
             const { onModified } = this;
 
@@ -1198,8 +1231,6 @@ export default class Handler {
             fabric.util.enlivenObjects(objects, (enlivenObjects) => {
                 if (enlivenObjects.length > 1) {
                     const group = new fabric.Group([]);
-
-                    // console.log(group)
 
                     enlivenObjects.forEach((obj) => {
                         group.addWithUpdate(obj);

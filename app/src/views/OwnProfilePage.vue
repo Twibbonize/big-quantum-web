@@ -171,7 +171,7 @@ onMounted(() => {
                     </div>
 
                     <div class="profile__detail-wrapper">
-                        <div class="container px-5 xl:px-0">
+                        <div class="container px-4 xl:px-0">
                             <div
                                 class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10 sm:space-x-6"
                             >
@@ -203,11 +203,11 @@ onMounted(() => {
                                     <div class="profile__actions">
                                         <div class="w-full md:w-60">
                                             <QShareButton
-                                                link="twb.nz/u/universetech"
+                                                link="twibbo.nz/u/universetech"
                                                 @click="
                                                     () =>
                                                         onClickShare(
-                                                            'twb.nz/u/universetech',
+                                                            'twibbo.nz/u/universetech',
                                                             {
                                                                 avatar: getAvatarUrl(
                                                                     'sample-avatar-1.jpg'
@@ -302,13 +302,14 @@ onMounted(() => {
             <div
                 class="profile-main bg-white overflow-x-hidden border-b border-stroke py-6 md:py-10"
             >
-                <div class="container px-5 xl:px-0">
+                <div class="container px-4 xl:px-0">
                     <QTabs :tabs="tabs" :block="isMobile">
                         <template #campaigns>
                             <div class="space-y-6 mt-6">
                                 <div class="filters">
                                     <div class="filters__search">
                                         <QInputText
+                                            type="search"
                                             name="search"
                                             size="sm"
                                             placeholder="Search Campaigns"
@@ -461,7 +462,7 @@ onMounted(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 xl:px-0 relative;
+        @apply container px-4 xl:px-0 relative;
 
         .profile__avatar__img {
             height: 72px;

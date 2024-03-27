@@ -70,5 +70,15 @@ export const Variable = Mark.create({
                 type: this.type
             })
         ];
+    },
+
+    onSelectionUpdate({ editor }) {
+        const { state } = editor;
+        // const { from, to } = state.selection;
+
+        console.log(state.marks);
+        console.log(editor.isActive('variable'), 'selection');
+
+        // The selection has changed.
     }
 });

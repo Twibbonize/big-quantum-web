@@ -304,7 +304,7 @@ onMounted(() => {
                         />
                     </div>
                     <div class="profile__detail-wrapper">
-                        <div class="container px-5 xl:px-0">
+                        <div class="container px-4 xl:px-0">
                             <div
                                 class="flex flex-col md:flex-row justify-between border-b border-stroke pb-6 md:pb-10"
                             >
@@ -336,10 +336,10 @@ onMounted(() => {
                                     <div class="profile__actions">
                                         <div class="w-full md:w-60">
                                             <QShareButton
-                                                link="twb.nz/u/universetech"
+                                                link="twibbo.nz/u/universetech"
                                                 @click="
                                                     onClickShare(
-                                                        'twb.nz/u/universetech',
+                                                        'twibbo.nz/u/universetech',
                                                         {
                                                             avatar: getAvatarUrl(
                                                                 'sample-avatar-1.jpg'
@@ -467,6 +467,7 @@ onMounted(() => {
                                 <div class="filters">
                                     <div class="filters__search">
                                         <QInputText
+                                            type="search"
                                             name="search"
                                             size="sm"
                                             placeholder="Search Campaigns"
@@ -488,7 +489,9 @@ onMounted(() => {
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 md:mt-10">
+                                <div
+                                    class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-6 md:mt-10"
+                                >
                                     <campaign-card
                                         v-for="campaign in ownCampaigns"
                                         v-bind="campaign"
@@ -630,7 +633,7 @@ onMounted(() => {
     }
 
     .profile__avatar {
-        @apply container px-5 xl:px-0;
+        @apply container px-4 xl:px-0;
 
         .profile__avatar__img {
             height: 72px;

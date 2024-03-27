@@ -85,7 +85,7 @@ const handleOpenAuthModal = (opt) => {
                         </li>
 
                         <li>
-                            <RouterLink :to="{ name: 'plus' }" class="expand-menu__link">
+                            <RouterLink :to="{ name: 'pricing' }" class="expand-menu__link">
                                 Pricing
                             </RouterLink>
                         </li>

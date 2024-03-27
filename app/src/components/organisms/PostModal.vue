@@ -150,7 +150,7 @@ const commentValidation = yupObject().shape({
                         >
                             {{ campaign.name }}
                         </div>
-                        <div class="text-xxs text-content mt-1">twb.nz/{{ campaign.url }}</div>
+                        <div class="text-xxs text-content mt-1">twibbo.nz/{{ campaign.url }}</div>
                     </div>
 
                     <div class="flex-shrink-0">

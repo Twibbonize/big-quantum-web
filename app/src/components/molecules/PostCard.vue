@@ -79,7 +79,7 @@ const handleOpenShare = () => {
     const formattedDate = datetime.format('MMM D, YYYY');
 
     const shareProps = {
-        link: `twb.nz/p/${uri}`,
+        link: `twibbo.nz/p/${uri}`,
         payload: { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
         type: 'post'
     };

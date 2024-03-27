@@ -4,14 +4,21 @@ import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import Bold from '@tiptap/extension-bold';
+import { TextSelection } from '@tiptap/pm/state';
 import Variable from '@/libs/tiptap/extension-variable';
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
+import { useToast } from 'vue-toast-notification';
 import QButton from '@/components/atoms/QButton.vue';
 
 const props = defineProps({
     modelValue: {
         type: String,
         default: ''
+    },
+    mode: {
+        type: String,
+        validators: (value) => ['create', 'support'].includes(value),
+        default: 'create'
     }
 });
 
@@ -20,6 +27,27 @@ const emit = defineEmits(['update:modelValue']);
 const editor = ref(null);
 const addVariable = () => {
     editor.value.chain().focus().addVariable().run();
+};
+
+const toast = useToast();
+
+const copyOutput = () => {
+    const entireText = editor.value.view.state.doc.textContent;
+
+    navigator.clipboard
+        .writeText(entireText)
+        .then(() => {
+            console.log('Text copied to clipboard:', entireText);
+
+            toast.open({
+                type: 'success',
+                message: 'Caption copied to clipboard',
+                position: 'bottom'
+            });
+        })
+        .catch((err) => {
+            console.error('Error copying text to clipboard:', err);
+        });
 };
 
 onMounted(() => {
@@ -56,9 +84,15 @@ watch(
 </script>
 
 <template>
-    <div class="editor">
+    <div :class="['editor', `editor--${mode}`]">
         <editor-content :editor="editor" />
-        <QButton variant="secondary" size="sm" class="editor__add-variable" @click="addVariable">
+        <QButton
+            v-show="mode === 'create'"
+            variant="secondary"
+            size="sm"
+            class="editor__add-variable"
+            @click="addVariable"
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -76,6 +110,17 @@ watch(
             </svg>
             <span class="ml-1 font-normal">Add Custom Field</span>
         </QButton>
+
+        <button
+            v-show="mode === 'support'"
+            variant="secondary"
+            size="sm"
+            class="editor__copy"
+            @click="copyOutput"
+        >
+            <i class="ri-clipboard-line"></i>
+            <span class="ml-1 font-normal">Copy</span>
+        </button>
     </div>
 </template>
 
@@ -90,6 +135,11 @@ watch(
         @apply outline outline-offset-2 outline-main-darker;
     }
 
+    &.editor--support {
+        @apply bg-white;
+        border-color: 1px solid #eaedf3;
+    }
+
     .editor__add-variable {
         padding: 6px;
         border-radius: 4px;
@@ -97,12 +147,26 @@ watch(
         margin-top: 16px;
         @apply bg-white border border-stroke flex items-center text-sm;
     }
+
+    .editor__copy {
+        @apply text-sm rounded-lg px-2 py-1 mt-3;
+        background-color: #eaedf3;
+        color: #667085;
+
+        &:hover {
+            @apply text-black;
+        }
+
+        span {
+            @apply font-semibold text-xs;
+        }
+    }
 }
 </style>
 
 <style lang="scss">
 .tiptap-editor {
-    @apply text-sm;
+    @apply text-sm leading-normal;
 
     &:focus-visible {
         border: none;
@@ -116,8 +180,8 @@ watch(
 }
 
 .tiptap-editor code {
-    padding: 3px 6px;
+    padding: 1px 6px;
     border-radius: 4px;
-    @apply border border-stroke;
+    @apply border border-stroke inline-block;
 }
 </style>
