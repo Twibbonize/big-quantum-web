@@ -22,24 +22,24 @@ defineProps({
         ]
     },
     size: {
-        type: String,
+        type: String
     },
     modelValue: {
-        type: Number,
-    },
+        type: Number
+    }
 });
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
 const setValue = (index) => {
     emit('update:modelValue', index);
-}
+};
 </script>
 
 <template>
     <div class="switch-toggle__container" :class="size">
         <div class="switch-toggle switch-3 switch-candy">
-            <template v-for="option,i in options">
+            <template v-for="(option, i) in options">
                 <input :id="option.key" :name="name" type="radio" :checked="modelValue === i" />
                 <label :for="option.key" @click="setValue(i)"
                     ><span>{{ option.text }}</span></label

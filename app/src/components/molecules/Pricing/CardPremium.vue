@@ -108,8 +108,11 @@ defineProps({
     &.card-premium {
         .background {
             @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
-            background: url('/assets/img/marketings/bg-supporters.png'), url('/assets/img/marketings/bg-supporters-blob.png');
-            background-size: auto 100%, 940px 900px;
+            background: url('/assets/img/marketings/bg-supporters.png'),
+                url('/assets/img/marketings/bg-supporters-blob.png');
+            background-size:
+                auto 100%,
+                940px 900px;
             background-position: center, 0px;
         }
     }
@@ -123,8 +126,10 @@ defineProps({
     &.card-premium {
         .background {
             @apply flex flex-col items-center px-5 pt-10 sm:p-10 xl:p-12;
-            background: linear-gradient(237deg, rgba(3, 69, 61, 0.80) 2.65%, #03352F 102.96%);
-            background-size: 574px 500px, contain;
+            background: linear-gradient(237deg, rgba(3, 69, 61, 0.8) 2.65%, #03352f 102.96%);
+            background-size:
+                574px 500px,
+                contain;
             background-position: center, center;
         }
     }

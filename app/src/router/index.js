@@ -223,8 +223,7 @@ const router = createRouter({
         {
             path: '/checkout',
             name: 'checkout',
-            component: CheckoutPage,
-
+            component: CheckoutPage
         }
     ],
     scrollBehavior(to, from, savedPosition) {

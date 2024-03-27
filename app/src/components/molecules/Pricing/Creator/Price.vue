@@ -4,7 +4,6 @@ import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/BackgroundSlideContainer.vue';
 
-
 import { ref } from 'vue';
 
 const optionIndex = ref(0);
@@ -28,13 +27,12 @@ const creatorPrice = {
     currency: '$'
 };
 
-
 const creatorFeatures = [
     {
-        text: 'Remove watermark for all of your campaign users',
+        text: 'Remove watermark for all of your campaign users'
     },
     {
-        text: 'Use Twibbonize without Ads',
+        text: 'Use Twibbonize without Ads'
     },
     {
         text: 'Exclusive Features for your Campaign'
@@ -49,8 +47,16 @@ const creatorFeatures = [
         <div class="bento">
             <div class="detail">
                 <div class="flex flex-col items-center w-fit">
-                    <img class="premium-title" src="/assets/img/marketings/premium-white.svg" alt="premium">
-                    <img class="creator-title" src="/assets/img/marketings/premium-creator.svg" alt="creator">
+                    <img
+                        class="premium-title"
+                        src="/assets/img/marketings/premium-white.svg"
+                        alt="premium"
+                    />
+                    <img
+                        class="creator-title"
+                        src="/assets/img/marketings/premium-creator.svg"
+                        alt="creator"
+                    />
                 </div>
                 <div
                     v-for="({ text }, i) in creatorFeatures"
@@ -89,7 +95,7 @@ const creatorFeatures = [
             </div>
         </div>
         <div class="absolute top-0 -mt-32 z-0">
-            <PricingBackgroundSlideContainer size="lg"/>
+            <PricingBackgroundSlideContainer size="lg" />
         </div>
     </div>
 </template>
@@ -110,7 +116,7 @@ const creatorFeatures = [
 
     .shape-blob {
         @apply absolute z-[1] lg:opacity-70 top-1/2 -left-1/4 sm:left-1/4 sm:top-[10%] h-[300px] w-[400px] sm:h-[450px] sm:w-[500px] lg:h-[900px] lg:w-[1000px];
-        background: #46C3BD;
+        background: #46c3bd;
         filter: blur(77.16836547851562px);
         border-radius: 50% 40% 30% 40%;
         animation:
@@ -119,7 +125,7 @@ const creatorFeatures = [
 
         &.two {
             @apply z-0 opacity-100;
-            background: #F1FFFE;
+            background: #f1fffe;
             top: 0;
         }
     }
@@ -134,9 +140,9 @@ const creatorFeatures = [
 
     .bento {
         @apply p-10 sm:px-10 sm:py-14 lg:p-20 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden mt-20 gap-14 lg:gap-0;
-        border-top: 2px solid rgba(255, 255, 255, 0.40);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.40);
-        background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
+        border-top: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+        background: linear-gradient(262deg, #32a092 3.54%, #03352f 100%);
 
         .detail {
             @apply z-10;
@@ -149,7 +155,7 @@ const creatorFeatures = [
             }
             .icon-container {
                 @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2;
-                background: rgba(255,255,255, 0.10);
+                background: rgba(255, 255, 255, 0.1);
 
                 i {
                     @apply text-base lg:text-xl;
@@ -164,7 +170,7 @@ const creatorFeatures = [
 
             .switch {
                 @apply text-black rounded-3xl;
-                background: rgba(222, 232, 232, 0.50);
+                background: rgba(222, 232, 232, 0.5);
                 box-shadow: 0px 0px 17.345px 0px rgba(157, 170, 170, 0.08) inset;
             }
         }

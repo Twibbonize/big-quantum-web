@@ -167,7 +167,7 @@ const onClickShare = () => {
             transition: 'fade'
         },
         props: {
-            link: 'twb.nz/hanoi-art-2025',
+            link: 'twibbo.nz/hanoi-art-2025',
             payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
             type: 'campaign'
         }
@@ -440,7 +440,7 @@ onMounted(async () => {
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
                                         <QShareButton
-                                            link="twb.nz/hanoi-art-2025"
+                                            link="twibbo.nz/hanoi-art-2025"
                                             @click="onClickShare"
                                         />
                                     </div>
@@ -555,7 +555,7 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <div v-if="sm" class="pt-8 px-4">
+                        <div v-if="sm" class="pt-8 px-5">
                             <QButton
                                 variant="secondary"
                                 size="sm"
@@ -595,7 +595,38 @@ onMounted(async () => {
         </router-view>
 
         <div class="campaign-recommendations bg-gray-50 relative z-10">
-            <div class="campaign-separator"></div>
+            <div class="campaign-separator">
+                <div
+                    class="flex flex-col items-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3"
+                >
+                    <div class="flex relative space-x-3">
+                        <button
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                        >
+                            <i class="ri-flag-line"></i>
+                            <span class="ml-1">Report Campaign</span>
+                        </button>
+                        <a
+                            href="https://help.twibbonize.com/hc/en-us"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Help</a
+                        >
+                    </div>
+
+                    <div class="flex space-x-3">
+                        <a
+                            href="https://about.twibbonize.com/terms"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Terms</a
+                        >
+                        <a
+                            href="https://about.twibbonize.com/privacy-policy/"
+                            class="text-xs text-content hover:text-black hover:underline transition-all"
+                            >Privacy Policy</a
+                        >
+                    </div>
+                </div>
+            </div>
             <div class="container px-4 2xl:px-0 pb-10">
                 <h3 class="font-bold text-2xl mb-10">More Like This</h3>
                 <div class="campaign-recommendations__grid">
@@ -768,7 +799,7 @@ onMounted(async () => {
         }
 
         .campaign__frames__card {
-            @apply px-2.5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
+            @apply px-5 pt-16 pb-2.5 z-0 -mt-12 bg-white relative space-y-4;
 
             @include md_screen {
                 @apply rounded-3xl pt-12 -mt-4;
@@ -787,10 +818,14 @@ onMounted(async () => {
         }
 
         .campaign__frames__option {
-            @apply h-10 w-10 rounded-lg p-2 border border-stroke bg-white transition-colors duration-200 cursor-pointer;
+            @apply h-10 w-10 rounded-lg p-1 border border-stroke bg-white transition-colors duration-200 cursor-pointer;
 
             @include md_screen {
-                @apply h-14 w-14;
+                @apply h-14 w-14 p-2;
+            }
+
+            img {
+                @apply rounded;
             }
 
             &--checked {
@@ -1016,12 +1051,13 @@ onMounted(async () => {
 }
 
 .campaign-separator {
-    height: 40px;
+    height: 80px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
-    @apply bg-white mb-16;
+    @apply bg-white mb-16 flex items-center justify-center;
 
     @include md_screen {
         height: 88px;
+        @apply border-none;
     }
 }
 
