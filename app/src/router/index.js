@@ -21,6 +21,7 @@ import ArticlePage from '@/views/ArticlePage.vue';
 import PricingPage from '@/views/PricingPage.vue';
 import PricingSupporterPage from '@/views/PricingSupporterPage.vue';
 import PricingCreatorPage from '@/views/PricingCreatorPage.vue';
+import CheckoutPage from '@/views/CheckoutPage.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -219,6 +220,12 @@ const router = createRouter({
                 navbarSearch: true
             }
         },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: CheckoutPage,
+
+        }
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
