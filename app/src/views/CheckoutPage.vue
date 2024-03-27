@@ -1,11 +1,25 @@
 <script setup>
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
+import CheckoutOptions from '@/components/molecules/Checkout/Options.vue';
 
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
 
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
+
+const options = computed(() => {
+    return [{
+        key: 'monthly',
+        value: 11.99,
+    },{
+        key: 'annual',
+        value: 4.16,
+    }];
+})
+
+const checkoutPlan = ref(options.value[0]);
+const isMonthly = ref(true);
 
 onMounted(() => {
     setNavbarColor('white');
@@ -29,6 +43,7 @@ onMounted(() => {
                     <div class="checkout-branding"></div>
                     <div class="checkout-detail">
                         <h3 class="checkout-detail__title">Billing Option</h3>
+                        <CheckoutOptions v-model="checkoutPlan" :options="options"/>
                     </div>
                 </div>
             </div>
