@@ -15,6 +15,7 @@ import CampaignFeedsPage from '@/views/CampaignFeedsPage.vue';
 import CampaignSupportPage from '@/views/CampaignSupportPage.vue';
 import PostPage from '@/views/PostPage.vue';
 import CreateCampaignPage from '@/views/CreateCampaignPage.vue';
+import EditCampaignPage from '@/views/EditCampaignPage.vue';
 import UseCasePage from '@/views/UseCasePage.vue';
 import TestimonialPage from '@/views/TestimonialPage.vue';
 import ArticlePage from '@/views/ArticlePage.vue';
@@ -153,7 +154,11 @@ const router = createRouter({
                 transition: 'slide-fade'
             }
         },
-
+        {
+            path: '/campaign/hanoi-art',
+            name: 'manage-campaign',
+            component: EditCampaignPage
+        },
         {
             path: '/p/:uri',
             name: 'post',

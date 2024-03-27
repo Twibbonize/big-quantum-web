@@ -1289,7 +1289,7 @@ const onClickPublish = () => {
         }
 
         .tpl__search__icon {
-            @apply text-content text-lg h-full flex items-center justify-center;
+            @apply text-content text-lg h-full flex items-center justify-center bg-white;
             padding: 0px 8px 0px 14px;
 
             @include xs {
