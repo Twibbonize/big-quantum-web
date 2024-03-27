@@ -17,6 +17,8 @@ const content = ref(null);
 const doScroll = () => {
     const { top } = content.value.getBoundingClientRect();
 
+    console.log(top);
+
     if (top < 97) {
         setNavbarColor('white');
         setShadow(true);
@@ -48,6 +50,7 @@ onUnmounted(() => {
     <LayoutMain>
         <div class="pricing-creator-header">
             <PricingCreatorHeader/>
+            <div id="main-content" ref="content"></div>
             <div class="video-illustration">
                 <h2 class="title">Looking for a full campaigning experience in Twibbonize?</h2>
                 <p class="subtitle">Then Premium Creator is the right plan for you.</p>
@@ -82,7 +85,6 @@ onUnmounted(() => {
             </div>
             <PricingCreatorPrice/>
         </div>
-        <div ref="content"></div>
     </LayoutMain>
 </template>
 
