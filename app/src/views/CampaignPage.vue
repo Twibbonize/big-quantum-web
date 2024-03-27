@@ -318,7 +318,7 @@ onMounted(async () => {
                                 </div>
 
                                 <div class="campaign__frames__card">
-                                    <div class="absolute right-5 top-2">
+                                    <div class="md:hidden absolute right-5 top-2">
                                         <Popover class="relative" v-slot="{ open }">
                                             <QButton variant="secondary" square size="sm">
                                                 <PopoverButton
