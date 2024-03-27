@@ -47,6 +47,7 @@ onUnmounted(() => {
     <LayoutMain>
         <div class="pricing-supporter-header">
             <PricingSupporterHeader/>
+            <div ref="content"></div>
             <div class="video-illustration">
                 <h2 class="title">Do you like supporting  <br> different campaigns?</h2>
                 <p class="subtitle">Then Premium Supporter is the right plan for you.</p>
@@ -76,7 +77,6 @@ onUnmounted(() => {
             </div>
             <PricingSupporterPrice/>
         </div>
-        <div ref="content"></div>
     </LayoutMain>
 </template>
 
