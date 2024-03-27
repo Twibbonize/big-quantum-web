@@ -1,15 +1,23 @@
 <script setup>
 import QButton from '@/components/atoms/QButton.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 defineProps({
     variant: String,
-    link: String
+    link: String,
+    checkout: String,
 });
+
+const goToCheckout = (checkout) => {
+    router.push(checkout);
+};
 </script>
 
 <template>
     <div class="pricing-action">
-        <QButton size="md" :variant="variant" class="w-full">
+        <QButton size="md" :variant="variant" class="w-full" @click="goToCheckout(checkout)">
             <span class="text-base gap-4 flex items-center"
                 >Purchase Now <i class="ri-arrow-right-line"></i
             ></span>

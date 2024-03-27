@@ -139,6 +139,8 @@ onMounted(() => {
                             class="absolute"
                             variant="black"
                             link="/pricing/supporters"
+                            checkout="/checkout?plan=supporter"
+                            
                         />
                     </PricingCardPremium>
                 </div>
@@ -164,21 +166,14 @@ onMounted(() => {
                             class="absolute"
                             variant="primary"
                             link="/pricing/creators"
+                            checkout="/checkout?plan=creator"
                         />
                     </PricingCardPremium>
                 </div>
             </div>
-            <div
-                id="pricing-action"
-                class="pricing-action-container"
-                :style="{ width: `${width}px` }"
-            >
-                <PricingAction
-                    class="action-supporters"
-                    variant="black"
-                    link="/pricing/supporters"
-                />
-                <PricingAction class="action-creators" variant="primary" link="/pricing/creators" />
+            <div id="pricing-action" class="pricing-action-container" :style="{ width: `${width}px` }">
+                <PricingAction class="action-supporters" variant="black" link="/pricing/supporters" checkout="/checkout?plan=supporter"/>
+                <PricingAction class="action-creators" variant="primary" link="/pricing/creators" checkout="/checkout?plan=creator"/>
             </div>
         </div>
     </div>
