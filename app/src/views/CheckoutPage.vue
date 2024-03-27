@@ -1,6 +1,7 @@
 <script setup>
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import CheckoutOptions from '@/components/molecules/Checkout/Options.vue';
+import CheckoutBrandingCreator from '@/components/molecules/Checkout/BrandingCreator.vue';
 import QButton from '@/components/atoms/QButton.vue';
 
 import { onMounted, ref, computed } from 'vue';
@@ -41,7 +42,7 @@ onMounted(() => {
 <template>
     <LayoutMain>
         <div class="checkout-page">
-            <div class="container">
+            <div class="page-container">
                 <button class="button-back">
                     <i class="ri-arrow-left-line"></i>
                     Back to plans
@@ -49,7 +50,9 @@ onMounted(() => {
                 <h2 class="title">Upgrade to Premium Creator</h2>
                 <p class="description">Gather your supporters and scale up your campaign with our exclusive features.</p>
                 <div class="checkout-container">
-                    <div class="checkout-branding"></div>
+                    <div class="checkout-branding">
+                        <CheckoutBrandingCreator/>
+                    </div>
                     <div class="checkout-detail">
                         <h3 class="checkout-detail__title">Billing Option</h3>
                         <CheckoutOptions v-model="checkoutPlan" :options="options"/>
@@ -86,8 +89,8 @@ onMounted(() => {
         @apply w-full;
         background: #EDF8F8;
 
-        .container {
-            @apply pt-[140px] pb-20 max-w-[1110px] mx-auto;
+        .page-container {
+            @apply pt-[100px] sm:pt-[140px] pb-14 sm:pb-20 xl:max-w-[1110px] mx-auto container px-5 2xl:px-0;
         }
 
         .button-back {
@@ -96,7 +99,7 @@ onMounted(() => {
         }
 
         h2.title {
-            @apply font-bold text-4xl mt-10;
+            @apply font-bold text-2xl sm:text-3xl lg:text-4xl mt-10;
             letter-spacing: -0.72px;
         }
 
@@ -105,7 +108,7 @@ onMounted(() => {
         }
 
         .checkout-container {
-            @apply flex gap-10 mt-10;
+            @apply grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-10 mt-10;
         }
 
         .checkout-branding {
@@ -113,7 +116,7 @@ onMounted(() => {
         }
 
         .checkout-detail {
-            @apply flex-1 rounded-3xl p-10 bg-white;
+            @apply flex-1 rounded-3xl px-5 py-8 xl:p-10 bg-white;
 
             &__title {
                 @apply font-bold;
@@ -124,21 +127,21 @@ onMounted(() => {
             @apply mt-6 flex flex-col;
 
             .heading {
-                @apply text-2xl font-bold;
+                @apply text-xl sm:text-2xl font-bold whitespace-nowrap;
             }
 
             .open-summary {
-                @apply flex items-center gap-1 font-bold;
+                @apply flex items-center gap-1 font-bold text-sm sm:text-base;
             }
 
             .details {
-                @apply flex flex-col gap-3 my-5 max-h-0 h-fit overflow-hidden;
+                @apply flex flex-col gap-3 my-5 max-h-0 h-fit overflow-hidden text-sm sm:text-base;
                 transition: all 0.3s ease-in;
                 color: #667085;
             }
 
             .arrow {
-                @apply text-2xl font-normal;
+                @apply text-xl sm:text-2xl font-normal;
                 transition: all 0.3s linear;
             }
         }
@@ -148,7 +151,7 @@ onMounted(() => {
         }
 
         .terms {
-            @apply text-center mt-6;
+            @apply text-sm sm:text-base text-center mt-6;
             color: #667085;
         }
     }

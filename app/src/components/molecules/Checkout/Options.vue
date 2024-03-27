@@ -71,6 +71,7 @@ const emit = defineEmits(['update:modelValue'])
         }
 
         .description {
+            @apply whitespace-nowrap text-sm sm:text-base;
             color: #667085;
         }
 
@@ -80,7 +81,7 @@ const emit = defineEmits(['update:modelValue'])
         }
 
         .label-save {
-            @apply bg-black text-white text-xs py-1 px-3 rounded-full;
+            @apply bg-black text-white text-xs py-1 px-3 rounded-full whitespace-nowrap;
         }
     }
 
