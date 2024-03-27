@@ -6,7 +6,9 @@ import QButton from '@/components/atoms/QButton.vue';
 
 import { onMounted, ref, computed } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
@@ -43,7 +45,7 @@ onMounted(() => {
     <LayoutMain>
         <div class="checkout-page">
             <div class="page-container">
-                <button class="button-back">
+                <button class="button-back" @click="router.go(-1)">
                     <i class="ri-arrow-left-line"></i>
                     Back to plans
                 </button>
