@@ -1,6 +1,7 @@
 <script setup>
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import CheckoutOptions from '@/components/molecules/Checkout/Options.vue';
+import QButton from '@/components/atoms/QButton.vue';
 
 import { onMounted, ref, computed } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
@@ -19,7 +20,15 @@ const options = computed(() => {
 })
 
 const checkoutPlan = ref(options.value[0]);
-const isMonthly = ref(true);
+const isOpen = ref(false);
+
+const setIsOpen = () => {
+    isOpen.value = !isOpen.value;
+};
+
+const requestCheckout = () => {
+    
+};
 
 onMounted(() => {
     setNavbarColor('white');
@@ -44,6 +53,27 @@ onMounted(() => {
                     <div class="checkout-detail">
                         <h3 class="checkout-detail__title">Billing Option</h3>
                         <CheckoutOptions v-model="checkoutPlan" :options="options"/>
+                        <div class="price-summary">
+                            <div class="flex items-center justify-between" @click="setIsOpen">
+                                <p class="heading">{{ `$${checkoutPlan.value} / month` }}</p>
+                                <div class="open-summary">
+                                    Details
+                                    <i class="ri-arrow-down-s-line arrow" :class="{ 'rotate-180': isOpen }"></i>
+                                </div>
+                            </div>
+                            <div class="details" :class="{ '!max-h-40': isOpen }">
+                                <p>{{ `$${checkoutPlan.value} / month / user` }}</p>
+                                <p>{{ `Billed ${checkoutPlan.key}` }}</p>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <QButton variant="primary" size="md" class="w-full flex gap-2 items-center mt-6" @click="requestCheckout">
+                            Upgrade to Creator
+                            <i class="ri-arrow-right-line"></i>
+                        </QButton>
+                        <p class="terms">
+                            {{ `We'll bill you every month on ${billDate}, unless you cancel. You can cancel anytime.` }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -88,6 +118,38 @@ onMounted(() => {
             &__title {
                 @apply font-bold;
             }
+        }
+
+        .price-summary {
+            @apply mt-6 flex flex-col;
+
+            .heading {
+                @apply text-2xl font-bold;
+            }
+
+            .open-summary {
+                @apply flex items-center gap-1 font-bold;
+            }
+
+            .details {
+                @apply flex flex-col gap-3 my-5 max-h-0 h-fit overflow-hidden;
+                transition: all 0.3s ease-in;
+                color: #667085;
+            }
+
+            .arrow {
+                @apply text-2xl font-normal;
+                transition: all 0.3s linear;
+            }
+        }
+
+        .line {
+            @apply border-b border-[#DEE8E8] border-solid mt-6;
+        }
+
+        .terms {
+            @apply text-center mt-6;
+            color: #667085;
         }
     }
 </style>
