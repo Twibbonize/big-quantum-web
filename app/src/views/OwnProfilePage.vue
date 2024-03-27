@@ -203,11 +203,11 @@ onMounted(() => {
                                     <div class="profile__actions">
                                         <div class="w-full md:w-60">
                                             <QShareButton
-                                                link="twb.nz/u/universetech"
+                                                link="twibbo.nz/u/universetech"
                                                 @click="
                                                     () =>
                                                         onClickShare(
-                                                            'twb.nz/u/universetech',
+                                                            'twibbo.nz/u/universetech',
                                                             {
                                                                 avatar: getAvatarUrl(
                                                                     'sample-avatar-1.jpg'

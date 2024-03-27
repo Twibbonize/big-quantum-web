@@ -85,7 +85,7 @@ onUnmounted(() => {
 
                 <div class="ml-2">
                     <h3 class="font-semibold leading-none">Hanoi Art Book Fair 2025</h3>
-                    <span class="text-content text-sm">twb.nz/hanoi-art</span>
+                    <span class="text-content text-sm">twibbo.nz/hanoi-art</span>
                 </div>
             </div>
             <div class="feeds__header__right">

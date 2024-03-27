@@ -5,7 +5,7 @@ dayjs.extend(relativeTime);
 const publicCampaigns = [
     {
         name: 'UNIVERSE UNPACKED 2022',
-        uri: 'twb.nz/universe-unpacked-2022',
+        uri: 'twibbo.nz/universe-unpacked-2022',
         creator: {
             name: 'Universe Tech',
             username: 'universetech',
@@ -20,7 +20,7 @@ const publicCampaigns = [
     },
     {
         name: 'Digital Culture Webinar',
-        uri: 'twb.nz/digital-culture-webinar',
+        uri: 'twibbo.nz/digital-culture-webinar',
         creator: {
             name: 'Craig Gottlieb',
             username: 'craiggottlieb',
@@ -35,7 +35,7 @@ const publicCampaigns = [
     },
     {
         name: 'Bit by Bit - Retro Gaming Festival',
-        uri: 'twb.nz/bit-by-bit-retro-gaming-festival',
+        uri: 'twibbo.nz/bit-by-bit-retro-gaming-festival',
         creator: {
             name: 'Christina Abbott',
             username: 'christabbot',
@@ -50,7 +50,7 @@ const publicCampaigns = [
     },
     {
         name: 'Liberty Scholarships 2025',
-        uri: 'twb.nz/liberty-scholarships-2025',
+        uri: 'twibbo.nz/liberty-scholarships-2025',
         creator: {
             name: 'Liberty Scholarship',
             username: 'libscholarship',
@@ -65,7 +65,7 @@ const publicCampaigns = [
     },
     {
         name: 'My Coffee Moment with Kohi!',
-        uri: 'twb.nz/my-coffee-moment-with-kohi',
+        uri: 'twibbo.nz/my-coffee-moment-with-kohi',
         creator: {
             name: 'Darrel Upton',
             username: 'darrelupton',
@@ -80,7 +80,7 @@ const publicCampaigns = [
     },
     {
         name: 'Digital Marketing Course',
-        uri: 'twb.nz/digital-marketing-course',
+        uri: 'twibbo.nz/digital-marketing-course',
         creator: {
             name: 'Travis Conner',
             username: 'traviscorner',
@@ -95,7 +95,7 @@ const publicCampaigns = [
     },
     {
         name: 'ASO Rock Festa 2025',
-        uri: 'twb.nz/aso-rock-festa-2025',
+        uri: 'twibbo.nz/aso-rock-festa-2025',
         creator: {
             name: 'Fernando Heathcote',
             username: 'fernando192',
@@ -110,7 +110,7 @@ const publicCampaigns = [
     },
     {
         name: '+Ultra Uni O-Week 2025',
-        uri: 'twb.nz/ultra-uni-o-week',
+        uri: 'twibbo.nz/ultra-uni-o-week',
         creator: {
             name: 'Melissa Gleichner',
             username: 'melltwb912',
@@ -128,7 +128,7 @@ const publicCampaigns = [
 const ownCampaigns = [
     {
         name: 'UNIVERSE UNPACKED 2025',
-        uri: 'twb.nz/universe-unpacked-2025',
+        uri: 'twibbo.nz/universe-unpacked-2025',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -139,7 +139,7 @@ const ownCampaigns = [
     },
     {
         name: 'Universe Tech Future Developers Bootcamp',
-        uri: 'twb.nz/universe-tech-fut-dev-bootcamp',
+        uri: 'twibbo.nz/universe-tech-fut-dev-bootcamp',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -150,7 +150,7 @@ const ownCampaigns = [
     },
     {
         name: 'Universe Tech Innovation Day',
-        uri: 'twb.nz/universe-tech-innovation-day-2025',
+        uri: 'twibbo.nz/universe-tech-innovation-day-2025',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -161,7 +161,7 @@ const ownCampaigns = [
     },
     {
         name: 'Shot on Universe Phone',
-        uri: 'twb.nz/shot-on-universe-phone',
+        uri: 'twibbo.nz/shot-on-universe-phone',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -172,7 +172,7 @@ const ownCampaigns = [
     },
     {
         name: 'Universe Tech Orbit The Next Generation VR',
-        uri: 'twb.nz/universe-tech-orbit-vr',
+        uri: 'twibbo.nz/universe-tech-orbit-vr',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -183,7 +183,7 @@ const ownCampaigns = [
     },
     {
         name: 'Universe Tech Innovation Lab',
-        uri: 'twb.nz/universe-tech-innovation-lab',
+        uri: 'twibbo.nz/universe-tech-innovation-lab',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'
@@ -194,7 +194,7 @@ const ownCampaigns = [
     },
     {
         name: 'Universe Tech Smart Innovation Summit',
-        uri: 'twb.nz/universe-tech-innovation-summit',
+        uri: 'twibbo.nz/universe-tech-innovation-summit',
         creator: {
             name: 'Universe Tech',
             avatar: '/assets/img/sample/sample-avatar-1.jpg'

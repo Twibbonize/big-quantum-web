@@ -59,7 +59,7 @@ const handleOpenShare = () => {
     open({
         component: ShareModal,
         props: {
-            link: `twb.nz/p/${uri}`,
+            link: `twibbo.nz/p/${uri}`,
             payload: {
                 name: `Post shared on ${formattedDate}`,
                 username: username,

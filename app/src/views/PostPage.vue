@@ -55,7 +55,7 @@ const handleOpenShare = () => {
     const formattedDate = datetime.format('MMM D, YYYY');
 
     openShare(
-        `twb.nz/p/${uri}`,
+        `twibbo.nz/p/${uri}`,
         { name: `Post shared on ${formattedDate}`, username: username, avatar: image },
         'post'
     );
@@ -160,7 +160,7 @@ const handleOpenShare = () => {
                                                     {{ post.campaign.name }}
                                                 </div>
                                                 <div class="text-xxs text-content mt-1">
-                                                    twb.nz/{{ post.campaign.url }}
+                                                    twibbo.nz/{{ post.campaign.url }}
                                                 </div>
                                             </div>
 

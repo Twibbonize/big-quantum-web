@@ -12,14 +12,23 @@ const { height } = useElementSize(creatorTitle);
 <template>
     <div class="creator-background-container">
         <div class="absolute top-0 -mt-12 z-0">
-            <PricingBackgroundSlideContainer size="lg"/>
+            <PricingBackgroundSlideContainer size="lg" />
         </div>
         <div class="title-container">
-            <img class="premium-title" src="/assets/img/marketings/premium-white.svg" alt="creator">
-            <img ref="creatorTitle" class="creator-title" src="/assets/img/marketings/premium-creator.svg" alt="creator">
+            <img
+                class="premium-title"
+                src="/assets/img/marketings/premium-white.svg"
+                alt="creator"
+            />
+            <img
+                ref="creatorTitle"
+                class="creator-title"
+                src="/assets/img/marketings/premium-creator.svg"
+                alt="creator"
+            />
         </div>
-        
-        <div class="background-blank" :style="{ height: `${height/2}px` }">
+
+        <div class="background-blank" :style="{ height: `${height / 2}px` }">
             <div class="relative h-full mx-5 sm:mx-14 lg:mx-20 overflow-hidden">
                 <div class="text-mask"></div>
             </div>
@@ -30,7 +39,7 @@ const { height } = useElementSize(creatorTitle);
 <style lang="scss" scoped>
 .creator-background-container {
     @apply relative w-full h-full overflow-hidden;
-    background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
+    background: linear-gradient(262deg, #32a092 3.54%, #03352f 100%);
 
     .title-container {
         @apply mt-[200px] w-full flex flex-col z-10;
@@ -46,7 +55,7 @@ const { height } = useElementSize(creatorTitle);
 
     .text-mask {
         @apply absolute top-0 w-full h-full;
-        background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
+        background: linear-gradient(262deg, #32a092 3.54%, #03352f 100%);
         mask-image: url('/assets/img/marketings/premium-creator.svg');
         mask-position: bottom;
         mask-repeat: no-repeat;
@@ -54,10 +63,9 @@ const { height } = useElementSize(creatorTitle);
         mask-mode: alpha;
     }
 
-
     .background-blank {
         @apply bg-white absolute bottom-0 w-full;
-        border: 1px solid #FFFFFF;
+        border: 1px solid #ffffff;
         z-index: 20;
     }
 

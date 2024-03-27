@@ -262,7 +262,7 @@ const onClickShare = () => {
     modalOpen({
         component: ShareModal,
         props: {
-            link: 'twb.nz/hanoi-art-2025',
+            link: 'twibbo.nz/hanoi-art-2025',
             payload: { thumbnail: '/assets/img/posts/hanoi-art-book-fair/art_book_fair_1.jpg' },
             type: 'campaign'
         }
@@ -521,7 +521,7 @@ onMounted(async () => {
                                 <div class="campaign__detail__actions">
                                     <div class="flex-grow">
                                         <QShareButton
-                                            link="twb.nz/hanoi-art-2025"
+                                            link="twibbo.nz/hanoi-art-2025"
                                             @click="onClickShare"
                                         />
                                     </div>

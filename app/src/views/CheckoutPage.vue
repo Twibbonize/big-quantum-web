@@ -13,9 +13,6 @@ onMounted(() => {
 });
 </script>
 
-<template>
+<template></template>
 
-</template>
-
-<style lang="scss">
-</style>
+<style lang="scss"></style>

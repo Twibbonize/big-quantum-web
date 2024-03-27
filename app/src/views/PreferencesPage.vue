@@ -374,7 +374,7 @@ onMounted(() => {
 
                                                             <p class="text-xs text-content">
                                                                 Your Twibbonize URL:
-                                                                https://twb.nz/@universetech
+                                                                https://twibbo.nz/@universetech
                                                             </p>
                                                         </div>
 
