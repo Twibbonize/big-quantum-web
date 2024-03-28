@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
 import PricingPrice from '@/components/molecules/Pricing/Price.vue';
@@ -8,6 +9,8 @@ import PricingBlobBackground from '@/components/molecules/Pricing/BlobBackground
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const sm = breakpoints.smallerOrEqual('md');
+
+const optionIndex = ref(0);
 
 defineProps({
     premiumImage: String,
@@ -35,6 +38,7 @@ defineProps({
             <p class="premium-description z-10">{{ premiumDescription }}</p>
             <div class="text-black z-10">
                 <QSwitchThree
+                    v-model="optionIndex"
                     :size="sm ? 'sm' : ''"
                     :options="options"
                     :name="`card-premium-${isCreator ? 'creator' : 'supporter'}`"
