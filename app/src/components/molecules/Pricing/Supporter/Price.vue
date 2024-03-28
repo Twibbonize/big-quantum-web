@@ -4,7 +4,9 @@ import QButton from '@/components/atoms/QButton.vue';
 import QSwitchThree from '@/components/atoms/QSwitchThree.vue';
 
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const optionIndex = ref(0);
 
 const supporterOptions = [
@@ -89,7 +91,7 @@ const supporterFeatures = [
                     class="mt-4"
                 />
                 <p>{{ `per ${supporterOptions[optionIndex].duration}` }}</p>
-                <QButton variant="black" class="gap-2 w-full mt-4">
+                <QButton variant="black" class="gap-2 w-full mt-4" @click="router.push('/checkout?plan=supporter')">
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
