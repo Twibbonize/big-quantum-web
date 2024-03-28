@@ -6,7 +6,9 @@ import PricingBackgroundSlideContainer from '@/components/molecules/Pricing/Back
 
 
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const optionIndex = ref(0);
 
 const creatorOptions = [
@@ -82,7 +84,7 @@ const creatorFeatures = [
                     class="text-white mt-4"
                 />
                 <p class="text-white">{{ `per ${creatorOptions[optionIndex].duration}` }}</p>
-                <QButton variant="white" class="gap-2 w-full mt-4">
+                <QButton variant="white" class="gap-2 w-full mt-4" @click="router.push('/checkout?plan=creator')">
                     Purchase Now
                     <i class="ri-arrow-right-line"></i>
                 </QButton>
