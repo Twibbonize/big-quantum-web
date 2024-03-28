@@ -44,8 +44,6 @@ const creatorFeatures = [
 <style lang="scss">
     .branding-creator {
         @apply px-5 py-8 sm:px-10 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden gap-14 lg:gap-0;
-        border-top: 2px solid rgba(255, 255, 255, 0.40);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.40);
         background: linear-gradient(262deg, #32A092 3.54%, #03352F 100%);
 
         .detail {
@@ -58,7 +56,7 @@ const creatorFeatures = [
                 @apply h-16 lg:h-20;
             }
             .icon-container {
-                @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2;
+                @apply w-6 h-6 lg:w-8 lg:h-8 rounded-2xl flex justify-center items-center mr-2.5;
                 background: rgba(255,255,255, 0.10);
 
                 i {

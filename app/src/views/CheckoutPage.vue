@@ -2,28 +2,21 @@
 import LayoutMain from '@/components/layouts/LayoutMain.vue';
 import CheckoutOptions from '@/components/molecules/Checkout/Options.vue';
 import CheckoutBrandingCreator from '@/components/molecules/Checkout/BrandingCreator.vue';
+import CheckoutBrandingSupporter from '@/components/molecules/Checkout/BrandingSupporter.vue';
 import QButton from '@/components/atoms/QButton.vue';
 
 import { onMounted, ref, computed } from 'vue';
 import { useNavbarStore } from '@/stores/navbarStore';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 const navbarStore = useNavbarStore();
 const { setShadow, setNavbarColor, setLogoVariant, setCtaVariant } = navbarStore;
 
-const options = computed(() => {
-    return [{
-        key: 'monthly',
-        value: 11.99,
-    },{
-        key: 'annual',
-        value: 4.16,
-    }];
-})
-
-const checkoutPlan = ref(options.value[0]);
-const isOpen = ref(false);
+const isCreator = computed(() => {
+    return /(creator)/ig.test(route.query.plan);
+});
 
 const setIsOpen = () => {
     isOpen.value = !isOpen.value;
@@ -32,6 +25,36 @@ const setIsOpen = () => {
 const requestCheckout = () => {
     
 };
+
+const getPlan = () => {
+    if (isCreator.value) return 'Premium Creator';
+    return 'Premium Supporter';
+};
+
+const options = computed(() => {
+    if (isCreator.value) {
+        return [{
+            key: 'monthly',
+            value: 11.99,
+        },{
+            key: 'annual',
+            value: 4.16,
+        }];
+    }
+    return [{
+        key: 'weekly',
+        value: 2.99
+    },{
+        key: 'monthly',
+        value: 4.99,
+    },{
+        key: 'annual',
+        value: 6.99,
+    }];
+})
+
+const checkoutPlan = ref(options.value[0]);
+const isOpen = ref(false);
 
 onMounted(() => {
     setNavbarColor('white');
@@ -49,11 +72,12 @@ onMounted(() => {
                     <i class="ri-arrow-left-line"></i>
                     Back to plans
                 </button>
-                <h2 class="title">Upgrade to Premium Creator</h2>
+                <h2 class="title">{{ `Upgrade to ${getPlan()}` }}</h2>
                 <p class="description">Gather your supporters and scale up your campaign with our exclusive features.</p>
                 <div class="checkout-container">
                     <div class="checkout-branding">
-                        <CheckoutBrandingCreator/>
+                        <CheckoutBrandingCreator v-if="isCreator"/>
+                        <CheckoutBrandingSupporter v-else/>
                     </div>
                     <div class="checkout-detail">
                         <h3 class="checkout-detail__title">Billing Option</h3>
@@ -73,7 +97,7 @@ onMounted(() => {
                         </div>
                         <div class="line"></div>
                         <QButton variant="primary" size="md" class="w-full flex gap-2 items-center mt-6" @click="requestCheckout">
-                            Upgrade to Creator
+                            Upgrade
                             <i class="ri-arrow-right-line"></i>
                         </QButton>
                         <p class="terms">
