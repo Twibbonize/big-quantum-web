@@ -71,7 +71,7 @@ const supporterFeatures = [
 
 <style lang="scss">
     .branding-supporter {
-		@apply bg-white px-5 py-8 sm:px-10 rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden gap-14 lg:gap-0;
+		@apply bg-white px-5 py-8 sm:px-10 rounded-3xl sm:rounded-[32px] flex flex-col sm:flex-row justify-between relative overflow-hidden gap-14 lg:gap-0;
 
 		.pattern {
 			@apply h-full w-auto lg:h-auto lg:w-full absolute top-0 left-0 z-[2];
