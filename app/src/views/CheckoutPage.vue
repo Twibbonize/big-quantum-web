@@ -142,7 +142,7 @@ onMounted(() => {
         }
 
         .checkout-detail {
-            @apply flex-1 rounded-3xl px-5 py-8 xl:p-10 bg-white;
+            @apply flex-1 rounded-3xl sm:rounded-[32px] px-5 py-8 xl:p-10 bg-white;
 
             &__title {
                 @apply font-bold;
